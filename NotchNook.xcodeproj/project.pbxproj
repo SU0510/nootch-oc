@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
+		EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */; };
+		EC758F812BF2F19B00B873B0 /* notchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* notchShape.swift */; };
+		EC758F822BF2F19B00B873B0 /* NotchShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7C2BF2F19B00B873B0 /* NotchShapeView.swift */; };
+		EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7D2BF2F19B00B873B0 /* NotchView.swift */; };
+		EC758F842BF2F19B00B873B0 /* ShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7E2BF2F19B00B873B0 /* ShelfView.swift */; };
+		EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F852BF2F1A400B873B0 /* airDropFiles.swift */; };
+		EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F862BF2F1A400B873B0 /* getURLsFromDropInfo.swift */; };
+		EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F872BF2F1A400B873B0 /* iconForFile.swift */; };
+		EC758F962BF2F1A400B873B0 /* truncateFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F882BF2F1A400B873B0 /* truncateFileName.swift */; };
+		EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8A2BF2F1A400B873B0 /* blurTransitions.swift */; };
+		EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */; };
+		EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */; };
+		EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F902BF2F1A400B873B0 /* DropAction.swift */; };
+		EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F912BF2F1A400B873B0 /* NotchNook.swift */; };
+		EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA02BF2F1B900B873B0 /* ContentView.swift */; };
+		EC758FA32BF2F1C600B873B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA22BF2F1C500B873B0 /* main.swift */; };
+		EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA42BF2F20100B873B0 /* AppDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
+		EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropActionView.swift; sourceTree = "<group>"; };
+		EC758F7B2BF2F19B00B873B0 /* notchShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notchShape.swift; sourceTree = "<group>"; };
+		EC758F7C2BF2F19B00B873B0 /* NotchShapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchShapeView.swift; sourceTree = "<group>"; };
+		EC758F7D2BF2F19B00B873B0 /* NotchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
+		EC758F7E2BF2F19B00B873B0 /* ShelfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShelfView.swift; sourceTree = "<group>"; };
+		EC758F852BF2F1A400B873B0 /* airDropFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = airDropFiles.swift; sourceTree = "<group>"; };
+		EC758F862BF2F1A400B873B0 /* getURLsFromDropInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getURLsFromDropInfo.swift; sourceTree = "<group>"; };
+		EC758F872BF2F1A400B873B0 /* iconForFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iconForFile.swift; sourceTree = "<group>"; };
+		EC758F882BF2F1A400B873B0 /* truncateFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = truncateFileName.swift; sourceTree = "<group>"; };
+		EC758F8A2BF2F1A400B873B0 /* blurTransitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = blurTransitions.swift; sourceTree = "<group>"; };
+		EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindDropAreaCoords.swift; sourceTree = "<group>"; };
+		EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.swift; sourceTree = "<group>"; };
+		EC758F902BF2F1A400B873B0 /* DropAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropAction.swift; sourceTree = "<group>"; };
+		EC758F912BF2F1A400B873B0 /* NotchNook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchNook.swift; sourceTree = "<group>"; };
+		EC758FA02BF2F1B900B873B0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EC758FA22BF2F1C500B873B0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC758F652BF2F18700B873B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC758F5F2BF2F18700B873B0 = {
+			isa = PBXGroup;
+			children = (
+				EC758F6A2BF2F18700B873B0 /* NotchNook */,
+				EC758F692BF2F18700B873B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC758F692BF2F18700B873B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F682BF2F18700B873B0 /* NotchNook.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC758F6A2BF2F18700B873B0 /* NotchNook */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F7F2BF2F19B00B873B0 /* components */,
+				EC758F8F2BF2F1A400B873B0 /* extensions */,
+				EC758F922BF2F1A400B873B0 /* models */,
+				EC758F892BF2F1A400B873B0 /* utils */,
+				EC758FA02BF2F1B900B873B0 /* ContentView.swift */,
+				EC758F6F2BF2F18900B873B0 /* Assets.xcassets */,
+				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
+				EC758FA22BF2F1C500B873B0 /* main.swift */,
+				EC758FA42BF2F20100B873B0 /* AppDelegate.swift */,
+			);
+			path = NotchNook;
+			sourceTree = "<group>";
+		};
+		EC758F7F2BF2F19B00B873B0 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */,
+				EC758F7B2BF2F19B00B873B0 /* notchShape.swift */,
+				EC758F7C2BF2F19B00B873B0 /* NotchShapeView.swift */,
+				EC758F7D2BF2F19B00B873B0 /* NotchView.swift */,
+				EC758F7E2BF2F19B00B873B0 /* ShelfView.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		EC758F892BF2F1A400B873B0 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F852BF2F1A400B873B0 /* airDropFiles.swift */,
+				EC758F862BF2F1A400B873B0 /* getURLsFromDropInfo.swift */,
+				EC758F872BF2F1A400B873B0 /* iconForFile.swift */,
+				EC758F882BF2F1A400B873B0 /* truncateFileName.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		EC758F8B2BF2F1A400B873B0 /* transitions */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F8A2BF2F1A400B873B0 /* blurTransitions.swift */,
+			);
+			path = transitions;
+			sourceTree = "<group>";
+		};
+		EC758F8D2BF2F1A400B873B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EC758F8F2BF2F1A400B873B0 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F8B2BF2F1A400B873B0 /* transitions */,
+				EC758F8D2BF2F1A400B873B0 /* View */,
+				EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		EC758F922BF2F1A400B873B0 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
+				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC758F672BF2F18700B873B0 /* NotchNook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC758F772BF2F18900B873B0 /* Build configuration list for PBXNativeTarget "NotchNook" */;
+			buildPhases = (
+				EC758F642BF2F18700B873B0 /* Sources */,
+				EC758F652BF2F18700B873B0 /* Frameworks */,
+				EC758F662BF2F18700B873B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotchNook;
+			productName = NotchNook;
+			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC758F602BF2F18700B873B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					EC758F672BF2F18700B873B0 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = EC758F632BF2F18700B873B0 /* Build configuration list for PBXProject "NotchNook" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC758F5F2BF2F18700B873B0;
+			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC758F672BF2F18700B873B0 /* NotchNook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC758F662BF2F18700B873B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC758F642BF2F18700B873B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
+				EC758F812BF2F19B00B873B0 /* notchShape.swift in Sources */,
+				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
+				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
+				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
+				EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */,
+				EC758F962BF2F1A400B873B0 /* truncateFileName.swift in Sources */,
+				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
+				EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */,
+				EC758F822BF2F19B00B873B0 /* NotchShapeView.swift in Sources */,
+				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
+				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
+				EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */,
+				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
+				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
+				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
+				EC758F842BF2F19B00B873B0 /* ShelfView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EC758F752BF2F18900B873B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC758F762BF2F18900B873B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		EC758F782BF2F18900B873B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NotchNook/NotchNook.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EC758F792BF2F18900B873B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NotchNook/NotchNook.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC758F632BF2F18700B873B0 /* Build configuration list for PBXProject "NotchNook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC758F752BF2F18900B873B0 /* Debug */,
+				EC758F762BF2F18900B873B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC758F772BF2F18900B873B0 /* Build configuration list for PBXNativeTarget "NotchNook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC758F782BF2F18900B873B0 /* Debug */,
+				EC758F792BF2F18900B873B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC758F602BF2F18700B873B0 /* Project object */;
+}
