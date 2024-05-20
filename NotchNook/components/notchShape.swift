@@ -7,34 +7,56 @@
 
 import SwiftUI
 
-struct NotchShapeConfig {
-    var height: CGFloat
-    var width: CGFloat
-    var outerRadius: CGFloat
-    var innerRadius: CGFloat
-    var shadow: Bool = false
-}
+struct NotchShape: Shape {
+    static let defaultNotchWidth: CGFloat = 184
+    static let defaultEstimatedMaxExceedingWidth: CGFloat = 300
+    static let defaultEstimatedMaxExceedingHeight: CGFloat = 100184
+    
+    var minHeight: CGFloat
+    var minWidth: CGFloat = NotchShape.defaultNotchWidth
+    var estimatedMaxExceedingWidth: CGFloat = NotchShape.defaultEstimatedMaxExceedingWidth
+    var estimatedMaxExceedingHeight: CGFloat = NotchShape.defaultEstimatedMaxExceedingHeight
 
-
-func notchShape(extraWidth: CGFloat = 0, baseHeight: CGFloat, config: NotchShapeConfig) -> some Shape {
-    let decorationSize = config.innerRadius * 2
-    return UnevenRoundedRectangle(cornerRadii: .init(bottomLeading: config.outerRadius, bottomTrailing: config.outerRadius), style: .continuous)
-        .union(
-            Rectangle().size(width: decorationSize, height: decorationSize)
-                .subtracting(
-                    UnevenRoundedRectangle(cornerRadii: .init(topTrailing: config.innerRadius), style: .continuous)
-                        .size(width: decorationSize, height: decorationSize)
-                )
-                .offset(x: -decorationSize)
-        )
-        .union(
-            Rectangle().size(width: decorationSize, height: decorationSize)
-                .subtracting(
-                    UnevenRoundedRectangle(cornerRadii: .init(topLeading: config.innerRadius), style: .continuous)
-                        .size(width: decorationSize, height: decorationSize)
-                )
-                .offset(x: config.width + extraWidth)
-        )
-        .size(width: config.width + extraWidth, height: baseHeight + config.height + 1)
-        .offset(y: 1)
+    func path(in rect: CGRect) -> Path {
+        var decorationsRadius: CGFloat {
+            let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: rect.width)
+            return widthInterpolator([5, 24], true)
+        }
+        
+        var notchRadius: CGFloat {
+            let widthInterpolator = interpolatorBuilder([minHeight, minHeight + 100], value: rect.height)
+            return widthInterpolator([11, 40], true)
+        }
+        
+        let decorationSize = decorationsRadius * 2
+        
+        let mainShapePath = UnevenRoundedRectangle(
+            cornerRadii: .init(bottomLeading: notchRadius, bottomTrailing: notchRadius),
+            style: .continuous
+        ).path(in: rect)
+        
+        let leftDecorationPath = Rectangle()
+            .path(in: CGRect(x: -decorationSize, y: 0, width: decorationSize, height: decorationSize))
+            .subtracting(
+                UnevenRoundedRectangle(
+                    cornerRadii: .init(topTrailing: decorationsRadius),
+                    style: .continuous
+                ).path(in: CGRect(x: -decorationSize, y: 0, width: decorationSize, height: decorationSize))
+            )
+        
+        let rightDecorationPath = Rectangle()
+            .path(in: CGRect(x: rect.maxX, y: 0, width: decorationSize, height: decorationSize))
+            .subtracting(
+                UnevenRoundedRectangle(
+                    cornerRadii: .init(topLeading: decorationsRadius),
+                    style: .continuous
+                ).path(in: CGRect(x: rect.maxX, y: 0, width: decorationSize, height: decorationSize))
+            )
+        
+        var combinedPath = mainShapePath
+        combinedPath.addPath(leftDecorationPath)
+        combinedPath.addPath(rightDecorationPath)
+        
+        return combinedPath
+    }
 }

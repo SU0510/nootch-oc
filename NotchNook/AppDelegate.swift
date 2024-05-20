@@ -14,11 +14,11 @@ import AppKit
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let screenF =  NSScreen.main?.frame ?? .zero
-        let notchHeight = NSScreen.main?.safeAreaInsets.top ?? 0
-        let view = NSHostingView(rootView: NotchView(height: notchHeight))
+        let defaultNotchHeight = NSScreen.main?.safeAreaInsets.top ?? 0
+        let view = NSHostingView(rootView: NotchView(defaultNotchHeight: defaultNotchHeight))
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(
-            contentRect: .init(origin: .init(x: (screenF.width - size.width) / 2, y: screenF.height - size.height + 1), size: size),
+            contentRect: .init(origin: .init(x: (screenF.width - size.width) / 2, y: screenF.height - size.height + 1 - 100), size: size),
 //            contentRect: .init(origin: .init(x: (screenF.width - size.width) / 2, y: screenF.height - size.height - 200), size: size),
             styleMask: [.borderless],
             backing: .buffered, defer: true,

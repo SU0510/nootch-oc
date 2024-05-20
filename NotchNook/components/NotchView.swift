@@ -8,13 +8,9 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-let NOTCH_WIDTH: CGFloat = 184
-let NOTCHWAY_WIDTH: CGFloat = 1000
-
 struct NotchView: View, DropDelegate {
-    var height: CGFloat
+    var defaultNotchHeight: CGFloat
     @State private var mode: NotchMode = .closed
-    @State private var filesShelf = [URL]()
     @State private var fileHovering: URL?
     @State private var droppingCoords: CGPoint?
     @State private var availableActions: [DropAction]?
@@ -29,7 +25,10 @@ struct NotchView: View, DropDelegate {
     }
     
     var body: some View {
-        let collapsedWidth: CGFloat = (mode == .closed || mode == .hovering || mode == .pressing) && filesShelf.count > 0 ? 80 : 0
+        let isDragging = droppingCoords != nil
+        let filesShelfCount = Shelf.shared.files.count
+        let isShelfEmpty = filesShelfCount == 0
+        let collapsedWidth: CGFloat = (mode == .closed || mode == .hovering || mode == .pressing) && !isShelfEmpty ? 80 : 0
         let actualShapeConfig = mode.notchShapeConfig
         let defaultTransition = AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.35).delay(0.1)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2)))
         ZStack(alignment: .top) {
@@ -38,16 +37,16 @@ struct NotchView: View, DropDelegate {
                 if collapsedWidth != 0 {
                     Group {
                         Image(systemName: "shippingbox.fill")
-                        Color.clear.frame(width: NOTCH_WIDTH)
+                        Color.clear.frame(width: NotchShape.defaultNotchWidth)
                         HStack(spacing: 2) {
-                            Text("\(filesShelf.count)")
+                            Text("\(filesShelfCount)")
                             Image(systemName: "doc.fill")
                         }
                     }
                     .transition(.scaleAndBlur)
                 }
             }
-            .frame(width: NOTCH_WIDTH + collapsedWidth, height: height)
+            .frame(width: NotchShape.defaultNotchWidth + collapsedWidth, height: defaultNotchHeight)
             .zIndex(1)
             .allowsHitTesting(false)
 
@@ -58,8 +57,8 @@ struct NotchView: View, DropDelegate {
                     
                     Group {
                         
-                        if filesShelf.count > 0 || availableActions != nil {
-                            ShelfView(hovered: hoveredDropTargetID == ShelfView.id, filesURLs: filesShelf, full: filesShelf.count > 0 && mode == .dropping)
+                        if !isShelfEmpty || availableActions != nil {
+                            ShelfView(hovered: hoveredDropTargetID == ShelfView.id, full: !isShelfEmpty && mode == .dropping)
                                 .bindDropAreaCoords(
                                     coordinatedSpace: .named("drop-zone"),
                                     Binding(
@@ -87,22 +86,23 @@ struct NotchView: View, DropDelegate {
                     .transition(defaultTransition)
                     
                 }
-                .padding(.top, height)
-                .padding(.all, (filesShelf.count > 0 && (mode == .open || (mode == .dropping && availableActions == nil))) ? 8 : 12)
-                .frame(width: NotchMode.dropping.notchShapeConfig.width, height: height + NotchMode.dropping.notchShapeConfig.height)
+                .padding(.top, defaultNotchHeight)
+                .padding(.all, (!isShelfEmpty && (mode == .open || (mode == .dropping && availableActions == nil))) ? 8 : 12)
+                .frame(width: NotchMode.dropping.notchShapeConfig.width, height: defaultNotchHeight + NotchMode.dropping.notchShapeConfig.height)
                 .coordinateSpace(name: "drop-zone")
                 .zIndex(1)
-                .allowsHitTesting(false)
+                .allowsHitTesting(!isDragging)
                 .transition(defaultTransition)
             }
             
         }
-        .frame(width: actualShapeConfig.width + collapsedWidth, height: height + actualShapeConfig.height, alignment: .top)
-        .clipShape(notchShape(extraWidth: collapsedWidth, baseHeight: height, config: actualShapeConfig))
+//        .frame(width: NotchShape.defaultNotchWidth + actualShapeConfig.width, height: height + actualShapeConfig.height, alignment: .top)
+        .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: defaultNotchHeight)
+        .clipShape(NotchShape(minHeight: defaultNotchHeight))
         .background {
-            NotchShapeView(extraWidth: collapsedWidth, baseHeight: height, config: actualShapeConfig)
+            ShadowedNotchShapeView(minHeight: defaultNotchHeight)
         }
-        .contentShape(notchShape(extraWidth: collapsedWidth, baseHeight: height, config: actualShapeConfig))
+        .contentShape(NotchShape(minHeight: defaultNotchHeight))
         .onTapGesture {
             withAnimation(.bouncy(extraBounce: 0.075)) {
                 self.mode = .open
@@ -119,7 +119,7 @@ struct NotchView: View, DropDelegate {
         .onHover { hovering in
             if hovering {
                 if mode == .closed {
-                    if filesShelf.count > 0 {
+                    if !isShelfEmpty {
                         withAnimation(.bouncy(extraBounce: 0.075)) {
                             self.mode = .open
                         }
@@ -149,32 +149,15 @@ struct NotchView: View, DropDelegate {
         .fixedSize()
     }
     
-    func performDrop(info: DropInfo) -> Bool {
+    func finishDragging(close: Bool) {
+        if droppingCoords != nil { droppingCoords = nil }
         
-        let isShelf = hoveredDropTargetID == ShelfView.id
-        var allowedTypes: [UTType] = isShelf ? [.fileURL] : []
-        var cb: (([URL]) -> ()) = { urls in
-            withAnimation(.smooth) {
-                filesShelf = filesShelf + urls
+        if availableActions != nil || (close && mode != .closed) {
+            withAnimation(.smooth(duration: 0.4)) {
+                availableActions = nil
+                if close { mode = .closed }
             }
         }
-        
-        let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
-        
-        if !isShelf, let dropAction {
-            allowedTypes = dropAction.allowedFileTypes
-            cb = { urls in
-                dropAction.action(urls, .zero)
-            }
-        }
-        
-        if !isShelf && dropAction == nil { return false }
-        
-        getURLsFromDropInfo(info, allowedTypes: allowedTypes, cb: {
-            availableActions = nil
-            cb($0)
-        })
-        return true
     }
     
     func dropEntered(info: DropInfo) {
@@ -184,7 +167,7 @@ struct NotchView: View, DropDelegate {
             mode = .dropping
         }
         DispatchQueue.main.async {
-            var actionsToShow = allDropActions.filter { action in
+            let actionsToShow = allDropActions.filter { action in
                 action.allowedFileTypes.allSatisfy { fileType in
                     info.hasItemsConforming(to: [fileType])
                 }
@@ -200,14 +183,32 @@ struct NotchView: View, DropDelegate {
         return nil
     }
     
-    func dropExited(info: DropInfo) {
-        withAnimation(.smooth(duration: 0.4)) {
-            availableActions = nil
-            droppingCoords = nil
-            if filesShelf.count == 0 {
-                mode = .closed
+    func performDrop(info: DropInfo) -> Bool {
+        
+        let isShelf = hoveredDropTargetID == ShelfView.id
+        var allowedTypes: [UTType] = isShelf ? [.fileURL] : []
+        var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
+        
+        let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
+        
+        if !isShelf, let dropAction {
+            allowedTypes = dropAction.allowedFileTypes
+            cb = { urls in
+                dropAction.action(urls, .zero)
             }
         }
+        
+        if !isShelf && dropAction == nil { return false }
+        
+        getURLsFromDropInfo(info, allowedTypes: allowedTypes, cb: {
+            finishDragging(close: Shelf.shared.files.count == 0 && !isShelf)
+            cb($0)
+        })
+        return true
+    }
+    
+    func dropExited(info: DropInfo) {
+        finishDragging(close: Shelf.shared.files.count == 0)
     }
     
     enum NotchMode {
@@ -215,11 +216,11 @@ struct NotchView: View, DropDelegate {
         
         var notchShapeConfig: NotchShapeConfig {
             return switch self {
-            case .closed: .init(height: 0, width: NOTCH_WIDTH, outerRadius: 11, innerRadius: 5, shadow: false)
-            case .hovering: .init(height: 10, width: NOTCH_WIDTH + 20, outerRadius: 22, innerRadius: 14, shadow: true)
-            case .pressing: .init(height: 7, width: NOTCH_WIDTH + 14, outerRadius: 19, innerRadius: 11, shadow: true)
-            case .dropping: .init(height: 100, width: NOTCH_WIDTH + 300, outerRadius: 40, innerRadius: 24, shadow: true)
-            case .open: .init(height: 100, width: NOTCH_WIDTH + 300, outerRadius: 40, innerRadius: 24, shadow: true)
+            case .closed: .init(height: 0, width: 0, decorationsRadius: 5, notchRadius: 11, shadow: false)
+            case .hovering: .init(height: 10, width: 20, decorationsRadius: 22, notchRadius: 14, shadow: true)
+            case .pressing: .init(height: 7, width: 14, decorationsRadius: 19, notchRadius: 11, shadow: true)
+            case .dropping: .init(height: 100, width: 300, decorationsRadius: 40, notchRadius: 24, shadow: true)
+            case .open: .init(height: 100, width: 300, decorationsRadius: 40, notchRadius: 24, shadow: true)
             }
         }
     }
