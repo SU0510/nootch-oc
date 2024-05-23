@@ -67,13 +67,13 @@ struct TopBarView: View {
         }
         .background {
             HStack(spacing: 0) {
-                
+                let showArrows = panPadding.bottom < (NotchView.maxPanDrag / 3)
                 Group {
                     switch NotchNook.shared.mode {
                     case .closed:
                         let la = NotchNook.shared.activeLiveActions
                         if la.contains(.media) {
-                            ArrowForPanningView(x: -panPadding.leading)
+                            ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false)
                                 .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .leading)
                         }
                     case .dragging, .nook, .shelf: EmptyView()
@@ -92,7 +92,7 @@ struct TopBarView: View {
                     case .closed:
                         let la = NotchNook.shared.activeLiveActions
                         if la.contains(.media) {
-                            ArrowForPanningView(x: panPadding.trailing)
+                            ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true)
                                 .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .trailing)
                         }
                     case .nook, .shelf, .dragging: EmptyView()

@@ -9,6 +9,8 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct NotchView: View, DropDelegate {
+    static let maxPanDrag: Double = 16
+    static let panVelocityTriggerThreshold: Double = 500
     static let defaultTransition = AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.35).delay(0.1)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2)))
     
     var defaultNotchHeight: CGFloat
@@ -22,8 +24,6 @@ struct NotchView: View, DropDelegate {
     @State private var scaleDown: Double = 0
 //    @State private var pan: CGSize = .zero
     @Namespace private var ns
-    let maxPanDrag: Double = 16
-    let panVelocityTriggerThreshold: Double = 600
     
     var hoveredDropTargetID: String? {
         if let droppingCoords,
@@ -40,12 +40,15 @@ struct NotchView: View, DropDelegate {
 
         let max: Double = 16
         
+        let leading = leadingInterpolator([0, max], true)
+        let trailing = trailingInterpolator([0, max], true)
         let bottom = bottomInterpolator([0, max], true)
+        
         return .init(
             top: 0,
-            leading: (bottom * 0.5) + leadingInterpolator([0, max], true),
-            bottom: bottom,
-            trailing: (bottom * 0.5) + trailingInterpolator([0, max], true)
+            leading: (bottom * 0.5) + leading,
+            bottom: (((leading + trailing) / 2) * 0.25) + bottom,
+            trailing: (bottom * 0.5) + trailing
         )
     }
     
@@ -68,9 +71,24 @@ struct NotchView: View, DropDelegate {
             if unhover {
                 self.hovering = false
             }
+            if doVibrate { vibrate() }
             if NotchNook.shared.mode != .closed {
-                if doVibrate { vibrate() }
                 NotchNook.shared.mode = .closed
+            }
+        } completion: {
+            cancelPan = false
+        }
+    }
+    
+    func changeTrack(prev: Bool) {
+        withAnimation(.smooth) {
+            vibrate()
+            panRawPadding = .zero
+            cancelPan = true
+            if prev {
+                MediaPlayer.shared.previousTrack()
+            } else {
+                MediaPlayer.shared.nextTrack()
             }
         } completion: {
             cancelPan = false
@@ -124,7 +142,7 @@ struct NotchView: View, DropDelegate {
                         
                         scaleDown += interpolate([0, 0.1], true)
                         
-                        if scaleDown > 0.03 || velocity.height < -panVelocityTriggerThreshold {
+                        if scaleDown > 0.03 || velocity.height < -NotchView.panVelocityTriggerThreshold {
                             closeNotch(vibrate: true)
                         }
                     }
@@ -133,26 +151,26 @@ struct NotchView: View, DropDelegate {
                 
                 panRawPadding = .init(
                     top: 0,
-                    leading: scrollingPoint.x > 0 ? 0 : panRawPadding.leading + (scrollingPoint.x < 0 ? abs(scrollingPoint.x) : 0),
+                    leading: panRawPadding.leading + (scrollingPoint.x < 0 ? abs(scrollingPoint.x) : 0),
                     bottom: panRawPadding.bottom + (scrollingPoint.y > 0 ? scrollingPoint.y : 0),
-                    trailing: scrollingPoint.x < 0 ? 0 : panRawPadding.trailing + (scrollingPoint.x > 0 ? scrollingPoint.x : 0)
+                    trailing: panRawPadding.trailing + (scrollingPoint.x > 0 ? scrollingPoint.x : 0)
                 )
+                
+                if scrollingPoint.x > 0 {
+                    withAnimation(.smooth) { panRawPadding.leading = 0 }
+                } else if scrollingPoint.x < 0 {
+                    withAnimation(.smooth) { panRawPadding.trailing = 0 }
+                }
                                 
-                if velocity.height > panVelocityTriggerThreshold {
+                if velocity.height > NotchView.panVelocityTriggerThreshold {
                     openNotch()
                 }
                 
-                if velocity.width < -panVelocityTriggerThreshold {
-                    cancelGesture()
-                    vibrate()
-                    withAnimation(.smooth) { panRawPadding = .zero }
-                    MediaPlayer.shared.previousTrack()
+                if velocity.width < -NotchView.panVelocityTriggerThreshold {
+                    changeTrack(prev: true)
                 }
-                if velocity.width > panVelocityTriggerThreshold {
-                    cancelGesture()
-                    vibrate()
-                    withAnimation(.smooth) { panRawPadding = .zero }
-                    MediaPlayer.shared.nextTrack()
+                if velocity.width > NotchView.panVelocityTriggerThreshold {
+                    changeTrack(prev: false)
                 }
                 
             } onDragEnded: { translation, scrollingPoint, velocity in
@@ -188,19 +206,15 @@ struct NotchView: View, DropDelegate {
             }
         }
         .onChange(of: panPadding) { _, newPanPaddig in
-            if newPanPaddig.bottom > maxPanDrag && mode == .closed {
+            if newPanPaddig.bottom > NotchView.maxPanDrag && mode == .closed {
                 openNotch()
             }
-            if newPanPaddig.bottom < maxPanDrag / 3 {
-                if newPanPaddig.leading > maxPanDrag {
-                    vibrate()
-                    withAnimation(.smooth) { panRawPadding = .zero; cancelPan = true }
-                    MediaPlayer.shared.previousTrack()
+            if newPanPaddig.bottom < NotchView.maxPanDrag / 3 {
+                if newPanPaddig.leading > NotchView.maxPanDrag {
+                    changeTrack(prev: true)
                 }
-                if newPanPaddig.trailing > maxPanDrag {
-                    vibrate()
-                    withAnimation(.smooth) { panRawPadding = .zero; cancelPan = true }
-                    MediaPlayer.shared.nextTrack()
+                if newPanPaddig.trailing > NotchView.maxPanDrag {
+                    changeTrack(prev: false)
                 }
             }
         }

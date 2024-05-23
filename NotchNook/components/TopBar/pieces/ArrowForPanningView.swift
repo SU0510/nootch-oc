@@ -9,29 +9,29 @@ import SwiftUI
 
 struct ArrowForPanningView: View {
     var x: CGFloat
+    var right: Bool
     @State private var activated = false
-    @State private var right = false
+//    @State private var right = false
     var body: some View {
-        let interpolator = interpolatorBuilder([0, 16], value: abs(x))
-        Image(systemName: (x == 0 && !right) || x < 0 ? "backward.end.fill" : "forward.end.fill")
+        let maxPanDrag = NotchView.maxPanDrag
+        let interpolator = interpolatorBuilder([0, maxPanDrag], value: abs(x))
+        Image(systemName: !right ? "backward.end.fill" : "forward.end.fill")
             .padding(.top, 2)
             .font(.system(size: 12))
-            .foregroundStyle(activated ? .blue : .white)
-            .scaleEffect(interpolator([0.01, 1], false))
-            .blur(radius: max(0, interpolator([14, -5], false)))
             .opacity(activated ? 0.75 : interpolator([0, 0.25], false))
-            .offset(x: x)
-            .onChange(of: x) {
-                if x == 0 { return }
-                let newRight = $1 > 0
-                if right != newRight {
-                    right = newRight
-                }
-            }
+            .foregroundStyle(activated ? .blue : .white)
+            .animation(nil, value: activated)
+            .scaleEffect(activated ? 1 : interpolator([0.01, 1], false))
+            .blur(radius: activated ? 0 : max(0, interpolator([14, -5], false)))
+            .offset(x: activated ? 32 * (right ? 1 : -1) : x)
+            .animation(.interactiveSpring, value: x)
             .onChange(of: abs(x) > 16) { old, new in
                 if !old && new {
-                    activated = true
-                    withAnimation { activated = false }
+                    withAnimation(.bouncy) {
+                        activated = true
+                    } completion: {
+                        activated = false
+                    }
                 }
             }
     }

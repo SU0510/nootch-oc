@@ -69,6 +69,7 @@
 		EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */; };
 		EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */; };
 		EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */; };
+		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,7 @@
 		EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onSwipe.swift; sourceTree = "<group>"; };
 		EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onChangeDebounced.swift; sourceTree = "<group>"; };
 		EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowForPanningView.swift; sourceTree = "<group>"; };
+		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				EC758F872BF2F1A400B873B0 /* iconForFile.swift */,
 				EC758F882BF2F1A400B873B0 /* truncateFileName.swift */,
 				EC8D5FED2BFAB12200E67ECC /* interpolatorBuilder.swift */,
+				EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
+				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
