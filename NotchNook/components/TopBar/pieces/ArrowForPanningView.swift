@@ -19,6 +19,7 @@ struct ArrowForPanningView: View {
             .foregroundStyle(activated ? .blue : .white)
             .opacity(activated ? 0.75 : interpolator([0, 0.25], false))
             .scaleEffect(interpolator([0.01, 1], false))
+            .blur(radius: max(0, interpolator([16, -5], false)))
             .offset(x: x)
             .onChange(of: x) {
                 if x == 0 { return }

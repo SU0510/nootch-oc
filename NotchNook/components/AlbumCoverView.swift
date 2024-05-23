@@ -46,5 +46,6 @@ struct AlbumCoverView: View, Equatable {
         }
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
         .transition(.scaleAndBlur)
+        .drawingGroup()
     }
 }

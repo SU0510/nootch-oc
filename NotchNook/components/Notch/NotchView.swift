@@ -55,17 +55,23 @@ struct NotchView: View, DropDelegate {
     
     func openNotch(in newMode: NotchNook.NotchMode = .nook) {
         withAnimation(.bouncy(extraBounce: 0.075)) {
+            cancelPan = true
             NotchNook.shared.mode = newMode
+        } completion: {
+            cancelPan = false
         }
     }
     
     func closeNotch(vibrate doVibrate: Bool = false) {
         withAnimation(.smooth(duration: 0.4)) {
+            self.cancelPan = true
             self.hovering = false
             if NotchNook.shared.mode != .closed {
                 if doVibrate { vibrate() }
                 NotchNook.shared.mode = .closed
             }
+        } completion: {
+            cancelPan = false
         }
     }
     
@@ -98,18 +104,17 @@ struct NotchView: View, DropDelegate {
             .transition(NotchView.defaultTransition)
             
         }
-//        .scaleEffect(1)
+        .compositingGroup()
         .blur(radius: scaleDown * 100)
         .padding(mode == .closed ? panPadding : .zero)
         .padding([.leading, .bottom, .trailing], mode == .closed ? hovering ? pressing ? 4 : 8 : 0 : 12)
         .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
         .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: defaultNotchHeight)
-        .mask(alignment: .top) { shapeView(shadow: false) }
-        .clipShape(NotchShape(minHeight: defaultNotchHeight))
+//        .mask(alignment: .top) { shapeView(shadow: false) }
         .background {
             ScrollWheelViewRepresentable { translation, scrollingPoint, velocity, cancelGesture in
-                if cancelPan { cancelGesture(); return }
+                if cancelPan { return }
                 
                 if mode != .closed {
                     if scrollingPoint.y < 0 {
