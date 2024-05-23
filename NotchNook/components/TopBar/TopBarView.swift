@@ -101,7 +101,6 @@ struct TopBarView: View {
                 .frame(maxWidth: .infinity)
                 .scaleEffect(scaleDown, anchor: .leading)
                 .transition(.scaleAndBlur(anchor: .leading))
-                
             }
         }
         .frame(height: defaultNotchHeight)

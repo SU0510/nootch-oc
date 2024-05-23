@@ -17,9 +17,9 @@ struct ArrowForPanningView: View {
             .padding(.top, 2)
             .font(.system(size: 12))
             .foregroundStyle(activated ? .blue : .white)
-            .opacity(activated ? 0.75 : interpolator([0, 0.25], false))
             .scaleEffect(interpolator([0.01, 1], false))
             .blur(radius: max(0, interpolator([16, -5], false)))
+            .opacity(activated ? 0.75 : interpolator([0, 0.25], false))
             .offset(x: x)
             .onChange(of: x) {
                 if x == 0 { return }
@@ -28,11 +28,12 @@ struct ArrowForPanningView: View {
                     right = newRight
                 }
             }
-            .onChange(of: abs(x) > 15) { old, new in
+            .onChange(of: abs(x) > 16) { old, new in
                 if !old && new {
                     activated = true
                     withAnimation { activated = false }
                 }
             }
+            .drawingGroup()
     }
 }

@@ -111,7 +111,7 @@ struct NotchView: View, DropDelegate {
         .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
         .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: defaultNotchHeight)
-//        .mask(alignment: .top) { shapeView(shadow: false) }
+        .mask(alignment: .top) { shapeView(shadow: false) }
         .background {
             ScrollWheelViewRepresentable { translation, scrollingPoint, velocity, cancelGesture in
                 if cancelPan { return }
