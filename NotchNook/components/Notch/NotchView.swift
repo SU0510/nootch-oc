@@ -62,10 +62,12 @@ struct NotchView: View, DropDelegate {
         }
     }
     
-    func closeNotch(vibrate doVibrate: Bool = false) {
+    func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
         withAnimation(.smooth(duration: 0.4)) {
             self.cancelPan = true
-            self.hovering = false
+            if unhover {
+                self.hovering = false
+            }
             if NotchNook.shared.mode != .closed {
                 if doVibrate { vibrate() }
                 NotchNook.shared.mode = .closed
@@ -131,9 +133,9 @@ struct NotchView: View, DropDelegate {
                 
                 panRawPadding = .init(
                     top: 0,
-                    leading: panRawPadding.leading + (scrollingPoint.x < 0 ? abs(scrollingPoint.x) : 0),
+                    leading: scrollingPoint.x > 0 ? 0 : panRawPadding.leading + (scrollingPoint.x < 0 ? abs(scrollingPoint.x) : 0),
                     bottom: panRawPadding.bottom + (scrollingPoint.y > 0 ? scrollingPoint.y : 0),
-                    trailing: panRawPadding.trailing + (scrollingPoint.x > 0 ? scrollingPoint.x : 0)
+                    trailing: scrollingPoint.x < 0 ? 0 : panRawPadding.trailing + (scrollingPoint.x > 0 ? scrollingPoint.x : 0)
                 )
                                 
                 if velocity.height > panVelocityTriggerThreshold {
@@ -182,7 +184,7 @@ struct NotchView: View, DropDelegate {
                     }
                 }
             } else {
-                closeNotch()
+                closeNotch(unhover: true)
             }
         }
         .onChange(of: panPadding) { _, newPanPaddig in
