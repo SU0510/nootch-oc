@@ -68,6 +68,14 @@ struct NotchView: View, DropDelegate {
         }
     }
     
+    @ViewBuilder func shapeView(shadow: Bool? = nil) -> some View {
+        GeometryReader { geo in
+            ShadowedNotchShapeView(minHeight: defaultNotchHeight, shadow: shadow ?? (NotchNook.shared.mode != .closed || hovering))
+                .frame(width: geo.size.width * (1 - scaleDown), height: geo.size.height * (1 - scaleDown), alignment: .top)
+                .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
+        }
+    }
+    
     var body: some View {
         let mode = NotchNook.shared.mode
         let filesShelfCount = Shelf.shared.files.count
@@ -96,16 +104,17 @@ struct NotchView: View, DropDelegate {
         .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
         .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: defaultNotchHeight)
+        .mask(alignment: .top) { shapeView(shadow: false) }
         .clipShape(NotchShape(minHeight: defaultNotchHeight))
         .background {
             ScrollWheelViewRepresentable { translation, scrollingPoint, velocity in
                 if mode != .closed {
                     if scrollingPoint.y < 0 {
-                        let interpolate = interpolatorBuilder([0, -200], value: scrollingPoint.y)
+                        let interpolate = interpolatorBuilder([0, -150], value: scrollingPoint.y)
                         
                         scaleDown += interpolate([0, 0.1], true)
                         
-                        if scaleDown > 0.025 || velocity.height < -panVelocityTriggerThreshold {
+                        if scaleDown > 0.03 || velocity.height < -panVelocityTriggerThreshold {
                             closeNotch(vibrate: true)
                         }
                     }
@@ -139,11 +148,7 @@ struct NotchView: View, DropDelegate {
             }
             .id(mode.rawValue)
         }
-        .background {
-            ShadowedNotchShapeView(minHeight: defaultNotchHeight, shadow: NotchNook.shared.mode != .closed)
-                .scaleEffect(1 - scaleDown, anchor: .top)
-        }
-//        .scaleEffect(1 - scaleDown, anchor: .top)
+        .background(alignment: .top) { shapeView() }
         .contentShape(NotchShape(minHeight: defaultNotchHeight))
         .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
         .onTapGesture { if mode == .closed { openNotch() } }

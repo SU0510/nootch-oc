@@ -41,6 +41,7 @@ struct MediaPlayerWidgetView: View {
                     }
                     .transition(.scaleAndBlur)
                 }
+                .allowsHitTesting(false)
                 
                 MediaControlsView(
                     isPlaying: player.isPlaying,

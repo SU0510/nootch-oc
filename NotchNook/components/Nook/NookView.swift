@@ -27,6 +27,9 @@ struct NookView: View {
 
 struct VDivider: View {
     var body: some View {
-        Color.selected.opacity(0.5).frame(maxWidth: 1, maxHeight: .infinity)
+        Color.selected
+            .opacity(0.5)
+            .frame(maxWidth: 1, maxHeight: .infinity)
+            .allowsHitTesting(false)
     }
 }

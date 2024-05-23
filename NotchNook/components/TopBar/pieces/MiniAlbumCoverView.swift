@@ -13,10 +13,9 @@ struct MiniAlbumCoverView: View {
     var ns: Namespace.ID
     var body: some View {
         VStack {
-            AlbumCoverView(artwork: player.track.albumArt, cornerRadius: 6).padding(.all, 5)
+            AlbumCoverView(artwork: player.track.albumArt, cornerRadius: 5).padding(.all, 6)
                 .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
         }
-        .padding(.leading, 1)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         .animation(.smooth(extraBounce: 0.15), value: [player.track.title, player.track.album, player.track.artist])
     }
