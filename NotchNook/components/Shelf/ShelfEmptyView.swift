@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ShelfEmptyView: View {
     var hovered: Bool
+    var centered: Bool
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: centered ? .center : .leading, spacing: 6) {
             Image(systemName: "shippingbox.fill")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
             Text("Box").fontWeight(.medium)
         }
+        .multilineTextAlignment(centered ? .center : .leading)
         .foregroundStyle(hovered ? Color.blue : .white)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: centered ? .center : .leading)
         .opacity(hovered ? 0.75 : 0.5)
         .transition(.scaleAndBlur)
     }

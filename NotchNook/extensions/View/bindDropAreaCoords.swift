@@ -24,7 +24,7 @@ extension View {
                 }
             )
             .onPreferenceChange(DropAreaCoordPreferenceKey.self, perform: {
-                value.wrappedValue = $0
+                if value.wrappedValue != $0 { value.wrappedValue = $0 }
             })
     }
 }

@@ -13,12 +13,14 @@ import AppKit
     var windowController: NSWindowController? = nil
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        ShortcutsManager.shared
+        MediaPlayer.shared.isPlaying
         let screenF =  NSScreen.main?.frame ?? .zero
         let defaultNotchHeight = NSScreen.main?.safeAreaInsets.top ?? 0
-        let view = NSHostingView(rootView: NotchView(defaultNotchHeight: defaultNotchHeight))
+        let view = NSHostingView(rootView: NotchView(defaultNotchHeight: defaultNotchHeight + 1))
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(
-            contentRect: .init(origin: .init(x: (screenF.width - size.width) / 2, y: screenF.height - size.height + 1 - 100), size: size),
+            contentRect: .init(origin: .init(x: (screenF.width - size.width) / 2, y: screenF.height - size.height + 1), size: size),
 //            contentRect: .init(origin: .init(x: (screenF.width - size.width) / 2, y: screenF.height - size.height - 200), size: size),
             styleMask: [.borderless],
             backing: .buffered, defer: true,

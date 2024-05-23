@@ -11,11 +11,23 @@ import Cocoa
 @Observable
 class Shelf {
     static var shared: Shelf { NotchNook.shared.shelf }
+    
     private(set) var files = Set<ShelfFile>() {
         willSet {
             let newSelectedFiles = selectedFiles.intersection(newValue)
             if selectedFiles.count != newSelectedFiles.count { 
                 selectedFiles = newSelectedFiles
+            }
+            withAnimation(.smooth) {
+                if newValue.isEmpty {
+                    if NotchNook.shared.activeLiveActions.contains(.box) {
+                        NotchNook.shared.activeLiveActions.remove(.box)
+                    }
+                } else {
+                    if !NotchNook.shared.activeLiveActions.contains(.box) {
+                        NotchNook.shared.activeLiveActions.insert(.box)
+                    }
+                }
             }
         }
     }

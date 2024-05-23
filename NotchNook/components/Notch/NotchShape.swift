@@ -9,8 +9,8 @@ import SwiftUI
 
 struct NotchShape: Shape {
     static let defaultNotchWidth: CGFloat = 184
-    static let defaultEstimatedMaxExceedingWidth: CGFloat = 300
-    static let defaultEstimatedMaxExceedingHeight: CGFloat = 100184
+    static let defaultEstimatedMaxExceedingWidth: CGFloat = 400
+    static let defaultEstimatedMaxExceedingHeight: CGFloat = 100
     
     var minHeight: CGFloat
     var minWidth: CGFloat = NotchShape.defaultNotchWidth
@@ -33,7 +33,7 @@ struct NotchShape: Shape {
         let mainShapePath = UnevenRoundedRectangle(
             cornerRadii: .init(bottomLeading: notchRadius, bottomTrailing: notchRadius),
             style: .continuous
-        ).path(in: rect)
+        ).size(width: rect.width, height: rect.height).path(in: rect)
         
         let leftDecorationPath = Rectangle()
             .path(in: CGRect(x: -decorationSize, y: 0, width: decorationSize, height: decorationSize))
@@ -43,6 +43,7 @@ struct NotchShape: Shape {
                     style: .continuous
                 ).path(in: CGRect(x: -decorationSize, y: 0, width: decorationSize, height: decorationSize))
             )
+            .offsetBy(dx: 0, dy: 1)
         
         let rightDecorationPath = Rectangle()
             .path(in: CGRect(x: rect.maxX, y: 0, width: decorationSize, height: decorationSize))
@@ -52,6 +53,7 @@ struct NotchShape: Shape {
                     style: .continuous
                 ).path(in: CGRect(x: rect.maxX, y: 0, width: decorationSize, height: decorationSize))
             )
+            .offsetBy(dx: 0, dy: 1)
         
         var combinedPath = mainShapePath
         combinedPath.addPath(leftDecorationPath)
