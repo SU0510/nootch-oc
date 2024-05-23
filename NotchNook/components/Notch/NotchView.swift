@@ -15,6 +15,7 @@ struct NotchView: View, DropDelegate {
     @State private var droppingCoords: CGPoint?
     @State private var pressing = false
     @State private var hovering = false
+    @State private var cancelPan = false
     @State private var availableActions = [DropAction]()
     @State private var targetsCoords = [String:CGRect]()
     @State private var panRawPadding: EdgeInsets = .zero
@@ -82,7 +83,7 @@ struct NotchView: View, DropDelegate {
         let isShelfEmpty = filesShelfCount == 0
         
         VStack(alignment: .center, spacing: 8) {
-            TopBarView(defaultNotchHeight: defaultNotchHeight, scaleDown: 1 - scaleDown, ns: ns)
+            TopBarView(defaultNotchHeight: defaultNotchHeight, scaleDown: 1 - scaleDown, panPadding: panPadding, ns: ns)
 //                .scaleEffect(1)
 
             Group {
@@ -107,7 +108,9 @@ struct NotchView: View, DropDelegate {
         .mask(alignment: .top) { shapeView(shadow: false) }
         .clipShape(NotchShape(minHeight: defaultNotchHeight))
         .background {
-            ScrollWheelViewRepresentable { translation, scrollingPoint, velocity in
+            ScrollWheelViewRepresentable { translation, scrollingPoint, velocity, cancelGesture in
+                if cancelPan { cancelGesture(); return }
+                
                 if mode != .closed {
                     if scrollingPoint.y < 0 {
                         let interpolate = interpolatorBuilder([0, -150], value: scrollingPoint.y)
@@ -133,20 +136,22 @@ struct NotchView: View, DropDelegate {
                 }
                 
                 if velocity.width < -panVelocityTriggerThreshold {
+                    cancelGesture()
                     vibrate()
                     withAnimation(.smooth) { panRawPadding = .zero }
                     MediaPlayer.shared.previousTrack()
                 }
                 if velocity.width > panVelocityTriggerThreshold {
+                    cancelGesture()
                     vibrate()
                     withAnimation(.smooth) { panRawPadding = .zero }
                     MediaPlayer.shared.nextTrack()
                 }
                 
             } onDragEnded: { translation, scrollingPoint, velocity in
-                if mode != .closed { return }
+                cancelPan = false
             }
-            .id(mode.rawValue)
+            .id(mode.rawValue + cancelPan.description)
         }
         .background(alignment: .top) { shapeView() }
         .contentShape(NotchShape(minHeight: defaultNotchHeight))
@@ -182,12 +187,12 @@ struct NotchView: View, DropDelegate {
             if newPanPaddig.bottom < maxPanDrag / 3 {
                 if newPanPaddig.leading > maxPanDrag {
                     vibrate()
-                    withAnimation(.smooth) { panRawPadding = .zero }
+                    withAnimation(.smooth) { panRawPadding = .zero; cancelPan = true }
                     MediaPlayer.shared.previousTrack()
                 }
                 if newPanPaddig.trailing > maxPanDrag {
                     vibrate()
-                    withAnimation(.smooth) { panRawPadding = .zero }
+                    withAnimation(.smooth) { panRawPadding = .zero; cancelPan = true }
                     MediaPlayer.shared.nextTrack()
                 }
             }

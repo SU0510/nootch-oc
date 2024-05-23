@@ -11,6 +11,7 @@ struct TopBarView: View {
     let defaultNotchHeight: CGFloat
     let liveActionWidth: CGFloat = 35
     var scaleDown: Double = 1
+    var panPadding: EdgeInsets
     var ns: Namespace.ID
     var body: some View {
         HStack(spacing: 0) {
@@ -63,6 +64,45 @@ struct TopBarView: View {
             .scaleEffect(scaleDown, anchor: .leading)
             .transition(.scaleAndBlur(anchor: .leading))
             
+        }
+        .background {
+            HStack(spacing: 0) {
+                
+                Group {
+                    switch NotchNook.shared.mode {
+                    case .closed:
+                        let la = NotchNook.shared.activeLiveActions
+                        if la.contains(.media) {
+                            ArrowForPanningView(x: -panPadding.leading)
+                                .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .leading)
+                        }
+                    case .dragging, .nook, .shelf: EmptyView()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .scaleEffect(scaleDown, anchor: .trailing)
+                .transition(.scaleAndBlur(anchor: .trailing))
+                
+                Spacer()
+                    .frame(width: NotchShape.defaultNotchWidth).fixedSize(horizontal: true, vertical: false)
+                    .transition(.identity)
+                
+                Group {
+                    switch NotchNook.shared.mode {
+                    case .closed:
+                        let la = NotchNook.shared.activeLiveActions
+                        if la.contains(.media) {
+                            ArrowForPanningView(x: panPadding.trailing)
+                                .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .trailing)
+                        }
+                    case .nook, .shelf, .dragging: EmptyView()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .scaleEffect(scaleDown, anchor: .leading)
+                .transition(.scaleAndBlur(anchor: .leading))
+                
+            }
         }
         .frame(height: defaultNotchHeight)
         .fixedSize(horizontal: false, vertical: true)

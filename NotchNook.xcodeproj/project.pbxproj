@@ -68,6 +68,7 @@
 		EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603D2BFEB7A600E67ECC /* NSColor.swift */; };
 		EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */; };
 		EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */; };
+		EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,7 @@
 		EC8D603D2BFEB7A600E67ECC /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
 		EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onSwipe.swift; sourceTree = "<group>"; };
 		EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onChangeDebounced.swift; sourceTree = "<group>"; };
+		EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowForPanningView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 				EC8D60032BFAE90D00E67ECC /* ShelfFilesCountView.swift */,
 				EC8D60052BFAE91800E67ECC /* ShelfIconView.swift */,
 				EC8D5FF72BFAE7FF00E67ECC /* TopBarTabsView.swift */,
+				EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */,
 			);
 			path = pieces;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
+				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
 				EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */,
