@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct TopBarTabsView: View {
+    var screenID: UUID
     var body: some View {
-        let mode = NotchNook.shared.mode
+        let mode = NotchNook.shared.mode[screenID]!
         HStack(spacing: 2) {
             
             TopBarTabView(icon: "lamp.desk.fill", label: "Nook", active: mode == .nook)
-                .onTapGesture { NotchNook.shared.mode = .nook }
+                .onTapGesture { NotchNook.shared.mode[screenID] = .nook }
             
             TopBarTabView(icon: "shippingbox.fill", label: "Box", active: mode == .shelf)
-                .onTapGesture { NotchNook.shared.mode = .shelf }
+                .onTapGesture { NotchNook.shared.mode[screenID] = .shelf }
             
             Spacer()
             

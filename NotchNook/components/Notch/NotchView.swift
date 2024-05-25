@@ -11,8 +11,10 @@ import UniformTypeIdentifiers
 struct NotchView: View, DropDelegate {
     static let maxPanDrag: Double = 16
     static let panVelocityTriggerThreshold: Double = 500
-    static let defaultTransition = AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.35).delay(0.1)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2)))
+    static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2))) }
+    static let defaultTransition = NotchView.defaultTransition(anchor: .top)
     
+    var screenID: UUID
     var defaultNotchHeight: CGFloat
     @State private var droppingCoords: CGPoint?
     @State private var pressing = false
@@ -24,6 +26,14 @@ struct NotchView: View, DropDelegate {
     @State private var scaleDown: Double = 0
 //    @State private var pan: CGSize = .zero
     @Namespace private var ns
+    
+    var mode: NotchNook.NotchMode {
+            guard let found = NotchNook.shared.mode[screenID] else {
+                NotchNook.shared.mode[screenID] = .closed
+                return .closed
+            }
+            return found
+    }
     
     var hoveredDropTargetID: String? {
         if let droppingCoords,
@@ -59,7 +69,7 @@ struct NotchView: View, DropDelegate {
     func openNotch(in newMode: NotchNook.NotchMode = .nook) {
         withAnimation(.bouncy(extraBounce: 0.075)) {
             cancelPan = true
-            NotchNook.shared.mode = newMode
+            NotchNook.shared.mode[screenID] = newMode
         } completion: {
             cancelPan = false
         }
@@ -72,8 +82,8 @@ struct NotchView: View, DropDelegate {
                 self.hovering = false
             }
             if doVibrate { vibrate() }
-            if NotchNook.shared.mode != .closed {
-                NotchNook.shared.mode = .closed
+            if mode != .closed {
+                NotchNook.shared.mode[screenID] = .closed
             }
         } completion: {
             cancelPan = false
@@ -95,21 +105,23 @@ struct NotchView: View, DropDelegate {
         }
     }
     
+    
     @ViewBuilder func shapeView(shadow: Bool? = nil) -> some View {
         GeometryReader { geo in
-            ShadowedNotchShapeView(minHeight: defaultNotchHeight, shadow: shadow ?? (NotchNook.shared.mode != .closed || hovering))
+            ShadowedNotchShapeView(minHeight: defaultNotchHeight, shadow: shadow ?? (mode != .closed || hovering))
                 .frame(width: geo.size.width * (1 - scaleDown), height: geo.size.height * (1 - scaleDown), alignment: .top)
                 .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
         }
     }
     
     var body: some View {
-        let mode = NotchNook.shared.mode
         let filesShelfCount = Shelf.shared.files.count
         let isShelfEmpty = filesShelfCount == 0
+//        let actualScale = hovering ? pressing ? 1 : 1.25 : (1 - scaleDown)
+        let actualScale = hovering && !pressing && (mode == .closed) ? 1.25 : (1 - scaleDown)
         
         VStack(alignment: .center, spacing: 8) {
-            TopBarView(defaultNotchHeight: defaultNotchHeight, scaleDown: 1 - scaleDown, panPadding: panPadding, ns: ns)
+            TopBarView(screenID: screenID, defaultNotchHeight: defaultNotchHeight, scale: actualScale, panPadding: panPadding, ns: ns)
 //                .scaleEffect(1)
 
             Group {
@@ -120,7 +132,7 @@ struct NotchView: View, DropDelegate {
                 case .shelf: ShelfView(hovered: false, full: true)
                 }
             }
-            .scaleEffect(1 - scaleDown, anchor: .top)
+            .scaleEffect(actualScale, anchor: .top)
             .transition(NotchView.defaultTransition)
             
         }
@@ -240,17 +252,17 @@ struct NotchView: View, DropDelegate {
     func finishDragging(close: Bool) {
         if droppingCoords != nil { droppingCoords = nil }
         
-        if !availableActions.isEmpty || (close && NotchNook.shared.mode != .closed) {
+        if !availableActions.isEmpty || (close && mode != .closed) {
             withAnimation(.smooth(duration: 0.4)) {
                 availableActions.removeAll()
-                NotchNook.shared.mode = close ? .closed : .shelf
+                NotchNook.shared.mode[screenID] = close ? .closed : .shelf
             }
         }
     }
     
     func dropEntered(info: DropInfo) {
         withAnimation(.bouncy(extraBounce: 0.15)) {
-            NotchNook.shared.mode = .dragging
+            NotchNook.shared.mode[screenID] = .dragging
         }
         DispatchQueue.main.async {
             let actionsToShow = allDropActions.filter { action in

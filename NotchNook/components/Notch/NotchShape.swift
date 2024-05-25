@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NotchShape: Shape {
+    static let notchlessScreenNotchHeight: CGFloat = 8
+    static let usualNotchHeight: CGFloat = 32
     static let defaultNotchWidth: CGFloat = 184
     static let defaultEstimatedMaxExceedingWidth: CGFloat = 400
     static let defaultEstimatedMaxExceedingHeight: CGFloat = 100
@@ -20,12 +22,12 @@ struct NotchShape: Shape {
     func path(in rect: CGRect) -> Path {
         var decorationsRadius: CGFloat {
             let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: rect.width)
-            return widthInterpolator([5, 24], true)
+            return widthInterpolator([minHeight < 5 ? minHeight / 2 : 5, 24], true)
         }
         
         var notchRadius: CGFloat {
             let widthInterpolator = interpolatorBuilder([minHeight, minHeight + 100], value: rect.height)
-            return widthInterpolator([11, 40], true)
+            return widthInterpolator([minHeight < 11 ? minHeight / 2 : 11, 40], true)
         }
         
         let decorationSize = decorationsRadius * 2

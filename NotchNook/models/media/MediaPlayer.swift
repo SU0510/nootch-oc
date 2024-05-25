@@ -52,13 +52,6 @@ class MediaPlayer {
         if appleMusicApp == nil && installedApps.contains(.appleMusic)  {
             appleMusicApp = AppleMusicApp()
         }
-        
-        
-//        if appleMusicApp?.isPlaying ?? false {
-//            connectedApp = .appleMusic
-//        } else if spotifyApp?.isPlaying ?? false {
-//            connectedApp = .spotify
-//        }
     }
     
     // MARK: - Seeker
@@ -85,46 +78,4 @@ class MediaPlayer {
     
 }
 
-enum ConnectedApps: String, Equatable, CaseIterable {
-    case spotify = "Spotify"
-    case appleMusic = "Apple Music"
-    
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-}
 
-enum MediaAppMeta: String, Equatable, CaseIterable {
-    case spotify = "Spotify"
-    case appleMusic = "Apple Music"
-    
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-    
-    var bundleID: String {
-        return switch self {
-        case .appleMusic: "com.apple.Music"
-        case .spotify: "com.spotify.client"
-        }
-    }
-    
-    var notification: String {
-        return switch self {
-        case .appleMusic: "\(bundleID).playerInfo"
-        case .spotify: "\(bundleID).PlaybackStateChanged"
-        }
-    }
-}
-
-
-
-enum Constants {
-    enum Spotify {
-        static let name = "Spotify"
-        static let bundleID = "com.spotify.client"
-        static let notification = "\(bundleID).PlaybackStateChanged"
-    }
-    
-    enum AppleMusic {
-        static let name = "Apple Music"
-        static let bundleID = "com.apple.Music"
-        static let notification = "\(bundleID).playerInfo"
-    }
-}

@@ -13,7 +13,9 @@ struct AlbumCoverView: View, Equatable {
     
     var body: some View {
         Button {
-            NSWorkspace.shared.open(appleMusicURL)
+            if let bundleID = MediaPlayer.shared.connectedApp?.bundleID {
+                openApp(bundleID)
+            }
         } label: {
             ZStack {
                 Group {

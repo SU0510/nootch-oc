@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct TopBarView: View {
+    var screenID: UUID
     let defaultNotchHeight: CGFloat
     let liveActionWidth: CGFloat = 35
-    var scaleDown: Double = 1
+    var scale: Double = 1
     var panPadding: EdgeInsets
     var ns: Namespace.ID
     var body: some View {
+        let mode = NotchNook.shared.mode[screenID]!
+        let la = NotchNook.shared.activeLiveActions
         HStack(spacing: 0) {
             
             Group {
-                switch NotchNook.shared.mode {
+                switch mode {
                 case .closed:
-                    let la = NotchNook.shared.activeLiveActions
                     if !la.isEmpty {
                         HStack {
                             if la.contains(.media) {
@@ -31,21 +33,20 @@ struct TopBarView: View {
                         .frame(width: liveActionWidth)
                     }
                 case .dragging: EmptyView()
-                case .nook, .shelf: TopBarTabsView()
+                case .nook, .shelf: TopBarTabsView(screenID: screenID)
                 }
             }
             .frame(maxWidth: .infinity)
-            .scaleEffect(scaleDown, anchor: .trailing)
-            .transition(.scaleAndBlur(anchor: .trailing))
+            .scaleEffect(scale, anchor: .trailing)
+            .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
             
             Spacer()
                 .frame(width: NotchShape.defaultNotchWidth).fixedSize(horizontal: true, vertical: false)
                 .transition(.identity)
             
             Group {
-                switch NotchNook.shared.mode {
+                switch mode {
                 case .closed:
-                    let la = NotchNook.shared.activeLiveActions
                     if !la.isEmpty {
                         HStack {
                             if la.contains(.box) {
@@ -61,15 +62,15 @@ struct TopBarView: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .scaleEffect(scaleDown, anchor: .leading)
-            .transition(.scaleAndBlur(anchor: .leading))
+            .scaleEffect(scale, anchor: .leading)
+            .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
             
         }
         .background {
             HStack(spacing: 0) {
                 let showArrows = panPadding.bottom < (NotchView.maxPanDrag / 3)
                 Group {
-                    switch NotchNook.shared.mode {
+                    switch mode {
                     case .closed:
                         let la = NotchNook.shared.activeLiveActions
                         if la.contains(.media) {
@@ -80,7 +81,7 @@ struct TopBarView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .scaleEffect(scaleDown, anchor: .trailing)
+                .scaleEffect(scale, anchor: .trailing)
                 .transition(.scaleAndBlur(anchor: .trailing))
                 
                 Spacer()
@@ -88,9 +89,8 @@ struct TopBarView: View {
                     .transition(.identity)
                 
                 Group {
-                    switch NotchNook.shared.mode {
+                    switch mode {
                     case .closed:
-                        let la = NotchNook.shared.activeLiveActions
                         if la.contains(.media) {
                             ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true)
                                 .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .trailing)
@@ -99,11 +99,11 @@ struct TopBarView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .scaleEffect(scaleDown, anchor: .leading)
+                .scaleEffect(scale, anchor: .leading)
                 .transition(.scaleAndBlur(anchor: .leading))
             }
         }
-        .frame(height: defaultNotchHeight)
+        .frame(height: defaultNotchHeight < NotchShape.usualNotchHeight / 2 && (mode != .closed || !la.isEmpty) ? NotchShape.usualNotchHeight : defaultNotchHeight)
         .fixedSize(horizontal: false, vertical: true)
         .zIndex(1)
     }

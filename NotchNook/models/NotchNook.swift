@@ -15,7 +15,7 @@ class NotchNook {
     var shelf = Shelf()
     var pinned = false
     var activeLiveActions = Set<LiveAction>()
-    var mode: NotchMode = .closed
+    var mode = [UUID:NotchMode]()
     
     enum LiveAction: String, Hashable {
         case media, box

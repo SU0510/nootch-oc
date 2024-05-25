@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
-		BB2A5E572C006B9D008F3081 /* defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* defaults.swift */; };
+		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
+		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
+		EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
 		EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
@@ -81,11 +83,15 @@
 		EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60602C00065D00E67ECC /* AppleMusicApp.swift */; };
 		EC8D60632C001BB500E67ECC /* wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60622C001BB500E67ECC /* wait.swift */; };
 		EC8D60652C001D2D00E67ECC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60642C001D2D00E67ECC /* Track.swift */; };
+		EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60662C01697100E67ECC /* iconForApp.swift */; };
+		EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60682C016B5C00E67ECC /* openApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BB2A5E562C006B9D008F3081 /* defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaults.swift; sourceTree = "<group>"; };
+		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
+		EC4173C82C0181B8002889E7 /* WindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowsManager.swift; sourceTree = "<group>"; };
+		EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMeta.swift; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
@@ -159,6 +165,8 @@
 		EC8D60602C00065D00E67ECC /* AppleMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicApp.swift; sourceTree = "<group>"; };
 		EC8D60622C001BB500E67ECC /* wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wait.swift; sourceTree = "<group>"; };
 		EC8D60642C001D2D00E67ECC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		EC8D60662C01697100E67ECC /* iconForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconForApp.swift; sourceTree = "<group>"; };
+		EC8D60682C016B5C00E67ECC /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +181,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC4173CC2C0191A8002889E7 /* media */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D60602C00065D00E67ECC /* AppleMusicApp.swift */,
+				EC8D605E2C00065500E67ECC /* SpotifyApp.swift */,
+				EC8D60582BFFEEF500E67ECC /* MediaApp.swift */,
+				EC8D601B2BFC2A3200E67ECC /* MediaPlayer.swift */,
+				EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */,
+			);
+			path = media;
+			sourceTree = "<group>";
+		};
 		EC758F5F2BF2F18700B873B0 = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +242,6 @@
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
 				EC8D60352BFE667300E67ECC /* CircleButton.swift */,
-				BB2A5E562C006B9D008F3081 /* defaults.swift */,
 				BB2A5E582C006BD9008F3081 /* TempAuthView.swift */,
 			);
 			path = components;
@@ -239,6 +258,8 @@
 				EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */,
 				EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */,
 				EC8D60622C001BB500E67ECC /* wait.swift */,
+				EC8D60662C01697100E67ECC /* iconForApp.swift */,
+				EC8D60682C016B5C00E67ECC /* openApp.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -275,6 +296,7 @@
 				EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */,
 				EC8D60372BFE688D00E67ECC /* NSImage.swift */,
 				EC8D603D2BFEB7A600E67ECC /* NSColor.swift */,
+				BB2A5E562C006B9D008F3081 /* Defaults.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -282,6 +304,7 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				EC4173CC2C0191A8002889E7 /* media */,
 				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
 				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC8D5FBC2BF9743200E67ECC /* Shelf.swift */,
@@ -289,11 +312,8 @@
 				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
 				EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */,
 				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
-				EC8D605E2C00065500E67ECC /* SpotifyApp.swift */,
-				EC8D60602C00065D00E67ECC /* AppleMusicApp.swift */,
-				EC8D60582BFFEEF500E67ECC /* MediaApp.swift */,
-				EC8D601B2BFC2A3200E67ECC /* MediaPlayer.swift */,
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
+				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -453,7 +473,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					EC758F672BF2F18700B873B0 = {
 						CreatedOnToolsVersion = 15.3;
@@ -503,6 +523,7 @@
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
+				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */,
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
@@ -516,6 +537,7 @@
 				EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */,
 				EC758F962BF2F1A400B873B0 /* truncateFileName.swift in Sources */,
 				EC8D602E2BFD22E200E67ECC /* CameraWidgetView.swift in Sources */,
+				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
@@ -535,6 +557,7 @@
 				EC8D60042BFAE90D00E67ECC /* ShelfFilesCountView.swift in Sources */,
 				EC8D60092BFAF48200E67ECC /* defaultOpenSize.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
+				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
 				EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */,
@@ -549,7 +572,7 @@
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
-				BB2A5E572C006B9D008F3081 /* defaults.swift in Sources */,
+				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
@@ -560,6 +583,7 @@
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
+				EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */,
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
 				EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */,
@@ -610,6 +634,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -673,6 +698,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -705,6 +731,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -739,6 +766,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
 				ENABLE_HARDENED_RUNTIME = YES;

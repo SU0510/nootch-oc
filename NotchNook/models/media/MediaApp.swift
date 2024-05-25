@@ -15,6 +15,7 @@ protocol MediaApp: AnyObject {
     var track: Track { get set }
     var notificationMonitor: NotificationObserverHelper? { get set }
     var appRunningMonitor: AppMonitor? { get set }
+    var liveActivityTimer: Timer? { get set }
     
     //    func getTrackInformation() -> Track
 //    init()
@@ -28,7 +29,7 @@ protocol MediaApp: AnyObject {
     func monitorAppIsRunning() -> ()
     func monitorTrackChange() -> ()
     func setupApp() -> ()
-    func updateLiveActivities(_ isPlaying: Bool) -> ()
+    func updateLiveActivities(_ isPlaying: Bool?) -> ()
 }
 
 extension MediaApp {
@@ -59,9 +60,9 @@ extension MediaApp {
         }
     }
     
-    func updateLiveActivities(_ newIsPlaying: Bool) {
+    func updateLiveActivities(_ altIsPlaying: Bool? = nil) {
         withAnimation(.bouncy(extraBounce: 0.075)) {
-            if newIsPlaying {
+            if altIsPlaying ?? self.isPlaying {
                 NotchNook.shared.activeLiveActions.insert(.media)
             } else {
                 NotchNook.shared.activeLiveActions.remove(.media)
@@ -77,16 +78,22 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         willSet {
             if !isAppRunning && newValue {
                 self.setupApp()
+            } else if isAppRunning && !newValue {
+                self.isPlaying = false
+                self.app = nil
             }
         }
     }
     var isPlaying: Bool {
         willSet {
             if !isPlaying && newValue {
+                self.liveActivityTimer?.invalidate()
                 DispatchQueue.main.async {
                     MediaPlayer.shared.connectedApp = self.meta
                     self.updateLiveActivities(newValue)
                 }
+            } else if isPlaying && !newValue {
+                setupLiveActivityTimer()
             }
         }
     }
@@ -101,6 +108,7 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
             }
         }
     }
+    var liveActivityTimer: Timer?
     
     init(meta: MediaAppMeta) {
         self.meta = meta
@@ -114,6 +122,13 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         self.updateLiveActivities(self.isPlaying)
         self.monitorAppIsRunning()
         self.monitorTrackChange()
+    }
+    
+    func setupLiveActivityTimer() {
+        self.liveActivityTimer?.invalidate()
+        self.liveActivityTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            self.updateLiveActivities()
+        }
     }
     
     func setupApp() { if let app = SBApplication(bundleIdentifier: self.meta.bundleID) as? App { self.app = app } }

@@ -13,7 +13,7 @@ struct AudioWavesView: View {
             let albumArt = player.track.albumArt
             let albumAverageColor = albumArt.averageColor?.lighter(by: 0.25) ?? .white
             let color: Color = albumArt.isValid ? Color(nsColor: albumAverageColor) : .white
-            AudioSpectrograph(color: color)
+            AudioSpectrograph(playing: MediaPlayer.shared.app?.isPlaying ?? false, color: color)
                 .padding(.leading, 1)
                 .frame(maxWidth: .infinity)
                 .animation(.smooth, value: albumArt)
