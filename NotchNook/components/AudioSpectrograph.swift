@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct AudioSpectrograph: View {
+struct AudioSpectrograph: View, Equatable {
+    static func == (lhs: AudioSpectrograph, rhs: AudioSpectrograph) -> Bool {
+        lhs.color == rhs.color
+    }
+    
     var color: Color = .white
     let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
     @State private var barHeights = [CGFloat](repeating: 0, count: 3).map { _ in CGFloat.random(in: 5...15) }

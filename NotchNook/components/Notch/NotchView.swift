@@ -86,9 +86,9 @@ struct NotchView: View, DropDelegate {
             panRawPadding = .zero
             cancelPan = true
             if prev {
-                MediaPlayer.shared.previousTrack()
+                MediaPlayer.shared.app?.prevTrack()
             } else {
-                MediaPlayer.shared.nextTrack()
+                MediaPlayer.shared.app?.nextTrack()
             }
         } completion: {
             cancelPan = false

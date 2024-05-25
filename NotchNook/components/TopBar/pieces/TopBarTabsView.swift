@@ -11,15 +11,20 @@ struct TopBarTabsView: View {
     var body: some View {
         let mode = NotchNook.shared.mode
         HStack(spacing: 2) {
+            
             TopBarTabView(icon: "lamp.desk.fill", label: "Nook", active: mode == .nook)
                 .onTapGesture { NotchNook.shared.mode = .nook }
+            
             TopBarTabView(icon: "shippingbox.fill", label: "Box", active: mode == .shelf)
                 .onTapGesture { NotchNook.shared.mode = .shelf }
+            
             Spacer()
+            
             CircleButton(icon: "gearshape.fill", iconSize: 13) {
                 
             }
         }
+        .padding(.trailing, 4)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

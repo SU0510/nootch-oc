@@ -23,7 +23,6 @@ struct AlbumCoverView: View, Equatable {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .id(artwork)
-                        
                     } else {
                         Color.selected
                             .overlay {
@@ -41,11 +40,12 @@ struct AlbumCoverView: View, Equatable {
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                 .transition(.scaleAndBlur)
             }
+            .animation(.smooth(extraBounce: 0.15), value: artwork)
             .aspectRatio(1/1, contentMode: .fit)
             .frame(maxHeight: .infinity)
         }
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
         .transition(.scaleAndBlur)
-        .drawingGroup()
+//        .drawingGroup()
     }
 }

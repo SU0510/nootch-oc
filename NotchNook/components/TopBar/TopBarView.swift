@@ -57,7 +57,7 @@ struct TopBarView: View {
                         .frame(width: liveActionWidth)
                     }
                 case .dragging: EmptyView()
-                case .nook, .shelf: MiniPlayerView()
+                case .nook, .shelf: HStack { MiniPlayerView() }
                 }
             }
             .frame(maxWidth: .infinity)

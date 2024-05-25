@@ -40,14 +40,43 @@ class ShortcutsManager {
         return nil
     }
     
+    let listProcessesScript = """
+    tell application "System Events"
+        return name of every process
+    end tell
+    """
+
+    func listProcesses() -> [String] {
+        if let processes = runAppleScript(script: listProcessesScript) {
+            return processes
+        }
+        return []
+    }
+    
     func fetchShortcuts() -> [String] {
-        let script = """
+
+        let openCloseScript = """
         tell application "Shortcuts"
             set shortcutList to name of every shortcut
         end tell
         return shortcutList
         """
-        return runAppleScript(script: script) ?? []
+
+        // Check if Shortcuts was already open
+        let wasOpenBefore = listProcesses().contains("Shortcuts")
+
+        // Fetch the shortcuts
+        let shortcuts = runAppleScript(script: openCloseScript) ?? []
+        
+        // Close Shortcuts if it was not open before
+        if !wasOpenBefore {
+            let closeScript = """
+            tell application "Shortcuts" to quit
+            """
+            _ = runAppleScript(script: closeScript)
+        }
+        
+        return shortcuts
     }
     
     func runShortcut(named name: String) {

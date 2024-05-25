@@ -13,8 +13,10 @@ import AppKit
     var windowController: NSWindowController? = nil
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        ShortcutsManager.shared
-        MediaPlayer.shared.isPlaying
+        _ = ShortcutsManager.shared
+        _ = MediaPlayer.shared
+//        MediaPlayer.shared.appleMusicApp?.updateTrack()
+//        print(MediaPlayer.shared.appleMusicApp?.track)
         let screenF =  NSScreen.main?.frame ?? .zero
         let defaultNotchHeight = NSScreen.main?.safeAreaInsets.top ?? 0
         let view = NSHostingView(rootView: NotchView(defaultNotchHeight: defaultNotchHeight + 1))

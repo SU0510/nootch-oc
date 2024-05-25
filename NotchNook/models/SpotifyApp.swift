@@ -1,0 +1,63 @@
+//
+//  SpotifyApp.swift
+//  NotchNook
+//
+//  Created by Igor Marcossi on 23/05/24.
+//
+
+import SwiftUI
+
+import SwiftUI
+import ScriptingBridge
+
+@Observable
+final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
+    
+    init() { super.init(meta: .spotify) }
+    
+    override func updateIsPlaying() { self.isPlaying = app?.playerState == .playing }
+    
+    override func updateTrack() {
+        let currentTrack = self.app?.currentTrack
+        let title = currentTrack?.name ?? Track.empty.title
+        let artist = currentTrack?.artist ?? Track.empty.artist
+        let album = currentTrack?.album ?? Track.empty.album
+        
+        guard self.track.title != title &&
+                self.track.artist != artist &&
+                self.track.album != album else { return }
+        
+        var newTrack = Track()
+        newTrack.title = title
+        newTrack.artist = artist
+        newTrack.album = album
+        
+        Task(priority: .utility) { [currentTrack] in
+            if let artworkURLString = currentTrack?.artworkUrl,
+               let url = URL(string: artworkURLString) {
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    guard let data = data, error == nil else {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    Task {
+                        await MainActor.run {
+                            self.track.albumArt = NSImage(data: data) ?? NSImage()
+                        }
+                    }
+                }.resume()
+            }
+        }
+        
+        self.track = newTrack
+    }
+    
+    override func toggleIsPlaying() { app?.playpause?() }
+    
+    override func prevTrack() { app?.previousTrack?() }
+    
+    override func nextTrack() { app?.nextTrack?() }
+        
+    override func toggleLovedInTrack() { }
+    
+}
