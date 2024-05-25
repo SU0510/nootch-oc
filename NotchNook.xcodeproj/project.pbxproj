@@ -12,6 +12,8 @@
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
 		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
 		EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */; };
+		EC4173D22C025136002889E7 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EC4173D12C025136002889E7 /* Settings */; };
+		EC4173D42C02515A002889E7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173D32C02515A002889E7 /* Settings.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
 		EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
@@ -92,6 +94,7 @@
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC4173C82C0181B8002889E7 /* WindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowsManager.swift; sourceTree = "<group>"; };
 		EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMeta.swift; sourceTree = "<group>"; };
+		EC4173D32C02515A002889E7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
+				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +195,13 @@
 				EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */,
 			);
 			path = media;
+			sourceTree = "<group>";
+		};
+		EC4173D52C02518F002889E7 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		EC758F5F2BF2F18700B873B0 = {
@@ -218,6 +229,7 @@
 				EC758F7F2BF2F19B00B873B0 /* components */,
 				EC758F922BF2F1A400B873B0 /* models */,
 				EC758F892BF2F1A400B873B0 /* utils */,
+				EC4173D52C02518F002889E7 /* views */,
 				EC758FA02BF2F1B900B873B0 /* ContentView.swift */,
 				EC758F6F2BF2F18900B873B0 /* Assets.xcassets */,
 				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
@@ -231,9 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				EC8D600D2BFC127600E67ECC /* ButtonStyles */,
-				EC8D600A2BFAF57600E67ECC /* Nook */,
-				EC8D5FF42BFAE78800E67ECC /* TopBar */,
-				EC8D5FC52BF97ADA00E67ECC /* Shelf */,
 				EC8D5FF32BFAE75400E67ECC /* Notch */,
 				EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */,
 				EC8D5FBA2BF9563400E67ECC /* DropActionsView.swift */,
@@ -297,6 +306,7 @@
 				EC8D60372BFE688D00E67ECC /* NSImage.swift */,
 				EC8D603D2BFEB7A600E67ECC /* NSColor.swift */,
 				BB2A5E562C006B9D008F3081 /* Defaults.swift */,
+				EC4173D32C02515A002889E7 /* Settings.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -368,6 +378,9 @@
 		EC8D5FF32BFAE75400E67ECC /* Notch */ = {
 			isa = PBXGroup;
 			children = (
+				EC8D5FF42BFAE78800E67ECC /* TopBar */,
+				EC8D600A2BFAF57600E67ECC /* Nook */,
+				EC8D5FC52BF97ADA00E67ECC /* Shelf */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
 				EC758F7D2BF2F19B00B873B0 /* NotchView.swift */,
@@ -460,6 +473,7 @@
 			name = NotchNook;
 			packageProductDependencies = (
 				BB2A5E542C006B63008F3081 /* Defaults */,
+				EC4173D12C025136002889E7 /* Settings */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -492,6 +506,7 @@
 			mainGroup = EC758F5F2BF2F18700B873B0;
 			packageReferences = (
 				BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */,
+				EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -571,6 +586,7 @@
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
+				EC4173D42C02515A002889E7 /* Settings.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
@@ -821,6 +837,14 @@
 				kind = branch;
 			};
 		};
+		EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Settings";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -828,6 +852,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		EC4173D12C025136002889E7 /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */;
+			productName = Settings;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
