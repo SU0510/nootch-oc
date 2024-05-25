@@ -7,10 +7,30 @@
 
 import Foundation
 import AppKit
+import Settings
 import SwiftUI
 
 class WindowsManager {
     var displayKits = [DisplayKit]()
+    private lazy var settingsWindowController = SettingsWindowController(
+        panes: [
+            Settings.Pane(
+                identifier: .general,
+                title: "General",
+                toolbarIcon: NSImage(icon: "gearshape.fill")
+            ) {
+                GeneralSettingsView()
+            },
+            Settings.Pane(
+                identifier: .license,
+                title: "License",
+                toolbarIcon: NSImage(icon: "key.horizontal.fill")
+            ) {
+                LicenseSettingsView()
+            }
+        ],
+        animated: false
+    )
     
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
@@ -36,10 +56,16 @@ class WindowsManager {
     
     func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
         let id = UUID()
-        var notchHeight = screen.safeAreaInsets.top
+        var notchHeight = screen.safeAreaInsets.top + 1
         notchHeight = notchHeight.isZero ? NotchShape.notchlessScreenNotchHeight : notchHeight
         let screenF = screen.frame
-        let view = NSHostingView(rootView: NotchView(screenID: id, defaultNotchHeight: notchHeight + 1))
+        let view = NSHostingView(
+            rootView:
+                NotchView()
+                .environment(\.notchHeight, notchHeight)
+                .environment(\.openSettings, settingsWindowController.show)
+                .environment(\.screenID, id)
+        )
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(
             contentRect: .init(

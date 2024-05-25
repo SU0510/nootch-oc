@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct ShadowedNotchShapeView: View {
-    var minHeight: CGFloat
     var shadow: Bool
-    
+    @Environment(\.notchHeight) private var notchHeight
     var body: some View {
-        NotchShape(minHeight: minHeight)
+        NotchShape(notchHeight: notchHeight)
             .fill(.black.shadow(.drop(
                 color: .black.opacity(shadow ? 0.75 : 0),
                 radius: shadow ? 20 : 0,

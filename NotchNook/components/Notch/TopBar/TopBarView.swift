@@ -8,67 +8,70 @@
 import SwiftUI
 
 struct TopBarView: View {
-    var screenID: UUID
-    let defaultNotchHeight: CGFloat
     let liveActionWidth: CGFloat = 35
     var scale: Double = 1
     var panPadding: EdgeInsets
+    var hide: Bool
     var ns: Namespace.ID
+    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.screenID) private var screenID
     var body: some View {
         let mode = NotchNook.shared.mode[screenID]!
         let la = NotchNook.shared.activeLiveActions
         HStack(spacing: 0) {
             
-            Group {
-                switch mode {
-                case .closed:
-                    if !la.isEmpty {
-                        HStack {
-                            if la.contains(.media) {
-                                MiniAlbumCoverView(ns: ns)
-                            } else if la.contains(.box) {
-                                ShelfIconView()
+            if !hide {
+                Group {
+                    switch mode {
+                    case .closed:
+                        if !la.isEmpty {
+                            HStack {
+                                if la.contains(.media) {
+                                    MiniAlbumCoverView(ns: ns)
+                                } else if la.contains(.box) {
+                                    ShelfIconView()
+                                }
                             }
+                            .frame(width: liveActionWidth)
                         }
-                        .frame(width: liveActionWidth)
+                    case .dragging: EmptyView()
+                    case .nook, .shelf: TopBarTabsView()
                     }
-                case .dragging: EmptyView()
-                case .nook, .shelf: TopBarTabsView(screenID: screenID)
                 }
+                .frame(maxWidth: .infinity)
+                .scaleEffect(scale, anchor: .topTrailing)
+                .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
             }
-            .frame(maxWidth: .infinity)
-            .scaleEffect(scale, anchor: .trailing)
-            .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
             
-            Spacer()
-                .frame(width: NotchShape.defaultNotchWidth).fixedSize(horizontal: true, vertical: false)
-                .transition(.identity)
+            NotchSpacerView()
             
-            Group {
-                switch mode {
-                case .closed:
-                    if !la.isEmpty {
-                        HStack {
-                            if la.contains(.box) {
-                                ShelfFilesCountView()
-                            } else if la.contains(.media) {
-                                AudioWavesView()
+            if !hide {
+                Group {
+                    switch mode {
+                    case .closed:
+                        if !la.isEmpty {
+                            HStack {
+                                if la.contains(.box) {
+                                    ShelfFilesCountView()
+                                } else if la.contains(.media) {
+                                    AudioWavesView()
+                                }
                             }
+                            .frame(width: liveActionWidth)
                         }
-                        .frame(width: liveActionWidth)
+                    case .dragging: EmptyView()
+                    case .nook, .shelf: HStack { MiniPlayerView() }
                     }
-                case .dragging: EmptyView()
-                case .nook, .shelf: HStack { MiniPlayerView() }
                 }
+                .frame(maxWidth: .infinity)
+                .scaleEffect(scale, anchor: .topLeading)
+                .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
             }
-            .frame(maxWidth: .infinity)
-            .scaleEffect(scale, anchor: .leading)
-            .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
             
         }
         .background {
             HStack(spacing: 0) {
-                let showArrows = panPadding.bottom < (NotchView.maxPanDrag / 3)
+                let showArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3)
                 Group {
                     switch mode {
                     case .closed:
@@ -103,7 +106,7 @@ struct TopBarView: View {
                 .transition(.scaleAndBlur(anchor: .leading))
             }
         }
-        .frame(height: defaultNotchHeight < NotchShape.usualNotchHeight / 2 && (mode != .closed || !la.isEmpty) ? NotchShape.usualNotchHeight : defaultNotchHeight)
+        .frame(height: notchHeight < NotchShape.usualNotchHeight / 2 && (mode != .closed || !la.isEmpty) ? NotchShape.usualNotchHeight : notchHeight)
         .fixedSize(horizontal: false, vertical: true)
         .zIndex(1)
     }

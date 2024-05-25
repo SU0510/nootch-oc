@@ -42,8 +42,6 @@ struct DropActionsView: View {
             .transition(NotchView.defaultTransition)
             
         }
-//        .padding(.top, defaultNotchHeight)
-//        .padding(.all, (!isShelfEmpty && (mode == .open || (mode == .dropping && availableActions == nil))) ? 8 : 12)
         .defaultOpenSize()
         .zIndex(1)
         .allowsHitTesting(false)

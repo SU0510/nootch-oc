@@ -11,12 +11,14 @@ import AppKit
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
-    var windowsManager = WindowsManager()
+    var windowsManager: WindowsManager?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         _ = ShortcutsManager.shared
         _ = MediaPlayer.shared
 
         NSApp.setActivationPolicy(.accessory)
+        
+        windowsManager = WindowsManager()
     }
 }

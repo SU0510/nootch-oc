@@ -14,20 +14,22 @@ struct NotchShape: Shape {
     static let defaultEstimatedMaxExceedingWidth: CGFloat = 400
     static let defaultEstimatedMaxExceedingHeight: CGFloat = 100
     
-    var minHeight: CGFloat
+    var notchHeight: CGFloat
     var minWidth: CGFloat = NotchShape.defaultNotchWidth
     var estimatedMaxExceedingWidth: CGFloat = NotchShape.defaultEstimatedMaxExceedingWidth
     var estimatedMaxExceedingHeight: CGFloat = NotchShape.defaultEstimatedMaxExceedingHeight
+    
+    
 
     func path(in rect: CGRect) -> Path {
         var decorationsRadius: CGFloat {
             let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: rect.width)
-            return widthInterpolator([minHeight < 5 ? minHeight / 2 : 5, 24], true)
+            return widthInterpolator([notchHeight < 5 ? notchHeight / 2 : 5, 24], true)
         }
         
         var notchRadius: CGFloat {
-            let widthInterpolator = interpolatorBuilder([minHeight, minHeight + 100], value: rect.height)
-            return widthInterpolator([minHeight < 11 ? minHeight / 2 : 11, 40], true)
+            let widthInterpolator = interpolatorBuilder([notchHeight, notchHeight + 100], value: rect.height)
+            return widthInterpolator([notchHeight < 11 ? notchHeight / 2 : 11, 40], true)
         }
         
         let decorationSize = decorationsRadius * 2

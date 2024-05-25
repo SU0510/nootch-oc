@@ -8,6 +8,9 @@
 import AppKit
 
 extension NSImage {
+    convenience init(icon: String) {
+        self.init(systemSymbolName: icon, accessibilityDescription: nil)!
+    }
     /// Returns the average color that is present in the image.
     var averageColor: NSColor? {
         // Image is not valid, so we cannot get the average color

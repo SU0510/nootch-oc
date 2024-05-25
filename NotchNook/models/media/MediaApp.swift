@@ -73,7 +73,7 @@ extension MediaApp {
 
 @Observable
 class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
-    static let liveActivityTimerDuration: Double = 5
+    
     var meta: MediaAppMeta
     var isAppRunning: Bool {
         willSet {
@@ -127,7 +127,7 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
     
     func setupLiveActivityTimer() {
         self.liveActivityTimer?.invalidate()
-        self.liveActivityTimer = Timer.scheduledTimer(withTimeInterval: Self.liveActivityTimerDuration, repeats: false) { _ in
+        self.liveActivityTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
             self.updateLiveActivities()
         }
     }

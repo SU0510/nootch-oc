@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TopBarTabsView: View {
-    var screenID: UUID
+    @Environment(\.screenID) private var screenID
+    @Environment(\.openSettings) private var openSettings
     var body: some View {
         let mode = NotchNook.shared.mode[screenID]!
         HStack(spacing: 2) {
@@ -22,7 +23,7 @@ struct TopBarTabsView: View {
             Spacer()
             
             CircleButton(icon: "gearshape.fill", iconSize: 13) {
-                
+                openSettings(nil)
             }
         }
         .padding(.trailing, 4)
