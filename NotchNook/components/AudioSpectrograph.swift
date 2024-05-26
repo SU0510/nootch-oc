@@ -8,29 +8,41 @@
 import SwiftUI
 import Combine
 
+private let barsCount: CGFloat = 3
+
 struct AudioSpectrograph: View, Equatable {
     static func == (lhs: AudioSpectrograph, rhs: AudioSpectrograph) -> Bool {
-        lhs.color == rhs.color && lhs.playing == rhs.playing
+        lhs.color == rhs.color && lhs.playing == rhs.playing && lhs.volume == rhs.volume
     }
     
     var playing: Bool
+    var volume: CGFloat = 1
     var color: Color = .white
-    let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
-    @State private var barHeights = [CGFloat](repeating: 0, count: 3).map { _ in CGFloat.random(in: 5...15) }
+    let minHeight: Double = 5
+    let maxHeight: Double = 15
+    let barsSpacing: Double = 1.5
+    let barsThickness: Double = 2
+    
+    private let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
+    @State private var barHeights = [CGFloat](repeating: 0, count: Int(barsCount)).map { _ in CGFloat.random(in: 5...15) }
     
     var body: some View {
-        HStack(spacing: 1.5) {
+        let volumeInterpolate = interpolatorBuilder([0, 1], value: volume)
+        let volumeModifier = (volume * max(1, volumeInterpolate([3, 0], false)))
+        HStack(spacing: barsSpacing) {
             ForEach(barHeights.indices, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 1)
-                    .frame(width: 2, height: barHeights[index])
+                    .frame(width: barsThickness, height: max(3, barHeights[index] * volumeModifier))
                     .foregroundColor(color)
                     .animation(.easeInOut(duration: 0.25), value: barHeights[index])
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 1)) // Adjust padding to create spacing effect
         }
+        .frame(width: maxHeight * 1.5, height: maxHeight * 1.5)
+        .animation(.spring, value: volume)
         .onReceive(timer) { _ in
             withAnimation {
-                barHeights = playing ? barHeights.map { _ in CGFloat.random(in: 5...15) } : [3, 3, 3]
+                barHeights = playing ? barHeights.map { _ in CGFloat.random(in: minHeight...maxHeight) } : [3, 3, 3]
             }
         }
     }

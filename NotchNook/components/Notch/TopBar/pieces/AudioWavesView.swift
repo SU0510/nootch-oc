@@ -8,15 +8,41 @@
 import SwiftUI
 
 struct AudioWavesView: View {
+    @State private var hovering = false
     var body: some View {
         if let player = MediaPlayer.shared.app {
+            let isPlaying = MediaPlayer.shared.app?.isPlaying ?? false
+            let volume = VolumeMonitor.shared.volume
             let albumArt = player.track.albumArt
             let albumAverageColor = albumArt.averageColor?.lighter(by: 0.25) ?? .white
             let color: Color = albumArt.isValid ? Color(nsColor: albumAverageColor) : .white
-            AudioSpectrograph(playing: MediaPlayer.shared.app?.isPlaying ?? false, color: color)
-                .padding(.leading, 1)
-                .frame(maxWidth: .infinity)
-                .animation(.smooth, value: albumArt)
+            Button {
+                MediaPlayer.shared.app?.toggleIsPlaying()
+            } label: {
+                ZStack {
+                    AudioSpectrograph(playing: isPlaying, volume: volume, color: color)
+                        .blur(radius: hovering ? 1.25 : 0)
+//                        .opacity(hovering ? 0.75 : 1)
+                    if hovering {
+                        Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                            .font(.system(size: 12))
+                            .opacity(0.9)
+                            .contentTransition(.symbolEffect)
+                            .transition(.scaleAndBlur)
+                    }
+                }
+                .background(.black)
+                .contentShape(Rectangle())
+                .onHover { newHovering in
+                    withAnimation(.smooth(duration: 0.25)) {
+                        hovering = newHovering
+                    }
+                }
+            }
+            .buttonStyle(ShrinkOnClick())
+            .padding(.leading, 1)
+            .frame(maxWidth: .infinity)
+            .animation(.smooth, value: albumArt)
         }
     }
 }

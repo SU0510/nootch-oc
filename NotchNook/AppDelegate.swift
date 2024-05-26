@@ -16,6 +16,7 @@ import AppKit
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         _ = ShortcutsManager.shared
         _ = MediaPlayer.shared
+        _ = VolumeMonitor.shared
 
         NSApp.setActivationPolicy(.accessory)
         

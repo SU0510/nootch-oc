@@ -10,7 +10,7 @@ import SwiftUI
 struct NookView: View {
     var ns: Namespace.ID
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
+        HStack(alignment: .center, spacing: 8) {
             MediaPlayerWidgetView(ns: ns)
             
             VDivider()
@@ -22,6 +22,7 @@ struct NookView: View {
             CameraWidgetView()
         }
         .defaultOpenSize(alignment: .leading)
+        .fixedSize()
     }
 }
 

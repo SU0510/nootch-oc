@@ -35,6 +35,13 @@ class MediaPlayer {
         
     init() { setupMusicApps() }
     
+    func getAppForMeta(_ meta: MediaAppMeta) -> MediaApp? {
+        switch meta {
+        case .appleMusic: appleMusicApp
+        case .spotify: spotifyApp
+        }
+    }
+    
     // MARK: - Setup
     
     private func detectInstalledApps() {
@@ -51,6 +58,14 @@ class MediaPlayer {
         
         if appleMusicApp == nil && installedApps.contains(.appleMusic)  {
             appleMusicApp = AppleMusicApp()
+        }
+        
+        withAnimation(.smooth(extraBounce: 0.15)) {
+            if appleMusicApp != nil {
+                connectedApp = .appleMusic
+            } else if spotifyApp != nil {
+                connectedApp = .spotify
+            }
         }
     }
     

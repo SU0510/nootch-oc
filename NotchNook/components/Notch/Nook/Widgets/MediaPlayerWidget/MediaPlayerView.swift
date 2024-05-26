@@ -1,21 +1,22 @@
 //
-//  MediaPlayerWidgetView.swift
+//  MediaPlayerView.swift
 //  NotchNook
 //
-//  Created by Igor Marcossi on 19/05/24.
+//  Created by Igor Marcossi on 26/05/24.
 //
 
 import SwiftUI
-import MusicKit
 
-struct MediaPlayerWidgetView: View {
+struct MediaPlayerView: View {
+    var track: Track
+    var appIcon: NSImage?
     var ns: Namespace.ID
     var body: some View {
-        
-        if let track = MediaPlayer.shared.app?.track {
         HStack(spacing: 12) {
-                AlbumCoverView(artwork: track.albumArt, cornerRadius: 28)
+            
+            AlbumCoverView(artwork: track.albumArt, appIcon: appIcon, cornerRadius: 28)
                     .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
+            
                 VStack(alignment: .leading, spacing: 2) {
                     VStack(alignment: .leading, spacing: 2) {
                         Group {
@@ -53,10 +54,10 @@ struct MediaPlayerWidgetView: View {
                         )
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
         }
         .animation(.smooth(extraBounce: 0.15), value: [track.title, track.album, track.artist])
-        .frame(minWidth: 225, maxWidth: 225, maxHeight: .infinity, alignment: .leading)
         .foregroundStyle(.white)
-        }
     }
 }

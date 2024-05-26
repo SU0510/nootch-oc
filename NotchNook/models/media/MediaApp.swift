@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ScriptingBridge
+import Defaults
 
 protocol MediaApp: AnyObject {
     var meta: MediaAppMeta { get set }
@@ -16,10 +17,8 @@ protocol MediaApp: AnyObject {
     var notificationMonitor: NotificationObserverHelper? { get set }
     var appRunningMonitor: AppMonitor? { get set }
     var liveActivityTimer: Timer? { get set }
-    
-    //    func getTrackInformation() -> Track
-//    init()
-//    init(meta: MediaAppMeta)
+    var inactiveLiveActivitiesTimeout: Double { get set }
+
     func updateIsPlaying() -> ()
     func updateTrack() -> ()
     func toggleIsPlaying() -> ()
@@ -73,7 +72,6 @@ extension MediaApp {
 
 @Observable
 class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
-    
     var meta: MediaAppMeta
     var isAppRunning: Bool {
         willSet {
@@ -110,6 +108,8 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         }
     }
     var liveActivityTimer: Timer?
+    var inactiveLiveActivitiesTimeout: Double
+    var defaultsTasks = [Task<Void, Never>]()
     
     init(meta: MediaAppMeta) {
         self.meta = meta
@@ -118,16 +118,36 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         self.track = .empty
         self.notificationMonitor = nil
         self.appRunningMonitor = nil
+        self.inactiveLiveActivitiesTimeout = Defaults[.inactiveLiveActivitiesTimeout]
         self.updateTrack()
         self.updateIsPlaying()
         self.updateLiveActivities(self.isPlaying)
         self.monitorAppIsRunning()
         self.monitorTrackChange()
+        self.monitorDefaults()
+    }
+    
+    deinit {
+        self.unmonitorDefaults()
+    }
+    
+    func monitorDefaults() {
+        defaultsTasks.append(Task {
+            for await value in Defaults.updates(.inactiveLiveActivitiesTimeout) {
+                self.inactiveLiveActivitiesTimeout = value
+            }
+        })
+    }
+    
+    func unmonitorDefaults() {
+        defaultsTasks.forEach { task in
+            task.cancel()
+        }
     }
     
     func setupLiveActivityTimer() {
         self.liveActivityTimer?.invalidate()
-        self.liveActivityTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+        self.liveActivityTimer = Timer.scheduledTimer(withTimeInterval: self.inactiveLiveActivitiesTimeout, repeats: false) { _ in
             self.updateLiveActivities()
         }
     }

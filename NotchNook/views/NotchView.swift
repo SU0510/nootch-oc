@@ -9,7 +9,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct NotchView: View, DropDelegate {
-    static let maxVPanDrag: Double = 12
+    static let maxVPanDrag: Double = 14
     static let maxHPanDrag: Double = 24
     static let panVelocityTriggerThreshold: Double = 500
     static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2))) }
@@ -25,6 +25,7 @@ struct NotchView: View, DropDelegate {
     @State private var scaleDown: Double = 0
     @State private var hide = false
     @State private var hideTimer: Timer?
+    @State private var panGestureCounter = 0
     @Namespace private var ns
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenID) private var screenID
@@ -66,65 +67,6 @@ struct NotchView: View, DropDelegate {
         )
     }
     
-    func vibrate() {
-        NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
-    }
-    
-    func openNotch(in newMode: NotchNook.NotchMode = .nook) {
-        hideTimer?.invalidate()
-        withAnimation(.bouncy(extraBounce: 0.075)) {
-            cancelPan = true
-            if hide { hide = false } else {
-                NotchNook.shared.mode[screenID] = newMode
-            }
-        } completion: {
-            cancelPan = false
-        }
-    }
-    
-    func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
-        withAnimation(.smooth(duration: 0.4)) {
-            self.cancelPan = true
-            if unhover {
-                self.hovering = false
-            }
-            if doVibrate { vibrate() }
-            if mode != .closed {
-                NotchNook.shared.mode[screenID] = .closed
-            }
-        } completion: {
-            cancelPan = false
-        }
-    }
-    
-    func changeTrack(prev: Bool) {
-        withAnimation(.smooth) {
-            vibrate()
-            panRawPadding = .zero
-            cancelPan = true
-            if prev {
-                MediaPlayer.shared.app?.prevTrack()
-            } else {
-                MediaPlayer.shared.app?.nextTrack()
-            }
-        } completion: {
-            cancelPan = false
-        }
-    }
-    
-    func hideNotch() {
-        if hide { return }
-        hideTimer?.invalidate()
-        vibrate()
-        withAnimation(.smooth) {
-            hide = true
-            hideTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { _ in
-                withAnimation(.smooth) { hide = false }
-            }
-        }
-    }
-    
-    
     @ViewBuilder func shapeView(shadow: Bool? = nil) -> some View {
         GeometryReader { geo in
             ShadowedNotchShapeView(shadow: shadow ?? (mode != .closed || hovering))
@@ -139,8 +81,7 @@ struct NotchView: View, DropDelegate {
         let actualScale = (hovering && !pressing && (mode == .closed) ? 1.25 : 1) - scaleDown
         
         VStack(alignment: .center, spacing: 8) {
-            TopBarView(scale: actualScale, panPadding: panPadding, hide: hide, ns: ns)
-                //                .scaleEffect(1)
+            TopBarView(panGestureCounter: panGestureCounter, scale: actualScale, panPadding: panPadding, hide: hide, ns: ns)
                 
                 Group {
                     switch mode {
@@ -162,80 +103,17 @@ struct NotchView: View, DropDelegate {
         .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: notchHeight)
         .mask(alignment: .top) { shapeView(shadow: false) }
         .background {
-            ScrollWheelViewRepresentable { translation, scrollingPoint, velocity, cancelGesture in
-                if cancelPan { return }
-                
-                if scrollingPoint.y < 0 && max(panRawPadding.leading, panRawPadding.trailing) < 24 {
-                    let interpolate = interpolatorBuilder([0, -150], value: scrollingPoint.y)
-                    
-                    scaleDown += interpolate([0, mode != .closed ? 0.1 : 0.3], true)
-                    
-                    if scaleDown > (mode != .closed ? 0.03 : 0.1) || velocity.height < -NotchView.panVelocityTriggerThreshold {
-                        if mode != .closed {
-                            closeNotch(vibrate: true)
-                        } else {
-                            hideNotch()
-                        }
-                    }
-                } else {
-                    withAnimation(.smooth) { scaleDown = 0 }
-                }
-                
-                if mode != .closed { return }
-                
-                panRawPadding = .init(
-                    top: 0,
-                    leading: panRawPadding.leading + (scrollingPoint.x < 0 ? abs(scrollingPoint.x) : 0),
-                    bottom: panRawPadding.bottom + (scrollingPoint.y > 0 ? scrollingPoint.y : 0),
-                    trailing: panRawPadding.trailing + (scrollingPoint.x > 0 ? scrollingPoint.x : 0)
-                )
-                
-                if scrollingPoint.x > 0 {
-                    withAnimation(.smooth) { panRawPadding.leading = 0 }
-                } else if scrollingPoint.x < 0 {
-                    withAnimation(.smooth) { panRawPadding.trailing = 0 }
-                }
-                                
-                if velocity.height > NotchView.panVelocityTriggerThreshold {
-                    openNotch()
-                }
-                
-//                if velocity.width < -NotchView.panVelocityTriggerThreshold {
-//                    changeTrack(prev: true)
-//                }
-//                
-//                if velocity.width > NotchView.panVelocityTriggerThreshold {
-//                    if panRawPadding.trailing < 150 {
-//                        doThisAfter(1) {
-//                        withAnimation(.snappy) {
-//                            self.cancelPan = true
-//                            self.panRawPadding.trailing = 150
-//                        } completion: {
-//                            print("mkams")
-//                            self.changeTrack(prev: false)
-//                        }
-//                        }
-//                    }
-//                }
-                
-                if !cancelPan {
-                    if panPadding.bottom > NotchView.maxVPanDrag && mode == .closed {
-                        openNotch()
-                    }
-                    if panPadding.bottom < NotchView.maxVPanDrag / 3 {
-                        if panPadding.leading > (NotchView.maxHPanDrag * 1.5) {
-                            changeTrack(prev: true)
-                        }
-                        if panPadding.trailing > (NotchView.maxHPanDrag * 1.5) {
-                            changeTrack(prev: false)
-                        }
-                    }
-                }
-                
-            } onDragEnded: { translation, scrollingPoint, velocity in
-                cancelPan = false
-            }
-            .id(mode.rawValue + cancelPan.description)
+            NotchDragger(
+                panPadding: panPadding,
+                scaleDown: $scaleDown,
+                cancelPan: $cancelPan,
+                panRawPadding: $panRawPadding,
+                mode: mode,
+                closeNotch: {closeNotch(vibrate: $0, unhover: $1)},
+                hideNotch: hideNotch,
+                openNotch: { openNotch() },
+                changeTrack: { changeTrack(prev: $0) }
+            )
         }
         .background(alignment: .top) { shapeView() }
         .contentShape(NotchShape(notchHeight: notchHeight))
@@ -282,6 +160,8 @@ struct NotchView: View, DropDelegate {
         .frame(width: 1000, height: 300, alignment: .top)
         .fixedSize()
     }
+    
+    // MARK: - Drag and drop files into shelf functons
     
     func finishDragging(close: Bool) {
         if droppingCoords != nil { droppingCoords = nil }
@@ -341,6 +221,60 @@ struct NotchView: View, DropDelegate {
     
     func dropExited(info: DropInfo) {
         finishDragging(close: Shelf.shared.files.count == 0)
+    }
+    
+    // MARK: - Functions related to the View way of working
+    
+    func vibrate() {
+        NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
+    }
+    
+    func openNotch(in newMode: NotchNook.NotchMode = .nook) {
+        hideTimer?.invalidate()
+        withAnimation(.bouncy(extraBounce: 0.075)) {
+            cancelPan = true
+            if hide { hide = false } else {
+                NotchNook.shared.mode[screenID] = newMode
+            }
+        } completion: {
+            cancelPan = false
+        }
+    }
+    
+    func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
+        withAnimation(.smooth(duration: 0.4)) {
+            self.cancelPan = true
+            if unhover {
+                self.hovering = false
+            }
+            if doVibrate { vibrate() }
+            if mode != .closed {
+                NotchNook.shared.mode[screenID] = .closed
+            }
+        } completion: {
+            cancelPan = false
+        }
+    }
+    
+    func changeTrack(prev: Bool) {
+        withAnimation(.smooth) {
+            vibrate()
+            panRawPadding = .zero
+            cancelPan = true
+            panGestureCounter += 1
+        }
+    }
+    
+    func hideNotch() {
+        if hide { return }
+        hideTimer?.invalidate()
+        vibrate()
+        withAnimation(.smooth) {
+            hide = true
+            hideTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { _ in
+                withAnimation(.smooth) { hide = false }
+            }
+        }
     }
 }
 

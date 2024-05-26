@@ -13,5 +13,6 @@ extension Defaults.Keys {
     static let email = Key<String>("email", default: "")
     static let licenseKey = Key<String>("licenseKey", default: "")
     static let keyActive = Key<Bool>("keyActive", default: false)
-//    static let keyActive = Key<Bool>("keyActive", default: false)
+    
+    static let inactiveLiveActivitiesTimeout = Key<Double>("inactiveLiveActivitiesTimeout", default: 10)
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlbumCoverView: View, Equatable {
     var artwork: NSImage?
+    var appIcon: NSImage?
     var cornerRadius: Double
     
     var body: some View {
@@ -40,6 +41,17 @@ struct AlbumCoverView: View, Equatable {
                     }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                .overlay(alignment: .bottomTrailing) {
+                    if let appIcon {
+                        Image(nsImage: appIcon)
+                            .resizable()
+                            .scaledToFit()
+                            .shadow(radius: 8, y: 0)
+                            .shadow(radius: 12, y: 8)
+                            .frame(32)
+                            .offset(x: 6, y: 6)
+                    }
+                }
                 .transition(.scaleAndBlur)
             }
             .animation(.smooth(extraBounce: 0.15), value: artwork)
@@ -48,6 +60,5 @@ struct AlbumCoverView: View, Equatable {
         }
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
         .transition(.scaleAndBlur)
-//        .drawingGroup()
     }
 }

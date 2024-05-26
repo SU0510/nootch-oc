@@ -11,6 +11,11 @@
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
 		EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */; };
+		EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */; };
+		EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */; };
+		EC2DD1E72C02D5A5001FD54E /* NotchDragger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */; };
+		EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */; };
+		EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */; };
 		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
 		EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */; };
 		EC4173D22C025136002889E7 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EC4173D12C025136002889E7 /* Settings */; };
@@ -98,6 +103,11 @@
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchSpacerView.swift; sourceTree = "<group>"; };
+		EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeMonitor.swift; sourceTree = "<group>"; };
+		EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultSettingsPaneSize.swift; sourceTree = "<group>"; };
+		EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchDragger.swift; sourceTree = "<group>"; };
+		EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
+		EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMediaAppsView.swift; sourceTree = "<group>"; };
 		EC4173C82C0181B8002889E7 /* WindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowsManager.swift; sourceTree = "<group>"; };
 		EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMeta.swift; sourceTree = "<group>"; };
 		EC4173D32C02515A002889E7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -195,6 +205,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC2DD1E32C02C668001FD54E /* modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */,
+			);
+			path = modifiers;
+			sourceTree = "<group>";
+		};
+		EC2DD1E82C02E86F001FD54E /* MediaPlayerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */,
+				EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */,
+				EC8D5FF12BFACA4600E67ECC /* MediaPlayerWidgetView.swift */,
+			);
+			path = MediaPlayerWidget;
+			sourceTree = "<group>";
+		};
 		EC4173CC2C0191A8002889E7 /* media */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +247,7 @@
 		EC4173D82C025589002889E7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				EC2DD1E32C02C668001FD54E /* modifiers */,
 				EC4173D92C025597002889E7 /* GeneralSettingsView.swift */,
 				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
 			);
@@ -347,6 +376,7 @@
 				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
+				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -406,6 +436,7 @@
 				EC8D5FC52BF97ADA00E67ECC /* Shelf */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
+				EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */,
 			);
 			path = Notch;
 			sourceTree = "<group>";
@@ -453,7 +484,7 @@
 		EC8D60152BFC21CD00E67ECC /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				EC8D5FF12BFACA4600E67ECC /* MediaPlayerWidgetView.swift */,
+				EC2DD1E82C02E86F001FD54E /* MediaPlayerWidget */,
 				EC8D602D2BFD22E200E67ECC /* CameraWidgetView.swift */,
 				EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */,
 			);
@@ -557,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
+				EC2DD1E72C02D5A5001FD54E /* NotchDragger.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
@@ -586,6 +618,7 @@
 				EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */,
+				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
 				EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */,
@@ -609,6 +642,8 @@
 				EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
+				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
+				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
@@ -627,6 +662,7 @@
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
+				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
 				EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */,
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,

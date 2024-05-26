@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TopBarView: View {
+    var panGestureCounter: Int
     let liveActionWidth: CGFloat = 35
     var scale: Double = 1
     var panPadding: EdgeInsets
@@ -77,7 +78,7 @@ struct TopBarView: View {
                     case .closed:
                         let la = NotchNook.shared.activeLiveActions
                         if la.contains(.media) {
-                            ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false)
+                            ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, counter: panGestureCounter)
                                 .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .leading)
                         }
                     case .dragging, .nook, .shelf: EmptyView()
@@ -95,7 +96,7 @@ struct TopBarView: View {
                     switch mode {
                     case .closed:
                         if la.contains(.media) {
-                            ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true)
+                            ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, counter: panGestureCounter)
                                 .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .trailing)
                         }
                     case .nook, .shelf, .dragging: EmptyView()

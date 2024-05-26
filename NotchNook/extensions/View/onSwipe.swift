@@ -75,6 +75,7 @@ struct ScrollWheelViewRepresentable: NSViewRepresentable {
     }
 
     func updateNSView(_ nsView: ScrollWheelView, context: Context) {
-        // Update the NSView if needed.
+        nsView.onDragChanged = onDragChanged
+        nsView.onDragEnded = onDragEnded
     }
 }
