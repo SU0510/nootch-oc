@@ -44,6 +44,10 @@ class WindowsManager {
     }
     
     @objc func updateWindows() {
+        displayKits.forEach { kit in
+            kit.windowController.close()
+        }
+        
         let screens = NSScreen.screens
         
         var newDisplaysKits = [DisplayKit]()
@@ -56,8 +60,9 @@ class WindowsManager {
     
     func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
         let id = UUID()
-        var notchHeight = screen.safeAreaInsets.top + 1
+        var notchHeight = screen.safeAreaInsets.top
         notchHeight = notchHeight.isZero ? NotchShape.notchlessScreenNotchHeight : notchHeight
+        notchHeight += 1
         let screenF = screen.frame
         let view = NSHostingView(
             rootView:

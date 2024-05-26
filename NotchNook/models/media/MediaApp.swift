@@ -19,6 +19,7 @@ protocol MediaApp: AnyObject {
     var liveActivityTimer: Timer? { get set }
     var inactiveLiveActivitiesTimeout: Double { get set }
 
+    func doSafeCrossBridgeAction(_ action: () -> ()) -> ()
     func updateIsPlaying() -> ()
     func updateTrack() -> ()
     func toggleIsPlaying() -> ()
@@ -68,6 +69,10 @@ extension MediaApp {
             }
         }
     }
+    
+    func doSafeCrossBridgeAction(_ action: () -> ()) {
+        if isAppRunning { action() }
+    }
 }
 
 @Observable
@@ -77,9 +82,16 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         willSet {
             if !isAppRunning && newValue {
                 self.setupApp()
+                doThisAfter(0) {
+                    if MediaPlayer.shared.connectedApp == nil {
+                        MediaPlayer.shared.connectedApp = self.meta
+                    }
+                }
             } else if isAppRunning && !newValue {
                 self.isPlaying = false
-                self.app = nil
+                if MediaPlayer.shared.connectedApp == meta {
+                    MediaPlayer.shared.connectedApp = nil
+                }
             }
         }
     }
@@ -152,7 +164,7 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         }
     }
     
-    func setupApp() { if let app = SBApplication(bundleIdentifier: self.meta.bundleID) as? App { self.app = app } }
+    func setupApp() { if self.app == nil, let app = SBApplication(bundleIdentifier: self.meta.bundleID) as? App { self.app = app } }
     
     func updateIsPlaying() { }
     

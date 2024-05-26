@@ -14,7 +14,18 @@ import Combine
 class MediaPlayer {
     static let shared = MediaPlayer()
     
-    var connectedApp: MediaAppMeta? = nil
+    var connectedApp: MediaAppMeta? {
+        get {
+            if let _connectedApp { return _connectedApp }
+            if appleMusicApp?.isAppRunning ?? false { return .appleMusic }
+            if spotifyApp?.isAppRunning ?? false { return .spotify }
+            return nil
+        }
+        set { _connectedApp = newValue }
+    }
+    
+    var _connectedApp: MediaAppMeta?
+    var connectedApps: [MediaAppMeta]? = nil
     var installedApps = Set<MediaAppMeta>()
     var spotifyApp: SpotifyApp?
     var appleMusicApp: AppleMusicApp?
@@ -60,13 +71,14 @@ class MediaPlayer {
             appleMusicApp = AppleMusicApp()
         }
         
-        withAnimation(.smooth(extraBounce: 0.15)) {
-            if appleMusicApp != nil {
-                connectedApp = .appleMusic
-            } else if spotifyApp != nil {
-                connectedApp = .spotify
-            }
-        }
+//        withAnimation(.smooth(extraBounce: 0.15)) {
+//            if let appleMusicApp, appleMusicApp.isAppRunning {
+//                print("kmk")
+//                connectedApp = .appleMusic
+//            } else if let spotifyApp, spotifyApp.isAppRunning {
+//                connectedApp = .spotify
+//            }
+//        }
     }
     
     // MARK: - Seeker

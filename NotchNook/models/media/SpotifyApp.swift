@@ -18,7 +18,8 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
     override func updateIsPlaying() { self.isPlaying = app?.playerState == .playing }
     
     override func updateTrack() {
-        let currentTrack = self.app?.currentTrack
+        var currentTrack: (any SpotifyTrack)?
+        doSafeCrossBridgeAction { currentTrack = self.app?.currentTrack }
         let title = currentTrack?.name ?? Track.empty.title
         let artist = currentTrack?.artist ?? Track.empty.artist
         let album = currentTrack?.album ?? Track.empty.album
@@ -52,11 +53,11 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
         self.track = newTrack
     }
     
-    override func toggleIsPlaying() { app?.playpause?() }
+    override func toggleIsPlaying() { doSafeCrossBridgeAction { app?.playpause?() } }
     
-    override func prevTrack() { app?.previousTrack?() }
+    override func prevTrack() { doSafeCrossBridgeAction { app?.previousTrack?() } }
     
-    override func nextTrack() { app?.nextTrack?() }
+    override func nextTrack() { doSafeCrossBridgeAction { app?.nextTrack?() } }
         
     override func toggleLovedInTrack() { }
     

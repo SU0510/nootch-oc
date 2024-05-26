@@ -18,8 +18,6 @@ struct NotchShape: Shape {
     var minWidth: CGFloat = NotchShape.defaultNotchWidth
     var estimatedMaxExceedingWidth: CGFloat = NotchShape.defaultEstimatedMaxExceedingWidth
     var estimatedMaxExceedingHeight: CGFloat = NotchShape.defaultEstimatedMaxExceedingHeight
-    
-    
 
     func path(in rect: CGRect) -> Path {
         var decorationsRadius: CGFloat {
