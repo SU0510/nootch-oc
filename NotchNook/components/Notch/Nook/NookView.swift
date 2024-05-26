@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct NookView: View {
-    var ns: Namespace.ID
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
-            MediaPlayerWidgetView(ns: ns)
+            MediaPlayerWidgetView()
             
             VDivider()
             

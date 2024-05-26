@@ -19,7 +19,7 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
     
     override func updateTrack() {
         var currentTrack: (any SpotifyTrack)?
-        doSafeCrossBridgeAction { currentTrack = self.app?.currentTrack }
+        currentTrack = self.app?.currentTrack
         let title = currentTrack?.name ?? Track.empty.title
         let artist = currentTrack?.artist ?? Track.empty.artist
         let album = currentTrack?.album ?? Track.empty.album

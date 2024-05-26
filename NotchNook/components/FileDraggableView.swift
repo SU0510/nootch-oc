@@ -3,11 +3,13 @@ import AppKit
 
 struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
     var onSelect: () -> ()
+    var onDropCompleted: (Bool) -> ()  // Callback for when drag operation completes
     var selectedURLs: [URL]
     @ViewBuilder var dragPreview: () -> DragPreview
     
     class CustomView<DragPreviewChild: View>: NSView, NSDraggingSource {
         var onSelect: () -> () = {}
+        var onDropCompleted: (Bool) -> () = { _ in }
         var selectedURLs: [URL] = []
         var dragPreview: (() -> DragPreviewChild)?
         
@@ -17,8 +19,6 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
         override func mouseDown(with event: NSEvent) {
             onSelect()
             initialMouseDownLocation = event.locationInWindow
-//            event.
-//            super.mouseDown(with: event)
         }
         
         override func mouseDragged(with event: NSEvent) {
@@ -40,16 +40,9 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
                     
                     return draggingItem
                 }
-                beginDraggingSession(with: items, event: event, source: self)
+                let session = beginDraggingSession(with: items, event: event, source: self)
+                session.draggingFormation = .none
             }
-        }
-        
-        func snapshot() -> NSImage {
-            let rep = bitmapImageRepForCachingDisplay(in: bounds)!
-            cacheDisplay(in: bounds, to: rep)
-            let image = NSImage(size: bounds.size)
-            image.addRepresentation(rep)
-            return image
         }
         
         func renderPreview(_ preview: () -> DragPreviewChild) -> NSImage {
@@ -60,26 +53,20 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
         }
         
         // NSDraggingSource methods
+        func draggingSession(_ session: NSDraggingSession, endedAt point: NSPoint, operation: NSDragOperation) {
+            let success = operation == .move
+            onDropCompleted(success)
+        }
+        
         func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
             return .move
-        }
-        
-        override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-            return .move
-        }
-        
-        override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
-            return .move
-        }
-        
-        override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-            return true
         }
     }
     
     func makeNSView(context: Context) -> CustomView<DragPreview> {
         let view = CustomView<DragPreview>()
         view.onSelect = onSelect
+        view.onDropCompleted = onDropCompleted
         view.selectedURLs = selectedURLs
         view.dragPreview = dragPreview
         
@@ -91,11 +78,8 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
     
     func updateNSView(_ nsView: CustomView<DragPreview>, context: Context) {
         nsView.onSelect = onSelect
+        nsView.onDropCompleted = onDropCompleted
         nsView.selectedURLs = selectedURLs
         nsView.dragPreview = dragPreview
-        //            let hostingView = NSHostingView(rootView: dragPreview())
-        //            hostingView.frame = nsView.bounds
-        //            return hostingView
-        //        }
     }
 }

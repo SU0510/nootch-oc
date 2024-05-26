@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MiniAlbumCoverView: View {
     static let transitionID = "album-cover"
-    var ns: Namespace.ID
+    @Environment(\.namespace) private var ns
     var body: some View {
         if let player = MediaPlayer.shared.app {
             VStack {

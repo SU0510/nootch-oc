@@ -10,7 +10,7 @@ import SwiftUI
 struct MediaPlayerView: View {
     var track: Track
     var appIcon: NSImage?
-    var ns: Namespace.ID
+    @Environment(\.namespace) private var ns
     var body: some View {
         HStack(spacing: 12) {
             

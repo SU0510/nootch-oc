@@ -21,9 +21,7 @@ struct ShelfFileView: View, Equatable {
     
     var body: some View {
         VStack(spacing: 2) {
-            file.image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            file.iconView()
                 .frame(width: 42, height: 42)
                 .allowsHitTesting(false)
             
@@ -46,6 +44,8 @@ struct ShelfFileView: View, Equatable {
             if !preview {
                 FileDraggableView(onSelect: {
                     Shelf.shared.selectFile(file)
+                }, onDropCompleted: { l in
+                    Shelf.shared.selectedFiles.forEach { $0.remove() }
                 }, selectedURLs: Shelf.shared.selectedFiles.map { $0.url }) {
                     ShelfFileDragPreviewView(draggedFile: file)
                 }

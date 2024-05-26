@@ -17,6 +17,7 @@ class ShelfFile: Equatable, Hashable, Identifiable {
         self.url.absoluteString
     }
     var image: Image
+    var rawFileImage: Image?
     var url: URL
     var addedAt: Date
     
@@ -28,6 +29,8 @@ class ShelfFile: Equatable, Hashable, Identifiable {
         self.image = iconForFile(at: url)
         self.url = url
         self.addedAt = Date()
+        self.addedAt = Date()
+        self.rawFileImage = loadImgFromURL(url)
     }
     
     func remove() {
@@ -36,6 +39,18 @@ class ShelfFile: Equatable, Hashable, Identifiable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    @ViewBuilder func iconView() -> some View {
+        (self.rawFileImage ?? self.image)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .background { if url.isImg { Color.white } }
+            .overlay {
+                if url.isImg {
+                    Rectangle().stroke(.white, style: .init(lineWidth: 2)).shadow(color: .black.opacity(0.5), radius: 1)
+                }
+            }
     }
     
 }

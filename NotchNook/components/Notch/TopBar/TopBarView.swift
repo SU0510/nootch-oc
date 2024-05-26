@@ -13,7 +13,6 @@ struct TopBarView: View {
     var scale: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
-    var ns: Namespace.ID
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenID) private var screenID
     var body: some View {
@@ -28,7 +27,7 @@ struct TopBarView: View {
                         if !la.isEmpty {
                             HStack {
                                 if la.contains(.media) {
-                                    MiniAlbumCoverView(ns: ns)
+                                    MiniAlbumCoverView()
                                 } else if la.contains(.box) {
                                     ShelfIconView()
                                 }

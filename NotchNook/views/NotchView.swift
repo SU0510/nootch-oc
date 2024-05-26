@@ -81,13 +81,13 @@ struct NotchView: View, DropDelegate {
         let actualScale = (hovering && !pressing && (mode == .closed) ? 1.25 : 1) - scaleDown
         
         VStack(alignment: .center, spacing: 8) {
-            TopBarView(panGestureCounter: panGestureCounter, scale: actualScale, panPadding: panPadding, hide: hide, ns: ns)
+            TopBarView(panGestureCounter: panGestureCounter, scale: actualScale, panPadding: panPadding, hide: hide)
                 
                 Group {
                     switch mode {
                     case .closed: EmptyView()
                     case .dragging: DropActionsView(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
-                    case .nook: NookView(ns: ns)
+                    case .nook: NookView()
                     case .shelf: ShelfView(hovered: false, full: true)
                     }
                 }
@@ -159,6 +159,7 @@ struct NotchView: View, DropDelegate {
         }
         .frame(width: 1000, height: 300, alignment: .top)
         .fixedSize()
+        .environment(\.namespace, ns)
     }
     
     // MARK: - Drag and drop files into shelf functons

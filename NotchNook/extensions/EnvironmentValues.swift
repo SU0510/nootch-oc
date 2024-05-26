@@ -22,8 +22,15 @@ private struct ScreenIDKey: EnvironmentKey {
     static let defaultValue = UUID()
 }
 
+struct NamespaceKey: EnvironmentKey {
+    static var defaultValue: Namespace.ID = Namespace().wrappedValue
+}
 
 extension EnvironmentValues {
+    var namespace: Namespace.ID {
+        get { self[NamespaceKey.self] }
+        set { self[NamespaceKey.self] = newValue }
+    }
     var notchHeight: CGFloat {
         get { self[NotchHeightKey.self] }
         set { self[NotchHeightKey.self] = newValue }

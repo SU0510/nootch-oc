@@ -16,16 +16,18 @@ class Shelf {
         willSet {
             let newSelectedFiles = selectedFiles.intersection(newValue)
             if selectedFiles.count != newSelectedFiles.count { 
-                selectedFiles = newSelectedFiles
+                doThisAfter(0) { self.selectedFiles = newSelectedFiles }
             }
-            withAnimation(.smooth) {
-                if newValue.isEmpty {
-                    if NotchNook.shared.activeLiveActions.contains(.box) {
-                        NotchNook.shared.activeLiveActions.remove(.box)
-                    }
-                } else {
-                    if !NotchNook.shared.activeLiveActions.contains(.box) {
-                        NotchNook.shared.activeLiveActions.insert(.box)
+            doThisAfter(0) {
+                withAnimation(.smooth) {
+                    if newValue.isEmpty {
+                        if NotchNook.shared.activeLiveActions.contains(.box) {
+                            NotchNook.shared.activeLiveActions.remove(.box)
+                        }
+                    } else {
+                        if !NotchNook.shared.activeLiveActions.contains(.box) {
+                            NotchNook.shared.activeLiveActions.insert(.box)
+                        }
                     }
                 }
             }

@@ -9,11 +9,10 @@ import SwiftUI
 import MusicKit
 
 struct MediaPlayerWidgetView: View {
-    var ns: Namespace.ID
     var body: some View {
         VStack {
             if let app = MediaPlayer.shared.app, app.isAppRunning {
-                MediaPlayerView(track: app.track, appIcon: app.meta.icon, ns: ns)
+                MediaPlayerView(track: app.track, appIcon: app.meta.icon)
             } else {
                 NoMediaAppsView()
             }

@@ -16,6 +16,10 @@
 		EC2DD1E72C02D5A5001FD54E /* NotchDragger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */; };
 		EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */; };
 		EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */; };
+		EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */; };
+		EC2DD1F02C03DB15001FD54E /* ShelfFilesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */; };
+		EC2DD1F22C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */; };
+		EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F32C03DE9C001FD54E /* URL.swift */; };
 		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
 		EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */; };
 		EC4173D22C025136002889E7 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EC4173D12C025136002889E7 /* Settings */; };
@@ -108,6 +112,10 @@
 		EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchDragger.swift; sourceTree = "<group>"; };
 		EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
 		EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMediaAppsView.swift; sourceTree = "<group>"; };
+		EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImgFromURL.swift; sourceTree = "<group>"; };
+		EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesScrollView.swift; sourceTree = "<group>"; };
+		EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesTargetPreviewView.swift; sourceTree = "<group>"; };
+		EC2DD1F32C03DE9C001FD54E /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		EC4173C82C0181B8002889E7 /* WindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowsManager.swift; sourceTree = "<group>"; };
 		EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMeta.swift; sourceTree = "<group>"; };
 		EC4173D32C02515A002889E7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -320,6 +328,7 @@
 				EC8D60622C001BB500E67ECC /* wait.swift */,
 				EC8D60662C01697100E67ECC /* iconForApp.swift */,
 				EC8D60682C016B5C00E67ECC /* openApp.swift */,
+				EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -359,6 +368,7 @@
 				BB2A5E562C006B9D008F3081 /* Defaults.swift */,
 				EC4173D32C02515A002889E7 /* Settings.swift */,
 				EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */,
+				EC2DD1F32C03DE9C001FD54E /* URL.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -385,8 +395,10 @@
 			isa = PBXGroup;
 			children = (
 				EC8D5FC62BF97AF500E67ECC /* ShelfEmptyView.swift */,
+				EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */,
 				EC8D5FCA2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift */,
 				EC8D5FC02BF9767A00E67ECC /* ShelfFileView.swift */,
+				EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */,
 				EC758F7E2BF2F19B00B873B0 /* ShelfView.swift */,
 			);
 			path = Shelf;
@@ -614,9 +626,11 @@
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
 				EC8D5FEA2BFA704D00E67ECC /* concurrentMap.swift in Sources */,
+				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,
 				EC8D5FDB2BFA703300E67ECC /* EdgeInsetZero.swift in Sources */,
 				EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
+				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */,
@@ -636,6 +650,7 @@
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
 				EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
+				EC2DD1F22C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift in Sources */,
 				EC8D60652C001D2D00E67ECC /* Track.swift in Sources */,
 				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
@@ -647,6 +662,7 @@
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
+				EC2DD1F02C03DB15001FD54E /* ShelfFilesScrollView.swift in Sources */,
 				EC4173D42C02515A002889E7 /* Settings.swift in Sources */,
 				EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,

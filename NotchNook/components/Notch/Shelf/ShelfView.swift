@@ -12,32 +12,30 @@ struct ShelfView: View {
     var hovered: Bool
     var full: Bool
     var body: some View {
-        let files = NotchNook.shared.shelf.files
+        let files = Shelf.shared.files
         HStack {
             
-            if files.count <= 0 {
+            Group {
                 
-                ShelfEmptyView(hovered: hovered, centered: full)
-                    .padding(.horizontal, 24)
-                
-            } else {
-                
-                GeometryReader { geo in
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 4) {
-                            ForEach(Array(files).sorted(by: { $0.addedAt.timeIntervalSince1970 > $1.addedAt.timeIntervalSince1970 })) { file in
-                                ShelfFileView(file: file, isSelected: Shelf.shared.selectedFiles.contains(file))
-                            }
-                        }
-                        .padding(.all, 8)
-                        .frame(minWidth: geo.size.width, maxHeight: .infinity, alignment: .leading)
-                        .background { Color.black.opacity(0.001).onTapGesture { Shelf.shared.selectFile(nil) } }
+                if files.count > 0 && full {
+                    
+                    ShelfFilesScrollView(files: files, selectedFiles: Shelf.shared.selectedFiles, selectFile: Shelf.shared.selectFile)
+                    
+                } else {
+                    
+                    HStack {
+                        ShelfEmptyView(hovered: hovered, centered: full)
+                        
+                        Spacer()
+                        
+                        ShelfFilesTargetPreviewView(files: Array(files.prefix(4)))
                     }
+                    .padding(.horizontal, 24)
+                    
                 }
-                .transition(.scaleAndBlur)
                 
             }
-            
+            .transition(.scaleAndBlur(anchor: .top))
         }
         .defaultOpenSize(disable: !full)
         .frame(maxWidth: full ? nil : .infinity, maxHeight: full ? nil : .infinity, alignment: .leading)

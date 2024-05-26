@@ -88,9 +88,12 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
                     }
                 }
             } else if isAppRunning && !newValue {
+                doThisAfter(0) {
                 self.isPlaying = false
-                if MediaPlayer.shared.connectedApp == meta {
-                    MediaPlayer.shared.connectedApp = nil
+                    if MediaPlayer.shared.connectedApp == self.meta {
+                        MediaPlayer.shared.connectedApp = nil
+                        self.updateLiveActivities(newValue)
+                    }
                 }
             }
         }
@@ -113,7 +116,7 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
     var appRunningMonitor: AppMonitor?
     var app: App? {
         didSet {
-            if app != nil {
+            if let app, app.isRunning {
                 self.updateIsPlaying()
                 self.updateTrack()
             }
