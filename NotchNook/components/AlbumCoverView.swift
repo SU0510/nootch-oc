@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct AlbumCoverView: View, Equatable {
-    static func == (lhs: AlbumCoverView, rhs: AlbumCoverView) -> Bool {
-        (lhs.id == rhs.id || (
-            lhs.artwork.hashValue == rhs.artwork.hashValue &&
-            lhs.appIcon.hashValue == rhs.appIcon.hashValue
-        )) && lhs.cornerRadius == rhs.cornerRadius
-    }
-    var id: String = UUID().uuidString
+    var id: String?
     var artwork: NSImage?
     var appIcon: NSImage?
     var cornerRadius: Double
@@ -32,7 +26,7 @@ struct AlbumCoverView: View, Equatable {
                             .interpolation(.high)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .id(artwork)
+                            .id(id ?? String(artwork.hashValue))
                     } else {
                         Color.selected
                             .overlay {

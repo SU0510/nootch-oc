@@ -82,25 +82,25 @@ struct NotchView: View, DropDelegate {
         
         VStack(alignment: .center, spacing: 8) {
             TopBarView(panGestureCounter: panGestureCounter, scale: actualScale, panPadding: panPadding, hide: hide)
-                
-                Group {
-                    switch mode {
-                    case .closed: EmptyView()
-                    case .dragging: DropActionsView(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
-                    case .nook: NookView()
-                    case .shelf: ShelfView(hovered: false, full: true)
-                    }
+            
+            Group {
+                switch mode {
+                case .closed: EmptyView()
+                case .dragging: DropActionsView(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                case .nook: NookView()
+                case .shelf: ShelfView(hovered: false, full: true)
                 }
-                .scaleEffect(actualScale, anchor: .top)
-                .transition(NotchView.defaultTransition)
+            }
+            .scaleEffect(actualScale, anchor: .top)
+            .transition(NotchView.defaultTransition)
         }
         .compositingGroup()
         .blur(radius: scaleDown * 100)
         .padding(mode == .closed ? panPadding : .zero)
-        .padding([.leading, .bottom, .trailing], mode == .closed ? hovering ? pressing ? 4 : 8 : 0 : 12)
         .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
         .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: notchHeight)
+        .padding([.leading, .bottom, .trailing], mode == .closed ? hovering ? pressing ? 4 : 8 : 0 : 12)
         .mask(alignment: .top) { shapeView(shadow: false) }
         .background {
             NotchDragger(
