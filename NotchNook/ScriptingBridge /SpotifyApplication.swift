@@ -1,10 +1,3 @@
-//
-//  SpotifyApplication.swift
-//  Jukebox
-//
-//  Created by Sasindu Jayasinghe on 10/11/21.
-//
-
 import AppKit
 import ScriptingBridge
 

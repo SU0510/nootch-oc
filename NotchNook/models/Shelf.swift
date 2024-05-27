@@ -21,12 +21,12 @@ class Shelf {
             doThisAfter(0) {
                 withAnimation(.smooth) {
                     if newValue.isEmpty {
-                        if NotchNook.shared.activeLiveActions.contains(.box) {
-                            NotchNook.shared.activeLiveActions.remove(.box)
+                        if NotchNook.shared.activeLiveActivities.contains(.shelf) {
+                            NotchNook.shared.activeLiveActivities.remove(.shelf)
                         }
                     } else {
-                        if !NotchNook.shared.activeLiveActions.contains(.box) {
-                            NotchNook.shared.activeLiveActions.insert(.box)
+                        if !NotchNook.shared.activeLiveActivities.contains(.shelf) {
+                            NotchNook.shared.activeLiveActivities.insert(.shelf)
                         }
                     }
                 }

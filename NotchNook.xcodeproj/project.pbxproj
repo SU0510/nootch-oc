@@ -10,6 +10,22 @@
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
+		EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */; };
+		EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */; };
+		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
+		EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D52C0417BB0060B47E /* GeneralSettings.swift */; };
+		EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */; };
+		EC0E30DA2C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D92C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift */; };
+		EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */; };
+		EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */; };
+		EC0E30E62C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E52C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift */; };
+		EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E72C041E730060B47E /* CustomLabeled.swift */; };
+		EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30EB2C042FC80060B47E /* Binding.swift */; };
+		EC0E30EE2C0433960060B47E /* ShelfLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30ED2C0433960060B47E /* ShelfLiveActivitySettingsView.swift */; };
+		EC0E30F12C0434640060B47E /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F02C0434640060B47E /* BlankView.swift */; };
+		EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F22C0438660060B47E /* MockTopBar.swift */; };
+		EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */; };
+		EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */; };
 		EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */; };
 		EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */; };
 		EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */; };
@@ -20,6 +36,10 @@
 		EC2DD1F02C03DB15001FD54E /* ShelfFilesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */; };
 		EC2DD1F22C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */; };
 		EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F32C03DE9C001FD54E /* URL.swift */; };
+		EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */; };
+		EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */; };
+		EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */; };
+		EC2DD1FD2C040E2E001FD54E /* WidgetsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FC2C040E2E001FD54E /* WidgetsSettingsView.swift */; };
 		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
 		EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */; };
 		EC4173D22C025136002889E7 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EC4173D12C025136002889E7 /* Settings */; };
@@ -106,6 +126,22 @@
 /* Begin PBXFileReference section */
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
+		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
+		EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveActivitySettings.swift; sourceTree = "<group>"; };
+		EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureControlSettings.swift; sourceTree = "<group>"; };
+		EC0E30D52C0417BB0060B47E /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesSettings.swift; sourceTree = "<group>"; };
+		EC0E30D92C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsGeneralSettingsTabView.swift; sourceTree = "<group>"; };
+		EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesGeneralSettingsTabView.swift; sourceTree = "<group>"; };
+		EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesCustomizeSettingsTabView.swift; sourceTree = "<group>"; };
+		EC0E30E52C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsCustomizeSettingsTabView.swift; sourceTree = "<group>"; };
+		EC0E30E72C041E730060B47E /* CustomLabeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabeled.swift; sourceTree = "<group>"; };
+		EC0E30EB2C042FC80060B47E /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		EC0E30ED2C0433960060B47E /* ShelfLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfLiveActivitySettingsView.swift; sourceTree = "<group>"; };
+		EC0E30F02C0434640060B47E /* BlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankView.swift; sourceTree = "<group>"; };
+		EC0E30F22C0438660060B47E /* MockTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTopBar.swift; sourceTree = "<group>"; };
+		EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLiveAcitivitiesView.swift; sourceTree = "<group>"; };
+		EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWallpaperManager.swift; sourceTree = "<group>"; };
 		EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchSpacerView.swift; sourceTree = "<group>"; };
 		EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeMonitor.swift; sourceTree = "<group>"; };
 		EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultSettingsPaneSize.swift; sourceTree = "<group>"; };
@@ -116,6 +152,9 @@
 		EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesScrollView.swift; sourceTree = "<group>"; };
 		EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesTargetPreviewView.swift; sourceTree = "<group>"; };
 		EC2DD1F32C03DE9C001FD54E /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineIntField.swift; sourceTree = "<group>"; };
+		EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesSettingsView.swift; sourceTree = "<group>"; };
+		EC2DD1FC2C040E2E001FD54E /* WidgetsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsSettingsView.swift; sourceTree = "<group>"; };
 		EC4173C82C0181B8002889E7 /* WindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowsManager.swift; sourceTree = "<group>"; };
 		EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMeta.swift; sourceTree = "<group>"; };
 		EC4173D32C02515A002889E7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -205,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 			);
@@ -213,6 +253,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC0E30CC2C0414510060B47E /* WidgetsSettings */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30CD2C0414600060B47E /* perWidgetSettings */,
+				EC0E30E52C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift */,
+				EC0E30D92C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift */,
+				EC2DD1FC2C040E2E001FD54E /* WidgetsSettingsView.swift */,
+			);
+			path = WidgetsSettings;
+			sourceTree = "<group>";
+		};
+		EC0E30CD2C0414600060B47E /* perWidgetSettings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = perWidgetSettings;
+			sourceTree = "<group>";
+		};
+		EC0E30D02C0415DA0060B47E /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */,
+				EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */,
+				EC0E30D52C0417BB0060B47E /* GeneralSettings.swift */,
+				EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		EC0E30DD2C041C450060B47E /* LiveActivitiesSettings */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30FA2C0441C40060B47E /* LiveActivitiesCustomizeSettingsTab */,
+				EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */,
+				EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */,
+			);
+			path = LiveActivitiesSettings;
+			sourceTree = "<group>";
+		};
+		EC0E30DE2C041C690060B47E /* perActivitySettings */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30F42C0439C50060B47E /* util */,
+				EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */,
+				EC0E30ED2C0433960060B47E /* ShelfLiveActivitySettingsView.swift */,
+			);
+			path = perActivitySettings;
+			sourceTree = "<group>";
+		};
+		EC0E30F42C0439C50060B47E /* util */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		EC0E30F92C043C3C0060B47E /* panes */ = {
+			isa = PBXGroup;
+			children = (
+				EC4173D92C025597002889E7 /* GeneralSettingsView.swift */,
+				EC0E30DD2C041C450060B47E /* LiveActivitiesSettings */,
+				EC0E30CC2C0414510060B47E /* WidgetsSettings */,
+				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
+			);
+			path = panes;
+			sourceTree = "<group>";
+		};
+		EC0E30FA2C0441C40060B47E /* LiveActivitiesCustomizeSettingsTab */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30DE2C041C690060B47E /* perActivitySettings */,
+				EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */,
+			);
+			path = LiveActivitiesCustomizeSettingsTab;
+			sourceTree = "<group>";
+		};
 		EC2DD1E32C02C668001FD54E /* modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,8 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				EC2DD1E32C02C668001FD54E /* modifiers */,
-				EC4173D92C025597002889E7 /* GeneralSettingsView.swift */,
-				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
+				EC0E30F92C043C3C0060B47E /* panes */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -300,8 +416,8 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				EC8D600D2BFC127600E67ECC /* ButtonStyles */,
-				EC8D5FF32BFAE75400E67ECC /* Notch */,
+				EC8D600D2BFC127600E67ECC /* buttonStyles */,
+				EC8D5FF32BFAE75400E67ECC /* notch */,
 				EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */,
 				EC8D5FBA2BF9563400E67ECC /* DropActionsView.swift */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */,
@@ -311,6 +427,9 @@
 				EC8D60352BFE667300E67ECC /* CircleButton.swift */,
 				BB2A5E582C006BD9008F3081 /* TempAuthView.swift */,
 				EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */,
+				EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */,
+				EC0E30E72C041E730060B47E /* CustomLabeled.swift */,
+				EC0E30F02C0434640060B47E /* BlankView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -369,6 +488,7 @@
 				EC4173D32C02515A002889E7 /* Settings.swift */,
 				EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */,
 				EC2DD1F32C03DE9C001FD54E /* URL.swift */,
+				EC0E30EB2C042FC80060B47E /* Binding.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -376,6 +496,7 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
 				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
 				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
@@ -387,6 +508,7 @@
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
+				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -440,7 +562,7 @@
 			path = Array;
 			sourceTree = "<group>";
 		};
-		EC8D5FF32BFAE75400E67ECC /* Notch */ = {
+		EC8D5FF32BFAE75400E67ECC /* notch */ = {
 			isa = PBXGroup;
 			children = (
 				EC8D5FF42BFAE78800E67ECC /* TopBar */,
@@ -450,13 +572,14 @@
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
 				EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */,
 			);
-			path = Notch;
+			path = notch;
 			sourceTree = "<group>";
 		};
 		EC8D5FF42BFAE78800E67ECC /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
 				EC8D60072BFAE91D00E67ECC /* pieces */,
+				EC0E30F22C0438660060B47E /* MockTopBar.swift */,
 				EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */,
 			);
 			path = TopBar;
@@ -485,12 +608,12 @@
 			path = Nook;
 			sourceTree = "<group>";
 		};
-		EC8D600D2BFC127600E67ECC /* ButtonStyles */ = {
+		EC8D600D2BFC127600E67ECC /* buttonStyles */ = {
 			isa = PBXGroup;
 			children = (
 				EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */,
 			);
-			path = ButtonStyles;
+			path = buttonStyles;
 			sourceTree = "<group>";
 		};
 		EC8D60152BFC21CD00E67ECC /* Widgets */ = {
@@ -540,6 +663,7 @@
 			packageProductDependencies = (
 				BB2A5E542C006B63008F3081 /* Defaults */,
 				EC4173D12C025136002889E7 /* Settings */,
+				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -573,6 +697,7 @@
 			packageReferences = (
 				BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */,
 				EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */,
+				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -612,6 +737,7 @@
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
+				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
@@ -622,37 +748,48 @@
 				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
 				EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */,
+				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
+				EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */,
 				EC8D5FEA2BFA704D00E67ECC /* concurrentMap.swift in Sources */,
 				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,
+				EC0E30F12C0434640060B47E /* BlankView.swift in Sources */,
 				EC8D5FDB2BFA703300E67ECC /* EdgeInsetZero.swift in Sources */,
 				EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */,
+				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
+				EC0E30DA2C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift in Sources */,
+				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
+				EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */,
 				EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */,
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
+				EC2DD1FD2C040E2E001FD54E /* WidgetsSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* ShelfFile.swift in Sources */,
 				EC8D60042BFAE90D00E67ECC /* ShelfFilesCountView.swift in Sources */,
 				EC8D60092BFAF48200E67ECC /* defaultOpenSize.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
+				EC0E30E62C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
+				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
 				EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC2DD1F22C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift in Sources */,
 				EC8D60652C001D2D00E67ECC /* Track.swift in Sources */,
 				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
+				EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */,
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
 				EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
@@ -667,21 +804,28 @@
 				EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
+				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
+				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
+				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
 				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
 				BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */,
 				EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
+				EC0E30EE2C0433960060B47E /* ShelfLiveActivitySettingsView.swift in Sources */,
+				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
 				EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */,
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
+				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
+				EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */,
 				EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */,
 				EC8D60062BFAE91800E67ECC /* ShelfIconView.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
@@ -917,6 +1061,14 @@
 				kind = branch;
 			};
 		};
+		EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Settings";
@@ -932,6 +1084,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
+			productName = LaunchAtLogin;
 		};
 		EC4173D12C025136002889E7 /* Settings */ = {
 			isa = XCSwiftPackageProductDependency;

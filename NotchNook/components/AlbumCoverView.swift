@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct AlbumCoverView: View, Equatable {
+    static func == (lhs: AlbumCoverView, rhs: AlbumCoverView) -> Bool {
+        (lhs.id == rhs.id || (
+            lhs.artwork.hashValue == rhs.artwork.hashValue &&
+            lhs.appIcon.hashValue == rhs.appIcon.hashValue
+        )) && lhs.cornerRadius == rhs.cornerRadius
+    }
+    var id: String = UUID().uuidString
     var artwork: NSImage?
     var appIcon: NSImage?
     var cornerRadius: Double
@@ -22,7 +29,7 @@ struct AlbumCoverView: View, Equatable {
                 Group {
                     if let artwork, artwork.isValid {
                         Image(nsImage: artwork)
-                            .antialiased(true)
+                            .interpolation(.high)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .id(artwork)

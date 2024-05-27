@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct Track: Equatable, Hashable {
+struct Track: Equatable, Hashable, Identifiable {
     static let empty = Track(title: "Unknown Title", artist: "Unknown Artist", album: "Unknown Album")
     
 //    static func == (lhs: Track, rhs: Track) -> Bool {
 //        lhs.title == rhs.title && lhs.artist == rhs.artist && lhs.album == rhs.album
 //    }
+    var id: String { title + artist + album }
     var title: String
     var artist: String
     var album: String
@@ -33,9 +34,10 @@ struct Track: Equatable, Hashable {
         self.albumArt = albumArt
     }
     
-//    public func hash(into hasher: inout Hasher) {
-//      hasher.combine(self.title)
-//      hasher.combine(self.artist)
-//      hasher.combine(self.album)
-//    }
+    public func hash(into hasher: inout Hasher) {
+      hasher.combine(self.title)
+      hasher.combine(self.artist)
+      hasher.combine(self.album)
+      hasher.combine(self.loved)
+    }
 }

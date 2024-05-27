@@ -18,6 +18,5 @@ struct ShadowedNotchShapeView: View {
                 x: 0,
                 y: shadow ? 8 : 0
             )))
-//            .frame(width: NotchShape.defaultNotchWidth + config.width, height: baseHeight + config.height + 1)
     }
 }

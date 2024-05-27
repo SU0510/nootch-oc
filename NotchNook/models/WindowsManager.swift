@@ -22,6 +22,20 @@ class WindowsManager {
                 GeneralSettingsView()
             },
             Settings.Pane(
+                identifier: .liveActivities,
+                title: "Live Activities",
+                toolbarIcon: NSImage(icon: "clock.badge.fill")
+            ) {
+                LiveActivitiesSettingsView()
+            },
+            Settings.Pane(
+                identifier: .widgets,
+                title: "Widgets",
+                toolbarIcon: NSImage(icon: "star.square.on.square.fill")
+            ) {
+                WidgetsSettingsView()
+            },
+            Settings.Pane(
                 identifier: .license,
                 title: "License",
                 toolbarIcon: NSImage(icon: "key.horizontal.fill")

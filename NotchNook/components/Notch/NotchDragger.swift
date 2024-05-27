@@ -18,7 +18,7 @@ struct NotchDragger: View {
     var openNotch: () -> ()
     var changeTrack: (Bool) -> ()
     
-    var hasMediaLA: Bool { NotchNook.shared.activeLiveActions.contains(.media) }
+    var hasMediaLA: Bool { NotchNook.shared.activeLiveActivities.contains(.media) }
     
     var body: some View {
             ScrollWheelViewRepresentable(onDragChanged: onPan, onDragEnded: onPanEnded)

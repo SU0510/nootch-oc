@@ -8,8 +8,14 @@
 import SwiftUI
 
     extension View {
-        func defaultSettingsPaneSize() -> some View {
+        func defaultSettingsProps() -> some View {
             self
-                .frame(width: 450, height: 450)
+                .frame(width: 600, height: 600)
+                .fixedSize()
+                .onAppear {
+                     DispatchQueue.main.async {
+                          NSApp.keyWindow?.makeFirstResponder(nil)
+                     }
+                 }
         }
     }

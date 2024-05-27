@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct AudioWavesView: View {
+    var altImg: NSImage?
+    var altIsPlaying: Bool?
+    var prefs: MediaLiveActivitySettings
     @State private var hovering = false
     var body: some View {
         if let player = MediaPlayer.shared.app {
-            let isPlaying = MediaPlayer.shared.app?.isPlaying ?? false
+            let isPlaying = altIsPlaying ?? MediaPlayer.shared.app?.isPlaying ?? false
             let volume = VolumeMonitor.shared.volume
-            let albumArt = player.track.albumArt
+            let albumArt = altImg ?? player.track.albumArt
             let albumAverageColor = albumArt.averageColor?.lighter(by: 0.25) ?? .white
-            let color: Color = albumArt.isValid ? Color(nsColor: albumAverageColor) : .white
+            let color: Color = prefs.coloredSpectograph && albumArt.isValid ? Color(nsColor: albumAverageColor) : .white
             Button {
                 MediaPlayer.shared.app?.toggleIsPlaying()
             } label: {

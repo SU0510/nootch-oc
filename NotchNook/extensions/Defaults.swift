@@ -14,5 +14,8 @@ extension Defaults.Keys {
     static let licenseKey = Key<String>("licenseKey", default: "")
     static let keyActive = Key<Bool>("keyActive", default: false)
     
-    static let inactiveLiveActivitiesTimeout = Key<Double>("inactiveLiveActivitiesTimeout", default: 10)
+    static let gestureControlSettings = Key<GestureControlSettings>("gestureControlSettings", default: .init())
+    static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
+    static let liveActivitiesSettings = Key<LiveActivitiesSettings>("liveActivitiesSettings", default: .init())
+    static let generalSettings = Key<GeneralSettings>("generalSettings", default: .init())
 }

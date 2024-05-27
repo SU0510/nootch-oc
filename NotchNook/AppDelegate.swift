@@ -14,9 +14,11 @@ import AppKit
     var windowsManager: WindowsManager?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Initialize all singletons
         _ = ShortcutsManager.shared
         _ = MediaPlayer.shared
         _ = VolumeMonitor.shared
+        _ = CurrentWallpaperManager.shared
 
         NSApp.setActivationPolicy(.accessory)
         

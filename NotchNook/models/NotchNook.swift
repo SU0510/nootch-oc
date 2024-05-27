@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Defaults
 
 @Observable
 class NotchNook {
@@ -14,11 +15,25 @@ class NotchNook {
     
     var shelf = Shelf()
     var pinned = false
-    var activeLiveActions = Set<LiveAction>()
+    var activeLiveActivities = Set<LiveActivity>()
     var mode = [UUID:NotchMode]()
     
-    enum LiveAction: String, Hashable {
-        case media, box
+    enum LiveActivity: String, Hashable, Codable, CaseIterable {
+        case media, shelf
+        
+        var icon: String {
+            return switch self {
+            case .media: "music.note"
+            case .shelf: "shippingbox.fill"
+            }
+        }
+        
+        var name: String {
+            return switch self {
+            case .media: "Media"
+            case .shelf: "Files Box"
+            }
+        }
     }
     
     enum NotchMode: String, Hashable {

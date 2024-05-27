@@ -63,9 +63,9 @@ extension MediaApp {
     func updateLiveActivities(_ altIsPlaying: Bool? = nil) {
         withAnimation(.bouncy(extraBounce: 0.075)) {
             if altIsPlaying ?? self.isPlaying {
-                NotchNook.shared.activeLiveActions.insert(.media)
+                NotchNook.shared.activeLiveActivities.insert(.media)
             } else {
-                NotchNook.shared.activeLiveActions.remove(.media)
+                NotchNook.shared.activeLiveActivities.remove(.media)
             }
         }
     }
@@ -133,7 +133,7 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         self.track = .empty
         self.notificationMonitor = nil
         self.appRunningMonitor = nil
-        self.inactiveLiveActivitiesTimeout = Defaults[.inactiveLiveActivitiesTimeout]
+        self.inactiveLiveActivitiesTimeout = Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs
         self.updateTrack()
         self.updateIsPlaying()
         self.updateLiveActivities(self.isPlaying)
@@ -148,8 +148,8 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
     
     func monitorDefaults() {
         defaultsTasks.append(Task {
-            for await value in Defaults.updates(.inactiveLiveActivitiesTimeout) {
-                self.inactiveLiveActivitiesTimeout = value
+            for await value in Defaults.updates(.liveActivitiesSettings) {
+                self.inactiveLiveActivitiesTimeout = value.inactivityTimeoutInSecs
             }
         })
     }

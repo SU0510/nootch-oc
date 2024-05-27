@@ -1,8 +1,8 @@
 //
-//  ContentViewModel.swift
-//  Jukebox
+//  MediaPlayer.swift
+//  NotchNook
 //
-//  Created by Sasindu Jayasinghe on 13/10/21.
+//  Created by Igor Marcossi on 05/22/24.
 //
 
 import Foundation

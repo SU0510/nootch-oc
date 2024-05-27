@@ -6,18 +6,20 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct TopBarView: View {
+    static let liveActionWidth: CGFloat = 35
     var panGestureCounter: Int
-    let liveActionWidth: CGFloat = 35
     var scale: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenID) private var screenID
+    @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     var body: some View {
         let mode = NotchNook.shared.mode[screenID]!
-        let la = NotchNook.shared.activeLiveActions
+        let la = NotchNook.shared.activeLiveActivities
         HStack(spacing: 0) {
             
             if !hide {
@@ -27,12 +29,12 @@ struct TopBarView: View {
                         if !la.isEmpty {
                             HStack {
                                 if la.contains(.media) {
-                                    MiniAlbumCoverView()
-                                } else if la.contains(.box) {
+                                    MiniAlbumCoverView(prefs: mediaLiveActivitySettings)
+                                } else if la.contains(.shelf) {
                                     ShelfIconView()
                                 }
                             }
-                            .frame(width: liveActionWidth)
+                            .frame(width: Self.liveActionWidth)
                         }
                     case .dragging: EmptyView()
                     case .nook, .shelf: TopBarTabsView()
@@ -51,13 +53,13 @@ struct TopBarView: View {
                     case .closed:
                         if !la.isEmpty {
                             HStack {
-                                if la.contains(.box) {
+                                if la.contains(.shelf) {
                                     ShelfFilesCountView()
                                 } else if la.contains(.media) {
-                                    AudioWavesView()
+                                    AudioWavesView(prefs: mediaLiveActivitySettings)
                                 }
                             }
-                            .frame(width: liveActionWidth)
+                            .frame(width: Self.liveActionWidth)
                         }
                     case .dragging: EmptyView()
                     case .nook, .shelf: HStack { MiniPlayerView() }
@@ -75,10 +77,10 @@ struct TopBarView: View {
                 Group {
                     switch mode {
                     case .closed:
-                        let la = NotchNook.shared.activeLiveActions
+                        let la = NotchNook.shared.activeLiveActivities
                         if la.contains(.media) {
                             ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, counter: panGestureCounter)
-                                .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .leading)
+                                .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .leading)
                         }
                     case .dragging, .nook, .shelf: EmptyView()
                     }
@@ -96,7 +98,7 @@ struct TopBarView: View {
                     case .closed:
                         if la.contains(.media) {
                             ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, counter: panGestureCounter)
-                                .frame(maxWidth: liveActionWidth, maxHeight: .infinity, alignment: .trailing)
+                                .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .trailing)
                         }
                     case .nook, .shelf, .dragging: EmptyView()
                     }

@@ -1,10 +1,3 @@
-//
-//  MusicApplication.swift
-//  Jukebox
-//
-//  Created by Sasindu Jayasinghe on 19/1/2022.
-//
-
 import AppKit
 import ScriptingBridge
 
