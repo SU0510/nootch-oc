@@ -9,6 +9,7 @@ import SwiftUI
 import Defaults
 
 struct NotchGesturer: View {
+    var vibrate: () -> ()
     var hidden: Bool
     var panPadding: EdgeInsets
     @Binding var scaleDown: Double
@@ -52,8 +53,10 @@ struct NotchGesturer: View {
                     velocity.height < -NotchView.panVelocityTriggerThreshold // or if the gesture velocity is too high
             {
                 if mode != .closed {
+                    vibrate()
                     closeNotch(true, false)
                 } else {
+                    vibrate()
                     hideNotch()
                 }
             }
@@ -83,12 +86,14 @@ struct NotchGesturer: View {
               
         // If downwards gesture breaks the threshold, open notch
         if velocity.height > NotchView.panVelocityTriggerThreshold && (gestureControlSettings.controlOpenState || hidden) {
+            vibrate()
             openNotch()
         }
         
         if !cancelPan {
 
             if panPadding.bottom > NotchView.maxVPanDrag && mode == .closed && (gestureControlSettings.controlOpenState || hidden) {
+                vibrate()
                 openNotch()
             }
             

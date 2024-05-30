@@ -39,6 +39,7 @@
 		EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31182C0575D30060B47E /* ArrayPositionEnum.swift */; };
 		EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */; };
 		EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */; };
+		EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */; };
 		EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */; };
 		EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */; };
 		EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */; };
@@ -182,6 +183,7 @@
 		EC0E31182C0575D30060B47E /* ArrayPositionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayPositionEnum.swift; sourceTree = "<group>"; };
 		EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderWidgetsView.swift; sourceTree = "<group>"; };
 		EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualSizeCurrentWallpaperView.swift; sourceTree = "<group>"; };
+		EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsApplication.swift; sourceTree = "<group>"; };
 		EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneSettings.swift; sourceTree = "<group>"; };
 		EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaShelfTargetView.swift; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 			children = (
 				EC8D60192BFC294400E67ECC /* SpotifyApplication.swift */,
 				EC8D60172BFC294000E67ECC /* MusicApplication.swift */,
+				EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */,
 			);
 			path = "ScriptingBridge ";
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
+				EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */,
 				EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */,
 				EC8D5FEA2BFA704D00E67ECC /* concurrentMap.swift in Sources */,
 				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,

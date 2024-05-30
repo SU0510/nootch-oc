@@ -116,6 +116,7 @@ struct NotchView: View, DropDelegate {
         .mask(alignment: .top) { shapeView(shadow: false) }
         .background {
             NotchGesturer(
+                vibrate: vibrate,
                 hidden: hide,
                 panPadding: panPadding,
                 scaleDown: $scaleDown,
@@ -161,9 +162,6 @@ struct NotchView: View, DropDelegate {
             }
         }
         .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
-        .onChange(of: mode) { oldValue, newValue in
-            if oldValue != newValue && oldValue == .closed && newValue != .closed { vibrate() }
-        }
         .onChange(of: hoveredDropTargetID) { oldValue, newValue in
             if oldValue != newValue && newValue != nil {
                 vibrate()

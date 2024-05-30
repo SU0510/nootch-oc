@@ -5,8 +5,8 @@
 //  Created by Igor Marcossi on 21/05/24.
 //
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 struct Shortcut: Identifiable, Hashable, Codable {
     var id: String { name }
@@ -81,13 +81,50 @@ class ShortcutsManager {
     }
     
     func runShortcut(named name: String) {
-        let script = """
-        tell application "Shortcuts"
-            run shortcut "\(name)"
-        end tell
-        """
-        DispatchQueue.global(qos: .userInitiated).async {
-            _ = self.runAppleScript(script: script)
+        let scriptContent = "#!/bin/sh\nshortcuts run '\(name)'"
+        let tempScriptURL = FileManager.default.temporaryDirectory.appendingPathComponent("runShortcut.sh")
+        
+        do {
+            // Write the script content to a temporary file
+            try scriptContent.write(to: tempScriptURL, atomically: true, encoding: .utf8)
+            
+            // Make the script executable
+            let processChmod = Process()
+            processChmod.executableURL = URL(fileURLWithPath: "/bin/chmod")
+            processChmod.arguments = ["+x", tempScriptURL.path]
+            try processChmod.run()
+            processChmod.waitUntilExit()
+            
+            // Execute the script
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: "/bin/sh")
+            process.arguments = [tempScriptURL.path]
+//            print("Executing script at: \(tempScriptURL.path)")
+            
+            try process.run()
+            process.waitUntilExit()
+            
+            if process.terminationStatus == 0 {
+//                print("Shortcut executed successfully.")
+            } else {
+                print("Shortcut execution failed with status: \(process.terminationStatus)")
+            }
+        } catch {
+            print("Failed to run shortcut: \(error)")
         }
+        
+        // Clean up the temporary script
+        try? FileManager.default.removeItem(at: tempScriptURL)
     }
+    
+//    func runShortcut(named name: String) {
+//        let script = """
+//        tell application "Shortcuts"
+//            run shortcut "\(name)"
+//        end tell
+//        """
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            _ = self.runAppleScript(script: script)
+//        }
+//    }
 }

@@ -53,6 +53,6 @@ private extension View {
     func widgetDefaultProps(arrPos: ArrayPosition, pref: any WidgetPrefs, disableDivider: Bool = false) -> some View {
         self
             .frame(width: pref.size.width.screenPoints, height: pref.size.height.screenPoints, alignment: .leading)
-            .overlay(alignment: .trailing) { if arrPos != .last && !disableDivider { VDivider() } }
+            .overlay(alignment: .trailing) { if arrPos != .last && !disableDivider { VDivider().opacity(0.75) } }
     }
 }
