@@ -26,17 +26,19 @@ struct ArrowForPanningView: View {
             .blur(radius: activated ? 0 : max(0, interpolator([14, -10], false)))
             .offset(x: activated ? 32 * (right ? 1 : -1) : x * 0.5)
             .animation(.interactiveSpring, value: x)
-            .onChange(of: counter) { _, _ in
+            .onChange(of: counter) { old, new in
+                if (right && new > old) || (!right && old > new) {
                     withAnimation(.bouncy) {
                         activated = true
                     } completion: {
                         activated = false
                         if right {
-                            MediaPlayer.shared.app?.prevTrack()
-                        } else {
                             MediaPlayer.shared.app?.nextTrack()
+                        } else {
+                            MediaPlayer.shared.app?.prevTrack()
                         }
                     }
+                }
             }
     }
 }

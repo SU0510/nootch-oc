@@ -73,7 +73,6 @@ class MediaPlayer {
         
 //        withAnimation(.smooth(extraBounce: 0.15)) {
 //            if let appleMusicApp, appleMusicApp.isAppRunning {
-//                print("kmk")
 //                connectedApp = .appleMusic
 //            } else if let spotifyApp, spotifyApp.isAppRunning {
 //                connectedApp = .spotify

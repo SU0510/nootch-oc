@@ -19,41 +19,45 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
     
     override func updateTrack() {
         if !(self.app?.isRunning ?? false) { return }
-        var currentTrack: (any SpotifyTrack)?
-        currentTrack = self.app?.currentTrack
-        let title = currentTrack?.name ?? Track.empty.title
-        let artist = currentTrack?.artist ?? Track.empty.artist
-        let album = currentTrack?.album ?? Track.empty.album
-        
-        var newTrack = Track()
-        newTrack.title = title
-        newTrack.artist = artist
-        newTrack.album = album
-                
-        Task(priority: .utility) { [currentTrack] in
-            if let artworkURLString = currentTrack?.artworkUrl,
-               let url = URL(string: artworkURLString) {
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard let data = data, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    Task {
-                        await MainActor.run {
-                            self.track.albumArt = NSImage(data: data) ?? NSImage()
+        Task {
+            var currentTrack: (any SpotifyTrack)?
+            currentTrack = self.app?.currentTrack
+            let title = currentTrack?.name ?? Track.empty.title
+            let artist = currentTrack?.artist ?? Track.empty.artist
+            let album = currentTrack?.album ?? Track.empty.album
+            
+            if self.track.title == title && self.track.artist == artist && self.track.album == album { return }
+            
+            var newTrack = Track()
+            newTrack.title = title
+            newTrack.artist = artist
+            newTrack.album = album
+            self.track = newTrack
+            
+            Task(priority: .utility) { [currentTrack] in
+                if let artworkURLString = currentTrack?.artworkUrl,
+                   let url = URL(string: artworkURLString) {
+                    URLSession.shared.dataTask(with: url) { data, response, error in
+                        guard let data = data, error == nil else {
+                            print(error!.localizedDescription)
+                            return
                         }
-                    }
-                }.resume()
+                        Task {
+                            await MainActor.run {
+                                self.track.albumArt = NSImage(data: data) ?? NSImage()
+                            }
+                        }
+                    }.resume()
+                }
             }
         }
-        self.track = newTrack
     }
     
     override func toggleIsPlaying() { doSafeCrossBridgeAction { app?.playpause?() } }
     
-    override func prevTrack() { print("prev"); doSafeCrossBridgeAction { app?.previousTrack?() } }
+    override func prevTrack() { doSafeCrossBridgeAction { app?.previousTrack?() } }
     
-    override func nextTrack() { print("next"); doSafeCrossBridgeAction { app?.nextTrack?() } }
+    override func nextTrack() { doSafeCrossBridgeAction { app?.nextTrack?() } }
         
     override func toggleLovedInTrack() { }
     

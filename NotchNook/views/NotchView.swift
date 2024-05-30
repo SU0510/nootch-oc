@@ -280,7 +280,7 @@ struct NotchView: View, DropDelegate {
             vibrate()
             panRawPadding = .zero
             cancelPan = true
-            panGestureCounter += 1
+            if prev { panGestureCounter -= 1 } else { panGestureCounter += 1 }
         }
     }
     
