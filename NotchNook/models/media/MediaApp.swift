@@ -181,6 +181,6 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
     func toggleLovedInTrack() { }
     
     func doSafeCrossBridgeAction(_ action: () -> ()) {
-        if (app?.isRunning ?? false) && isAppRunning { action() }
+        if (app?.isRunning ?? false) { action() }
     }
 }
