@@ -68,10 +68,6 @@ extension MediaApp {
             }
         }
     }
-    
-    func doSafeCrossBridgeAction(_ action: () -> ()) {
-        if isAppRunning { action() }
-    }
 }
 
 @Observable
@@ -183,4 +179,8 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
     func nextTrack() { }
     
     func toggleLovedInTrack() { }
+    
+    func doSafeCrossBridgeAction(_ action: () -> ()) {
+        if (app?.isRunning ?? false) && isAppRunning { action() }
+    }
 }
