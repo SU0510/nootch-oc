@@ -40,6 +40,11 @@
 		EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */; };
 		EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */; };
 		EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */; };
+		EC13C6DA2C0917EE00B45C6E /* MasterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6D92C0917EE00B45C6E /* MasterButton.swift */; };
+		EC13C6DC2C09180600B45C6E /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6DB2C09180600B45C6E /* TextInput.swift */; };
+		EC13C6DE2C09186900B45C6E /* RR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6DD2C09186800B45C6E /* RR.swift */; };
+		EC13C6E02C0918B800B45C6E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6DF2C0918B800B45C6E /* Color.swift */; };
+		EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6E12C09199600B45C6E /* cancelableTimer.swift */; };
 		EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */; };
 		EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */; };
 		EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */; };
@@ -184,6 +189,11 @@
 		EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderWidgetsView.swift; sourceTree = "<group>"; };
 		EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualSizeCurrentWallpaperView.swift; sourceTree = "<group>"; };
 		EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsApplication.swift; sourceTree = "<group>"; };
+		EC13C6D92C0917EE00B45C6E /* MasterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterButton.swift; sourceTree = "<group>"; };
+		EC13C6DB2C09180600B45C6E /* TextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
+		EC13C6DD2C09186800B45C6E /* RR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RR.swift; sourceTree = "<group>"; };
+		EC13C6DF2C0918B800B45C6E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		EC13C6E12C09199600B45C6E /* cancelableTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cancelableTimer.swift; sourceTree = "<group>"; };
 		EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneSettings.swift; sourceTree = "<group>"; };
 		EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaShelfTargetView.swift; sourceTree = "<group>"; };
@@ -530,6 +540,9 @@
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
+				EC13C6D92C0917EE00B45C6E /* MasterButton.swift */,
+				EC13C6DB2C09180600B45C6E /* TextInput.swift */,
+				EC13C6DD2C09186800B45C6E /* RR.swift */,
 				EC8D60352BFE667300E67ECC /* CircleButton.swift */,
 				BB2A5E582C006BD9008F3081 /* TempAuthView.swift */,
 				EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */,
@@ -546,6 +559,7 @@
 		EC758F892BF2F1A400B873B0 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				EC13C6E12C09199600B45C6E /* cancelableTimer.swift */,
 				EC758F852BF2F1A400B873B0 /* airDropFiles.swift */,
 				EC758F862BF2F1A400B873B0 /* getURLsFromDropInfo.swift */,
 				EC758F872BF2F1A400B873B0 /* iconForFile.swift */,
@@ -599,6 +613,7 @@
 				EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */,
 				EC2DD1F32C03DE9C001FD54E /* URL.swift */,
 				EC0E30EB2C042FC80060B47E /* Binding.swift */,
+				EC13C6DF2C0918B800B45C6E /* Color.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -885,6 +900,7 @@
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
+				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
@@ -951,6 +967,7 @@
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
+				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
@@ -963,6 +980,7 @@
 				EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */,
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
 				EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */,
+				EC13C6DC2C09180600B45C6E /* TextInput.swift in Sources */,
 				EC0E31032C0548A10060B47E /* Grid.swift in Sources */,
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
@@ -971,6 +989,7 @@
 				EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
+				EC13C6DA2C0917EE00B45C6E /* MasterButton.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
@@ -991,6 +1010,7 @@
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
 				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
+				EC13C6DE2C09186900B45C6E /* RR.swift in Sources */,
 				BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */,
 				EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
