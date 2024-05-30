@@ -20,7 +20,7 @@ struct LiveActivitiesSettingsView: View {
                 }
         }
         .padding(12)
-        .defaultSettingsProps()
+        .defaultSettingsProps(height: 625)
         .task { CurrentWallpaperManager.shared.updateCurrentWallpaper() }
     }
 }

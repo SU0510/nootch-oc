@@ -57,7 +57,7 @@ class WindowsManager {
                 LicenseSettingsView()
             }
         ],
-        animated: false
+        animated: true
     )
     
     init() {

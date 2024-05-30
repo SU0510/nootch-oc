@@ -8,9 +8,10 @@
 import SwiftUI
 
     extension View {
-        func defaultSettingsProps() -> some View {
+        func defaultSettingsProps(height: CGFloat? = nil) -> some View {
             self
-                .frame(width: 600, height: 625)
+                .frame(width: 600, height: height)
+//                .frame(width: 600, height: 625)
                 .fixedSize()
                 .onAppear {
                      DispatchQueue.main.async {
