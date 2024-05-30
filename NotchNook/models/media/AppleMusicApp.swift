@@ -19,43 +19,46 @@ final class AppleMusicApp: BlankMediaApp<MusicApplication> {
     
     override func updateTrack() {
         if !(self.app?.isRunning ?? false) { return }
-        let currentTrack = self.app?.currentTrack
-        let title = currentTrack?.name ?? Track.empty.title
-        let artist = currentTrack?.artist ?? Track.empty.artist
-        let album = currentTrack?.album ?? Track.empty.album
-        
-        guard self.track.title != title &&
-                self.track.artist != artist &&
-                self.track.album != album else {
-            self.track.loved = self.track.loved
-            return
-        }
-        
-        var newTrack = Track()
-        newTrack.title = title
-        newTrack.artist = artist
-        newTrack.album = album
-        newTrack.loved = currentTrack?.loved
-        
-        Task(priority: .utility) { [currentTrack] in
-            var count = 0
-            var waitForData: (() async ->())!
-            waitForData = {
-                if let art = currentTrack?.artworks?()[0] as? MusicArtwork, art.data != nil {
-                    await MainActor.run {
-                        self.track.albumArt = art.data!
-                    }
-                } else {
-                    if count > 20 { return }
-                    await wait(0.25)
-                    await waitForData()
-                }
-                count += 1
+        Task {
+            let currentTrack = self.app?.currentTrack
+            let title = currentTrack?.name ?? Track.empty.title
+            let artist = currentTrack?.artist ?? Track.empty.artist
+            let album = currentTrack?.album ?? Track.empty.album
+            
+            guard self.track.title != title &&
+                    self.track.artist != artist &&
+                    self.track.album != album else {
+                self.track.loved = self.track.loved
+                return
             }
-            await waitForData()
+            
+            var newTrack = Track()
+            newTrack.title = title
+            newTrack.artist = artist
+            newTrack.album = album
+            newTrack.loved = currentTrack?.loved
+            self.track = newTrack
+            
+            Task(priority: .utility) { [currentTrack] in
+                var count = 0
+                var waitForData: (() async ->())!
+                waitForData = {
+                    if let art = currentTrack?.artworks?()[0] as? MusicArtwork, art.data != nil {
+                        await MainActor.run {
+                            self.track.albumArt = art.data!
+                        }
+                    } else {
+                        if count > 20 { return }
+                        await wait(0.25)
+                        await waitForData()
+                    }
+                    count += 1
+                }
+                await waitForData()
+            }
+            
+            
         }
-        
-        DispatchQueue.main.async { self.track = newTrack }
     }
     
     override func toggleIsPlaying() { app?.playpause?() }
