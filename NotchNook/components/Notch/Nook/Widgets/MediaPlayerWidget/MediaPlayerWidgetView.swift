@@ -7,8 +7,11 @@
 
 import SwiftUI
 import MusicKit
+import Defaults
 
 struct MediaPlayerWidgetView: View {
+    var arrayPosition: ArrayPosition
+    @Default(.nookSettings) private var nookSettings
     var body: some View {
         VStack {
             if let app = MediaPlayer.shared.app, app.isAppRunning {
@@ -17,6 +20,11 @@ struct MediaPlayerWidgetView: View {
                 NoMediaAppsView()
             }
         }
-        .frame(minWidth: 225, maxWidth: 225, maxHeight: .infinity, alignment: .leading)
+        .padding(EdgeInsets(
+            top: 0,
+            leading: arrayPosition == .first ? 0 : nookSettings.widgetsPadding,
+            bottom: 0,
+            trailing: arrayPosition == .last ? 0 : nookSettings.widgetsPadding)
+        )
     }
 }

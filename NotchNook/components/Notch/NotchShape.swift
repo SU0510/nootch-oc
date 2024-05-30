@@ -8,16 +8,10 @@
 import SwiftUI
 
 struct NotchShape: Shape {
-    static let notchlessScreenNotchHeight: CGFloat = 8
-    static let usualNotchHeight: CGFloat = 32
     static let defaultNotchWidth: CGFloat = 184
-    static let defaultEstimatedMaxExceedingWidth: CGFloat = 400
-    static let defaultEstimatedMaxExceedingHeight: CGFloat = 100
     
     var notchHeight: CGFloat
     var minWidth: CGFloat = NotchShape.defaultNotchWidth
-    var estimatedMaxExceedingWidth: CGFloat = NotchShape.defaultEstimatedMaxExceedingWidth
-    var estimatedMaxExceedingHeight: CGFloat = NotchShape.defaultEstimatedMaxExceedingHeight
 
     func path(in rect: CGRect) -> Path {
         var decorationsRadius: CGFloat {
@@ -35,7 +29,7 @@ struct NotchShape: Shape {
         let mainShapePath = UnevenRoundedRectangle(
             cornerRadii: .init(bottomLeading: notchRadius, bottomTrailing: notchRadius),
             style: .continuous
-        ).size(width: rect.width, height: rect.height).path(in: rect)
+        ).size(width: rect.width, height: rect.height + 1).path(in: rect)
         
         let leftDecorationPath = Rectangle()
             .path(in: CGRect(x: -decorationSize, y: 0, width: decorationSize, height: decorationSize))

@@ -6,8 +6,12 @@
 //
 
 import Foundation
-import Defaults
 
-struct GeneralSettings: Equatable, Hashable, Codable, Defaults.Serializable {
+struct GeneralSettings: Preferences {
     var alwaysOpenNotchOnHover = false
+    var transluscent = false
+    var handleSize = CGSize(width: 184, height: 8)
+    var allowGestures = true
+    var controlMedia = true
+    var controlOpenState = true
 }

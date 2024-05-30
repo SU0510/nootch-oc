@@ -15,10 +15,10 @@
 		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
 		EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D52C0417BB0060B47E /* GeneralSettings.swift */; };
 		EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */; };
-		EC0E30DA2C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D92C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift */; };
+		EC0E30DA2C041BF30060B47E /* NookGeneralSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D92C041BF30060B47E /* NookGeneralSettingsTabView.swift */; };
 		EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */; };
 		EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */; };
-		EC0E30E62C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E52C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift */; };
+		EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E52C041CC90060B47E /* WidgetsSettingsTabView.swift */; };
 		EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30E72C041E730060B47E /* CustomLabeled.swift */; };
 		EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30EB2C042FC80060B47E /* Binding.swift */; };
 		EC0E30EE2C0433960060B47E /* ShelfLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30ED2C0433960060B47E /* ShelfLiveActivitySettingsView.swift */; };
@@ -26,22 +26,40 @@
 		EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F22C0438660060B47E /* MockTopBar.swift */; };
 		EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */; };
 		EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */; };
-		EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */; };
+		EC0E30FD2C053F970060B47E /* NookWidgetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */; };
+		EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */; };
+		EC0E31032C0548A10060B47E /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31022C0548A10060B47E /* Grid.swift */; };
+		EC0E31072C0559680060B47E /* NookSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31062C0559680060B47E /* NookSettings.swift */; };
+		EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31082C055A560060B47E /* ShelfSettings.swift */; };
+		EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E310E2C05655D0060B47E /* WidgetPrefsProtocol.swift */; };
+		EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31102C05663C0060B47E /* PreferencesProtocol.swift */; };
+		EC0E31132C0566B80060B47E /* MediaWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31122C0566B80060B47E /* MediaWidgetSettings.swift */; };
+		EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31142C0567190060B47E /* ShortcutsWidgetSettings.swift */; };
+		EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31162C0568080060B47E /* MirrorWidgetSettings.swift */; };
+		EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31182C0575D30060B47E /* ArrayPositionEnum.swift */; };
+		EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */; };
+		EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */; };
+		EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */; };
+		EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */; };
+		EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */; };
+		EC14B5CF2C07AB17000FC6B6 /* ShelfSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5CE2C07AB17000FC6B6 /* ShelfSettingsView.swift */; };
+		EC14B5D12C07AB2A000FC6B6 /* DropAreaSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5D02C07AB2A000FC6B6 /* DropAreaSettingsView.swift */; };
+		EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1DF2C028690001FD54E /* TopBarSpacerView.swift */; };
 		EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */; };
 		EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */; };
-		EC2DD1E72C02D5A5001FD54E /* NotchDragger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */; };
+		EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */; };
 		EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */; };
 		EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */; };
 		EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */; };
 		EC2DD1F02C03DB15001FD54E /* ShelfFilesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */; };
-		EC2DD1F22C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */; };
+		EC2DD1F22C03DBC9001FD54E /* ShelfFilesGridPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F12C03DBC9001FD54E /* ShelfFilesGridPreviewView.swift */; };
 		EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F32C03DE9C001FD54E /* URL.swift */; };
 		EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */; };
 		EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */; };
 		EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */; };
-		EC2DD1FD2C040E2E001FD54E /* WidgetsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FC2C040E2E001FD54E /* WidgetsSettingsView.swift */; };
+		EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FC2C040E2E001FD54E /* NookSettingsView.swift */; };
 		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
-		EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */; };
+		EC4173CB2C01919D002889E7 /* MediaAppMetaEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173CA2C01919D002889E7 /* MediaAppMetaEnum.swift */; };
 		EC4173D22C025136002889E7 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EC4173D12C025136002889E7 /* Settings */; };
 		EC4173D42C02515A002889E7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173D32C02515A002889E7 /* Settings.swift */; };
 		EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173D92C025597002889E7 /* GeneralSettingsView.swift */; };
@@ -49,7 +67,7 @@
 		EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */; };
 		EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DF2C0271ED002889E7 /* SettingsPane.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
-		EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */; };
+		EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
 		EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */; };
 		EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7D2BF2F19B00B873B0 /* NotchView.swift */; };
@@ -66,7 +84,13 @@
 		EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA02BF2F1B900B873B0 /* ContentView.swift */; };
 		EC758FA32BF2F1C600B873B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA22BF2F1C500B873B0 /* main.swift */; };
 		EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA42BF2F20100B873B0 /* AppDelegate.swift */; };
-		EC8D5FBB2BF9563400E67ECC /* DropActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FBA2BF9563400E67ECC /* DropActionsView.swift */; };
+		EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */; };
+		EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */; };
+		EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */; };
+		EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2662C069F3800790517 /* NoBtnStyle.swift */; };
+		EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2682C06A6C500790517 /* MediaWidgetSettingsView.swift */; };
+		EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E26A2C06A6D400790517 /* MirrorWidgetSettingsView.swift */; };
+		EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FBA2BF9563400E67ECC /* DropArea.swift */; };
 		EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FBC2BF9743200E67ECC /* Shelf.swift */; };
 		EC8D5FBF2BF9744800E67ECC /* ShelfFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FBE2BF9744800E67ECC /* ShelfFile.swift */; };
 		EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FC02BF9767A00E67ECC /* ShelfFileView.swift */; };
@@ -91,7 +115,6 @@
 		EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */; };
 		EC8D60042BFAE90D00E67ECC /* ShelfFilesCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60032BFAE90D00E67ECC /* ShelfFilesCountView.swift */; };
 		EC8D60062BFAE91800E67ECC /* ShelfIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60052BFAE91800E67ECC /* ShelfIconView.swift */; };
-		EC8D60092BFAF48200E67ECC /* defaultOpenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60082BFAF48200E67ECC /* defaultOpenSize.swift */; };
 		EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D600B2BFAF57D00E67ECC /* NookView.swift */; };
 		EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */; };
 		EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60172BFC294000E67ECC /* MusicApplication.swift */; };
@@ -100,7 +123,7 @@
 		EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */; };
 		EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */; };
 		EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */; };
-		EC8D602E2BFD22E200E67ECC /* CameraWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602D2BFD22E200E67ECC /* CameraWidgetView.swift */; };
+		EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */; };
 		EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */; };
 		EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */; };
 		EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60352BFE667300E67ECC /* CircleButton.swift */; };
@@ -121,6 +144,10 @@
 		EC8D60652C001D2D00E67ECC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60642C001D2D00E67ECC /* Track.swift */; };
 		EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60662C01697100E67ECC /* iconForApp.swift */; };
 		EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60682C016B5C00E67ECC /* openApp.swift */; };
+		ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6A6D2C070355000D9D27 /* measure.swift */; };
+		ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3A2C07F3320000139C /* resetToDefault.swift */; };
+		ECC22A3D2C0818C10000139C /* move.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3C2C0818C10000139C /* move.swift */; };
+		ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF429262C07B0FB0086B07A /* SliderPlus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,10 +158,10 @@
 		EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureControlSettings.swift; sourceTree = "<group>"; };
 		EC0E30D52C0417BB0060B47E /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesSettings.swift; sourceTree = "<group>"; };
-		EC0E30D92C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsGeneralSettingsTabView.swift; sourceTree = "<group>"; };
+		EC0E30D92C041BF30060B47E /* NookGeneralSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookGeneralSettingsTabView.swift; sourceTree = "<group>"; };
 		EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesGeneralSettingsTabView.swift; sourceTree = "<group>"; };
 		EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesCustomizeSettingsTabView.swift; sourceTree = "<group>"; };
-		EC0E30E52C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsCustomizeSettingsTabView.swift; sourceTree = "<group>"; };
+		EC0E30E52C041CC90060B47E /* WidgetsSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsSettingsTabView.swift; sourceTree = "<group>"; };
 		EC0E30E72C041E730060B47E /* CustomLabeled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabeled.swift; sourceTree = "<group>"; };
 		EC0E30EB2C042FC80060B47E /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		EC0E30ED2C0433960060B47E /* ShelfLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfLiveActivitySettingsView.swift; sourceTree = "<group>"; };
@@ -142,21 +169,39 @@
 		EC0E30F22C0438660060B47E /* MockTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTopBar.swift; sourceTree = "<group>"; };
 		EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLiveAcitivitiesView.swift; sourceTree = "<group>"; };
 		EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWallpaperManager.swift; sourceTree = "<group>"; };
-		EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchSpacerView.swift; sourceTree = "<group>"; };
+		EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookWidgetEnum.swift; sourceTree = "<group>"; };
+		EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityEnum.swift; sourceTree = "<group>"; };
+		EC0E31022C0548A10060B47E /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		EC0E31062C0559680060B47E /* NookSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookSettings.swift; sourceTree = "<group>"; };
+		EC0E31082C055A560060B47E /* ShelfSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfSettings.swift; sourceTree = "<group>"; };
+		EC0E310E2C05655D0060B47E /* WidgetPrefsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPrefsProtocol.swift; sourceTree = "<group>"; };
+		EC0E31102C05663C0060B47E /* PreferencesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesProtocol.swift; sourceTree = "<group>"; };
+		EC0E31122C0566B80060B47E /* MediaWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaWidgetSettings.swift; sourceTree = "<group>"; };
+		EC0E31142C0567190060B47E /* ShortcutsWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetSettings.swift; sourceTree = "<group>"; };
+		EC0E31162C0568080060B47E /* MirrorWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWidgetSettings.swift; sourceTree = "<group>"; };
+		EC0E31182C0575D30060B47E /* ArrayPositionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayPositionEnum.swift; sourceTree = "<group>"; };
+		EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderWidgetsView.swift; sourceTree = "<group>"; };
+		EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualSizeCurrentWallpaperView.swift; sourceTree = "<group>"; };
+		EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneSettings.swift; sourceTree = "<group>"; };
+		EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaShelfTargetView.swift; sourceTree = "<group>"; };
+		EC14B5CE2C07AB17000FC6B6 /* ShelfSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfSettingsView.swift; sourceTree = "<group>"; };
+		EC14B5D02C07AB2A000FC6B6 /* DropAreaSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaSettingsView.swift; sourceTree = "<group>"; };
+		EC2DD1DF2C028690001FD54E /* TopBarSpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSpacerView.swift; sourceTree = "<group>"; };
 		EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeMonitor.swift; sourceTree = "<group>"; };
 		EC2DD1E42C02C685001FD54E /* defaultSettingsPaneSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultSettingsPaneSize.swift; sourceTree = "<group>"; };
-		EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchDragger.swift; sourceTree = "<group>"; };
+		EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchGesturer.swift; sourceTree = "<group>"; };
 		EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
 		EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMediaAppsView.swift; sourceTree = "<group>"; };
 		EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImgFromURL.swift; sourceTree = "<group>"; };
 		EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesScrollView.swift; sourceTree = "<group>"; };
-		EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesTargetPreviewView.swift; sourceTree = "<group>"; };
+		EC2DD1F12C03DBC9001FD54E /* ShelfFilesGridPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesGridPreviewView.swift; sourceTree = "<group>"; };
 		EC2DD1F32C03DE9C001FD54E /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineIntField.swift; sourceTree = "<group>"; };
 		EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesSettingsView.swift; sourceTree = "<group>"; };
-		EC2DD1FC2C040E2E001FD54E /* WidgetsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsSettingsView.swift; sourceTree = "<group>"; };
+		EC2DD1FC2C040E2E001FD54E /* NookSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookSettingsView.swift; sourceTree = "<group>"; };
 		EC4173C82C0181B8002889E7 /* WindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowsManager.swift; sourceTree = "<group>"; };
-		EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMeta.swift; sourceTree = "<group>"; };
+		EC4173CA2C01919D002889E7 /* MediaAppMetaEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppMetaEnum.swift; sourceTree = "<group>"; };
 		EC4173D32C02515A002889E7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EC4173D92C025597002889E7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseSettingsView.swift; sourceTree = "<group>"; };
@@ -165,7 +210,7 @@
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
-		EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropActionView.swift; sourceTree = "<group>"; };
+		EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropAreaTargetView.swift; sourceTree = "<group>"; };
 		EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
 		EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowedNotchShapeView.swift; sourceTree = "<group>"; };
 		EC758F7D2BF2F19B00B873B0 /* NotchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
@@ -182,7 +227,13 @@
 		EC758FA02BF2F1B900B873B0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EC758FA22BF2F1C500B873B0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC8D5FBA2BF9563400E67ECC /* DropActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropActionsView.swift; sourceTree = "<group>"; };
+		EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetSettingsView.swift; sourceTree = "<group>"; };
+		EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSettingsPicker.swift; sourceTree = "<group>"; };
+		EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabeledProtocol.swift; sourceTree = "<group>"; };
+		EC81E2662C069F3800790517 /* NoBtnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBtnStyle.swift; sourceTree = "<group>"; };
+		EC81E2682C06A6C500790517 /* MediaWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaWidgetSettingsView.swift; sourceTree = "<group>"; };
+		EC81E26A2C06A6D400790517 /* MirrorWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWidgetSettingsView.swift; sourceTree = "<group>"; };
+		EC8D5FBA2BF9563400E67ECC /* DropArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropArea.swift; sourceTree = "<group>"; };
 		EC8D5FBC2BF9743200E67ECC /* Shelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelf.swift; sourceTree = "<group>"; };
 		EC8D5FBE2BF9744800E67ECC /* ShelfFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFile.swift; sourceTree = "<group>"; };
 		EC8D5FC02BF9767A00E67ECC /* ShelfFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFileView.swift; sourceTree = "<group>"; };
@@ -207,7 +258,6 @@
 		EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAlbumCoverView.swift; sourceTree = "<group>"; };
 		EC8D60032BFAE90D00E67ECC /* ShelfFilesCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfFilesCountView.swift; sourceTree = "<group>"; };
 		EC8D60052BFAE91800E67ECC /* ShelfIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfIconView.swift; sourceTree = "<group>"; };
-		EC8D60082BFAF48200E67ECC /* defaultOpenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultOpenSize.swift; sourceTree = "<group>"; };
 		EC8D600B2BFAF57D00E67ECC /* NookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookView.swift; sourceTree = "<group>"; };
 		EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkOnClick.swift; sourceTree = "<group>"; };
 		EC8D60172BFC294000E67ECC /* MusicApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicApplication.swift; sourceTree = "<group>"; };
@@ -216,7 +266,7 @@
 		EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControlsView.swift; sourceTree = "<group>"; };
 		EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverView.swift; sourceTree = "<group>"; };
 		EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpectrograph.swift; sourceTree = "<group>"; };
-		EC8D602D2BFD22E200E67ECC /* CameraWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraWidgetView.swift; sourceTree = "<group>"; };
+		EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWidgetView.swift; sourceTree = "<group>"; };
 		EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetView.swift; sourceTree = "<group>"; };
 		EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
 		EC8D60352BFE667300E67ECC /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -237,6 +287,10 @@
 		EC8D60642C001D2D00E67ECC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		EC8D60662C01697100E67ECC /* iconForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconForApp.swift; sourceTree = "<group>"; };
 		EC8D60682C016B5C00E67ECC /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
+		ECAC6A6D2C070355000D9D27 /* measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = measure.swift; sourceTree = "<group>"; };
+		ECC22A3A2C07F3320000139C /* resetToDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetToDefault.swift; sourceTree = "<group>"; };
+		ECC22A3C2C0818C10000139C /* move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = move.swift; sourceTree = "<group>"; };
+		ECF429262C07B0FB0086B07A /* SliderPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPlus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,20 +307,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EC0E30CC2C0414510060B47E /* WidgetsSettings */ = {
+		EC0E30CC2C0414510060B47E /* NookSettings */ = {
 			isa = PBXGroup;
 			children = (
-				EC0E30CD2C0414600060B47E /* perWidgetSettings */,
-				EC0E30E52C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift */,
-				EC0E30D92C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift */,
-				EC2DD1FC2C040E2E001FD54E /* WidgetsSettingsView.swift */,
+				ECF429242C07AEDC0086B07A /* tabs */,
+				EC2DD1FC2C040E2E001FD54E /* NookSettingsView.swift */,
 			);
-			path = WidgetsSettings;
+			path = NookSettings;
 			sourceTree = "<group>";
 		};
 		EC0E30CD2C0414600060B47E /* perWidgetSettings */ = {
 			isa = PBXGroup;
 			children = (
+				EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */,
+				EC81E2682C06A6C500790517 /* MediaWidgetSettingsView.swift */,
+				EC81E26A2C06A6D400790517 /* MirrorWidgetSettingsView.swift */,
 			);
 			path = perWidgetSettings;
 			sourceTree = "<group>";
@@ -274,10 +329,12 @@
 		EC0E30D02C0415DA0060B47E /* settings */ = {
 			isa = PBXGroup;
 			children = (
-				EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */,
+				EC0E310A2C05651A0060B47E /* LiveActivities */,
+				EC0E310C2C0565400060B47E /* Nook */,
+				EC0E31082C055A560060B47E /* ShelfSettings.swift */,
+				EC14B5CA2C07A658000FC6B6 /* DropZoneSettings.swift */,
 				EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */,
 				EC0E30D52C0417BB0060B47E /* GeneralSettings.swift */,
-				EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */,
 			);
 			path = settings;
 			sourceTree = "<group>";
@@ -285,8 +342,7 @@
 		EC0E30DD2C041C450060B47E /* LiveActivitiesSettings */ = {
 			isa = PBXGroup;
 			children = (
-				EC0E30FA2C0441C40060B47E /* LiveActivitiesCustomizeSettingsTab */,
-				EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */,
+				ECF429252C07AEE60086B07A /* tabs */,
 				EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */,
 			);
 			path = LiveActivitiesSettings;
@@ -295,19 +351,10 @@
 		EC0E30DE2C041C690060B47E /* perActivitySettings */ = {
 			isa = PBXGroup;
 			children = (
-				EC0E30F42C0439C50060B47E /* util */,
 				EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */,
 				EC0E30ED2C0433960060B47E /* ShelfLiveActivitySettingsView.swift */,
 			);
 			path = perActivitySettings;
-			sourceTree = "<group>";
-		};
-		EC0E30F42C0439C50060B47E /* util */ = {
-			isa = PBXGroup;
-			children = (
-				EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */,
-			);
-			path = util;
 			sourceTree = "<group>";
 		};
 		EC0E30F92C043C3C0060B47E /* panes */ = {
@@ -315,8 +362,10 @@
 			children = (
 				EC4173D92C025597002889E7 /* GeneralSettingsView.swift */,
 				EC0E30DD2C041C450060B47E /* LiveActivitiesSettings */,
-				EC0E30CC2C0414510060B47E /* WidgetsSettings */,
+				EC0E30CC2C0414510060B47E /* NookSettings */,
 				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
+				EC14B5CE2C07AB17000FC6B6 /* ShelfSettingsView.swift */,
+				EC14B5D02C07AB2A000FC6B6 /* DropAreaSettingsView.swift */,
 			);
 			path = panes;
 			sourceTree = "<group>";
@@ -325,9 +374,67 @@
 			isa = PBXGroup;
 			children = (
 				EC0E30DE2C041C690060B47E /* perActivitySettings */,
+				EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */,
 				EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */,
 			);
 			path = LiveActivitiesCustomizeSettingsTab;
+			sourceTree = "<group>";
+		};
+		EC0E310A2C05651A0060B47E /* LiveActivities */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E310B2C0565350060B47E /* activities */,
+				EC0E30D72C0419760060B47E /* LiveActivitiesSettings.swift */,
+			);
+			path = LiveActivities;
+			sourceTree = "<group>";
+		};
+		EC0E310B2C0565350060B47E /* activities */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */,
+			);
+			path = activities;
+			sourceTree = "<group>";
+		};
+		EC0E310C2C0565400060B47E /* Nook */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E310D2C05654A0060B47E /* widgets */,
+				EC0E31062C0559680060B47E /* NookSettings.swift */,
+			);
+			path = Nook;
+			sourceTree = "<group>";
+		};
+		EC0E310D2C05654A0060B47E /* widgets */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E310E2C05655D0060B47E /* WidgetPrefsProtocol.swift */,
+				EC0E31122C0566B80060B47E /* MediaWidgetSettings.swift */,
+				EC0E31142C0567190060B47E /* ShortcutsWidgetSettings.swift */,
+				EC0E31162C0568080060B47E /* MirrorWidgetSettings.swift */,
+			);
+			path = widgets;
+			sourceTree = "<group>";
+		};
+		EC0E311A2C05783F0060B47E /* WidgetsSettingsTab */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30CD2C0414600060B47E /* perWidgetSettings */,
+				EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */,
+				EC0E30E52C041CC90060B47E /* WidgetsSettingsTabView.swift */,
+			);
+			path = WidgetsSettingsTab;
+			sourceTree = "<group>";
+		};
+		EC14B5C92C07A570000FC6B6 /* DropArea */ = {
+			isa = PBXGroup;
+			children = (
+				EC14B5CC2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift */,
+				EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */,
+				EC8D5FBA2BF9563400E67ECC /* DropArea.swift */,
+			);
+			path = DropArea;
 			sourceTree = "<group>";
 		};
 		EC2DD1E32C02C668001FD54E /* modifiers */ = {
@@ -355,7 +462,6 @@
 				EC8D605E2C00065500E67ECC /* SpotifyApp.swift */,
 				EC8D60582BFFEEF500E67ECC /* MediaApp.swift */,
 				EC8D601B2BFC2A3200E67ECC /* MediaPlayer.swift */,
-				EC4173CA2C01919D002889E7 /* MediaAppMeta.swift */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -418,18 +524,19 @@
 			children = (
 				EC8D600D2BFC127600E67ECC /* buttonStyles */,
 				EC8D5FF32BFAE75400E67ECC /* notch */,
-				EC758F7A2BF2F19B00B873B0 /* DropActionView.swift */,
-				EC8D5FBA2BF9563400E67ECC /* DropActionsView.swift */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */,
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
 				EC8D60352BFE667300E67ECC /* CircleButton.swift */,
 				BB2A5E582C006BD9008F3081 /* TempAuthView.swift */,
-				EC2DD1DF2C028690001FD54E /* NotchSpacerView.swift */,
 				EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */,
 				EC0E30E72C041E730060B47E /* CustomLabeled.swift */,
 				EC0E30F02C0434640060B47E /* BlankView.swift */,
+				EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */,
+				EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */,
+				EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */,
+				ECF429262C07B0FB0086B07A /* SliderPlus.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -465,9 +572,10 @@
 			children = (
 				EC8D5FEB2BFA707F00E67ECC /* frame.swift */,
 				EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */,
-				EC8D60082BFAF48200E67ECC /* defaultOpenSize.swift */,
 				EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */,
 				EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */,
+				ECAC6A6D2C070355000D9D27 /* measure.swift */,
+				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -496,6 +604,8 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				EC81E2632C069D9100790517 /* protocols */,
+				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
 				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
@@ -509,15 +619,36 @@
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
 				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
+				EC0E31022C0548A10060B47E /* Grid.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		EC81E2622C069D1600790517 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E31182C0575D30060B47E /* ArrayPositionEnum.swift */,
+				EC4173CA2C01919D002889E7 /* MediaAppMetaEnum.swift */,
+				EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */,
+				EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */,
+			);
+			path = enums;
+			sourceTree = "<group>";
+		};
+		EC81E2632C069D9100790517 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E31102C05663C0060B47E /* PreferencesProtocol.swift */,
+				EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */,
+			);
+			path = protocols;
 			sourceTree = "<group>";
 		};
 		EC8D5FC52BF97ADA00E67ECC /* Shelf */ = {
 			isa = PBXGroup;
 			children = (
 				EC8D5FC62BF97AF500E67ECC /* ShelfEmptyView.swift */,
-				EC2DD1F12C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift */,
+				EC2DD1F12C03DBC9001FD54E /* ShelfFilesGridPreviewView.swift */,
 				EC8D5FCA2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift */,
 				EC8D5FC02BF9767A00E67ECC /* ShelfFileView.swift */,
 				EC2DD1EF2C03DB15001FD54E /* ShelfFilesScrollView.swift */,
@@ -558,6 +689,7 @@
 			children = (
 				EC8D5FE62BFA704C00E67ECC /* ClosestNumber.swift */,
 				EC8D5FE72BFA704C00E67ECC /* concurrentMap.swift */,
+				ECC22A3C2C0818C10000139C /* move.swift */,
 			);
 			path = Array;
 			sourceTree = "<group>";
@@ -568,9 +700,10 @@
 				EC8D5FF42BFAE78800E67ECC /* TopBar */,
 				EC8D600A2BFAF57600E67ECC /* Nook */,
 				EC8D5FC52BF97ADA00E67ECC /* Shelf */,
+				EC14B5C92C07A570000FC6B6 /* DropArea */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
-				EC2DD1E62C02D5A5001FD54E /* NotchDragger.swift */,
+				EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */,
 			);
 			path = notch;
 			sourceTree = "<group>";
@@ -579,6 +712,7 @@
 			isa = PBXGroup;
 			children = (
 				EC8D60072BFAE91D00E67ECC /* pieces */,
+				EC2DD1DF2C028690001FD54E /* TopBarSpacerView.swift */,
 				EC0E30F22C0438660060B47E /* MockTopBar.swift */,
 				EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */,
 			);
@@ -612,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */,
+				EC81E2662C069F3800790517 /* NoBtnStyle.swift */,
 			);
 			path = buttonStyles;
 			sourceTree = "<group>";
@@ -620,7 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				EC2DD1E82C02E86F001FD54E /* MediaPlayerWidget */,
-				EC8D602D2BFD22E200E67ECC /* CameraWidgetView.swift */,
+				EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */,
 				EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */,
 			);
 			path = Widgets;
@@ -642,6 +777,24 @@
 				EC4173DF2C0271ED002889E7 /* SettingsPane.swift */,
 			);
 			path = globals;
+			sourceTree = "<group>";
+		};
+		ECF429242C07AEDC0086B07A /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E311A2C05783F0060B47E /* WidgetsSettingsTab */,
+				EC0E30D92C041BF30060B47E /* NookGeneralSettingsTabView.swift */,
+			);
+			path = tabs;
+			sourceTree = "<group>";
+		};
+		ECF429252C07AEE60086B07A /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				EC0E30FA2C0441C40060B47E /* LiveActivitiesCustomizeSettingsTab */,
+				EC0E30E12C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift */,
+			);
+			path = tabs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -725,30 +878,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
-				EC2DD1E72C02D5A5001FD54E /* NotchDragger.swift in Sources */,
+				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
+				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
+				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */,
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
+				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
+				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
 				EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */,
 				EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */,
 				EC758F962BF2F1A400B873B0 /* truncateFileName.swift in Sources */,
-				EC8D602E2BFD22E200E67ECC /* CameraWidgetView.swift in Sources */,
+				EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */,
 				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
+				EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */,
 				EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */,
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
+				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
@@ -761,67 +920,87 @@
 				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
-				EC2DD1E02C028690001FD54E /* NotchSpacerView.swift in Sources */,
+				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
+				EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
-				EC0E30DA2C041BF30060B47E /* WidgetsGeneralSettingsTabView.swift in Sources */,
+				EC0E30DA2C041BF30060B47E /* NookGeneralSettingsTabView.swift in Sources */,
+				EC0E31132C0566B80060B47E /* MediaWidgetSettings.swift in Sources */,
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
-				EC758F802BF2F19B00B873B0 /* DropActionView.swift in Sources */,
+				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
 				EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */,
+				EC14B5CF2C07AB17000FC6B6 /* ShelfSettingsView.swift in Sources */,
 				EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */,
+				ECC22A3D2C0818C10000139C /* move.swift in Sources */,
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
-				EC2DD1FD2C040E2E001FD54E /* WidgetsSettingsView.swift in Sources */,
+				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
+				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* ShelfFile.swift in Sources */,
+				ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */,
 				EC8D60042BFAE90D00E67ECC /* ShelfFilesCountView.swift in Sources */,
-				EC8D60092BFAF48200E67ECC /* defaultOpenSize.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
+				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
-				EC0E30E62C041CC90060B47E /* WidgetsCustomizeSettingsTabView.swift in Sources */,
+				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
+				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
 				EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
-				EC2DD1F22C03DBC9001FD54E /* ShelfFilesTargetPreviewView.swift in Sources */,
+				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
+				EC2DD1F22C03DBC9001FD54E /* ShelfFilesGridPreviewView.swift in Sources */,
 				EC8D60652C001D2D00E67ECC /* Track.swift in Sources */,
 				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
 				EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */,
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
 				EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */,
+				EC0E31032C0548A10060B47E /* Grid.swift in Sources */,
+				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
+				EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
+				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
+				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
+				EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */,
 				EC2DD1F02C03DB15001FD54E /* ShelfFilesScrollView.swift in Sources */,
 				EC4173D42C02515A002889E7 /* Settings.swift in Sources */,
 				EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
+				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
+				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
 				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
 				BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */,
 				EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
+				EC14B5D12C07AB2A000FC6B6 /* DropAreaSettingsView.swift in Sources */,
 				EC0E30EE2C0433960060B47E /* ShelfLiveActivitySettingsView.swift in Sources */,
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
+				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
+				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
-				EC4173CB2C01919D002889E7 /* MediaAppMeta.swift in Sources */,
+				EC4173CB2C01919D002889E7 /* MediaAppMetaEnum.swift in Sources */,
+				EC0E30FD2C053F970060B47E /* NookWidgetEnum.swift in Sources */,
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
 				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
@@ -833,7 +1012,8 @@
 				EC758F842BF2F19B00B873B0 /* ShelfView.swift in Sources */,
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,
 				EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */,
-				EC8D5FBB2BF9563400E67ECC /* DropActionsView.swift in Sources */,
+				EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */,
+				EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

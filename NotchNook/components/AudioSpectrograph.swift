@@ -101,9 +101,11 @@ class AudioSpectrographScene: SKScene {
     }
 
     func updateHeights() {
+        let volumeInterpolate = interpolatorBuilder([0, 1], value: volume)
+        let volumeModifier = (volume * max(1, volumeInterpolate([5, 1], false)))
         for bar in bars {
-            let newHeight = playing ? CGFloat.random(in: 5...15) * volume : 2
-            let resizeAction = SKAction.resize(toHeight: newHeight, duration: 0.2) // Slightly longer duration
+            let newHeight = playing ? CGFloat.random(in: 5...15) * volumeModifier : 2
+            let resizeAction = SKAction.resize(toHeight: max(2, newHeight), duration: 0.2) // Slightly longer duration
             resizeAction.timingMode = .easeInEaseOut
             bar.run(resizeAction)
         }

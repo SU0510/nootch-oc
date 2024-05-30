@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 
 struct MockTopBar: View {
-    var liveActivities: Set<NotchNook.LiveActivity>
+    var liveActivities: Set<LiveActivity>
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     var body: some View {
         let la = liveActivities
@@ -30,7 +30,7 @@ struct MockTopBar: View {
             }
             .transition(.scaleAndBlur(anchor: .topTrailing))
             
-            NotchSpacerView()
+            TopBarSpacerView(height: TopBarView.height)
             
             Group {
                 if !la.isEmpty {
@@ -51,6 +51,6 @@ struct MockTopBar: View {
             .transition(.scaleAndBlur(anchor: .topTrailing))
             
         }
-        .frame(height: NotchShape.usualNotchHeight)
+        .frame(height: TopBarView.height)
     }
 }

@@ -23,3 +23,20 @@ extension Binding where Value == Bool {
         )
     }
 }
+
+extension Binding where Value == Bool {
+    static func setMembershipArr<T: Hashable>(of member: T, in arr: Binding<[T]>) -> Binding<Bool> {
+        Binding<Bool>(
+            get: {
+                arr.wrappedValue.contains(member)
+            },
+            set: { newValue in
+                if newValue {
+                    arr.wrappedValue.append(member)
+                } else {
+                    arr.wrappedValue = arr.wrappedValue.filter { $0 != member }
+                }
+            }
+        )
+    }
+}

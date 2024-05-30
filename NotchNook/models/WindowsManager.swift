@@ -29,11 +29,25 @@ class WindowsManager {
                 LiveActivitiesSettingsView()
             },
             Settings.Pane(
-                identifier: .widgets,
-                title: "Widgets",
-                toolbarIcon: NSImage(icon: "star.square.on.square.fill")
+                identifier: .nook,
+                title: "Nook",
+                toolbarIcon: NSImage(icon: "lamp.desk.fill")
             ) {
-                WidgetsSettingsView()
+                NookSettingsView()
+            },
+            Settings.Pane(
+                identifier: .shelf,
+                title: "Shelf",
+                toolbarIcon: NSImage(icon: "rectangle.dashed")
+            ) {
+                ShelfSettingsView()
+            },
+            Settings.Pane(
+                identifier: .dropArea,
+                title: "Drop Area",
+                toolbarIcon: NSImage(icon: "cursorarrow.and.square.on.square.dashed")
+            ) {
+                DropAreaSettingsView()
             },
             Settings.Pane(
                 identifier: .license,
@@ -74,9 +88,7 @@ class WindowsManager {
     
     func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
         let id = UUID()
-        var notchHeight = screen.safeAreaInsets.top
-        notchHeight = notchHeight.isZero ? NotchShape.notchlessScreenNotchHeight : notchHeight
-        notchHeight += 1
+        let notchHeight = screen.safeAreaInsets.top
         let screenF = screen.frame
         let view = NSHostingView(
             rootView:
@@ -84,6 +96,7 @@ class WindowsManager {
                 .environment(\.notchHeight, notchHeight)
                 .environment(\.openSettings, settingsWindowController.show)
                 .environment(\.screenID, id)
+                .environment(\.screenSize, screenF.size)
         )
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(
@@ -102,6 +115,7 @@ class WindowsManager {
         newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenNone]
         newWindow.backgroundColor = NSColor.clear
         newWindow.hasShadow = false
+//        newWindow.hasShadow = false
         newWindow.titleVisibility = .hidden
         newWindow.titlebarAppearsTransparent = true
         newWindow.level = .mainMenu + 2

@@ -15,5 +15,6 @@ struct BlankView: View {
                 .font(.system(size: 32))
             Text(message)
         }
+        .foregroundStyle(.primary)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 private struct NotchHeightKey: EnvironmentKey {
     typealias Value = CGFloat
-    static let defaultValue = NotchShape.notchlessScreenNotchHeight
+    static let defaultValue = GeneralSettings().handleSize.height
 }
 
 private struct OpenSettingsKey: EnvironmentKey {
@@ -22,11 +22,19 @@ private struct ScreenIDKey: EnvironmentKey {
     static let defaultValue = UUID()
 }
 
-struct NamespaceKey: EnvironmentKey {
+private struct NamespaceKey: EnvironmentKey {
     static var defaultValue: Namespace.ID = Namespace().wrappedValue
 }
 
+private struct ScreenSizeKey: EnvironmentKey {
+    static var defaultValue: CGSize = .zero
+}
+
 extension EnvironmentValues {
+    var screenSize: CGSize {
+        get { self[ScreenSizeKey.self] }
+        set { self[ScreenSizeKey.self] = newValue }
+    }
     var namespace: Namespace.ID {
         get { self[NamespaceKey.self] }
         set { self[NamespaceKey.self] = newValue }

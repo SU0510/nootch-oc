@@ -51,7 +51,6 @@ extension MediaApp {
                 self.track = newTrack
                 return
             }
-//            print("brico")
             
             self.updateIsPlaying()
             DispatchQueue.global(qos: .userInteractive).async {
@@ -89,7 +88,7 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
                 }
             } else if isAppRunning && !newValue {
                 doThisAfter(0) {
-                self.isPlaying = false
+                    self.isPlaying = false
                     if MediaPlayer.shared.connectedApp == self.meta {
                         MediaPlayer.shared.connectedApp = nil
                         self.updateLiveActivities(newValue)
@@ -167,7 +166,11 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
         }
     }
     
-    func setupApp() { if self.app == nil, let app = SBApplication(bundleIdentifier: self.meta.bundleID) as? App { self.app = app } }
+    func setupApp() {
+        if self.app == nil, let app = SBApplication(bundleIdentifier: self.meta.bundleID) as? App { 
+            self.app = app
+        }
+    }
     
     func updateIsPlaying() { }
     

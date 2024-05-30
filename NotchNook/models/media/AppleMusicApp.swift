@@ -12,12 +12,13 @@ import ScriptingBridge
 final class AppleMusicApp: BlankMediaApp<MusicApplication> {
     
     init() { super.init(meta: .appleMusic) }
-        
+    
     override func updateIsPlaying() {
         self.isPlaying = app?.playerState == .playing
     }
     
     override func updateTrack() {
+        if !(self.app?.isRunning ?? false) { return }
         let currentTrack = self.app?.currentTrack
         let title = currentTrack?.name ?? Track.empty.title
         let artist = currentTrack?.artist ?? Track.empty.artist
@@ -62,7 +63,7 @@ final class AppleMusicApp: BlankMediaApp<MusicApplication> {
     override func prevTrack() { app?.backTrack?() }
     
     override func nextTrack() { app?.nextTrack?() }
-        
+    
     override func toggleLovedInTrack() {
         if let oldLoved = self.track.loved {
             self.track.loved?.toggle()

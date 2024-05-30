@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import Defaults
 
-struct GestureControlSettings: Equatable, Hashable, Codable, Defaults.Serializable {
+struct GestureControlSettings: Preferences {
     var allowGestures = true
     var controlMedia = true
     var controlOpenState = true

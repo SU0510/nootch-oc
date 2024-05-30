@@ -9,6 +9,7 @@ import SwiftUI
 import Defaults
 
 struct TopBarView: View {
+    static let height: CGFloat = 32
     static let liveActionWidth: CGFloat = 35
     var panGestureCounter: Int
     var scale: Double = 1
@@ -17,7 +18,11 @@ struct TopBarView: View {
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenID) private var screenID
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
+    @Default(.liveActivitiesSettings) private var liveActivitiesSettings
+    @Default(.nookSettings) private var nookSettings
+    @Default(.shelfSettings) private var shelfSettings
     var body: some View {
+        let height = notchHeight > ((TopBarView.height / 3) * 2) ? notchHeight : TopBarView.height
         let mode = NotchNook.shared.mode[screenID]!
         let la = NotchNook.shared.activeLiveActivities
         HStack(spacing: 0) {
@@ -37,15 +42,18 @@ struct TopBarView: View {
                             .frame(width: Self.liveActionWidth)
                         }
                     case .dragging: EmptyView()
-                    case .nook, .shelf: TopBarTabsView()
+                    case .nook, .shelf: TopBarTabsView(totalWidth: mode == .nook ? nookSettings.size.width : shelfSettings.size.width)
                     }
                 }
                 .frame(maxWidth: .infinity)
                 .scaleEffect(scale, anchor: .topTrailing)
                 .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
+                .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .shelf)
             }
             
-            NotchSpacerView()
+            if (mode != .closed && !hide) || la.count > 0 {
+                TopBarSpacerView(height: height)
+            }
             
             if !hide {
                 Group {
@@ -68,6 +76,7 @@ struct TopBarView: View {
                 .frame(maxWidth: .infinity)
                 .scaleEffect(scale, anchor: .topLeading)
                 .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
+                .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .shelf)
             }
             
         }
@@ -108,7 +117,7 @@ struct TopBarView: View {
                 .transition(.scaleAndBlur(anchor: .leading))
             }
         }
-        .frame(height: notchHeight < NotchShape.usualNotchHeight / 2 && (mode != .closed || !la.isEmpty) ? NotchShape.usualNotchHeight : notchHeight)
+        .frame(height: height)
         .fixedSize(horizontal: false, vertical: true)
         .zIndex(1)
     }

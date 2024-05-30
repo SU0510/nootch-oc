@@ -6,39 +6,29 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct ShelfView: View {
     static let id = "sheld"
+    
     var hovered: Bool
     var full: Bool
+    
+    @Default(.shelfSettings) private var shelfSettings
+    
     var body: some View {
         let files = Shelf.shared.files
         HStack {
-            
             Group {
-                
-                if files.count > 0 && full {
-                    
+                if files.count > 0 {
                     ShelfFilesScrollView(files: files, selectedFiles: Shelf.shared.selectedFiles, selectFile: Shelf.shared.selectFile)
-                    
                 } else {
-                    
-                    HStack {
-                        ShelfEmptyView(hovered: hovered, centered: full)
-                        
-                        Spacer()
-                        
-                        ShelfFilesTargetPreviewView(files: Array(files.prefix(4)))
-                    }
-                    .padding(.horizontal, 24)
-                    
+                    ShelfEmptyView(hovered: hovered, centered: true)
                 }
-                
             }
             .transition(.scaleAndBlur(anchor: .top))
         }
-        .defaultOpenSize(disable: !full)
-        .frame(maxWidth: full ? nil : .infinity, maxHeight: full ? nil : .infinity, alignment: .leading)
+        .frame(shelfSettings.size.screenPtsCGSize, .leading)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .background {
             RoundedRectangle(cornerRadius: 28, style: .continuous)

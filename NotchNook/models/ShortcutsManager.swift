@@ -8,19 +8,22 @@
 import SwiftUI
 import Foundation
 
-struct Shortcut: Identifiable {
-    let id = UUID()
+struct Shortcut: Identifiable, Hashable, Codable {
+    var id: String { name }
     let name: String
     let icon: String
+    var exists: Bool {
+        ShortcutsManager.shared.shortcuts.contains(name)
+    }
 }
 
 @Observable
 class ShortcutsManager {
     static let shared = ShortcutsManager()
-    var shortcuts: [Shortcut] = []
+    var shortcuts = Set<String>()
     
     private init() {
-        shortcuts = self.fetchShortcuts().map { Shortcut(name: $0, icon: "sparkles") }
+        self.fetchShortcuts()
     }
     
     func runAppleScript(script: String) -> [String]? {
@@ -53,7 +56,7 @@ class ShortcutsManager {
         return []
     }
     
-    func fetchShortcuts() -> [String] {
+    func fetchShortcuts() {
 
         let openCloseScript = """
         tell application "Shortcuts"
@@ -66,7 +69,7 @@ class ShortcutsManager {
         let wasOpenBefore = listProcesses().contains("Shortcuts")
 
         // Fetch the shortcuts
-        let shortcuts = runAppleScript(script: openCloseScript) ?? []
+        shortcuts = Set(runAppleScript(script: openCloseScript) ?? [])
         
         // Close Shortcuts if it was not open before
         if !wasOpenBefore {
@@ -75,8 +78,6 @@ class ShortcutsManager {
             """
             _ = runAppleScript(script: closeScript)
         }
-        
-        return shortcuts
     }
     
     func runShortcut(named name: String) {

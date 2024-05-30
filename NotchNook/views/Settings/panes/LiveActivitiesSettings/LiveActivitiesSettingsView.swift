@@ -19,7 +19,7 @@ struct LiveActivitiesSettingsView: View {
                     Label("Customize activities", systemImage: "square.stack")
                 }
         }
-        .padding(8)
+        .padding(12)
         .defaultSettingsProps()
         .task { CurrentWallpaperManager.shared.updateCurrentWallpaper() }
     }

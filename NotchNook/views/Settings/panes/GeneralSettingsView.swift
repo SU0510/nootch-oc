@@ -21,6 +21,11 @@ struct GeneralSettingsView: View {
                 }
             }
             
+            Section("Notch") {
+                Toggle("Transluscent notch background", isOn: $generalSettings.transluscent)
+                Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
+            }
+            
             Section("Trackpad swiping") {
                 Toggle("Allow gestures when hovering the notch", systemImage: "hand.draw", isOn: $gestureControlSettings.allowGestures)
                 if gestureControlSettings.allowGestures {
@@ -35,6 +40,7 @@ struct GeneralSettingsView: View {
                 }
             }
         }
+        .scrollDisabled(true)
         .animation(.default, value: gestureControlSettings.allowGestures)
         .formStyle(.grouped)
         .defaultSettingsProps()

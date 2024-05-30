@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Defaults
 import UniformTypeIdentifiers
 
 struct NotchView: View, DropDelegate {
@@ -28,7 +29,9 @@ struct NotchView: View, DropDelegate {
     @State private var panGestureCounter = 0
     @Namespace private var ns
     @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.screenSize) private var screenSize
     @Environment(\.screenID) private var screenID
+    @Default(.generalSettings) private var generalSettings
     
     var mode: NotchNook.NotchMode {
             guard let found = NotchNook.shared.mode[screenID] else {
@@ -81,12 +84,18 @@ struct NotchView: View, DropDelegate {
         let actualScale = (hovering && !pressing && (mode == .closed) ? 1.25 : 1) - scaleDown
         
         VStack(alignment: .center, spacing: 8) {
-            TopBarView(panGestureCounter: panGestureCounter, scale: actualScale, panPadding: panPadding, hide: hide)
+            
+            TopBarView(
+                panGestureCounter: panGestureCounter, 
+                scale: actualScale, 
+                panPadding: panPadding, 
+                hide: hide
+            )
             
             Group {
                 switch mode {
                 case .closed: EmptyView()
-                case .dragging: DropActionsView(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
                 case .nook: NookView()
                 case .shelf: ShelfView(hovered: false, full: true)
                 }
@@ -96,14 +105,18 @@ struct NotchView: View, DropDelegate {
         }
         .compositingGroup()
         .blur(radius: scaleDown * 100)
-        .padding(mode == .closed ? panPadding : .zero)
         .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
-        .frame(minWidth: NotchShape.defaultNotchWidth, minHeight: notchHeight)
+        .frame(
+            minWidth: notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.defaultNotchWidth,
+            minHeight: notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
+        )
+        .padding(mode == .closed ? panPadding : .zero)
         .padding([.leading, .bottom, .trailing], mode == .closed ? hovering ? pressing ? 4 : 8 : 0 : 12)
         .mask(alignment: .top) { shapeView(shadow: false) }
         .background {
-            NotchDragger(
+            NotchGesturer(
+                hidden: hide,
                 panPadding: panPadding,
                 scaleDown: $scaleDown,
                 cancelPan: $cancelPan,
@@ -126,12 +139,17 @@ struct NotchView: View, DropDelegate {
                 }
             }
         })
+        .onAppear {
+            let olsShorts = Defaults[.shortcutsWidgetSettings].shortcutsToDisplay
+            let newShorts = olsShorts.filter { ShortcutsManager.shared.shortcuts.contains($0) }
+            Defaults[.shortcutsWidgetSettings].shortcutsToDisplay = newShorts
+        }
         .onDrop(of: [.fileURL], delegate: self)
         .onHover { hovering in
             if hovering {
                 if mode == .closed {
-                    if !isShelfEmpty {
-                        openNotch(in: .shelf)
+                    if !isShelfEmpty || generalSettings.alwaysOpenNotchOnHover {
+                        openNotch(in: isShelfEmpty ? .nook : .shelf)
                     } else {
                         withAnimation(.bouncy(duration: 0.4, extraBounce: 0.25)) {
                             self.hovering = true
@@ -144,7 +162,7 @@ struct NotchView: View, DropDelegate {
         }
         .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
         .onChange(of: mode) { oldValue, newValue in
-            if oldValue != newValue && newValue != .closed { vibrate() }
+            if oldValue != newValue && oldValue == .closed && newValue != .closed { vibrate() }
         }
         .onChange(of: hoveredDropTargetID) { oldValue, newValue in
             if oldValue != newValue && newValue != nil {
@@ -157,7 +175,7 @@ struct NotchView: View, DropDelegate {
         .onChangeDebounced(of: scaleDown, delay: 0.05) { _ in
             withAnimation(.smooth) { scaleDown = 0 }
         }
-        .frame(width: 1000, height: 300, alignment: .top)
+        .frame(width: screenSize.width, height: screenSize.height, alignment: .top)
         .fixedSize()
         .environment(\.namespace, ns)
     }
@@ -278,6 +296,3 @@ struct NotchView: View, DropDelegate {
         }
     }
 }
-
-
-

@@ -29,13 +29,13 @@ let allDropActions: [DropAction] = [
         action: { fileURLs, dropAreaCoords in
             airDropFiles(urls: fileURLs)
         }
-    ),
-    DropAction(
-        id: "opt-img", label: "Compress", 
-        icon: Image(systemName: "photo.stack.fill"),
-        allowedFileTypes: [.image],
-        action: { fileURLs, dropAreaCoords in
-            
-        }
     )
+//    DropAction(
+//        id: "opt-img", label: "Compress", 
+//        icon: Image(systemName: "photo.stack.fill"),
+//        allowedFileTypes: [.image],
+//        action: { fileURLs, dropAreaCoords in
+//            
+//        }
+//    )
 ]
