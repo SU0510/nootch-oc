@@ -18,27 +18,18 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
     override func updateIsPlaying() { self.isPlaying = app?.playerState == .playing }
     
     override func updateTrack() {
-        print("Trying to update track...")
-        
+        if !(self.app?.isRunning ?? false) { return }
         var currentTrack: (any SpotifyTrack)?
         currentTrack = self.app?.currentTrack
         let title = currentTrack?.name ?? Track.empty.title
         let artist = currentTrack?.artist ?? Track.empty.artist
         let album = currentTrack?.album ?? Track.empty.album
         
-        print("New track detected: title")
-        
-        guard self.track.title != title &&
-                self.track.artist != artist &&
-                self.track.album != album else { return }
-        
         var newTrack = Track()
         newTrack.title = title
         newTrack.artist = artist
         newTrack.album = album
-        
-        print("wryyyyyyy")
-        
+                
         Task(priority: .utility) { [currentTrack] in
             if let artworkURLString = currentTrack?.artworkUrl,
                let url = URL(string: artworkURLString) {
@@ -49,23 +40,20 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
                     }
                     Task {
                         await MainActor.run {
-                            print("ploing")
                             self.track.albumArt = NSImage(data: data) ?? NSImage()
                         }
                     }
                 }.resume()
             }
         }
-        print("pipoca 1")
         self.track = newTrack
-        print("pipoca 2")
     }
     
     override func toggleIsPlaying() { doSafeCrossBridgeAction { app?.playpause?() } }
     
-    override func prevTrack() { doSafeCrossBridgeAction { app?.previousTrack?() } }
+    override func prevTrack() { print("prev"); doSafeCrossBridgeAction { app?.previousTrack?() } }
     
-    override func nextTrack() { doSafeCrossBridgeAction { app?.nextTrack?() } }
+    override func nextTrack() { print("next"); doSafeCrossBridgeAction { app?.nextTrack?() } }
         
     override func toggleLovedInTrack() { }
     

@@ -112,7 +112,7 @@ class WindowsManager {
         )
         NSApp.setActivationPolicy(.accessory)
         
-        newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenNone]
+        newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenAuxiliary]
         newWindow.backgroundColor = NSColor.clear
         newWindow.hasShadow = false
 //        newWindow.hasShadow = false
