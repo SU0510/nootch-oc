@@ -22,7 +22,7 @@ struct GeneralSettingsView: View {
             }
             
             Section("Notch") {
-                Toggle("Transluscent notch background", isOn: $generalSettings.transluscent)
+                Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
             }
             
