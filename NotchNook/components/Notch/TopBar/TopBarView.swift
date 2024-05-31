@@ -70,7 +70,7 @@ struct TopBarView: View {
                             .frame(width: Self.liveActionWidth)
                         }
                     case .dragging: EmptyView()
-                    case .nook, .shelf: HStack { MiniPlayerView() }
+                    case .nook, .shelf: HStack { if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() } }
                     }
                 }
                 .frame(maxWidth: .infinity)
