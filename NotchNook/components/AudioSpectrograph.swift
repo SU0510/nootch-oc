@@ -8,6 +8,7 @@
 import SpriteKit
 import SwiftUI
 import Combine
+import AppKit
 
 private let barsCount: Int = 3
 
@@ -19,126 +20,193 @@ struct AudioSpectrograph: View {
     let maxHeight: CGFloat = 15
     let barsSpacing: CGFloat = 1.5
     let barsThickness: CGFloat = 2
-    @State private var phases = (1...100).map { _ in (1...3).map { _ in CGFloat.random(in: 5...15) } }
+    //    @State private var phases = (1...100).map { _ in (1...3).map { _ in CGFloat.random(in: 5...15) } }
     var body: some View {
-        //        TimelineView(.periodic(from: .now, by: 0.25)) { context in
         let volumeInterpolate = interpolatorBuilder([0, 1], value: volume)
         let volumeModifier = (volume * max(1, volumeInterpolate([2, 1], false)))
-        
-        //            let barHeights: [CGFloat] = playing ? (0..<barsCount).map { _ in CGFloat.random(in: minHeight...maxHeight) } : Array(repeating: 3, count: barsCount)
         VStack {
-            PhaseAnimator(phases) { phase in
+            TimelineView(.animation(minimumInterval: 0.25)) { context in
+                let heights = (1...3).map { _ in CGFloat.random(in: 5...15) }
                 HStack(spacing: barsSpacing) {
-                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, phase[0] * volumeModifier))
-                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, phase[1] * volumeModifier))
-                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, phase[2] * volumeModifier))
+                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, heights[0] * volumeModifier))
+                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, heights[1] * volumeModifier))
+                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, heights[2] * volumeModifier))
                 }
-            } animation: { _ in .easeInOut(duration: 0.2) }
+                .animation(.easeIn(duration: 0.25), value: heights)
+            }
         }
         .foregroundColor(color)
         .frame(width: maxHeight * 1.5, height: maxHeight * 1.5)
-//        .geometryGroup()
-        //            .onAppear {
-        //
-        //            }
-        //        }
     }
 }
 
 
-//class AudioSpectrographScene: SKScene {
-//    var bars: [SKSpriteNode] = []
+
+// Custom NSView for displaying the audio spectrograph
+//class AudioSpectrographView: NSView {
 //    var playing: Bool = false {
 //        didSet {
 //            if playing {
-//                startAnimation()
+//                startTimer()
 //            } else {
-//                stopAnimation()
+//                stopTimer()
 //            }
 //        }
 //    }
-//    var volume: CGFloat = 0.0
+//    var volume: CGFloat = 1.0
 //    var color: NSColor = .white
+//    private var barHeights: [CGFloat] = []
+//    private var timer: Timer?
 //
-//    override func didMove(to view: SKView) {
-//        self.backgroundColor = .clear
-//        createBars()
+//    override init(frame frameRect: NSRect) {
+//        super.init(frame: frameRect)
+//        initializeBarHeights()
+//        self.wantsLayer = true  // Ensure the view uses layer-backed rendering.
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        initializeBarHeights()
+//        self.wantsLayer = true
+//    }
+//    
+//    private func initializeBarHeights() {
+//        let numBars = Int(frame.width / (2 + 1.5))
+//        barHeights = Array(repeating: 5, count: numBars)
 //    }
 //
-//    func removeBars() {
-//        bars.forEach { bar in
-//            bar.removeFromParent()
+//    private func startTimer() {
+//        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateBarHeights), userInfo: nil, repeats: true)
+//    }
+//
+//    private func stopTimer() {
+//        timer?.invalidate()
+//        timer = nil
+//    }
+//
+//    @objc private func updateBarHeights() {
+//        for i in 0..<barHeights.count {
+//            barHeights[i] = CGFloat.random(in: 5...15) * volume
 //        }
-//        bars = []
+//        DispatchQueue.main.async {
+//            self.needsDisplay = true
+//        }
 //    }
 //
-//    func createBars() {
-//        removeBars()
-//
-//        let numberOfBars = 3
+//    override func draw(_ dirtyRect: NSRect) {
+//        guard let context = NSGraphicsContext.current?.cgContext else { return }
+//        context.setFillColor(color.cgColor)
+//        
 //        let barWidth: CGFloat = 2
-//        let spacing: CGFloat = 2
-//        let startX = (self.size.width - CGFloat(numberOfBars) * (barWidth + spacing) + spacing) / 2
-//
-//        for i in 0..<numberOfBars {
-//            let bar = SKSpriteNode(color: color, size: CGSize(width: barWidth, height: 3))
-//            bar.position = CGPoint(x: startX + CGFloat(i) * (barWidth + spacing), y: self.size.height / 2)
-//            bar.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//            bars.append(bar)
-//            self.addChild(bar)
-//        }
-//    }
-//
-//    func startAnimation() {
-//        let updateAction = SKAction.run { [weak self] in
-//            self?.updateHeights()
-//        }
-//        let waitAction = SKAction.wait(forDuration: 0.2) // Increased interval
-//        let sequenceAction = SKAction.sequence([updateAction, waitAction])
-//        let repeatAction = SKAction.repeatForever(sequenceAction)
-//        self.run(repeatAction, withKey: "updateHeights")
-//    }
-//
-//    func stopAnimation() {
-//        self.removeAction(forKey: "updateHeights")
-//        updateHeights()
-//    }
-//
-//    func updateHeights() {
-//        let volumeInterpolate = interpolatorBuilder([0, 1], value: volume)
-//        let volumeModifier = (volume * max(1, volumeInterpolate([5, 1], false)))
-//        for bar in bars {
-//            let newHeight = playing ? CGFloat.random(in: 5...15) * volumeModifier : 2
-//            let resizeAction = SKAction.resize(toHeight: max(2, newHeight), duration: 0.2) // Slightly longer duration
-//            resizeAction.timingMode = .easeInEaseOut
-//            bar.run(resizeAction)
+//        let barSpacing: CGFloat = 1.5
+//        
+//        for i in 0..<barHeights.count {
+//            let height = playing ? barHeights[i] : 5
+//            let xPosition = CGFloat(i) * (barWidth + barSpacing)
+//            context.fill(CGRect(x: xPosition, y: (bounds.height - height) / 2, width: barWidth, height: height))
 //        }
 //    }
 //}
 //
-//struct AudioSpectrograph: View {
+//// NSViewRepresentable wrapper for AudioSpectrographView
+//struct AudioSpectrographRepresentable: NSViewRepresentable {
 //    var playing: Bool
 //    var volume: CGFloat
 //    var color: Color
 //
-//    var body: some View {
-//        SpriteView(scene: scene)
-//            .frame(width: 22, height: 22) // Adjust size as needed
-//            .onAppear {
-//                scene.scaleMode = .resizeFill
-//                scene.size = CGSize(width: 50, height: 50)
-//            }
-//            .onChange(of: playing, initial: true) { _, newValue in
-//                scene.playing = newValue
-//            }
-//            .onChange(of: volume, initial: true) { _, newValue in
-//                scene.volume = newValue
-//            }
-//            .onChange(of: color, initial: true) { _, newValue in
-//                scene.color = NSColor(newValue)
-//                scene.bars.forEach { $0.color = scene.color }
-//            }
+//    func makeNSView(context: Context) -> AudioSpectrographView {
+//        let view = AudioSpectrographView(frame: CGRect(x: 0, y: 0, width: 200, height: 50)) // Set a default size
+//        view.playing = playing
+//        view.volume = volume
+//        view.color = NSColor(color)
+//        return view
 //    }
 //
-//    @State private var scene = AudioSpectrographScene()
+//    func updateNSView(_ nsView: AudioSpectrographView, context: Context) {
+//        nsView.playing = playing
+//        nsView.volume = volume
+//        nsView.color = NSColor(color)
+//    }
+//}
+
+//import SwiftUI
+//import AppKit
+
+//struct AudioSpectrograph: NSViewRepresentable {
+//    var playing: Bool
+//    var volume: Double
+//    var color: Color
+//
+//    func makeNSView(context: Context) -> CustomBarView {
+//        let view = CustomBarView()
+//        view.barColor = NSColor(color)
+//        return view
+//    }
+//
+//    func updateNSView(_ nsView: CustomBarView, context: Context) {
+//        nsView.barColor = NSColor(color)
+//        nsView.playing = playing
+//    }
+//}
+//
+//class CustomBarView: NSView {
+//    var barColor: NSColor = .black {
+//        didSet {
+//            needsDisplay = true
+//        }
+//    }
+//
+//    var playing: Bool = true {
+//        didSet {
+//            if playing {
+//                startAnimating()
+//            } else {
+//                stopAnimating()
+//            }
+//        }
+//    }
+//
+//    private var heights: [CGFloat] = [2, 2, 2]
+//    private var timer: Timer?
+//
+//    override init(frame frameRect: NSRect) {
+//        super.init(frame: frameRect)
+//        startAnimating()
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    override func draw(_ dirtyRect: NSRect) {
+//        super.draw(dirtyRect)
+//
+//        guard let context = NSGraphicsContext.current?.cgContext else { return }
+//
+//        context.setFillColor(barColor.cgColor)
+//
+//        let barWidth: CGFloat = 2
+//        let spacing: CGFloat = 1
+//
+//        for i in 0..<3 {
+//            let x = CGFloat(i) * (barWidth + spacing)
+//            let rect = CGRect(x: x, y: 0, width: barWidth, height: heights[i])
+//            context.fill(rect)
+//        }
+//    }
+//
+//    private func startAnimating() {
+//        timer?.invalidate()
+//        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
+//            guard let self = self else { return }
+//            self.heights = (0..<3).map { _ in CGFloat.random(in: 5...15) }
+//            self.needsDisplay = true
+//        }
+//    }
+//
+//    private func stopAnimating() {
+//        timer?.invalidate()
+//        heights = [2, 2, 2]
+//        needsDisplay = true
+//    }
 //}
