@@ -117,7 +117,7 @@ struct TopBarView: View {
                 .transition(.scaleAndBlur(anchor: .leading))
             }
         }
-        .frame(height: height)
+        .frame(height: mode == .closed ? nil : height)
         .fixedSize(horizontal: false, vertical: true)
         .zIndex(1)
     }
