@@ -14,4 +14,5 @@ struct GeneralSettings: Preferences {
     var allowGestures = true
     var controlMedia = true
     var controlOpenState = true
+    var transparentHandle = false
 }

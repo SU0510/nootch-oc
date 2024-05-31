@@ -70,9 +70,9 @@ struct NotchView: View, DropDelegate {
         )
     }
     
-    @ViewBuilder func shapeView(shadow: Bool? = nil) -> some View {
+    @ViewBuilder func shapeView(shadow: Bool? = nil, transparentHandle: Bool? = nil) -> some View {
         GeometryReader { geo in
-            ShadowedNotchShapeView(shadow: shadow ?? (mode != .closed || hovering))
+            ShadowedNotchShapeView(shadow: shadow ?? (mode != .closed || hovering), transparentHandle: transparentHandle ?? generalSettings.transparentHandle)
                 .frame(width: geo.size.width * (1 - scaleDown), height: geo.size.height * (1 - scaleDown), alignment: .top)
                 .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
         }
@@ -113,7 +113,7 @@ struct NotchView: View, DropDelegate {
         )
         .padding(mode == .closed ? panPadding : .zero)
         .padding([.leading, .bottom, .trailing], mode == .closed ? hovering ? pressing ? 4 : 8 : 0 : 12)
-        .mask(alignment: .top) { shapeView(shadow: false) }
+        .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(
                 vibrate: vibrate,

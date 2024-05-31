@@ -488,7 +488,7 @@ struct LicenseSettingsView: View {
 //        .saturation(0)
 //      , alignment: .bottomLeading
 //    )
-    .onChange(of: controlActiveState) { newValue in
+    .onChange(of: controlActiveState) { _, newValue in
       switch newValue {
       case .key, .active:
         if !showStars {
