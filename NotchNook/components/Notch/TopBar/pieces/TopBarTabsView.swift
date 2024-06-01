@@ -11,6 +11,7 @@ struct TopBarTabsView: View {
     var totalWidth: Grid.Point
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
+    
     var body: some View {
         let mode = NotchNook.shared.mode[screenID]!
         let collapsed = totalWidth < .init(11)

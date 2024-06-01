@@ -72,6 +72,10 @@
 		EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DF2C0271ED002889E7 /* SettingsPane.swift */; };
 		EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC792C0A80E000591811 /* LicenseManager.swift */; };
 		EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */; };
+		EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = EC47FC842C0AB86A00591811 /* Sparkle */; };
+		EC47FC872C0AC05D00591811 /* LicenseStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC862C0AC05D00591811 /* LicenseStateView.swift */; };
+		EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC882C0AC63E00591811 /* TimeCounter.swift */; };
+		EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
 		EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
@@ -220,6 +224,9 @@
 		EC47FC792C0A80E000591811 /* LicenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseManager.swift; sourceTree = "<group>"; };
 		EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDeviceSerialNumber.swift; sourceTree = "<group>"; };
 		EC47FC802C0AA67100591811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EC47FC862C0AC05D00591811 /* LicenseStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseStateView.swift; sourceTree = "<group>"; };
+		EC47FC882C0AC63E00591811 /* TimeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCounter.swift; sourceTree = "<group>"; };
+		EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isTrialOver.swift; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
@@ -312,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
+				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 			);
@@ -564,6 +572,8 @@
 				EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */,
 				EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */,
 				ECF429262C07B0FB0086B07A /* SliderPlus.swift */,
+				EC47FC862C0AC05D00591811 /* LicenseStateView.swift */,
+				EC47FC882C0AC63E00591811 /* TimeCounter.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -584,6 +594,7 @@
 				EC8D60682C016B5C00E67ECC /* openApp.swift */,
 				EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */,
 				EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */,
+				EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -845,6 +856,7 @@
 				BB2A5E542C006B63008F3081 /* Defaults */,
 				EC4173D12C025136002889E7 /* Settings */,
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
+				EC47FC842C0AB86A00591811 /* Sparkle */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -879,6 +891,7 @@
 				BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */,
 				EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */,
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
+				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -911,6 +924,7 @@
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
+				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
@@ -954,6 +968,7 @@
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
 				EC0E30DA2C041BF30060B47E /* NookGeneralSettingsTabView.swift in Sources */,
+				EC47FC872C0AC05D00591811 /* LicenseStateView.swift in Sources */,
 				EC0E31132C0566B80060B47E /* MediaWidgetSettings.swift in Sources */,
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
@@ -967,6 +982,7 @@
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
 				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
+				EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */,
 				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* ShelfFile.swift in Sources */,
@@ -1297,6 +1313,14 @@
 				minimumVersion = 3.1.1;
 			};
 		};
+		EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1314,6 +1338,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */;
 			productName = Settings;
+		};
+		EC47FC842C0AB86A00591811 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

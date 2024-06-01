@@ -20,7 +20,7 @@ struct NookView: View {
                 let arrPos = ArrayPosition(total: widgets.count, i: i)
                 Group {
                     switch widget {
-                    case .media: 
+                    case .media:
                         MediaPlayerWidgetView(arrayPosition: arrPos)
                             .widgetDefaultProps(arrPos: arrPos, pref: mediaWidgetSettings, disableDivider: !nookSettings.showDividers)
                     case .shortcuts:
@@ -31,7 +31,6 @@ struct NookView: View {
                             .widgetDefaultProps(arrPos: arrPos, pref: mirrorWidgetSettings, disableDivider: !nookSettings.showDividers)
                     }
                 }
-                
             }
         }
         .frame(nookSettings.size.screenPtsCGSize)

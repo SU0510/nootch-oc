@@ -17,6 +17,8 @@ struct LicenseSettingsView: View {
     @State private var loading = false
     @State private var error: LicenseManager.CheckLicenseResult? = nil
     @Default(.license) private var license
+    @Default(.trialInitialTime) private var trialInitialTime
+    @Environment(\.trialOver) private var trialOver
     var body: some View {
         Form {
             
@@ -38,14 +40,30 @@ struct LicenseSettingsView: View {
                 }
             }
             
+            if license == nil, let trialInitialTime, !isTrialOver() {
+                Section("Trial") {
+                    if trialOver {
+                        LabeledContent("Time Remaining", value: "EXPIRED")
+                    } else {
+                        TimeCounter(initialDate: trialInitialTime, maxTimeInHours: LicenseManager.trialDurationInHours)
+                    }
+                }
+            }
+            
             Section("License") {
                 Group {
                     TextField(text: $email, prompt: Text("john.doe@email.com"), label: {
                         Label("Email", systemImage: "at")
                     })
-                    SecureField(text: $key, prompt: Text("gjp1lh5dtzqp4yddn73uush9r4inv0"), label: {
-                        Label("Key", systemImage: "key.horizontal.fill")
-                    })
+                    if license != nil {
+                        SecureField(text: $key, label: {
+                            Label("Key", systemImage: "key.horizontal.fill")
+                        })
+                    } else {
+                        TextField(text: $key, prompt: Text("gjp1lh5dtzqp4yddn73uush9r4inv0"), label: {
+                            Label("Key", systemImage: "key.horizontal.fill")
+                        })
+                    }
                     Picker("License Type", selection: $keyType) {
                         ForEach(License.KeyType.allCases) { Text($0.rawValue).tag($0) }
                     }

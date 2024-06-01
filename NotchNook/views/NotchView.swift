@@ -27,12 +27,15 @@ struct NotchView: View, DropDelegate {
     @State private var hide = false
     @State private var hideTimer: Timer?
     @State private var panGestureCounter = 0
+    @State private var trialOver = false
     @Namespace private var ns
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenSize) private var screenSize
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
+    @Default(.license) private var license
     @Default(.generalSettings) private var generalSettings
+    @Default(.trialInitialTime) private var trialInitialTime
     
     var mode: NotchNook.NotchMode {
             guard let found = NotchNook.shared.mode[screenID] else {
@@ -71,6 +74,19 @@ struct NotchView: View, DropDelegate {
         )
     }
     
+    func checkTrialOver() {
+        if license == nil {
+            if let trialInitialTime, (((Date().timeIntervalSince1970 - trialInitialTime) / 60) / 60) > LicenseManager.trialDurationInHours {
+                if !trialOver { trialOver = true }
+            } else {
+                if trialOver { trialOver = false }
+            }
+        } else {
+            if trialInitialTime != nil { trialInitialTime = nil }
+            if trialOver { trialOver = false }
+        }
+    }
+    
     @ViewBuilder func shapeView(shadow: Bool? = nil, transparentHandle: Bool? = nil) -> some View {
         GeometryReader { geo in
             ShadowedNotchShapeView(shadow: shadow ?? (mode != .closed || hovering), transparentHandle: transparentHandle ?? generalSettings.transparentHandle)
@@ -86,19 +102,25 @@ struct NotchView: View, DropDelegate {
         
         VStack(alignment: .center, spacing: 8) {
             
-            TopBarView(
-                panGestureCounter: panGestureCounter, 
-                scale: actualScale, 
-                panPadding: panPadding, 
-                hide: hide
-            )
+            if license != nil || !trialOver {
+                TopBarView(
+                    panGestureCounter: panGestureCounter, 
+                    scale: actualScale, 
+                    panPadding: panPadding, 
+                    hide: hide
+                )
+            }
             
             Group {
-                switch mode {
-                case .closed: EmptyView()
-                case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
-                case .nook: NookView()
-                case .shelf: ShelfView(hovered: false, full: true)
+                if license == nil && (trialInitialTime == nil || trialOver) && mode != .closed {
+                    LicenseStateView()
+                } else {
+                    switch mode {
+                    case .closed: EmptyView()
+                    case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                    case .nook: NookView()
+                    case .shelf: ShelfView(hovered: false, full: true)
+                    }
                 }
             }
             .scaleEffect(actualScale, anchor: .top)
@@ -152,6 +174,8 @@ struct NotchView: View, DropDelegate {
         }
         .onDrop(of: [.fileURL], delegate: self)
         .onHover { hovering in
+            if license == nil || trialOver { checkTrialOver() }
+            
             if hovering {
                 if mode == .closed {
                     if !isShelfEmpty || generalSettings.alwaysOpenNotchOnHover {
@@ -181,6 +205,7 @@ struct NotchView: View, DropDelegate {
         .frame(width: screenSize.width, height: screenSize.height, alignment: .top)
         .fixedSize()
         .environment(\.namespace, ns)
+        .environment(\.trialOver, trialOver)
     }
     
     // MARK: - Drag and drop files into shelf functons
@@ -197,6 +222,7 @@ struct NotchView: View, DropDelegate {
     }
     
     func dropEntered(info: DropInfo) {
+        if trialOver { return }
         withAnimation(.bouncy(extraBounce: 0.15)) {
             NotchNook.shared.mode[screenID] = .dragging
         }
@@ -213,12 +239,13 @@ struct NotchView: View, DropDelegate {
     }
     
     func dropUpdated(info: DropInfo) -> DropProposal? {
+        if trialOver { return nil }
         droppingCoords = info.location
         return nil
     }
     
     func performDrop(info: DropInfo) -> Bool {
-        
+        if trialOver { return false }
         let isShelf = hoveredDropTargetID == ShelfView.id
         var allowedTypes: [UTType] = isShelf ? [.fileURL] : []
         var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
@@ -248,6 +275,7 @@ struct NotchView: View, DropDelegate {
     // MARK: - Functions related to the View way of working
     
     func vibrate() {
+        if generalSettings.disableHaptics { return }
         NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
     }
     

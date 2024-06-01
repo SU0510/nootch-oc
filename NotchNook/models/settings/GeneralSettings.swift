@@ -15,4 +15,5 @@ struct GeneralSettings: Preferences {
     var controlMedia = true
     var controlOpenState = true
     var transparentHandle = false
+    var disableHaptics = false
 }

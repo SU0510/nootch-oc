@@ -17,6 +17,7 @@ struct TopBarView: View {
     var hide: Bool
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenID) private var screenID
+    @Environment(\.trialOver) private var trialOver
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.nookSettings) private var nookSettings
@@ -27,7 +28,7 @@ struct TopBarView: View {
         let la = NotchNook.shared.activeLiveActivities
         HStack(spacing: 0) {
             
-            if !hide {
+            if !hide && !trialOver {
                 Group {
                     switch mode {
                     case .closed:
@@ -55,7 +56,7 @@ struct TopBarView: View {
                 TopBarSpacerView(height: height)
             }
             
-            if !hide {
+            if !hide && !trialOver {
                 Group {
                     switch mode {
                     case .closed:

@@ -12,6 +12,7 @@ import Defaults
 extension Defaults.Keys {
     static let license = Key<License?>("keyActive", default: nil)
     static let networkErrorCounting = Key<Int>("networkErrorCounting", default: 0)
+    static let trialInitialTime = Key<Double?>("trialInitialTime", default: nil)
     
     static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
     static let liveActivitiesSettings = Key<LiveActivitiesSettings>("liveActivitiesSettings", default: .init())

@@ -30,7 +30,15 @@ private struct ScreenSizeKey: EnvironmentKey {
     static var defaultValue: CGSize = .zero
 }
 
+private struct TrialOverKey: EnvironmentKey {
+    static var defaultValue: Bool = false
+}
+
 extension EnvironmentValues {
+    var trialOver: Bool {
+        get { self[TrialOverKey.self] }
+        set { self[TrialOverKey.self] = newValue }
+    }
     var screenSize: CGSize {
         get { self[ScreenSizeKey.self] }
         set { self[ScreenSizeKey.self] = newValue }

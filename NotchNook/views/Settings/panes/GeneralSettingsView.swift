@@ -25,17 +25,23 @@ struct GeneralSettingsView: View {
             Section("Notch") {
                 Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
-                CustomLabeled(title: "Width", icon: "arrow.left.and.right", description: "Will only be used on non-notched screens.") {
+                Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
+            }
+            
+            Section("Handler for non-notched screens") {
+                Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
+                Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
+                CustomLabeled(title: "Width", icon: "arrow.left.and.right") {
                     SliderPlus(value: $generalSettings.handleSize.width, range: 30...250, step: 16)
                 }
                 .resetToDefault($generalSettings.handleSize.width, defaultGeneral.handleSize.width)
                 
-                CustomLabeled(title: "Height", icon: "arrow.up.and.down", description: "Will only be used on non-notched screens.") {
+                CustomLabeled(title: "Height", icon: "arrow.up.and.down") {
                     SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.height)
                 }
                 .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
                 
-                CustomLabeled(title: "Transparent handler", description: "Will only be used on non-notched screens.") {
+                CustomLabeled(title: "Transparent handler", description: "Will only show up on mouse hover.") {
                     Toggle("", isOn: $generalSettings.transparentHandle)
                 }
                 .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
