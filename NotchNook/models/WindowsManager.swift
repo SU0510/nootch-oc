@@ -110,12 +110,10 @@ class WindowsManager {
             backing: .buffered, defer: true,
             screen: screen
         )
-        NSApp.setActivationPolicy(.accessory)
         
         newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenAuxiliary]
         newWindow.backgroundColor = NSColor.clear
         newWindow.hasShadow = false
-//        newWindow.hasShadow = false
         newWindow.titleVisibility = .hidden
         newWindow.titlebarAppearsTransparent = true
         newWindow.level = .mainMenu + 2

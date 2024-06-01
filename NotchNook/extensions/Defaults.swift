@@ -10,9 +10,8 @@ import Defaults
 
 // Define the defaults keys
 extension Defaults.Keys {
-    static let email = Key<String>("email", default: "")
-    static let licenseKey = Key<String>("licenseKey", default: "")
-    static let keyActive = Key<Bool>("keyActive", default: false)
+    static let license = Key<License?>("keyActive", default: nil)
+    static let networkErrorCounting = Key<Int>("networkErrorCounting", default: 0)
     
     static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
     static let liveActivitiesSettings = Key<LiveActivitiesSettings>("liveActivitiesSettings", default: .init())

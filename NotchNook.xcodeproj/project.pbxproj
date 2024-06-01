@@ -40,9 +40,7 @@
 		EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */; };
 		EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */; };
 		EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */; };
-		EC13C6DA2C0917EE00B45C6E /* MasterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6D92C0917EE00B45C6E /* MasterButton.swift */; };
 		EC13C6DC2C09180600B45C6E /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6DB2C09180600B45C6E /* TextInput.swift */; };
-		EC13C6DE2C09186900B45C6E /* RR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6DD2C09186800B45C6E /* RR.swift */; };
 		EC13C6E02C0918B800B45C6E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6DF2C0918B800B45C6E /* Color.swift */; };
 		EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC13C6E12C09199600B45C6E /* cancelableTimer.swift */; };
 		EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */; };
@@ -72,6 +70,8 @@
 		EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */; };
 		EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */; };
 		EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DF2C0271ED002889E7 /* SettingsPane.swift */; };
+		EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC792C0A80E000591811 /* LicenseManager.swift */; };
+		EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
 		EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
@@ -189,9 +189,7 @@
 		EC0E311B2C0578C40060B47E /* ReorderWidgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderWidgetsView.swift; sourceTree = "<group>"; };
 		EC0E311D2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualSizeCurrentWallpaperView.swift; sourceTree = "<group>"; };
 		EC13C6D72C09099800B45C6E /* ShortcutsApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsApplication.swift; sourceTree = "<group>"; };
-		EC13C6D92C0917EE00B45C6E /* MasterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterButton.swift; sourceTree = "<group>"; };
 		EC13C6DB2C09180600B45C6E /* TextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
-		EC13C6DD2C09186800B45C6E /* RR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RR.swift; sourceTree = "<group>"; };
 		EC13C6DF2C0918B800B45C6E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EC13C6E12C09199600B45C6E /* cancelableTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cancelableTimer.swift; sourceTree = "<group>"; };
 		EC14B5C72C070A22000FC6B6 /* VisualEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
@@ -219,6 +217,9 @@
 		EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseSettingsView.swift; sourceTree = "<group>"; };
 		EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		EC4173DF2C0271ED002889E7 /* SettingsPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPane.swift; sourceTree = "<group>"; };
+		EC47FC792C0A80E000591811 /* LicenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseManager.swift; sourceTree = "<group>"; };
+		EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDeviceSerialNumber.swift; sourceTree = "<group>"; };
+		EC47FC802C0AA67100591811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
@@ -375,9 +376,9 @@
 				EC4173D92C025597002889E7 /* GeneralSettingsView.swift */,
 				EC0E30DD2C041C450060B47E /* LiveActivitiesSettings */,
 				EC0E30CC2C0414510060B47E /* NookSettings */,
-				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
 				EC14B5CE2C07AB17000FC6B6 /* ShelfSettingsView.swift */,
 				EC14B5D02C07AB2A000FC6B6 /* DropAreaSettingsView.swift */,
+				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
 			);
 			path = panes;
 			sourceTree = "<group>";
@@ -496,6 +497,18 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		EC47FC7B2C0A80E200591811 /* singletons */ = {
+			isa = PBXGroup;
+			children = (
+				EC47FC792C0A80E000591811 /* LicenseManager.swift */,
+				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
+				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
+				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
+				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
+			);
+			path = singletons;
+			sourceTree = "<group>";
+		};
 		EC758F5F2BF2F18700B873B0 = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +528,7 @@
 		EC758F6A2BF2F18700B873B0 /* NotchNook */ = {
 			isa = PBXGroup;
 			children = (
+				EC47FC802C0AA67100591811 /* Info.plist */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
 				EC758F8F2BF2F1A400B873B0 /* extensions */,
@@ -540,9 +554,7 @@
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
-				EC13C6D92C0917EE00B45C6E /* MasterButton.swift */,
 				EC13C6DB2C09180600B45C6E /* TextInput.swift */,
-				EC13C6DD2C09186800B45C6E /* RR.swift */,
 				EC8D60352BFE667300E67ECC /* CircleButton.swift */,
 				BB2A5E582C006BD9008F3081 /* TempAuthView.swift */,
 				EC2DD1F82C03FEB1001FD54E /* InlineIntField.swift */,
@@ -571,6 +583,7 @@
 				EC8D60662C01697100E67ECC /* iconForApp.swift */,
 				EC8D60682C016B5C00E67ECC /* openApp.swift */,
 				EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */,
+				EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -621,21 +634,18 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				EC47FC7B2C0A80E200591811 /* singletons */,
 				EC81E2632C069D9100790517 /* protocols */,
 				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
 				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
-				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC8D5FBC2BF9743200E67ECC /* Shelf.swift */,
 				EC8D5FBE2BF9744800E67ECC /* ShelfFile.swift */,
-				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
 				EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */,
 				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
-				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
-				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
 				EC0E31022C0548A10060B47E /* Grid.swift */,
 			);
 			path = models;
@@ -989,7 +999,6 @@
 				EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
-				EC13C6DA2C0917EE00B45C6E /* MasterButton.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
@@ -1009,8 +1018,8 @@
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
+				EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */,
 				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
-				EC13C6DE2C09186900B45C6E /* RR.swift in Sources */,
 				BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */,
 				EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
@@ -1022,6 +1031,7 @@
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
+				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
 				EC4173CB2C01919D002889E7 /* MediaAppMetaEnum.swift in Sources */,
 				EC0E30FD2C053F970060B47E /* NookWidgetEnum.swift in Sources */,
@@ -1181,12 +1191,14 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotchNook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Used to control Spotify and Apple Music.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Used for the Mirror widget in the Nook.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1217,12 +1229,14 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotchNook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Used to control Spotify and Apple Music.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Used for the Mirror widget in the Nook.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

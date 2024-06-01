@@ -12,6 +12,7 @@ import AppKit
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
     var windowsManager: WindowsManager?
+    var nsMenu: NSMenu?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Initialize all singletons
@@ -21,7 +22,29 @@ import AppKit
         _ = CurrentWallpaperManager.shared
 
         NSApp.setActivationPolicy(.accessory)
-        
+        setupMenu()
         windowsManager = WindowsManager()
+    }
+    
+    func setupMenu() {
+        let mainMenu = NSMenu(title: "MainMenu")
+        let menuItem = mainMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
+        
+        let submenu = NSMenu()
+        submenu.addItem(withTitle: "Close Window", action: #selector(NSWindow.performClose(_:)), keyEquivalent: "w")
+        submenu.addItem(withTitle: "Undo", action: #selector(EditMenuActions.undo(_:)), keyEquivalent: "z")
+        submenu.addItem(withTitle: "Redo", action: #selector(EditMenuActions.redo(_:)), keyEquivalent: "Z")
+        submenu.addItem(withTitle: "Cut", action: #selector(NSText.cut(_:)), keyEquivalent: "x")
+        submenu.addItem(withTitle: "Copy", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
+        submenu.addItem(withTitle: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
+        submenu.addItem(withTitle: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
+        
+        mainMenu.setSubmenu(submenu, for: menuItem)
+        NSApp.mainMenu = mainMenu
+    }
+    
+    @objc protocol EditMenuActions {
+        func redo(_ sender: AnyObject)
+        func undo(_ sender: AnyObject)
     }
 }

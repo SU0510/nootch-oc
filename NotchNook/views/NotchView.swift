@@ -31,6 +31,7 @@ struct NotchView: View, DropDelegate {
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenSize) private var screenSize
     @Environment(\.screenID) private var screenID
+    @Environment(\.openSettings) private var openSettings
     @Default(.generalSettings) private var generalSettings
     
     var mode: NotchNook.NotchMode {
@@ -140,6 +141,10 @@ struct NotchView: View, DropDelegate {
                 }
             }
         })
+        .contextMenu {
+            Button("Open Settings") { openSettings(nil) }
+            Button("Quit NotchNook") { NSApp.terminate(nil) }
+        }
         .onAppear {
             let olsShorts = Defaults[.shortcutsWidgetSettings].shortcutsToDisplay
             let newShorts = olsShorts.filter { ShortcutsManager.shared.shortcuts.contains($0) }
