@@ -76,6 +76,17 @@
 		EC47FC872C0AC05D00591811 /* LicenseStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC862C0AC05D00591811 /* LicenseStateView.swift */; };
 		EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC882C0AC63E00591811 /* TimeCounter.swift */; };
 		EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */; };
+		EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EC47FC8D2C0B801A00591811 /* Lottie */; };
+		EC47FC912C0B806800591811 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC902C0B806800591811 /* IntroView.swift */; };
+		EC47FC932C0B810800591811 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC922C0B810800591811 /* Lottie.swift */; };
+		EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */ = {isa = PBXBuildFile; fileRef = EC47FC9E2C0B8A4200591811 /* hello.lottie */; };
+		EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCA12C0B98E100591811 /* ActionButton.swift */; };
+		EC47FCA42C0BA15700591811 /* resetDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCA32C0BA15700591811 /* resetDefaults.swift */; };
+		EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCA62C0BA64A00591811 /* HelloView.swift */; };
+		EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCA82C0BA6BB00591811 /* TutorialView.swift */; };
+		EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */ = {isa = PBXBuildFile; fileRef = EC47FCAF2C0BADD500591811 /* drag.lottie */; };
+		EC47FCB32C0BAE8000591811 /* click.lottie in Resources */ = {isa = PBXBuildFile; fileRef = EC47FCB22C0BAE7700591811 /* click.lottie */; };
+		EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCB42C0BB2C000591811 /* StartButton.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
 		EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
@@ -227,6 +238,16 @@
 		EC47FC862C0AC05D00591811 /* LicenseStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseStateView.swift; sourceTree = "<group>"; };
 		EC47FC882C0AC63E00591811 /* TimeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCounter.swift; sourceTree = "<group>"; };
 		EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isTrialOver.swift; sourceTree = "<group>"; };
+		EC47FC902C0B806800591811 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		EC47FC922C0B810800591811 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
+		EC47FC9E2C0B8A4200591811 /* hello.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = hello.lottie; sourceTree = "<group>"; };
+		EC47FCA12C0B98E100591811 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		EC47FCA32C0BA15700591811 /* resetDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetDefaults.swift; sourceTree = "<group>"; };
+		EC47FCA62C0BA64A00591811 /* HelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloView.swift; sourceTree = "<group>"; };
+		EC47FCA82C0BA6BB00591811 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		EC47FCAF2C0BADD500591811 /* drag.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = drag.lottie; sourceTree = "<group>"; };
+		EC47FCB22C0BAE7700591811 /* click.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.lottie; sourceTree = "<group>"; };
+		EC47FCB42C0BB2C000591811 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
@@ -318,6 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
@@ -517,6 +539,27 @@
 			path = singletons;
 			sourceTree = "<group>";
 		};
+		EC47FC942C0B824500591811 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				EC47FCB22C0BAE7700591811 /* click.lottie */,
+				EC47FCAF2C0BADD500591811 /* drag.lottie */,
+				EC47FC9E2C0B8A4200591811 /* hello.lottie */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		EC47FCA52C0BA33900591811 /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				EC47FCB42C0BB2C000591811 /* StartButton.swift */,
+				EC47FC902C0B806800591811 /* IntroView.swift */,
+				EC47FCA62C0BA64A00591811 /* HelloView.swift */,
+				EC47FCA82C0BA6BB00591811 /* TutorialView.swift */,
+			);
+			path = intro;
+			sourceTree = "<group>";
+		};
 		EC758F5F2BF2F18700B873B0 = {
 			isa = PBXGroup;
 			children = (
@@ -536,7 +579,7 @@
 		EC758F6A2BF2F18700B873B0 /* NotchNook */ = {
 			isa = PBXGroup;
 			children = (
-				EC47FC802C0AA67100591811 /* Info.plist */,
+				EC47FC942C0B824500591811 /* assets */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
 				EC758F8F2BF2F1A400B873B0 /* extensions */,
@@ -545,10 +588,11 @@
 				EC758F892BF2F1A400B873B0 /* utils */,
 				EC4173D52C02518F002889E7 /* views */,
 				EC758FA02BF2F1B900B873B0 /* ContentView.swift */,
-				EC758F6F2BF2F18900B873B0 /* Assets.xcassets */,
-				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
 				EC758FA22BF2F1C500B873B0 /* main.swift */,
 				EC758FA42BF2F20100B873B0 /* AppDelegate.swift */,
+				EC758F6F2BF2F18900B873B0 /* Assets.xcassets */,
+				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
+				EC47FC802C0AA67100591811 /* Info.plist */,
 			);
 			path = NotchNook;
 			sourceTree = "<group>";
@@ -556,6 +600,7 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				EC47FCA52C0BA33900591811 /* intro */,
 				EC8D600D2BFC127600E67ECC /* buttonStyles */,
 				EC8D5FF32BFAE75400E67ECC /* notch */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */,
@@ -574,6 +619,7 @@
 				ECF429262C07B0FB0086B07A /* SliderPlus.swift */,
 				EC47FC862C0AC05D00591811 /* LicenseStateView.swift */,
 				EC47FC882C0AC63E00591811 /* TimeCounter.swift */,
+				EC47FC922C0B810800591811 /* Lottie.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -595,6 +641,7 @@
 				EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */,
 				EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */,
 				EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */,
+				EC47FCA32C0BA15700591811 /* resetDefaults.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -785,6 +832,7 @@
 			children = (
 				EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */,
 				EC81E2662C069F3800790517 /* NoBtnStyle.swift */,
+				EC47FCA12C0B98E100591811 /* ActionButton.swift */,
 			);
 			path = buttonStyles;
 			sourceTree = "<group>";
@@ -857,6 +905,7 @@
 				EC4173D12C025136002889E7 /* Settings */,
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
+				EC47FC8D2C0B801A00591811 /* Lottie */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -892,6 +941,7 @@
 				EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */,
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -907,6 +957,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
+				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
+				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -924,6 +977,7 @@
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
+				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
@@ -938,6 +992,7 @@
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
+				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
@@ -974,11 +1029,13 @@
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
 				EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */,
+				EC47FC912C0B806800591811 /* IntroView.swift in Sources */,
 				EC14B5CF2C07AB17000FC6B6 /* ShelfSettingsView.swift in Sources */,
 				EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */,
 				ECC22A3D2C0818C10000139C /* move.swift in Sources */,
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
+				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
 				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
@@ -1015,12 +1072,14 @@
 				EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
+				EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
 				EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */,
 				EC2DD1F02C03DB15001FD54E /* ShelfFilesScrollView.swift in Sources */,
+				EC47FCA42C0BA15700591811 /* resetDefaults.swift in Sources */,
 				EC4173D42C02515A002889E7 /* Settings.swift in Sources */,
 				EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
@@ -1059,6 +1118,7 @@
 				EC8D60062BFAE91800E67ECC /* ShelfIconView.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
 				EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */,
+				EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */,
 				EC758F842BF2F19B00B873B0 /* ShelfView.swift in Sources */,
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,
 				EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */,
@@ -1321,6 +1381,14 @@
 				minimumVersion = 2.6.2;
 			};
 		};
+		EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1343,6 +1411,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		EC47FC8D2C0B801A00591811 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -19,6 +19,7 @@ struct TopBarView: View {
     @Environment(\.screenID) private var screenID
     @Environment(\.trialOver) private var trialOver
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
+    @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.nookSettings) private var nookSettings
     @Default(.shelfSettings) private var shelfSettings
@@ -26,17 +27,20 @@ struct TopBarView: View {
         let height = notchHeight > ((TopBarView.height / 3) * 2) ? notchHeight : TopBarView.height
         let mode = NotchNook.shared.mode[screenID]!
         let la = NotchNook.shared.activeLiveActivities
+        let allowedLAs = liveActivitiesSettings.enabledLiveActivities
+        let hasMediaLA = la.contains(.media) && allowedLAs.contains(.media)
+        let hasShelfLA = la.contains(.shelf) && allowedLAs.contains(.shelf)
         HStack(spacing: 0) {
             
             if !hide && !trialOver {
                 Group {
                     switch mode {
                     case .closed:
-                        if !la.isEmpty {
+                        if !la.isEmpty && (hasMediaLA || hasShelfLA) {
                             HStack {
-                                if la.contains(.media) {
+                                if hasMediaLA {
                                     MiniAlbumCoverView(prefs: mediaLiveActivitySettings)
-                                } else if la.contains(.shelf) {
+                                } else if hasShelfLA {
                                     ShelfIconView()
                                 }
                             }
@@ -60,11 +64,11 @@ struct TopBarView: View {
                 Group {
                     switch mode {
                     case .closed:
-                        if !la.isEmpty {
+                        if !la.isEmpty && (hasMediaLA || hasShelfLA) {
                             HStack {
-                                if la.contains(.shelf) {
+                                if hasShelfLA {
                                     ShelfFilesCountView()
-                                } else if la.contains(.media) {
+                                } else if hasMediaLA {
                                     AudioWavesView(prefs: mediaLiveActivitySettings)
                                 }
                             }
@@ -83,7 +87,7 @@ struct TopBarView: View {
         }
         .background {
             HStack(spacing: 0) {
-                let showArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3)
+                let showArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
                 Group {
                     switch mode {
                     case .closed:

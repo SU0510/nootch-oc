@@ -11,6 +11,13 @@ import AppKit
 import Cocoa
 
 extension NSColor {
+    var rgb: (CGFloat, CGFloat, CGFloat) {
+        let red = self.redComponent
+        let green = self.greenComponent
+        let blue = self.blueComponent
+        return (red, green, blue)
+    }
+    
     func lighter(by factor: CGFloat = 0.2) -> NSColor? {
         guard let rgbColor = self.usingColorSpace(.deviceRGB) else {
             return nil

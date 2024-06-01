@@ -22,8 +22,8 @@ struct AudioSpectrograph: View {
     let barsThickness: CGFloat = 2
     //    @State private var phases = (1...100).map { _ in (1...3).map { _ in CGFloat.random(in: 5...15) } }
     var body: some View {
-        let volumeInterpolate = interpolatorBuilder([0, 1], value: volume)
-        let volumeModifier = (volume * max(1, volumeInterpolate([2, 1], false)))
+        let volumeInterpolate = interpolatorBuilder([0.01, 1], value: volume)
+        let volumeModifier = volume == 0 ? 0 : volumeInterpolate([0.25, 1], false)
         VStack {
             TimelineView(.animation(minimumInterval: 0.25)) { context in
                 let heights = (1...3).map { _ in CGFloat.random(in: 5...15) }

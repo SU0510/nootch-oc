@@ -29,8 +29,6 @@ struct GeneralSettingsView: View {
             }
             
             Section("Handler for non-notched screens") {
-                Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
-                Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 CustomLabeled(title: "Width", icon: "arrow.left.and.right") {
                     SliderPlus(value: $generalSettings.handleSize.width, range: 30...250, step: 16)
                 }
@@ -49,15 +47,23 @@ struct GeneralSettingsView: View {
             
             Section("Trackpad swiping") {
                 Toggle("Allow gestures when hovering the notch", systemImage: "hand.draw", isOn: $gestureControlSettings.allowGestures)
-                if gestureControlSettings.allowGestures {
-                    Toggle(
-                        "Open/close notch with vertical gestures", systemImage: "lightswitch.on",
-                        isOn: $gestureControlSettings.controlOpenState
-                    )
-                    Toggle(
-                        "Control media with horizontal gestures", systemImage: "music.note",
-                        isOn: $gestureControlSettings.controlMedia
-                    )
+                
+                Toggle(
+                    "Open/close notch with vertical gestures", systemImage: "lightswitch.on",
+                    isOn: $gestureControlSettings.controlOpenState
+                )
+                .disabled(!gestureControlSettings.allowGestures)
+                
+                Toggle(
+                    "Control media with horizontal gestures", systemImage: "music.note",
+                    isOn: $gestureControlSettings.controlMedia
+                )
+                .disabled(!gestureControlSettings.allowGestures)
+            }
+            
+            Section {
+                CustomLabeled(title: "Reset all settings", description: "This will reset everything except your license.") {
+                    Button("Reset") { resetDefaults() }
                 }
             }
         }

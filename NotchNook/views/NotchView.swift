@@ -28,13 +28,16 @@ struct NotchView: View, DropDelegate {
     @State private var hideTimer: Timer?
     @State private var panGestureCounter = 0
     @State private var trialOver = false
+    @State private var showIntro = false
     @Namespace private var ns
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenSize) private var screenSize
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
+    @Default(.intro) private var intro
     @Default(.license) private var license
     @Default(.generalSettings) private var generalSettings
+    @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.trialInitialTime) private var trialInitialTime
     
     var mode: NotchNook.NotchMode {
@@ -102,29 +105,34 @@ struct NotchView: View, DropDelegate {
         
         VStack(alignment: .center, spacing: 8) {
             
-            if license != nil || !trialOver {
-                TopBarView(
-                    panGestureCounter: panGestureCounter, 
-                    scale: actualScale, 
-                    panPadding: panPadding, 
-                    hide: hide
-                )
-            }
-            
-            Group {
-                if license == nil && (trialInitialTime == nil || trialOver) && mode != .closed {
-                    LicenseStateView()
-                } else {
-                    switch mode {
-                    case .closed: EmptyView()
-                    case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
-                    case .nook: NookView()
-                    case .shelf: ShelfView(hovered: false, full: true)
+            if intro && showIntro {
+                IntroView()
+            } else if !intro {
+                
+                if license != nil || !trialOver {
+                    TopBarView(
+                        panGestureCounter: panGestureCounter,
+                        scale: actualScale,
+                        panPadding: panPadding,
+                        hide: hide
+                    )
+                }
+                
+                Group {
+                    if license == nil && (trialInitialTime == nil || trialOver) && mode != .closed {
+                        LicenseStateView()
+                    } else {
+                        switch mode {
+                        case .closed: EmptyView()
+                        case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                        case .nook: NookView()
+                        case .shelf: ShelfView(hovered: false, full: true)
+                        }
                     }
                 }
+                .scaleEffect(actualScale, anchor: .top)
+                .transition(NotchView.defaultTransition)
             }
-            .scaleEffect(actualScale, anchor: .top)
-            .transition(NotchView.defaultTransition)
         }
         .compositingGroup()
         .blur(radius: scaleDown * 100)
@@ -135,7 +143,7 @@ struct NotchView: View, DropDelegate {
             minHeight: notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
         )
         .padding(mode == .closed ? panPadding : .zero)
-        .padding([.leading, .bottom, .trailing], mode == .closed ? hovering ? pressing ? 4 : 8 : 0 : 12)
+        .padding([.leading, .bottom, .trailing], mode == .closed && !showIntro ? hovering ? pressing ? 4 : 8 : 0 : 12)
         .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(
@@ -155,7 +163,9 @@ struct NotchView: View, DropDelegate {
         .background(alignment: .top) { shapeView() }
         .contentShape(NotchShape(notchHeight: notchHeight))
         .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
-        .onTapGesture { if mode == .closed { openNotch() } }
+        .animation(.smooth(extraBounce: 0.15), value: [liveActivitiesSettings])
+        .animation(.smooth(extraBounce: 0.15), value: intro)
+        .onTapGesture { if mode == .closed && !showIntro { openNotch() } }
         .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: { pressing in
             if hovering {
                 withAnimation(.bouncy(extraBounce: 0.15)) {
@@ -163,15 +173,6 @@ struct NotchView: View, DropDelegate {
                 }
             }
         })
-        .contextMenu {
-            Button("Open Settings") { openSettings(nil) }
-            Button("Quit NotchNook") { NSApp.terminate(nil) }
-        }
-        .onAppear {
-            let olsShorts = Defaults[.shortcutsWidgetSettings].shortcutsToDisplay
-            let newShorts = olsShorts.filter { ShortcutsManager.shared.shortcuts.contains($0) }
-            Defaults[.shortcutsWidgetSettings].shortcutsToDisplay = newShorts
-        }
         .onDrop(of: [.fileURL], delegate: self)
         .onHover { hovering in
             if license == nil || trialOver { checkTrialOver() }
@@ -190,10 +191,26 @@ struct NotchView: View, DropDelegate {
                 closeNotch(unhover: true)
             }
         }
+        .contextMenu {
+            Button("Open Settings") { openSettings(nil) }
+            Button("Quit NotchNook") { NSApp.terminate(nil) }
+        }
+        .onAppear {
+            let oldShorts = Defaults[.shortcutsWidgetSettings].shortcutsToDisplay
+            let newShorts = oldShorts.filter { ShortcutsManager.shared.shortcuts.contains($0) }
+            Defaults[.shortcutsWidgetSettings].shortcutsToDisplay = newShorts
+        }
         .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
         .onChange(of: hoveredDropTargetID) { oldValue, newValue in
             if oldValue != newValue && newValue != nil {
                 vibrate()
+            }
+        }
+        .onChange(of: intro, initial: true) { _, new in
+            doThisAfter(0.3) {
+                withAnimation(.bouncy(extraBounce: 0.15)) {
+                    showIntro = new
+                }
             }
         }
         .onChangeDebounced(of: panRawPadding, delay: 0.05) { _ in
