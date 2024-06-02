@@ -178,6 +178,7 @@
 		ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6A6D2C070355000D9D27 /* measure.swift */; };
 		ECB9D6A72C0CCBC0009C8CE4 /* GesturesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */; };
 		ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */; };
+		ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6AA2C0CDA5E009C8CE4 /* validateEmail.swift */; };
 		ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3A2C07F3320000139C /* resetToDefault.swift */; };
 		ECC22A3D2C0818C10000139C /* move.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3C2C0818C10000139C /* move.swift */; };
 		ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF429262C07B0FB0086B07A /* SliderPlus.swift */; };
@@ -353,6 +354,7 @@
 		ECAC6A6D2C070355000D9D27 /* measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = measure.swift; sourceTree = "<group>"; };
 		ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesSettingsView.swift; sourceTree = "<group>"; };
 		ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInnerTab.swift; sourceTree = "<group>"; };
+		ECB9D6AA2C0CDA5E009C8CE4 /* validateEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = validateEmail.swift; sourceTree = "<group>"; };
 		ECC22A3A2C07F3320000139C /* resetToDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetToDefault.swift; sourceTree = "<group>"; };
 		ECC22A3C2C0818C10000139C /* move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = move.swift; sourceTree = "<group>"; };
 		ECF429262C07B0FB0086B07A /* SliderPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPlus.swift; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 				EC47FCA32C0BA15700591811 /* resetDefaults.swift */,
 				EC47FCBA2C0BDCB500591811 /* getAppVersion.swift */,
 				EC47FCC22C0BF4B900591811 /* rowlify.swift */,
+				ECB9D6AA2C0CDA5E009C8CE4 /* validateEmail.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 			files = (
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
+				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
@@ -1340,7 +1344,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -1361,7 +1365,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1380,7 +1384,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -1401,7 +1405,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

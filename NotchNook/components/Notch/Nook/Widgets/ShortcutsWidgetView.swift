@@ -23,16 +23,18 @@ struct ShortcutsWidgetView: View {
             if shortcuts.isEmpty {
                 VStack {
                     Image(systemName: "sparkles").font(.system(size: 24))
+                        .opacity(0.5)
                     Text("Choose your shortcuts in settings.")
                         .multilineTextAlignment(.center)
+                        .opacity(0.5)
                     Button("Choose Shortcuts") {
                         SettingsInnerPath.shared.tabIndex = 1
                         doThisAfter(0) { openSettings(.nook) }
                     }
                 }
-                .opacity(0.5)
                 .padding(.horizontal, padding)
                 .frame(maxWidth: .infinity)
+                .scaleEffect(1)
             } else {
                 ShortcutsRowView(
                     shortcuts: Array(shortcuts.prefix(howManyFits)),

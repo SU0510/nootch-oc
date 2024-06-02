@@ -18,6 +18,7 @@ struct LicenseSettingsView: View {
     @State private var error: LicenseManager.CheckLicenseResult? = nil
     @Default(.license) private var license
     @Default(.trialInitialTime) private var trialInitialTime
+    @Environment(\.openURL) private var openURL
     @Environment(\.trialOver) private var trialOver
     var body: some View {
         Form {
@@ -71,13 +72,28 @@ struct LicenseSettingsView: View {
                 }
                 .disabled(license != nil)
                 
-                Button(license == nil ? "Register" : "Unregister") {
-                    if license != nil { license = nil; return }
-                    loading = true
-                    let newLicense = License(email: email, key: key, type: keyType)
-                    Task {
-                        if let result = await LicenseManager.shared.checkLicense(newLicense), result != .valid {
-                            error = result
+                HStack {
+                    if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
+                    
+                    Button(license == nil ? "Register" : "Unregister") {
+                        if license != nil { license = nil; return }
+                        if !validateEmail(email) || key.isEmpty { return }
+                        loading = true
+                        let newLicense = License(email: email, key: key, type: keyType)
+                        Task {
+                            if let result = await LicenseManager.shared.checkLicense(newLicense), result != .valid {
+                                error = result
+                            }
+                            loading = false
+                        }
+                    }
+                    .disabled(loading)
+                    
+                    if license != nil {
+                        Button(license == nil ? "Register" : "Manage Billing") {
+                            if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
+                                openURL(url)
+                            }
                         }
                     }
                 }
