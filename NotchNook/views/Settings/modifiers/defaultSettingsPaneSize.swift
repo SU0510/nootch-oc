@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-    extension View {
-        func defaultSettingsProps(height: CGFloat? = nil) -> some View {
-            self
-                .frame(width: 600, height: height, alignment: .topLeading)
-//                .frame(width: 600, height: 625)
-                .fixedSize()
-                .onAppear {
-                     DispatchQueue.main.async {
-                          NSApp.keyWindow?.makeFirstResponder(nil)
-                     }
-                 }
-        }
+extension View {
+    func defaultSettingsProps(height: CGFloat? = nil) -> some View {
+        self
+            .frame(width: 600, height: height, alignment: .topLeading)
+        //                .frame(width: 600, height: 625)
+            .fixedSize()
+            .onAppear {
+                DispatchQueue.main.async {
+                    NSApp.keyWindow?.makeFirstResponder(nil)
+                }
+            }
     }
+}
