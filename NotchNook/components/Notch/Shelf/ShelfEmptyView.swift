@@ -16,7 +16,7 @@ struct ShelfEmptyView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
-            Text("Tray").fontWeight(.medium)
+            Text(LiveActivity.shelf.name).fontWeight(.medium)
         }
         .multilineTextAlignment(centered ? .center : .leading)
         .foregroundStyle(hovered ? Color.blue : .white)
