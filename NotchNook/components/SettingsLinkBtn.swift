@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsLinkBtn<C: View>: View {
     var url: URL?
+    var inline = true
     @ViewBuilder var content: () -> C
     @Environment(\.openURL) private var openURL
     @State private var hovering = false
@@ -19,8 +20,8 @@ struct SettingsLinkBtn<C: View>: View {
             HStack {
                 content()
             }
-            .padding(8)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(EdgeInsets(top: 10, leading: inline ? 16 : 10, bottom: 10, trailing: inline ? 16 : 10))
+            .frame(maxWidth: !inline ? .infinity : nil, alignment: .leading)
             .background(.secondary.opacity(hovering ? 0.15 : 0.1), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
             .onHover { hovering = $0 }
         }

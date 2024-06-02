@@ -36,6 +36,7 @@ struct BlinkingLogoView: View {
             .frame(width: 529, height: 337)
         }
         .frame(width: 356, height: 84)
+        .contentShape(Rectangle())
         .onAppear {
             setRandomizeTimeout()
         }
