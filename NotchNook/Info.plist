@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>SUPublicEDKey</key>
+	<string>3DhmF9fTgJEvwxALa0MoAMflZtjyhtSaVg/UAB0Q2PA=</string>
+	<key>SUFeedURL</key>
+	<string>https://lo.cafe/notchnook-files/appcast.xml</string>
+</dict>
 </plist>

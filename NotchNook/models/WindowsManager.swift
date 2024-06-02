@@ -9,58 +9,67 @@ import Foundation
 import AppKit
 import Settings
 import SwiftUI
+import Sparkle
 
 class WindowsManager {
     var displayKits = [DisplayKit]()
-    private lazy var settingsWindowController = SettingsWindowController(
-        panes: [
-            Settings.Pane(
-                identifier: .general,
-                title: "General",
-                toolbarIcon: NSImage(icon: "gearshape.fill")
-            ) {
-                GeneralSettingsView()
-            },
-            Settings.Pane(
-                identifier: .liveActivities,
-                title: "Live Activities",
-                toolbarIcon: NSImage(icon: "clock.badge.fill")
-            ) {
-                LiveActivitiesSettingsView()
-            },
-            Settings.Pane(
-                identifier: .nook,
-                title: "Nook",
-                toolbarIcon: NSImage(icon: "lamp.desk.fill")
-            ) {
-                NookSettingsView()
-            },
-            Settings.Pane(
-                identifier: .shelf,
-                title: "Shelf",
-                toolbarIcon: NSImage(icon: "rectangle.dashed")
-            ) {
-                ShelfSettingsView()
-            },
-            Settings.Pane(
-                identifier: .dropArea,
-                title: "Drop Area",
-                toolbarIcon: NSImage(icon: "cursorarrow.and.square.on.square.dashed")
-            ) {
-                DropAreaSettingsView()
-            },
-            Settings.Pane(
-                identifier: .license,
-                title: "License",
-                toolbarIcon: NSImage(icon: "key.horizontal.fill")
-            ) {
-                LicenseSettingsView()
-            }
-        ],
-        animated: true
-    )
+    private var settingsWindowController: SettingsWindowController
     
-    init() {
+    init(updater: SPUUpdater) {
+        settingsWindowController = SettingsWindowController(
+            panes: [
+                Settings.Pane(
+                    identifier: .general,
+                    title: "General",
+                    toolbarIcon: NSImage(icon: "gearshape.fill")
+                ) {
+                    GeneralSettingsView()
+                },
+                Settings.Pane(
+                    identifier: .liveActivities,
+                    title: "Live Activities",
+                    toolbarIcon: NSImage(icon: "clock.badge.fill")
+                ) {
+                    LiveActivitiesSettingsView()
+                },
+                Settings.Pane(
+                    identifier: .nook,
+                    title: "Nook",
+                    toolbarIcon: NSImage(icon: "lamp.desk.fill")
+                ) {
+                    NookSettingsView()
+                },
+                Settings.Pane(
+                    identifier: .shelf,
+                    title: "Shelf",
+                    toolbarIcon: NSImage(icon: "rectangle.dashed")
+                ) {
+                    ShelfSettingsView()
+                },
+                Settings.Pane(
+                    identifier: .dropArea,
+                    title: "Drop Area",
+                    toolbarIcon: NSImage(icon: "cursorarrow.and.square.on.square.dashed")
+                ) {
+                    DropAreaSettingsView()
+                },
+                Settings.Pane(
+                    identifier: .license,
+                    title: "License",
+                    toolbarIcon: NSImage(icon: "key.horizontal.fill")
+                ) {
+                    LicenseSettingsView()
+                },
+                Settings.Pane(
+                    identifier: .about,
+                    title: "About",
+                    toolbarIcon: NSImage(icon: "ellipsis.circle.fill")
+                ) {
+                    AboutSettingsView(updater: updater)
+                }
+            ],
+            animated: true
+        )
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
         updateWindows()

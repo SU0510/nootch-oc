@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "lo.cafe-logo-o-off.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

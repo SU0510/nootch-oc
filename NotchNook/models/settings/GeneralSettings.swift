@@ -16,4 +16,5 @@ struct GeneralSettings: Preferences {
     var controlOpenState = true
     var transparentHandle = false
     var disableHaptics = false
+    var modernSettings = false
 }

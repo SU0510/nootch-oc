@@ -7,12 +7,18 @@
 
 import Foundation
 import SwiftUI
+import Sparkle
 import AppKit
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
     var windowsManager: WindowsManager?
     var nsMenu: NSMenu?
+    let updaterController: SPUStandardUpdaterController
+    
+    override init() {
+        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+    }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Initialize all singletons
@@ -23,7 +29,7 @@ import AppKit
 
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
-        windowsManager = WindowsManager()
+        windowsManager = WindowsManager(updater: updaterController.updater)
     }
     
     func setupMenu() {

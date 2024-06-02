@@ -73,7 +73,7 @@ struct ShortcutsRowView: View {
                         .frame(width: btnWidth)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
 //        .background(.red.opacity(0.25))
     }
 }

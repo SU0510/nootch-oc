@@ -87,6 +87,14 @@
 		EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */ = {isa = PBXBuildFile; fileRef = EC47FCAF2C0BADD500591811 /* drag.lottie */; };
 		EC47FCB32C0BAE8000591811 /* click.lottie in Resources */ = {isa = PBXBuildFile; fileRef = EC47FCB22C0BAE7700591811 /* click.lottie */; };
 		EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCB42C0BB2C000591811 /* StartButton.swift */; };
+		EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCB62C0BC79900591811 /* AboutSettingsView.swift */; };
+		EC47FCB92C0BD5A000591811 /* BlinkingLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCB82C0BD5A000591811 /* BlinkingLogoView.swift */; };
+		EC47FCBB2C0BDCB500591811 /* getAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCBA2C0BDCB500591811 /* getAppVersion.swift */; };
+		EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCBC2C0BF18E00591811 /* BrightnessDownOnClick.swift */; };
+		EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */; };
+		EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */; };
+		EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC22C0BF4B900591811 /* rowlify.swift */; };
+		EC47FCC52C0BF61900591811 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
 		EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7A2BF2F19B00B873B0 /* DropAreaTargetView.swift */; };
 		EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */; };
@@ -248,6 +256,14 @@
 		EC47FCAF2C0BADD500591811 /* drag.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = drag.lottie; sourceTree = "<group>"; };
 		EC47FCB22C0BAE7700591811 /* click.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.lottie; sourceTree = "<group>"; };
 		EC47FCB42C0BB2C000591811 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
+		EC47FCB62C0BC79900591811 /* AboutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSettingsView.swift; sourceTree = "<group>"; };
+		EC47FCB82C0BD5A000591811 /* BlinkingLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkingLogoView.swift; sourceTree = "<group>"; };
+		EC47FCBA2C0BDCB500591811 /* getAppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getAppVersion.swift; sourceTree = "<group>"; };
+		EC47FCBC2C0BF18E00591811 /* BrightnessDownOnClick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessDownOnClick.swift; sourceTree = "<group>"; };
+		EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLinkBtn.swift; sourceTree = "<group>"; };
+		EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRecommendation.swift; sourceTree = "<group>"; };
+		EC47FCC22C0BF4B900591811 /* rowlify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rowlify.swift; sourceTree = "<group>"; };
+		EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesViewModel.swift; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC758F6F2BF2F18900B873B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC758F742BF2F18900B873B0 /* NotchNook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotchNook.entitlements; sourceTree = "<group>"; };
@@ -409,6 +425,7 @@
 				EC14B5CE2C07AB17000FC6B6 /* ShelfSettingsView.swift */,
 				EC14B5D02C07AB2A000FC6B6 /* DropAreaSettingsView.swift */,
 				EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */,
+				EC47FCB62C0BC79900591811 /* AboutSettingsView.swift */,
 			);
 			path = panes;
 			sourceTree = "<group>";
@@ -620,6 +637,8 @@
 				EC47FC862C0AC05D00591811 /* LicenseStateView.swift */,
 				EC47FC882C0AC63E00591811 /* TimeCounter.swift */,
 				EC47FC922C0B810800591811 /* Lottie.swift */,
+				EC47FCB82C0BD5A000591811 /* BlinkingLogoView.swift */,
+				EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -642,6 +661,8 @@
 				EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */,
 				EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */,
 				EC47FCA32C0BA15700591811 /* resetDefaults.swift */,
+				EC47FCBA2C0BDCB500591811 /* getAppVersion.swift */,
+				EC47FCC22C0BF4B900591811 /* rowlify.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -705,6 +726,8 @@
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 				EC0E31022C0548A10060B47E /* Grid.swift */,
+				EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */,
+				EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -833,6 +856,7 @@
 				EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */,
 				EC81E2662C069F3800790517 /* NoBtnStyle.swift */,
 				EC47FCA12C0B98E100591811 /* ActionButton.swift */,
+				EC47FCBC2C0BF18E00591811 /* BrightnessDownOnClick.swift */,
 			);
 			path = buttonStyles;
 			sourceTree = "<group>";
@@ -991,7 +1015,9 @@
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
+				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
+				EC47FCC52C0BF61900591811 /* CheckForUpdatesViewModel.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* ShelfFileDragPreviewView.swift in Sources */,
@@ -1006,6 +1032,7 @@
 				EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */,
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
+				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
@@ -1021,6 +1048,7 @@
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */,
+				EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
 				EC0E30DA2C041BF30060B47E /* NookGeneralSettingsTabView.swift in Sources */,
 				EC47FC872C0AC05D00591811 /* LicenseStateView.swift in Sources */,
@@ -1049,6 +1077,7 @@
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
+				EC47FCB92C0BD5A000591811 /* BlinkingLogoView.swift in Sources */,
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
@@ -1067,6 +1096,7 @@
 				EC0E31032C0548A10060B47E /* Grid.swift in Sources */,
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
+				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
 				EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */,
@@ -1093,6 +1123,7 @@
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
+				EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */,
 				EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */,
 				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
 				BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */,
@@ -1122,6 +1153,7 @@
 				EC758F842BF2F19B00B873B0 /* ShelfView.swift in Sources */,
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,
 				EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */,
+				EC47FCBB2C0BDCB500591811 /* getAppVersion.swift in Sources */,
 				EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */,
 				EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */,
 			);
@@ -1269,6 +1301,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotchNook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Used to control Spotify and Apple Music.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
@@ -1307,6 +1340,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotchNook/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Used to control Spotify and Apple Music.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
