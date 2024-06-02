@@ -103,22 +103,6 @@ struct GeneralSettingsView: View {
                     .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
                 }
                 
-                Section("Trackpad swiping") {
-                    Toggle("Allow gestures when hovering the notch", systemImage: "hand.draw", isOn: $gestureControlSettings.allowGestures)
-                    
-                    Toggle(
-                        "Open/close notch with vertical gestures", systemImage: "lightswitch.on",
-                        isOn: $gestureControlSettings.controlOpenState
-                    )
-                    .disabled(!gestureControlSettings.allowGestures)
-                    
-                    Toggle(
-                        "Control media with horizontal gestures", systemImage: "music.note",
-                        isOn: $gestureControlSettings.controlMedia
-                    )
-                    .disabled(!gestureControlSettings.allowGestures)
-                }
-                
                 Section {
                     CustomLabeled(title: "Reset all settings", description: "This will reset everything except your license.") {
                         Button("Reset") { resetDefaults() }

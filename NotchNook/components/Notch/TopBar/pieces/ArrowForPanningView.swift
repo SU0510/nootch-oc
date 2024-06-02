@@ -10,13 +10,15 @@ import SwiftUI
 struct ArrowForPanningView: View {
     var x: CGFloat
     var right: Bool
+    var inverted = false
     var counter: Int
     @State private var activated = false
 
     var body: some View {
+        let actionRight = inverted ? !right : right
         let maxPanDrag = NotchView.maxHPanDrag
         let interpolator = interpolatorBuilder([0, maxPanDrag], value: abs(x))
-        Image(systemName: !right ? "backward.end.fill" : "forward.end.fill")
+        Image(systemName: !actionRight ? "backward.end.fill" : "forward.end.fill")
             .padding(.top, 10)
             .font(.system(size: 12))
             .opacity(activated ? 0.75 : min(0.25, interpolator([0, 1], false)))
@@ -32,7 +34,7 @@ struct ArrowForPanningView: View {
                         activated = true
                     } completion: {
                         activated = false
-                        if right {
+                        if actionRight {
                             MediaPlayer.shared.app?.nextTrack()
                         } else {
                             MediaPlayer.shared.app?.prevTrack()

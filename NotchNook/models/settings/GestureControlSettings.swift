@@ -11,4 +11,5 @@ struct GestureControlSettings: Preferences {
     var allowGestures = true
     var controlMedia = true
     var controlOpenState = true
+    var invertMediaGestures = false
 }

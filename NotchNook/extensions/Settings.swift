@@ -9,6 +9,7 @@ import Settings
 
 extension Settings.PaneIdentifier {
     static let general = Self("general")
+    static let gestures = Self("gestures")
     static let nook = Self("nook")
     static let shelf = Self("shelf")
     static let dropArea = Self("dropArea")

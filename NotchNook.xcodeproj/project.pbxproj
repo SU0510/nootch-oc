@@ -176,6 +176,8 @@
 		EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60662C01697100E67ECC /* iconForApp.swift */; };
 		EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60682C016B5C00E67ECC /* openApp.swift */; };
 		ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6A6D2C070355000D9D27 /* measure.swift */; };
+		ECB9D6A72C0CCBC0009C8CE4 /* GesturesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */; };
+		ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */; };
 		ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3A2C07F3320000139C /* resetToDefault.swift */; };
 		ECC22A3D2C0818C10000139C /* move.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3C2C0818C10000139C /* move.swift */; };
 		ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF429262C07B0FB0086B07A /* SliderPlus.swift */; };
@@ -349,6 +351,8 @@
 		EC8D60662C01697100E67ECC /* iconForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconForApp.swift; sourceTree = "<group>"; };
 		EC8D60682C016B5C00E67ECC /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
 		ECAC6A6D2C070355000D9D27 /* measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = measure.swift; sourceTree = "<group>"; };
+		ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesSettingsView.swift; sourceTree = "<group>"; };
+		ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInnerTab.swift; sourceTree = "<group>"; };
 		ECC22A3A2C07F3320000139C /* resetToDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetToDefault.swift; sourceTree = "<group>"; };
 		ECC22A3C2C0818C10000139C /* move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = move.swift; sourceTree = "<group>"; };
 		ECF429262C07B0FB0086B07A /* SliderPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPlus.swift; sourceTree = "<group>"; };
@@ -424,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4173D92C025597002889E7 /* GeneralSettingsView.swift */,
+				ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */,
 				EC0E30DD2C041C450060B47E /* LiveActivitiesSettings */,
 				EC0E30CC2C0414510060B47E /* NookSettings */,
 				EC14B5CE2C07AB17000FC6B6 /* ShelfSettingsView.swift */,
@@ -556,6 +561,7 @@
 				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
 				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
 				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
+				ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -1100,6 +1106,7 @@
 				EC14B5CF2C07AB17000FC6B6 /* ShelfSettingsView.swift in Sources */,
 				EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */,
 				ECC22A3D2C0818C10000139C /* move.swift in Sources */,
+				ECB9D6A72C0CCBC0009C8CE4 /* GesturesSettingsView.swift in Sources */,
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
@@ -1176,6 +1183,7 @@
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
+				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
 				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,

@@ -93,7 +93,7 @@ struct TopBarView: View {
                     case .closed:
                         let la = NotchNook.shared.activeLiveActivities
                         if la.contains(.media) {
-                            ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, counter: panGestureCounter)
+                            ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
                                 .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .leading)
                         }
                     case .dragging, .nook, .shelf: EmptyView()
@@ -111,7 +111,7 @@ struct TopBarView: View {
                     switch mode {
                     case .closed:
                         if la.contains(.media) {
-                            ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, counter: panGestureCounter)
+                            ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
                                 .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .trailing)
                         }
                     case .nook, .shelf, .dragging: EmptyView()
