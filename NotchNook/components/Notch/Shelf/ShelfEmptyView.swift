@@ -12,11 +12,11 @@ struct ShelfEmptyView: View {
     var centered: Bool
     var body: some View {
         VStack(alignment: centered ? .center : .leading, spacing: 6) {
-            Image(systemName: "shippingbox.fill")
+            Image(systemName: LiveActivity.shelf.icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
-            Text("Box").fontWeight(.medium)
+            Text("Tray").fontWeight(.medium)
         }
         .multilineTextAlignment(centered ? .center : .leading)
         .foregroundStyle(hovered ? Color.blue : .white)

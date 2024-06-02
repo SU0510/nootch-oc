@@ -11,7 +11,7 @@ struct ShelfFilesCountView: View {
     var body: some View {
         HStack(spacing: 2) {
             Text("\(Shelf.shared.files.count)")
-            Image(systemName: NotchNook.shared.activeLiveActivities.count > 1 ? "shippingbox.fill" : "doc.fill")
+            Image(systemName: NotchNook.shared.activeLiveActivities.count > 1 ? LiveActivity.shelf.icon : "doc.fill")
                 .contentTransition(.symbolEffect)
         }
         .frame(maxWidth: .infinity)

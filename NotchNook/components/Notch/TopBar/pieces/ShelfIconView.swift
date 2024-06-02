@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShelfIconView: View {
     var body: some View {
-        Image(systemName: "shippingbox.fill")
+        Image(systemName: LiveActivity.shelf.icon)
             .font(.system(size: 13))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)

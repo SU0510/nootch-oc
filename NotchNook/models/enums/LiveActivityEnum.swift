@@ -24,7 +24,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     var icon: String {
         return switch self {
         case .media: "music.note"
-        case .shelf: "shippingbox.fill"
+        case .shelf: "tray.fill"
         case .calendar: "calendar"
         }
     }
@@ -32,7 +32,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     var name: String {
         return switch self {
         case .media: "Media"
-        case .shelf: "Files Box"
+        case .shelf: "Files Tray"
         case .calendar: "Calendar"
         }
     }
