@@ -18,6 +18,7 @@ struct TopBarView: View {
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenID) private var screenID
     @Environment(\.trialOver) private var trialOver
+    @Environment(\.screenSize) private var screenSize
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
@@ -104,7 +105,7 @@ struct TopBarView: View {
                 .transition(.scaleAndBlur(anchor: .trailing))
                 
                 Spacer()
-                    .frame(width: NotchShape.defaultNotchWidth).fixedSize(horizontal: true, vertical: false)
+                    .frame(width: NotchShape.getNotchWidthForScreenWidth(screenSize.width)).fixedSize(horizontal: true, vertical: false)
                     .transition(.identity)
                 
                 Group {

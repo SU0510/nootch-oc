@@ -139,7 +139,7 @@ struct NotchView: View, DropDelegate {
         .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
         .frame(
-            minWidth: notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.defaultNotchWidth,
+            minWidth: notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.getNotchWidthForScreenWidth(screenSize.width),
             minHeight: notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
         )
         .padding(mode == .closed ? panPadding : .zero)

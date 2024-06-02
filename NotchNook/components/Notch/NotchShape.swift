@@ -9,6 +9,10 @@ import SwiftUI
 
 struct NotchShape: Shape {
     static let defaultNotchWidth: CGFloat = 184
+    static let defaultScreenWidth: CGFloat = 1512
+    static func getNotchWidthForScreenWidth(_ screenW: CGFloat) -> CGFloat {
+        return (NotchShape.defaultNotchWidth * screenW) / NotchShape.defaultScreenWidth
+    }
     
     var notchHeight: CGFloat
     var minWidth: CGFloat = NotchShape.defaultNotchWidth
