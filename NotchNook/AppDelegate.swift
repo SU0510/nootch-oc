@@ -21,11 +21,12 @@ import AppKit
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Initialize all singletons
+        // Initialize (in memory ig) all singletons
         _ = ShortcutsManager.shared
         _ = MediaPlayer.shared
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
+        _ = LicenseManager.shared
 
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
