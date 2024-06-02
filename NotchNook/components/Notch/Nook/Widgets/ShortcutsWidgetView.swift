@@ -12,6 +12,7 @@ struct ShortcutsWidgetView: View {
     @Default(.nookSettings) private var nookSettings
     var prefs: ShortcutsWidgetSettings
     var arrayPosition: ArrayPosition
+    @Environment(\.openSettings) private var openSettings
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             let shortcuts = Array(prefs.shortcutsToDisplay)
@@ -24,6 +25,10 @@ struct ShortcutsWidgetView: View {
                     Image(systemName: "sparkles").font(.system(size: 24))
                     Text("Choose your shortcuts in settings.")
                         .multilineTextAlignment(.center)
+                    Button("Choose Shortcuts") {
+                        SettingsInnerPath.shared.tabIndex = 1
+                        doThisAfter(0) { openSettings(.nook) }
+                    }
                 }
                 .opacity(0.5)
                 .padding(.horizontal, padding)

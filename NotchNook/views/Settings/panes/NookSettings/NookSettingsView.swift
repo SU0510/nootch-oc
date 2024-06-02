@@ -9,18 +9,28 @@ import SwiftUI
 import Settings
 
 struct NookSettingsView: View {
+    @State private var selectedTab: Int = 0
+    
     var body: some View {
-            TabView {
-                NookGeneralSettingsTabView()
-                    .tabItem {
-                        Label("General", systemImage: "gear")
-                    }
-                WidgetsSettingsTabView()
-                    .tabItem {
-                        Label("Customize widgets", systemImage: "square.stack")
-                    }
+        TabView(selection: $selectedTab) {
+            NookGeneralSettingsTabView()
+                .tabItem {
+                    Label("General", systemImage: "gear")
+                }
+                .tag(0)
+            WidgetsSettingsTabView()
+                .tabItem {
+                    Label("Customize widgets", systemImage: "square.stack")
+                }
+                .tag(1)
+        }
+        .padding(12)
+        .onAppear {
+            if let tab = SettingsInnerPath.shared.tabIndex {
+                selectedTab = tab
+                SettingsInnerPath.shared.tabIndex = nil
             }
-            .padding(12)
-            .defaultSettingsProps(height: 625)
+        }
+        .defaultSettingsProps(height: 625)
     }
 }

@@ -10,27 +10,19 @@ import Defaults
 
 struct LiveActivitiesCustomizeSettingsTabView: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
-    @State private var selectedActivity: LiveActivity?
-    
-    func selectActivity(_ activity: LiveActivity) {
-        selectedActivity = activity
-    }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
+        MultipleSettingsPicker(
+            elements: LiveActivity.allCases,
+            activeElements: $liveActivitiesSettings.enabledLiveActivities
+        ) { selectedActivity in
             MockLiveAcitivitiesView(activities: selectedActivity == nil ? [] : [selectedActivity!])
                 .padding(.horizontal, 19)
-            
-            MultipleSettingsPicker(
-                elements: LiveActivity.allCases,
-                activeElements: $liveActivitiesSettings.enabledLiveActivities,
-                selectedElement: $selectedActivity
-            ) {
-                switch selectedActivity {
-                case .media: MediaLiveAcitivitySettingsView()
-                case .shelf: ShelfLiveActivitySettingsView()
-                case .none, .calendar: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+        } settings: { selectedElement in
+            switch selectedElement {
+            case .media: MediaLiveAcitivitySettingsView()
+            case .shelf: ShelfLiveActivitySettingsView()
+            case .none, .calendar: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
     }

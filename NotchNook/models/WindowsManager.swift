@@ -26,6 +26,13 @@ class WindowsManager {
                     GeneralSettingsView()
                 },
                 Settings.Pane(
+                    identifier: .gestures,
+                    title: "Gestures",
+                    toolbarIcon: NSImage(icon: "rectangle.and.hand.point.up.left.fill")
+                ) {
+                    GesturesSettingsView()
+                },
+                Settings.Pane(
                     identifier: .liveActivities,
                     title: "Live Activities",
                     toolbarIcon: NSImage(icon: "clock.badge.fill")
@@ -94,6 +101,7 @@ class WindowsManager {
         }
         displayKits = newDisplaysKits
     }
+    
     
     func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
         let id = UUID()

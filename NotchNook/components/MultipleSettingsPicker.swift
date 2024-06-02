@@ -7,33 +7,37 @@
 
 import SwiftUI
 
-struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View>: View {
+struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: View {
     var elements: [El]
     @Binding var activeElements: Set<El>
-    @Binding var selectedElement: El?
+    @State var selectedElement: El?
     var disableItem: ((El) -> Bool)?
-    @ViewBuilder var settings: () -> PrefsView
+    @ViewBuilder var preview: (_ selectedElement: El?) -> Preview
+    @ViewBuilder var settings: (_ selectedElement: El?) -> PrefsView
     
     init(
         elements: [El],
         activeElements: Binding<Set<El>>,
-        selectedElement: Binding<El?>,
         disableItem: ((El) -> Bool)? = nil,
-        @ViewBuilder settings: @escaping () -> PrefsView
+        @ViewBuilder preview: @escaping (_ selectedElement: El?) -> Preview,
+        @ViewBuilder settings: @escaping (_ selectedElement: El?) -> PrefsView
     ) {
         self.elements = elements
         self._activeElements = activeElements
-        self._selectedElement = selectedElement
+        if elements.count > 0 {
+            self._selectedElement = .init(initialValue: elements[0])
+        }
         self.disableItem = disableItem
+        self.preview = preview
         self.settings = settings
     }
     
     init(
         elements: [El],
         activeElements: Binding<[El]>,
-        selectedElement: Binding<El?>,
         disableItem: ((El) -> Bool)? = nil,
-        @ViewBuilder settings: @escaping () -> PrefsView
+        @ViewBuilder preview: @escaping (_ selectedElement: El?) -> Preview,
+        @ViewBuilder settings: @escaping (_ selectedElement: El?) -> PrefsView
     ) {
         self.elements = elements
         self._activeElements = .init(get: {
@@ -41,8 +45,11 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View>: View {
         }, set: { newSet in
             activeElements.wrappedValue = Array(newSet)
         })
-        self._selectedElement = selectedElement
+        if elements.count > 0 {
+            self._selectedElement = .init(initialValue: elements[0])
+        }
         self.disableItem = disableItem
+        self.preview = preview
         self.settings = settings
     }
     
@@ -51,34 +58,37 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View>: View {
     }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: 4) {
-                    ForEach(Array(elements.enumerated()), id: \.element) { i, element in
-                        MultipleSettingsPickerItemView(
-                            element: element,
-                            selected: selectedElement == element,
-                            select: selectElement,
-                            isOn: Binding.setMembership(of: element, in: $activeElements),
-                            disabled: disableItem?(element) ?? false
-                        )
-                        
-                        if i < (elements.count - 1) {
-                            VDivider(color: .primary.opacity(0.1))
+        VStack(alignment: .center, spacing: 16) {
+            preview(selectedElement)
+            VStack(alignment: .center, spacing: 0) {
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .center, spacing: 4) {
+                        ForEach(Array(elements.enumerated()), id: \.element) { i, element in
+                            MultipleSettingsPickerItemView(
+                                element: element,
+                                selected: selectedElement == element,
+                                select: selectElement,
+                                isOn: Binding.setMembership(of: element, in: $activeElements),
+                                disabled: disableItem?(element) ?? false
+                            )
+                            
+                            if i < (elements.count - 1) {
+                                VDivider(color: .primary.opacity(0.1))
+                            }
                         }
                     }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(6)
                 }
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(6)
+                .frame(maxWidth: .infinity, alignment: .top)
+                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .background(.secondaryPanel, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .padding(.horizontal, 19)
+                
+                settings(selectedElement)
+                    .scrollDisabled(true)
             }
-            .frame(maxWidth: .infinity, alignment: .top)
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .background(.secondaryPanel, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .padding(.horizontal, 19)
-            
-            settings()
-                .scrollDisabled(true)
         }
     }
 }
