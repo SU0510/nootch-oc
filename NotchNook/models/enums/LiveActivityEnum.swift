@@ -8,16 +8,24 @@
 import SwiftUI
 
 enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
-    case media, shelf
+    case media, shelf, calendar
     
     var id: String { self.rawValue }
     
     var description: String? { nil }
     
+    var isImplemented: Bool {
+        return switch self {
+        case .shelf, .media: true
+        case .calendar: false
+        }
+    }
+    
     var icon: String {
         return switch self {
         case .media: "music.note"
         case .shelf: "shippingbox.fill"
+        case .calendar: "calendar"
         }
     }
     
@@ -25,6 +33,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
         return switch self {
         case .media: "Media"
         case .shelf: "Files Box"
+        case .calendar: "Calendar"
         }
     }
 }

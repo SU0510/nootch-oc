@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 
 enum NookWidget: String, MetaInfo, Codable, CaseIterable {
-    case media, shortcuts, mirror
+    case media, shortcuts, mirror, notes, quickApps
     
     var id: String { self.rawValue }
     
@@ -20,11 +20,20 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         }
     }
     
+    var isImplemented: Bool {
+        return switch self {
+        case .media, .shortcuts, .mirror: true
+        case .notes, .quickApps: false
+        }
+    }
+    
     var icon: String {
         return switch self {
         case .media: "music.note"
         case .shortcuts: "sparkles"
         case .mirror: "web.camera.fill"
+        case .notes: "note.text"
+        case .quickApps: "circle.grid.2x2.fill"
         }
     }
     
@@ -33,6 +42,8 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         case .media: "Media Player"
         case .shortcuts: "Shortcuts"
         case .mirror: "Mirror"
+        case .notes: "Notes"
+        case .quickApps: "Quick Apps"
         }
     }
     
@@ -41,6 +52,8 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         case .media: Defaults[.mediaWidgetSettings]
         case .shortcuts: Defaults[.shortcutsWidgetSettings]
         case .mirror: Defaults[.mirrorWidgetSettings]
+        case .notes: Defaults[.mirrorWidgetSettings]
+        case .quickApps: Defaults[.mirrorWidgetSettings]
         }
     }
     
@@ -49,6 +62,8 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         case .media: .unique(.init(width: MediaWidgetSettings().size.width, height: MediaWidgetSettings().size.height))
         case .shortcuts: .variable
         case .mirror: .unique(.init(width: MirrorWidgetSettings().size.width, height: MirrorWidgetSettings().size.height))
+        case .notes: .unique(.init(width: MirrorWidgetSettings().size.width, height: MirrorWidgetSettings().size.height))
+        case .quickApps: .unique(.init(width: MirrorWidgetSettings().size.width, height: MirrorWidgetSettings().size.height))
         }
     }
     

@@ -11,4 +11,5 @@ protocol MetaInfo: Hashable, Identifiable {
     var name: String { get }
     var icon: String { get }
     var description: String? { get }
+    var isImplemented: Bool { get }
 }

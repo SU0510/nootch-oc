@@ -1,15 +1,16 @@
 //
-//  DropAreaSettingsView.swift
+//  DropAreaGeneralSettingsTabView.swift
 //  NotchNook
 //
-//  Created by Igor Marcossi on 29/05/24.
+//  Created by Igor Marcossi on 01/06/24.
 //
 
 import SwiftUI
 import Defaults
 
-struct DropAreaSettingsView: View {
+struct DropAreaGeneralSettingsTabView: View {
     @Default(.dropAreaSettings) private var dropAreaSettings
+    
     var body: some View {
         let defaultValues = DropAreaSettings()
         Form {
@@ -19,13 +20,13 @@ struct DropAreaSettingsView: View {
                 }
                 .resetToDefault($dropAreaSettings.size.width, defaultValues.size.width)
                 
-//                CustomLabeled(title: "height", icon: "arrow.up.and.down") {
-//                    SliderPlus(value: $dropAreaSettings.size.height.double, range: 2...6)
-//                }
-//                .resetToDefault($dropAreaSettings.size.height, defaultValues.size.height)
+                //                CustomLabeled(title: "height", icon: "arrow.up.and.down") {
+                //                    SliderPlus(value: $dropAreaSettings.size.height.double, range: 2...6)
+                //                }
+                //                .resetToDefault($dropAreaSettings.size.height, defaultValues.size.height)
             }
         }
         .formStyle(.grouped)
-        .defaultSettingsProps()
+        .scrollContentBackground(.hidden)
     }
 }

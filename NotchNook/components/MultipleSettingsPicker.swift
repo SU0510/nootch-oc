@@ -103,7 +103,7 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
                         .background(selected ? .white : .blue, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                     VStack(alignment: .leading, spacing: 0) {
                         Text(element.name).font(.system(size: 13, weight: .medium))
-                        if let description = element.description {
+                        if let description = (element.isImplemented ? element.description : "Coming soon...") {
                             Text(description).font(.system(size: 11)).opacity(0.75)
                         }
                     }
@@ -120,5 +120,8 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(NoBtnStyle())
+        .compositingGroup()
+        .opacity(element.isImplemented ? 1 : 0.5)
+        .disabled(!element.isImplemented)
     }
 }

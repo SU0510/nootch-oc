@@ -39,7 +39,7 @@ struct WidgetsSettingsTabView: View {
                     case .shortcuts: ShortcutsWidgetSettingsView()
                     case .media: MediaWidgetSettingsView()
                     case .mirror: MirrorWidgetSettingsView()
-                    case .none: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                 })
         }

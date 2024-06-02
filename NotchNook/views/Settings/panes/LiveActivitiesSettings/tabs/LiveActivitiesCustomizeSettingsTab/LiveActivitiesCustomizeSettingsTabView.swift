@@ -29,7 +29,7 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
                 switch selectedActivity {
                 case .media: MediaLiveAcitivitySettingsView()
                 case .shelf: ShelfLiveActivitySettingsView()
-                case .none: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .none, .calendar: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
         }

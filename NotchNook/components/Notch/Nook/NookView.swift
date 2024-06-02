@@ -29,6 +29,7 @@ struct NookView: View {
                     case .mirror:
                         MirrorWidgetView(arrayPosition: arrPos)
                             .widgetDefaultProps(arrPos: arrPos, pref: mirrorWidgetSettings, disableDivider: !nookSettings.showDividers)
+                    default: EmptyView()
                     }
                 }
             }
