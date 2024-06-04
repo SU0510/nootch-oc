@@ -10,6 +10,7 @@
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
+		BB3051342C0F966600A4E8AF /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = BB3051332C0F966600A4E8AF /* SwiftJWT */; };
 		EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */; };
 		EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */; };
 		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
@@ -371,6 +372,7 @@
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
+				BB3051342C0F966600A4E8AF /* SwiftJWT in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,6 +982,7 @@
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
 				EC47FC8D2C0B801A00591811 /* Lottie */,
+				BB3051332C0F966600A4E8AF /* SwiftJWT */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1016,6 +1019,7 @@
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				BB3051322C0F966600A4E8AF /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1449,6 +1453,14 @@
 				kind = branch;
 			};
 		};
+		BB3051322C0F966600A4E8AF /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-JWT";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
@@ -1488,6 +1500,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		BB3051332C0F966600A4E8AF /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB3051322C0F966600A4E8AF /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
 		};
 		EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
