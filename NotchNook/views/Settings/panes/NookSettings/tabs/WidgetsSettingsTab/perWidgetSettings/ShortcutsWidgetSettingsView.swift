@@ -12,9 +12,9 @@ struct ShortcutsWidgetSettingsView: View {
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
     @Default(.nookSettings) private var nookSettings
     
-    var availableWidth: Grid.Point {
+    var availableWidth: NookGrid.Point {
         let otherEnabledWidgets = nookSettings.enabledWidgets.filter { $0 != .shortcuts }
-        let usedWidth: Grid.Point = otherEnabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width }
+        let usedWidth: NookGrid.Point = otherEnabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width }
         let freeWidth = nookSettings.size.width - usedWidth
         return freeWidth
     }

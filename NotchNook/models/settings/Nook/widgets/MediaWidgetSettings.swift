@@ -8,5 +8,5 @@
 import SwiftUI
 
 struct MediaWidgetSettings: WidgetPrefs {
-    var size: Grid.Size = .init(width: 5, height: 2)
+    var size: NookGrid.Size = .init(width: 5, height: 2)
 }

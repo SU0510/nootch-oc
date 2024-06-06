@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TopBarTabsView: View {
-    var totalWidth: Grid.Point
+    var totalWidth: NookGrid.Point
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
     

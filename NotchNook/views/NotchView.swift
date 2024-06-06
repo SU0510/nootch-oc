@@ -15,7 +15,7 @@ struct NotchView: View, DropDelegate {
     static let panVelocityTriggerThreshold: Double = 500
     static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2))) }
     static let defaultTransition = NotchView.defaultTransition(anchor: .top)
-    
+    	
     @State private var droppingCoords: CGPoint?
     @State private var pressing = false
     @State private var hovering = false
@@ -143,7 +143,7 @@ struct NotchView: View, DropDelegate {
             minHeight: notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
         )
         .padding(mode == .closed ? panPadding : .zero)
-        .padding([.leading, .bottom, .trailing], mode == .closed && !showIntro ? hovering ? pressing ? 4 : 8 : 0 : 12)
+        .padding([.leading, .bottom, .trailing], mode == .closed && !showIntro ? hovering ? pressing ? 4 : 8 : 0 : 16)
         .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(

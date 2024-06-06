@@ -14,7 +14,10 @@ struct NookGeneralSettingsTabView: View {
         let defaultValues = NookSettings()
         Form {
             Section("Size") {
-                CustomLabeled(title: "Width", icon: "arrow.left.and.right") {
+                CustomLabeled(
+                    title: "Width", icon: "arrow.left.and.right",
+                    description: "The unit is measured in \"cells\" for the widgets grid. 1 cell means \(NookGrid.point) points/px."
+                ) {
                     SliderPlus(value: $nookSettings.size.width.double, range: 8...24)
                 }
                 .resetToDefault($nookSettings.size.width, defaultValues.size.width)
@@ -39,11 +42,11 @@ struct NookGeneralSettingsTabView: View {
         .scrollContentBackground(.hidden)
         .onChange(of: nookSettings.size.width) { _, newValue in
             var enabledWidgets = nookSettings.enabledWidgets
-            var usedSpace = enabledWidgets.reduce(Grid.Point.zero) { $0 + $1.prefs.size.width }
+            var usedSpace = enabledWidgets.reduce(NookGrid.Point.zero) { $0 + $1.prefs.size.width }
             var availableSpace = nookSettings.size.width
             while availableSpace < usedSpace {
                 enabledWidgets.removeLast()
-                usedSpace = enabledWidgets.reduce(Grid.Point.zero) { $0 + $1.prefs.size.width }
+                usedSpace = enabledWidgets.reduce(NookGrid.Point.zero) { $0 + $1.prefs.size.width }
             }
             nookSettings.enabledWidgets = enabledWidgets
         }

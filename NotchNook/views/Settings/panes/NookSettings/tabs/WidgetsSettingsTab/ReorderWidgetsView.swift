@@ -21,7 +21,7 @@ struct ReorderWidgetsView: View {
     
     var body: some View {
         VStack {
-            let usedCells = nookSettings.enabledWidgets.reduce(Grid.Point.zero) { $0 + $1.prefs.size.width }
+            let usedCells = nookSettings.enabledWidgets.reduce(NookGrid.Point.zero) { $0 + $1.prefs.size.width }
             let totalCells = nookSettings.size.width
             let available = totalCells - usedCells
             

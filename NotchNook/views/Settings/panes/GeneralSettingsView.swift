@@ -84,6 +84,10 @@ struct GeneralSettingsView: View {
                     Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                     Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                     Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
+                    CustomLabeled(title: "Content padding") {
+                        SliderPlus(value: $generalSettings.contentPadding, range: 0...48, step: 1)
+                    }
+                    .resetToDefault($generalSettings.contentPadding, defaultGeneral.contentPadding)
                 }
                 
                 Section("Handler for non-notched screens") {

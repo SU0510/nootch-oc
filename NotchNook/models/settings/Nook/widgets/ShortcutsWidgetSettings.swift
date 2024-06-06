@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShortcutsWidgetSettings: WidgetPrefs {
-    var size: Grid.Size = .init(width: 4, height: 2)
+    var size: NookGrid.Size = .init(width: 4, height: 2)
     var shortcutsToDisplay = [String]()
-    var shortcutButtonWidth = Grid.Point(4)
+    var shortcutButtonWidth = NookGrid.Point(4)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 
 enum NookWidget: String, MetaInfo, Codable, CaseIterable {
-    case shortcuts, media, mirror, notes, quickApps
+    case shortcuts, media, mirror, calendar, notes, quickApps
     
     var id: String { self.rawValue }
     
@@ -22,7 +22,7 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
     
     var isImplemented: Bool {
         return switch self {
-        case .media, .shortcuts, .mirror: true
+        case .media, .shortcuts, .mirror, .calendar: true
         case .notes, .quickApps: false
         }
     }
@@ -32,6 +32,7 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         case .media: "music.note"
         case .shortcuts: "sparkles"
         case .mirror: "web.camera.fill"
+        case .calendar: "calendar"
         case .notes: "note.text"
         case .quickApps: "circle.grid.2x2.fill"
         }
@@ -42,6 +43,7 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         case .media: "Media Player"
         case .shortcuts: "Shortcuts"
         case .mirror: "Mirror"
+        case .calendar: "Calendar"
         case .notes: "Notes"
         case .quickApps: "Quick Apps"
         }
@@ -49,6 +51,7 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
     
     var prefs: any WidgetPrefs {
         return switch self {
+        case .calendar: Defaults[.calendarWidgetSettings]
         case .media: Defaults[.mediaWidgetSettings]
         case .shortcuts: Defaults[.shortcutsWidgetSettings]
         case .mirror: Defaults[.mirrorWidgetSettings]
@@ -57,8 +60,9 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         }
     }
     
-    var gridSizeType: GridSizeType {
+    var gridSizeType: NookGridSizeType {
         return switch self {
+        case .calendar: .unique(.init(width: CalendarWidgetSettings().size.width, height: CalendarWidgetSettings().size.height))
         case .media: .unique(.init(width: MediaWidgetSettings().size.width, height: MediaWidgetSettings().size.height))
         case .shortcuts: .variable
         case .mirror: .unique(.init(width: MirrorWidgetSettings().size.width, height: MirrorWidgetSettings().size.height))
@@ -67,7 +71,7 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
         }
     }
     
-    enum GridSizeType {
-        case unique(Grid.Size), multiple([Grid.Size]), variable
+    enum NookGridSizeType {
+        case unique(NookGrid.Size), multiple([NookGrid.Size]), variable
     }
 }
