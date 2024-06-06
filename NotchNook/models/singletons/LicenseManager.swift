@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import SwiftJWT
 
 @Observable
 class LicenseManager {
@@ -68,7 +69,7 @@ class LicenseManager {
     }
     
     static func checkLicense(_ license: License) async -> CheckLicenseResult {
-        let url = URL(string: "https://lo.cafe/api/notchnook-verify-key")!
+        let url = URL(string: "https://lo.cafe/api/notchnook-verify-key-v2")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -88,22 +89,48 @@ class LicenseManager {
         request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
         
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            // Fetch data and check for token
+            let (data, _) = try await URLSession.shared.data(for: request)
+            guard let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                  let tokenString = jsonResponse["token"] as? String else {
+                return .networkError
+            }
             
-            if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                if let isValid = jsonResponse["valid"] as? Bool, isValid {
-                    return .valid
+            // Decode and verify the JWT
+            let publicKeyString = pubKey
+            
+            // Convert the public key string (PEM format) to Data
+            guard let publicKeyData = publicKeyString.data(using: .utf8) else {
+                print("Invalid public key format")
+                return .invalid
+            }
+            
+            // Create the JWTVerifier using the provided function
+            let jwtVerifier = JWTVerifier.rs256(publicKey: publicKeyData)
+            
+            do {
+                let verified = JWT<Valid>.verify(tokenString, using: jwtVerifier)
+                if verified {
+                    let decodedJWT = try JWT<Valid>(jwtString: tokenString)
+                    if decodedJWT.claims.valid {
+                        return .valid
+                    } else {
+                        print("License check failed: \(decodedJWT.claims.error ?? "Unknown error")")
+                        return .invalid
+                    }
                 } else {
-                    print(jsonResponse)
+                    print("JWT Signature verification failed.")
                     return .invalid
                 }
-            } else {
-                return .networkError
+            } catch {
+                print("JWT verification error: \(error)")
+                return .invalid
             }
         } catch {
             return .networkError
         }
     }
+    
     
     enum CheckLicenseResult {
         case invalid, noDeviceID, networkError, valid
@@ -118,7 +145,11 @@ struct License: Equatable, Codable, Hashable, Defaults.Serializable {
     enum KeyType: String, Equatable, Hashable, Codable, CaseIterable, Identifiable {
         case license = "Lifetime License"
         case subscription = "Subscription Key"
-        
         var id: String { self.rawValue }
     }
+}
+
+struct Valid: Claims {
+    let valid: Bool
+    let error: String?
 }
