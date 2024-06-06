@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Sparkle
 import AppKit
+//import Shift
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
@@ -22,6 +23,7 @@ import AppKit
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Initialize (in memory ig) all singletons
+        CalendarManager.configureWithAppName("NotchNook")
         _ = ShortcutsManager.shared
         _ = MediaPlayer.shared
         _ = VolumeMonitor.shared

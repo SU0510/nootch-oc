@@ -22,6 +22,7 @@ extension Defaults.Keys {
     static let mediaWidgetSettings = Key<MediaWidgetSettings>("mediaWidgetSettings", default: .init())
     static let shortcutsWidgetSettings = Key<ShortcutsWidgetSettings>("shortcutsWidgetSettings", default: .init())
     static let mirrorWidgetSettings = Key<MirrorWidgetSettings>("mirrorWidgetSettings", default: .init())
+    static let calendarWidgetSettings = Key<CalendarWidgetSettings>("calendarWidgetSettings", default: .init())
     static let gestureControlSettings = Key<GestureControlSettings>("gestureControlSettings", default: .init())
     static let nookSettings = Key<NookSettings>("nookSettings", default: .init())
     static let shelfSettings = Key<ShelfSettings>("shelfSettings", default: .init())

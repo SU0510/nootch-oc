@@ -12,7 +12,7 @@ struct TopBarSpacerView: View {
     var height: Double
     var body: some View {
         Color.clear
-            .frame(width: NotchShape.getNotchWidthForScreenWidth(screenSize.width), height: height).fixedSize(horizontal: true, vertical: true)
+            .frame(width: screenSize.width == 0 ? NotchShape.defaultNotchWidth : NotchShape.getNotchWidthForScreenWidth(screenSize.width), height: height).fixedSize(horizontal: true, vertical: true)
             .transition(.identity)
     }
 }

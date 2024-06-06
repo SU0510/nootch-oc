@@ -1,5 +1,5 @@
 //
-//  Grid.swift
+//  NookGrid.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 27/05/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Grid {
+struct NookGrid {
     static let point: Int = 50
     
     struct Point: Hashable, Equatable, Codable, Comparable {
@@ -18,7 +18,7 @@ struct Grid {
             get { Double(value) }
             set { self.value = Int(newValue) }
         }
-        var screenPoints: Double { Double(self.value * Grid.point) }
+        var screenPoints: Double { Double(self.value * NookGrid.point) }
 
         init(_ value: Int) {
             self.value = value

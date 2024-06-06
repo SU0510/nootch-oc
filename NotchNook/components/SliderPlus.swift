@@ -32,8 +32,17 @@ struct SliderPlus: View {
     
     var body: some View {
         let rangeManual = rangeManual ?? range
+        let rangeAmount = range.upperBound - range.lowerBound
         HStack {
-            Slider(value: $value, in: range, step: step)
+            if (rangeAmount / step) > 20 {
+                Slider(value: Binding(get: { value }, set: { newValue in
+                    let base: Int = Int(newValue.rounded())
+                    let modulo: Int = base % Int(step)
+                    value = Double(base - modulo)
+                }), in: range)
+            } else {
+                Slider(value: $value, in: range, step: step)
+            }
             IntegerTextField(value: $value, minVal: rangeManual.lowerBound, maxVal: rangeManual.upperBound)
                 .frame(width: 40, height: 0)
         }

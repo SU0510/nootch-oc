@@ -11,6 +11,7 @@ struct GeneralSettings: Preferences {
     var alwaysOpenNotchOnHover = false
     var transluscent = false
     var handleSize = CGSize(width: 184, height: 8)
+    var contentPadding: Double = 16
     var allowGestures = true
     var controlMedia = true
     var controlOpenState = true

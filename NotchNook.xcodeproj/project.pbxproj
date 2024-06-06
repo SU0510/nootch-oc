@@ -28,7 +28,7 @@
 		EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */; };
 		EC0E30FD2C053F970060B47E /* NookWidgetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */; };
 		EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */; };
-		EC0E31032C0548A10060B47E /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31022C0548A10060B47E /* Grid.swift */; };
+		EC0E31032C0548A10060B47E /* NookGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31022C0548A10060B47E /* NookGrid.swift */; };
 		EC0E31072C0559680060B47E /* NookSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31062C0559680060B47E /* NookSettings.swift */; };
 		EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E31082C055A560060B47E /* ShelfSettings.swift */; };
 		EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E310E2C05655D0060B47E /* WidgetPrefsProtocol.swift */; };
@@ -115,6 +115,15 @@
 		EC758FA12BF2F1B900B873B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA02BF2F1B900B873B0 /* ContentView.swift */; };
 		EC758FA32BF2F1C600B873B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA22BF2F1C500B873B0 /* main.swift */; };
 		EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA42BF2F20100B873B0 /* AppDelegate.swift */; };
+		EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */; };
+		EC7A0FA82C0F74890063E78E /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */; };
+		EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */; };
+		EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EC7A0FAC2C0FE7800063E78E /* Algorithms */; };
+		EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = EC7A0FAF2C0FE8F10063E78E /* SwiftDate */; };
+		EC7A0FB22C0FF2E90063E78E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */; };
+		EC7A0FF52C0FFBA70063E78E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC7A0FB62C0FFBA60063E78E /* Info.plist */; };
+		EC7A0FF62C0FFBA70063E78E /* NMDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FB82C0FFBA60063E78E /* NMDatePicker.swift */; };
+		EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FB92C0FFBA60063E78E /* NMDatePickerDayView.swift */; };
 		EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */; };
 		EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */; };
 		EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */; };
@@ -206,7 +215,7 @@
 		EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWallpaperManager.swift; sourceTree = "<group>"; };
 		EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookWidgetEnum.swift; sourceTree = "<group>"; };
 		EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityEnum.swift; sourceTree = "<group>"; };
-		EC0E31022C0548A10060B47E /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		EC0E31022C0548A10060B47E /* NookGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookGrid.swift; sourceTree = "<group>"; };
 		EC0E31062C0559680060B47E /* NookSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookSettings.swift; sourceTree = "<group>"; };
 		EC0E31082C055A560060B47E /* ShelfSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelfSettings.swift; sourceTree = "<group>"; };
 		EC0E310E2C05655D0060B47E /* WidgetPrefsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPrefsProtocol.swift; sourceTree = "<group>"; };
@@ -292,6 +301,14 @@
 		EC758FA02BF2F1B900B873B0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EC758FA22BF2F1C500B873B0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettings.swift; sourceTree = "<group>"; };
+		EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
+		EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		EC7A0FB62C0FFBA60063E78E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC7A0FB72C0FFBA60063E78E /* NMDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMDatePicker.h; sourceTree = "<group>"; };
+		EC7A0FB82C0FFBA60063E78E /* NMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMDatePicker.swift; sourceTree = "<group>"; };
+		EC7A0FB92C0FFBA60063E78E /* NMDatePickerDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMDatePickerDayView.swift; sourceTree = "<group>"; };
 		EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetSettingsView.swift; sourceTree = "<group>"; };
 		EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSettingsPicker.swift; sourceTree = "<group>"; };
 		EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabeledProtocol.swift; sourceTree = "<group>"; };
@@ -367,9 +384,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
+				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 			);
@@ -486,6 +505,7 @@
 				EC0E31122C0566B80060B47E /* MediaWidgetSettings.swift */,
 				EC0E31142C0567190060B47E /* ShortcutsWidgetSettings.swift */,
 				EC0E31162C0568080060B47E /* MirrorWidgetSettings.swift */,
+				EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */,
 			);
 			path = widgets;
 			sourceTree = "<group>";
@@ -566,6 +586,7 @@
 				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
 				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
 				ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */,
+				EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -666,6 +687,7 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				EC7A0FBA2C0FFBA60063E78E /* NMDatePicker */,
 				EC47FCA52C0BA33900591811 /* intro */,
 				EC8D600D2BFC127600E67ECC /* buttonStyles */,
 				EC8D5FF32BFAE75400E67ECC /* notch */,
@@ -688,6 +710,7 @@
 				EC47FC922C0B810800591811 /* Lottie.swift */,
 				EC47FCB82C0BD5A000591811 /* BlinkingLogoView.swift */,
 				EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */,
+				EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -775,11 +798,30 @@
 				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
-				EC0E31022C0548A10060B47E /* Grid.swift */,
+				EC0E31022C0548A10060B47E /* NookGrid.swift */,
 				EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */,
 				EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		EC7A0FA62C0ECD730063E78E /* CalendarWidget */ = {
+			isa = PBXGroup;
+			children = (
+				EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */,
+			);
+			path = CalendarWidget;
+			sourceTree = "<group>";
+		};
+		EC7A0FBA2C0FFBA60063E78E /* NMDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				EC7A0FB62C0FFBA60063E78E /* Info.plist */,
+				EC7A0FB72C0FFBA60063E78E /* NMDatePicker.h */,
+				EC7A0FB82C0FFBA60063E78E /* NMDatePicker.swift */,
+				EC7A0FB92C0FFBA60063E78E /* NMDatePickerDayView.swift */,
+			);
+			path = NMDatePicker;
 			sourceTree = "<group>";
 		};
 		EC81E2622C069D1600790517 /* enums */ = {
@@ -914,6 +956,7 @@
 		EC8D60152BFC21CD00E67ECC /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				EC7A0FA62C0ECD730063E78E /* CalendarWidget */,
 				EC2DD1E82C02E86F001FD54E /* MediaPlayerWidget */,
 				EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */,
 				EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */,
@@ -980,6 +1023,8 @@
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
 				EC47FC8D2C0B801A00591811 /* Lottie */,
+				EC7A0FAC2C0FE7800063E78E /* Algorithms */,
+				EC7A0FAF2C0FE8F10063E78E /* SwiftDate */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1016,6 +1061,8 @@
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				EC7A0FAB2C0FE7800063E78E /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1033,6 +1080,7 @@
 			files = (
 				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
+				EC7A0FF52C0FFBA70063E78E /* Info.plist in Resources */,
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
@@ -1054,6 +1102,7 @@
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
+				EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
@@ -1066,6 +1115,7 @@
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
+				EC7A0FB22C0FF2E90063E78E /* CalendarView.swift in Sources */,
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
@@ -1147,7 +1197,7 @@
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
 				EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */,
 				EC13C6DC2C09180600B45C6E /* TextInput.swift in Sources */,
-				EC0E31032C0548A10060B47E /* Grid.swift in Sources */,
+				EC0E31032C0548A10060B47E /* NookGrid.swift in Sources */,
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
 				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
@@ -1169,11 +1219,14 @@
 				EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
+				EC7A0FA82C0F74890063E78E /* CalendarWidgetView.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
+				EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */,
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
+				EC7A0FF62C0FFBA70063E78E /* NMDatePicker.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
@@ -1212,6 +1265,7 @@
 				EC47FCBB2C0BDCB500591811 /* getAppVersion.swift in Sources */,
 				EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */,
 				EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */,
+				EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1535,22 @@
 				minimumVersion = 4.4.3;
 			};
 		};
+		EC7A0FAB2C0FE7800063E78E /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1508,6 +1578,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		EC7A0FAC2C0FE7800063E78E /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC7A0FAB2C0FE7800063E78E /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		EC7A0FAF2C0FE8F10063E78E /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,5 +8,5 @@
 import SwiftUI
 
 struct DropAreaSettings: Preferences {
-    var size = Grid.Size(width: 11, height: 2)
+    var size = NookGrid.Size(width: 11, height: 2)
 }

@@ -8,5 +8,5 @@
 import SwiftUI
 
 protocol WidgetPrefs: Preferences {
-    var size: Grid.Size { get set }
+    var size: NookGrid.Size { get set }
 }

@@ -8,5 +8,5 @@
 import SwiftUI
 
 struct MirrorWidgetSettings: WidgetPrefs {
-    var size: Grid.Size = .init(width: 2, height: 2)
+    var size: NookGrid.Size = .init(width: 2, height: 2)
 }
