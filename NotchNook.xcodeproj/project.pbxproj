@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
@@ -195,6 +196,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDaysView.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
@@ -808,6 +810,7 @@
 		EC7A0FA62C0ECD730063E78E /* CalendarWidget */ = {
 			isa = PBXGroup;
 			children = (
+				3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */,
 				EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */,
 			);
 			path = CalendarWidget;
@@ -1150,6 +1153,7 @@
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
+				3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */,
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */,
 				EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
