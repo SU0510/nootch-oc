@@ -1,6 +1,5 @@
 {
-  "originHash" : "d87615ba3e76b7948701f0335d1c0fa84bda1b97722a4969128ed47445034d0c",
-  "originHash" : "4699f356475f68114ab5f5d12017d53ee2fec7bbf54c69fbd1ee78b743f9464b",
+  "originHash" : "aa76dd2e6f7c1ea428752f2a4c2217d40364a1edeca8a8be7c15c4536c0646b2",
   "pins" : [
     {
       "identity" : "bluecryptor",
@@ -84,6 +83,15 @@
       }
     },
     {
+      "identity" : "smoothgradient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/raymondjavaxx/SmoothGradient.git",
+      "state" : {
+        "revision" : "61bf248fad31c7921c9985b418e6e9297cd7b861",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "sparkle",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sparkle-project/Sparkle",
@@ -93,9 +101,18 @@
       }
     },
     {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms",
+      "state" : {
+        "revision" : "f6919dfc309e7f1b56224378b11e28bab5bccc42",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "swift-jwt",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/Swift-JWT",
+      "location" : "https://github.com/Kitura/Swift-JWT.git",
       "state" : {
         "revision" : "f68ec28fbd90a651597e9e825ea7f315f8d52a1f",
         "version" : "4.0.1"
@@ -108,15 +125,6 @@
       "state" : {
         "revision" : "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
         "version" : "1.5.4"
-      }
-    },
-    {
-      "identity" : "swift-algorithms",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-algorithms",
-      "state" : {
-        "revision" : "f6919dfc309e7f1b56224378b11e28bab5bccc42",
-        "version" : "1.2.0"
       }
     },
     {

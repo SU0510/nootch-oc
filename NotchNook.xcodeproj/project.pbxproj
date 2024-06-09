@@ -14,6 +14,7 @@
 		3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E0A2C154EA30076560D /* SmoothGradient */; };
 		3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */; };
 		3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0E2C1556E70076560D /* getRangeOfDays.swift */; };
+		3A801E142C15781F0076560D /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E132C15781F0076560D /* SwiftJWT */; };
 		3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */; };
 		3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */; };
 		3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */; };
@@ -411,6 +412,7 @@
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
+				3A801E142C15781F0076560D /* SwiftJWT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,6 +1065,7 @@
 				EC7A0FAC2C0FE7800063E78E /* Algorithms */,
 				EC7A0FAF2C0FE8F10063E78E /* SwiftDate */,
 				3A801E0A2C154EA30076560D /* SmoothGradient */,
+				3A801E132C15781F0076560D /* SwiftJWT */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1102,6 +1105,7 @@
 				EC7A0FAB2C0FE7800063E78E /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */,
+				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1551,6 +1555,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-JWT.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -1614,6 +1626,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */;
 			productName = SmoothGradient;
+		};
+		3A801E132C15781F0076560D /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
 		};
 		BB2A5E542C006B63008F3081 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

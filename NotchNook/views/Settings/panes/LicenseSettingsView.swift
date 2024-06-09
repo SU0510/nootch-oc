@@ -89,7 +89,7 @@ struct LicenseSettingsView: View {
                     }
                     .disabled(loading)
                     
-                    if license != nil {
+                    if license != nil && keyType == .subscription {
                         Button(license == nil ? "Register" : "Manage Billing") {
                             if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
                                 openURL(url)
