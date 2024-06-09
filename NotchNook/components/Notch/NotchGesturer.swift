@@ -9,7 +9,6 @@ import SwiftUI
 import Defaults
 
 struct NotchGesturer: View {
-    var vibrate: () -> ()
     var hidden: Bool
     var panPadding: EdgeInsets
     @Binding var scaleDown: Double

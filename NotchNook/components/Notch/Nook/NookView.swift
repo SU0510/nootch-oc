@@ -22,18 +22,16 @@ struct NookView: View {
                     switch widget {
                     case .media:
                         MediaPlayerWidgetView(arrayPosition: arrPos)
-                            .widgetDefaultProps(arrPos: arrPos, pref: mediaWidgetSettings, disableDivider: !nookSettings.showDividers)
                     case .shortcuts:
                         ShortcutsWidgetView(prefs: shortcutsWidgetSettings, arrayPosition: ArrayPosition(total: widgets.count, i: i))
-                            .widgetDefaultProps(arrPos: arrPos, pref: shortcutsWidgetSettings, disableDivider: !nookSettings.showDividers)
                     case .mirror:
                         MirrorWidgetView(arrayPosition: arrPos)
-                            .widgetDefaultProps(arrPos: arrPos, pref: mirrorWidgetSettings, disableDivider: !nookSettings.showDividers)
                     case .calendar:
                         CalendarWidgetView()
                     default: EmptyView()
                     }
                 }
+                .widgetDefaultProps(arrPos: arrPos, pref: widget.prefs, disableDivider: !nookSettings.showDividers)
             }
         }
         .frame(nookSettings.size.screenPtsCGSize)
@@ -54,7 +52,7 @@ struct VDivider: View {
 private extension View {
     func widgetDefaultProps(arrPos: ArrayPosition, pref: any WidgetPrefs, disableDivider: Bool = false) -> some View {
         self
-            .frame(width: pref.size.width.screenPoints, height: pref.size.height.screenPoints, alignment: .leading)
+            .frame(pref.size.screenPtsCGSize, .leading)
             .overlay(alignment: .trailing) { if arrPos != .last && !disableDivider { VDivider().opacity(0.75) } }
     }
 }
