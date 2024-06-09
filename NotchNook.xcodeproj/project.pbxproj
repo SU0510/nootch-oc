@@ -15,6 +15,9 @@
 		3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */; };
 		3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0E2C1556E70076560D /* getRangeOfDays.swift */; };
 		3A801E142C15781F0076560D /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E132C15781F0076560D /* SwiftJWT */; };
+		3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E152C1579F40076560D /* getMacBookModel.swift */; };
+		3A801E182C157AE30076560D /* getNotchDefaultWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */; };
+		3A801E1A2C157D700076560D /* getScreenDefaultWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E192C157D700076560D /* getScreenDefaultWidth.swift */; };
 		3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */; };
 		3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */; };
 		3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */; };
@@ -212,6 +215,9 @@
 		3A801E072C154C0B0076560D /* CalendarEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventView.swift; sourceTree = "<group>"; };
 		3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupAndSortEventsByDate.swift; sourceTree = "<group>"; };
 		3A801E0E2C1556E70076560D /* getRangeOfDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRangeOfDays.swift; sourceTree = "<group>"; };
+		3A801E152C1579F40076560D /* getMacBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMacBookModel.swift; sourceTree = "<group>"; };
+		3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getNotchDefaultWidth.swift; sourceTree = "<group>"; };
+		3A801E192C157D700076560D /* getScreenDefaultWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getScreenDefaultWidth.swift; sourceTree = "<group>"; };
 		3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDaysView.swift; sourceTree = "<group>"; };
 		3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettingsView.swift; sourceTree = "<group>"; };
@@ -771,6 +777,9 @@
 				3AD5CADA2C14FE260090A9D1 /* vibrate.swift */,
 				3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */,
 				3A801E0E2C1556E70076560D /* getRangeOfDays.swift */,
+				3A801E152C1579F40076560D /* getMacBookModel.swift */,
+				3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */,
+				3A801E192C157D700076560D /* getScreenDefaultWidth.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1140,6 +1149,7 @@
 				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
+				3A801E1A2C157D700076560D /* getScreenDefaultWidth.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
@@ -1150,9 +1160,11 @@
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
+				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
+				3A801E182C157AE30076560D /* getNotchDefaultWidth.swift in Sources */,
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */,
