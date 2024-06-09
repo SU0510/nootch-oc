@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
+		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
+		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
+		3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E072C154C0B0076560D /* CalendarEventView.swift */; };
+		3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E0A2C154EA30076560D /* SmoothGradient */; };
+		3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */; };
+		3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0E2C1556E70076560D /* getRangeOfDays.swift */; };
+		3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */; };
+		3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */; };
+		3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */; };
+		3AD5CADB2C14FE260090A9D1 /* vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CADA2C14FE260090A9D1 /* vibrate.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
-		BB3051342C0F966600A4E8AF /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = BB3051332C0F966600A4E8AF /* SwiftJWT */; };
 		EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */; };
 		EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */; };
 		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
@@ -117,7 +127,6 @@
 		EC758FA32BF2F1C600B873B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA22BF2F1C500B873B0 /* main.swift */; };
 		EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA42BF2F20100B873B0 /* AppDelegate.swift */; };
 		EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */; };
-		EC7A0FA82C0F74890063E78E /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */; };
 		EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */; };
 		EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EC7A0FAC2C0FE7800063E78E /* Algorithms */; };
 		EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = EC7A0FAF2C0FE8F10063E78E /* SwiftDate */; };
@@ -196,6 +205,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
+		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
+		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
+		3A801E072C154C0B0076560D /* CalendarEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventView.swift; sourceTree = "<group>"; };
+		3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupAndSortEventsByDate.swift; sourceTree = "<group>"; };
+		3A801E0E2C1556E70076560D /* getRangeOfDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRangeOfDays.swift; sourceTree = "<group>"; };
+		3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDaysView.swift; sourceTree = "<group>"; };
+		3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettingsView.swift; sourceTree = "<group>"; };
+		3AD5CADA2C14FE260090A9D1 /* vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vibrate.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
@@ -303,7 +322,6 @@
 		EC758FA22BF2F1C500B873B0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettings.swift; sourceTree = "<group>"; };
-		EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		EC7A0FB62C0FFBA60063E78E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -391,7 +409,7 @@
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
-				BB3051342C0F966600A4E8AF /* SwiftJWT in Frameworks */,
+				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +417,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A801E032C1530490076560D /* decorators */ = {
+			isa = PBXGroup;
+			children = (
+				3A801E022C1530490076560D /* SilentState.swift */,
+			);
+			path = decorators;
+			sourceTree = "<group>";
+		};
 		EC0E30CC2C0414510060B47E /* NookSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +440,7 @@
 				EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */,
 				EC81E2682C06A6C500790517 /* MediaWidgetSettingsView.swift */,
 				EC81E26A2C06A6D400790517 /* MirrorWidgetSettingsView.swift */,
+				3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */,
 			);
 			path = perWidgetSettings;
 			sourceTree = "<group>";
@@ -668,11 +695,12 @@
 		EC758F6A2BF2F18700B873B0 /* NotchNook */ = {
 			isa = PBXGroup;
 			children = (
+				EC758F7F2BF2F19B00B873B0 /* components */,
+				3A801E032C1530490076560D /* decorators */,
 				EC47FC942C0B824500591811 /* assets */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
 				EC758F8F2BF2F1A400B873B0 /* extensions */,
-				EC758F7F2BF2F19B00B873B0 /* components */,
 				EC758F922BF2F1A400B873B0 /* models */,
 				EC758F892BF2F1A400B873B0 /* utils */,
 				EC4173D52C02518F002889E7 /* views */,
@@ -738,6 +766,9 @@
 				EC47FCBA2C0BDCB500591811 /* getAppVersion.swift */,
 				EC47FCC22C0BF4B900591811 /* rowlify.swift */,
 				ECB9D6AA2C0CDA5E009C8CE4 /* validateEmail.swift */,
+				3AD5CADA2C14FE260090A9D1 /* vibrate.swift */,
+				3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */,
+				3A801E0E2C1556E70076560D /* getRangeOfDays.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -810,7 +841,11 @@
 		EC7A0FA62C0ECD730063E78E /* CalendarWidget */ = {
 			isa = PBXGroup;
 			children = (
-				EC7A0FA72C0F74890063E78E /* CalendarWidgetView.swift */,
+				3A801E072C154C0B0076560D /* CalendarEventView.swift */,
+				3A801E052C154BF80076560D /* CalendarEventsView.swift */,
+				3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */,
+				3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */,
+				3A801E002C151EAC0076560D /* CalendarWidgetView.swift */,
 			);
 			path = CalendarWidget;
 			sourceTree = "<group>";
@@ -1025,9 +1060,9 @@
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
 				EC47FC8D2C0B801A00591811 /* Lottie */,
-				BB3051332C0F966600A4E8AF /* SwiftJWT */,
 				EC7A0FAC2C0FE7800063E78E /* Algorithms */,
 				EC7A0FAF2C0FE8F10063E78E /* SwiftDate */,
+				3A801E0A2C154EA30076560D /* SmoothGradient */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1064,9 +1099,9 @@
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
-				BB3051322C0F966600A4E8AF /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				EC7A0FAB2C0FE7800063E78E /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1098,6 +1133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
@@ -1111,6 +1147,7 @@
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
+				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
@@ -1139,7 +1176,9 @@
 				EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */,
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
+				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
+				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
@@ -1150,10 +1189,12 @@
 				EC0E30F12C0434640060B47E /* BlankView.swift in Sources */,
 				EC8D5FDB2BFA703300E67ECC /* EdgeInsetZero.swift in Sources */,
 				EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */,
+				3AD5CADB2C14FE260090A9D1 /* vibrate.swift in Sources */,
 				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
+				3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */,
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaShelfTargetView.swift in Sources */,
 				EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
@@ -1179,6 +1220,7 @@
 				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* ShelfFile.swift in Sources */,
+				3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */,
 				ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */,
 				EC8D60042BFAE90D00E67ECC /* ShelfFilesCountView.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
@@ -1196,6 +1238,7 @@
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
 				EC2DD1F22C03DBC9001FD54E /* ShelfFilesGridPreviewView.swift in Sources */,
 				EC8D60652C001D2D00E67ECC /* Track.swift in Sources */,
+				3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */,
 				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
 				EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */,
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
@@ -1223,7 +1266,6 @@
 				EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* ShelfEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
-				EC7A0FA82C0F74890063E78E /* CalendarWidgetView.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
@@ -1246,6 +1288,7 @@
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
+				3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
@@ -1260,6 +1303,7 @@
 				EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */,
 				EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */,
 				EC8D60062BFAE91800E67ECC /* ShelfIconView.swift in Sources */,
+				3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
 				EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */,
 				EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */,
@@ -1499,20 +1543,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raymondjavaxx/SmoothGradient.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				branch = main;
 				kind = branch;
-			};
-		};
-		BB3051322C0F966600A4E8AF /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Kitura/Swift-JWT";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
 			};
 		};
 		EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
@@ -1566,15 +1610,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3A801E0A2C154EA30076560D /* SmoothGradient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */;
+			productName = SmoothGradient;
+		};
 		BB2A5E542C006B63008F3081 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
-		};
-		BB3051332C0F966600A4E8AF /* SwiftJWT */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BB3051322C0F966600A4E8AF /* XCRemoteSwiftPackageReference "Swift-JWT" */;
-			productName = SwiftJWT;
 		};
 		EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -147,7 +147,6 @@ struct NotchView: View, DropDelegate {
         .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(
-                vibrate: vibrate,
                 hidden: hide,
                 panPadding: panPadding,
                 scaleDown: $scaleDown,
@@ -223,6 +222,7 @@ struct NotchView: View, DropDelegate {
         .fixedSize()
         .environment(\.namespace, ns)
         .environment(\.trialOver, trialOver)
+        .preferredColorScheme(.dark)
     }
     
     // MARK: - Drag and drop files into shelf functons
@@ -290,11 +290,6 @@ struct NotchView: View, DropDelegate {
     }
     
     // MARK: - Functions related to the View way of working
-    
-    func vibrate() {
-        if generalSettings.disableHaptics { return }
-        NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
-    }
     
     func openNotch(in newMode: NotchNook.NotchMode = .nook) {
         hideTimer?.invalidate()
