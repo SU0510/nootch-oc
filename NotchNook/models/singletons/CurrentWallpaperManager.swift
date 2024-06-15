@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SQLite3
 
 @Observable
 class CurrentWallpaperManager {
@@ -19,7 +20,7 @@ class CurrentWallpaperManager {
             print("No main screen available")
             return
         }
-
+        
         guard let wallpaperUrl = NSWorkspace.shared.desktopImageURL(for: screen) else {
             print("No wallpaper set for the main screen")
             return

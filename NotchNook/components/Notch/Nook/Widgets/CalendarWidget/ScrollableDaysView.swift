@@ -23,7 +23,11 @@ struct ScrollableDaysView: View, Equatable {
     var events: [Date:[EKEvent]]
     //    @State private var scrollPos: Double = 0
     
-    var selectedDate: Date { showingDates[selectedDateIndex] }
+    var selectedDate: Date {
+        if selectedDateIndex < 0 { return showingDates[0] }
+        if selectedDateIndex >= showingDates.count { return showingDates[showingDates.count - 1] }
+        return showingDates[selectedDateIndex]
+    }
     
     var scrollPos: Double {
         let initialIndex = showingDates.count / 2
@@ -35,23 +39,27 @@ struct ScrollableDaysView: View, Equatable {
     var body: some View {
         let actualScroll = scrollPos + offset
         GeometryReader { geo in
-            LazyHStack(alignment: .top, spacing: 0) {
-                ForEach(Array(showingDates.enumerated()), id: \.element.timeIntervalSince1970) { i, date in
-                    CalendarDayView(date: date, eventsCount: events[date]?.count ?? 0, selected: selectedDateIndex == i)
-                        .onTapGesture { setDateToIndex(i) }
+            ScrollView(.horizontal) {
+                LazyHStack(alignment: .top, spacing: 0) {
+                    ForEach(Array(showingDates.enumerated()), id: \.element.timeIntervalSince1970) { i, date in
+                        CalendarDayView(date: date, eventsCount: events[date]?.count ?? 0, selected: selectedDateIndex == i)
+                            .onTapGesture { setDateToIndex(i) }
+                    }
                 }
-            }
-            .padding(.leading, Self.leadingPadding)
-            .offset(x: actualScroll)
-            .frame(width: geo.size.width, alignment: .top)
-            .clipped()
-            .overlay {
-                ScrollableDaysOverlayView(monthName: selectedDate.monthName(.standaloneShort)) {
-                    withAnimation(.spring) {
-                        selectedDateIndex = showingDates.count / 2
+                .geometryGroup()
+                .offset(x: actualScroll)
+                .padding(.leading, Self.leadingPadding)
+                .frame(width: geo.size.width, alignment: .top)
+                .clipped()
+                .overlay {
+                    ScrollableDaysOverlayView(monthName: selectedDate.monthName(.standaloneShort)) {
+                        withAnimation(.spring) {
+                            selectedDateIndex = showingDates.count / 2
+                        }
                     }
                 }
             }
+            .scrollDisabled(true)
         }
         .frame(height: 43)
         .animation(.spring, value: offset == 0)
@@ -61,7 +69,7 @@ struct ScrollableDaysView: View, Equatable {
                 withAnimation(.snappy) {
                     vibrate()
                     selectedDateIndex += newOffset < 0 ? 1 : -1
-                    offset = (CalendarDayView.width / 3) * (offset > 0 ? -1 : 1)
+                    offset = (CalendarDayView.width / 2) * (offset > 0 ? -1 : 1)
                 }
             }
         }
@@ -114,11 +122,12 @@ struct ScrollableDaysOverlayView: View, Equatable {
                 VStack {
                     Text(monthName)
                         .font(.system(size: 24, weight: .bold))
+                        .padding(.top, 3)
                         .padding(.leading, 10)
                         .transition(.scale.combined(with: .opacity))
                         .id(monthName)
                 }
-                .frame(maxHeight: .infinity)
+                .frame(maxHeight: .infinity, alignment: .topLeading)
                 .contentShape(Rectangle())
                 .foregroundStyle(.white)
             }

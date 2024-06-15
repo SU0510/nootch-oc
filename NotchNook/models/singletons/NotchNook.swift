@@ -30,4 +30,3 @@ class NotchNook {
         case closed, nook, shelf, dragging
     }
 }
-

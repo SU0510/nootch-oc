@@ -13,6 +13,7 @@ struct ActualSizeCurrentWallpaperView: View {
             if let wallpaper = CurrentWallpaperManager.shared.currentWallpaper {
                 wallpaper
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: NSScreen.main?.frame.width ?? 1920, height: NSScreen.main?.frame.height ?? 1080)
                     .frame(geo.size, .top)
                     .clipped()

@@ -1,21 +1,18 @@
 //
-//  ShelfIconView.swift
+//  EventIconView.swift
 //  NotchNook
 //
-//  Created by Igor Marcossi on 19/05/24.
+//  Created by Igor Marcossi on 13/06/24.
 //
 
 import SwiftUI
 
-struct ShelfIconView: View {
+struct EventIconView: View {
     var body: some View {
-        Image(systemName: LiveActivity.shelf.icon)
+        Image(systemName: LiveActivity.calendar.icon)
             .font(.system(size: 13))
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
     }
 }
 
-#Preview {
-    ShelfIconView()
-}

@@ -8,7 +8,7 @@
 import EventKit
 import SwiftDate
 
-func groupAndSortEventsByDate(events: [EKEvent]) -> [Date: [EKEvent]] {
+func groupAndSortEventsByDate(_ events: [EKEvent]) -> [Date: [EKEvent]] {
     var groupedEvents = [Date: [EKEvent]]()
     let calendar = Calendar.current
     

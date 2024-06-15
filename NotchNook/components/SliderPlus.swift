@@ -30,6 +30,16 @@ struct SliderPlus: View {
         self.step = step
     }
     
+    init(value: Binding<Int>, range: ClosedRange<Double>, rangeManual: ClosedRange<Double>? = nil, step: Double = 1) {
+        self._value = Binding<Double>(
+            get: { Double(value.wrappedValue) },
+            set: { value.wrappedValue = Int($0) }
+        )
+        self.range = range
+        self.rangeManual = rangeManual
+        self.step = step
+    }
+    
     var body: some View {
         let rangeManual = rangeManual ?? range
         let rangeAmount = range.upperBound - range.lowerBound

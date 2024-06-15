@@ -10,3 +10,5 @@ import SwiftUI
 struct CalendarWidgetSettings: WidgetPrefs {
     var size: NookGrid.Size = .init(width: 3, height: 2)
 }
+
+ 

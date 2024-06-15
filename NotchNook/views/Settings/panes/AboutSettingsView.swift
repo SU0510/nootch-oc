@@ -40,7 +40,7 @@ struct AboutSettingsView: View {
             VStack(spacing: 24) {
                 VStack(spacing: 8) {
                     Text("NotchNook is made by").fontWeight(.medium).opacity(0.25)
-                    BlinkingLogoView()
+                    LoCafeLogoView()
                     Text("A group of talented friends from 4 different countries that develop amazing software together for nothing but passion.")
                         .opacity(0.75)
                         .padding(.horizontal, 48)

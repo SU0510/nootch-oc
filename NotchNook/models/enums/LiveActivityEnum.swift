@@ -17,7 +17,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     var isImplemented: Bool {
         return switch self {
         case .shelf, .media: true
-        case .calendar: false
+        case .calendar: true
         }
     }
     

@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import Sparkle
 import AppKit
-//import Shift
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil

@@ -31,7 +31,6 @@ struct CalendarDayView: View, Equatable {
                 }
             }
             .animation(.default, value: selected)
-            .compositingGroup()
             .font(.system(size: 10, weight: .bold))
             .foregroundStyle((isInWeekend ? Color.weekendPink : Color.white).opacity(0.35))
             

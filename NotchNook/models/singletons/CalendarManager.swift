@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import EventKit
 import Algorithms
+import SwiftDate
+import Defaults
 
 typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
 
@@ -40,7 +42,13 @@ public final class CalendarManager {
     // MARK: - Properties
     
     /// Streams of EKEvent instances
-    public var events = [EKEvent]()
+    public var eventsDatesDict = [Date:[EKEvent]]()
+    public var events = [EKEvent]() {
+        didSet {
+            self.scheduleLiveActivities()
+            self.eventsDatesDict = groupAndSortEventsByDate(events)
+        }
+    }
     
     /// The calendar’s title.
     public static var appName: String?
@@ -53,6 +61,10 @@ public final class CalendarManager {
         eventStore.calendarForApp()
     }
     
+    private var dailyTimer: Timer?
+    private var liveActivitiesTimers = [Timer]()
+    private var defaultsTask: Task<Void, Never>?
+    
     // MARK: Lifecycle
     
     /// Shared `CalendarManager` singleton
@@ -64,7 +76,48 @@ public final class CalendarManager {
         self.appName = appName
     }
     
-    private init() {} // This prevents others from using the default '()' initializer for this class.
+    private init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(_:)), name: .EKEventStoreChanged, object: eventStore)
+        dailyTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(dailyTask), userInfo: nil, repeats: true)
+        defaultsTask = Task { [weak self] in
+            for await value in Defaults.updates(.calendarLiveActivitySettings) {
+                self?.scheduleLiveActivities()
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .EKEventStoreChanged, object: eventStore)
+        dailyTimer?.invalidate()
+    }
+    
+    @objc private func storeChanged(_ notification: Notification) {
+        Task {
+            try? await fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+        }
+    }
+
+    @objc private func dailyTask() {
+        Task {
+            try? await fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+        }
+    }
+    
+    func scheduleLiveActivities() {
+        let prefs = Defaults[.calendarLiveActivitySettings]
+        liveActivitiesTimers.forEach { timer in
+            timer.invalidate()
+        }
+        liveActivitiesTimers = []
+        events.forEach { event in
+            if prefs.onlyEventsWithMeetings, detectMeetings(event.notes ?? "") == nil { return }
+            let fireAt = event.startDate - prefs.minutesBeforeEvent.minutes
+            func addLiveActivity() { NotchNook.shared.activeLiveActivities.insert(.calendar) }
+            liveActivitiesTimers.append(Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                addLiveActivity()
+            })
+        }
+    }
     
     // MARK: - Flow
     
@@ -127,6 +180,15 @@ public final class CalendarManager {
     
     // MARK: - Fetch Events
     
+    public func fetchEventsForDaysOffset(_ days: Int, calendar: Calendar = .autoupdatingCurrent) async throws {
+        let offset = days / 2
+        let today = Date()
+        try await fetchEvents(
+            startDate: today - offset.days,
+            endDate: today + offset.days
+        )
+    }
+    
     /// Fetch events for today
     /// - Parameter completion: completion handler
     /// - Parameter filterCalendarIDs: filterable Calendar IDs
@@ -184,7 +246,7 @@ public final class CalendarManager {
         filterCalendarIDs: [String] = []
     ) async throws -> [EKEvent] {
         let authorization = try await requestEventStoreAuthorization()
-        guard authorization == .authorized else {
+        guard authorization == .fullAccess else {
             throw CalendarManagerError.eventAuthorizationStatus(nil)
         }
         
@@ -214,7 +276,7 @@ public final class CalendarManager {
     private func accessCalendar() async throws -> EKCalendar {
         let authorization = try await requestEventStoreAuthorization()
         
-        guard authorization == .authorized else {
+        guard authorization == .fullAccess else {
             throw CalendarManagerError.eventAuthorizationStatus(nil)
         }
         

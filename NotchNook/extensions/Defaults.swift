@@ -17,6 +17,7 @@ extension Defaults.Keys {
     static let intro = Key<Bool>("intro", default: true)
     
     static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
+    static let calendarLiveActivitySettings = Key<CalendarLiveActivitySettings>("calendarLiveActivitySettings", default: .init())
     static let liveActivitiesSettings = Key<LiveActivitiesSettings>("liveActivitiesSettings", default: .init())
     static let generalSettings = Key<GeneralSettings>("generalSettings", default: .init())
     static let mediaWidgetSettings = Key<MediaWidgetSettings>("mediaWidgetSettings", default: .init())

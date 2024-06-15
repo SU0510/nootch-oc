@@ -1,5 +1,5 @@
 //
-//  BlinkingLogoView.swift
+//  LoCafeLogoView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 01/06/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BlinkingLogoView: View {
+struct LoCafeLogoView: View {
     @State private var letterOActive = true
     @State private var letterFEActive = true
     @State private var lettersActive = true
