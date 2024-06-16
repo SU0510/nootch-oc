@@ -29,7 +29,8 @@ struct Meeting {
     var service: VideoConferenceService
 }
 
-func detectMeetings(_ text: String) -> Meeting? {
+func detectMeetings(_ text: String?) -> Meeting? {
+    guard let text else { return nil }
     let patterns: [VideoConferenceService: String] = [
         .googleMeet: "https?://meet\\.google\\.com/[a-zA-Z0-9-]+",
         .zoom: "https?://[\\w-]+\\.zoom\\.us/j/[0-9]+",

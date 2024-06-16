@@ -18,6 +18,6 @@ func getNotchDefaultWidth() -> Double {
     for (key, value) in sizes {
         if key.contains(model) { width = value }
     }
-    print(getMacBookModel())
+
     return width
 }

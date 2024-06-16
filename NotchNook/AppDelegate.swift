@@ -23,6 +23,9 @@ import AppKit
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Initialize (in memory ig) all singletons
         CalendarManager.configureWithAppName("NotchNook")
+        Task {
+            _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+        }
         _ = ShortcutsManager.shared
         _ = MediaPlayer.shared
         _ = VolumeMonitor.shared

@@ -10,4 +10,6 @@ import Foundation
 struct CalendarLiveActivitySettings: Preferences {
     var minutesBeforeEvent: Int = 15
     var onlyEventsWithMeetings = false
+    var showEventTimeLapsed = true
+    var showWhileInEvent = true
 }

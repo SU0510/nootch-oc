@@ -11,7 +11,7 @@ struct EventIconView: View {
     var body: some View {
         Image(systemName: LiveActivity.calendar.icon)
             .font(.system(size: 13))
-            .foregroundStyle(.white)
+            .foregroundStyle(.blue)
             .frame(maxWidth: .infinity)
     }
 }

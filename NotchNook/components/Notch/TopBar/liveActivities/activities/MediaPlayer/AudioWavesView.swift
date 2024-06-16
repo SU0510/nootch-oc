@@ -34,7 +34,7 @@ struct AudioWavesView: View {
                             .transition(.scaleAndBlur)
                     }
                 }
-                .background(.black)
+                .background(.black.opacity(0.001))
                 .contentShape(Rectangle())
                 .onHover { newHovering in
                     withAnimation(.smooth(duration: 0.25)) {

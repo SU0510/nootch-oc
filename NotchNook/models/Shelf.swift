@@ -19,7 +19,7 @@ class Shelf {
                 doThisAfter(0) { self.selectedFiles = newSelectedFiles }
             }
             doThisAfter(0) {
-                withAnimation(.smooth) {
+                withAnimation(TopBarView.animation) {
                     if newValue.isEmpty {
                         if NotchNook.shared.activeLiveActivities.contains(.shelf) {
                             NotchNook.shared.activeLiveActivities.remove(.shelf)

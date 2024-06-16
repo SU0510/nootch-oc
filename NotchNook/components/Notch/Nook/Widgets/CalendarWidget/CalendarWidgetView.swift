@@ -33,7 +33,7 @@ struct CalendarWidgetView: View {
             }
         }
         .task {
-            _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(Self.showingDatesCount)
+            _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
         }
     }
     

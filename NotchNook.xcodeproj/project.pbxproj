@@ -10,7 +10,9 @@
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
 		3A105FCE2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */; };
 		3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCF2C1BADB60015EC66 /* EventIconView.swift */; };
-		3A105FD32C1BADE80015EC66 /* EventTimeRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FD22C1BADE80015EC66 /* EventTimeRemainingView.swift */; };
+		3A105FD32C1BADE80015EC66 /* EventTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FD22C1BADE80015EC66 /* EventTimeView.swift */; };
+		3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE42C1E76450015EC66 /* LiveActivityView.swift */; };
+		3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE62C1E86080015EC66 /* closestEvent.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -217,7 +219,9 @@
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
 		3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettingsView.swift; sourceTree = "<group>"; };
 		3A105FCF2C1BADB60015EC66 /* EventIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIconView.swift; sourceTree = "<group>"; };
-		3A105FD22C1BADE80015EC66 /* EventTimeRemainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeRemainingView.swift; sourceTree = "<group>"; };
+		3A105FD22C1BADE80015EC66 /* EventTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeView.swift; sourceTree = "<group>"; };
+		3A105FE42C1E76450015EC66 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
+		3A105FE62C1E86080015EC66 /* closestEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closestEvent.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -438,14 +442,47 @@
 		3A105FD12C1BADC40015EC66 /* liveActivities */ = {
 			isa = PBXGroup;
 			children = (
-				EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */,
-				EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */,
-				EC8D60032BFAE90D00E67ECC /* ShelfFilesCountView.swift */,
-				EC8D60052BFAE91800E67ECC /* ShelfIconView.swift */,
-				3A105FCF2C1BADB60015EC66 /* EventIconView.swift */,
-				3A105FD22C1BADE80015EC66 /* EventTimeRemainingView.swift */,
+				3A105FE32C1E76110015EC66 /* activities */,
+				3A105FE42C1E76450015EC66 /* LiveActivityView.swift */,
 			);
 			path = liveActivities;
+			sourceTree = "<group>";
+		};
+		3A105FE02C1D1DB20015EC66 /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */,
+				EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */,
+			);
+			path = MediaPlayer;
+			sourceTree = "<group>";
+		};
+		3A105FE12C1D1DBC0015EC66 /* Shelf */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D60052BFAE91800E67ECC /* ShelfIconView.swift */,
+				EC8D60032BFAE90D00E67ECC /* ShelfFilesCountView.swift */,
+			);
+			path = Shelf;
+			sourceTree = "<group>";
+		};
+		3A105FE22C1D1DC40015EC66 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				3A105FCF2C1BADB60015EC66 /* EventIconView.swift */,
+				3A105FD22C1BADE80015EC66 /* EventTimeView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		3A105FE32C1E76110015EC66 /* activities */ = {
+			isa = PBXGroup;
+			children = (
+				3A105FE02C1D1DB20015EC66 /* MediaPlayer */,
+				3A105FE12C1D1DBC0015EC66 /* Shelf */,
+				3A105FE22C1D1DC40015EC66 /* Calendar */,
+			);
+			path = activities;
 			sourceTree = "<group>";
 		};
 		3A801E032C1530490076560D /* decorators */ = {
@@ -807,6 +844,7 @@
 				3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */,
 				3A801E192C157D700076560D /* getScreenDefaultWidth.swift */,
 				3A801E1B2C163B540076560D /* detectMeetings.swift */,
+				3A105FE62C1E86080015EC66 /* closestEvent.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1176,6 +1214,7 @@
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
+				3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
@@ -1241,7 +1280,7 @@
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
 				EC0E30DA2C041BF30060B47E /* NookGeneralSettingsTabView.swift in Sources */,
 				EC47FC872C0AC05D00591811 /* LicenseStateView.swift in Sources */,
-				3A105FD32C1BADE80015EC66 /* EventTimeRemainingView.swift in Sources */,
+				3A105FD32C1BADE80015EC66 /* EventTimeView.swift in Sources */,
 				EC0E31132C0566B80060B47E /* MediaWidgetSettings.swift in Sources */,
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
@@ -1328,6 +1367,7 @@
 				EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
 				EC14B5D12C07AB2A000FC6B6 /* DropAreaSettingsView.swift in Sources */,
+				3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */,
 				EC0E30EE2C0433960060B47E /* ShelfLiveActivitySettingsView.swift in Sources */,
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,

@@ -12,16 +12,18 @@ struct CalendarLiveActivitySettingsView: View {
     @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     var body: some View {
         Form {
-//            MockLiveAcitivitiesView(activities: [.media])
+            CustomLabeled(
+                title: "Minutes before",
+                description: "How many minutes before an event should the live activity show up?"
+            ) { SliderPlus(value: $calendarLiveActivitySettings.minutesBeforeEvent, range: 1...60) }
             
-            Group {
-                CustomLabeled(
-                    title: "Minutes before",
-                    description: "How many minutes before an event should the live activity show up?"
-                ) { SliderPlus(value: $calendarLiveActivitySettings.minutesBeforeEvent, range: 1...60) }
+            Toggle("Show while in events", isOn: $calendarLiveActivitySettings.showWhileInEvent)
+            
+            if calendarLiveActivitySettings.showWhileInEvent {
+                Toggle("Show time lapsed while in events", isOn: $calendarLiveActivitySettings.showEventTimeLapsed)
             }
-            .listRowInsets(.zero)
         }
+        .animation(.default, value: calendarLiveActivitySettings.showWhileInEvent)
         .formStyle(.grouped)
         .scrollContentBackground(.hidden)
     }

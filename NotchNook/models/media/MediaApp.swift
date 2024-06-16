@@ -60,7 +60,7 @@ extension MediaApp {
     }
     
     func updateLiveActivities(_ altIsPlaying: Bool? = nil) {
-        withAnimation(.bouncy(extraBounce: 0.075)) {
+        withAnimation(TopBarView.animation) {
             if altIsPlaying ?? self.isPlaying {
                 NotchNook.shared.activeLiveActivities.insert(.media)
             } else {

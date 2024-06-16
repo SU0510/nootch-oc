@@ -80,7 +80,7 @@ public final class CalendarManager {
         NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(_:)), name: .EKEventStoreChanged, object: eventStore)
         dailyTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(dailyTask), userInfo: nil, repeats: true)
         defaultsTask = Task { [weak self] in
-            for await value in Defaults.updates(.calendarLiveActivitySettings) {
+            for await _ in Defaults.updates(.calendarLiveActivitySettings) {
                 self?.scheduleLiveActivities()
             }
         }
@@ -109,13 +109,40 @@ public final class CalendarManager {
             timer.invalidate()
         }
         liveActivitiesTimers = []
+        
+        var addedLiveActivity = false
+        
+        func addLiveActivity(event: EKEvent) {
+            addedLiveActivity = true
+            Task { await MainActor.run {
+                withAnimation(TopBarView.animation) {
+                    NotchNook.shared.activeLiveActivities.insert(.calendar)
+                }
+            } }
+        }
+        
         events.forEach { event in
+            let now = Date()
+            if event.endDate < now { return }
             if prefs.onlyEventsWithMeetings, detectMeetings(event.notes ?? "") == nil { return }
+            
             let fireAt = event.startDate - prefs.minutesBeforeEvent.minutes
-            func addLiveActivity() { NotchNook.shared.activeLiveActivities.insert(.calendar) }
-            liveActivitiesTimers.append(Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                addLiveActivity()
-            })
+            let willHappen = fireAt > now
+            let isHappening = !willHappen && event.endDate > now
+
+            if isHappening {
+                addLiveActivity(event: event)
+            } else if willHappen {
+                let fireIn = fireAt.timeIntervalSince1970 - now.timeIntervalSince1970
+                liveActivitiesTimers.append(Timer.scheduledTimer(withTimeInterval: fireIn, repeats: false) { _ in
+                    addLiveActivity(event: event)
+                })
+            }
+        }
+        if !addedLiveActivity {
+            withAnimation(TopBarView.animation) {
+                NotchNook.shared.activeLiveActivities.remove(.calendar)
+            }
         }
     }
     
