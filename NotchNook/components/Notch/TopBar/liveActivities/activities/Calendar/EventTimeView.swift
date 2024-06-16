@@ -44,15 +44,15 @@ struct EventTimeView: View {
                         }
                     }
                     .font(.system(size: meetingStarted ? 12 : 13, weight: .medium).width(meetingStarted ? .condensed : .standard))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, meetingStarted ? 6 : 0)
-                        .padding(.vertical, meetingStarted ? 3 : 0)
-                        .background(meetingStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
-                        .frame(maxWidth: .infinity)
-                        .blur(radius: hovering ? 1.25 : 0)
-                        .opacity(hovering ? 0.3 : meetingStarted ? 0.5 : 1)
-                        .transition(.scaleAndBlur)
-                        .id(meetingStarted)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, meetingStarted ? 6 : 0)
+                    .padding(.vertical, meetingStarted ? 3 : 0)
+                    .background(meetingStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
+                    .frame(maxWidth: .infinity)
+                    .blur(radius: hovering ? 1.25 : 0)
+                    .opacity(hovering ? 0.3 : meetingStarted ? 0.5 : 1)
+                    .transition(.scaleAndBlur)
+                    .id(meetingStarted)
                     
                     if hovering, let meeting {
                         Image(meeting.service.logo)
@@ -78,9 +78,7 @@ struct EventTimeView: View {
             .frame(maxWidth: .infinity)
             .allowsHitTesting(meeting != nil)
             .onChange(of: shouldRemoveAct) { _, val in
-                withAnimation(TopBarView.animation) {
-                    if val { NotchNook.shared.activeLiveActivities.remove(.calendar) }
-                }
+                if val { NotchNook.shared.activeLiveActivities.remove(.calendar) }
             }
         }
     }
@@ -91,7 +89,8 @@ struct EventTimeView: View {
         let seconds = Int(secs) % 60
 
         if hours > 0 {
-            return "\(hours)h\(minutes)m"
+//            return "\(hours)h\(minutes)m"
+            return "\(hours)h"
         } else if minutes > 0 {
             return "\(minutes)m"
         } else {

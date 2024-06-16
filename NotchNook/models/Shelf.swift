@@ -19,15 +19,13 @@ class Shelf {
                 doThisAfter(0) { self.selectedFiles = newSelectedFiles }
             }
             doThisAfter(0) {
-                withAnimation(TopBarView.animation) {
-                    if newValue.isEmpty {
-                        if NotchNook.shared.activeLiveActivities.contains(.shelf) {
-                            NotchNook.shared.activeLiveActivities.remove(.shelf)
-                        }
-                    } else {
-                        if !NotchNook.shared.activeLiveActivities.contains(.shelf) {
-                            NotchNook.shared.activeLiveActivities.insert(.shelf)
-                        }
+                if newValue.isEmpty {
+                    if NotchNook.shared.activeLiveActivities.contains(.shelf) {
+                        NotchNook.shared.activeLiveActivities.remove(.shelf)
+                    }
+                } else {
+                    if !NotchNook.shared.activeLiveActivities.contains(.shelf) {
+                        NotchNook.shared.activeLiveActivities.insert(.shelf)
                     }
                 }
             }

@@ -11,7 +11,7 @@ import Defaults
 struct TopBarView: View {
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let height: CGFloat = 32
-    static let liveActionWidth: CGFloat = 35
+    static let liveActionWidth: CGFloat = 38
     var panGestureCounter: Int
     var scale: Double = 1
     var panPadding: EdgeInsets

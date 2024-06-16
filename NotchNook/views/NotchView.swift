@@ -10,6 +10,7 @@ import Defaults
 import UniformTypeIdentifiers
 
 struct NotchView: View, DropDelegate {
+    static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxVPanDrag: Double = 14
     static let maxHPanDrag: Double = 24
     static let panVelocityTriggerThreshold: Double = 500
@@ -123,7 +124,10 @@ struct NotchView: View, DropDelegate {
                         LicenseStateView()
                     } else {
                         switch mode {
-                        case .closed: EmptyView()
+                        case .closed: 
+                                if let quickPeaks = NotchNook.shared.quickPeaks {
+                                    QuickPeaksView(quickPeaks: quickPeaks)
+                                }
                         case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
                         case .nook: NookView()
                         case .shelf: ShelfView(hovered: false, full: true)
@@ -293,7 +297,7 @@ struct NotchView: View, DropDelegate {
     
     func openNotch(in newMode: NotchNook.NotchMode = .nook) {
         hideTimer?.invalidate()
-        withAnimation(.bouncy(extraBounce: 0.075)) {
+        withAnimation(Self.animation) {
             cancelPan = true
             if hide { hide = false } else {
                 NotchNook.shared.mode[screenID] = newMode

@@ -18,7 +18,7 @@ protocol MediaApp: AnyObject {
     var appRunningMonitor: AppMonitor? { get set }
     var liveActivityTimer: Timer? { get set }
     var inactiveLiveActivitiesTimeout: Double { get set }
-
+    
     func doSafeCrossBridgeAction(_ action: () -> ()) -> ()
     func updateIsPlaying() -> ()
     func updateTrack() -> ()
@@ -60,12 +60,10 @@ extension MediaApp {
     }
     
     func updateLiveActivities(_ altIsPlaying: Bool? = nil) {
-        withAnimation(TopBarView.animation) {
-            if altIsPlaying ?? self.isPlaying {
-                NotchNook.shared.activeLiveActivities.insert(.media)
-            } else {
-                NotchNook.shared.activeLiveActivities.remove(.media)
-            }
+        if altIsPlaying ?? self.isPlaying {
+            NotchNook.shared.activeLiveActivities.insert(.media)
+        } else {
+            NotchNook.shared.activeLiveActivities.remove(.media)
         }
     }
 }

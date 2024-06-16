@@ -25,7 +25,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
         return switch self {
         case .media: "music.note"
         case .shelf: "tray.fill"
-        case .calendar: "calendar"
+        case .calendar: "calendar.badge.clock.rtl"
         }
     }
     

@@ -23,15 +23,15 @@ public enum CalendarManagerError: Error, LocalizedError {
     
     var localizedDescription: String {
         switch self {
-        case .invalidEvent: return "Invalid event"
-        case .unableToAccessCalendar: return "Unable to access celendar"
-        case let .mapFromError(error): return error.localizedDescription
-        case let .eventAuthorizationStatus(status):
-            if let status = status {
-                return "Failed to authorize event persmissson, status: \(status)"
-            } else {
-                return "Failed to authorize event persmissson"
-            }
+            case .invalidEvent: return "Invalid event"
+            case .unableToAccessCalendar: return "Unable to access celendar"
+            case let .mapFromError(error): return error.localizedDescription
+            case let .eventAuthorizationStatus(status):
+                if let status = status {
+                    return "Failed to authorize event persmissson, status: \(status)"
+                } else {
+                    return "Failed to authorize event persmissson"
+                }
         }
     }
 }
@@ -96,7 +96,7 @@ public final class CalendarManager {
             try? await fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
         }
     }
-
+    
     @objc private func dailyTask() {
         Task {
             try? await fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
@@ -115,9 +115,7 @@ public final class CalendarManager {
         func addLiveActivity(event: EKEvent) {
             addedLiveActivity = true
             Task { await MainActor.run {
-                withAnimation(TopBarView.animation) {
-                    NotchNook.shared.activeLiveActivities.insert(.calendar)
-                }
+                NotchNook.shared.activeLiveActivities.insert(.calendar)
             } }
         }
         
@@ -129,7 +127,7 @@ public final class CalendarManager {
             let fireAt = event.startDate - prefs.minutesBeforeEvent.minutes
             let willHappen = fireAt > now
             let isHappening = !willHappen && event.endDate > now
-
+            
             if isHappening {
                 addLiveActivity(event: event)
             } else if willHappen {
@@ -140,9 +138,7 @@ public final class CalendarManager {
             }
         }
         if !addedLiveActivity {
-            withAnimation(TopBarView.animation) {
-                NotchNook.shared.activeLiveActivities.remove(.calendar)
-            }
+            NotchNook.shared.activeLiveActivities.remove(.calendar)
         }
     }
     

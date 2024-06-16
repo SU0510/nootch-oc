@@ -12,4 +12,5 @@ struct LiveActivitiesSettings: Preferences {
     var inactivityTimeoutInSecs: Double = 10
     var enabledLiveActivities: Set<LiveActivity> = [.shelf, .media]
     var interactive = true
+    var enableQuickPeak = true
 }

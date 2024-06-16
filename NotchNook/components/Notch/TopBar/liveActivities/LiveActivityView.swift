@@ -41,13 +41,13 @@ struct LiveActivityView: View {
                     case .calendar:
                         if let closestEvent = closestEvent(in: CalendarManager.shared.events) {
                             switch side {
-                                case .left: EventIconView()
+                                case .left: EventIconView(event: closestEvent, laPrefs: liveActivitiesSettings)
                                 case .right: EventTimeView(event: closestEvent, prefs: calendarLiveActivitySettings)
                             }
                         }
                     case .media:
                         switch side {
-                            case .left: MiniAlbumCoverView(prefs: mediaLiveActivitySettings)
+                            case .left: MiniAlbumCoverView(laPrefs: liveActivitiesSettings, prefs: mediaLiveActivitySettings)
                             case .right: AudioWavesView(prefs: mediaLiveActivitySettings)
                         }
                     case .shelf:

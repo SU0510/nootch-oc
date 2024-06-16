@@ -27,6 +27,14 @@ struct LiveActivitiesGeneralSettingsTabView: View {
             ) {
                 Toggle("", isOn: $liveActivitiesSettings.interactive)
             }
+            CustomLabeled(
+                title: "Enable Quick Peak", icon: "eyes",
+                description: "If enabled, some live activities will show a short info on mouse hover."
+            ) {
+                Toggle("", isOn: $liveActivitiesSettings.enableQuickPeak)
+            }
+            
+            
         }
         .scrollContentBackground(.hidden)
         .formStyle(.grouped)
