@@ -18,6 +18,7 @@ struct CalendarDayView: View, Equatable {
     var selected: Bool
     var body: some View {
         let isInWeekend = date.isInWeekend
+        let isToday = date.isToday
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 let weekArr = date.weekdayName(.standaloneShort).split(separator: "")
@@ -38,7 +39,7 @@ struct CalendarDayView: View, Equatable {
             VStack(spacing: 2) {
                 Text(String(format: "%02d", date.day))
                     .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(isInWeekend ? .weekendPink : .white)
+                    .foregroundStyle(isToday ? .blue : isInWeekend ? .weekendPink : .white)
                 HStack(spacing: 3) {
                     if eventsCount > 0 {
                         ForEach(Array(arrayLiteral: eventsCount), id: \.self) { _ in

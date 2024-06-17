@@ -67,16 +67,9 @@ struct TheMarquee<C: View>: View {
         .measure($containerSize)
         .compositingGroup()
         .opacity(measured ? 1 : 0)
-        .onChange(of: containerSize) { oldValue, newValue in
-            if contentSize == .zero || newValue == .zero { return }
-            startAnimation()
-        }
-        .onChange(of: contentSize) { oldValue, newValue in
-            if containerSize == .zero || newValue == .zero { return }
-            startAnimation()
-        }
-        .onDisappear {
-            animating = false
-        }
+        .onChange(of: containerSize) { _, _ in startAnimation() }
+        .onChange(of: contentSize) { _, _ in startAnimation() }
+        .onAppear { startAnimation() }
+        .onDisappear { animating = false }
     }
 }

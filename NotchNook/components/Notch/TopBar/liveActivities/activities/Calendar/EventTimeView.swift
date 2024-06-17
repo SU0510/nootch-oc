@@ -10,24 +10,27 @@ import EventKit
 import SwiftDate
 
 struct EventTimeView: View {
-    var event: EKEvent
+    var notes: String?
+    var startDate: Date
+    var endDate: Date
     var prefs: CalendarLiveActivitySettings
     @State private var hovering = false
     @Environment(\.openURL) private var openURL
+    @Environment(\.getNow) private var getNow
     var body: some View {
         TimelineView(.animation(minimumInterval: 1)) { ctx in
-            let now = Date()
-            let meeting = detectMeetings(event.notes)
-            let meetingStarted = event.startDate < now
-            let shouldRemoveAct = prefs.showWhileInEvent ? event.endDate - 5.seconds < now : meetingStarted
+            let now = getNow()
+            let meeting = detectMeetings(notes)
+            let meetingStarted = startDate < now
+            let shouldRemoveAct = prefs.showWhileInEvent ? endDate - 5.seconds < now : meetingStarted
             
             // Pre-call vars
-            let remainingSeconds = event.startDate.timeIntervalSince1970 - now.timeIntervalSince1970
+            let remainingSeconds = startDate.timeIntervalSince1970 - now.timeIntervalSince1970
             let remainingNumber = formatSecs(remainingSeconds)
             let preCallText = remainingNumber
             
             // In-call vars
-            let inCallText = prefs.showEventTimeLapsed ? formatSecs(now.timeIntervalSince1970 - event.startDate.timeIntervalSince1970) : nil
+            let inCallText = prefs.showEventTimeLapsed ? formatSecs(now.timeIntervalSince1970 - startDate.timeIntervalSince1970) : nil
             
             let text = meetingStarted ? inCallText : preCallText
             
@@ -38,6 +41,7 @@ struct EventTimeView: View {
                     Group {
                         if let text {
                             Text(text)
+                                .fixedSize(horizontal: true, vertical: false)
                                 .contentTransition(.numericText())
                         } else {
                             Image(systemName: "phone.fill")

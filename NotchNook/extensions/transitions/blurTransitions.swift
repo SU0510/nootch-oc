@@ -47,6 +47,7 @@ struct BlurAndSlideH: ViewModifier {
 }
 
 struct ScaleAndBlurEffect: ViewModifier {
+    var blur: Double
     let isActive: Bool
     var anchor: UnitPoint = .center
     
@@ -54,7 +55,7 @@ struct ScaleAndBlurEffect: ViewModifier {
         content
             .scaleEffect(isActive ? 1 : 0.75, anchor: anchor)
             .opacity(isActive ? 1 : 0)
-            .blur(radius: isActive ? 0 : 30)
+            .blur(radius: isActive ? 0 : blur)
             .zIndex(isActive ? 0 : -1)
     }
 }
@@ -86,14 +87,14 @@ extension AnyTransition {
     }
     static var scaleAndBlur: AnyTransition {
         .modifier(
-            active: ScaleAndBlurEffect(isActive: false),
-            identity: ScaleAndBlurEffect(isActive: true)
+            active: ScaleAndBlurEffect(blur: 30, isActive: false),
+            identity: ScaleAndBlurEffect(blur: 30, isActive: true)
         )
     }
-    static func scaleAndBlur(anchor: UnitPoint) -> AnyTransition {
+    static func scaleAndBlur(anchor: UnitPoint = .center, blur: Double = 30) -> AnyTransition {
         .modifier(
-            active: ScaleAndBlurEffect(isActive: false, anchor: anchor),
-            identity: ScaleAndBlurEffect(isActive: true, anchor: anchor)
+            active: ScaleAndBlurEffect(blur: blur, isActive: false, anchor: anchor),
+            identity: ScaleAndBlurEffect(blur: blur, isActive: true, anchor: anchor)
         )
     }
     static var fadeBlur: AnyTransition {

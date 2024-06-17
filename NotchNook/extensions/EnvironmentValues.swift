@@ -34,7 +34,15 @@ private struct TrialOverKey: EnvironmentKey {
     static var defaultValue: Bool = false
 }
 
+private struct GetNowKey: EnvironmentKey {
+    static var defaultValue: () -> Date = { Date() }
+}
+
 extension EnvironmentValues {
+    var getNow: () -> Date {
+        get { self[GetNowKey.self] }
+        set { self[GetNowKey.self] = newValue }
+    }
     var trialOver: Bool {
         get { self[TrialOverKey.self] }
         set { self[TrialOverKey.self] = newValue }

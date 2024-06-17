@@ -24,15 +24,15 @@ struct QuickPeakView: View {
             HStack(spacing: 4) {
                 if let icon = quickPeak.icon {
                     Image(systemName: icon)
-                        .opacity(0.6)
-                        .font(.system(size: 15, weight: .medium))
+                        .opacity(0.75)
+                        .font(.system(size: 14, weight: .medium))
                 }
                 Text(quickPeak.text)
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: 12, weight: .medium))
             }
             .opacity(0.5)
             .foregroundStyle(.white)
-            .padding(.vertical, 6)
+            .padding(EdgeInsets(top: 9, leading: 0, bottom: 4, trailing: 0))
     }
 }
 

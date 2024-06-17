@@ -16,6 +16,8 @@
 		3A105FEA2C1EAA660015EC66 /* QuickPeaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */; };
 		3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */; };
 		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
+		3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */; };
+		3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FF12C1FF4160015EC66 /* EKEvent.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -227,6 +229,8 @@
 		3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPeaksView.swift; sourceTree = "<group>"; };
 		3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMarquee.swift; sourceTree = "<group>"; };
 		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
+		3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookEvent.swift; sourceTree = "<group>"; };
+		3A105FF12C1FF4160015EC66 /* EKEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEvent.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -892,6 +896,7 @@
 				EC2DD1F32C03DE9C001FD54E /* URL.swift */,
 				EC0E30EB2C042FC80060B47E /* Binding.swift */,
 				EC13C6DF2C0918B800B45C6E /* Color.swift */,
+				3A105FF12C1FF4160015EC66 /* EKEvent.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -914,6 +919,7 @@
 				EC0E31022C0548A10060B47E /* NookGrid.swift */,
 				EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */,
 				EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */,
+				3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1228,6 +1234,7 @@
 				EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
+				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
@@ -1360,6 +1367,7 @@
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
+				3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */,
 				EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */,
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,

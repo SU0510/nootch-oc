@@ -10,17 +10,17 @@ import SwiftUI
 struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: View {
     var elements: [El]
     @Binding var activeElements: Set<El>
-    @State var selectedElement: El?
+    @State var selectedElement: El
     var disableItem: ((El) -> Bool)?
-    @ViewBuilder var preview: (_ selectedElement: El?) -> Preview
-    @ViewBuilder var settings: (_ selectedElement: El?) -> PrefsView
+    @ViewBuilder var preview: (_ selectedElement: El) -> Preview
+    @ViewBuilder var settings: (_ selectedElement: El) -> PrefsView
     
     init(
         elements: [El],
         activeElements: Binding<Set<El>>,
         disableItem: ((El) -> Bool)? = nil,
-        @ViewBuilder preview: @escaping (_ selectedElement: El?) -> Preview,
-        @ViewBuilder settings: @escaping (_ selectedElement: El?) -> PrefsView
+        @ViewBuilder preview: @escaping (_ selectedElement: El) -> Preview,
+        @ViewBuilder settings: @escaping (_ selectedElement: El) -> PrefsView
     ) {
         self.elements = elements
         self._activeElements = activeElements
@@ -30,14 +30,15 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
         self.disableItem = disableItem
         self.preview = preview
         self.settings = settings
+        self._selectedElement = .init(initialValue: elements[0])
     }
     
     init(
         elements: [El],
         activeElements: Binding<[El]>,
         disableItem: ((El) -> Bool)? = nil,
-        @ViewBuilder preview: @escaping (_ selectedElement: El?) -> Preview,
-        @ViewBuilder settings: @escaping (_ selectedElement: El?) -> PrefsView
+        @ViewBuilder preview: @escaping (_ selectedElement: El) -> Preview,
+        @ViewBuilder settings: @escaping (_ selectedElement: El) -> PrefsView
     ) {
         self.elements = elements
         self._activeElements = .init(get: {
@@ -51,6 +52,7 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
         self.disableItem = disableItem
         self.preview = preview
         self.settings = settings
+        self._selectedElement = .init(initialValue: elements[0])
     }
     
     func selectElement(_ element: El) {
@@ -83,7 +85,12 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
                 }
                 .frame(maxWidth: .infinity, alignment: .top)
                 .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                .background(.secondaryPanel, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+//                .background(.black, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .background {
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(.black.opacity(0.03))
+                        .blendMode(.plusDarker)
+                }
                 .padding(.horizontal, 19)
                 
                 settings(selectedElement)

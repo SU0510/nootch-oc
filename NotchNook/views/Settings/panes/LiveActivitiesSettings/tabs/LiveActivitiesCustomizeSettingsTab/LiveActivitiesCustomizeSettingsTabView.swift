@@ -16,7 +16,7 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
             elements: LiveActivity.allCases,
             activeElements: $liveActivitiesSettings.enabledLiveActivities
         ) { selectedActivity in
-            MockLiveAcitivitiesView(activities: selectedActivity == nil ? [] : [selectedActivity!])
+            MockLiveAcitivitiesView(activity: selectedActivity)
                 .padding(.horizontal, 19)
         } settings: { selectedElement in
             switch selectedElement {

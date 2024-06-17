@@ -37,7 +37,7 @@ class NotchNook {
         case closed, nook, shelf, dragging
     }
     
-    struct QuickPeak: Identifiable, Equatable {
+    struct QuickPeak: Identifiable, Equatable, Hashable {
         let id = UUID()
         let icon: String?
         let text: String

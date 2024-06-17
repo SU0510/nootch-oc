@@ -10,11 +10,13 @@ import EventKit
 import SwiftDate
 
 struct EventIconView: View {
-    var event: EKEvent
+    var eventTitle: String
+    var startDate: Date
     var laPrefs: LiveActivitiesSettings
+    @Environment(\.getNow) private var getNow
     var body: some View {
-        let now = Date()
-        let meetingStarted = event.startDate < now
+        let now = getNow()
+        let meetingStarted = startDate < now
         Image(systemName: meetingStarted ? "calendar" : LiveActivity.calendar.icon)
             .font(.system(size: 13))
             .foregroundStyle(.blue)
@@ -22,7 +24,7 @@ struct EventIconView: View {
             .frame(maxWidth: .infinity)
             .onHover { hovering in
                 if laPrefs.enableQuickPeak {
-                    NotchNook.shared.quickPeaks = hovering ? [.init(icon: "calendar.circle.fill", text: event.title)] : nil
+                    NotchNook.shared.quickPeaks = hovering ? [.init(icon: "calendar.circle.fill", text: eventTitle)] : nil
                 }
             }
     }
