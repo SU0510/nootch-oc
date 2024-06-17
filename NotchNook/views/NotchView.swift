@@ -10,6 +10,7 @@ import Defaults
 import UniformTypeIdentifiers
 
 struct NotchView: View, DropDelegate {
+    static let hoverScale: Double = 1.25
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxVPanDrag: Double = 14
     static let maxHPanDrag: Double = 24
@@ -102,7 +103,7 @@ struct NotchView: View, DropDelegate {
     var body: some View {
         let filesShelfCount = Shelf.shared.files.count
         let isShelfEmpty = filesShelfCount == 0
-        let actualScale = (hovering && !pressing && (mode == .closed) ? 1.25 : 1) - scaleDown
+        let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
         
         VStack(alignment: .center, spacing: 8) {
             
@@ -124,10 +125,7 @@ struct NotchView: View, DropDelegate {
                         LicenseStateView()
                     } else {
                         switch mode {
-                        case .closed: 
-                                if let quickPeaks = NotchNook.shared.quickPeaks {
-                                    QuickPeaksView(quickPeaks: quickPeaks)
-                                }
+                        case .closed: EmptyView()
                         case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
                         case .nook: NookView()
                         case .shelf: ShelfView(hovered: false, full: true)

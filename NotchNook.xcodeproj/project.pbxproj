@@ -14,6 +14,8 @@
 		3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE42C1E76450015EC66 /* LiveActivityView.swift */; };
 		3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE62C1E86080015EC66 /* closestEvent.swift */; };
 		3A105FEA2C1EAA660015EC66 /* QuickPeaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */; };
+		3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */; };
+		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -223,6 +225,8 @@
 		3A105FE42C1E76450015EC66 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		3A105FE62C1E86080015EC66 /* closestEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closestEvent.swift; sourceTree = "<group>"; };
 		3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPeaksView.swift; sourceTree = "<group>"; };
+		3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMarquee.swift; sourceTree = "<group>"; };
+		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -766,11 +770,11 @@
 			isa = PBXGroup;
 			children = (
 				EC758F7F2BF2F19B00B873B0 /* components */,
+				EC758F8F2BF2F1A400B873B0 /* extensions */,
 				3A801E032C1530490076560D /* decorators */,
 				EC47FC942C0B824500591811 /* assets */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
-				EC758F8F2BF2F1A400B873B0 /* extensions */,
 				EC758F922BF2F1A400B873B0 /* models */,
 				EC758F892BF2F1A400B873B0 /* utils */,
 				EC4173D52C02518F002889E7 /* views */,
@@ -810,6 +814,7 @@
 				EC47FCB82C0BD5A000591811 /* LoCafeLogoView.swift */,
 				EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */,
 				EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */,
+				3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -864,6 +869,7 @@
 				EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */,
 				ECAC6A6D2C070355000D9D27 /* measure.swift */,
 				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
+				3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1216,6 +1222,7 @@
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
+				3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
 				EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */,
@@ -1233,6 +1240,7 @@
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
+				3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
 				EC7A0FB22C0FF2E90063E78E /* CalendarView.swift in Sources */,
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,

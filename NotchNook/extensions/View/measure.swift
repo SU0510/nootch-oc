@@ -26,15 +26,18 @@ extension View {
     }
     func measure(_ sizeBinding: Binding<CGSize>) -> some View {
         self
-        .background(
-          GeometryReader { geometry in
-            Color.clear
-              .preference(key: ViewSizeKey.self, value: geometry.size)
-          }
-        )
-        .onPreferenceChange(ViewSizeKey.self) { size in
-          sizeBinding.wrappedValue = size
-        }
+            .background {
+                Color.clear
+                    .background(
+                        GeometryReader { geometry in
+                            Color.clear
+                                .preference(key: ViewSizeKey.self, value: geometry.size)
+                        }
+                    )
+                    .onPreferenceChange(ViewSizeKey.self) { size in
+                        sizeBinding.wrappedValue = size
+                    }
+            }
     }
 }
 
