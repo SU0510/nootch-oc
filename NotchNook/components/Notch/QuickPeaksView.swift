@@ -24,7 +24,7 @@ struct QuickPeakView: View {
             HStack(spacing: 4) {
                 if let icon = quickPeak.icon {
                     Image(systemName: icon)
-                        .opacity(0.75)
+                        .opacity(0.5)
                         .font(.system(size: 14, weight: .medium))
                 }
                 Text(quickPeak.text)
@@ -32,7 +32,7 @@ struct QuickPeakView: View {
             }
             .opacity(0.5)
             .foregroundStyle(.white)
-            .padding(EdgeInsets(top: 9, leading: 0, bottom: 4, trailing: 0))
+            .padding(EdgeInsets(top: 7, leading: 0, bottom: 3, trailing: 0))
     }
 }
 
