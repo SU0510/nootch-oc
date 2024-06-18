@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Settings
 import Sparkle
 
 struct AboutSettingsView: View {
@@ -96,7 +97,17 @@ struct AboutSettingsView: View {
     }
 }
 
+let AboutSettingsViewController: (_ updater: SPUUpdater) -> SettingsPane = { updater in
+    let paneView = Settings.Pane(
+        identifier: .about,
+        title: "About",
+        toolbarIcon: NSImage(systemSymbolName: "ellipsis.circle.fill", accessibilityDescription: "About settings")!
+    ) {
+        AboutSettingsView(updater: updater)
+    }
 
+    return Settings.PaneHostingController(pane: paneView)
+}
 
 private struct AppRecommendationView: View {
     var app: AppRecommendation

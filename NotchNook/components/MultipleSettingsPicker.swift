@@ -10,7 +10,8 @@ import SwiftUI
 struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: View {
     var elements: [El]
     @Binding var activeElements: Set<El>
-    @State var selectedElement: El
+    @State private var selectedElement: El
+    @State private var contentSize: CGSize = .zero
     var disableItem: ((El) -> Bool)?
     @ViewBuilder var preview: (_ selectedElement: El) -> Preview
     @ViewBuilder var settings: (_ selectedElement: El) -> PrefsView
@@ -64,38 +65,39 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
             preview(selectedElement)
             VStack(alignment: .center, spacing: 0) {
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .center, spacing: 4) {
-                        ForEach(Array(elements.enumerated()), id: \.element) { i, element in
-                            MultipleSettingsPickerItemView(
-                                element: element,
-                                selected: selectedElement == element,
-                                select: selectElement,
-                                isOn: Binding.setMembership(of: element, in: $activeElements),
-                                disabled: disableItem?(element) ?? false
-                            )
-                            
-                            if i < (elements.count - 1) {
-                                VDivider(color: .primary.opacity(0.1))
+                if contentSize != .zero {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(alignment: .center, spacing: 4) {
+                            ForEach(Array(elements.enumerated()), id: \.element) { i, element in
+                                MultipleSettingsPickerItemView(
+                                    element: element,
+                                    selected: selectedElement == element,
+                                    select: selectElement,
+                                    isOn: Binding.setMembership(of: element, in: $activeElements),
+                                    disabled: disableItem?(element) ?? false
+                                )
+                                
+                                if i < (elements.count - 1) {
+                                    VDivider(color: .primary.opacity(0.1))
+                                }
                             }
                         }
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(6)
                     }
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(6)
+                    .frame(width: contentSize.width - 38, alignment: .top)
+                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .background {
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .fill(.black.opacity(0.03))
+                            .blendMode(.plusDarker)
+                    }
+                    .padding(.horizontal, 19)
                 }
-                .frame(maxWidth: .infinity, alignment: .top)
-                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-//                .background(.black, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
-                .background {
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(.black.opacity(0.03))
-                        .blendMode(.plusDarker)
-                }
-                .padding(.horizontal, 19)
                 
                 settings(selectedElement)
-                    .scrollDisabled(true)
             }
+            .measure($contentSize)
         }
     }
 }

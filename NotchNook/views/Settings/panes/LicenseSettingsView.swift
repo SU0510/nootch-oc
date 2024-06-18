@@ -111,3 +111,15 @@ struct LicenseSettingsView: View {
         }
     }
 }
+
+let LicenseSettingsViewController: () -> SettingsPane = {
+    let paneView = Settings.Pane(
+        identifier: .license,
+        title: "License",
+        toolbarIcon: NSImage(systemSymbolName: "key.horizontal.fill", accessibilityDescription: "License settings")!
+    ) {
+        LicenseSettingsView()
+    }
+
+    return Settings.PaneHostingController(pane: paneView)
+}

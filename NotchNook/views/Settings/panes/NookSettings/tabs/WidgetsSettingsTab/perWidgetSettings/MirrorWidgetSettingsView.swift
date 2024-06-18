@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Settings
 
 struct MirrorWidgetSettingsView: View {
     var body: some View {
-        Form {
+        Settings.Container(contentWidth: 520.0) {
+            Settings.Section(title: "") {
             BlankView(message: "No options for this one")
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
         }
-        .formStyle(.grouped)
-        .scrollContentBackground(.hidden)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

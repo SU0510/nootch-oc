@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Settings
 import Defaults
 
 struct DropAreaGeneralSettingsTabView: View {
@@ -13,12 +14,12 @@ struct DropAreaGeneralSettingsTabView: View {
     
     var body: some View {
         let defaultValues = DropAreaSettings()
-        Form {
-            Section("Size") {
-                CustomLabeled(title: "Width", icon: "arrow.left.and.right") {
-                    SliderPlus(value: $dropAreaSettings.size.width.double, range: 8...24)
-                }
-                .resetToDefault($dropAreaSettings.size.width, defaultValues.size.width)
+        Settings.Container(contentWidth: 520.0) {
+            Settings.Section {
+                Text("Width:").frame(minWidth: 150, alignment: .trailing)
+            } content: {
+                SliderPlus(value: $dropAreaSettings.size.width.double, range: 8...24)
+                    .resetToDefault($dropAreaSettings.size.width, defaultValues.size.width)
                 
                 //                CustomLabeled(title: "height", icon: "arrow.up.and.down") {
                 //                    SliderPlus(value: $dropAreaSettings.size.height.double, range: 2...6)
@@ -26,7 +27,6 @@ struct DropAreaGeneralSettingsTabView: View {
                 //                .resetToDefault($dropAreaSettings.size.height, defaultValues.size.height)
             }
         }
-        .formStyle(.grouped)
-        .scrollContentBackground(.hidden)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

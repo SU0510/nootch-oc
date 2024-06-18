@@ -13,7 +13,7 @@ private struct NotchHeightKey: EnvironmentKey {
 }
 
 private struct OpenSettingsKey: EnvironmentKey {
-    typealias Value = ((_ pane: SettingsPane.PaneIdentifier?) -> ())
+    typealias Value = ((_ pane: SettingsLib.PaneIdentifier?) -> ())
     static let defaultValue: Self.Value = { _ in }
 }
 
@@ -59,7 +59,7 @@ extension EnvironmentValues {
         get { self[NotchHeightKey.self] }
         set { self[NotchHeightKey.self] = newValue }
     }
-    var openSettings: ((_ pane: SettingsPane.PaneIdentifier?) -> ()) {
+    var openSettings: ((_ pane: SettingsLib.PaneIdentifier?) -> ()) {
         get { self[OpenSettingsKey.self] }
         set { self[OpenSettingsKey.self] = newValue }
     }

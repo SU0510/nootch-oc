@@ -7,36 +7,34 @@
 
 import SwiftUI
 import Defaults
+import Settings
 
 struct LiveActivitiesGeneralSettingsTabView: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     var body: some View {
-        Form {
-            Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
-            CustomLabeled(
-                title: "Inactivity Timeout", icon: "timer",
-                description: "Tweak the time _(in seconds)_ that live activities take to go away after they become inactive (like when music pauses)."
-            ) {
-                HStack(spacing: 8) {
-                    SliderPlus(value: $liveActivitiesSettings.inactivityTimeoutInSecs, range: 0...16, rangeManual: 0...600, step: 1)
-                }
-            }
-            CustomLabeled(
-                title: "Interactive Activities", icon: "cursorarrow.click",
-                description: "Allow some activities to interact with mouse click/hover."
-            ) {
-                Toggle("", isOn: $liveActivitiesSettings.interactive)
-            }
-            CustomLabeled(
-                title: "Enable Quick Peak", icon: "eyes",
-                description: "If enabled, some live activities will show a short info on mouse hover."
-            ) {
-                Toggle("", isOn: $liveActivitiesSettings.enableQuickPeak)
+        Settings.Container(contentWidth: 520.0) {
+            Settings.Section(title: "") {
+                Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
             }
             
+            Settings.Section {
+                Text("Inactivity timeout:").frame(minWidth: 150, alignment: .trailing)
+            } content: {
+                SliderPlus(value: $liveActivitiesSettings.inactivityTimeoutInSecs, range: 0...16, rangeManual: 0...600, step: 1)
+                Text("Tweak the time _(in seconds)_ that live activities take to go away after they become inactive (like when music pauses).")
+                    .settingDescription()
+            }
             
+            Settings.Section(title: "Interactivity:") {
+                Toggle("Enable interactive activities", isOn: $liveActivitiesSettings.interactive)
+                Text("Allow some activities to interact with mouse click.")
+                    .settingDescription()
+                
+                Toggle("Enable Quick Peak", isOn: $liveActivitiesSettings.enableQuickPeak)
+                Text("If enabled, some live activities will show a short info on mouse hover.")
+                    .settingDescription()
+            }
         }
-        .scrollContentBackground(.hidden)
-        .formStyle(.grouped)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

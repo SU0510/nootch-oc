@@ -14,13 +14,12 @@ struct CustomLabeled<C: View>: View {
     @ViewBuilder var content: () -> C
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(spacing: 8) {
                 if let icon {
                     Label(title, systemImage: icon)
                 } else {
                     Text(title)
                 }
-                Spacer()
                 content()
             }
             if let description {

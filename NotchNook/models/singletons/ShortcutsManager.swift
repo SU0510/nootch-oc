@@ -20,10 +20,10 @@ struct Shortcut: Identifiable, Hashable, Codable {
 @Observable
 class ShortcutsManager {
     static let shared = ShortcutsManager()
-    var shortcuts = Set<String>()
+    var shortcuts = [String]()
     
     private init() {
-        self.fetchShortcuts()
+        _ = self.fetchShortcuts()
     }
     
     func fetchShortcuts() -> [String] {
@@ -40,7 +40,7 @@ class ShortcutsManager {
 
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
             if let output = String(data: data, encoding: .utf8) {
-                shortcuts = Set(output.components(separatedBy: "\n").filter { !$0.isEmpty })
+                shortcuts = output.components(separatedBy: "\n").filter { !$0.isEmpty }
             }
         } catch {
             print("Failed to fetch shortcuts: \(error)")

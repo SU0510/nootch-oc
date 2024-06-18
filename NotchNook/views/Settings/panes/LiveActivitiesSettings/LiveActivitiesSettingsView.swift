@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Settings
 
 struct LiveActivitiesSettingsView: View {
     @State private var selectedTab: Int = 0
@@ -23,13 +24,25 @@ struct LiveActivitiesSettingsView: View {
                 .tag(1)
         }
         .padding(12)
+        .frame(height: 625, alignment: .topLeading)
         .onAppear {
             if let tab = SettingsInnerPath.shared.tabIndex {
                 selectedTab = tab
                 SettingsInnerPath.shared.tabIndex = nil
             }
         }
-        .defaultSettingsProps(height: 625)
         .task { CurrentWallpaperManager.shared.updateCurrentWallpaper() }
     }
+}
+
+let LiveActivitiesSettingsViewController: () -> SettingsPane = {
+    let paneView = Settings.Pane(
+        identifier: .liveActivities,
+        title: "Live Activities",
+        toolbarIcon: NSImage(systemSymbolName: "clock.badge.fill", accessibilityDescription: "Live activities settings")!
+    ) {
+        LiveActivitiesSettingsView()
+    }
+
+    return Settings.PaneHostingController(pane: paneView)
 }

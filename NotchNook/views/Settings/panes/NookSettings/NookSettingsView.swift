@@ -25,12 +25,24 @@ struct NookSettingsView: View {
                 .tag(1)
         }
         .padding(12)
+        .frame(height: 625, alignment: .topLeading)
         .onAppear {
             if let tab = SettingsInnerPath.shared.tabIndex {
                 selectedTab = tab
                 SettingsInnerPath.shared.tabIndex = nil
             }
         }
-        .defaultSettingsProps(height: 625)
     }
+}
+
+let NookSettingsViewController: () -> SettingsPane = {
+    let paneView = Settings.Pane(
+        identifier: .nook,
+        title: "Nook",
+        toolbarIcon: NSImage(systemSymbolName: "lamp.desk.fill", accessibilityDescription: "Nook settings")!
+    ) {
+        NookSettingsView()
+    }
+
+    return Settings.PaneHostingController(pane: paneView)
 }

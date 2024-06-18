@@ -12,6 +12,7 @@ struct SliderPlus: View {
     var range: ClosedRange<Double>
     var rangeManual: ClosedRange<Double>?
     var step: Double = 1
+    var maxWidth: Double = 200
     
     init(value: Binding<Double>, range: ClosedRange<Double>, rangeManual: ClosedRange<Double>? = nil, step: Double = 1) {
         self._value = value
@@ -40,19 +41,43 @@ struct SliderPlus: View {
         self.step = step
     }
     
+    func getSafeRange(_ r: ClosedRange<Double>) -> ClosedRange<Double> {
+        var lower = r.lowerBound
+        var upper = r.upperBound
+        if lower < 0 { lower = 0 }
+        if upper <= lower { upper = max(value, lower) }
+        if upper <= lower { upper += 1 }
+        return lower...upper
+    }
+    
+    var safeRange: ClosedRange<Double> { getSafeRange(range) }
+    
+    var safeRangeManual: ClosedRange<Double>? {
+        guard let rangeManual else { return nil }
+        return getSafeRange(rangeManual)
+    }
+    
+    var rangeAmount: Double { safeRange.upperBound - safeRange.lowerBound }
+    
+    var safeStep: Double { rangeAmount < step ? rangeAmount : step }
+    
     var body: some View {
-        let rangeManual = rangeManual ?? range
-        let rangeAmount = range.upperBound - range.lowerBound
+        let rangeManual = safeRangeManual ?? safeRange
+        
         HStack {
-            if (rangeAmount / step) > 20 {
-                Slider(value: Binding(get: { value }, set: { newValue in
-                    let base: Int = Int(newValue.rounded())
-                    let modulo: Int = base % Int(step)
-                    value = Double(base - modulo)
-                }), in: range)
-            } else {
-                Slider(value: $value, in: range, step: step)
+            Group {
+                if (rangeAmount / step) > 20 {
+                    Slider(value: Binding(get: { value }, set: { newValue in
+                        let base: Int = Int(newValue.rounded())
+                        let modulo: Int = base % Int(step)
+                        value = Double(base - modulo)
+                    }), in: safeRange)
+                } else {
+                    Slider(value: $value, in: safeRange, step: safeStep)
+                }
             }
+            .frame(maxWidth: maxWidth)
+            
             IntegerTextField(value: $value, minVal: rangeManual.lowerBound, maxVal: rangeManual.upperBound)
                 .frame(width: 40, height: 0)
         }

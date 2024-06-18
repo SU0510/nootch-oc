@@ -96,7 +96,7 @@
 		EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173D92C025597002889E7 /* GeneralSettingsView.swift */; };
 		EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */; };
 		EC4173DE2C026F6B002889E7 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */; };
-		EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DF2C0271ED002889E7 /* SettingsPane.swift */; };
+		EC4173E02C0271ED002889E7 /* SettingsLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DF2C0271ED002889E7 /* SettingsLib.swift */; };
 		EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC792C0A80E000591811 /* LicenseManager.swift */; };
 		EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */; };
 		EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = EC47FC842C0AB86A00591811 /* Sparkle */; };
@@ -304,7 +304,7 @@
 		EC4173D92C025597002889E7 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseSettingsView.swift; sourceTree = "<group>"; };
 		EC4173DD2C026F6B002889E7 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
-		EC4173DF2C0271ED002889E7 /* SettingsPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPane.swift; sourceTree = "<group>"; };
+		EC4173DF2C0271ED002889E7 /* SettingsLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLib.swift; sourceTree = "<group>"; };
 		EC47FC792C0A80E000591811 /* LicenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseManager.swift; sourceTree = "<group>"; };
 		EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDeviceSerialNumber.swift; sourceTree = "<group>"; };
 		EC47FC802C0AA67100591811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1099,7 +1099,7 @@
 			isa = PBXGroup;
 			children = (
 				EC8D603B2BFE73FC00E67ECC /* consts.swift */,
-				EC4173DF2C0271ED002889E7 /* SettingsPane.swift */,
+				EC4173DF2C0271ED002889E7 /* SettingsLib.swift */,
 			);
 			path = globals;
 			sourceTree = "<group>";
@@ -1266,7 +1266,7 @@
 				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
 				EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */,
-				EC4173E02C0271ED002889E7 /* SettingsPane.swift in Sources */,
+				EC4173E02C0271ED002889E7 /* SettingsLib.swift in Sources */,
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,

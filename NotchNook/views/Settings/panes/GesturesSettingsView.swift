@@ -7,38 +7,47 @@
 
 import SwiftUI
 import Defaults
+import Settings
 
 struct GesturesSettingsView: View {
     @Default(.gestureControlSettings) private var gestureControlSettings
     var body: some View {
-        Form {
-            Section {
+        Settings.Container(contentWidth: 550.0, minimumLabelWidth: 150) {
+            Settings.Section {
+                Text("").frame(minWidth: 100, alignment: .trailing)
+            } content: {
                 Toggle("Allow gestures when hovering the notch", isOn: $gestureControlSettings.allowGestures)
                 
-                Toggle(
-                    "Open/close notch with vertical gestures",
-                    isOn: $gestureControlSettings.controlOpenState
-                )
-                .disabled(!gestureControlSettings.allowGestures)
-                
-                Toggle(
-                    "Control media with horizontal gestures",
-                    isOn: $gestureControlSettings.controlMedia
-                )
-                .disabled(!gestureControlSettings.allowGestures)
-                
-                CustomLabeled(
-                    title: "Invert media gestures actions",
-                    description: "If on, a left swipe will to next song, if off, to the previous one."
-                ) {
-                    Toggle("", isOn: $gestureControlSettings.invertMediaGestures)
+                Group {
+                    Toggle(
+                        "Open/close notch with vertical gestures",
+                        isOn: $gestureControlSettings.controlOpenState
+                    )
+                    
+                    Toggle(
+                        "Control media with horizontal gestures",
+                        isOn: $gestureControlSettings.controlMedia
+                    )
+                    
+                    Toggle("Invert media gestures actions", isOn: $gestureControlSettings.invertMediaGestures)
                         .disabled(!gestureControlSettings.allowGestures)
+                    Text("If on, a left swipe will to next song, if off, to the previous one.")
+                        .settingDescription()
                 }
+                .disabled(!gestureControlSettings.allowGestures)
             }
         }
-        .scrollDisabled(true)
-        .animation(.default, value: gestureControlSettings.allowGestures)
-        .formStyle(.grouped)
-        .defaultSettingsProps()
     }
+}
+
+let GesturesSettingsViewController: () -> SettingsPane = {
+    let paneView = Settings.Pane(
+        identifier: .gestures,
+        title: "Gestures",
+        toolbarIcon: NSImage(systemSymbolName: "rectangle.and.hand.point.up.left.fill", accessibilityDescription: "Gestures settings")!
+    ) {
+        GesturesSettingsView()
+    }
+    
+    return Settings.PaneHostingController(pane: paneView)
 }

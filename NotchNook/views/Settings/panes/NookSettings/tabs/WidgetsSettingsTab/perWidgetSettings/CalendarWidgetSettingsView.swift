@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+import Settings
 import Defaults
 
 struct CalendarWidgetSettingsView: View {
     @Default(.calendarWidgetSettings) private var calendarWidgetSettings
     var body: some View {
-        Form {
-            CustomLabeled(title: "Width") {
+        Settings.Container(contentWidth: 520.0) {
+            Settings.Section {
+                Text("Width:").frame(minWidth: 150, alignment: .trailing)
+            } content: {
                 SliderPlus(value: $calendarWidgetSettings.size.width.double, range: 3...5)
             }
         }
-        .formStyle(.grouped)
-        .scrollContentBackground(.hidden)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import Settings
 
 struct DropAreaSettingsView: View {
     var body: some View {
@@ -17,6 +18,18 @@ struct DropAreaSettingsView: View {
                 .tabItem { Text("Customize pipelines") }
         }
         .padding(12)
-        .defaultSettingsProps(height: 200)
+        .frame(height: 625, alignment: .topLeading)
     }
+}
+
+let DropAreaSettingsViewController: () -> SettingsPane = {
+    let paneView = Settings.Pane(
+        identifier: .dropArea,
+        title: "Drop Area",
+        toolbarIcon: NSImage(systemSymbolName: "cursorarrow.and.square.on.square.dashed", accessibilityDescription: "Drop area settings")!
+    ) {
+        DropAreaSettingsView()
+    }
+
+    return Settings.PaneHostingController(pane: paneView)
 }

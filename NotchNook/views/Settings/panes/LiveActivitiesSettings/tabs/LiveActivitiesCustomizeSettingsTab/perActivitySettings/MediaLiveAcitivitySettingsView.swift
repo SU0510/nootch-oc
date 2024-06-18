@@ -6,22 +6,23 @@
 //
 
 import SwiftUI
+import Settings
 import Defaults
 
 struct MediaLiveAcitivitySettingsView: View {
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     var body: some View {
-        Form {
-            CustomLabeled(
-                title: "Colored Spectograph",
-                description: "If enabled, the audio spectograph will take the color of the current playing album, otherwise, it'll be white."
-            ) { Toggle("", isOn: $mediaLiveActivitySettings.coloredSpectograph) }
-            
-            CustomLabeled(title: "Album Corner Radius") {
+        Settings.Container(contentWidth: 520.0) {
+            Settings.Section(title: "Album corner radius:") {
                 SliderPlus(value: $mediaLiveActivitySettings.albumCornerRadius, range: 5...16)
             }
+            Settings.Section(title: "") {
+                Toggle("Colored Spectograph", isOn: $mediaLiveActivitySettings.coloredSpectograph)
+                Text("If enabled, the audio spectograph will take the color of the current playing album, otherwise, it'll be white.")
+                    .settingDescription()
+                    .frame(width: 400, alignment: .leading)
+            }
         }
-        .formStyle(.grouped)
-        .scrollContentBackground(.hidden)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

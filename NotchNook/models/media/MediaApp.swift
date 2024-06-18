@@ -43,6 +43,7 @@ extension MediaApp {
     
     func monitorTrackChange() {
         self.notificationMonitor = NotificationObserverHelper(notificationName: meta.notification) { sender in
+            print("change", 1)
             guard sender.userInfo?["Player State"] as? String != "Stopped" else {
                 var newTrack = Track()
                 newTrack.title = ""
@@ -51,6 +52,7 @@ extension MediaApp {
                 self.track = newTrack
                 return
             }
+            print("change", 2)
             
             self.updateIsPlaying()
             DispatchQueue.global(qos: .userInteractive).async {
