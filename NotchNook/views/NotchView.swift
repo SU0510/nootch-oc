@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import Cocoa
 import UniformTypeIdentifiers
 
 struct NotchView: View {
@@ -40,7 +41,6 @@ struct NotchView: View {
     @Environment(\.openSettings) private var openSettings
     @Default(.intro) private var intro
     @Default(.license) private var license
-    @Default(.shelfSettings) private var shelfSettings
     @Default(.generalSettings) private var generalSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.trialInitialTime) private var trialInitialTime
@@ -159,7 +159,6 @@ struct NotchView: View {
         }
         .compositingGroup()
         .blur(radius: scaleDown * 100)
-        .coordinateSpace(name: "drop-zone")
         .fixedSize(horizontal: true, vertical: false)
         .frame(
             minWidth: notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.getNotchWidthForScreenWidth(screenSize.width),
@@ -167,6 +166,7 @@ struct NotchView: View {
         )
         .padding(mode == .closed ? panPadding : .zero)
         .padding(standardPadding)
+        .coordinateSpace(name: "drop-zone")
         .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(
@@ -182,8 +182,13 @@ struct NotchView: View {
                 changeTrack: { changeTrack(prev: $0) }
             )
         }
-        .background(alignment: .top) { shapeView() }
         .contentShape(NotchShape(notchHeight: notchHeight))
+        .background {
+            if mode == .closed || mode == .dragging {
+                FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)
+            }
+        }
+        .background(alignment: .top) { shapeView() }
         .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
         .animation(.smooth(extraBounce: 0.15), value: [liveActivitiesSettings])
         .animation(.smooth(extraBounce: 0.15), value: intro)
@@ -195,9 +200,7 @@ struct NotchView: View {
                 }
             }
         })
-        .overlay {
-            FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)
-        }
+
         .onHover { hovering in
             if license == nil || trialOver { checkTrialOver() }
             
@@ -255,9 +258,11 @@ struct NotchView: View {
     func finishDragging(close: Bool) {
         if droppingCoords != nil { droppingCoords = nil }
         
-        if !availableActions.isEmpty || (close && mode != .closed) {
-            withAnimation(.smooth(duration: 0.4)) {
+        withAnimation(.smooth(duration: 0.4)) {
+            if !availableActions.isEmpty {
                 availableActions.removeAll()
+            }
+            if mode != .closed {
                 NotchNook.shared.mode[screenID] = close ? .closed : .shelf
             }
         }
@@ -268,69 +273,74 @@ struct NotchView: View {
                 withAnimation(.bouncy(extraBounce: 0.15)) {
                     NotchNook.shared.mode[screenID] = .dragging
                 }
-        //        DispatchQueue.main.async {
-        //            let actionsToShow = allDropActions.filter { action in
-        //                action.allowedFileTypes.allSatisfy { fileType in
-        //                    info.hasItemsConforming(to: [fileType])
-        //                }
-        //            }
-        //            withAnimation(.bouncy(extraBounce: 0.15)) {
-        //                availableActions = actionsToShow
-        //            }
-        //        }
+                DispatchQueue.main.async {
+                    let actionsToShow = allDropActions.filter { action in
+                        return info.draggingPasteboard.types?.contains(action.allowedFileTypes) ?? false
+                    }
+                    withAnimation(.bouncy(extraBounce: 0.15)) {
+                        availableActions = actionsToShow
+                    }
+                }
     }
     
-    func dropUpdated(info: NSDraggingInfo) {
+    func dropUpdated(info: NSDraggingInfo, mousePos: CGPoint) {
         if trialOver { return }
-        let loc = info.draggingLocation
-        let shelfWidth = CGSize(
-            width: shelfSettings.size.width.screenPoints + (Self.openInnerPadding * 2),
-            height: shelfSettings.size.height.screenPoints + Self.openInnerPadding + NotchView.mainVSpacing + TopBarView.height
-        )
-        let initialX = (screenSize.width - shelfWidth.width) / 2
-        let coords = CGPoint(x: loc.x - initialX, y: loc.y)
-        print(coords)
-        droppingCoords = coords
+        droppingCoords = mousePos
     }
-    
+
     func performDrop(info: NSDraggingInfo) -> Bool {
+        if trialOver { return false }
+        let isShelf = hoveredDropTargetID == ShelfView.id
+        var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
+        let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
+        var hasFiles = false
+        let loadItemGroup = DispatchGroup()
+        
+        if !isShelf, let dropAction {
+            cb = { urls in
+                dropAction.action(urls, .zero)
+            }
+        }
+        
+        let pasteboard = info.draggingPasteboard
+        let options: [NSPasteboard.ReadingOptionKey: Any] = [.urlReadingFileURLsOnly: true]
+        
+        if let fileURLs = pasteboard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], !fileURLs.isEmpty {
+            hasFiles = true
+            DispatchQueue.main.async {
+                cb(fileURLs)
+            }
+        }
+        
+        guard let promiseReceivers = info.draggingPasteboard.readObjects(forClasses: [NSFilePromiseReceiver.self], options: nil) as? [NSFilePromiseReceiver] else {
+            finishDragging(close: true)
+            return false
+        }
+        
+        let randomDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString)
+        try? FileManager.default.createDirectory(at: randomDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+        
+        for receiver in promiseReceivers {
+            hasFiles = true
+            loadItemGroup.enter()
+            receiver.receivePromisedFiles(atDestination: randomDirectoryURL, options: [:], operationQueue: OperationQueue()) { fileURL, error in
+                defer { loadItemGroup.leave() }
+                if let error = error {
+                    print("Error receiving file: \(error)")
+                } else {
+                    DispatchQueue.main.async {
+                        cb([fileURL])
+                    }
+                }
+            }
+        }
+
+        loadItemGroup.notify(queue: .main) {
+            finishDragging(close: !hasFiles && !isShelf)
+        }
+
         return true
     }
-    
-    //    func performDrop(info: DropInfo) -> Bool {
-    //        if trialOver { return false }
-    //        let isShelf = hoveredDropTargetID == ShelfView.id
-    //        var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
-    //        let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
-    //        var urls = [URL]()
-    //        let loadItemGroup = DispatchGroup()
-    //
-    //        if !isShelf, let dropAction {
-    //            cb = { urls in
-    //                dropAction.action(urls, .zero)
-    //            }
-    //        }
-    //        for provider in info.itemProviders(for: [.fileURL]) {
-    //            if provider.hasItemConformingToTypeIdentifier(UTType("com.apple.file-promised").identifier) {
-    //                print(provider)
-    //            }
-    //            loadItemGroup.enter()
-    //                provider.loadItem(forTypeIdentifier: UTType.item.identifier, options: nil) { (item, error) in
-    //                    defer { loadItemGroup.leave() }
-    //                    if let url = item as? URL {
-    //                        print(1, item)
-    //                        urls.append(url)
-    //                    }
-    //                }
-    //        }
-    
-    //        loadItemGroup.notify(queue: .main) {
-    //            if !urls.isEmpty { cb(urls) }
-    //            finishDragging(close: urls.isEmpty && !isShelf)
-    //        }
-    //        print("abaca")
-    //        return true
-    //    }
     
     func dropExited(info: NSDraggingInfo) {
         finishDragging(close: Shelf.shared.files.count == 0)

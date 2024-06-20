@@ -17,7 +17,7 @@ struct DropAction: Identifiable, Equatable {
     let id: String
     let label: String
     let icon: Image
-    var allowedFileTypes: [UTType]
+    var allowedFileTypes: [NSPasteboard .PasteboardType]
     let action: (_ fileURLs: [URL], _ dropAreaCoords: CGRect) -> Void
 }
 
@@ -25,7 +25,7 @@ let allDropActions: [DropAction] = [
     DropAction(
         id: "airdrop", label: "AirDrop",
         icon: Image(nsImage: NSWorkspace.shared.icon(forFileType: "com.apple.airdrop")),
-        allowedFileTypes: [.item],
+        allowedFileTypes: [.fileURL],
         action: { fileURLs, dropAreaCoords in
             airDropFiles(urls: fileURLs)
         }

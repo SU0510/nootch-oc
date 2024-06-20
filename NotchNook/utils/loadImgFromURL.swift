@@ -16,8 +16,6 @@ func loadImgFromURL(_ url: URL) -> Image? {
         } else {
             print("Failed to load image from URL")
         }
-    } else {
-        print("URL does not point to an image")
     }
 
     return nil

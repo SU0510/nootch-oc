@@ -44,7 +44,8 @@ struct ShelfFileView: View, Equatable {
             if !preview {
                 FileDraggableView(onSelect: {
                     Shelf.shared.selectFile(file)
-                }, onDropCompleted: { l in
+                }, onDropCompleted: { success in
+                    if !success { return }
                     Shelf.shared.selectedFiles.forEach { $0.remove() }
                 }, selectedURLs: Shelf.shared.selectedFiles.map { $0.url }) {
                     ShelfFileDragPreviewView(draggedFile: file)
