@@ -9,7 +9,9 @@ import SwiftUI
 import Defaults
 import UniformTypeIdentifiers
 
-struct NotchView: View, DropDelegate {
+struct NotchView: View {
+    static let mainVSpacing: Double = 8
+    static let openInnerPadding: Double = 16
     static let hoverScale: Double = 1.25
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxVPanDrag: Double = 14
@@ -17,7 +19,7 @@ struct NotchView: View, DropDelegate {
     static let panVelocityTriggerThreshold: Double = 500
     static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2))) }
     static let defaultTransition = NotchView.defaultTransition(anchor: .top)
-    	
+    
     @State private var droppingCoords: CGPoint?
     @State private var pressing = false
     @State private var hovering = false
@@ -38,16 +40,17 @@ struct NotchView: View, DropDelegate {
     @Environment(\.openSettings) private var openSettings
     @Default(.intro) private var intro
     @Default(.license) private var license
+    @Default(.shelfSettings) private var shelfSettings
     @Default(.generalSettings) private var generalSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.trialInitialTime) private var trialInitialTime
     
     var mode: NotchNook.NotchMode {
-            guard let found = NotchNook.shared.mode[screenID] else {
-                NotchNook.shared.mode[screenID] = .closed
-                return .closed
-            }
-            return found
+        guard let found = NotchNook.shared.mode[screenID] else {
+            NotchNook.shared.mode[screenID] = .closed
+            return .closed
+        }
+        return found
     }
     
     var hoveredDropTargetID: String? {
@@ -63,7 +66,7 @@ struct NotchView: View, DropDelegate {
         let leadingInterpolator = interpolatorBuilder([0, 150], value: panRawPadding.leading)
         let trailingInterpolator = interpolatorBuilder([0, 150], value: panRawPadding.trailing)
         let bottomInterpolator = interpolatorBuilder([0, 200], value: panRawPadding.bottom)
-
+        
         
         let leading = leadingInterpolator([0, Self.maxHPanDrag], true)
         let trailing = trailingInterpolator([0, Self.maxHPanDrag], true)
@@ -77,6 +80,24 @@ struct NotchView: View, DropDelegate {
             bottom: ((((leading + trailing) / 2) * 0.25) + bottom) - decrease,
             trailing: ((bottom * 0.5) + trailing) - decrease
         )
+    }
+    
+    var standardPadding: EdgeInsets {
+        var pad: Double = 0
+        if mode == .closed {
+            if hovering {
+                if pressing {
+                    pad = 4
+                } else {
+                    pad = 8
+                }
+            } else {
+                pad = 0
+            }
+        } else {
+            pad = Self.openInnerPadding
+        }
+        return EdgeInsets(top: 0, leading: pad, bottom: pad, trailing: pad)
     }
     
     func checkTrialOver() {
@@ -105,7 +126,7 @@ struct NotchView: View, DropDelegate {
         let isShelfEmpty = filesShelfCount == 0
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
         
-        VStack(alignment: .center, spacing: 8) {
+        VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             
             if intro && showIntro {
                 IntroView()
@@ -125,10 +146,10 @@ struct NotchView: View, DropDelegate {
                         LicenseStateView()
                     } else {
                         switch mode {
-                        case .closed: EmptyView()
-                        case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
-                        case .nook: NookView()
-                        case .shelf: ShelfView(hovered: false, full: true)
+                            case .closed: EmptyView()
+                            case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                            case .nook: NookView()
+                            case .shelf: ShelfView(hovered: false, full: true)
                         }
                     }
                 }
@@ -145,7 +166,7 @@ struct NotchView: View, DropDelegate {
             minHeight: notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
         )
         .padding(mode == .closed ? panPadding : .zero)
-        .padding([.leading, .bottom, .trailing], mode == .closed && !showIntro ? hovering ? pressing ? 4 : 8 : 0 : 16)
+        .padding(standardPadding)
         .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(
@@ -174,7 +195,9 @@ struct NotchView: View, DropDelegate {
                 }
             }
         })
-        .onDrop(of: [.fileURL], delegate: self)
+        .overlay {
+            FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)
+        }
         .onHover { hovering in
             if license == nil || trialOver { checkTrialOver() }
             
@@ -240,54 +263,76 @@ struct NotchView: View, DropDelegate {
         }
     }
     
-    func dropEntered(info: DropInfo) {
-        if trialOver { return }
-        withAnimation(.bouncy(extraBounce: 0.15)) {
-            NotchNook.shared.mode[screenID] = .dragging
-        }
-        DispatchQueue.main.async {
-            let actionsToShow = allDropActions.filter { action in
-                action.allowedFileTypes.allSatisfy { fileType in
-                    info.hasItemsConforming(to: [fileType])
+    func dropEntered(info: NSDraggingInfo) {
+                if trialOver { return }
+                withAnimation(.bouncy(extraBounce: 0.15)) {
+                    NotchNook.shared.mode[screenID] = .dragging
                 }
-            }
-            withAnimation(.bouncy(extraBounce: 0.15)) {
-                availableActions = actionsToShow
-            }
-        }
+        //        DispatchQueue.main.async {
+        //            let actionsToShow = allDropActions.filter { action in
+        //                action.allowedFileTypes.allSatisfy { fileType in
+        //                    info.hasItemsConforming(to: [fileType])
+        //                }
+        //            }
+        //            withAnimation(.bouncy(extraBounce: 0.15)) {
+        //                availableActions = actionsToShow
+        //            }
+        //        }
     }
     
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        if trialOver { return nil }
-        droppingCoords = info.location
-        return nil
+    func dropUpdated(info: NSDraggingInfo) {
+        if trialOver { return }
+        let loc = info.draggingLocation
+        let shelfWidth = CGSize(
+            width: shelfSettings.size.width.screenPoints + (Self.openInnerPadding * 2),
+            height: shelfSettings.size.height.screenPoints + Self.openInnerPadding + NotchView.mainVSpacing + TopBarView.height
+        )
+        let initialX = (screenSize.width - shelfWidth.width) / 2
+        let coords = CGPoint(x: loc.x - initialX, y: loc.y)
+        print(coords)
+        droppingCoords = coords
     }
     
-    func performDrop(info: DropInfo) -> Bool {
-        if trialOver { return false }
-        let isShelf = hoveredDropTargetID == ShelfView.id
-        var allowedTypes: [UTType] = isShelf ? [.fileURL] : []
-        var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
-        
-        let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
-        
-        if !isShelf, let dropAction {
-            allowedTypes = dropAction.allowedFileTypes
-            cb = { urls in
-                dropAction.action(urls, .zero)
-            }
-        }
-        
-        if !isShelf && dropAction == nil { return false }
-        
-        getURLsFromDropInfo(info, allowedTypes: allowedTypes, cb: {
-            cb($0)
-            finishDragging(close: Shelf.shared.files.count == 0 && !isShelf)
-        })
+    func performDrop(info: NSDraggingInfo) -> Bool {
         return true
     }
     
-    func dropExited(info: DropInfo) {
+    //    func performDrop(info: DropInfo) -> Bool {
+    //        if trialOver { return false }
+    //        let isShelf = hoveredDropTargetID == ShelfView.id
+    //        var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
+    //        let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
+    //        var urls = [URL]()
+    //        let loadItemGroup = DispatchGroup()
+    //
+    //        if !isShelf, let dropAction {
+    //            cb = { urls in
+    //                dropAction.action(urls, .zero)
+    //            }
+    //        }
+    //        for provider in info.itemProviders(for: [.fileURL]) {
+    //            if provider.hasItemConformingToTypeIdentifier(UTType("com.apple.file-promised").identifier) {
+    //                print(provider)
+    //            }
+    //            loadItemGroup.enter()
+    //                provider.loadItem(forTypeIdentifier: UTType.item.identifier, options: nil) { (item, error) in
+    //                    defer { loadItemGroup.leave() }
+    //                    if let url = item as? URL {
+    //                        print(1, item)
+    //                        urls.append(url)
+    //                    }
+    //                }
+    //        }
+    
+    //        loadItemGroup.notify(queue: .main) {
+    //            if !urls.isEmpty { cb(urls) }
+    //            finishDragging(close: urls.isEmpty && !isShelf)
+    //        }
+    //        print("abaca")
+    //        return true
+    //    }
+    
+    func dropExited(info: NSDraggingInfo) {
         finishDragging(close: Shelf.shared.files.count == 0)
     }
     

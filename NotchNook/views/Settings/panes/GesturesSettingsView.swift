@@ -31,7 +31,7 @@ struct GesturesSettingsView: View {
                     
                     Toggle("Invert media gestures actions", isOn: $gestureControlSettings.invertMediaGestures)
                         .disabled(!gestureControlSettings.allowGestures)
-                    Text("If on, a left swipe will to next song, if off, to the previous one.")
+                    Text("If on, a left swipe will start the next song, if off, the previous one.")
                         .settingDescription()
                 }
                 .disabled(!gestureControlSettings.allowGestures)

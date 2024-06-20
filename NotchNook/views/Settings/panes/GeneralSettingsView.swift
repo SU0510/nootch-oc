@@ -28,12 +28,12 @@ struct GeneralSettingsView: View {
             }
             
             Settings.Section(title: "Handler (no-notch screens):", bottomDivider: true) {
-                CustomLabeled(title: "Width", icon: "arrow.left.and.right") {
+                CustomLabeled(title: "Width") {
                     SliderPlus(value: $generalSettings.handleSize.width, range: 30...250, step: 16)
                 }
                 .resetToDefault($generalSettings.handleSize.width, defaultGeneral.handleSize.width)
                 
-                CustomLabeled(title: "Height", icon: "arrow.up.and.down") {
+                CustomLabeled(title: "Height") {
                     SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.height)
                 }
                 .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)

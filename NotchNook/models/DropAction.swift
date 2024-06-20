@@ -25,7 +25,7 @@ let allDropActions: [DropAction] = [
     DropAction(
         id: "airdrop", label: "AirDrop",
         icon: Image(nsImage: NSWorkspace.shared.icon(forFileType: "com.apple.airdrop")),
-        allowedFileTypes: [.fileURL],
+        allowedFileTypes: [.item],
         action: { fileURLs, dropAreaCoords in
             airDropFiles(urls: fileURLs)
         }

@@ -12,6 +12,8 @@ import Cocoa
 class Shelf {
     static var shared: Shelf { NotchNook.shared.shelf }
     
+    private var tempDirectory: URL?
+    private var folderMonitor: FolderMonitor?
     private(set) var files = Set<ShelfFile>() {
         willSet {
             let newSelectedFiles = selectedFiles.intersection(newValue)
@@ -74,3 +76,35 @@ class Shelf {
     private func handleKeyEvent(event: NSEvent) { pressedKeysEvent = event }
 }
 
+extension Shelf {
+    func setupTemporaryDirectory() {
+        tempDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        guard let tempDirectory else { return }
+        try? FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true, attributes: nil)
+        
+        folderMonitor = FolderMonitor(path: tempDirectory.path) {
+            self.updateFilesFromTemporaryDirectory()
+        }
+        folderMonitor?.start()
+    }
+
+    private func updateFilesFromTemporaryDirectory() {
+        guard let tempDirectory else { return }
+        DispatchQueue.main.async {
+            do {
+                let fileURLs = try FileManager.default.contentsOfDirectory(at: tempDirectory, includingPropertiesForKeys: nil)
+                self.files = Set(fileURLs.map { ShelfFile(url: $0) })
+            } catch {
+                print("Error updating files from temporary directory: \(error)")
+            }
+        }
+    }
+    
+    func addFileFromData(_ data: Data, filename: String) {
+        let destinationURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
+        FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil)
+        print(destinationURL)
+        let newFile = ShelfFile(url: destinationURL)
+        addFile(newFile)
+    }
+}
