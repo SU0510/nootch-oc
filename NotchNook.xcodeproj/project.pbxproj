@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
+		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
+		3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */; };
+		3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BE2C24C040008092F0 /* UpdateButtonIconView.swift */; };
+		3A0816C32C24C201008092F0 /* update.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A0816C22C24C201008092F0 /* update.lottie */; };
+		3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C42C24CA60008092F0 /* SparkleManager.swift */; };
+		3A0816C72C24DB86008092F0 /* quickPeakScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */; };
+		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
 		3A105FCE2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */; };
 		3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCF2C1BADB60015EC66 /* EventIconView.swift */; };
@@ -223,6 +230,13 @@
 
 /* Begin PBXFileReference section */
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
+		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
+		3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppIconView.swift; sourceTree = "<group>"; };
+		3A0816BE2C24C040008092F0 /* UpdateButtonIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateButtonIconView.swift; sourceTree = "<group>"; };
+		3A0816C22C24C201008092F0 /* update.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = update.lottie; sourceTree = "<group>"; };
+		3A0816C42C24CA60008092F0 /* SparkleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleManager.swift; sourceTree = "<group>"; };
+		3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeakScaling.swift; sourceTree = "<group>"; };
+		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
 		3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettingsView.swift; sourceTree = "<group>"; };
 		3A105FCF2C1BADB60015EC66 /* EventIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIconView.swift; sourceTree = "<group>"; };
@@ -451,6 +465,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0816BB2C24C016008092F0 /* UpdateAvailable */ = {
+			isa = PBXGroup;
+			children = (
+				3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */,
+				3A0816BE2C24C040008092F0 /* UpdateButtonIconView.swift */,
+			);
+			path = UpdateAvailable;
+			sourceTree = "<group>";
+		};
 		3A105FD12C1BADC40015EC66 /* liveActivities */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +513,7 @@
 		3A105FE32C1E76110015EC66 /* activities */ = {
 			isa = PBXGroup;
 			children = (
+				3A0816BB2C24C016008092F0 /* UpdateAvailable */,
 				3A105FE02C1D1DB20015EC66 /* MediaPlayer */,
 				3A105FE12C1D1DBC0015EC66 /* Shelf */,
 				3A105FE22C1D1DC40015EC66 /* Calendar */,
@@ -705,6 +729,7 @@
 		EC47FC942C0B824500591811 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				3A0816C22C24C201008092F0 /* update.lottie */,
 				EC47FCB22C0BAE7700591811 /* click.lottie */,
 				EC47FCAF2C0BADD500591811 /* drag.lottie */,
 				EC47FC9E2C0B8A4200591811 /* hello.lottie */,
@@ -857,6 +882,7 @@
 				3A801E192C157D700076560D /* getScreenDefaultWidth.swift */,
 				3A801E1B2C163B540076560D /* detectMeetings.swift */,
 				3A105FE62C1E86080015EC66 /* closestEvent.swift */,
+				3A0816C82C24E45D008092F0 /* getBuildNumber.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -879,6 +905,7 @@
 				ECAC6A6D2C070355000D9D27 /* measure.swift */,
 				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
 				3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */,
+				3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -926,6 +953,8 @@
 				EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */,
 				3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */,
 				3A471A402C224C6C00FCD355 /* FolderMonitor.swift */,
+				3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */,
+				3A0816C42C24CA60008092F0 /* SparkleManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1212,6 +1241,7 @@
 				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
 				EC7A0FF52C0FFBA70063E78E /* Info.plist in Resources */,
+				3A0816C32C24C201008092F0 /* update.lottie in Resources */,
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
@@ -1240,6 +1270,7 @@
 				EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
+				3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */,
 				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
@@ -1284,6 +1315,7 @@
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
 				EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */,
+				3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */,
 				3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */,
 				EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */,
 				EC8D5FEA2BFA704D00E67ECC /* concurrentMap.swift in Sources */,
@@ -1318,6 +1350,7 @@
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
+				3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */,
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
 				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
 				EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */,
@@ -1333,10 +1366,12 @@
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
 				EC47FCB92C0BD5A000591811 /* LoCafeLogoView.swift in Sources */,
+				3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */,
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
+				3A0816C72C24DB86008092F0 /* quickPeakScaling.swift in Sources */,
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
@@ -1353,6 +1388,7 @@
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
 				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
+				3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
 				EC0E31092C055A560060B47E /* ShelfSettings.swift in Sources */,
@@ -1558,7 +1594,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -1579,7 +1615,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1598,7 +1634,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -1619,7 +1655,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

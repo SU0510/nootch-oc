@@ -19,7 +19,7 @@ class NotchNook {
     var quickPeaks: [QuickPeak]? {
         get { _quickPeak }
         set {
-            if !Defaults[.generalSettings].disableHaptics { vibrate() }
+            vibrate()
             withAnimation(TopBarView.animation) { _quickPeak = newValue }
         }
     }
@@ -41,5 +41,6 @@ class NotchNook {
         let id = UUID()
         let icon: String?
         let text: String
+        var iconColor: Color? = nil
     }
 }

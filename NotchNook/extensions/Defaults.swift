@@ -10,6 +10,7 @@ import Defaults
 
 // Define the defaults keys
 extension Defaults.Keys {
+    static let lastBuildNumber = Key<String>("lastBuildNumber", default: "0")
     static let license = Key<License?>("keyActive", default: nil)
     static let networkErrorCounting = Key<Int>("networkErrorCounting", default: 0)
     static let trialInitialTime = Key<Double?>("trialInitialTime", default: nil)

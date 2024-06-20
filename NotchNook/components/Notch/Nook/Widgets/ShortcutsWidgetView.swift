@@ -51,6 +51,11 @@ struct ShortcutsWidgetView: View {
                 )
             }
         }
+        .onAppear {
+            let oldShorts = Defaults[.shortcutsWidgetSettings].shortcutsToDisplay
+            let newShorts = oldShorts.filter { ShortcutsManager.shared.shortcuts.contains($0) }
+            Defaults[.shortcutsWidgetSettings].shortcutsToDisplay = newShorts
+        }
         .frame(width: prefs.size.width.screenPoints, height: prefs.size.height.screenPoints, alignment: .leading)
     }
 }

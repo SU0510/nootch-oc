@@ -14,10 +14,11 @@ import AppKit
     var windowController: NSWindowController? = nil
     var windowsManager: WindowsManager?
     var nsMenu: NSMenu?
+    let updaterDelegate = UpdaterDelegate()
     let updaterController: SPUStandardUpdaterController
     
     override init() {
-        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: updaterDelegate, userDriverDelegate: updaterDelegate)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

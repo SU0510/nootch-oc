@@ -17,7 +17,10 @@ class WindowsManager {
     
     private var settingsPanes: [SettingsPane]
     
+    private var sparkleManager: SparkleManager
+    
     init(updater: SPUUpdater) {
+        self.sparkleManager = SparkleManager(updater: updater)
         self.settingsPanes = [
             GeneralSettingsViewController(),
             GesturesSettingsViewController(),
@@ -26,7 +29,7 @@ class WindowsManager {
             ShelfSettingsViewController(),
             DropAreaSettingsViewController(),
             LicenseSettingsViewController(),
-            AboutSettingsViewController(updater)
+            AboutSettingsViewController(sparkleManager)
         ]
         
         settingsWindowController = SettingsWindowController(
@@ -71,6 +74,7 @@ class WindowsManager {
                 .environment(\.openSettings, settingsWindowController.show)
                 .environment(\.screenID, id)
                 .environment(\.screenSize, screenF.size)
+                .environment(\.sparkleManager, sparkleManager)
         )
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(

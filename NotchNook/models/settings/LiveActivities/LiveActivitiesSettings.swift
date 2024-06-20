@@ -10,7 +10,7 @@ import Foundation
 struct LiveActivitiesSettings: Preferences {
     var enabled = true
     var inactivityTimeoutInSecs: Double = 10
-    var enabledLiveActivities: Set<LiveActivity> = [.shelf, .media]
+    var enabledLiveActivities: Set<LiveActivity> = [.shelf, .media, .updateAvailable]
     var interactive = true
     var enableQuickPeak = true
 }

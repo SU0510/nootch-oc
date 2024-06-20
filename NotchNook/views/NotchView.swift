@@ -39,6 +39,8 @@ struct NotchView: View {
     @Environment(\.screenSize) private var screenSize
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.sparkleManager) private var sparkleManager
+    @Default(.lastBuildNumber) private var lastBuildNumber
     @Default(.intro) private var intro
     @Default(.license) private var license
     @Default(.generalSettings) private var generalSettings
@@ -200,7 +202,6 @@ struct NotchView: View {
                 }
             }
         })
-
         .onHover { hovering in
             if license == nil || trialOver { checkTrialOver() }
             
@@ -222,10 +223,19 @@ struct NotchView: View {
             Button("Open Settings") { openSettings(nil) }
             Button("Quit NotchNook") { NSApp.terminate(nil) }
         }
+        .frame(width: screenSize.width, height: screenSize.height, alignment: .top)
+        .fixedSize()
         .onAppear {
-            let oldShorts = Defaults[.shortcutsWidgetSettings].shortcutsToDisplay
-            let newShorts = oldShorts.filter { ShortcutsManager.shared.shortcuts.contains($0) }
-            Defaults[.shortcutsWidgetSettings].shortcutsToDisplay = newShorts
+            if sparkleManager.automaticallyChecksForUpdates {
+                sparkleManager.checkForUpdatesInBackground()
+            }
+            
+            if lastBuildNumber == "0" { liveActivitiesSettings.enabledLiveActivities.insert(.updateAvailable) }
+            
+            let currentBuildNumber = getBuildNumber()
+            if lastBuildNumber != currentBuildNumber {
+                lastBuildNumber = currentBuildNumber
+            }
         }
         .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
         .onChange(of: hoveredDropTargetID) { oldValue, newValue in
@@ -246,8 +256,6 @@ struct NotchView: View {
         .onChangeDebounced(of: scaleDown, delay: 0.05) { _ in
             withAnimation(.smooth) { scaleDown = 0 }
         }
-        .frame(width: screenSize.width, height: screenSize.height, alignment: .top)
-        .fixedSize()
         .environment(\.namespace, ns)
         .environment(\.trialOver, trialOver)
         .preferredColorScheme(.dark)
@@ -269,25 +277,25 @@ struct NotchView: View {
     }
     
     func dropEntered(info: NSDraggingInfo) {
-                if trialOver { return }
-                withAnimation(.bouncy(extraBounce: 0.15)) {
-                    NotchNook.shared.mode[screenID] = .dragging
-                }
-                DispatchQueue.main.async {
-                    let actionsToShow = allDropActions.filter { action in
-                        return info.draggingPasteboard.types?.contains(action.allowedFileTypes) ?? false
-                    }
-                    withAnimation(.bouncy(extraBounce: 0.15)) {
-                        availableActions = actionsToShow
-                    }
-                }
+        if trialOver { return }
+        withAnimation(.bouncy(extraBounce: 0.15)) {
+            NotchNook.shared.mode[screenID] = .dragging
+        }
+        let actionsToShow = allDropActions.filter { action in
+            return info.draggingPasteboard.types?.contains(action.allowedFileTypes) ?? false
+        }
+        DispatchQueue.main.async {
+            withAnimation(.bouncy(extraBounce: 0.15)) {
+                availableActions = actionsToShow
+            }
+        }
     }
     
     func dropUpdated(info: NSDraggingInfo, mousePos: CGPoint) {
         if trialOver { return }
         droppingCoords = mousePos
     }
-
+    
     func performDrop(info: NSDraggingInfo) -> Bool {
         if trialOver { return false }
         let isShelf = hoveredDropTargetID == ShelfView.id
@@ -334,11 +342,11 @@ struct NotchView: View {
                 }
             }
         }
-
+        
         loadItemGroup.notify(queue: .main) {
             finishDragging(close: !hasFiles && !isShelf)
         }
-
+        
         return true
     }
     

@@ -8,31 +8,48 @@
 import SwiftUI
 import Settings
 import Sparkle
+import Defaults
 
 struct AboutSettingsView: View {
-    @ObservedObject var checkForUpdatesViewModel: CheckForUpdatesViewModel
-    let updater: SPUUpdater
-    
-    init(updater: SPUUpdater) {
-        self.updater = updater
-        
-        // Create our view model for our CheckForUpdatesView
-        self.checkForUpdatesViewModel = CheckForUpdatesViewModel(updater: updater)
+    @State private var sparkleManager: SparkleManager
+    init(sparkleManager: SparkleManager) {
+        self._sparkleManager = .init(initialValue: sparkleManager)
     }
-    
     var body: some View {
         VStack(spacing: 16) {
             HStack {
                 Image(.internalAppIcon).resizable()
                     .frame(96)
                 
-                VStack(alignment: .leading) {
-                    Text("NotchNook").font(.title).fontWeight(.bold)
-                    Text(getAppVersion()).font(.callout)
+                VStack(spacing: 3) {
+                    HStack(alignment: .bottom) {
+                        Text("NotchNook").font(.title).fontWeight(.bold)
+                        Spacer()
+                        Button("Check for Updates…", action: sparkleManager.checkForUpdates)
+                            .disabled(!sparkleManager.canCheckForUpdates)
+                            .padding(.bottom, 3)
+                    }
+                    
+                    HStack(alignment: .top) {
+                        Text("v\(getAppVersion())").font(.callout).opacity(0.75)
+                        Spacer()
+                        HStack {
+                            if sparkleManager.automaticallyChecksForUpdates {
+                                Toggle("Auto download new updates", isOn: $sparkleManager.automaticallyDownloadsUpdates)
+                            }
+                            Toggle("Auto check for updates", isOn: $sparkleManager.automaticallyChecksForUpdates)
+                                .onChange(of: sparkleManager.automaticallyChecksForUpdates) { oldValue, newValue in
+                                    if !newValue {
+                                        sparkleManager.automaticallyDownloadsUpdates = false
+                                        Defaults[.liveActivitiesSettings].enabledLiveActivities.remove(.updateAvailable)
+                                    } else {
+                                        Defaults[.liveActivitiesSettings].enabledLiveActivities.insert(.updateAvailable)
+                                    }
+                                }
+                        }
+                    }
+
                 }
-                Spacer()
-                Button("Check for Updates…", action: updater.checkForUpdates)
-                .disabled(!checkForUpdatesViewModel.canCheckForUpdates)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
@@ -93,17 +110,18 @@ struct AboutSettingsView: View {
             }
         }
         .padding(16)
-        .defaultSettingsProps(height: 600)
+        .defaultSettingsProps(height: nil)
     }
 }
 
-let AboutSettingsViewController: (_ updater: SPUUpdater) -> SettingsPane = { updater in
+let AboutSettingsViewController: (_ sparkleManager: SparkleManager) -> SettingsPane = { sparkleManager in
     let paneView = Settings.Pane(
         identifier: .about,
         title: "About",
         toolbarIcon: NSImage(systemSymbolName: "ellipsis.circle.fill", accessibilityDescription: "About settings")!
     ) {
-        AboutSettingsView(updater: updater)
+        AboutSettingsView(sparkleManager: sparkleManager)
+            .environment(\.sparkleManager, sparkleManager)
     }
 
     return Settings.PaneHostingController(pane: paneView)

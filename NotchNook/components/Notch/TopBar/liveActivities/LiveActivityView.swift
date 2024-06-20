@@ -8,7 +8,7 @@
 import SwiftUI
 import Defaults
 
-private var activitiesByPriority: [LiveActivity] = [.shelf, .calendar, .media]
+private var activitiesByPriority: [LiveActivity] = [.shelf, .calendar, .updateAvailable, .media]
 
 struct LiveActivityView: View {
     var side: ActivitySide
@@ -55,6 +55,11 @@ struct LiveActivityView: View {
                         switch side {
                             case .left: ShelfIconView()
                             case .right: ShelfFilesCountView()
+                        }
+                    case .updateAvailable:
+                        switch side {
+                            case .left: UpdateAppIconView(laPrefs: liveActivitiesSettings)
+                            case .right: UpdateButtonIconView()
                         }
                 }
             }

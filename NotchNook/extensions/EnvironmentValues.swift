@@ -38,7 +38,15 @@ private struct GetNowKey: EnvironmentKey {
     static var defaultValue: () -> Date = { Date() }
 }
 
+private struct SparkleManagerKey: EnvironmentKey {
+    static var defaultValue = SparkleManager(updater: nil)
+}
+
 extension EnvironmentValues {
+    var sparkleManager: SparkleManager {
+        get { self[SparkleManagerKey.self] }
+        set { self[SparkleManagerKey.self] = newValue }
+    }
     var getNow: () -> Date {
         get { self[GetNowKey.self] }
         set { self[GetNowKey.self] = newValue }

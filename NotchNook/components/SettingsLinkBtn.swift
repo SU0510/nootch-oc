@@ -22,9 +22,9 @@ struct SettingsLinkBtn<C: View>: View {
             }
             .padding(EdgeInsets(top: 10, leading: inline ? 16 : 10, bottom: 10, trailing: inline ? 16 : 10))
             .frame(maxWidth: !inline ? .infinity : nil, alignment: .leading)
-            .background(.secondary.opacity(hovering ? 0.15 : 0.1), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+            .background(.secondary.opacity(hovering ? 0.2 : 0.1), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
             .onHover { hovering = $0 }
         }
-        .buttonStyle(BrightnessDownOnClick())
+        .buttonStyle(BrightnessDownOnClick(cornerRadius: 24))
     }
 }

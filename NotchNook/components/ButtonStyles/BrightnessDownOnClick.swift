@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct BrightnessDownOnClick: ButtonStyle {
+    var cornerRadius: Double = 0
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .brightness(configuration.isPressed ? -0.1 : 0)
+            .overlay {
+                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                    .fill(.black.opacity(configuration.isPressed ? 0.05 : 0))
+                    .blendMode(.plusDarker)
+            }
     }
 }

@@ -97,6 +97,7 @@ struct MockTopBar: View {
                     case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, laPrefs: liveActivitiesSettings).environment(\.getNow, staticNow)
                     case .media: AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
                     case .shelf: ShelfIconView()
+                    case .updateAvailable: UpdateAppIconView(laPrefs: liveActivitiesSettings)
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
@@ -110,6 +111,7 @@ struct MockTopBar: View {
                     case .calendar: EventTimeView(notes: mockedEvent.notes, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, prefs: calendarLiveActivitySettings).environment(\.getNow, staticNow)
                     case .media: AudioWavesView(prefs: mediaLiveActivitySettings)
                     case .shelf: ShelfFilesCountView()
+                    case .updateAvailable: UpdateButtonIconView()
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
