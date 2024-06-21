@@ -243,6 +243,19 @@ struct NotchView: View {
                 showChangelog()
                 lastBuildNumber = currentBuildNumber
             }
+            
+            if liveActivitiesSettings.enabledLiveActivities.contains(.calendar) {
+                Task {
+                    _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+                }
+            }
+        }
+        .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
+            if !old.contains(.calendar) && new.contains(.calendar) {
+                Task {
+                    _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+                }
+            }
         }
         .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
         .onChange(of: hoveredDropTargetID) { oldValue, newValue in
