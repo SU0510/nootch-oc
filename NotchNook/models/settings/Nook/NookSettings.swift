@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NookSettings: Preferences {
+    var enabled = true
     var size = NookGrid.Size(width: 11, height: 2)
     var enabledWidgets: [NookWidget] = [.media, .shortcuts, .mirror]
     var showDividers = true

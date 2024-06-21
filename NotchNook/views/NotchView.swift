@@ -46,6 +46,7 @@ struct NotchView: View {
     @Default(.license) private var license
     @Default(.generalSettings) private var generalSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
+    @Default(.nookSettings) private var nookSettings
     @Default(.trialInitialTime) private var trialInitialTime
     
     var mode: NotchNook.NotchMode {
@@ -195,7 +196,7 @@ struct NotchView: View {
         .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
         .animation(.smooth(extraBounce: 0.15), value: [liveActivitiesSettings])
         .animation(.smooth(extraBounce: 0.15), value: intro)
-        .onTapGesture { if mode == .closed && !showIntro { openNotch() } }
+        .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }
         .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: { pressing in
             if hovering {
                 withAnimation(.bouncy(extraBounce: 0.15)) {

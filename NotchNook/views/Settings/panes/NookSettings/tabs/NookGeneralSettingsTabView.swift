@@ -13,8 +13,16 @@ struct NookGeneralSettingsTabView: View {
     @Default(.nookSettings) private var nookSettings
     var body: some View {
         let defaultValues = NookSettings()
-        Settings.Container(contentWidth: 520.0) {
+        Settings.Container(contentWidth: 520.0, minimumLabelWidth: 150) {
+            Settings.Section(title: "", bottomDivider: true) {
+                Toggle("Enable nook", isOn: $nookSettings.enabled)
+                    .resetToDefault($nookSettings.enabled, defaultValues.enabled)
+                Text("If disabled, clicking on the notch won't do anything.")
+                    .settingDescription()
+                    .frame(maxWidth: 350, alignment: .leading)
+            }
             Settings.Section(title: "") {
+                
                 Toggle("Show dividers between widgets", isOn: $nookSettings.showDividers)
                     .resetToDefault($nookSettings.showDividers, defaultValues.showDividers)
             }
@@ -33,7 +41,7 @@ struct NookGeneralSettingsTabView: View {
             }
 
             Settings.Section {
-                Text("Padding around widgets:").frame(minWidth: 150, alignment: .trailing)
+                Text("Padding around widgets:")
             } content: {
                 SliderPlus(value: $nookSettings.widgetsPadding, range: 2...24)
                     .resetToDefault($nookSettings.widgetsPadding, defaultValues.widgetsPadding)
