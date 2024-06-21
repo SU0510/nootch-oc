@@ -75,6 +75,12 @@ struct LicenseSettingsView: View {
                 HStack {
                     if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
                     
+                    if license == nil, let url = URL(string: "https://lo.cafe/notchnook") {
+                        Button("Get a License") {
+                            openURL(url)
+                        }
+                    }
+                    
                     Button(license == nil ? "Register" : "Unregister") {
                         if license != nil { license = nil; return }
                         if !validateEmail(email) || key.isEmpty { return }
