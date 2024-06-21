@@ -13,7 +13,7 @@
 		3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BE2C24C040008092F0 /* UpdateButtonIconView.swift */; };
 		3A0816C32C24C201008092F0 /* update.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A0816C22C24C201008092F0 /* update.lottie */; };
 		3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C42C24CA60008092F0 /* SparkleManager.swift */; };
-		3A0816C72C24DB86008092F0 /* quickPeakScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */; };
+		3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */; };
 		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
 		3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */; };
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
@@ -22,7 +22,7 @@
 		3A105FD32C1BADE80015EC66 /* EventTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FD22C1BADE80015EC66 /* EventTimeView.swift */; };
 		3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE42C1E76450015EC66 /* LiveActivityView.swift */; };
 		3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE62C1E86080015EC66 /* closestEvent.swift */; };
-		3A105FEA2C1EAA660015EC66 /* QuickPeaksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */; };
+		3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */; };
 		3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */; };
 		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
 		3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */; };
@@ -236,7 +236,7 @@
 		3A0816BE2C24C040008092F0 /* UpdateButtonIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateButtonIconView.swift; sourceTree = "<group>"; };
 		3A0816C22C24C201008092F0 /* update.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = update.lottie; sourceTree = "<group>"; };
 		3A0816C42C24CA60008092F0 /* SparkleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleManager.swift; sourceTree = "<group>"; };
-		3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeakScaling.swift; sourceTree = "<group>"; };
+		3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeekScaling.swift; sourceTree = "<group>"; };
 		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
 		3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 		3A105FD22C1BADE80015EC66 /* EventTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeView.swift; sourceTree = "<group>"; };
 		3A105FE42C1E76450015EC66 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		3A105FE62C1E86080015EC66 /* closestEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closestEvent.swift; sourceTree = "<group>"; };
-		3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPeaksView.swift; sourceTree = "<group>"; };
+		3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPeeksView.swift; sourceTree = "<group>"; };
 		3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMarquee.swift; sourceTree = "<group>"; };
 		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
 		3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookEvent.swift; sourceTree = "<group>"; };
@@ -916,7 +916,7 @@
 				ECAC6A6D2C070355000D9D27 /* measure.swift */,
 				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
 				3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */,
-				3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */,
+				3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1070,7 +1070,7 @@
 				EC8D600A2BFAF57600E67ECC /* Nook */,
 				EC8D5FC52BF97ADA00E67ECC /* Shelf */,
 				EC14B5C92C07A570000FC6B6 /* DropArea */,
-				3A105FE92C1EAA660015EC66 /* QuickPeaksView.swift */,
+				3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
 				EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */,
@@ -1382,7 +1382,7 @@
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
-				3A0816C72C24DB86008092F0 /* quickPeakScaling.swift in Sources */,
+				3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */,
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
@@ -1408,7 +1408,7 @@
 				EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
-				3A105FEA2C1EAA660015EC66 /* QuickPeaksView.swift in Sources */,
+				3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */,
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
 				EC47FCC92C0C067600591811 /* DropAreaGeneralSettingsTabView.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
