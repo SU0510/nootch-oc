@@ -30,7 +30,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 Text("Allow some activities to interact with mouse click.")
                     .settingDescription()
                 
-                Toggle("Enable Quick Peak", isOn: $liveActivitiesSettings.enableQuickPeak)
+                Toggle("Enable Quick Peek", isOn: $liveActivitiesSettings.enableQuickPeek)
                 Text("If enabled, some live activities will show a short info on mouse hover.")
                     .settingDescription()
             }

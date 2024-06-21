@@ -103,9 +103,9 @@ struct TopBarView: View {
             .fixedSize(horizontal: false, vertical: true)
             .zIndex(1)
         }
-        if let quickPeaks = NotchNook.shared.quickPeaks {
-            QuickPeaksView(quickPeaks: quickPeaks)
-                .id(quickPeaks)
+        if let quickPeeks = NotchNook.shared.quickPeeks {
+            QuickPeeksView(quickPeeks: quickPeeks)
+                .id(quickPeeks)
                 .transition(.scaleAndBlur(anchor: .leading, blur: 15))
         }
     }

@@ -1,5 +1,5 @@
 //
-//  QuickPeaksView.swift
+//  QuickPeeksView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 16/06/24.
@@ -7,28 +7,28 @@
 
 import SwiftUI
 
-struct QuickPeaksView: View {
-    var quickPeaks: [NotchNook.QuickPeak]
+struct QuickPeeksView: View {
+    var quickPeeks: [NotchNook.QuickPeek]
     var body: some View {
         TheMarquee(width: NotchShape.defaultNotchWidth + (TopBarView.liveActionWidth * 2), spacingBetweenElements: 12) {
             HStack(spacing: 12) {
-                ForEach(quickPeaks) { QuickPeakView(quickPeak: $0) }
+                ForEach(quickPeeks) { QuickPeekView(quickPeek: $0) }
             }
         }
     }
 }
 
-struct QuickPeakView: View {
-    var quickPeak: NotchNook.QuickPeak
+struct QuickPeekView: View {
+    var quickPeek: NotchNook.QuickPeek
     var body: some View {
             HStack(spacing: 4) {
-                if let icon = quickPeak.icon {
+                if let icon = quickPeek.icon {
                     Image(systemName: icon)
-                        .opacity(quickPeak.iconColor == nil ? 0.5 : 1)
+                        .opacity(quickPeek.iconColor == nil ? 0.5 : 1)
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(quickPeak.iconColor ?? .white)
+                        .foregroundStyle(quickPeek.iconColor ?? .white)
                 }
-                Text(quickPeak.text)
+                Text(quickPeek.text)
                     .font(.system(size: 12, weight: .medium))
             }
             .opacity(0.5)

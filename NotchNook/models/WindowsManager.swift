@@ -14,10 +14,9 @@ import Sparkle
 class WindowsManager {
     var displayKits = [DisplayKit]()
     private var settingsWindowController: SettingsWindowController
-    
     private var settingsPanes: [SettingsPane]
-    
     private var sparkleManager: SparkleManager
+    private var changelogViewWindow: NSWindow?
     
     init(updater: SPUUpdater) {
         self.sparkleManager = SparkleManager(updater: updater)
@@ -45,6 +44,35 @@ class WindowsManager {
     deinit {
         NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
+    }
+    
+    func showChangelogViewWindow() {
+        guard let screen = NSScreen.main else { return }
+        let notchHeight = screen.safeAreaInsets.top
+        let screenF = screen.frame
+        let view = NSHostingView(rootView: ChangelogView())
+        let size = view.intrinsicContentSize
+        let windowRect = NSRect(
+            x: (screenF.width - (size.width / 2)) / 2,
+            y: (screenF.height - (size.height / 2)) / 2,
+            width: size.width,
+            height: size.height
+        )
+        let newWindow = NSWindow(
+            contentRect: windowRect,
+            styleMask: [.titled],
+            backing: .buffered, defer: true,
+            screen: screen
+        )
+        
+        newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenAuxiliary]
+        newWindow.backgroundColor = NSColor.clear
+        newWindow.hasShadow = false
+        newWindow.titleVisibility = .hidden
+        newWindow.titlebarAppearsTransparent = true
+        newWindow.orderFront(0)
+        newWindow.contentView = view
+        newWindow.isOpaque = false
     }
     
     @objc func updateWindows() {

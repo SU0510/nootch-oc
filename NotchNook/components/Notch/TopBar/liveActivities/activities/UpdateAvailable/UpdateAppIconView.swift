@@ -10,7 +10,7 @@ import SwiftUI
 struct UpdateAppIconView: View {
     var laPrefs: LiveActivitiesSettings
     
-    var quickPeaks: [NotchNook.QuickPeak] { [.init(icon: "sparkles", text: "New update available for NotchNook!", iconColor: .yellow)] }
+    var quickPeeks: [NotchNook.QuickPeek] { [.init(icon: "sparkles", text: "New update available for NotchNook!", iconColor: .yellow)] }
     
     @Environment(\.sparkleManager) private var sparkleManager
     var body: some View {
@@ -18,15 +18,15 @@ struct UpdateAppIconView: View {
             .resizable()
             .scaledToFit()
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 5, trailing: 6))
-            .quickPeakScaling()
+            .quickPeekScaling()
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
             .onTapGesture {
                 sparkleManager.checkForUpdates()
                 NotchNook.shared.activeLiveActivities.remove(.updateAvailable)
             }
             .onHover { hovering in
-                if laPrefs.enableQuickPeak {
-                    NotchNook.shared.quickPeaks = hovering ? quickPeaks : nil
+                if laPrefs.enableQuickPeek {
+                    NotchNook.shared.quickPeeks = hovering ? quickPeeks : nil
                 }
             }
     }

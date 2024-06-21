@@ -16,14 +16,14 @@ class NotchNook {
     var shelf = Shelf()
     var pinned = false
     
-    var quickPeaks: [QuickPeak]? {
-        get { _quickPeak }
+    var quickPeeks: [QuickPeek]? {
+        get { _quickPeek }
         set {
             vibrate()
-            withAnimation(TopBarView.animation) { _quickPeak = newValue }
+            withAnimation(TopBarView.animation) { _quickPeek = newValue }
         }
     }
-    private var _quickPeak: [QuickPeak]?
+    private var _quickPeek: [QuickPeek]?
     
     var activeLiveActivities: Set<LiveActivity> {
         get { Defaults[.liveActivitiesSettings].enabled ? _activeLiveActivities : [] }
@@ -37,7 +37,7 @@ class NotchNook {
         case closed, nook, shelf, dragging
     }
     
-    struct QuickPeak: Identifiable, Equatable, Hashable {
+    struct QuickPeek: Identifiable, Equatable, Hashable {
         let id = UUID()
         let icon: String?
         let text: String
