@@ -236,7 +236,7 @@ struct NotchView: View {
             let currentBuildNumber = getBuildNumber()
             if lastBuildNumber != currentBuildNumber {
                 showChangelog()
-//                lastBuildNumber = currentBuildNumber
+                lastBuildNumber = currentBuildNumber
             }
         }
         .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
