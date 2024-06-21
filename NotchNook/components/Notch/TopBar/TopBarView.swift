@@ -47,7 +47,7 @@ struct TopBarView: View {
                     .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .shelf)
                 }
                 
-                if (mode != .closed && !hide) || liveActvs.count > 0 {
+                if (mode != .closed && !hide) || !liveActvs.isEmpty {
                     TopBarSpacerView(height: height)
                 }
                 
@@ -99,7 +99,7 @@ struct TopBarView: View {
                     .transition(.scaleAndBlur(anchor: .leading))
                 }
             }
-            .frame(height: height)
+            .frame(height: (notchHeight == 0 && mode == .closed && liveActvs.isEmpty) || !hide ? nil : height)
             .fixedSize(horizontal: false, vertical: true)
             .zIndex(1)
         }
