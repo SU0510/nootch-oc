@@ -13,7 +13,7 @@ import Sparkle
 
 class WindowsManager {
     var displayKits = [DisplayKit]()
-    private var settingsWindowController: SettingsWindowController?
+    var settingsWindowController: SettingsWindowController?
     private var settingsPanes = [SettingsPane]()
     private var sparkleManager: SparkleManager
     private var changelogViewWindow: SwiftUIWindow<ChangelogView>?

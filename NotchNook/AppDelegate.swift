@@ -23,6 +23,10 @@ import SwiftDate
         updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: updaterDelegate, userDriverDelegate: updaterDelegate)
     }
     
+    func application(_ application: NSApplication, open urls: [URL]) {
+        windowsManager?.settingsWindowController?.show()
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Initialize (in memory ig) all singletons
         CalendarManager.configureWithAppName("NotchNook")
