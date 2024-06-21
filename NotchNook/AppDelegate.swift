@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Sparkle
 import AppKit
+import SwiftDate
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
@@ -18,6 +19,7 @@ import AppKit
     let updaterController: SPUStandardUpdaterController
     
     override init() {
+        SwiftDate.defaultRegion = Region.local
         updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: updaterDelegate, userDriverDelegate: updaterDelegate)
     }
     
