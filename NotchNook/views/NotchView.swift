@@ -224,7 +224,7 @@ struct NotchView: View {
             Button("Open Settings") { openSettings(nil) }
             Button("Quit NotchNook") { NSApp.terminate(nil) }
         }
-        .frame(width: screenSize.width, height: screenSize.height, alignment: .top)
+        .frame(width: screenSize.width, height: 215, alignment: .top)
         .fixedSize()
         .onAppear {
             if sparkleManager.automaticallyChecksForUpdates {
