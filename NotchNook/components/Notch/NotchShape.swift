@@ -18,15 +18,16 @@ struct NotchShape: Shape {
     var minWidth: CGFloat = NotchShape.defaultNotchWidth
 
     func path(in rect: CGRect) -> Path {
-        var decorationsRadius: CGFloat {
-            let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: rect.width)
-            return widthInterpolator([notchHeight < 5 ? notchHeight / 2 : 5, 24], true)
-        }
-        
         var notchRadius: CGFloat {
             let widthInterpolator = interpolatorBuilder([notchHeight, notchHeight + 100], value: rect.height)
-            return widthInterpolator([notchHeight < 11 ? notchHeight / 2 : 11, 40], true)
+            return widthInterpolator([notchHeight < 14 ? notchHeight * 0.75 : 11, 40], true)
         }
+        
+        var decorationsRadius: CGFloat {
+            let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: rect.width)
+            return widthInterpolator([max(0, min(5, notchHeight - notchRadius)), 24], true)
+        }
+        
         
         let decorationSize = decorationsRadius * 2
         
