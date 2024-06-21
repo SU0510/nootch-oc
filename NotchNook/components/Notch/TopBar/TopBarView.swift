@@ -99,7 +99,7 @@ struct TopBarView: View {
                     .transition(.scaleAndBlur(anchor: .leading))
                 }
             }
-            .frame(height: (notchHeight == 0 && mode == .closed && liveActvs.isEmpty) || !hide ? nil : height)
+            .frame(height: (notchHeight == 0 && mode == .closed && liveActvs.isEmpty) || hide ? nil : height)
             .fixedSize(horizontal: false, vertical: true)
             .zIndex(1)
         }

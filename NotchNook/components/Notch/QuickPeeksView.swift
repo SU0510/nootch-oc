@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct QuickPeeksView: View {
     var quickPeeks: [NotchNook.QuickPeek]
+    @Environment(\.notchHeight) private var notchHeight
+    @Default(.generalSettings) private var generalSettings
     var body: some View {
-        TheMarquee(width: NotchShape.defaultNotchWidth + (TopBarView.liveActionWidth * 2), spacingBetweenElements: 12) {
+        TheMarquee(width: (notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.defaultNotchWidth) + (TopBarView.liveActionWidth * 2), spacingBetweenElements: 12) {
             HStack(spacing: 12) {
                 ForEach(quickPeeks) { QuickPeekView(quickPeek: $0) }
             }

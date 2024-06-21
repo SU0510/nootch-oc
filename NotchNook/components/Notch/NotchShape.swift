@@ -19,13 +19,13 @@ struct NotchShape: Shape {
 
     func path(in rect: CGRect) -> Path {
         var notchRadius: CGFloat {
-            let widthInterpolator = interpolatorBuilder([notchHeight, notchHeight + 100], value: rect.height)
-            return widthInterpolator([notchHeight < 14 ? notchHeight * 0.75 : 11, 40], true)
+            let heightInterpolator = interpolatorBuilder([notchHeight, notchHeight + 100], value: rect.height)
+            return heightInterpolator([notchHeight < 14 ? notchHeight * 0.65 : 11, 40], true)
         }
         
         var decorationsRadius: CGFloat {
-            let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: rect.width)
-            return widthInterpolator([max(0, min(5, notchHeight - notchRadius)), 24], true)
+            let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: max(minWidth, rect.width))
+            return widthInterpolator([max(0, min(5, rect.height - notchRadius)), 24], true)
         }
         
         
