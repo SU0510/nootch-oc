@@ -40,6 +40,7 @@ struct NotchView: View {
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
     @Environment(\.sparkleManager) private var sparkleManager
+    @Environment(\.showChangelog) private var showChangelog
     @Default(.lastBuildNumber) private var lastBuildNumber
     @Default(.intro) private var intro
     @Default(.license) private var license
@@ -234,6 +235,7 @@ struct NotchView: View {
             
             let currentBuildNumber = getBuildNumber()
             if lastBuildNumber != currentBuildNumber {
+                showChangelog()
 //                lastBuildNumber = currentBuildNumber
             }
         }

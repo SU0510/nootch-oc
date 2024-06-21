@@ -16,7 +16,7 @@ struct CalendarWidgetSettingsView: View {
             Settings.Section {
                 Text("Width:").frame(minWidth: 150, alignment: .trailing)
             } content: {
-                SliderPlus(value: $calendarWidgetSettings.size.width.double, range: 3...5)
+                SliderPlus(value: $calendarWidgetSettings.size.width.double, range: 3...7)
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)

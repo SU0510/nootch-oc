@@ -14,6 +14,7 @@ struct ReorderWidgetsView: View {
     @Default(.mediaWidgetSettings) private var mediaWidgetSettings
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
+    @Default(.calendarWidgetSettings) private var calendarWidgetSettings
     @Default(.nookSettings) private var nookSettings
     private let spacing: CGFloat = 8
     
@@ -56,6 +57,7 @@ struct ReorderWidgetsView: View {
                     mediaWidgetSettings.size.width.value,
                     mirrorWidgetSettings.size.width.value,
                     shortcutsWidgetSettings.size.width.value,
+                    calendarWidgetSettings.size.width.value,
                     nookSettings.enabledWidgets.count
                 ])
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

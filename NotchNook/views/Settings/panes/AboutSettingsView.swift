@@ -12,6 +12,7 @@ import Defaults
 
 struct AboutSettingsView: View {
     @State private var sparkleManager: SparkleManager
+    @Environment(\.showChangelog) private var showChangelog
     init(sparkleManager: SparkleManager) {
         self._sparkleManager = .init(initialValue: sparkleManager)
     }
@@ -32,6 +33,7 @@ struct AboutSettingsView: View {
                     
                     HStack(alignment: .top) {
                         Text("v\(getAppVersion())").font(.callout).opacity(0.75)
+                            .onTapGesture(perform: showChangelog)
                         Spacer()
                         HStack {
                             if sparkleManager.automaticallyChecksForUpdates {
@@ -73,7 +75,7 @@ struct AboutSettingsView: View {
                     
                     HStack {
                         SettingsLinkBtn(url: URL(string: "https://lo.cafe")) {
-                            Label("lo.cafe website", systemImage: "globe")
+                            Label("lo.cafe site", systemImage: "globe")
                         }
                         SettingsLinkBtn(url: URL(string: "https://discord.gg/lo-cafe")) {
                             Label {
@@ -114,7 +116,7 @@ struct AboutSettingsView: View {
     }
 }
 
-let AboutSettingsViewController: (_ sparkleManager: SparkleManager) -> SettingsPane = { sparkleManager in
+let AboutSettingsViewController: (_ sparkleManager: SparkleManager, _ showChangelog: (() -> ())?) -> SettingsPane = { sparkleManager, showChangelog in
     let paneView = Settings.Pane(
         identifier: .about,
         title: "About",
@@ -122,6 +124,7 @@ let AboutSettingsViewController: (_ sparkleManager: SparkleManager) -> SettingsP
     ) {
         AboutSettingsView(sparkleManager: sparkleManager)
             .environment(\.sparkleManager, sparkleManager)
+            .environment(\.showChangelog, showChangelog ?? {})
     }
 
     return Settings.PaneHostingController(pane: paneView)

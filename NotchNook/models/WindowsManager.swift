@@ -14,7 +14,7 @@ import Sparkle
 class WindowsManager {
     var displayKits = [DisplayKit]()
     private var settingsWindowController: SettingsWindowController
-    private var settingsPanes: [SettingsPane]
+    private var settingsPanes = [SettingsPane]()
     private var sparkleManager: SparkleManager
     private var changelogViewWindow: NSWindow?
     
@@ -28,7 +28,7 @@ class WindowsManager {
             ShelfSettingsViewController(),
             DropAreaSettingsViewController(),
             LicenseSettingsViewController(),
-            AboutSettingsViewController(sparkleManager)
+            AboutSettingsViewController(sparkleManager, nil)
         ]
         
         settingsWindowController = SettingsWindowController(
@@ -48,31 +48,41 @@ class WindowsManager {
     
     func showChangelogViewWindow() {
         guard let screen = NSScreen.main else { return }
-        let notchHeight = screen.safeAreaInsets.top
         let screenF = screen.frame
-        let view = NSHostingView(rootView: ChangelogView())
+        let view = NSHostingView(rootView: ChangelogView(closeWindow: {}))
         let size = view.intrinsicContentSize
         let windowRect = NSRect(
-            x: (screenF.width - (size.width / 2)) / 2,
-            y: (screenF.height - (size.height / 2)) / 2,
+            x: (screenF.width - size.width) / 2,
+            y: (screenF.height - size.height) / 2,
             width: size.width,
-            height: size.height
+            height: size.height + 51
         )
         let newWindow = NSWindow(
             contentRect: windowRect,
-            styleMask: [.titled],
+            styleMask: [.titled, .closable, .fullSizeContentView],
             backing: .buffered, defer: true,
             screen: screen
         )
+        newWindow.isReleasedWhenClosed = true
         
-        newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenAuxiliary]
-        newWindow.backgroundColor = NSColor.clear
-        newWindow.hasShadow = false
-        newWindow.titleVisibility = .hidden
+        view.rootView.closeWindow = newWindow.close
+        
+        let customToolbar = NSToolbar()
+        customToolbar.showsBaselineSeparator = false
         newWindow.titlebarAppearsTransparent = true
+        newWindow.titleVisibility = .hidden
+        newWindow.toolbarStyle = .unified
+        newWindow.styleMask.insert(.titled)
+        newWindow.toolbar = customToolbar
+        
+        newWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        newWindow.standardWindowButton(.zoomButton)?.isHidden = true
+        
         newWindow.orderFront(0)
         newWindow.contentView = view
+        
         newWindow.isOpaque = false
+        changelogViewWindow = newWindow
     }
     
     @objc func updateWindows() {
@@ -103,6 +113,7 @@ class WindowsManager {
                 .environment(\.screenID, id)
                 .environment(\.screenSize, screenF.size)
                 .environment(\.sparkleManager, sparkleManager)
+                .environment(\.showChangelog, showChangelogViewWindow)
         )
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(

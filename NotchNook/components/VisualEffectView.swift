@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct VisualEffectViews: NSViewRepresentable {
+    var material: NSVisualEffectView.Material = .sidebar
     func makeNSView(context: Context) -> NSVisualEffectView {
         let effectView = NSVisualEffectView()
+        effectView.blendingMode = .behindWindow
+        effectView.material = material
         effectView.state = .active
         return effectView
     }

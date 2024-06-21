@@ -42,7 +42,15 @@ private struct SparkleManagerKey: EnvironmentKey {
     static var defaultValue = SparkleManager(updater: nil)
 }
 
+private struct ShowChangelogKey: EnvironmentKey {
+    static var defaultValue: () -> () = { }
+}
+
 extension EnvironmentValues {
+    var showChangelog: () -> () {
+        get { self[ShowChangelogKey.self] }
+        set { self[ShowChangelogKey.self] = newValue }
+    }
     var sparkleManager: SparkleManager {
         get { self[SparkleManagerKey.self] }
         set { self[SparkleManagerKey.self] = newValue }

@@ -8,10 +8,68 @@
 import SwiftUI
 
 struct ChangelogView: View {
+    var closeWindow: () -> ()
+    @State private var calendarPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "calendar", withExtension: "mov")!)
+    @State private var calendarLAPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "calendarLA", withExtension: "mov")!)
+    @State private var quickPeekPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "quickPeek", withExtension: "mov")!)
     var body: some View {
-        VStack {
+        VStack(spacing: 32) {
+            VStack(spacing: 0) {
+                Image(.internalAppIcon).resizable()
+                    .scaledToFit()
+                    .frame(128)
+                VStack(spacing: 8) {
+                    VStack(spacing: 0) {
+                        Text("NotchNook").font(.largeTitle).fontWeight(.bold)
+                        Text("v1.1").font(.title2).fontWeight(.light).italic().opacity(0.75)
+                    }
+                    Text("A bunch of bug fixes and sweet new features!").font(.system(size: 16)).fontWeight(.medium)
+                }
+            }
+            VStack(spacing: 16) {
+                VideoFeatureView(player: calendarPlayer, title: "Calendar Widget", description: "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon...")
+                VideoFeatureView(player: quickPeekPlayer, title: "Quick Peek", description: "Take a quick peek at useful info by hovering some of the live activities.")
+                VideoFeatureView(player: calendarLAPlayer, title: "Calendar Live Activity", description: "A new elegant way of getting notified about and joining a meeting. ")
+            }
             
+            Button {
+                closeWindow()
+            } label: {
+                Text("Damn, that's awesome!")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(.blue, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            }
+            .buttonStyle(ShrinkOnClick(minSize: 0.95))
         }
-        .frame(width: 800, height: 500, alignment: .center)
+        .padding(.bottom, 32)
+        .padding(.horizontal, 64)
+        .overlay(alignment: .topLeading) {
+            Image(.leftDecoration).resizable().scaledToFit()
+                .frame(width: 123, height: 84)
+                .padding(.leading, 25)
+                .blendMode(.overlay)
+                .opacity(0.5)
+        }
+        .overlay(alignment: .topTrailing) {
+            Image(.rightDecoration).resizable().scaledToFit()
+                .frame(width: 111, height: 72)
+                .padding(.top, 8)
+                .padding(.trailing, 25)
+                .blendMode(.overlay)
+                .opacity(0.5)
+        }
+        .background {
+            Image(.changelogGradient).resizable()
+                .scaledToFill()
+                .opacity(0.5)
+                .ignoresSafeArea(.all)
+        }
+        .background {
+            VisualEffectViews(material: .popover)
+                .ignoresSafeArea(.all)
+        }
     }
 }
