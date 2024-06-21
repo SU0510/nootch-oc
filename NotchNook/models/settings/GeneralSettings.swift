@@ -12,10 +12,7 @@ struct GeneralSettings: Preferences {
     var transluscent = false
     var handleSize = CGSize(width: 184, height: 8)
     var contentPadding: Double = 16
-    var allowGestures = true
-    var controlMedia = true
-    var controlOpenState = true
     var transparentHandle = false
     var disableHaptics = false
-    var modernSettings = false
+    var enableOnNonNotchScreens = true
 }

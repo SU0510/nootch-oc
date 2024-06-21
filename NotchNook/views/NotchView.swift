@@ -129,36 +129,38 @@ struct NotchView: View {
         let filesShelfCount = Shelf.shared.files.count
         let isShelfEmpty = filesShelfCount == 0
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
+        let disableNotchNook = notchHeight == 0 && !generalSettings.enableOnNonNotchScreens
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
-            
-            if intro && showIntro {
-                IntroView()
-            } else if !intro {
-                
-                if license != nil || !trialOver {
-                    TopBarView(
-                        panGestureCounter: panGestureCounter,
-                        scale: actualScale,
-                        panPadding: panPadding,
-                        hide: hide
-                    )
-                }
-                
-                Group {
-                    if license == nil && (trialInitialTime == nil || trialOver) && mode != .closed {
-                        LicenseStateView()
-                    } else {
-                        switch mode {
-                            case .closed: EmptyView()
-                            case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
-                            case .nook: NookView()
-                            case .shelf: ShelfView(hovered: false, full: true)
+            if !disableNotchNook {
+                if intro && showIntro {
+                    IntroView()
+                } else if !intro {
+                    
+                    if license != nil || !trialOver {
+                        TopBarView(
+                            panGestureCounter: panGestureCounter,
+                            scale: actualScale,
+                            panPadding: panPadding,
+                            hide: hide
+                        )
+                    }
+                    
+                    Group {
+                        if license == nil && (trialInitialTime == nil || trialOver) && mode != .closed {
+                            LicenseStateView()
+                        } else {
+                            switch mode {
+                                case .closed: EmptyView()
+                                case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                                case .nook: NookView()
+                                case .shelf: ShelfView(hovered: false, full: true)
+                            }
                         }
                     }
+                    .scaleEffect(actualScale, anchor: .top)
+                    .transition(NotchView.defaultTransition)
                 }
-                .scaleEffect(actualScale, anchor: .top)
-                .transition(NotchView.defaultTransition)
             }
         }
         .compositingGroup()
@@ -166,7 +168,7 @@ struct NotchView: View {
         .fixedSize(horizontal: true, vertical: false)
         .frame(
             minWidth: notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.getNotchWidthForScreenWidth(screenSize.width),
-            minHeight: notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
+            minHeight: disableNotchNook ? 0 : notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
         )
         .padding(mode == .closed ? panPadding : .zero)
         .padding(standardPadding)
@@ -194,6 +196,8 @@ struct NotchView: View {
         }
         .background(alignment: .top) { shapeView() }
         .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
+        .allowsHitTesting(!disableNotchNook)
+        .animation(.smooth, value: disableNotchNook)
         .animation(.smooth(extraBounce: 0.15), value: [liveActivitiesSettings])
         .animation(.smooth(extraBounce: 0.15), value: intro)
         .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }

@@ -28,6 +28,8 @@ struct GeneralSettingsView: View {
             }
             
             Settings.Section(title: "Handler (no-notch screens):", bottomDivider: true) {
+                Toggle("Enable", isOn: $generalSettings.enableOnNonNotchScreens)
+                
                 CustomLabeled(title: "Width") {
                     SliderPlus(value: $generalSettings.handleSize.width, range: 30...250, step: 16)
                 }
