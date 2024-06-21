@@ -42,7 +42,7 @@ struct LiveActivityView: View {
                     case .calendar:
                         if let event = mockEvent ?? closestEvent(in: CalendarManager.shared.events)?.getNookEvent() {
                             switch side {
-                                case .left: EventIconView(eventTitle: event.title, startDate: event.startDate, laPrefs: liveActivitiesSettings)
+                                case .left: EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, laPrefs: liveActivitiesSettings)
                                 case .right: EventTimeView(notes: event.notes, startDate: event.startDate, endDate: event.endDate, prefs: calendarLiveActivitySettings)
                             }
                         }

@@ -12,21 +12,31 @@ import SwiftDate
 struct EventIconView: View {
     var eventTitle: String
     var startDate: Date
+    var endDate: Date
     var laPrefs: LiveActivitiesSettings
     @Environment(\.getNow) private var getNow
+    
+    var quickPeaks: [NotchNook.QuickPeak] {
+        let startTime = startDate.formatted(date: .omitted, time: .shortened)
+        let endTime = endDate.formatted(date: .omitted, time: .shortened)
+        return [
+            .init(icon: "calendar", text: eventTitle),
+            .init(icon: "clock", text: "\(startTime) - \(endTime)"),
+        ]
+    }
     var body: some View {
         let now = getNow()
         let meetingStarted = startDate < now
         Image(systemName: meetingStarted ? "calendar" : LiveActivity.calendar.icon)
             .font(.system(size: 13))
             .foregroundStyle(.blue)
-            .scaleEffect(NotchNook.shared.quickPeaks == nil ? 1 : 1.2, anchor: .topLeading)
-            .frame(maxWidth: .infinity)
+            .padding(.top, 4)
+            .quickPeakScaling()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onHover { hovering in
                 if laPrefs.enableQuickPeak {
-                    NotchNook.shared.quickPeaks = hovering ? [.init(icon: "calendar.circle.fill", text: eventTitle)] : nil
+                    NotchNook.shared.quickPeaks = hovering ? quickPeaks : nil
                 }
             }
     }
 }
-

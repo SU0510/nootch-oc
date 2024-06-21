@@ -94,7 +94,7 @@ struct MockTopBar: View {
             
             Group {
                 switch activity {
-                    case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, laPrefs: liveActivitiesSettings).environment(\.getNow, staticNow)
+                    case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, laPrefs: liveActivitiesSettings).environment(\.getNow, staticNow)
                     case .media: AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
                     case .shelf: ShelfIconView()
                     case .updateAvailable: UpdateAppIconView(laPrefs: liveActivitiesSettings)
