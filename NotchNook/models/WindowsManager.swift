@@ -13,10 +13,10 @@ import Sparkle
 
 class WindowsManager {
     var displayKits = [DisplayKit]()
-    private var settingsWindowController: SettingsWindowController
+    private var settingsWindowController: SettingsWindowController?
     private var settingsPanes = [SettingsPane]()
     private var sparkleManager: SparkleManager
-    private var changelogViewWindow: NSWindow?
+    private var changelogViewWindow: SwiftUIWindow<ChangelogView>?
     
     init(updater: SPUUpdater) {
         self.sparkleManager = SparkleManager(updater: updater)
@@ -28,7 +28,7 @@ class WindowsManager {
             ShelfSettingsViewController(),
             DropAreaSettingsViewController(),
             LicenseSettingsViewController(),
-            AboutSettingsViewController(sparkleManager, nil)
+            AboutSettingsViewController(sparkleManager, showChangelogViewWindow)
         ]
         
         settingsWindowController = SettingsWindowController(
@@ -47,25 +47,35 @@ class WindowsManager {
     }
     
     func showChangelogViewWindow() {
+        if let changelogViewWindow {
+            if changelogViewWindow.isVisible {
+                changelogViewWindow.show()
+                return
+            } else {
+                self.changelogViewWindow = nil
+            }
+        }
         guard let screen = NSScreen.main else { return }
         let screenF = screen.frame
-        let view = NSHostingView(rootView: ChangelogView(closeWindow: {}))
-        let size = view.intrinsicContentSize
-        let windowRect = NSRect(
-            x: (screenF.width - size.width) / 2,
-            y: (screenF.height - size.height) / 2,
-            width: size.width,
-            height: size.height + 51
-        )
-        let newWindow = NSWindow(
-            contentRect: windowRect,
-            styleMask: [.titled, .closable, .fullSizeContentView],
-            backing: .buffered, defer: true,
-            screen: screen
-        )
-        newWindow.isReleasedWhenClosed = true
+//        let view = NSHostingView(rootView: ChangelogView(closeWindow: {}))
+//        let size = view.intrinsicContentSize
+//        let windowRect = NSRect(
+//            x: (screenF.width - size.width) / 2,
+//            y: (screenF.height - size.height) / 2,
+//            width: size.width,
+//            height: size.height + 51
+//        )
         
-        view.rootView.closeWindow = newWindow.close
+        let newWindow = SwiftUIWindow(
+            styleMask: [.titled, .closable, .fullSizeContentView],
+            content: {
+                ChangelogView()
+            }, onClose: {
+                self.changelogViewWindow = nil
+            }
+        )
+        
+        newWindow.isReleasedWhenClosed = false
         
         let customToolbar = NSToolbar()
         customToolbar.showsBaselineSeparator = false
@@ -74,15 +84,14 @@ class WindowsManager {
         newWindow.toolbarStyle = .unified
         newWindow.styleMask.insert(.titled)
         newWindow.toolbar = customToolbar
+        newWindow.isOpaque = false
         
         newWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
         newWindow.standardWindowButton(.zoomButton)?.isHidden = true
         
-        newWindow.orderFront(0)
-        newWindow.contentView = view
-        
-        newWindow.isOpaque = false
         changelogViewWindow = newWindow
+        
+        newWindow.show()
     }
     
     @objc func updateWindows() {
@@ -105,11 +114,12 @@ class WindowsManager {
         let id = UUID()
         let notchHeight = screen.safeAreaInsets.top
         let screenF = screen.frame
+        let showSettings = settingsWindowController?.show ?? { _ in }
         let view = NSHostingView(
             rootView:
                 NotchView()
                 .environment(\.notchHeight, notchHeight)
-                .environment(\.openSettings, settingsWindowController.show)
+                .environment(\.openSettings, showSettings)
                 .environment(\.screenID, id)
                 .environment(\.screenSize, screenF.size)
                 .environment(\.sparkleManager, sparkleManager)

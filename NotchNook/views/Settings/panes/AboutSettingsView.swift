@@ -32,12 +32,13 @@ struct AboutSettingsView: View {
                     }
                     
                     HStack(alignment: .top) {
-                        Text("v\(getAppVersion())").font(.callout).opacity(0.75)
+                        (Text("v\(getAppVersion()) ").font(.callout) + Text("(see changelog)").font(.caption).underline().foregroundStyle(.primary.opacity(0.5)))
+                            .opacity(0.75)
                             .onTapGesture(perform: showChangelog)
                         Spacer()
                         HStack {
                             if sparkleManager.automaticallyChecksForUpdates {
-                                Toggle("Auto download new updates", isOn: $sparkleManager.automaticallyDownloadsUpdates)
+                                Toggle("Auto download updates", isOn: $sparkleManager.automaticallyDownloadsUpdates)
                             }
                             Toggle("Auto check for updates", isOn: $sparkleManager.automaticallyChecksForUpdates)
                                 .onChange(of: sparkleManager.automaticallyChecksForUpdates) { oldValue, newValue in

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ChangelogView: View {
-    var closeWindow: () -> ()
     @State private var calendarPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "calendar", withExtension: "mov")!)
     @State private var calendarLAPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "calendarLA", withExtension: "mov")!)
     @State private var quickPeekPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "quickPeek", withExtension: "mov")!)
+    @Environment(\.closeWindow) private var closeWindow
     var body: some View {
         VStack(spacing: 32) {
             VStack(spacing: 0) {
@@ -20,10 +20,10 @@ struct ChangelogView: View {
                     .frame(128)
                 VStack(spacing: 8) {
                     VStack(spacing: 0) {
-                        Text("NotchNook").font(.largeTitle).fontWeight(.bold)
-                        Text("v1.1").font(.title2).fontWeight(.light).italic().opacity(0.75)
+                        Text("NotchNook ").font(.largeTitle).fontWeight(.bold) +
+                        Text("v1.1").font(.title2).fontWeight(.ultraLight).italic().foregroundStyle(.primary.opacity(0.75))
                     }
-                    Text("A bunch of bug fixes and sweet new features!").font(.system(size: 16)).fontWeight(.medium)
+                    Text("A bunch of bug fixes and sweet new features!").font(.system(size: 16)).fontWeight(.regular)
                 }
             }
             VStack(spacing: 16) {
@@ -56,7 +56,7 @@ struct ChangelogView: View {
         .overlay(alignment: .topTrailing) {
             Image(.rightDecoration).resizable().scaledToFit()
                 .frame(width: 111, height: 72)
-                .padding(.top, 8)
+                .padding(.top, 4)
                 .padding(.trailing, 25)
                 .blendMode(.overlay)
                 .opacity(0.5)
@@ -64,7 +64,7 @@ struct ChangelogView: View {
         .background {
             Image(.changelogGradient).resizable()
                 .scaledToFill()
-                .opacity(0.5)
+                .opacity(0.4)
                 .ignoresSafeArea(.all)
         }
         .background {

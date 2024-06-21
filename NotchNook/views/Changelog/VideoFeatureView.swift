@@ -23,13 +23,12 @@ struct VideoFeatureView: View {
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.title2).fontWeight(.bold)
-                Text(description).font(.system(size: 14)).opacity(0.75)
+                Text(description).font(.system(size: 14, weight: .light)).opacity(0.75)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(width: 320, alignment: .leading)
         }
-        .onAppear {
-            player.play()
-        }
+        .onAppear { player.play() }
+        .onDisappear { player.pause() }
     }
 }

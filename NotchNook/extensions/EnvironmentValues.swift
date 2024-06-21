@@ -46,7 +46,15 @@ private struct ShowChangelogKey: EnvironmentKey {
     static var defaultValue: () -> () = { }
 }
 
+private struct CloseWindowKey: EnvironmentKey {
+    static var defaultValue: () -> () = { }
+}
+
 extension EnvironmentValues {
+    var closeWindow: () -> () {
+        get { self[CloseWindowKey.self] }
+        set { self[CloseWindowKey.self] = newValue }
+    }
     var showChangelog: () -> () {
         get { self[ShowChangelogKey.self] }
         set { self[ShowChangelogKey.self] = newValue }

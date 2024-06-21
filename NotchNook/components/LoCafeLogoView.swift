@@ -7,11 +7,14 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct LoCafeLogoView: View {
     @State private var letterOActive = true
     @State private var letterFEActive = true
     @State private var lettersActive = true
     @State private var decreasedDelay = 0
+    @State private var timer: Timer?
 
     var body: some View {
         VStack {
@@ -40,6 +43,10 @@ struct LoCafeLogoView: View {
         .onAppear {
             setRandomizeTimeout()
         }
+        .onDisappear {
+            timer?.invalidate()
+            timer = nil
+        }
     }
 
     private func randomize() {
@@ -65,7 +72,8 @@ struct LoCafeLogoView: View {
             Double.random(in: 0...1) * Double(max(0, (allOn ? 1250 : lettersActive ? 750 : 500) - decreasedDelay * 150)) :
             Double.random(in: 0...1) * 200
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + nextRunActualRandomMs / 1000) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: nextRunActualRandomMs / 1000, repeats: false) { _ in
             self.randomize()
         }
     }
