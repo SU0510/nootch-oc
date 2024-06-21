@@ -15,6 +15,7 @@
 		3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C42C24CA60008092F0 /* SparkleManager.swift */; };
 		3A0816C72C24DB86008092F0 /* quickPeakScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */; };
 		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
+		3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */; };
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
 		3A105FCE2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */; };
 		3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCF2C1BADB60015EC66 /* EventIconView.swift */; };
@@ -237,6 +238,7 @@
 		3A0816C42C24CA60008092F0 /* SparkleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleManager.swift; sourceTree = "<group>"; };
 		3A0816C62C24DB86008092F0 /* quickPeakScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeakScaling.swift; sourceTree = "<group>"; };
 		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
+		3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
 		3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettingsView.swift; sourceTree = "<group>"; };
 		3A105FCF2C1BADB60015EC66 /* EventIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIconView.swift; sourceTree = "<group>"; };
@@ -474,6 +476,14 @@
 			path = UpdateAvailable;
 			sourceTree = "<group>";
 		};
+		3A0816CA2C24E7A2008092F0 /* Changelog */ = {
+			isa = PBXGroup;
+			children = (
+				3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */,
+			);
+			path = Changelog;
+			sourceTree = "<group>";
+		};
 		3A105FD12C1BADC40015EC66 /* liveActivities */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +706,7 @@
 		EC4173D52C02518F002889E7 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				3A0816CA2C24E7A2008092F0 /* Changelog */,
 				EC4173D82C025589002889E7 /* Settings */,
 				EC758F7D2BF2F19B00B873B0 /* NotchView.swift */,
 			);
@@ -1436,6 +1447,7 @@
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Shelf.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
+				3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
 				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
