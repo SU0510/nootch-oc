@@ -20,6 +20,7 @@ struct TopBarView: View {
     @Environment(\.screenID) private var screenID
     @Environment(\.trialOver) private var trialOver
     @Environment(\.screenSize) private var screenSize
+    @Environment(\.openSettings) private var openSettings
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
@@ -56,7 +57,15 @@ struct TopBarView: View {
                         switch mode {
                             case .closed: LiveActivityView(side: .right, activeActivities: liveActvs).frame(width: Self.liveActionWidth)
                             case .dragging: EmptyView()
-                            case .nook, .shelf: HStack { if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() } }
+                            case .nook, .shelf: 
+                                HStack(spacing: 0) {
+                                    if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() }
+                                    
+                                    CircleButton(icon: "gearshape.fill", iconSize: 13) {
+                                        openSettings(nil)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
                     .frame(maxWidth: .infinity)

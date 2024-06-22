@@ -19,7 +19,6 @@ struct MiniPlayerView: View {
                     forwardFn: player.nextTrack
                 )
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
             .animation(.smooth(extraBounce: 0.15), value: [player.track.title, player.track.album, player.track.artist])
         }
     }

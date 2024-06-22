@@ -10,7 +10,6 @@ import SwiftUI
 struct TopBarTabsView: View {
     var totalWidth: NookGrid.Point
     @Environment(\.screenID) private var screenID
-    @Environment(\.openSettings) private var openSettings
     
     var body: some View {
         let mode = NotchNook.shared.mode[screenID]!
@@ -22,12 +21,6 @@ struct TopBarTabsView: View {
             
             TopBarTabView(icon: LiveActivity.shelf.icon, label: collapsed ? nil : "Tray", active: mode == .shelf)
                 .onTapGesture { withAnimation(.smooth(extraBounce: 0.25)) { NotchNook.shared.mode[screenID] = .shelf } }
-            
-            Spacer()
-            
-            CircleButton(icon: "gearshape.fill", iconSize: 13) {
-                openSettings(nil)
-            }
         }
         .padding(.trailing, 4)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -43,6 +36,7 @@ struct TopBarTabView: View {
             Image(systemName: icon)
             if let label {
                 Text(label)
+                    .fixedSize(horizontal: true, vertical: false)
                     .transition(.scaleAndBlur)
             }
         }
