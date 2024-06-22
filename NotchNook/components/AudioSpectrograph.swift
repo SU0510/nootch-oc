@@ -25,7 +25,7 @@ struct AudioSpectrograph: View {
         let volumeInterpolate = interpolatorBuilder([0.01, 1], value: volume)
         let volumeModifier = volume == 0 ? 0 : volumeInterpolate([0.25, 1], false)
         VStack {
-            TimelineView(.animation(minimumInterval: 0.25)) { context in
+            TimelineView(.animation(minimumInterval: 0.25)) { _ in
                 let heights = (1...3).map { _ in CGFloat.random(in: 5...15) }
                 HStack(spacing: barsSpacing) {
                     Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[0] * volumeModifier))
