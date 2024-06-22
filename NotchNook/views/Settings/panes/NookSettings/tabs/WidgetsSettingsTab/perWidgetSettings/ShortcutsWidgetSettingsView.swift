@@ -120,20 +120,9 @@ struct ShortcutsWidgetSettingsView: View {
             let columnsOpts = findMultipliers(Int(shortcutsWidgetSettings.size.width.double)).filter { $0 > 1 }
             let shortBtnW = Int(shortcutsWidgetSettings.shortcutButtonWidth.double)
             if !columnsOpts.contains(shortBtnW), let newVal = columnsOpts.closest(to: shortBtnW) {
-                withAnimation {
-                    shortcutsWidgetSettings.shortcutButtonWidth.double = Double(newVal)
-                }
+                shortcutsWidgetSettings.shortcutButtonWidth.double = Double(newVal)
             }
         }
-//        .onChange(of: shortcutsWidgetSettings.shortcutButtonWidth) { _, newValue in
-//            let availableSteps = (1...(availableWidth / newValue).value)
-//                .map { $0 * newValue.value }
-//                .filter { $0 <= availableWidth.value }
-//            let newVal = availableSteps.closest(to: shortcutsWidgetSettings.size.width.value) ?? newValue.value
-//            if shortcutsWidgetSettings.size.width.value != newVal {
-//                shortcutsWidgetSettings.size.width.value = newVal
-//            }
-//        }
     }
     
     func findMultipliers(_ number: Int) -> [Int] {
