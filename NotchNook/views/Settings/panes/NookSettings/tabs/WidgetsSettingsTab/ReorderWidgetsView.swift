@@ -86,6 +86,7 @@ private struct ReorderWidgetDragView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.selected, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .foregroundStyle(.white)
         .overlay {
             if hovering {
                 HStack {
