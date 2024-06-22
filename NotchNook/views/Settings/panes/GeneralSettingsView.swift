@@ -21,10 +21,13 @@ struct GeneralSettingsView: View {
                 LaunchAtLogin.Toggle()
             }
             
-            Settings.Section(title: "Notch:", bottomDivider: true) {
+            Settings.Section(title: "Notch:") {
                 Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
+            }
+            Settings.Section(title: "Content padding:", bottomDivider: true) {
+                SliderPlus(value: $generalSettings.contentPadding, range: 0...32)
             }
             
             Settings.Section(title: "Handler (no-notch screens):", bottomDivider: true) {

@@ -12,7 +12,6 @@ import UniformTypeIdentifiers
 
 struct NotchView: View {
     static let mainVSpacing: Double = 8
-    static let openInnerPadding: Double = 16
     static let hoverScale: Double = 1.25
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxVPanDrag: Double = 14
@@ -99,7 +98,7 @@ struct NotchView: View {
                 pad = 0
             }
         } else {
-            pad = Self.openInnerPadding
+            pad = generalSettings.contentPadding
         }
         return EdgeInsets(top: 0, leading: pad, bottom: pad, trailing: pad)
     }
