@@ -28,9 +28,9 @@ struct AudioSpectrograph: View {
             TimelineView(.animation(minimumInterval: 0.25)) { context in
                 let heights = (1...3).map { _ in CGFloat.random(in: 5...15) }
                 HStack(spacing: barsSpacing) {
-                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, heights[0] * volumeModifier))
-                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, heights[1] * volumeModifier))
-                    Capsule(style: .continuous).frame(width: 2, height: !playing ? 2 : max(2, heights[2] * volumeModifier))
+                    Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[0] * volumeModifier))
+                    Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[1] * volumeModifier))
+                    Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[2] * volumeModifier))
                 }
                 .animation(.easeIn(duration: 0.25), value: heights)
             }
