@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: View {
     var elements: [El]
@@ -66,36 +67,37 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
             VStack(alignment: .center, spacing: 0) {
                 
                 if contentSize != .zero {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(alignment: .center, spacing: 4) {
-                            ForEach(Array(elements.enumerated()), id: \.element) { i, element in
-                                MultipleSettingsPickerItemView(
-                                    element: element,
-                                    selected: selectedElement == element,
-                                    select: selectElement,
-                                    isOn: Binding.setMembership(of: element, in: $activeElements),
-                                    disabled: disableItem?(element) ?? false
-                                )
-                                
-                                if i < (elements.count - 1) {
-                                    VDivider(color: .primary.opacity(0.1))
+                    HorizontalScrollView {
+                            HStack(alignment: .center, spacing: 4) {
+                                ForEach(Array(elements.enumerated()), id: \.element) { i, element in
+                                    MultipleSettingsPickerItemView(
+                                        element: element,
+                                        selected: selectedElement == element,
+                                        select: selectElement,
+                                        isOn: Binding.setMembership(of: element, in: $activeElements),
+                                        disabled: disableItem?(element) ?? false
+                                    )
+                                    
+                                    if i < (elements.count - 1) {
+                                        VDivider(color: .primary.opacity(0.1))
+                                    }
                                 }
                             }
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(6)
                         }
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(6)
-                    }
-                    .frame(width: contentSize.width - 38, alignment: .top)
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                    .background {
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .fill(.black.opacity(0.03))
-                            .blendMode(.plusDarker)
-                    }
-                    .padding(.horizontal, 19)
+                        .frame(width: contentSize.width - 38, alignment: .top)
+                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                        .background {
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .fill(.black.opacity(0.03))
+                                .blendMode(.plusDarker)
+                        }
+                        .padding(.horizontal, 19)
                 }
                 
                 settings(selectedElement)
+                    .frame(maxHeight: .infinity, alignment: .top)
             }
             .measure($contentSize)
         }
@@ -142,5 +144,69 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
         .compositingGroup()
         .opacity(element.isImplemented ? 1 : 0.5)
         .disabled(!element.isImplemented)
+    }
+}
+
+
+
+
+
+
+
+
+struct HorizontalScrollView<Content: View>: NSViewRepresentable {
+    var content: () -> Content
+
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+
+    func makeNSView(context: Context) -> NSScrollView {
+        let scrollView = CustomScrollView()
+        scrollView.hasVerticalScroller = false
+        scrollView.hasHorizontalScroller = false
+        scrollView.horizontalScrollElasticity = .none
+        scrollView.autohidesScrollers = true
+
+        let hostingView = NSHostingView(rootView: content())
+        hostingView.translatesAutoresizingMaskIntoConstraints = false
+
+        scrollView.documentView = hostingView
+        
+        scrollView.heightAnchor.constraint(equalToConstant: hostingView.intrinsicContentSize.height).isActive = true
+
+        return scrollView
+    }
+
+    func updateNSView(_ nsView: NSScrollView, context: Context) {
+        if let hostingView = nsView.documentView as? NSHostingView<Content> {
+            hostingView.rootView = content()
+            nsView.needsLayout = true
+            nsView.heightAnchor.constraint(equalToConstant: hostingView.intrinsicContentSize.height).isActive = true
+        }
+    }
+}
+
+class CustomScrollView: NSScrollView {
+    override func scrollWheel(with event: NSEvent) {
+        if abs(event.scrollingDeltaY) > abs(event.scrollingDeltaX) {
+            var newScrollOrigin: NSPoint
+            let currentScrollOrigin = self.contentView.bounds.origin
+            let maximumX = self.documentView!.frame.size.width - self.contentView.bounds.size.width
+            let delta = event.scrollingDeltaY
+
+            if currentScrollOrigin.x - delta < 0 {
+                newScrollOrigin = NSPoint(x: 0, y: currentScrollOrigin.y)
+            } else if currentScrollOrigin.x - delta > maximumX {
+                newScrollOrigin = NSPoint(x: maximumX, y: currentScrollOrigin.y)
+            } else {
+                newScrollOrigin = NSPoint(x: currentScrollOrigin.x - delta, y: currentScrollOrigin.y)
+            }
+
+            self.contentView.scroll(to: newScrollOrigin)
+            self.reflectScrolledClipView(self.contentView)
+        } else {
+            super.scrollWheel(with: event)
+        }
     }
 }
