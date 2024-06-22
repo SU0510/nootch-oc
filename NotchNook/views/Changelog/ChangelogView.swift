@@ -21,7 +21,7 @@ struct ChangelogView: View {
                 VStack(spacing: 8) {
                     VStack(spacing: 0) {
                         Text("NotchNook ").font(.largeTitle).fontWeight(.bold) +
-                        Text("v1.1").font(.title2).fontWeight(.ultraLight).italic().foregroundStyle(.primary.opacity(0.75))
+                        Text("v1.1.1").font(.title2).fontWeight(.ultraLight).italic().foregroundStyle(.primary.opacity(0.75))
                     }
                     Text("A bunch of bug fixes and sweet new features!").font(.system(size: 16)).fontWeight(.regular)
                 }
