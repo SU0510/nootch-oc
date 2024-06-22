@@ -21,6 +21,8 @@ struct ShortcutsWidgetSettingsView: View {
     }
     
     var body: some View {
+        let widgetW = Int(shortcutsWidgetSettings.size.width.double)
+        let cols = widgetW / Int(shortcutsWidgetSettings.shortcutButtonWidth.double)
         VStack {
             Settings.Container(contentWidth: 520.0) {
                 
@@ -31,12 +33,12 @@ struct ShortcutsWidgetSettingsView: View {
                 Settings.Section {
                     Text("Columns:").frame(minWidth: 200, alignment: .trailing)
                 } content: {
-                    let widgetW = Int(shortcutsWidgetSettings.size.width.double)
+                    
                     let columnsOpts = findMultipliers(widgetW)
                     Picker("", selection: $shortcutsWidgetSettings.shortcutButtonWidth.double) {
                         ForEach(columnsOpts.filter { $0 > 1 }, id: \.self) { num in
-                            let cols = widgetW / num
-                            Text("\(cols) Column\(cols > 1 ? "s" : "")").tag(Double(num))
+                            let myCols = widgetW / num
+                            Text("\(myCols) Column\(cols > 1 ? "s" : "")").tag(Double(num))
                         }
                     }
                     .pickerStyle(.radioGroup)
@@ -48,12 +50,19 @@ struct ShortcutsWidgetSettingsView: View {
                 }
             }
             
-            Divider().padding(.horizontal, 30)
+            HStack {
+                (Text(Image(systemName: "sparkles")).foregroundStyle(.yellow) + Text(" Shortcuts")).fontWeight(.semibold)
+                VStack {
+                    Divider()
+                }
+                    .frame(maxWidth: .infinity)
+            }
+            .padding(.horizontal, 30)
             
             HStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Text("Detected sortcuts").font(.system(size: 13, weight: .medium))
+                        Text("Detected").font(.system(size: 13, weight: .medium))
                             .padding(.leading, 4)
                         Spacer()
                         CircleButton(icon: "arrow.clockwise") {
@@ -75,17 +84,24 @@ struct ShortcutsWidgetSettingsView: View {
                 }
                 //                    .frame(height: 250)
                 VStack(alignment: .trailing, spacing: 5) {
-                    Text("In use shortcuts").font(.system(size: 13, weight: .medium))
-                        .frame(height: 27)
-                        .padding(.trailing, 4)
+                    (
+                        Text((cols * 2) < shortcutsWidgetSettings.shortcutsToDisplay.count ? "\(cols * 2) visible" : "")
+                            .font(.caption)
+                            .foregroundStyle(.primary.opacity(0.5)) +
+                        Text(" In use").font(.system(size: 13, weight: .medium))
+                    )
+                    .frame(height: 27)
+                    .padding(.trailing, 4)
+                    
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
                             if shortcutsWidgetSettings.shortcutsToDisplay.isEmpty {
-                                Text("Select some shortcuts").frame(maxWidth: .infinity, minHeight: 200)
+                                Text("Select some shortcuts")
+                                    .frame(maxWidth: .infinity, minHeight: 200)
                                     .opacity(0.5)
                             } else {
-                                ForEach(Array(shortcutsWidgetSettings.shortcutsToDisplay), id: \.self) { shortcut in
-                                    ShortcutItemView(shortcut: shortcut, buttonLabel: "Remove") {
+                                ForEach(Array(shortcutsWidgetSettings.shortcutsToDisplay.enumerated()), id: \.element) { i, shortcut in
+                                    ShortcutItemView(shortcut: shortcut, buttonLabel: "Remove", hidden: i >= (cols * 2)) {
                                         shortcutsWidgetSettings.shortcutsToDisplay = shortcutsWidgetSettings.shortcutsToDisplay.filter { $0 != shortcut }
                                     }
                                 }
@@ -134,7 +150,7 @@ struct ShortcutsWidgetSettingsView: View {
 private extension View {
     func panel() -> some View {
         self
-            .frame(height: 225)
+            .frame(height: 200)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .background {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
@@ -147,20 +163,31 @@ private extension View {
 struct ShortcutItemView: View {
     var shortcut: String
     var buttonLabel: String
+    var hidden: Bool = false
     var buttonAction: () -> ()
     var body: some View {
         HStack {
             Image(systemName: "sparkles")
                 .foregroundStyle(.yellow)
                 .font(.system(size: 16))
-            Text(shortcut)
-                .lineLimit(1)
-                .truncationMode(.tail)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(shortcut)
+                    .font(.system(size: 12))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                if hidden {
+                    Text("Hidden, it doesn't fit.")
+                        .font(.caption)
+                        .opacity(0.5)
+                }
+            }
             
             Spacer()
             
             Button(buttonLabel, action: buttonAction)
         }
-        .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+        .padding(.horizontal, 12)
+        .frame(height: 32)
+        .opacity(hidden ? 0.5 : 1)
     }
 }
