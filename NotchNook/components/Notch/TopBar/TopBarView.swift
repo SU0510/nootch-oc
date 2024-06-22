@@ -58,7 +58,7 @@ struct TopBarView: View {
                             case .closed: LiveActivityView(side: .right, activeActivities: liveActvs).frame(width: Self.liveActionWidth)
                             case .dragging: EmptyView()
                             case .nook, .shelf: 
-                                HStack(spacing: 0) {
+                                HStack(spacing: 2) {
                                     if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() }
                                     
                                     CircleButton(icon: "gearshape.fill", iconSize: 13) {
