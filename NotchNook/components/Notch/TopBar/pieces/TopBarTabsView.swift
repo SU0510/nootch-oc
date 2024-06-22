@@ -13,7 +13,7 @@ struct TopBarTabsView: View {
     
     var body: some View {
         let mode = NotchNook.shared.mode[screenID]!
-        let collapsed = totalWidth < .init(11)
+        let collapsed = totalWidth < .init(9)
         HStack(spacing: 2) {
             
             TopBarTabView(icon: "lamp.desk.fill", label: collapsed ? nil : "Nook", active: mode == .nook)
