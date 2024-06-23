@@ -20,8 +20,12 @@ struct ChangelogView: View {
                     .frame(128)
                 VStack(spacing: 8) {
                     VStack(spacing: 0) {
-                        Text("NotchNook ").font(.largeTitle).fontWeight(.bold) +
-                        Text("v1.1.1").font(.title2).fontWeight(.ultraLight).italic().foregroundStyle(.primary.opacity(0.75))
+                        if let shortVersion = getShortVersion() {
+                            Text("NotchNook ").font(.largeTitle).fontWeight(.bold) +
+                            Text("v\(shortVersion)").font(.title2).fontWeight(.ultraLight).italic().foregroundStyle(.primary.opacity(0.75))
+                        } else {
+                            Text("NotchNook ").font(.largeTitle).fontWeight(.bold)
+                        }
                     }
                     Text("A bunch of bug fixes and sweet new features!").font(.system(size: 16)).fontWeight(.regular)
                 }
