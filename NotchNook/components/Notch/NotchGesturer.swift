@@ -54,7 +54,7 @@ struct NotchGesturer: View {
                 if mode != .closed {
                     vibrate()
                     closeNotch(true, false)
-                } else {
+                } else if !hidden {
                     vibrate()
                     hideNotch()
                 }
