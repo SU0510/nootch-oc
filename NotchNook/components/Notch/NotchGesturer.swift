@@ -54,7 +54,7 @@ struct NotchGesturer: View {
                 if mode != .closed {
                     vibrate()
                     closeNotch(true, false)
-                } else if !hidden {
+                } else if !hidden && !NotchNook.shared.activeLiveActivities.isEmpty {
                     vibrate()
                     hideNotch()
                 }
