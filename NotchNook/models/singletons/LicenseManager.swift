@@ -12,7 +12,7 @@ import SwiftJWT
 @Observable
 class LicenseManager {
     static let shared = LicenseManager()
-    static let trialDurationInHours: Double = 24
+    static let trialDurationInHours: Double = 48
     static let networkErrorLimit = 20
     private var timer: Timer?
     
