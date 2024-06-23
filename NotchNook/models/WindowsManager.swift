@@ -57,14 +57,6 @@ class WindowsManager {
         }
         guard let screen = NSScreen.main else { return }
         let screenF = screen.frame
-//        let view = NSHostingView(rootView: ChangelogView(closeWindow: {}))
-//        let size = view.intrinsicContentSize
-//        let windowRect = NSRect(
-//            x: (screenF.width - size.width) / 2,
-//            y: (screenF.height - size.height) / 2,
-//            width: size.width,
-//            height: size.height + 51
-//        )
         
         let newWindow = SwiftUIWindow(
             styleMask: [.titled, .closable, .fullSizeContentView],
@@ -134,11 +126,14 @@ class WindowsManager {
                 ),
                 size: size),
             styleMask: [.borderless],
-            backing: .buffered, defer: true,
+            backing: .buffered, defer: false,
             screen: screen
         )
         
-        newWindow.collectionBehavior = [.stationary, .canJoinAllSpaces, .fullScreenAuxiliary]
+        newWindow.isMovable = false
+        newWindow.collectionBehavior = [
+            .stationary, .canJoinAllSpaces, .canJoinAllApplications, .fullScreenAuxiliary, .ignoresCycle
+        ]
         newWindow.backgroundColor = NSColor.clear
         newWindow.hasShadow = false
         newWindow.titleVisibility = .hidden
