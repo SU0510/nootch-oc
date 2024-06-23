@@ -70,14 +70,6 @@ class MediaPlayer {
         if appleMusicApp == nil && installedApps.contains(.appleMusic)  {
             appleMusicApp = AppleMusicApp()
         }
-        
-//        withAnimation(.smooth(extraBounce: 0.15)) {
-//            if let appleMusicApp, appleMusicApp.isAppRunning {
-//                connectedApp = .appleMusic
-//            } else if let spotifyApp, spotifyApp.isAppRunning {
-//                connectedApp = .spotify
-//            }
-//        }
     }
     
     // MARK: - Seeker
