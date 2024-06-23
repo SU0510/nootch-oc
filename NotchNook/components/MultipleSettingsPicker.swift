@@ -10,7 +10,7 @@ import Combine
 
 struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: View {
     var elements: [El]
-    @Binding var activeElements: Set<El>
+    @Binding var activeElements: [El]
     @State private var selectedElement: El
     @State private var contentSize: CGSize = .zero
     var disableItem: ((El) -> Bool)?
@@ -25,7 +25,11 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
         @ViewBuilder settings: @escaping (_ selectedElement: El) -> PrefsView
     ) {
         self.elements = elements
-        self._activeElements = activeElements
+        self._activeElements = .init(get: {
+            Array(activeElements.wrappedValue)
+        }, set: { newSet in
+            activeElements.wrappedValue = Set(newSet)
+        })
         if elements.count > 0 {
             self._selectedElement = .init(initialValue: elements[0])
         }
@@ -43,11 +47,7 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
         @ViewBuilder settings: @escaping (_ selectedElement: El) -> PrefsView
     ) {
         self.elements = elements
-        self._activeElements = .init(get: {
-            Set(activeElements.wrappedValue)
-        }, set: { newSet in
-            activeElements.wrappedValue = Array(newSet)
-        })
+        self._activeElements = activeElements
         if elements.count > 0 {
             self._selectedElement = .init(initialValue: elements[0])
         }
@@ -74,7 +74,7 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
                                         element: element,
                                         selected: selectedElement == element,
                                         select: selectElement,
-                                        isOn: Binding.setMembership(of: element, in: $activeElements),
+                                        isOn: Binding.setMembershipArr(of: element, in: $activeElements),
                                         disabled: disableItem?(element) ?? false
                                     )
                                     
