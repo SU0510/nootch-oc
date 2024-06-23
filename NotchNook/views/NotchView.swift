@@ -239,7 +239,9 @@ struct NotchView: View {
             
             let currentBuildNumber = getBuildNumber()
             if lastBuildNumber != currentBuildNumber {
-                showChangelog()
+                if Int(lastBuildNumber) < 4 {
+                    showChangelog()
+                }
                 lastBuildNumber = currentBuildNumber
             }
             
