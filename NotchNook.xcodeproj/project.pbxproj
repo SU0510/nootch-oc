@@ -54,6 +54,7 @@
 		3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */; };
 		3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */; };
 		3AD5CADB2C14FE260090A9D1 /* vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CADA2C14FE260090A9D1 /* vibrate.swift */; };
+		3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD813BD2C28CB4300BB637C /* resetTrial.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
@@ -285,6 +286,7 @@
 		3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3AD5CADA2C14FE260090A9D1 /* vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vibrate.swift; sourceTree = "<group>"; };
+		3AD813BD2C28CB4300BB637C /* resetTrial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetTrial.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
@@ -940,6 +942,7 @@
 				3A0816C82C24E45D008092F0 /* getBuildNumber.swift */,
 				3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */,
 				3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */,
+				3AD813BD2C28CB4300BB637C /* resetTrial.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1373,6 +1376,7 @@
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
+				3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */,
 				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
