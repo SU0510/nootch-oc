@@ -74,10 +74,10 @@ struct FileDropView: NSViewRepresentable {
 
         override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
             let rawMousePos = sender.draggingLocation
-            let screenSize = (self.window?.screen?.frame.size ?? .zero)
+            let windowSize = self.window?.frame.size ?? .zero
             let viewEdges = self.convert(self.bounds, to: nil)
-            let xOffset = (screenSize.width - viewEdges.size.width) / 2
-            let mousePos = CGPoint(x: rawMousePos.x - xOffset, y: abs(rawMousePos.y - screenSize.height))
+            let xOffset = (windowSize.width - viewEdges.size.width) / 2
+            let mousePos = CGPoint(x: rawMousePos.x - xOffset, y: abs(rawMousePos.y - windowSize.height))
             _ = dropDelegate?.draggingUpdated(sender, mousePos)
             return .copy
         }
