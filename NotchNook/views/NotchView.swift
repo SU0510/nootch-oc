@@ -33,6 +33,7 @@ struct NotchView: View {
     @State private var panGestureCounter = 0
     @State private var trialOver = false
     @State private var showIntro = false
+    @State private var animatingBack = false
     @Namespace private var ns
     @Environment(\.notchHeight) private var notchHeight
     @Environment(\.screenSize) private var screenSize
@@ -129,6 +130,8 @@ struct NotchView: View {
         let isShelfEmpty = filesShelfCount == 0
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
         let disableNotchNook = notchHeight == 0 && !generalSettings.enableOnNonNotchScreens
+        let showingLiveActv = NotchNook.shared.activeLiveActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
+        let shouldRender = !showingLiveActv.isEmpty || generalSettings.demoMode || notchHeight == 0 || hovering || animatingBack
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if !disableNotchNook {
@@ -199,6 +202,10 @@ struct NotchView: View {
         .animation(.smooth, value: disableNotchNook)
         .animation(.smooth(extraBounce: 0.15), value: [liveActivitiesSettings])
         .animation(.smooth(extraBounce: 0.15), value: intro)
+        .compositingGroup()
+        .animation(.linear(duration: 0.001).delay(shouldRender ? 0 : 0.6)) {
+            $0.opacity(shouldRender ? 1 : 0)
+        }
         .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }
         .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: { pressing in
             if hovering {
@@ -208,21 +215,21 @@ struct NotchView: View {
             }
         })
         .onHover { hovering in
-            if license == nil || trialOver { checkTrialOver() }
-            
-            if hovering {
-                if mode == .closed {
-                    if !isShelfEmpty || generalSettings.alwaysOpenNotchOnHover {
-                        openNotch(in: isShelfEmpty ? .nook : .shelf)
-                    } else {
-                        withAnimation(.bouncy(duration: 0.4, extraBounce: 0.25)) {
-                            self.hovering = true
+                if license == nil || trialOver { checkTrialOver() }
+                
+                if hovering {
+                    if mode == .closed {
+                        if !isShelfEmpty || generalSettings.alwaysOpenNotchOnHover {
+                            openNotch(in: isShelfEmpty ? .nook : .shelf)
+                        } else {
+                            withAnimation(.bouncy(duration: 0.4, extraBounce: 0.25)) {
+                                self.hovering = true
+                            }
                         }
                     }
+                } else {
+                    closeNotch(unhover: true)
                 }
-            } else {
-                closeNotch(unhover: true)
-            }
         }
         .contextMenu {
             Button("Open Settings") { openSettings(nil) }
@@ -392,14 +399,16 @@ struct NotchView: View {
     func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
         withAnimation(.smooth(duration: 0.4)) {
             self.cancelPan = true
-            if unhover {
-                self.hovering = false
-            }
+            if unhover {  self.hovering = false }
             if doVibrate { vibrate() }
             if mode != .closed {
                 NotchNook.shared.mode[screenID] = .closed
             }
+            if unhover || mode != .closed {
+                animatingBack = true
+            }
         } completion: {
+            animatingBack = false
             cancelPan = false
         }
     }

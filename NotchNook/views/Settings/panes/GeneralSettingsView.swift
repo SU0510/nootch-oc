@@ -55,6 +55,11 @@ struct GeneralSettingsView: View {
                 
                 Text("This will reset everything except your license.")
                     .settingDescription()
+                
+                Toggle("Demo mode", isOn: $generalSettings.demoMode)
+                Text("Prevents hiding when idle for screen recordings (this has no effect on non-notched screens).")
+                    .settingDescription()
+                
             }
         }
     }
