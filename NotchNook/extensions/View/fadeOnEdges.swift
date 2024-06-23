@@ -39,6 +39,28 @@ extension View {
                 }
             }
     }
+    func fadeOnEnd(axis: Axis, fadeLength: Double, disable: Bool = false) -> some View {
+        self
+            .mask {
+                if !disable {
+                    GeometryReader { geo in
+                        DynStack(direction: axis, spacing: 0) {
+                            Color.black.frame(maxWidth: .infinity)
+                            SmoothLinearGradient(
+                                from: .black.opacity(0),
+                                to: .black.opacity(1),
+                                startPoint: axis == .horizontal ? .trailing : .bottom,
+                                endPoint: axis == .horizontal ? .leading : .top,
+                                curve: .easeInOut
+                            )
+                            .frame(width: axis == .horizontal ? fadeLength : nil, height: axis == .vertical ? fadeLength : nil)
+                        }
+                    }
+                } else {
+                    Color.black
+                }
+            }
+    }
 }
 
 struct DynStack<C: View>: View {

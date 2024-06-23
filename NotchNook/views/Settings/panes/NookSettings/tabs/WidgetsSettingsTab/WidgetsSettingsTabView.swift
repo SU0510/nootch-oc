@@ -9,6 +9,7 @@ import SwiftUI
 import Defaults
 
 struct WidgetsSettingsTabView: View {
+    @Default(.calendarWidgetSettings) private var calendarWidgetSettings
     @Default(.mediaWidgetSettings) private var mediaWidgetSettings
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings

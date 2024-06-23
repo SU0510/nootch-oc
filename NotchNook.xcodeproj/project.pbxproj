@@ -16,6 +16,7 @@
 		3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */; };
 		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
 		3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */; };
+		3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */; };
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
 		3A105FCE2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */; };
 		3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCF2C1BADB60015EC66 /* EventIconView.swift */; };
@@ -247,6 +248,7 @@
 		3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeekScaling.swift; sourceTree = "<group>"; };
 		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
 		3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
+		3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HScrollAllowingScrollWheelView.swift; sourceTree = "<group>"; };
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
 		3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettingsView.swift; sourceTree = "<group>"; };
 		3A105FCF2C1BADB60015EC66 /* EventIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIconView.swift; sourceTree = "<group>"; };
@@ -899,6 +901,7 @@
 				3A0816B72C23AAC8008092F0 /* FileDropView.swift */,
 				3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */,
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
+				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1367,6 +1370,7 @@
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
+				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,

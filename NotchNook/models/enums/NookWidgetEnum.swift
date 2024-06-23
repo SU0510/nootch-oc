@@ -62,7 +62,7 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
     
     var gridSizeType: NookGridSizeType {
         return switch self {
-        case .calendar: .unique(.init(width: CalendarWidgetSettings().size.width, height: CalendarWidgetSettings().size.height))
+        case .calendar: .variable
         case .media: .unique(.init(width: MediaWidgetSettings().size.width, height: MediaWidgetSettings().size.height))
         case .shortcuts: .variable
         case .mirror: .unique(.init(width: MirrorWidgetSettings().size.width, height: MirrorWidgetSettings().size.height))
