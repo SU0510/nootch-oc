@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 
 enum NookWidget: String, MetaInfo, Codable, CaseIterable {
-    case shortcuts, media, mirror, calendar, notes, quickApps
+    case calendar, media, shortcuts, mirror, notes, quickApps
     
     var id: String { self.rawValue }
     
