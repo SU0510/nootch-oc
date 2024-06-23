@@ -14,7 +14,12 @@ final class AppleMusicApp: BlankMediaApp<MusicApplication> {
     init() { super.init(meta: .appleMusic) }
     
     override func updateIsPlaying() {
-        self.isPlaying = app?.playerState == .playing
+        Task {
+            let newIsPlaying = app?.playerState == .playing
+            await MainActor.run {
+                self.isPlaying = newIsPlaying
+            }
+        }
     }
     
     override func updateTrack() {
@@ -37,7 +42,9 @@ final class AppleMusicApp: BlankMediaApp<MusicApplication> {
             newTrack.artist = artist
             newTrack.album = album
             newTrack.loved = currentTrack?.loved
-            self.track = newTrack
+            await MainActor.run { [newTrack] in
+                self.track = newTrack
+            }
             
             Task(priority: .utility) { [currentTrack] in
                 var count = 0

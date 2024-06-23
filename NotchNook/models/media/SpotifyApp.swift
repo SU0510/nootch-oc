@@ -15,7 +15,14 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
     
     init() { super.init(meta: .spotify) }
     
-    override func updateIsPlaying() { self.isPlaying = app?.playerState == .playing }
+    override func updateIsPlaying() {
+        Task {
+            let newIsPlaying = app?.playerState == .playing
+            await MainActor.run {
+                self.isPlaying = newIsPlaying
+            }
+        }
+    }
     
     override func updateTrack() {
         if !(self.app?.isRunning ?? false) { return }
@@ -32,7 +39,9 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
             newTrack.title = title
             newTrack.artist = artist
             newTrack.album = album
-            self.track = newTrack
+            await MainActor.run { [newTrack] in
+                self.track = newTrack
+            }
             
             Task(priority: .utility) { [currentTrack] in
                 if let artworkURLString = currentTrack?.artworkUrl,
@@ -53,11 +62,11 @@ final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
         }
     }
     
-    override func toggleIsPlaying() { doSafeCrossBridgeAction { app?.playpause?() } }
+    override func toggleIsPlaying() { doSafeCrossBridgeAction { self.app?.playpause?() } }
     
-    override func prevTrack() { doSafeCrossBridgeAction { app?.previousTrack?() } }
+    override func prevTrack() { doSafeCrossBridgeAction { self.app?.previousTrack?() } }
     
-    override func nextTrack() { doSafeCrossBridgeAction { app?.nextTrack?() } }
+    override func nextTrack() { doSafeCrossBridgeAction { self.app?.nextTrack?() } }
         
     override func toggleLovedInTrack() { }
     

@@ -19,7 +19,7 @@ protocol MediaApp: AnyObject {
     var liveActivityTimer: Timer? { get set }
     var inactiveLiveActivitiesTimeout: Double { get set }
     
-    func doSafeCrossBridgeAction(_ action: () -> ()) -> ()
+    func doSafeCrossBridgeAction(_ action: @escaping () -> ()) -> ()
     func updateIsPlaying() -> ()
     func updateTrack() -> ()
     func toggleIsPlaying() -> ()
@@ -35,15 +35,14 @@ protocol MediaApp: AnyObject {
 extension MediaApp {
     func monitorAppIsRunning() {
         self.appRunningMonitor = AppMonitor(bundleID: meta.bundleID, onAppLaunch: {
-            self.isAppRunning = true
+            doThisAfter(0) { self.isAppRunning = true }
         }, onAppTerminate: {
-            self.isAppRunning = false
+            doThisAfter(0) { self.isAppRunning = false }
         })
     }
     
     func monitorTrackChange() {
         self.notificationMonitor = NotificationObserverHelper(notificationName: meta.notification) { sender in
-            print("change", 1)
             guard sender.userInfo?["Player State"] as? String != "Stopped" else {
                 var newTrack = Track()
                 newTrack.title = ""
@@ -52,10 +51,9 @@ extension MediaApp {
                 self.track = newTrack
                 return
             }
-            print("change", 2)
-            
+
             self.updateIsPlaying()
-            DispatchQueue.global(qos: .userInteractive).async {
+            DispatchQueue.global(qos: .utility).async {
                 self.updateTrack()
             }
         }
@@ -180,7 +178,9 @@ class BlankMediaApp<App: SBApplicationProtocol>: MediaApp {
     
     func toggleLovedInTrack() { }
     
-    func doSafeCrossBridgeAction(_ action: () -> ()) {
-        if (app?.isRunning ?? false) { action() }
+    func doSafeCrossBridgeAction(_ action: @escaping () -> ()) {
+        Task { [action] in
+            if (app?.isRunning ?? false) { action() }
+        }
     }
 }
