@@ -23,25 +23,23 @@ final class AppleMusicApp: BaseMediaApp<MusicApplication> {
     }
     
     override func updateTrack() {
+
         if !(self.app?.isRunning ?? false) { return }
+
         Task {
             let currentTrack = self.app?.currentTrack
             let title = currentTrack?.name ?? Track.empty.title
             let artist = currentTrack?.artist ?? Track.empty.artist
             let album = currentTrack?.album ?? Track.empty.album
-            
-            guard self.track.title != title &&
-                    self.track.artist != artist &&
-                    self.track.album != album else {
-                self.track.loved = self.track.loved
-                return
-            }
-            
+
+            if self.track.title == title && self.track.artist == artist && self.track.album == album { return }
+
             var newTrack = Track()
             newTrack.title = title
             newTrack.artist = artist
             newTrack.album = album
             newTrack.loved = currentTrack?.loved
+
             await MainActor.run { [newTrack] in
                 self.track = newTrack
             }
