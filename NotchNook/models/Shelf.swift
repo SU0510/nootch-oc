@@ -103,7 +103,6 @@ extension Shelf {
     func addFileFromData(_ data: Data, filename: String) {
         let destinationURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil)
-        print(destinationURL)
         let newFile = ShelfFile(url: destinationURL)
         addFile(newFile)
     }
