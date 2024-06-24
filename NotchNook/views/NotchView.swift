@@ -131,7 +131,7 @@ struct NotchView: View {
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
         let disableNotchNook = notchHeight == 0 && !generalSettings.enableOnNonNotchScreens
         let showingLiveActv = NotchNook.shared.activeLiveActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
-        let shouldRender = !showingLiveActv.isEmpty || generalSettings.demoMode || notchHeight == 0 || hovering || animatingBack
+        let shouldRender = (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchHeight == 0 || hovering || animatingBack
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if !disableNotchNook {
