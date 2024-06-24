@@ -26,8 +26,19 @@ struct GeneralSettingsView: View {
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
             }
-            Settings.Section(title: "Content padding:", bottomDivider: true) {
+            Settings.Section(title: "Content padding:") {
                 SliderPlus(value: $generalSettings.contentPadding, range: 0...32)
+            }
+            Settings.Section(title: "Notch width fine tune:", bottomDivider: true) {
+                HStack {
+                    Slider(value: $generalSettings.notchWidthFineTune, in: -8...8, step: 1)
+                        .frame(maxWidth: 200)
+                    let num = generalSettings.notchWidthFineTune
+                    Text("\(num > 0 ? "+" : "")\(Int(num))")
+                }
+                Text("NotchNook tries it's best to guess you notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch.")
+                    .settingDescription()
+                    .frame(width: 330, alignment: .leading)
             }
             
             Settings.Section(title: "Handler (no-notch screens):", bottomDivider: true) {

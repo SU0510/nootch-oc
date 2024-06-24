@@ -30,6 +30,7 @@
 		3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */; };
 		3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FF12C1FF4160015EC66 /* EKEvent.swift */; };
 		3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */; };
+		3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* FineTuningView.swift */; };
 		3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A471A402C224C6C00FCD355 /* FolderMonitor.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
@@ -263,6 +264,7 @@
 		3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookEvent.swift; sourceTree = "<group>"; };
 		3A105FF12C1FF4160015EC66 /* EKEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEvent.swift; sourceTree = "<group>"; };
 		3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppProtocol.swift; sourceTree = "<group>"; };
+		3A357F112C294FD20076DB37 /* FineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineTuningView.swift; sourceTree = "<group>"; };
 		3A471A402C224C6C00FCD355 /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
@@ -1120,6 +1122,7 @@
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
 				EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */,
+				3A357F112C294FD20076DB37 /* FineTuningView.swift */,
 			);
 			path = notch;
 			sourceTree = "<group>";
@@ -1368,6 +1371,7 @@
 				EC4173E02C0271ED002889E7 /* SettingsLib.swift in Sources */,
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
+				3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */,
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,

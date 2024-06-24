@@ -14,6 +14,7 @@ struct NotchView: View {
     static let mainVSpacing: Double = 8
     static let hoverScale: Double = 1.25
     static let animation: Animation = .bouncy(extraBounce: 0.075)
+    static let intenseAnimation: Animation = .bouncy(extraBounce: 0.15)
     static let maxVPanDrag: Double = 14
     static let maxHPanDrag: Double = 24
     static let panVelocityTriggerThreshold: Double = 500
@@ -34,6 +35,7 @@ struct NotchView: View {
     @State private var trialOver = false
     @State private var showIntro = false
     @State private var animatingBack = false
+    @State private var fineTuningNotchWidth = false
     @Namespace private var ns
     @Environment(\.notchSize) private var notchSize
     @Environment(\.screenSize) private var screenSize
@@ -119,7 +121,7 @@ struct NotchView: View {
     
     @ViewBuilder func shapeView(shadow: Bool? = nil, transparentHandle: Bool? = nil) -> some View {
         GeometryReader { geo in
-            ShadowedNotchShapeView(shadow: shadow ?? (mode != .closed || hovering), transparentHandle: transparentHandle ?? generalSettings.transparentHandle)
+            ShadowedNotchShapeView(shadow: shadow ?? (mode != .closed || hovering), transparentHandle: transparentHandle ?? generalSettings.transparentHandle, fineTuning: fineTuningNotchWidth)
                 .frame(width: geo.size.width * (1 - scaleDown), height: geo.size.height * (1 - scaleDown), alignment: .top)
                 .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
         }
@@ -131,7 +133,7 @@ struct NotchView: View {
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
         let disableNotchNook = notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
         let showingLiveActv = NotchNook.shared.activeLiveActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
-        let shouldRender = (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchSize.height == 0 || hovering || animatingBack
+        let shouldRender = fineTuningNotchWidth || (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchSize.height == 0 || hovering || animatingBack
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if !disableNotchNook {
@@ -164,12 +166,15 @@ struct NotchView: View {
                     .transition(NotchView.defaultTransition)
                 }
             }
+            if fineTuningNotchWidth {
+                FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
+            }
         }
         .compositingGroup()
         .blur(radius: scaleDown * 100)
         .fixedSize(horizontal: true, vertical: false)
         .frame(
-            minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width,
+            minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune,
             minHeight: disableNotchNook ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
         )
         .padding(mode == .closed ? panPadding : .zero)
@@ -209,7 +214,7 @@ struct NotchView: View {
         .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }
         .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: { pressing in
             if hovering {
-                withAnimation(.bouncy(extraBounce: 0.15)) {
+                withAnimation(NotchView.intenseAnimation) {
                     self.pressing = pressing
                 }
             }
@@ -274,10 +279,18 @@ struct NotchView: View {
         }
         .onChange(of: intro, initial: true) { _, new in
             doThisAfter(0.3) {
-                withAnimation(.bouncy(extraBounce: 0.15)) {
+                withAnimation(NotchView.intenseAnimation) {
                     showIntro = new
                 }
             }
+        }
+        .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
+            if !fineTuningNotchWidth {
+                withAnimation(NotchView.intenseAnimation) { fineTuningNotchWidth = true }
+            }
+        }
+        .onChangeDebounced(of: generalSettings.notchWidthFineTune, delay: 2) { _ in
+            withAnimation(NotchView.intenseAnimation) { fineTuningNotchWidth = false }
         }
         .onChangeDebounced(of: panRawPadding, delay: 0.05) { _ in
             withAnimation(.smooth) { panRawPadding = .zero }
@@ -288,6 +301,7 @@ struct NotchView: View {
         .environment(\.namespace, ns)
         .environment(\.trialOver, trialOver)
         .preferredColorScheme(.dark)
+        .transformEnvironment(\.notchSize) { $0.width += generalSettings.notchWidthFineTune }
     }
     
     // MARK: - Drag and drop files into shelf functons
@@ -307,14 +321,14 @@ struct NotchView: View {
     
     func dropEntered(info: NSDraggingInfo) {
         if trialOver { return }
-        withAnimation(.bouncy(extraBounce: 0.15)) {
+        withAnimation(NotchView.intenseAnimation) {
             NotchNook.shared.mode[screenID] = .dragging
         }
         let actionsToShow = allDropActions.filter { action in
             return info.draggingPasteboard.types?.contains(action.allowedFileTypes) ?? false
         }
         DispatchQueue.main.async {
-            withAnimation(.bouncy(extraBounce: 0.15)) {
+            withAnimation(NotchView.intenseAnimation) {
                 availableActions = actionsToShow
             }
         }

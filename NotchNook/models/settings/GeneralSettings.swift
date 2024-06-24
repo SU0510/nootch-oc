@@ -9,6 +9,7 @@ import Foundation
 
 struct GeneralSettings: Preferences {
     var demoMode = false
+    var notchWidthFineTune: Double = 0
     var alwaysOpenNotchOnHover = false
     var transluscent = false
     var handleSize = CGSize(width: 184, height: 8)
