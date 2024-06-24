@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarWidgetSettings: WidgetPrefs {
-    var size: NookGrid.Size = .init(width: 3, height: 2)
+    var size: NookGrid.Size = .init(width: 5, height: 2)
 }
 
  
