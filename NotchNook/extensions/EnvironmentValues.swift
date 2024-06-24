@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-private struct NotchHeightKey: EnvironmentKey {
-    typealias Value = CGFloat
-    static let defaultValue = GeneralSettings().handleSize.height
-}
-
 private struct OpenSettingsKey: EnvironmentKey {
     typealias Value = ((_ pane: SettingsLib.PaneIdentifier?) -> ())
     static let defaultValue: Self.Value = { _ in }
@@ -50,7 +45,15 @@ private struct CloseWindowKey: EnvironmentKey {
     static var defaultValue: () -> () = { }
 }
 
+private struct NotchSizeKey: EnvironmentKey {
+    static var defaultValue: CGSize = .init(width: 184, height: 32)
+}
+
 extension EnvironmentValues {
+    var notchSize: CGSize {
+        get { self[NotchSizeKey.self] }
+        set { self[NotchSizeKey.self] = newValue }
+    }
     var closeWindow: () -> () {
         get { self[CloseWindowKey.self] }
         set { self[CloseWindowKey.self] = newValue }
@@ -78,10 +81,6 @@ extension EnvironmentValues {
     var namespace: Namespace.ID {
         get { self[NamespaceKey.self] }
         set { self[NamespaceKey.self] = newValue }
-    }
-    var notchHeight: CGFloat {
-        get { self[NotchHeightKey.self] }
-        set { self[NotchHeightKey.self] = newValue }
     }
     var openSettings: ((_ pane: SettingsLib.PaneIdentifier?) -> ()) {
         get { self[OpenSettingsKey.self] }

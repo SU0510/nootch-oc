@@ -39,8 +39,6 @@
 		3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0E2C1556E70076560D /* getRangeOfDays.swift */; };
 		3A801E142C15781F0076560D /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E132C15781F0076560D /* SwiftJWT */; };
 		3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E152C1579F40076560D /* getMacBookModel.swift */; };
-		3A801E182C157AE30076560D /* getNotchDefaultWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */; };
-		3A801E1A2C157D700076560D /* getScreenDefaultWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E192C157D700076560D /* getScreenDefaultWidth.swift */; };
 		3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E1B2C163B540076560D /* detectMeetings.swift */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
@@ -271,8 +269,6 @@
 		3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupAndSortEventsByDate.swift; sourceTree = "<group>"; };
 		3A801E0E2C1556E70076560D /* getRangeOfDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRangeOfDays.swift; sourceTree = "<group>"; };
 		3A801E152C1579F40076560D /* getMacBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMacBookModel.swift; sourceTree = "<group>"; };
-		3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getNotchDefaultWidth.swift; sourceTree = "<group>"; };
-		3A801E192C157D700076560D /* getScreenDefaultWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getScreenDefaultWidth.swift; sourceTree = "<group>"; };
 		3A801E1B2C163B540076560D /* detectMeetings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detectMeetings.swift; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
@@ -935,8 +931,6 @@
 				3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */,
 				3A801E0E2C1556E70076560D /* getRangeOfDays.swift */,
 				3A801E152C1579F40076560D /* getMacBookModel.swift */,
-				3A801E172C157AE30076560D /* getNotchDefaultWidth.swift */,
-				3A801E192C157D700076560D /* getScreenDefaultWidth.swift */,
 				3A801E1B2C163B540076560D /* detectMeetings.swift */,
 				3A105FE62C1E86080015EC66 /* closestEvent.swift */,
 				3A0816C82C24E45D008092F0 /* getBuildNumber.swift */,
@@ -1321,7 +1315,6 @@
 				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* ShelfFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
-				3A801E1A2C157D700076560D /* getScreenDefaultWidth.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
@@ -1342,7 +1335,6 @@
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
-				3A801E182C157AE30076560D /* getNotchDefaultWidth.swift in Sources */,
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */,

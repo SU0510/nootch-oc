@@ -31,7 +31,7 @@ import SwiftDate
 //            }
 //            .transition(.scaleAndBlur(anchor: .topTrailing))
 //
-//            TopBarSpacerView(height: TopBarView.height)
+//            TopBarSpacerView(height: TopBarView.minHeight)
 //
 //            Group {
 //                if !la.isEmpty {
@@ -52,7 +52,7 @@ import SwiftDate
 //            .transition(.scaleAndBlur(anchor: .topTrailing))
 //
 //        }
-//        .frame(height: TopBarView.height)
+//        .frame(height: TopBarView.minHeight)
 //    }
 //}
 
@@ -66,7 +66,7 @@ import SwiftDate
 
 struct MockTopBar: View {
     var activity: LiveActivity
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
@@ -80,7 +80,7 @@ struct MockTopBar: View {
     }
     
     var body: some View {
-        let height = notchHeight > ((TopBarView.height / 3) * 2) ? notchHeight : TopBarView.height
+        let height = notchSize.height > ((TopBarView.minHeight / 3) * 2) ? notchSize.height : TopBarView.minHeight
         let mockedEvent = NookEvent(
             id: "mock-event",
             startDate: fakeNow,

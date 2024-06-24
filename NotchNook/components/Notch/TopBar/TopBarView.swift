@@ -10,13 +10,13 @@ import Defaults
 
 struct TopBarView: View {
     static let animation: Animation = .bouncy(extraBounce: 0.075)
-    static let height: CGFloat = 32
+    static let minHeight: CGFloat = 32
     static let liveActionWidth: CGFloat = 35
     var panGestureCounter: Int
     var scale: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     @Environment(\.screenID) private var screenID
     @Environment(\.trialOver) private var trialOver
     @Environment(\.screenSize) private var screenSize
@@ -27,7 +27,8 @@ struct TopBarView: View {
     @Default(.nookSettings) private var nookSettings
     @Default(.shelfSettings) private var shelfSettings
     var body: some View {
-        let height = notchHeight > ((TopBarView.height / 3) * 2) ? notchHeight : TopBarView.height
+        // If notch height is bigger than 2/3 of minHeight, use it
+        let height = notchSize.height > (TopBarView.minHeight * 0.66) ? notchSize.height : TopBarView.minHeight
         let mode = NotchNook.shared.mode[screenID]!
         let liveActvs = NotchNook.shared.activeLiveActivities
         
@@ -92,7 +93,7 @@ struct TopBarView: View {
                     .transition(.scaleAndBlur(anchor: .trailing))
                     
                     Spacer()
-                        .frame(width: NotchShape.getNotchWidthForScreenWidth(screenSize.width)).fixedSize(horizontal: true, vertical: false)
+                        .frame(width: notchSize.width)
                         .transition(.identity)
                     
                     Group {
@@ -108,7 +109,7 @@ struct TopBarView: View {
                     .transition(.scaleAndBlur(anchor: .leading))
                 }
             }
-            .frame(height: (notchHeight == 0 && mode == .closed && liveActvs.isEmpty) || hide ? nil : height)
+            .frame(height: (notchSize.height == 0 && mode == .closed && liveActvs.isEmpty) || hide ? nil : height)
             .fixedSize(horizontal: false, vertical: true)
             .zIndex(1)
         }

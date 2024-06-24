@@ -15,12 +15,13 @@ struct ShadowedNotchShapeView: View, Equatable {
     
     var shadow: Bool
     var transparentHandle: Bool
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     @Default(.generalSettings) private var generalSettings
     var body: some View {
+        let notchSize = notchSize.height == 0 ? generalSettings.handleSize : notchSize
         if !generalSettings.transluscent {
-            NotchShape(notchHeight: notchHeight.isZero ? generalSettings.handleSize.height : notchHeight)
-                .fill(.black.opacity(transparentHandle && !shadow && notchHeight == 0 ? 0 : 1).shadow(.drop(
+            NotchShape(notchSize: notchSize)
+                .fill(.black.opacity(transparentHandle && !shadow && notchSize.height == 0 ? 0 : 1).shadow(.drop(
                     color: .black.opacity(shadow ? 0.75 : 0),
                     radius: shadow ? 20 : 0,
                     x: 0,
@@ -29,7 +30,7 @@ struct ShadowedNotchShapeView: View, Equatable {
         } else {
             VisualEffectViews()
                 .padding(.horizontal, -24)
-                .clipShape(NotchShape(notchHeight: notchHeight.isZero ? generalSettings.handleSize.height : notchHeight))
+                .clipShape(NotchShape(notchSize: notchSize))
                 .shadow(color: .black.opacity(shadow ? 0.75 : 0), radius: shadow ? 20 : 0, y: shadow ? 8 : 0)
         }
     }

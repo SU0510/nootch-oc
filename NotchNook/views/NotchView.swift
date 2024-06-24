@@ -35,7 +35,7 @@ struct NotchView: View {
     @State private var showIntro = false
     @State private var animatingBack = false
     @Namespace private var ns
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     @Environment(\.screenSize) private var screenSize
     @Environment(\.screenID) private var screenID
     @Environment(\.openSettings) private var openSettings
@@ -129,9 +129,9 @@ struct NotchView: View {
         let filesShelfCount = Shelf.shared.files.count
         let isShelfEmpty = filesShelfCount == 0
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
-        let disableNotchNook = notchHeight == 0 && !generalSettings.enableOnNonNotchScreens
+        let disableNotchNook = notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
         let showingLiveActv = NotchNook.shared.activeLiveActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
-        let shouldRender = (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchHeight == 0 || hovering || animatingBack
+        let shouldRender = (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchSize.height == 0 || hovering || animatingBack
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if !disableNotchNook {
@@ -169,8 +169,8 @@ struct NotchView: View {
         .blur(radius: scaleDown * 100)
         .fixedSize(horizontal: true, vertical: false)
         .frame(
-            minWidth: notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.getNotchWidthForScreenWidth(screenSize.width),
-            minHeight: disableNotchNook ? 0 : notchHeight == 0 ? generalSettings.handleSize.height : notchHeight
+            minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width,
+            minHeight: disableNotchNook ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
         )
         .padding(mode == .closed ? panPadding : .zero)
         .padding(standardPadding)
@@ -190,7 +190,7 @@ struct NotchView: View {
                 changeTrack: { changeTrack(prev: $0) }
             )
         }
-        .contentShape(NotchShape(notchHeight: notchHeight))
+        .contentShape(NotchShape(notchSize: notchSize))
         .background {
             if mode == .closed || mode == .dragging {
                 FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)

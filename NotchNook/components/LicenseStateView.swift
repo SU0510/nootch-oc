@@ -14,7 +14,7 @@ struct LicenseStateView: View {
     @Default(.trialInitialTime) private var trialInitialTime
     @Environment(\.openSettings) private var openSettings
     @Environment(\.trialOver) private var trialOver
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     var body: some View {
         VStack {
             if license == nil {
@@ -37,7 +37,7 @@ struct LicenseStateView: View {
         }
         .frame(nookSettings.size.screenPtsCGSize)
         .padding(.top, 16)
-        .padding(.top, notchHeight)
+        .padding(.top, notchSize.height)
         .multilineTextAlignment(.center)
     }
 }

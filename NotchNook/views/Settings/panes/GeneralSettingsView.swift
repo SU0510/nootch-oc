@@ -39,7 +39,7 @@ struct GeneralSettingsView: View {
                 .resetToDefault($generalSettings.handleSize.width, defaultGeneral.handleSize.width)
                 
                 CustomLabeled(title: "Height") {
-                    SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.height)
+                    SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.minHeight)
                 }
                 .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
                 

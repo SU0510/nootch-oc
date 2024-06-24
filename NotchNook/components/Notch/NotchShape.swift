@@ -8,23 +8,17 @@
 import SwiftUI
 
 struct NotchShape: Shape {
-    static let defaultNotchWidth: CGFloat = getNotchDefaultWidth()
-    static let defaultScreenWidth: CGFloat = getScreenDefaultWidth()
-    static func getNotchWidthForScreenWidth(_ screenW: CGFloat) -> CGFloat {
-        return (NotchShape.defaultNotchWidth * screenW) / NotchShape.defaultScreenWidth
-    }
-    
-    var notchHeight: CGFloat
-    var minWidth: CGFloat = NotchShape.defaultNotchWidth
+    static var notchWidthInInches: Double = 1.44313723
+    var notchSize: CGSize
 
     func path(in rect: CGRect) -> Path {
         var notchRadius: CGFloat {
-            let heightInterpolator = interpolatorBuilder([notchHeight, notchHeight + 100], value: rect.height)
-            return heightInterpolator([notchHeight < 14 ? notchHeight * 0.65 : 11, 40], true)
+            let heightInterpolator = interpolatorBuilder([notchSize.height, notchSize.height + 100], value: rect.height)
+            return heightInterpolator([notchSize.height < 14 ? notchSize.height * 0.65 : 11, 40], true)
         }
         
         var decorationsRadius: CGFloat {
-            let widthInterpolator = interpolatorBuilder([minWidth, minWidth + 300], value: max(minWidth, rect.width))
+            let widthInterpolator = interpolatorBuilder([notchSize.width, notchSize.width + 300], value: max(notchSize.width, rect.width))
             return widthInterpolator([max(0, min(5, rect.height - notchRadius)), 24], true)
         }
         

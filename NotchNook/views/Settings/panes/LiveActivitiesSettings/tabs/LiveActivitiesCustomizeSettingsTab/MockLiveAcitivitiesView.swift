@@ -9,13 +9,14 @@ import SwiftUI
 
 struct MockLiveAcitivitiesView: View {
     var activity: LiveActivity
+    @Environment(\.notchSize) private var notchSize
     var body: some View {
         ZStack(alignment: .top) {
             MockTopBar(activity: activity)
                 .background {
-                    NotchShape(notchHeight: TopBarView.height).offset(y: -1).fill(.black)
+                    NotchShape(notchSize: notchSize).offset(y: -1).fill(.black)
                 }
-                .clipShape(NotchShape(notchHeight: TopBarView.height).offset(y: -1))
+                .clipShape(NotchShape(notchSize: notchSize).offset(y: -1))
         }
         .frame(maxWidth: .infinity, minHeight: 100, alignment: .top)
         .background { ActualSizeCurrentWallpaperView() }

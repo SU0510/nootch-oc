@@ -11,7 +11,7 @@ import Defaults
 
 struct IntroView: View {
     @State private var tutorial = false
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     @Default(.intro) private var intro
     @Default(.trialInitialTime) private var trialInitialTime
     @Default(.license) private var license
@@ -25,7 +25,7 @@ struct IntroView: View {
                 }
             }
         }
-        .padding(.top, notchHeight)
+        .padding(.top, notchSize.height)
         .foregroundStyle(.white)
     }
 }

@@ -9,13 +9,13 @@ import SwiftUI
 import Defaults
 
 struct TopBarSpacerView: View {
-    @Environment(\.screenSize) private var screenSize
-    @Environment(\.notchHeight) private var notchHeight
+    @Environment(\.notchSize) private var notchSize
     @Default(.generalSettings) private var generalSettings
     var height: Double
     var body: some View {
         Color.clear
-            .frame(width: screenSize.width == 0 ? NotchShape.defaultNotchWidth : notchHeight == 0 ? generalSettings.handleSize.width : NotchShape.getNotchWidthForScreenWidth(screenSize.width), height: height)
+            .frame(width: notchSize.width == 0 ? generalSettings.handleSize.width : notchSize.width, height: height)
+            .frame(notchSize)
             .transition(.identity)
     }
 }
