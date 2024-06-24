@@ -45,8 +45,8 @@ extension MediaApp {
         self.notificationMonitor = NotificationObserverHelper(notificationName: meta.notification) { sender in
             guard sender.userInfo?["Player State"] as? String != "Stopped" else {
                 var newTrack = Track()
-                newTrack.title = ""
-                newTrack.artist = ""
+                newTrack.title = Track.empty.title
+                newTrack.artist = Track.empty.artist
                 newTrack.albumArt = NSImage()
                 self.track = newTrack
                 return
