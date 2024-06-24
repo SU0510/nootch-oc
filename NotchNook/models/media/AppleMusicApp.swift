@@ -9,7 +9,7 @@ import SwiftUI
 import ScriptingBridge
 
 @Observable
-final class AppleMusicApp: BlankMediaApp<MusicApplication> {
+final class AppleMusicApp: BaseMediaApp<MusicApplication> {
     
     init() { super.init(meta: .appleMusic) }
     

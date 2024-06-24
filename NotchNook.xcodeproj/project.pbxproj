@@ -29,6 +29,7 @@
 		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
 		3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */; };
 		3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FF12C1FF4160015EC66 /* EKEvent.swift */; };
+		3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */; };
 		3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A471A402C224C6C00FCD355 /* FolderMonitor.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
@@ -219,7 +220,7 @@
 		EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */; };
 		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
 		EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */; };
-		EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60582BFFEEF500E67ECC /* MediaApp.swift */; };
+		EC8D60592BFFEEF500E67ECC /* BaseMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60582BFFEEF500E67ECC /* BaseMediaApp.swift */; };
 		EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */; };
 		EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605C2C00035300E67ECC /* AppMonitor.swift */; };
 		EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605E2C00065500E67ECC /* SpotifyApp.swift */; };
@@ -261,6 +262,7 @@
 		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
 		3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookEvent.swift; sourceTree = "<group>"; };
 		3A105FF12C1FF4160015EC66 /* EKEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEvent.swift; sourceTree = "<group>"; };
+		3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppProtocol.swift; sourceTree = "<group>"; };
 		3A471A402C224C6C00FCD355 /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
@@ -446,7 +448,7 @@
 		EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowForPanningView.swift; sourceTree = "<group>"; };
 		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
 		EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isAppInstalled.swift; sourceTree = "<group>"; };
-		EC8D60582BFFEEF500E67ECC /* MediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaApp.swift; sourceTree = "<group>"; };
+		EC8D60582BFFEEF500E67ECC /* BaseMediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMediaApp.swift; sourceTree = "<group>"; };
 		EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObserverHelper.swift; sourceTree = "<group>"; };
 		EC8D605C2C00035300E67ECC /* AppMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMonitor.swift; sourceTree = "<group>"; };
 		EC8D605E2C00065500E67ECC /* SpotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApp.swift; sourceTree = "<group>"; };
@@ -739,7 +741,7 @@
 			children = (
 				EC8D60602C00065D00E67ECC /* AppleMusicApp.swift */,
 				EC8D605E2C00065500E67ECC /* SpotifyApp.swift */,
-				EC8D60582BFFEEF500E67ECC /* MediaApp.swift */,
+				EC8D60582BFFEEF500E67ECC /* BaseMediaApp.swift */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -1052,6 +1054,7 @@
 			children = (
 				EC0E31102C05663C0060B47E /* PreferencesProtocol.swift */,
 				EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */,
+				3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -1399,6 +1402,7 @@
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
+				3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */,
 				EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */,
 				EC47FC912C0B806800591811 /* IntroView.swift in Sources */,
 				EC14B5CF2C07AB17000FC6B6 /* ShelfSettingsView.swift in Sources */,
@@ -1447,7 +1451,7 @@
 				EC0E31032C0548A10060B47E /* NookGrid.swift in Sources */,
 				3A105FCE2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift in Sources */,
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
-				EC8D60592BFFEEF500E67ECC /* MediaApp.swift in Sources */,
+				EC8D60592BFFEEF500E67ECC /* BaseMediaApp.swift in Sources */,
 				3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */,
 				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
 				3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */,

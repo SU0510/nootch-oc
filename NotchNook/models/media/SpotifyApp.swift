@@ -11,7 +11,7 @@ import SwiftUI
 import ScriptingBridge
 
 @Observable
-final class SpotifyApp: BlankMediaApp<SpotifyApplication> {
+final class SpotifyApp: BaseMediaApp<SpotifyApplication> {
     
     init() { super.init(meta: .spotify) }
     
