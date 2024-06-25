@@ -38,5 +38,6 @@ struct FineTuningView: View {
         .padding(12)
         .frame(width: notchSize.width + fineTuningValue)
         .animation(.spring, value: fineTuningValue)
+        .transition(.scaleAndBlur(anchor: .top))
     }
 }
