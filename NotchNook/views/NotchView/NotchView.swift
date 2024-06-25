@@ -23,7 +23,9 @@ struct NotchView: View {
     
     @State internal var droppingCoords: CGPoint?
     @State internal var pressing = false
-    @State internal var hovering = false
+    @State internal var hovering = false {
+        willSet { if !hovering && newValue { vibrate() } }
+    }
     @State internal var cancelPan = false
     @State internal var availableActions = [DropAction]()
     @State internal var targetsCoords = [String:CGRect]()
@@ -151,7 +153,6 @@ struct NotchView: View {
                 Task { try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount) }
             }
         }
-        .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
         .onChange(of: hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
         .onChange(of: intro, initial: true) { _, new in
             doAfter(0.3) { withAnimation(NotchView.intenseAnimation) { showIntro = new } }
