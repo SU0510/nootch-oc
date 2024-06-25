@@ -68,7 +68,8 @@ struct GeneralSettingsView: View {
                     .settingDescription()
                 
                 Toggle("Demo mode", isOn: $generalSettings.demoMode)
-                Text("Prevents hiding when idle for screen recordings (this has no effect on non-notched screens).")
+                Text("Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens).")
+                    .fixedSize(horizontal: false, vertical: true)
                     .settingDescription()
                     .frame(width: 330, alignment: .leading)
             }
