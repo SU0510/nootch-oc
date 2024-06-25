@@ -22,8 +22,8 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
     
     var isImplemented: Bool {
         return switch self {
-        case .media, .shortcuts, .mirror, .calendar: true
-        case .notes, .quickApps: false
+        case .quickApps: false
+            default: true
         }
     }
     

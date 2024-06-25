@@ -202,7 +202,7 @@ public final class CalendarManager {
 #endif
     
     // MARK: - Fetch Events
-    
+    @discardableResult
     public func fetchEventsForDaysOffset(_ days: Int, calendar: Calendar = .autoupdatingCurrent) async throws {
         let offset = days / 2
         let today = Date()

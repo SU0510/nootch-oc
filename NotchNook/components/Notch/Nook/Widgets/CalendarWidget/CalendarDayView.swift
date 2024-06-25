@@ -51,6 +51,8 @@ struct CalendarDayView: View, Equatable {
             .compositingGroup()
             .scaleEffect(selected ? 1 : 0.65, anchor: .top)
         }
+        .compositingGroup()
+        .opacity(selected ? 1 : 0.5)
         .frame(width: Self.width)
         .geometryGroup()
         .contentShape(Rectangle())

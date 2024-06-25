@@ -39,7 +39,7 @@ struct TheMarquee<C: View>: View {
             offset = -offsetAmount
         } completion: {
             offset = 0
-            doThisAfter(secsBeforeLooping) {
+            doAfter(secsBeforeLooping) {
                 if self.animating {
                     self.animLoop()
                 }

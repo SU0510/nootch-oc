@@ -119,17 +119,17 @@ struct LottieViewWrapper: View {
                     withAnimation(.spring) {
                         actualAnimationName = animationName
                     }
-                    doThisAfter(0.2) { playbackMode = .playing(.toProgress(1, loopMode: .playOnce)) }
+                    doAfter(0.2) { playbackMode = .playing(.toProgress(1, loopMode: .playOnce)) }
                 } else if let loopDelay {
                     playbackMode = .paused(at: .time(0))
-                    doThisAfter(loopDelay) {
+                    doAfter(loopDelay) {
                         playbackMode = .playing(.fromProgress(0, toProgress: 1, loopMode: .playOnce))
                     }
                 }
             })
             .onAppear {
                 if firstAppear {
-                    doThisAfter(initialDelay) {
+                    doAfter(initialDelay) {
                         playbackMode = .playing(.fromProgress(skipInitialProgress, toProgress: 1, loopMode: .playOnce))
                     }
                 }
@@ -147,7 +147,7 @@ struct LottieViewWrapper: View {
                     withAnimation(.spring) {
                         actualAnimationName = newAnimName
                     }
-                    doThisAfter(0.4) {
+                    doAfter(0.4) {
                         playbackMode = .playing(.toProgress(1, loopMode: .playOnce))
                     }
                 }

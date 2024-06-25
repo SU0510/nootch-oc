@@ -1,0 +1,178 @@
+//
+//  Notch.swift
+//  Notchway
+//
+//  Created by Igor Marcossi on 12/05/24.
+//
+
+import SwiftUI
+import Defaults
+import Cocoa
+import UniformTypeIdentifiers
+
+struct NotchView: View {
+    static let mainVSpacing: Double = 8
+    static let hoverScale: Double = 1.25
+    static let animation: Animation = .bouncy(extraBounce: 0.075)
+    static let intenseAnimation: Animation = .bouncy(extraBounce: 0.15)
+    static let maxVPanDrag: Double = 14
+    static let maxHPanDrag: Double = 24
+    static let panVelocityTriggerThreshold: Double = 500
+    static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2))) }
+    static let defaultTransition = NotchView.defaultTransition(anchor: .top)
+    
+    @State internal var droppingCoords: CGPoint?
+    @State internal var pressing = false
+    @State internal var hovering = false
+    @State internal var cancelPan = false
+    @State internal var availableActions = [DropAction]()
+    @State internal var targetsCoords = [String:CGRect]()
+    @State internal var panRawPadding: EdgeInsets = .zero
+    @State internal var scaleDown: Double = 0
+    @State internal var hide = false
+    @State internal var hideTimer: Timer?
+    @State internal var panGestureCounter = 0
+    @State internal var trialOver = false
+    @State internal var showIntro = false
+    @State internal var animatingBack = false
+    @State internal var fineTuningNotchWidth = false
+    @Namespace internal var ns
+    @Environment(\.notchSize) internal var notchSize
+    @Environment(\.screenSize) internal var screenSize
+    @Environment(\.screenID) internal var screenID
+    @Environment(\.openSettings) internal var openSettings
+    @Environment(\.sparkleManager) internal var sparkleManager
+    @Environment(\.showChangelog) internal var showChangelog
+    @Default(.lastBuildNumber) internal var lastBuildNumber
+    @Default(.intro) internal var intro
+    @Default(.license) internal var license
+    @Default(.generalSettings) internal var generalSettings
+    @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
+    @Default(.nookSettings) internal var nookSettings
+    @Default(.trialInitialTime) internal var trialInitialTime
+    
+    var body: some View {
+        let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
+        let disableNotchNook = notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
+        let showingLiveActv = NotchNook.shared.activeLiveActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
+        let shouldRender = fineTuningNotchWidth || (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchSize.height == 0 || hovering || animatingBack
+        
+        VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
+            if !disableNotchNook {
+                if intro && showIntro {
+                    IntroView()
+                } else if !intro {
+                    
+                    if license != nil || !trialOver {
+                        TopBarView(
+                            panGestureCounter: panGestureCounter,
+                            scale: actualScale,
+                            panPadding: panPadding,
+                            hide: hide
+                        )
+                    }
+                    
+                    Group {
+                        if license == nil && (trialInitialTime == nil || trialOver) && mode != .closed {
+                            LicenseStateView()
+                        } else {
+                            switch mode {
+                                case .closed: EmptyView()
+                                case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
+                                case .nook: NookView()
+                                case .shelf: ShelfView(hovered: false, full: true)
+                            }
+                        }
+                    }
+                    .scaleEffect(actualScale, anchor: .top)
+                    .transition(NotchView.defaultTransition)
+                }
+            }
+            if fineTuningNotchWidth {
+                FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
+            }
+        }
+        .compositingGroup()
+        .blur(radius: scaleDown * 100)
+        .fixedSize(horizontal: true, vertical: false)
+        .frame(
+            minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune,
+            minHeight: disableNotchNook ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
+        )
+        .padding((mode == .closed ? panPadding : .zero) + standardPadding)
+        .coordinateSpace(name: "drop-zone")
+        .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
+        .background {
+            NotchGesturer(
+                hidden: hide,
+                panPadding: panPadding,
+                scaleDown: $scaleDown,
+                cancelPan: $cancelPan,
+                panRawPadding: $panRawPadding,
+                mode: mode,
+                closeNotch: {closeNotch(vibrate: $0, unhover: $1)},
+                hideNotch: hideNotch,
+                openNotch: { openNotch() },
+                changeTrack: { changeTrack(prev: $0) }
+            )
+        }
+        .contentShape(NotchShape(notchSize: notchSize))
+        .background {
+            let showFileDropView = mode == .closed || mode == .dragging
+            if showFileDropView {
+                FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)
+            }
+        }
+        .background(alignment: .top) { shapeView() }
+        .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
+        .allowsHitTesting(!disableNotchNook)
+        .animation(.smooth, value: disableNotchNook)
+        .animation(.smooth(extraBounce: 0.15), value: liveActivitiesSettings)
+        .animation(.smooth(extraBounce: 0.15), value: intro)
+        .animation(.linear(duration: 0.001).delay(shouldRender ? 0 : 0.6)) { $0.opacity(shouldRender ? 1 : 0) }
+        .compositingGroup()
+        .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }
+        .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: onLongPress)
+        .onHover(perform: onHover)
+        .contextMenu {
+            Button("Open Settings") { openSettings(nil) }
+            Button("Quit NotchNook") { NSApp.terminate(nil) }
+        }
+        .frame(width: screenSize.width, height: 215, alignment: .top)
+        .fixedSize()
+        .onAppear {
+            checkForUpdates()
+            resetTrialAndHandleChangelog()
+            insertUpdateLAIfOldVersion()
+            fetchEvents()
+        }
+        .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
+            if !old.contains(.calendar) && new.contains(.calendar) {
+                Task { try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount) }
+            }
+        }
+        .onChange(of: hovering) { if !$0 && $1 { vibrate() } }
+        .onChange(of: hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
+        .onChange(of: intro, initial: true) { _, new in
+            doAfter(0.3) { withAnimation(NotchView.intenseAnimation) { showIntro = new } }
+        }
+        .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
+            if !fineTuningNotchWidth {
+                withAnimation(NotchView.intenseAnimation) { fineTuningNotchWidth = true }
+            }
+        }
+        .onChangeDebounced(of: generalSettings.notchWidthFineTune, delay: 2) { _ in
+            withAnimation(NotchView.intenseAnimation) { fineTuningNotchWidth = false }
+        }
+        .onChangeDebounced(of: panRawPadding, delay: 0.05) { _ in
+            withAnimation(.smooth) { panRawPadding = .zero }
+        }
+        .onChangeDebounced(of: scaleDown, delay: 0.05) { _ in
+            withAnimation(.smooth) { scaleDown = 0 }
+        }
+        .environment(\.namespace, ns)
+        .environment(\.trialOver, trialOver)
+        .preferredColorScheme(.dark)
+        .transformEnvironment(\.notchSize) { $0.width += generalSettings.notchWidthFineTune }
+    }
+}

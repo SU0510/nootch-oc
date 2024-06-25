@@ -10,7 +10,6 @@ struct MirrorWidgetView: View {
     @Default(.nookSettings) private var nookSettings
     enum Mode { case stopped, loading, mirrorring }
     
-    
     var body: some View {
         Button {
             guard mode != .loading else { return }
@@ -73,8 +72,8 @@ struct MirrorWidgetView: View {
             top: 0,
             leading: arrayPosition == .first ? 0 : nookSettings.widgetsPadding,
             bottom: 0,
-            trailing: arrayPosition == .last ? 0 : nookSettings.widgetsPadding)
-        )
+            trailing: arrayPosition == .last ? 0 : nookSettings.widgetsPadding
+        ))
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
         .onAppear {
             checkCameraPermission()

@@ -18,9 +18,9 @@ class Shelf {
         willSet {
             let newSelectedFiles = selectedFiles.intersection(newValue)
             if selectedFiles.count != newSelectedFiles.count { 
-                doThisAfter(0) { self.selectedFiles = newSelectedFiles }
+                doAfter(0) { self.selectedFiles = newSelectedFiles }
             }
-            doThisAfter(0) {
+            doAfter(0) {
                 if newValue.isEmpty {
                     if NotchNook.shared.activeLiveActivities.contains(.shelf) {
                         NotchNook.shared.activeLiveActivities.remove(.shelf)
