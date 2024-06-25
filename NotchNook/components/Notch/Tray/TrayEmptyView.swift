@@ -1,5 +1,5 @@
 //
-//  ShelfEmptyView.swift
+//  TrayEmptyView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 18/05/24.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct ShelfEmptyView: View {
+struct TrayEmptyView: View {
     var hovered: Bool
     var centered: Bool
     var body: some View {
         VStack(alignment: centered ? .center : .leading, spacing: 6) {
-            Image(systemName: LiveActivity.shelf.icon)
+            Image(systemName: LiveActivity.tray.icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
-            Text(LiveActivity.shelf.name).fontWeight(.medium)
+            Text(LiveActivity.tray.name).fontWeight(.medium)
         }
         .multilineTextAlignment(centered ? .center : .leading)
         .foregroundStyle(hovered ? Color.blue : .white)

@@ -13,7 +13,7 @@ import Defaults
 class NotchNook {
     static let shared = NotchNook()
     
-    var shelf = Shelf()
+    var tray = Tray()
     var pinned = false
     
     var quickPeeks: [QuickPeek]? {
@@ -34,7 +34,7 @@ class NotchNook {
     var mode = [UUID:NotchMode]()
     
     enum NotchMode: String, Hashable {
-        case closed, nook, shelf, dragging
+        case closed, nook, tray, dragging
     }
     
     struct QuickPeek: Identifiable, Equatable, Hashable {

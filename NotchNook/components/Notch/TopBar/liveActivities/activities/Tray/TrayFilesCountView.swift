@@ -1,5 +1,5 @@
 //
-//  ShelfFilesCountView.swift
+//  TrayFilesCountView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 19/05/24.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct ShelfFilesCountView: View {
+struct TrayFilesCountView: View {
     var body: some View {
         HStack(spacing: 2) {
-            Text("\(Shelf.shared.files.count)")
-            Image(systemName: NotchNook.shared.activeLiveActivities.count > 1 ? LiveActivity.shelf.icon : "doc.fill")
+            Text("\(Tray.shared.files.count)")
+            Image(systemName: NotchNook.shared.activeLiveActivities.count > 1 ? LiveActivity.tray.icon : "doc.fill")
                 .contentTransition(.symbolEffect)
         }
         .frame(maxWidth: .infinity)

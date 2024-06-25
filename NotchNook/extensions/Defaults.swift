@@ -27,6 +27,6 @@ extension Defaults.Keys {
     static let calendarWidgetSettings = Key<CalendarWidgetSettings>("calendarWidgetSettings", default: .init())
     static let gestureControlSettings = Key<GestureControlSettings>("gestureControlSettings", default: .init())
     static let nookSettings = Key<NookSettings>("nookSettings", default: .init())
-    static let shelfSettings = Key<ShelfSettings>("shelfSettings", default: .init())
+    static let traySettings = Key<TraySettings>("traySettings", default: .init())
     static let dropAreaSettings = Key<DropAreaSettings>("dropAreaSettings", default: .init())
 }

@@ -1,5 +1,5 @@
 //
-//  ShelfFilesGridPreviewView.swift
+//  TrayFilesGridPreviewView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 26/05/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ShelfFilesGridPreviewView: View {
-    var files: [ShelfFile]
+struct TrayFilesGridPreviewView: View {
+    var files: [TrayFile]
     let iconsSize: CGFloat = 24
     let gridSpacing: CGFloat = 8
     var body: some View {

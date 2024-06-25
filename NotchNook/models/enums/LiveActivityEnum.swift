@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
-    case media, shelf, calendar, updateAvailable
+    case media, tray, calendar, updateAvailable
     
     var id: String { self.rawValue }
     
@@ -23,7 +23,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     var icon: String {
         return switch self {
             case .media: "music.note"
-            case .shelf: "tray.fill"
+            case .tray: "tray.fill"
             case .calendar: "calendar.badge.clock.rtl"
             case .updateAvailable: "arrow.down.circle"
         }
@@ -32,7 +32,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     var name: String {
         return switch self {
             case .media: "Media"
-            case .shelf: "Files Tray"
+            case .tray: "Files Tray"
             case .calendar: "Calendar"
             case .updateAvailable: "New Update"
         }

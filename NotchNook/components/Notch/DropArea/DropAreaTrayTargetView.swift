@@ -1,5 +1,5 @@
 //
-//  DropAreaShelfTargetView.swift
+//  DropAreaTrayTargetView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 29/05/24.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct DropAreaShelfTargetView: View {
+struct DropAreaTrayTargetView: View {
     var hovered: Bool
     var body: some View {
-        let files = Shelf.shared.files
+        let files = Tray.shared.files
         HStack {
-            ShelfEmptyView(hovered: hovered, centered: false)
+            TrayEmptyView(hovered: hovered, centered: false)
             
             Spacer()
             
             if files.count > 0 {
-                ShelfFilesGridPreviewView(files: Array(files.prefix(4)))
+                TrayFilesGridPreviewView(files: Array(files.prefix(4)))
             }
         }
         .padding(.horizontal, 24)

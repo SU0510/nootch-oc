@@ -1,5 +1,5 @@
 //
-//  ShelfFilesScrollView.swift
+//  TrayFilesScrollView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 26/05/24.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct ShelfFilesScrollView: View {
-    var files: Set<ShelfFile>
-    var selectedFiles: Set<ShelfFile>
-    var selectFile: (_ file: ShelfFile?) -> ()
+struct TrayFilesScrollView: View {
+    var files: Set<TrayFile>
+    var selectedFiles: Set<TrayFile>
+    var selectFile: (_ file: TrayFile?) -> ()
     var body: some View {
         GeometryReader { geo in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 4) {
                     ForEach(Array(files).sorted(by: { $0.addedAt.timeIntervalSince1970 > $1.addedAt.timeIntervalSince1970 })) { file in
-                        ShelfFileView(file: file, isSelected: selectedFiles.contains(file))
+                        TrayFileView(file: file, isSelected: selectedFiles.contains(file))
                     }
                 }
                 .padding(.all, 8)

@@ -1,5 +1,5 @@
 //
-//  ShelfFileView.swift
+//  TrayFileView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 18/05/24.
@@ -8,12 +8,12 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct ShelfFileView: View, Equatable {
-    static func == (lhs: ShelfFileView, rhs: ShelfFileView) -> Bool {
+struct TrayFileView: View, Equatable {
+    static func == (lhs: TrayFileView, rhs: TrayFileView) -> Bool {
         lhs.file == rhs.file && lhs.isSelected == rhs.isSelected
     }
     
-    let file: ShelfFile
+    let file: TrayFile
     let isSelected: Bool
     var preview: Bool = false
     
@@ -43,12 +43,12 @@ struct ShelfFileView: View, Equatable {
         .background {
             if !preview {
                 FileDraggableView(onSelect: {
-                    Shelf.shared.selectFile(file)
+                    Tray.shared.selectFile(file)
                 }, onDropCompleted: { success in
                     if !success { return }
-                    Shelf.shared.selectedFiles.forEach { $0.remove() }
-                }, selectedURLs: Shelf.shared.selectedFiles.map { $0.url }) {
-                    ShelfFileDragPreviewView(draggedFile: file)
+                    Tray.shared.selectedFiles.forEach { $0.remove() }
+                }, selectedURLs: Tray.shared.selectedFiles.map { $0.url }) {
+                    TrayFileDragPreviewView(draggedFile: file)
                 }
             }
         }

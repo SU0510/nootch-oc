@@ -21,7 +21,7 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
         } settings: { selectedElement in
             switch selectedElement {
             case .media: MediaLiveAcitivitySettingsView()
-            case .shelf: ShelfLiveActivitySettingsView()
+            case .tray: TrayLiveActivitySettingsView()
             case .calendar: CalendarLiveActivitySettingsView()
             default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
             }

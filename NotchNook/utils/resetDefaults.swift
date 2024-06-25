@@ -18,6 +18,6 @@ func resetDefaults() {
     Defaults[.mirrorWidgetSettings] = MirrorWidgetSettings()
     Defaults[.gestureControlSettings] = GestureControlSettings()
     Defaults[.nookSettings] = NookSettings()
-    Defaults[.shelfSettings] = ShelfSettings()
+    Defaults[.traySettings] = TraySettings()
     Defaults[.dropAreaSettings] = DropAreaSettings()
 }

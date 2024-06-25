@@ -14,8 +14,8 @@ extension NotchView {
         
         if hovering {
             if mode == .closed {
-                if !Shelf.shared.files.isEmpty || generalSettings.alwaysOpenNotchOnHover {
-                    openNotch(in: Shelf.shared.files.isEmpty ? .nook : .shelf)
+                if !Tray.shared.files.isEmpty || generalSettings.alwaysOpenNotchOnHover {
+                    openNotch(in: Tray.shared.files.isEmpty ? .nook : .tray)
                 } else {
                     withAnimation(.bouncy(duration: 0.4, extraBounce: 0.25)) {
                         self.hovering = true

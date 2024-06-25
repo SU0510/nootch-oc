@@ -1,5 +1,5 @@
 //
-//  ShelfView.swift
+//  TrayView.swift
 //  Notchway
 //
 //  Created by Igor Marcossi on 13/05/24.
@@ -8,27 +8,27 @@
 import SwiftUI
 import Defaults
 
-struct ShelfView: View {
+struct TrayView: View {
     static let id = "sheld"
     
     var hovered: Bool
     var full: Bool
     
-    @Default(.shelfSettings) private var shelfSettings
+    @Default(.traySettings) private var traySettings
     
     var body: some View {
-        let files = Shelf.shared.files
+        let files = Tray.shared.files
         HStack {
             Group {
                 if files.count > 0 {
-                    ShelfFilesScrollView(files: files, selectedFiles: Shelf.shared.selectedFiles, selectFile: Shelf.shared.selectFile)
+                    TrayFilesScrollView(files: files, selectedFiles: Tray.shared.selectedFiles, selectFile: Tray.shared.selectFile)
                 } else {
-                    ShelfEmptyView(hovered: hovered, centered: true)
+                    TrayEmptyView(hovered: hovered, centered: true)
                 }
             }
             .transition(.scaleAndBlur(anchor: .top))
         }
-        .frame(shelfSettings.size.screenPtsCGSize, .leading)
+        .frame(traySettings.size.screenPtsCGSize, .leading)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .background {
             RoundedRectangle(cornerRadius: 28, style: .continuous)

@@ -17,7 +17,7 @@ extension NotchView {
                 availableActions.removeAll()
             }
             if mode != .closed {
-                NotchNook.shared.mode[screenID] = close ? .closed : .shelf
+                NotchNook.shared.mode[screenID] = close ? .closed : .tray
             }
         }
     }
@@ -43,6 +43,6 @@ extension NotchView {
     }
     
     func dropExited(info: NSDraggingInfo) {
-        finishDragging(close: Shelf.shared.files.count == 0)
+        finishDragging(close: Tray.shared.files.count == 0)
     }
 }

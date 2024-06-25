@@ -1,5 +1,5 @@
 //
-//  ShelfFile.swift
+//  TrayFile.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 18/05/24.
@@ -8,8 +8,8 @@
 import SwiftUI
 
 @Observable
-class ShelfFile: Equatable, Hashable, Identifiable {
-    static func == (lhs: ShelfFile, rhs: ShelfFile) -> Bool {
+class TrayFile: Equatable, Hashable, Identifiable {
+    static func == (lhs: TrayFile, rhs: TrayFile) -> Bool {
         lhs.url.absoluteString == rhs.url.absoluteString
     }
     
@@ -34,7 +34,7 @@ class ShelfFile: Equatable, Hashable, Identifiable {
     }
     
     func remove() {
-        NotchNook.shared.shelf.removeFile(self)
+        NotchNook.shared.tray.removeFile(self)
     }
     
     func hash(into hasher: inout Hasher) {

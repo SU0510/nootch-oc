@@ -11,13 +11,13 @@ import SwiftUI
 extension NotchView {
     func performDrop(info: NSDraggingInfo) -> Bool {
         if trialOver { return false }
-        let isShelf = hoveredDropTargetID == ShelfView.id
-        var cb: (([URL]) -> ()) = Shelf.shared.addFilesFromURLs
+        let isTray = hoveredDropTargetID == TrayView.id
+        var cb: (([URL]) -> ()) = Tray.shared.addFilesFromURLs
         let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
         var hasFiles = false
         let loadItemGroup = DispatchGroup()
         
-        if !isShelf, let dropAction {
+        if !isTray, let dropAction {
             cb = { urls in
                 dropAction.action(urls, .zero)
             }
@@ -57,7 +57,7 @@ extension NotchView {
         }
         
         loadItemGroup.notify(queue: .main) {
-            finishDragging(close: !hasFiles && !isShelf)
+            finishDragging(close: !hasFiles && !isTray)
         }
         
         return true

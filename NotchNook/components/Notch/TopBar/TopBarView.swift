@@ -25,7 +25,7 @@ struct TopBarView: View {
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.nookSettings) private var nookSettings
-    @Default(.shelfSettings) private var shelfSettings
+    @Default(.traySettings) private var traySettings
     var body: some View {
         // If notch height is bigger than 2/3 of minHeight, use it
         let height = notchSize.height > (TopBarView.minHeight * 0.66) ? notchSize.height : TopBarView.minHeight
@@ -40,13 +40,13 @@ struct TopBarView: View {
                         switch mode {
                             case .closed: LiveActivityView(side: .left, activeActivities: liveActvs).frame(width: Self.liveActionWidth)
                             case .dragging: EmptyView()
-                            case .nook, .shelf: TopBarTabsView(totalWidth: mode == .nook ? nookSettings.size.width : shelfSettings.size.width)
+                            case .nook, .tray: TopBarTabsView(totalWidth: mode == .nook ? nookSettings.size.width : traySettings.size.width)
                         }
                     }
                     .frame(maxWidth: .infinity)
                     .scaleEffect(scale, anchor: .topTrailing)
                     .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
-                    .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .shelf)
+                    .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                 }
                 
                 if (mode != .closed && !hide) || !liveActvs.isEmpty {
@@ -58,7 +58,7 @@ struct TopBarView: View {
                         switch mode {
                             case .closed: LiveActivityView(side: .right, activeActivities: liveActvs).frame(width: Self.liveActionWidth)
                             case .dragging: EmptyView()
-                            case .nook, .shelf: 
+                            case .nook, .tray: 
                                 HStack(spacing: 2) {
                                     if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() }
                                     
@@ -72,7 +72,7 @@ struct TopBarView: View {
                     .frame(maxWidth: .infinity)
                     .scaleEffect(scale, anchor: .topLeading)
                     .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
-                    .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .shelf)
+                    .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                 }
                 
             }
@@ -85,7 +85,7 @@ struct TopBarView: View {
                             case .closed:
                                 ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
                                     .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .leading)
-                            case .dragging, .nook, .shelf: EmptyView()
+                            case .dragging, .nook, .tray: EmptyView()
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -101,7 +101,7 @@ struct TopBarView: View {
                             case .closed:
                                 ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
                                     .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .trailing)
-                            case .nook, .shelf, .dragging: EmptyView()
+                            case .nook, .tray, .dragging: EmptyView()
                         }
                     }
                     .frame(maxWidth: .infinity)

@@ -19,8 +19,8 @@ struct TopBarTabsView: View {
             TopBarTabView(icon: "lamp.desk.fill", label: collapsed ? nil : "Nook", active: mode == .nook)
                 .onTapGesture { withAnimation(.smooth(extraBounce: 0.25)) { NotchNook.shared.mode[screenID] = .nook } }
             
-            TopBarTabView(icon: LiveActivity.shelf.icon, label: collapsed ? nil : "Tray", active: mode == .shelf)
-                .onTapGesture { withAnimation(.smooth(extraBounce: 0.25)) { NotchNook.shared.mode[screenID] = .shelf } }
+            TopBarTabView(icon: LiveActivity.tray.icon, label: collapsed ? nil : "Tray", active: mode == .tray)
+                .onTapGesture { withAnimation(.smooth(extraBounce: 0.25)) { NotchNook.shared.mode[screenID] = .tray } }
         }
         .padding(.trailing, 4)
         .frame(maxWidth: .infinity, alignment: .leading)

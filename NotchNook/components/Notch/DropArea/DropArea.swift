@@ -20,12 +20,12 @@ struct DropArea: View {
             
             Group {
                 
-                DropAreaShelfTargetView(hovered: hoveredDropTargetID == ShelfView.id)
+                DropAreaTrayTargetView(hovered: hoveredDropTargetID == TrayView.id)
                         .bindDropAreaCoords(
                             coordinatedSpace: .named("drop-zone"),
                             Binding(
-                                get: { targetsCoords[ShelfView.id] ?? .zero },
-                                set: { val in targetsCoords[ShelfView.id] = val }
+                                get: { targetsCoords[TrayView.id] ?? .zero },
+                                set: { val in targetsCoords[TrayView.id] = val }
                             )
                         )
                         .zIndex(1)

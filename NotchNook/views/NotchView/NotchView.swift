@@ -82,7 +82,7 @@ struct NotchView: View {
                                 case .closed: EmptyView()
                                 case .dragging: DropArea(targetsCoords: $targetsCoords, availableActions: availableActions, hoveredDropTargetID: hoveredDropTargetID)
                                 case .nook: NookView()
-                                case .shelf: ShelfView(hovered: false, full: true)
+                                case .tray: TrayView(hovered: false, full: true)
                             }
                         }
                     }

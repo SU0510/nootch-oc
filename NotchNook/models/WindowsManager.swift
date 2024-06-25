@@ -25,7 +25,7 @@ class WindowsManager {
             GesturesSettingsViewController(),
             LiveActivitiesSettingsViewController(),
             NookSettingsViewController(),
-            ShelfSettingsViewController(),
+            TraySettingsViewController(),
             DropAreaSettingsViewController(),
             LicenseSettingsViewController(),
             AboutSettingsViewController(sparkleManager, showChangelogViewWindow)

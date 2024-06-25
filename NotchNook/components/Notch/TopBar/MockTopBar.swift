@@ -22,8 +22,8 @@ import SwiftDate
 //                    HStack {
 //                        if la.contains(.media) {
 //                            AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
-//                        } else if la.contains(.shelf) {
-//                            ShelfIconView()
+//                        } else if la.contains(.tray) {
+//                            TrayIconView()
 //                        }
 //                    }
 //                    .frame(width: liveActionWidth)
@@ -36,8 +36,8 @@ import SwiftDate
 //            Group {
 //                if !la.isEmpty {
 //                    HStack {
-//                        if la.contains(.shelf) {
-//                            ShelfFilesCountView()
+//                        if la.contains(.tray) {
+//                            TrayFilesCountView()
 //                        } else if la.contains(.media) {
 //                            AudioWavesView(
 //                                altImg: .loCafeAvatar,
@@ -72,7 +72,7 @@ struct MockTopBar: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     @Default(.nookSettings) private var nookSettings
-    @Default(.shelfSettings) private var shelfSettings
+    @Default(.traySettings) private var traySettings
     @SilentState private var fakeNow = Date()
     
     func staticNow() -> Date {
@@ -95,7 +95,7 @@ struct MockTopBar: View {
                 switch activity {
                     case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, laPrefs: liveActivitiesSettings).environment(\.getNow, staticNow)
                     case .media: AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
-                    case .shelf: ShelfIconView()
+                    case .tray: TrayIconView()
                     case .updateAvailable: UpdateAppIconView(laPrefs: liveActivitiesSettings)
                 }
             }
@@ -109,7 +109,7 @@ struct MockTopBar: View {
                 switch activity {
                     case .calendar: EventTimeView(notes: mockedEvent.notes, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, prefs: calendarLiveActivitySettings).environment(\.getNow, staticNow)
                     case .media: AudioWavesView(prefs: mediaLiveActivitySettings)
-                    case .shelf: ShelfFilesCountView()
+                    case .tray: TrayFilesCountView()
                     case .updateAvailable: UpdateButtonIconView()
                 }
             }
