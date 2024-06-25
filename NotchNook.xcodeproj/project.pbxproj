@@ -1234,11 +1234,11 @@
 				EC8D600A2BFAF57600E67ECC /* Nook */,
 				EC8D5FC52BF97ADA00E67ECC /* Tray */,
 				EC14B5C92C07A570000FC6B6 /* DropArea */,
+				3A357F112C294FD20076DB37 /* FineTuningView.swift */,
 				3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
 				EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */,
-				3A357F112C294FD20076DB37 /* FineTuningView.swift */,
 			);
 			path = notch;
 			sourceTree = "<group>";
