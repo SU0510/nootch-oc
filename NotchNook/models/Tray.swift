@@ -10,8 +10,6 @@ import Cocoa
 
 @Observable
 class Tray {
-    static var shared: Tray { NotchNook.shared.tray }
-    
     private var tempDirectory: URL?
     private var folderMonitor: FolderMonitor?
     private(set) var files = Set<TrayFile>() {
@@ -22,12 +20,12 @@ class Tray {
             }
             doAfter(0) {
                 if newValue.isEmpty {
-                    if NotchNook.shared.activeLiveActivities.contains(.tray) {
-                        NotchNook.shared.activeLiveActivities.remove(.tray)
+                    if LiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
+                        LiveActivitiesManager.shared.activeLiveActivities.remove(.tray)
                     }
                 } else {
-                    if !NotchNook.shared.activeLiveActivities.contains(.tray) {
-                        NotchNook.shared.activeLiveActivities.insert(.tray)
+                    if !LiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
+                        LiveActivitiesManager.shared.activeLiveActivities.insert(.tray)
                     }
                 }
             }

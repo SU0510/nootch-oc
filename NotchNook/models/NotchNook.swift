@@ -11,11 +11,21 @@ import Defaults
 
 @Observable
 class NotchNook {
-    static let shared = NotchNook()
-    
-    var tray = Tray()
+    var hidden: Bool = false {
+        willSet {
+            if !hidden && newValue { vibrate() }
+            if !newValue { hiddenTimer?.invalidate() }
+        }
+        didSet {
+            if hidden {
+                hiddenTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { _ in
+                    withAnimation(.smooth) { self.hidden = false }
+                }
+            }
+        }
+    }
+    var hiddenTimer: Timer?
     var pinned = false
-    
     var quickPeeks: [QuickPeek]? {
         get { _quickPeek }
         set {
@@ -25,13 +35,7 @@ class NotchNook {
     }
     private var _quickPeek: [QuickPeek]?
     
-    var activeLiveActivities: Set<LiveActivity> {
-        get { Defaults[.liveActivitiesSettings].enabled ? _activeLiveActivities : [] }
-        set { withAnimation(TopBarView.animation) { _activeLiveActivities = newValue } }
-    }
-    private var _activeLiveActivities = Set<LiveActivity>()
-    
-    var mode = [UUID:NotchMode]()
+    var mode: NotchMode = .closed
     
     enum NotchMode: String, Hashable {
         case closed, nook, tray, dragging

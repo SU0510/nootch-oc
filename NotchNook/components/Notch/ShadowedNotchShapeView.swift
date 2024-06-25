@@ -11,7 +11,9 @@ import SmoothGradient
 
 struct ShadowedNotchShapeView: View, Equatable {
     static func == (lhs: ShadowedNotchShapeView, rhs: ShadowedNotchShapeView) -> Bool {
-        lhs.shadow == rhs.shadow && lhs.transparentHandle == rhs.transparentHandle && lhs.fineTuning == rhs.fineTuning
+        lhs.shadow == rhs.shadow && 
+        lhs.transparentHandle == rhs.transparentHandle &&
+        lhs.fineTuning == rhs.fineTuning
     }
     var shadow: Bool
     var transparentHandle: Bool

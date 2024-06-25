@@ -9,11 +9,5 @@ import Foundation
 import SwiftUI
 
 extension NotchView {
-    var mode: NotchNook.NotchMode {
-        guard let found = NotchNook.shared.mode[screenID] else {
-            NotchNook.shared.mode[screenID] = .closed
-            return .closed
-        }
-        return found
-    }
+    var mode: NotchNook.NotchMode { notchNook.mode }
 }

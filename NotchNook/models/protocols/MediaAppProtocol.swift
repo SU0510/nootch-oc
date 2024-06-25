@@ -61,9 +61,9 @@ extension MediaApp {
     
     func updateLiveActivities(_ altIsPlaying: Bool? = nil) {
         if altIsPlaying ?? self.isPlaying {
-            NotchNook.shared.activeLiveActivities.insert(.media)
+            LiveActivitiesManager.shared.activeLiveActivities.insert(.media)
         } else {
-            NotchNook.shared.activeLiveActivities.remove(.media)
+            LiveActivitiesManager.shared.activeLiveActivities.remove(.media)
         }
     }
 }

@@ -115,7 +115,7 @@ public final class CalendarManager {
         func addLiveActivity(event: EKEvent) {
             addedLiveActivity = true
             Task { await MainActor.run {
-                NotchNook.shared.activeLiveActivities.insert(.calendar)
+                LiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
             } }
         }
         
@@ -138,7 +138,7 @@ public final class CalendarManager {
             }
         }
         if !addedLiveActivity {
-            NotchNook.shared.activeLiveActivities.remove(.calendar)
+            LiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
         }
     }
     

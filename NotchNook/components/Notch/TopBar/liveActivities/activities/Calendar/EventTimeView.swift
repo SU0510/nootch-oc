@@ -82,7 +82,7 @@ struct EventTimeView: View {
             .frame(maxWidth: .infinity)
             .allowsHitTesting(meeting != nil)
             .onChange(of: shouldRemoveAct) { _, val in
-                if val { NotchNook.shared.activeLiveActivities.remove(.calendar) }
+                if val { LiveActivitiesManager.shared.activeLiveActivities.remove(.calendar) }
             }
         }
     }

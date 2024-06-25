@@ -15,7 +15,7 @@ extension NotchView {
             if unhover {  self.hovering = false }
             if doVibrate { vibrate() }
             if mode != .closed {
-                NotchNook.shared.mode[screenID] = .closed
+                notchNook.mode = .closed
             }
             if unhover || mode != .closed {
                 animatingBack = true

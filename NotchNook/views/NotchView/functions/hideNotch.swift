@@ -10,14 +10,7 @@ import SwiftUI
 
 extension NotchView {
     func hideNotch() {
-        if hide { return }
-        hideTimer?.invalidate()
-        vibrate()
-        withAnimation(.smooth) {
-            hide = true
-            hideTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { _ in
-                withAnimation(.smooth) { hide = false }
-            }
-        }
+        if notchNook.hidden { return }
+        withAnimation(.smooth) { notchNook.hidden = true }
     }
 }

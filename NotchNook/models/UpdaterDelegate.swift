@@ -14,7 +14,7 @@ class UpdaterDelegate: NSObject, SPUUpdaterDelegate, SPUStandardUserDriverDelega
     }
     
     func standardUserDriverShouldHandleShowingScheduledUpdate(_ update: SUAppcastItem, andInImmediateFocus immediateFocus: Bool) -> Bool {
-        NotchNook.shared.activeLiveActivities.insert(.updateAvailable)
+        LiveActivitiesManager.shared.activeLiveActivities.insert(.updateAvailable)
         return false
     }
 }

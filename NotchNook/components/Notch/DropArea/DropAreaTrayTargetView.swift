@@ -9,8 +9,11 @@ import SwiftUI
 
 struct DropAreaTrayTargetView: View {
     var hovered: Bool
+    
+    @Environment(\.tray) private var tray
+    
     var body: some View {
-        let files = Tray.shared.files
+        let files = tray.files
         HStack {
             TrayEmptyView(hovered: hovered, centered: false)
             

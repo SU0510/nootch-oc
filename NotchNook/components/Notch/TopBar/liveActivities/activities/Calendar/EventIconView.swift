@@ -15,6 +15,7 @@ struct EventIconView: View {
     var endDate: Date
     var laPrefs: LiveActivitiesSettings
     @Environment(\.getNow) private var getNow
+    @Environment(\.notchNook) private var notchNook
     
     var quickPeeks: [NotchNook.QuickPeek] {
         let startTime = startDate.formatted(date: .omitted, time: .shortened)
@@ -31,11 +32,11 @@ struct EventIconView: View {
             .font(.system(size: 13))
             .foregroundStyle(.blue)
             .padding(.top, 4)
-            .quickPeekScaling()
+            .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onHover { hovering in
                 if laPrefs.enableQuickPeek {
-                    NotchNook.shared.quickPeeks = hovering ? quickPeeks : nil
+                    notchNook.quickPeeks = hovering ? quickPeeks : nil
                 }
             }
     }

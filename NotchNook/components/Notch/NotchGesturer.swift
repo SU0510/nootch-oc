@@ -20,7 +20,7 @@ struct NotchGesturer: View {
     var openNotch: () -> ()
     var changeTrack: (Bool) -> ()
     
-    private var hasMediaLA: Bool { NotchNook.shared.activeLiveActivities.contains(.media) }
+    private var hasMediaLA: Bool { LiveActivitiesManager.shared.activeLiveActivities.contains(.media) }
     
     @Default(.gestureControlSettings) private var gestureControlSettings
     
@@ -54,7 +54,7 @@ struct NotchGesturer: View {
                 if mode != .closed {
                     vibrate()
                     closeNotch(true, false)
-                } else if !hidden && !NotchNook.shared.activeLiveActivities.isEmpty {
+                } else if !hidden && !LiveActivitiesManager.shared.activeLiveActivities.isEmpty {
                     vibrate()
                     hideNotch()
                 }

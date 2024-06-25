@@ -32,7 +32,7 @@ struct UpdateButtonIconView: View {
         .contentShape(Rectangle())
         .onTapGesture {
             sparkleManager.checkForUpdates()
-            NotchNook.shared.activeLiveActivities.remove(.updateAvailable)
+            LiveActivitiesManager.shared.activeLiveActivities.remove(.updateAvailable)
         }
         .onHover { hovering in
             withAnimation(ShrinkOnClick.animation) { hovered = hovering }

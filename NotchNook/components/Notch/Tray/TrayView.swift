@@ -15,13 +15,14 @@ struct TrayView: View {
     var full: Bool
     
     @Default(.traySettings) private var traySettings
+    @Environment(\.tray) private var tray
     
     var body: some View {
-        let files = Tray.shared.files
+        let files = tray.files
         HStack {
             Group {
                 if files.count > 0 {
-                    TrayFilesScrollView(files: files, selectedFiles: Tray.shared.selectedFiles, selectFile: Tray.shared.selectFile)
+                    TrayFilesScrollView(files: files, selectedFiles: tray.selectedFiles, selectFile: tray.selectFile)
                 } else {
                     TrayEmptyView(hovered: hovered, centered: true)
                 }

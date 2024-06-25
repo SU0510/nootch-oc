@@ -33,10 +33,6 @@ class TrayFile: Equatable, Hashable, Identifiable {
         self.rawFileImage = loadImgFromURL(url)
     }
     
-    func remove() {
-        NotchNook.shared.tray.removeFile(self)
-    }
-    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

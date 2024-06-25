@@ -8,8 +8,8 @@
 import SwiftUI
 
 extension View {
-    func quickPeekScaling(anchor: UnitPoint = .topLeading, max: Double = 1.2) -> some View {
+    func quickPeekScaling(scaling: Bool, anchor: UnitPoint = .topLeading, max: Double = 1.2) -> some View {
         self
-            .scaleEffect(NotchNook.shared.quickPeeks == nil ? 1 : max, anchor: anchor)
+            .scaleEffect(!scaling ? 1 : max, anchor: anchor)
     }
 }

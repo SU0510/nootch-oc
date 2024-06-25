@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+extension Color {
+    static let hitBox = Color.black.opacity(0.001)
+}
+
 
 extension NSColor {
         convenience init(hex: String) {

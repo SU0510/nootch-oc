@@ -10,12 +10,11 @@ import SwiftUI
 
 extension NotchView {
     func openNotch(in newMode: NotchNook.NotchMode = .nook) {
-        hideTimer?.invalidate()
         withAnimation(Self.animation) {
             hovering = true
             cancelPan = true
-            if hide { hide = false } else {
-                NotchNook.shared.mode[screenID] = newMode
+            if notchNook.hidden { notchNook.hidden = false } else {
+                notchNook.mode = newMode
             }
         } completion: {
             cancelPan = false

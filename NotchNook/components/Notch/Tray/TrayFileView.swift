@@ -18,6 +18,7 @@ struct TrayFileView: View, Equatable {
     var preview: Bool = false
     
     @State private var hovering = false
+    @Environment(\.tray) private var tray
     
     var body: some View {
         VStack(spacing: 2) {
@@ -43,11 +44,11 @@ struct TrayFileView: View, Equatable {
         .background {
             if !preview {
                 FileDraggableView(onSelect: {
-                    Tray.shared.selectFile(file)
+                    tray.selectFile(file)
                 }, onDropCompleted: { success in
                     if !success { return }
-                    Tray.shared.selectedFiles.forEach { $0.remove() }
-                }, selectedURLs: Tray.shared.selectedFiles.map { $0.url }) {
+                    tray.selectedFiles.forEach { tray.removeFile($0) }
+                }, selectedURLs: tray.selectedFiles.map { $0.url }) {
                     TrayFileDragPreviewView(draggedFile: file)
                 }
             }
@@ -56,7 +57,7 @@ struct TrayFileView: View, Equatable {
         .overlay(alignment: .topTrailing) {
             if hovering {
                 Button {
-                    file.remove()
+                    tray.removeFile(file)
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))

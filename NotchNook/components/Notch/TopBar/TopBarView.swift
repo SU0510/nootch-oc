@@ -21,6 +21,7 @@ struct TopBarView: View {
     @Environment(\.trialOver) private var trialOver
     @Environment(\.screenSize) private var screenSize
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.notchNook) private var notchNook
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
@@ -29,8 +30,8 @@ struct TopBarView: View {
     var body: some View {
         // If notch height is bigger than 2/3 of minHeight, use it
         let height = notchSize.height > (TopBarView.minHeight * 0.66) ? notchSize.height : TopBarView.minHeight
-        let mode = NotchNook.shared.mode[screenID]!
-        let liveActvs = NotchNook.shared.activeLiveActivities
+        let mode = notchNook.mode
+        let liveActvs = LiveActivitiesManager.shared.activeLiveActivities
         
         VStack(spacing: 0) {
             HStack(spacing: 0) {
@@ -113,7 +114,7 @@ struct TopBarView: View {
             .fixedSize(horizontal: false, vertical: true)
             .zIndex(1)
         }
-        if let quickPeeks = NotchNook.shared.quickPeeks {
+        if let quickPeeks = notchNook.quickPeeks {
             QuickPeeksView(quickPeeks: quickPeeks)
                 .id(quickPeeks)
                 .transition(.scaleAndBlur(anchor: .leading, blur: 15))

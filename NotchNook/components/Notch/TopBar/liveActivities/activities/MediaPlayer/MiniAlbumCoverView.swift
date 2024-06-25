@@ -15,6 +15,7 @@ struct MiniAlbumCoverView: View {
     var prefs: MediaLiveActivitySettings
     
     @Environment(\.namespace) private var ns
+    @Environment(\.notchNook) private var notchNook
     
     var quickPeeks: [NotchNook.QuickPeek]? {
         if let player = MediaPlayer.shared.app {
@@ -35,16 +36,16 @@ struct MiniAlbumCoverView: View {
                         .padding(6)
                         .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
                 }
-                .quickPeekScaling()
+                .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
                 .animation(.smooth(extraBounce: 0.15), value: [player.track.title, player.track.album, player.track.artist])
                 .onHover { hovering in
                     if laPrefs.enableQuickPeek, let quickPeeks {
-                        NotchNook.shared.quickPeeks = hovering ? quickPeeks : nil
+                        notchNook.quickPeeks = hovering ? quickPeeks : nil
                     }
                 }
                 .onChange(of: player.track.title) { old, new in
-                    if NotchNook.shared.quickPeeks != nil, let quickPeeks {
-                        NotchNook.shared.quickPeeks = quickPeeks
+                    if notchNook.quickPeeks != nil, let quickPeeks {
+                        notchNook.quickPeeks = quickPeeks
                     }
                 }
             } else {

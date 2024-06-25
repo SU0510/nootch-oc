@@ -109,6 +109,7 @@ class WindowsManager {
         let notchHeight = screen.safeAreaInsets.top
         let notchWidth = notchHeight == 0 ? 0 : NotchShape.notchWidthInInches * screen.pointsPerInch.width
         let notchSize = CGSize(width: notchWidth, height: notchHeight)
+        let notchNook = NotchNook()
         let view = NSHostingView(
             rootView:
                 NotchView()
@@ -118,6 +119,7 @@ class WindowsManager {
                 .environment(\.sparkleManager, sparkleManager)
                 .environment(\.showChangelog, showChangelogViewWindow)
                 .environment(\.notchSize, notchSize)
+                .environment(\.notchNook, notchNook)
         )
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(
@@ -147,7 +149,13 @@ class WindowsManager {
         
         let newWindowController = NSWindowController(window: newWindow)
         
-        return DisplayKit(id: id, windowController: newWindowController, screen: screen, notchSize: notchSize)
+        return DisplayKit(
+            id: id,
+            windowController: newWindowController,
+            screen: screen,
+            notchSize: notchSize,
+            notchNook: notchNook
+        )
     }
     
     struct DisplayKit {
@@ -155,5 +163,6 @@ class WindowsManager {
         var windowController: NSWindowController
         var screen: NSScreen
         var notchSize: CGSize
+        var notchNook: NotchNook
     }
 }

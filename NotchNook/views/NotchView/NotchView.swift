@@ -31,8 +31,6 @@ struct NotchView: View {
     @State internal var targetsCoords = [String:CGRect]()
     @State internal var panRawPadding: EdgeInsets = .zero
     @State internal var scaleDown: Double = 0
-    @State internal var hide = false
-    @State internal var hideTimer: Timer?
     @State internal var panGestureCounter = 0
     @State internal var trialOver = false
     @State internal var showIntro = false
@@ -45,6 +43,8 @@ struct NotchView: View {
     @Environment(\.openSettings) internal var openSettings
     @Environment(\.sparkleManager) internal var sparkleManager
     @Environment(\.showChangelog) internal var showChangelog
+    @Environment(\.notchNook) internal var notchNook
+    @Environment(\.tray) internal var tray
     @Default(.lastBuildNumber) internal var lastBuildNumber
     @Default(.intro) internal var intro
     @Default(.license) internal var license
@@ -56,8 +56,6 @@ struct NotchView: View {
     var body: some View {
         let actualScale = (hovering && !pressing && (mode == .closed) ? NotchView.hoverScale : 1) - scaleDown
         let disableNotchNook = notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
-        let showingLiveActv = NotchNook.shared.activeLiveActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
-        let shouldRender = fineTuningNotchWidth || (intro && showIntro) || !showingLiveActv.isEmpty || generalSettings.demoMode || notchSize.height == 0 || hovering || animatingBack
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if !disableNotchNook {
@@ -70,7 +68,7 @@ struct NotchView: View {
                             panGestureCounter: panGestureCounter,
                             scale: actualScale,
                             panPadding: panPadding,
-                            hide: hide
+                            hide: notchNook.hidden
                         )
                     }
                     
@@ -94,7 +92,6 @@ struct NotchView: View {
                 FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
             }
         }
-        .compositingGroup()
         .blur(radius: scaleDown * 100)
         .fixedSize(horizontal: true, vertical: false)
         .frame(
@@ -103,10 +100,10 @@ struct NotchView: View {
         )
         .padding((mode == .closed ? panPadding : .zero) + standardPadding)
         .coordinateSpace(name: "drop-zone")
-        .mask(alignment: .top) { shapeView(shadow: false, transparentHandle: false) }
+        .mask(alignment: .top) { notchShapeView(shadow: false, transparentHandle: false) }
         .background {
             NotchGesturer(
-                hidden: hide,
+                hidden: notchNook.hidden,
                 panPadding: panPadding,
                 scaleDown: $scaleDown,
                 cancelPan: $cancelPan,
@@ -119,20 +116,23 @@ struct NotchView: View {
             )
         }
         .contentShape(NotchShape(notchSize: notchSize))
-        .background {
-            let showFileDropView = mode == .closed || mode == .dragging
-            if showFileDropView {
-                FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)
+        .background(alignment: .top) {
+            ZStack {
+                Color.hitBox
+                
+                let showFileDropView = mode == .closed || mode == .dragging
+                if showFileDropView {
+                    FileDropView(dropEntered: dropEntered, dropUpdated: dropUpdated, performDrop: performDrop, dropExited: dropExited)
+                }
+                
+                notchShapeView()
             }
         }
-        .background(alignment: .top) { shapeView() }
         .offset(x: (-panPadding.leading + panPadding.trailing) / 3)
         .allowsHitTesting(!disableNotchNook)
         .animation(.smooth, value: disableNotchNook)
         .animation(.smooth(extraBounce: 0.15), value: liveActivitiesSettings)
         .animation(.smooth(extraBounce: 0.15), value: intro)
-        .animation(.linear(duration: 0.001).delay(shouldRender ? 0 : 0.6)) { $0.opacity(shouldRender ? 1 : 0) }
-        .compositingGroup()
         .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }
         .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: onLongPress)
         .onHover(perform: onHover)
@@ -141,7 +141,6 @@ struct NotchView: View {
             Button("Quit NotchNook") { NSApp.terminate(nil) }
         }
         .frame(width: screenSize.width, height: 215, alignment: .top)
-        .fixedSize()
         .onAppear {
             checkForUpdates()
             resetTrialAndHandleChangelog()

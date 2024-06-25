@@ -12,7 +12,7 @@ extension NotchView {
     func performDrop(info: NSDraggingInfo) -> Bool {
         if trialOver { return false }
         let isTray = hoveredDropTargetID == TrayView.id
-        var cb: (([URL]) -> ()) = Tray.shared.addFilesFromURLs
+        var cb: (([URL]) -> ()) = tray.addFilesFromURLs
         let dropAction = allDropActions.first(where: { $0.id == hoveredDropTargetID })
         var hasFiles = false
         let loadItemGroup = DispatchGroup()

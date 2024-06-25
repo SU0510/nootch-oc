@@ -49,7 +49,23 @@ private struct NotchSizeKey: EnvironmentKey {
     static var defaultValue: CGSize = .init(width: 184, height: 32)
 }
 
+private struct TrayKey: EnvironmentKey {
+    static var defaultValue = Tray()
+}
+
+private struct NotchNookKey: EnvironmentKey {
+    static var defaultValue = NotchNook()
+}
+
 extension EnvironmentValues {
+    var notchNook: NotchNook {
+        get { self[NotchNookKey.self] }
+        set { self[NotchNookKey.self] = newValue }
+    }
+    var tray: Tray {
+        get { self[TrayKey.self] }
+        set { self[TrayKey.self] = newValue }
+    }
     var notchSize: CGSize {
         get { self[NotchSizeKey.self] }
         set { self[NotchSizeKey.self] = newValue }

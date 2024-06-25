@@ -32,13 +32,18 @@
 		3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */; };
 		3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* FineTuningView.swift */; };
 		3A3ABCDA2C2A609300132228 /* onPressingChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCD92C2A609300132228 /* onPressingChanged.swift */; };
+		3A3ABCDC2C2A81FC00132228 /* LiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDB2C2A81FC00132228 /* LiveActivitiesManager.swift */; };
+		3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */; };
+		3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */; };
+		3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCE12C2A9CF700132228 /* dropUpdated.swift */; };
+		3A3ABCE42C2A9CFE00132228 /* dropExited.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCE32C2A9CFE00132228 /* dropExited.swift */; };
+		3A3ABCE62C2AA19B00132228 /* shouldRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCE52C2AA19B00132228 /* shouldRender.swift */; };
 		3A3F59E82C2A582600906FFA /* checkForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59E72C2A582600906FFA /* checkForUpdates.swift */; };
 		3A3F59EA2C2A587700906FFA /* insertUpdateLAIfOldVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59E92C2A587700906FFA /* insertUpdateLAIfOldVersion.swift */; };
 		3A3F59EC2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59EB2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift */; };
 		3A3F59EE2C2A58CC00906FFA /* fetchEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59ED2C2A58CC00906FFA /* fetchEvents.swift */; };
 		3A3F59F12C2A592700906FFA /* onHover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F02C2A592700906FFA /* onHover.swift */; };
 		3A3F59F42C2A5B4C00906FFA /* performDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F32C2A5B4C00906FFA /* performDrop.swift */; };
-		3A3F59F62C2A5B6D00906FFA /* others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F52C2A5B6D00906FFA /* others.swift */; };
 		3A3F59F82C2A5BB900906FFA /* hideNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F72C2A5BB900906FFA /* hideNotch.swift */; };
 		3A3F59FA2C2A5BDE00906FFA /* changeTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F92C2A5BDE00906FFA /* changeTrack.swift */; };
 		3A3F59FC2C2A5BEA00906FFA /* closeNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FB2C2A5BEA00906FFA /* closeNotch.swift */; };
@@ -284,13 +289,18 @@
 		3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppProtocol.swift; sourceTree = "<group>"; };
 		3A357F112C294FD20076DB37 /* FineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineTuningView.swift; sourceTree = "<group>"; };
 		3A3ABCD92C2A609300132228 /* onPressingChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onPressingChanged.swift; sourceTree = "<group>"; };
+		3A3ABCDB2C2A81FC00132228 /* LiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesManager.swift; sourceTree = "<group>"; };
+		3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropEntered.swift; sourceTree = "<group>"; };
+		3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finishDragging.swift; sourceTree = "<group>"; };
+		3A3ABCE12C2A9CF700132228 /* dropUpdated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropUpdated.swift; sourceTree = "<group>"; };
+		3A3ABCE32C2A9CFE00132228 /* dropExited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropExited.swift; sourceTree = "<group>"; };
+		3A3ABCE52C2AA19B00132228 /* shouldRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shouldRender.swift; sourceTree = "<group>"; };
 		3A3F59E72C2A582600906FFA /* checkForUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkForUpdates.swift; sourceTree = "<group>"; };
 		3A3F59E92C2A587700906FFA /* insertUpdateLAIfOldVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insertUpdateLAIfOldVersion.swift; sourceTree = "<group>"; };
 		3A3F59EB2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetTrialAndHandleChangelog.swift; sourceTree = "<group>"; };
 		3A3F59ED2C2A58CC00906FFA /* fetchEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchEvents.swift; sourceTree = "<group>"; };
 		3A3F59F02C2A592700906FFA /* onHover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onHover.swift; sourceTree = "<group>"; };
 		3A3F59F32C2A5B4C00906FFA /* performDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = performDrop.swift; sourceTree = "<group>"; };
-		3A3F59F52C2A5B6D00906FFA /* others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = others.swift; sourceTree = "<group>"; };
 		3A3F59F72C2A5BB900906FFA /* hideNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hideNotch.swift; sourceTree = "<group>"; };
 		3A3F59F92C2A5BDE00906FFA /* changeTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changeTrack.swift; sourceTree = "<group>"; };
 		3A3F59FB2C2A5BEA00906FFA /* closeNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closeNotch.swift; sourceTree = "<group>"; };
@@ -639,7 +649,10 @@
 			isa = PBXGroup;
 			children = (
 				3A3F59F32C2A5B4C00906FFA /* performDrop.swift */,
-				3A3F59F52C2A5B6D00906FFA /* others.swift */,
+				3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */,
+				3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */,
+				3A3ABCE12C2A9CF700132228 /* dropUpdated.swift */,
+				3A3ABCE32C2A9CFE00132228 /* dropExited.swift */,
 			);
 			name = fileDropping;
 			sourceTree = "<group>";
@@ -651,6 +664,7 @@
 				3A3F5A062C2A5CA700906FFA /* panPadding.swift */,
 				3A3F5A082C2A5E6E00906FFA /* mode.swift */,
 				3A3F5A0A2C2A5E8300906FFA /* hoveredDropTargetID.swift */,
+				3A3ABCE52C2AA19B00132228 /* shouldRender.swift */,
 			);
 			path = computedVariables;
 			sourceTree = "<group>";
@@ -872,13 +886,13 @@
 			isa = PBXGroup;
 			children = (
 				EC47FC792C0A80E000591811 /* LicenseManager.swift */,
-				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
 				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
 				EC2DD1E12C02B3BD001FD54E /* VolumeMonitor.swift */,
 				ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */,
 				EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */,
 				EC8D601B2BFC2A3200E67ECC /* MediaPlayer.swift */,
+				3A3ABCDB2C2A81FC00132228 /* LiveActivitiesManager.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -1102,6 +1116,7 @@
 				EC4173CC2C0191A8002889E7 /* media */,
 				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
 				EC8D5FBC2BF9743200E67ECC /* Tray.swift */,
+				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC8D5FBE2BF9744800E67ECC /* TrayFile.swift */,
 				EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */,
 				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
@@ -1435,10 +1450,12 @@
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
 				EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
+				3A3ABCE62C2AA19B00132228 /* shouldRender.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
 				3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */,
 				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
+				3A3ABCDC2C2A81FC00132228 /* LiveActivitiesManager.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
@@ -1483,6 +1500,7 @@
 				3A3F59EE2C2A58CC00906FFA /* fetchEvents.swift in Sources */,
 				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
+				3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
 				EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */,
@@ -1525,6 +1543,7 @@
 				ECB9D6A72C0CCBC0009C8CE4 /* GesturesSettingsView.swift in Sources */,
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
+				3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */,
@@ -1553,6 +1572,7 @@
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
 				3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */,
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
+				3A3ABCE42C2A9CFE00132228 /* dropExited.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
 				EC2DD1F22C03DBC9001FD54E /* TrayFilesGridPreviewView.swift in Sources */,
@@ -1603,6 +1623,7 @@
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
 				EC7A0FF62C0FFBA70063E78E /* NMDatePicker.swift in Sources */,
+				3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
@@ -1634,7 +1655,6 @@
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
 				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
-				3A3F59F62C2A5B6D00906FFA /* others.swift in Sources */,
 				EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */,
 				EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */,
 				EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */,
