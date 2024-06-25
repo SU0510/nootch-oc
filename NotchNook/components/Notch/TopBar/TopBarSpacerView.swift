@@ -15,7 +15,6 @@ struct TopBarSpacerView: View {
     var body: some View {
         Color.clear
             .frame(width: notchSize.width == 0 ? generalSettings.handleSize.width : notchSize.width, height: height)
-            .frame(notchSize)
             .transition(.identity)
     }
 }

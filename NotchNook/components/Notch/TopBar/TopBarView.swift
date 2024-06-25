@@ -93,9 +93,7 @@ struct TopBarView: View {
                     .scaleEffect(scale, anchor: .trailing)
                     .transition(.scaleAndBlur(anchor: .trailing))
                     
-                    Spacer()
-                        .frame(width: notchSize.width)
-                        .transition(.identity)
+                    TopBarSpacerView(height: height)
                     
                     Group {
                         switch mode {
