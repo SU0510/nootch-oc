@@ -75,35 +75,3 @@ class Tray {
     
     private func handleKeyEvent(event: NSEvent) { pressedKeysEvent = event }
 }
-
-extension Tray {
-    func setupTemporaryDirectory() {
-        tempDirectory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
-        guard let tempDirectory else { return }
-        try? FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true, attributes: nil)
-        
-        folderMonitor = FolderMonitor(path: tempDirectory.path) {
-            self.updateFilesFromTemporaryDirectory()
-        }
-        folderMonitor?.start()
-    }
-
-    private func updateFilesFromTemporaryDirectory() {
-        guard let tempDirectory else { return }
-        DispatchQueue.main.async {
-            do {
-                let fileURLs = try FileManager.default.contentsOfDirectory(at: tempDirectory, includingPropertiesForKeys: nil)
-                self.files = Set(fileURLs.map { TrayFile(url: $0) })
-            } catch {
-                print("Error updating files from temporary directory: \(error)")
-            }
-        }
-    }
-    
-    func addFileFromData(_ data: Data, filename: String) {
-        let destinationURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
-        FileManager.default.createFile(atPath: destinationURL.path, contents: data, attributes: nil)
-        let newFile = TrayFile(url: destinationURL)
-        addFile(newFile)
-    }
-}
