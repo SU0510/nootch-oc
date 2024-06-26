@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftDate
 
 extension NotchView {
     func checkTrialOver() {

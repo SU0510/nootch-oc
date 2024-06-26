@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import SwiftDate
 
 struct StartButton: View {
     @Default(.intro) private var intro

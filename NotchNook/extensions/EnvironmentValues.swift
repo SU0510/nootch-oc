@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftDate
 
 private struct OpenSettingsKey: EnvironmentKey {
     typealias Value = ((_ pane: SettingsLib.PaneIdentifier?) -> ())

@@ -7,6 +7,7 @@
 
 import Foundation
 import Defaults
+import SwiftDate
 
 func isTrialOver(startTime: Double? = Defaults[.trialInitialTime]) -> Bool {
     if let startTime {

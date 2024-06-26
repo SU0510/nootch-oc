@@ -8,6 +8,7 @@
 import SwiftUI
 import AppKit
 import EventKit
+import SwiftDate
 
 struct CalendarView: NSViewRepresentable {
     var size: CGSize

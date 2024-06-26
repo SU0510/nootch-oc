@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import SwiftDate
 
 @objc public protocol NMDatePickerDelegate {
     /// This method notifies about the date selected in the date picker. (Required)

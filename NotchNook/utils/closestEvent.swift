@@ -7,6 +7,7 @@
 
 import Foundation
 import EventKit
+import SwiftDate
 
 func closestEvent(in events: [EKEvent]) -> EKEvent? {
     if events.isEmpty { return nil }
