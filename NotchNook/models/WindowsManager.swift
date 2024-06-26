@@ -120,6 +120,7 @@ class WindowsManager {
                 .environment(\.showChangelog, showChangelogViewWindow)
                 .environment(\.notchSize, notchSize)
                 .environment(\.notchNook, notchNook)
+                .modelContainer(for: Note.self)
         )
         let size = view.intrinsicContentSize
         let newWindow = NSWindow(

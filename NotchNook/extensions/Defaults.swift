@@ -17,16 +17,24 @@ extension Defaults.Keys {
     
     static let intro = Key<Bool>("intro", default: true)
     
+    // General settings
+    static let generalSettings = Key<GeneralSettings>("generalSettings", default: .init())
+    static let gestureControlSettings = Key<GestureControlSettings>("gestureControlSettings", default: .init())
+    static let liveActivitiesSettings = Key<LiveActivitiesSettings>("liveActivitiesSettings", default: .init())
+    static let nookSettings = Key<NookSettings>("nookSettings", default: .init())
+    static let traySettings = Key<TraySettings>("traySettings", default: .init())
+    static let dropAreaSettings = Key<DropAreaSettings>("dropAreaSettings", default: .init())
+    
+    // Live activities settings
     static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
     static let calendarLiveActivitySettings = Key<CalendarLiveActivitySettings>("calendarLiveActivitySettings", default: .init())
-    static let liveActivitiesSettings = Key<LiveActivitiesSettings>("liveActivitiesSettings", default: .init())
-    static let generalSettings = Key<GeneralSettings>("generalSettings", default: .init())
+    
+    // Widgets settings
     static let mediaWidgetSettings = Key<MediaWidgetSettings>("mediaWidgetSettings", default: .init())
     static let shortcutsWidgetSettings = Key<ShortcutsWidgetSettings>("shortcutsWidgetSettings", default: .init())
     static let mirrorWidgetSettings = Key<MirrorWidgetSettings>("mirrorWidgetSettings", default: .init())
     static let calendarWidgetSettings = Key<CalendarWidgetSettings>("calendarWidgetSettings", default: .init())
-    static let gestureControlSettings = Key<GestureControlSettings>("gestureControlSettings", default: .init())
-    static let nookSettings = Key<NookSettings>("nookSettings", default: .init())
-    static let traySettings = Key<TraySettings>("traySettings", default: .init())
-    static let dropAreaSettings = Key<DropAreaSettings>("dropAreaSettings", default: .init())
+    static let notesWidgetSettigs = Key<NotesWidgetSettings>("notesWidgetSettigs", default: .init())
+    static let todoListWidgetSettigs = Key<TodoListWidgetSettings>("todoListWidgetSettigs", default: .init())
+    static let quickAppsWidgetSettings = Key<QuickAppsWidgetSettings>("quickAppsWidgetSettings", default: .init())
 }
