@@ -10,13 +10,13 @@ import SwiftData
 
 @Model
 final class Note {
-    var note: String = ""
+    var text: String
     var createdAt: Date
     var updatedAt: Date
     
-    init(timestamp: Date) {
-        let now = Date()
-        self.createdAt = now
-        self.updatedAt = now
+    init(text: String = "", createdAt: Date = Date(), updatedAt: Date = Date()) {
+        self.text = text
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 }

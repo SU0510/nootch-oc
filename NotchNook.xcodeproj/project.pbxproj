@@ -82,6 +82,11 @@
 		3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */; };
 		3AD5CADB2C14FE260090A9D1 /* vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CADA2C14FE260090A9D1 /* vibrate.swift */; };
 		3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD813BD2C28CB4300BB637C /* resetTrial.swift */; };
+		3AE405402C2BCC0F00E8D927 /* NotesWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */; };
+		3AE405452C2BD02600E8D927 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405442C2BD02600E8D927 /* NoteView.swift */; };
+		3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */; };
+		3AE4054D2C2CF3A900E8D927 /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AE4054C2C2CF3A900E8D927 /* RichTextKit */; };
+		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
@@ -193,10 +198,6 @@
 		EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */; };
 		EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EC7A0FAC2C0FE7800063E78E /* Algorithms */; };
 		EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = EC7A0FAF2C0FE8F10063E78E /* SwiftDate */; };
-		EC7A0FB22C0FF2E90063E78E /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */; };
-		EC7A0FF52C0FFBA70063E78E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC7A0FB62C0FFBA60063E78E /* Info.plist */; };
-		EC7A0FF62C0FFBA70063E78E /* NMDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FB82C0FFBA60063E78E /* NMDatePicker.swift */; };
-		EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FB92C0FFBA60063E78E /* NMDatePickerDayView.swift */; };
 		EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */; };
 		EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */; };
 		EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */; };
@@ -341,6 +342,10 @@
 		3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3AD5CADA2C14FE260090A9D1 /* vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vibrate.swift; sourceTree = "<group>"; };
 		3AD813BD2C28CB4300BB637C /* resetTrial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetTrial.swift; sourceTree = "<group>"; };
+		3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWidgetView.swift; sourceTree = "<group>"; };
+		3AE405442C2BD02600E8D927 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWidgetSettingsView.swift; sourceTree = "<group>"; };
+		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
@@ -448,11 +453,6 @@
 		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettings.swift; sourceTree = "<group>"; };
 		EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
-		EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		EC7A0FB62C0FFBA60063E78E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC7A0FB72C0FFBA60063E78E /* NMDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMDatePicker.h; sourceTree = "<group>"; };
-		EC7A0FB82C0FFBA60063E78E /* NMDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMDatePicker.swift; sourceTree = "<group>"; };
-		EC7A0FB92C0FFBA60063E78E /* NMDatePickerDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMDatePickerDayView.swift; sourceTree = "<group>"; };
 		EC81E25E2C06998600790517 /* ShortcutsWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetSettingsView.swift; sourceTree = "<group>"; };
 		EC81E2602C069B3600790517 /* MultipleSettingsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSettingsPicker.swift; sourceTree = "<group>"; };
 		EC81E2642C069DCD00790517 /* IconLabeledProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabeledProtocol.swift; sourceTree = "<group>"; };
@@ -536,6 +536,7 @@
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
+				3AE4054D2C2CF3A900E8D927 /* RichTextKit in Frameworks */,
 				3A801E142C15781F0076560D /* SwiftJWT in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,6 +620,8 @@
 		3A3F59E42C2A568E00906FFA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
+				3AE405442C2BD02600E8D927 /* NoteView.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				EC81E2682C06A6C500790517 /* MediaWidgetSettingsView.swift */,
 				EC81E26A2C06A6D400790517 /* MirrorWidgetSettingsView.swift */,
 				3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */,
+				3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */,
 			);
 			path = perWidgetSettings;
 			sourceTree = "<group>";
@@ -888,6 +892,7 @@
 				3A3F59E52C2A578D00906FFA /* NotchView */,
 				3A0816CA2C24E7A2008092F0 /* Changelog */,
 				EC4173D82C025589002889E7 /* Settings */,
+				3AE4054E2C2CF75600E8D927 /* RootView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1011,7 +1016,6 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				EC7A0FBA2C0FFBA60063E78E /* NMDatePicker */,
 				EC47FCA52C0BA33900591811 /* intro */,
 				EC8D600D2BFC127600E67ECC /* buttonStyles */,
 				EC8D5FF32BFAE75400E67ECC /* notch */,
@@ -1034,7 +1038,6 @@
 				EC47FC922C0B810800591811 /* Lottie.swift */,
 				EC47FCB82C0BD5A000591811 /* LoCafeLogoView.swift */,
 				EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */,
-				EC7A0FB12C0FF2E90063E78E /* CalendarView.swift */,
 				3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */,
 				3A0816B72C23AAC8008092F0 /* FileDropView.swift */,
 				3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */,
@@ -1163,17 +1166,6 @@
 				3A801E002C151EAC0076560D /* CalendarWidgetView.swift */,
 			);
 			path = CalendarWidget;
-			sourceTree = "<group>";
-		};
-		EC7A0FBA2C0FFBA60063E78E /* NMDatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				EC7A0FB62C0FFBA60063E78E /* Info.plist */,
-				EC7A0FB72C0FFBA60063E78E /* NMDatePicker.h */,
-				EC7A0FB82C0FFBA60063E78E /* NMDatePicker.swift */,
-				EC7A0FB92C0FFBA60063E78E /* NMDatePickerDayView.swift */,
-			);
-			path = NMDatePicker;
 			sourceTree = "<group>";
 		};
 		EC81E2622C069D1600790517 /* enums */ = {
@@ -1380,6 +1372,7 @@
 				EC7A0FAF2C0FE8F10063E78E /* SwiftDate */,
 				3A801E0A2C154EA30076560D /* SmoothGradient */,
 				3A801E132C15781F0076560D /* SwiftJWT */,
+				3AE4054C2C2CF3A900E8D927 /* RichTextKit */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1420,6 +1413,7 @@
 				EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */,
 				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
+				3AE4054B2C2CF3A900E8D927 /* XCRemoteSwiftPackageReference "RichTextKit" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1439,7 +1433,6 @@
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
 				3AC36D822C2530F40000F995 /* calendar.mov in Resources */,
 				3AC36D862C2543DC0000F995 /* calendarLA.mov in Resources */,
-				EC7A0FF52C0FFBA70063E78E /* Info.plist in Resources */,
 				3AC36D852C2543DC0000F995 /* quickPeek.mov in Resources */,
 				3A0816C32C24C201008092F0 /* update.lottie in Resources */,
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
@@ -1463,12 +1456,12 @@
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */,
 				3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */,
+				3AE405402C2BCC0F00E8D927 /* NotesWidgetView.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */,
 				3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
-				EC7A0FF72C0FFBA70063E78E /* NMDatePickerDayView.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				3A3ABCE62C2AA19B00132228 /* shouldRender.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
@@ -1479,6 +1472,7 @@
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
+				3AE405452C2BD02600E8D927 /* NoteView.swift in Sources */,
 				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
@@ -1489,13 +1483,13 @@
 				3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
 				3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */,
-				EC7A0FB22C0FF2E90063E78E /* CalendarView.swift in Sources */,
 				3A3F5A0B2C2A5E8300906FFA /* hoveredDropTargetID.swift in Sources */,
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
 				EC47FCC52C0BF61900591811 /* CheckForUpdatesViewModel.swift in Sources */,
+				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* TrayFileDragPreviewView.swift in Sources */,
@@ -1628,6 +1622,7 @@
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
 				EC47FCC92C0C067600591811 /* DropAreaGeneralSettingsTabView.swift in Sources */,
 				EC8D601C2BFC2A3200E67ECC /* MediaPlayer.swift in Sources */,
+				3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */,
 				3A3F59FE2C2A5BF100906FFA /* openNotch.swift in Sources */,
 				EC0E311C2C0578C40060B47E /* ReorderWidgetsView.swift in Sources */,
 				EC2DD1F02C03DB15001FD54E /* TrayFilesScrollView.swift in Sources */,
@@ -1646,7 +1641,6 @@
 				EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */,
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
-				EC7A0FF62C0FFBA70063E78E /* NMDatePicker.swift in Sources */,
 				3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
@@ -1939,6 +1933,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		3AE4054B2C2CF3A900E8D927 /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/RichTextKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -2007,6 +2009,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */;
 			productName = SwiftJWT;
+		};
+		3AE4054C2C2CF3A900E8D927 /* RichTextKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AE4054B2C2CF3A900E8D927 /* XCRemoteSwiftPackageReference "RichTextKit" */;
+			productName = RichTextKit;
 		};
 		BB2A5E542C006B63008F3081 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

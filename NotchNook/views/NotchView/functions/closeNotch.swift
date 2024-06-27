@@ -10,6 +10,8 @@ import SwiftUI
 
 extension NotchView {
     func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
+        canBecomeKey.wrappedValue = false
+        refocusStoredWindow()
         withAnimation(.smooth(duration: 0.4)) {
             self.cancelPan = true
             if unhover {  self.hovering = false }

@@ -13,6 +13,9 @@ struct NookView: View {
     @Default(.mediaWidgetSettings) private var mediaWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
+    @Default(.notesWidgetSettigs) private var notesWidgetSettigs
+    @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
+    @Default(.todoListWidgetSettigs) private var todoListWidgetSettigs
     var body: some View {
         let widgets = nookSettings.enabledWidgets
         HStack(alignment: .center, spacing: 0) {
@@ -20,15 +23,17 @@ struct NookView: View {
                 let arrPos = ArrayPosition(total: widgets.count, i: i)
                 Group {
                     switch widget {
-                    case .media:
-                        MediaPlayerWidgetView(arrayPosition: arrPos)
-                    case .shortcuts:
-                        ShortcutsWidgetView(prefs: shortcutsWidgetSettings, arrayPosition: ArrayPosition(total: widgets.count, i: i))
-                    case .mirror:
-                        MirrorWidgetView(arrayPosition: arrPos)
-                    case .calendar:
-                        CalendarWidgetView()
-                    default: EmptyView()
+                        case .media:
+                            MediaPlayerWidgetView(arrayPosition: arrPos)
+                        case .shortcuts:
+                            ShortcutsWidgetView(prefs: shortcutsWidgetSettings, arrayPosition: ArrayPosition(total: widgets.count, i: i))
+                        case .mirror:
+                            MirrorWidgetView(arrayPosition: arrPos)
+                        case .calendar:
+                            CalendarWidgetView()
+                        case .notes: 
+                            NotesWidgetView(prefs: notesWidgetSettigs)
+                        default: EmptyView()
                     }
                 }
                 .widgetDefaultProps(arrPos: arrPos, pref: widget.prefs, disableDivider: !nookSettings.showDividers)

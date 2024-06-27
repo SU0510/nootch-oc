@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TopBarTabsView: View {
     var totalWidth: NookGrid.Point
-    @Environment(\.screenID) private var screenID
     @Environment(\.notchNook) private var notchNook
     
     var body: some View {

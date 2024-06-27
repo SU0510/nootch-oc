@@ -17,9 +17,7 @@ struct TopBarView: View {
     var panPadding: EdgeInsets
     var hide: Bool
     @Environment(\.notchSize) private var notchSize
-    @Environment(\.screenID) private var screenID
     @Environment(\.trialOver) private var trialOver
-    @Environment(\.screenSize) private var screenSize
     @Environment(\.openSettings) private var openSettings
     @Environment(\.notchNook) private var notchNook
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings

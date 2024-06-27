@@ -13,11 +13,6 @@ private struct OpenSettingsKey: EnvironmentKey {
     static let defaultValue: Self.Value = { _ in }
 }
 
-private struct ScreenIDKey: EnvironmentKey {
-    typealias Value = UUID
-    static let defaultValue = UUID()
-}
-
 private struct NamespaceKey: EnvironmentKey {
     static var defaultValue: Namespace.ID = Namespace().wrappedValue
 }
@@ -58,7 +53,43 @@ private struct NotchNookKey: EnvironmentKey {
     static var defaultValue = NotchNook()
 }
 
+private struct CanBecomeKeyBindingKey: EnvironmentKey {
+    static var defaultValue: Binding<Bool> = .init {
+        false
+    } set: { _ in
+        
+    }
+}
+
+private struct CaptureFocusedWindowKey: EnvironmentKey {
+    static var defaultValue: () -> () = {}
+}
+
+private struct RefocusStoredWindowKey: EnvironmentKey {
+    static var defaultValue: () -> () = {}
+}
+
+private struct MakeKeyWindowKey: EnvironmentKey {
+    static var defaultValue: () -> () = {}
+}
+
 extension EnvironmentValues {
+    var makeKeyWindow: () -> () {
+        get { self[MakeKeyWindowKey.self] }
+        set { self[MakeKeyWindowKey.self] = newValue }
+    }
+    var captureFocusedWindow: () -> () {
+        get { self[CaptureFocusedWindowKey.self] }
+        set { self[CaptureFocusedWindowKey.self] = newValue }
+    }
+    var refocusStoredWindow: () -> () {
+        get { self[RefocusStoredWindowKey.self] }
+        set { self[RefocusStoredWindowKey.self] = newValue }
+    }
+    var canBecomeKey: Binding<Bool> {
+        get { self[CanBecomeKeyBindingKey.self] }
+        set { self[CanBecomeKeyBindingKey.self] = newValue }
+    }
     var notchNook: NotchNook {
         get { self[NotchNookKey.self] }
         set { self[NotchNookKey.self] = newValue }
@@ -102,9 +133,5 @@ extension EnvironmentValues {
     var openSettings: ((_ pane: SettingsLib.PaneIdentifier?) -> ()) {
         get { self[OpenSettingsKey.self] }
         set { self[OpenSettingsKey.self] = newValue }
-    }
-    var screenID: UUID {
-        get { self[ScreenIDKey.self] }
-        set { self[ScreenIDKey.self] = newValue }
     }
 }

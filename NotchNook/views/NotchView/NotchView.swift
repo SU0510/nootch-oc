@@ -39,12 +39,15 @@ struct NotchView: View {
     @Namespace internal var ns
     @Environment(\.notchSize) internal var notchSize
     @Environment(\.screenSize) internal var screenSize
-    @Environment(\.screenID) internal var screenID
     @Environment(\.openSettings) internal var openSettings
     @Environment(\.sparkleManager) internal var sparkleManager
     @Environment(\.showChangelog) internal var showChangelog
     @Environment(\.notchNook) internal var notchNook
     @Environment(\.tray) internal var tray
+    @Environment(\.canBecomeKey) internal var canBecomeKey
+    @Environment(\.makeKeyWindow) internal var makeKeyWindow
+    @Environment(\.captureFocusedWindow) internal var captureFocusedWindow
+    @Environment(\.refocusStoredWindow) internal var refocusStoredWindow
     @Default(.lastBuildNumber) internal var lastBuildNumber
     @Default(.intro) internal var intro
     @Default(.license) internal var license

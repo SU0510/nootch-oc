@@ -15,6 +15,9 @@ struct ReorderWidgetsView: View {
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
     @Default(.calendarWidgetSettings) private var calendarWidgetSettings
+    @Default(.notesWidgetSettigs) private var notesWidgetSettigs
+    @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
+    @Default(.todoListWidgetSettigs) private var todoListWidgetSettigs
     @Default(.nookSettings) private var nookSettings
     private let spacing: CGFloat = 8
     

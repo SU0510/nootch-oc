@@ -13,6 +13,9 @@ struct WidgetsSettingsTabView: View {
     @Default(.mediaWidgetSettings) private var mediaWidgetSettings
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
+    @Default(.notesWidgetSettigs) private var notesWidgetSettigs
+    @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
+    @Default(.todoListWidgetSettigs) private var todoListWidgetSettigs
     @Default(.nookSettings) private var nookSettings
     
     var body: some View {
@@ -33,6 +36,7 @@ struct WidgetsSettingsTabView: View {
                 case .media: MediaWidgetSettingsView()
                 case .mirror: MirrorWidgetSettingsView()
                 case .calendar: CalendarWidgetSettingsView()
+                case .notes: NotesWidgetSettingsView()
                 default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }

@@ -13,6 +13,7 @@ extension NotchView {
         if license == nil || trialOver { checkTrialOver() }
         
         if hovering {
+//            captureFocusedWindow()
             if mode == .closed {
                 if !tray.files.isEmpty || generalSettings.alwaysOpenNotchOnHover {
                     openNotch(in: tray.files.isEmpty ? .nook : .tray)
