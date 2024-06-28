@@ -46,8 +46,9 @@ struct NotchView: View {
     @Environment(\.tray) internal var tray
     @Environment(\.canBecomeKey) internal var canBecomeKey
     @Environment(\.makeKeyWindow) internal var makeKeyWindow
-    @Environment(\.captureFocusedWindow) internal var captureFocusedWindow
-    @Environment(\.refocusStoredWindow) internal var refocusStoredWindow
+    @Environment(\.resignFirstResponder) internal var resignFirstResponder
+    @Environment(\.focusFrontmostWindow) internal var focusFrontmostWindow
+    @Environment(\.isEditingText) internal var isEditingText
     @Default(.lastBuildNumber) internal var lastBuildNumber
     @Default(.intro) internal var intro
     @Default(.license) internal var license
@@ -119,6 +120,18 @@ struct NotchView: View {
             )
         }
         .contentShape(NotchShape(notchSize: notchSize))
+        .overlay(alignment: .bottomLeading) {
+            if mode != .closed && mode != .dragging {
+                LockedIndicatorView(
+                    locked: notchNook.locked,
+                    toggleLock: { notchNook.locked.toggle() },
+                    typing: isEditingText
+                )
+//                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                    .scaleEffect(actualScale, anchor: .topTrailing)
+                    .blur(radius: scaleDown * 100)
+            }
+        }
         .background(alignment: .top) {
             ZStack {
                 Color.hitBox
@@ -136,7 +149,10 @@ struct NotchView: View {
         .animation(.smooth, value: disableNotchNook)
         .animation(.smooth(extraBounce: 0.15), value: liveActivitiesSettings)
         .animation(.smooth(extraBounce: 0.15), value: intro)
-        .onTapGesture { if nookSettings.enabled && mode == .closed && !showIntro { openNotch() } }
+        .onTapGesture { 
+            resignFirstResponder()
+            if nookSettings.enabled && mode == .closed && !showIntro { openNotch() }
+        }
         .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: onLongPress)
         .onHover(perform: onHover)
         .contextMenu {
@@ -158,6 +174,9 @@ struct NotchView: View {
         .onChange(of: hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
         .onChange(of: intro, initial: true) { _, new in
             doAfter(0.3) { withAnimation(NotchView.intenseAnimation) { showIntro = new } }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification)) { _ in
+            closeNotch(unhover: true)
         }
         .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
             if !fineTuningNotchWidth {

@@ -12,9 +12,10 @@ import Cocoa
 
 extension NSColor {
     var rgb: (CGFloat, CGFloat, CGFloat) {
-        let red = self.redComponent
-        let green = self.greenComponent
-        let blue = self.blueComponent
+        let nsColor = self.usingColorSpace(.genericRGB)!
+        let red = nsColor.redComponent
+        let green = nsColor.greenComponent
+        let blue = nsColor.blueComponent
         return (red, green, blue)
     }
     

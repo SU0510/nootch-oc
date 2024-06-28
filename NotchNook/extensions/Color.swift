@@ -5,6 +5,8 @@
 //  Created by Igor Marcossi on 30/05/24.
 //
 
+import Foundation
+import AppKit
 import SwiftUI
 
 extension Color {
@@ -64,4 +66,31 @@ extension Color {
   static func hex(_ h: String) -> Color {
     Color(NSColor(hex: h))
   }
+}
+
+
+
+extension NSColor {
+    var alpha: CGFloat {
+        var alpha: CGFloat = 1
+//        getRed(nil, green: nil, blue: nil, alpha: &alpha)
+        return alpha
+    }
+}
+
+extension Color {
+  var alpha: CGFloat { NSColor(self).alpha }
+
+//  var hex: String {
+//    let nsColor = NSColor(self)
+//    var red: CGFloat = 0
+//    var green: CGFloat = 0
+//    var blue: CGFloat = 0
+//    var alpha: CGFloat = 0
+//    guard nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+//      return "000000"
+//    }
+//    let rgb: Int = (Int)(red*255)<<16 | (Int)(green*255)<<8 | (Int)(blue*255)<<0
+//    return String(format: "%06x", rgb)
+//  }
 }

@@ -68,33 +68,34 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
                 
                 if contentSize != .zero {
                     HScrollAllowingScrollWheelView {
-                            HStack(alignment: .center, spacing: 4) {
-                                ForEach(Array(elements.enumerated()), id: \.element) { i, element in
-                                    MultipleSettingsPickerItemView(
-                                        element: element,
-                                        selected: selectedElement == element,
-                                        select: selectElement,
-                                        isOn: Binding.setMembershipArr(of: element, in: $activeElements),
-                                        disabled: disableItem?(element) ?? false
-                                    )
-                                    
-                                    if i < (elements.count - 1) {
-                                        VDivider(color: .primary.opacity(0.1))
-                                    }
+                        HStack(alignment: .center, spacing: 4) {
+                            ForEach(Array(elements.enumerated()), id: \.element) { i, element in
+                                MultipleSettingsPickerItemView(
+                                    element: element,
+                                    selected: selectedElement == element,
+                                    select: selectElement,
+                                    isOn: Binding.setMembershipArr(of: element, in: $activeElements),
+                                    disabled: disableItem?(element) ?? false
+                                )
+                                
+                                if i < (elements.count - 1) {
+                                    VDivider(color: .primary.opacity(0.1))
                                 }
                             }
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding(6)
                         }
-                        .frame(width: contentSize.width - 38, alignment: .top)
-                        .fadeOnEnd(axis: .horizontal, fadeLength: 128)
-                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                        .background {
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .fill(.black.opacity(0.03))
-                                .blendMode(.plusDarker)
-                        }
-                        .padding(.horizontal, 19)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(6)
+                        .padding(.trailing, 128)
+                    }
+                    .fadeOnEnd(axis: .horizontal, fadeLength: 128)
+                    .frame(width: contentSize.width - 38, alignment: .top)
+                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .background {
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .fill(.black.opacity(0.03))
+                            .blendMode(.plusDarker)
+                    }
+                    .padding(.horizontal, 19)
                 }
                 
                 settings(selectedElement)

@@ -25,7 +25,7 @@ class NotchNook {
         }
     }
     var hiddenTimer: Timer?
-    var pinned = false
+    var locked = false
     var quickPeeks: [QuickPeek]? {
         get { _quickPeek }
         set {

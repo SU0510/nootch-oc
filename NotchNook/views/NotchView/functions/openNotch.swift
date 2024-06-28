@@ -10,7 +10,6 @@ import SwiftUI
 
 extension NotchView {
     func openNotch(in newMode: NotchNook.NotchMode = .nook) {
-        captureFocusedWindow()
         canBecomeKey.wrappedValue = true
         makeKeyWindow()
         withAnimation(Self.animation) {

@@ -10,6 +10,7 @@ import SwiftUI
 import Sparkle
 import AppKit
 import SwiftDate
+import SwiftData
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
@@ -35,6 +36,8 @@ import SwiftDate
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
         _ = LicenseManager.shared
+        
+//        ValueTransformer.setValueTransformer(NSAttributedStringTransformer(), forName: .nsAttributedString)
 
         NSApp.setActivationPolicy(.accessory)
         setupMenu()

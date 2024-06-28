@@ -65,7 +65,7 @@ private struct CaptureFocusedWindowKey: EnvironmentKey {
     static var defaultValue: () -> () = {}
 }
 
-private struct RefocusStoredWindowKey: EnvironmentKey {
+private struct FocusFrontmostWindowKey: EnvironmentKey {
     static var defaultValue: () -> () = {}
 }
 
@@ -73,18 +73,38 @@ private struct MakeKeyWindowKey: EnvironmentKey {
     static var defaultValue: () -> () = {}
 }
 
+private struct ResignFirstResponderKey: EnvironmentKey {
+    static var defaultValue: () -> () = {}
+}
+
+private struct IsEditingTextKey: EnvironmentKey {
+    static var defaultValue: Bool = false
+}
+
+private struct IsKeyWindowKey: EnvironmentKey {
+    static var defaultValue: Bool = true
+}
+
 extension EnvironmentValues {
+    var isKeyWindow: Bool {
+        get { self[IsKeyWindowKey.self] }
+        set { self[IsKeyWindowKey.self] = newValue }
+    }
+    var resignFirstResponder: () -> () {
+        get { self[ResignFirstResponderKey.self] }
+        set { self[ResignFirstResponderKey.self] = newValue }
+    }
+    var isEditingText: Bool {
+        get { self[IsEditingTextKey.self] }
+        set { self[IsEditingTextKey.self] = newValue }
+    }
     var makeKeyWindow: () -> () {
         get { self[MakeKeyWindowKey.self] }
         set { self[MakeKeyWindowKey.self] = newValue }
     }
-    var captureFocusedWindow: () -> () {
-        get { self[CaptureFocusedWindowKey.self] }
-        set { self[CaptureFocusedWindowKey.self] = newValue }
-    }
-    var refocusStoredWindow: () -> () {
-        get { self[RefocusStoredWindowKey.self] }
-        set { self[RefocusStoredWindowKey.self] = newValue }
+    var focusFrontmostWindow: () -> () {
+        get { self[FocusFrontmostWindowKey.self] }
+        set { self[FocusFrontmostWindowKey.self] = newValue }
     }
     var canBecomeKey: Binding<Bool> {
         get { self[CanBecomeKeyBindingKey.self] }

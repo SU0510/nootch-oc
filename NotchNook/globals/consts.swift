@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Lottie
 
 let appleMusicURL = URL(fileURLWithPath: "/System/Applications/Music.app")
 let globalAppsRecommentations: [AppRecommendation] = [

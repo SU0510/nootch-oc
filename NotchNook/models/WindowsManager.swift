@@ -17,7 +17,6 @@ class WindowsManager {
     private var settingsPanes = [SettingsPane]()
     private var sparkleManager: SparkleManager
     private var changelogViewWindow: SwiftUIWindow<ChangelogView>?
-    private var previouslyFocusedWindow: CGWindowID?
     
     init(updater: SPUUpdater) {
         self.sparkleManager = SparkleManager(updater: updater)
@@ -118,8 +117,10 @@ class WindowsManager {
                 showChangelog: showChangelogViewWindow,
                 notchSize: notchSize,
                 notchNook: notchNook,
-                captureFocusedWindow: captureFocusedWindow,
-                refocusStoredWindow: refocusStoredWindow
+                focusFrontmostWindow: focusFrontmostWindow,
+                resignFirstResponder: {},
+                isEditingText: false,
+                isKeyWindow: true
             )
         )
         let size = hostingView.intrinsicContentSize
@@ -135,6 +136,18 @@ class WindowsManager {
             screen: screen
         )
         
+        newWindow.firstResponderCb = { isTheWindow in
+            hostingView.rootView.isEditingText = !isTheWindow
+        }
+        newWindow.becomeKeyCb = {
+            hostingView.rootView.isKeyWindow = true
+        }
+        newWindow.resignedKeyCb = {
+            hostingView.rootView.isKeyWindow = false
+        }
+        newWindow.firstResponderCb = { isTheWindow in
+            hostingView.rootView.isEditingText = !isTheWindow
+        }
         newWindow.isMovable = false
         newWindow.collectionBehavior = [
             .stationary, .canJoinAllSpaces, .canJoinAllApplications, .fullScreenAuxiliary, .ignoresCycle
@@ -153,9 +166,14 @@ class WindowsManager {
         hostingView.rootView.canBecomeKey = .init(get: {
             newWindow.canThisWindowBecomeKeyWindow
         }, set: { newWindow.canThisWindowBecomeKeyWindow = $0 })
+        
         hostingView.rootView.makeKeyWindow = {
             NSApp.activate()
             newWindow.makeKey()
+        }
+                
+        hostingView.rootView.resignFirstResponder = {
+            newWindow.makeFirstResponder(nil)
         }
         
         newWindow.orderFrontRegardless()
@@ -169,40 +187,29 @@ class WindowsManager {
         )
     }
     
-    func getFocusedWindowID(filterItselfOut: Bool = true) -> CGWindowID? {
-        let currentPID = NSRunningApplication.current.processIdentifier
-        guard let info = CGWindowListCopyWindowInfo([.excludeDesktopElements, .optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] else { return nil }
+    func getMostUpfrontWindowID() -> CGWindowID? {
+        guard let info = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] else { return nil }
 
-        var windows = info.compactMap { window -> (CGWindowID, pid_t)? in
-            guard let windowLayer = window[kCGWindowLayer as String] as? Int, windowLayer == 0,
+        let windows = info.compactMap { window -> (CGWindowID, pid_t)? in
+            guard let windowLayer = window[kCGWindowLayer as String] as? Int,
+                  windowLayer == 0,
                   let windowOwnerPID = window[kCGWindowOwnerPID as String] as? pid_t,
                   let windowNumber = window[kCGWindowNumber as String] as? CGWindowID else { return nil }
             return (windowNumber, windowOwnerPID)
-        }.sorted { $0.0 < $1.0 }
-        
-        if windows.count > 0 {
-            return windows[0].0
         }
 
-//        let focusedIndex = windows.firstIndex(where: { NSRunningApplication(processIdentifier: $0.1)?.isActive == true })
-//        if let index = focusedIndex, index + 1 < windows.count {
-//            return windows[index + 1].0
-//        }
+        if let mostUpfrontWindow = windows.first {
+            return mostUpfrontWindow.0
+        }
 
         return nil
     }
     
-    func captureFocusedWindow() {
-        if let focusedWindowID = getFocusedWindowID() {
-            previouslyFocusedWindow = focusedWindowID
-        }
-    }
-    
-    func refocusStoredWindow() {
+    func focusFrontmostWindow() {
         // Prevent refocusing of previous app if settings screen is open
         if settingsWindowController?.window?.isVisible ?? false { return }
         
-        guard let windowID = previouslyFocusedWindow else { return }
+        guard let windowID = getMostUpfrontWindowID() else { return }
         let options = CGWindowListOption(arrayLiteral: .optionIncludingWindow, .excludeDesktopElements)
         let windowList = CGWindowListCopyWindowInfo(options, windowID) as? [[String: Any]]
         guard let windowInfo = windowList?.first,
@@ -210,7 +217,6 @@ class WindowsManager {
         
         let app = NSRunningApplication(processIdentifier: pid)
         app?.activate(options: [])
-        previouslyFocusedWindow = nil
     }
     
     struct DisplayKit {
@@ -222,13 +228,42 @@ class WindowsManager {
     }
 }
 
-class ForceFocusableWindow: NSWindow {
+class ForceFocusableWindow: NSWindow, NSWindowDelegate {
+    var becomeKeyCb: (() -> ())?
+    var resignedKeyCb: (() -> ())?
+    var firstResponderCb: ((_ isTheWindow: Bool) -> ())?
     var canThisWindowBecomeKeyWindow = false
+    
+    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
+        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+        self.delegate = self
+    }
+    
+    override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
+        let success = super.makeFirstResponder(responder)
+
+        if success {
+            firstResponderCb?(responder is NSWindow || responder == nil)
+        }
+        return success
+    }
     override var canBecomeKey: Bool { self.canThisWindowBecomeKeyWindow }
+    
+    func windowDidBecomeKey(_ notification: Notification) {
+        becomeKeyCb?()
+    }
+
+    func windowDidResignKey(_ notification: Notification) {
+        resignedKeyCb?()
+    }
 }
 
 class AcceptingFirstClickHostingView<C: View>: NSHostingView<C> {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
         return true
     }
+}
+
+class MyWindow: NSWindow {
+
 }

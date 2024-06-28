@@ -21,6 +21,7 @@ struct HScrollAllowingScrollWheelView<Content: View>: NSViewRepresentable {
         scrollView.hasHorizontalScroller = false
         scrollView.horizontalScrollElasticity = .none
         scrollView.autohidesScrollers = true
+        scrollView.drawsBackground = false
         
         let hostingView = NSHostingView(rootView: content())
         hostingView.translatesAutoresizingMaskIntoConstraints = false

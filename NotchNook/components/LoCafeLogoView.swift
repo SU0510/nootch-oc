@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct LoCafeLogoView: View {
     @State private var letterOActive = true
     @State private var letterFEActive = true

@@ -58,6 +58,10 @@
 		3A3F5A072C2A5CA700906FFA /* panPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A062C2A5CA700906FFA /* panPadding.swift */; };
 		3A3F5A092C2A5E6E00906FFA /* mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A082C2A5E6E00906FFA /* mode.swift */; };
 		3A3F5A0B2C2A5E8300906FFA /* hoveredDropTargetID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A0A2C2A5E8300906FFA /* hoveredDropTargetID.swift */; };
+		3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */; };
+		3A459C1E2C2E710B0045995D /* LockedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */; };
+		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
+		3A459C272C2E955D0045995D /* lock.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A459C262C2E955D0045995D /* lock.lottie */; };
 		3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A471A402C224C6C00FCD355 /* FolderMonitor.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
@@ -87,6 +91,7 @@
 		3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */; };
 		3AE4054D2C2CF3A900E8D927 /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3AE4054C2C2CF3A900E8D927 /* RichTextKit */; };
 		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
+		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB2A5E592C006BD9008F3081 /* TempAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E582C006BD9008F3081 /* TempAuthView.swift */; };
@@ -320,6 +325,10 @@
 		3A3F5A062C2A5CA700906FFA /* panPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = panPadding.swift; sourceTree = "<group>"; };
 		3A3F5A082C2A5E6E00906FFA /* mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mode.swift; sourceTree = "<group>"; };
 		3A3F5A0A2C2A5E8300906FFA /* hoveredDropTargetID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hoveredDropTargetID.swift; sourceTree = "<group>"; };
+		3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEdgeInsets.swift; sourceTree = "<group>"; };
+		3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedIndicatorView.swift; sourceTree = "<group>"; };
+		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
+		3A459C262C2E955D0045995D /* lock.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.lottie; sourceTree = "<group>"; };
 		3A471A402C224C6C00FCD355 /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
@@ -346,6 +355,7 @@
 		3AE405442C2BD02600E8D927 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		3AE405502C2D499300E8D927 /* RichToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarView.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB2A5E582C006BD9008F3081 /* TempAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempAuthView.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
@@ -620,8 +630,9 @@
 		3A3F59E42C2A568E00906FFA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
+				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
 				3AE405442C2BD02600E8D927 /* NoteView.swift */,
+				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -699,6 +710,7 @@
 		3AC36D732C25124B0000F995 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
+				3A459C262C2E955D0045995D /* lock.lottie */,
 				3A0816C22C24C201008092F0 /* update.lottie */,
 				EC47FCB22C0BAE7700591811 /* click.lottie */,
 				EC47FCAF2C0BADD500591811 /* drag.lottie */,
@@ -1124,6 +1136,7 @@
 				EC0E30EB2C042FC80060B47E /* Binding.swift */,
 				EC13C6DF2C0918B800B45C6E /* Color.swift */,
 				3A105FF12C1FF4160015EC66 /* EKEvent.swift */,
+				3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1246,6 +1259,7 @@
 				EC8D600A2BFAF57600E67ECC /* Nook */,
 				EC8D5FC52BF97ADA00E67ECC /* Tray */,
 				EC14B5C92C07A570000FC6B6 /* DropArea */,
+				3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */,
 				3A357F112C294FD20076DB37 /* FineTuningView.swift */,
 				3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
@@ -1293,6 +1307,7 @@
 				EC81E2662C069F3800790517 /* NoBtnStyle.swift */,
 				EC47FCA12C0B98E100591811 /* ActionButton.swift */,
 				EC47FCBC2C0BF18E00591811 /* BrightnessDownOnClick.swift */,
+				3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */,
 			);
 			path = buttonStyles;
 			sourceTree = "<group>";
@@ -1438,6 +1453,7 @@
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
+				3A459C272C2E955D0045995D /* lock.lottie in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1448,6 +1464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */,
 				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* TrayFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
@@ -1494,6 +1511,7 @@
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* TrayFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
+				3A459C1E2C2E710B0045995D /* LockedIndicatorView.swift in Sources */,
 				EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */,
 				3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */,
 				EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */,
@@ -1577,6 +1595,7 @@
 				EC8D60042BFAE90D00E67ECC /* TrayFilesCountView.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
+				3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */,
 				3A3F5A052C2A5C9500906FFA /* standardPadding.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
@@ -1608,6 +1627,7 @@
 				EC8D60592BFFEEF500E67ECC /* BaseMediaApp.swift in Sources */,
 				3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */,
 				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
+				3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */,
 				3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,

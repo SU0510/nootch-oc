@@ -23,7 +23,7 @@ struct NotesWidgetSettingsView: View {
     var body: some View {
         let enabled = nookSettings.enabledWidgets.contains(.calendar)
         Settings.Container(contentWidth: 520.0) {
-            let min: Double = 3
+            let min: Double = 4
             let max = !enabled ? 12 : availableWidth.double <= min ? min + 1 : availableWidth.double
             Settings.Section(title: "Width", bottomDivider: true) {
                 SliderPlus(value: $notesWidgetSettigs.size.width.double, range: min...max)
