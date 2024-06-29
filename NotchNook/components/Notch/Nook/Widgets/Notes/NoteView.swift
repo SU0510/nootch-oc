@@ -24,18 +24,20 @@ struct NoteView: View, Equatable {
     var selected: Bool
     var width: Double
     var widgetArrPosition: ArrayPosition
+    var initialAttrStr: AttributedString
     var prefs: NotesWidgetSettings
     var ns: Namespace.ID
     @State private var text: NSAttributedString
     @State private var showControls = false
     @State private var downScaled = false
     @State private var hovering = false
-    //    @State private var showEditor = false
+//    @State private var showEditor = false
     @Default(.generalSettings) private var generalSettings
     @StateObject private var context: RichTextContext
     
     init(note: Note, selected: Bool, width: Double, widgetArrPosition: ArrayPosition, prefs: NotesWidgetSettings, ns: Namespace.ID, context: RichTextContext = RichTextContext()) {
         self.note = note
+        self.initialAttrStr = AttributedString(note.text)
         self.selected = selected
         self.width = width
         self.widgetArrPosition = widgetArrPosition
@@ -55,7 +57,7 @@ struct NoteView: View, Equatable {
             cornerRadii: .init(
                 topLeading: cornerRadius,
                 bottomLeading: selected && widgetArrPosition == .first ? edgeBiggerCornerRadius : cornerRadius,
-                bottomTrailing: widgetArrPosition == .last ? edgeBiggerCornerRadius : cornerRadius,
+                bottomTrailing: widgetArrPosition == .last && !selected ? edgeBiggerCornerRadius : cornerRadius,
                 topTrailing: cornerRadius
             ),
             style: .continuous
@@ -65,15 +67,29 @@ struct NoteView: View, Equatable {
     var body: some View {
 //        context
         ZStack(alignment: .bottomTrailing) {
-            RichTextEditor(text: $text, context: context) { config in
-                if let textView = config as? NSTextView {
-                    textView.isEditable = selected
-                    textView.backgroundColor = .clear
-                    let paragraphStyle = NSMutableParagraphStyle()
-                    paragraphStyle.lineBreakStrategy = .pushOut
-                    textView.defaultParagraphStyle = paragraphStyle
-                    textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
-                    textView.enclosingScrollView?.additionalSafeAreaInsets = NSEdgeInsets(top: 10, left: 10, bottom: 40, right: 10)
+            Group {
+                if selected {
+                    RichTextEditor(text: $text, context: context) { config in
+                        if let textView = config as? NSTextView {
+                            textView.isEditable = selected
+                            textView.backgroundColor = .clear
+                            let paragraphStyle = NSMutableParagraphStyle()
+                            paragraphStyle.lineBreakStrategy = .pushOut
+                            textView.defaultParagraphStyle = paragraphStyle
+                            textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
+                            textView.enclosingScrollView?.additionalSafeAreaInsets = NSEdgeInsets(top: 10, left: 10, bottom: 40, right: 10)
+                        }
+                    }
+                } else {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        Text(initialAttrStr)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(EdgeInsets(top: 13, leading: 13, bottom: 40, trailing: 13))
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
+                    .scrollDisabled(true)
+                    .allowsHitTesting(false)
                 }
             }
             .focusedValue(\.richTextContext, context)
@@ -133,6 +149,9 @@ struct NoteView: View, Equatable {
         .animation(.spring, value: widgetArrPosition)
         .onAppear {
             if selected {
+//                doAfter(1) {
+//                    showEditor = true
+//                }
                 note.updatedAt = Date()
                 try? note.modelContext?.save()
             }
