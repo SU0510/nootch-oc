@@ -58,8 +58,8 @@ struct RichToolbarButtonStyle: ButtonStyle {
         let overColor: Color = .white.opacity(overColorAlpha)
         configuration.label
             .foregroundStyle(active ? .lightYellow : .white.opacity(0.5))
-            .font(.system(size: 16, weight: .semibold))
-            .frame(28)
+            .font(.system(size: 15, weight: .semibold))
+            .frame(24)
             .background(overColor, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))

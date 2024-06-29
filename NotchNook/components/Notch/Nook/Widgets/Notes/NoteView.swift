@@ -63,14 +63,17 @@ struct NoteView: View, Equatable {
     }
     
     var body: some View {
-        
+//        context
         ZStack(alignment: .bottomTrailing) {
             RichTextEditor(text: $text, context: context) { config in
                 if let textView = config as? NSTextView {
                     textView.isEditable = selected
                     textView.backgroundColor = .clear
+                    let paragraphStyle = NSMutableParagraphStyle()
+                    paragraphStyle.lineBreakStrategy = .pushOut
+                    textView.defaultParagraphStyle = paragraphStyle
                     textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
-                    textView.enclosingScrollView?.additionalSafeAreaInsets = .init(10)
+                    textView.enclosingScrollView?.additionalSafeAreaInsets = NSEdgeInsets(top: 10, left: 10, bottom: 40, right: 10)
                 }
             }
             .focusedValue(\.richTextContext, context)
@@ -79,7 +82,8 @@ struct NoteView: View, Equatable {
             .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
             .padding(downScaled ? 2 : 0)
             .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns, properties: [.position])
-            .fadeOnEdges(axis: .vertical, fadeLength: 20, curve: .easeOut, disable: !selected)
+            .opacity(downScaled ? 0.25 : 0.9)
+            .fadeOnEdges(axis: .vertical, topLeadingFadeLength: 20, bottomTrailingFadeLength: 48, curve: .easeInOut, disable: !selected)
         }
         .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
         .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .white, backgroundColor: .clear))
@@ -111,6 +115,19 @@ struct NoteView: View, Equatable {
         }
         .compositingGroup()
         .opacity(hovering || selected ? 1 : 0.75)
+        .overlay(alignment: !selected ? .bottomTrailing : .bottomLeading) {
+            Image(systemName: note.icon)
+                .font(.system(size: 14, weight: .semibold))
+                .frame(24)
+                .padding(downScaled ? 2 : 4)
+                .foregroundStyle(.blue)
+                .shadow(color: .black.opacity(0.25), radius: 6, y: 0)
+                .shadow(color: .black.opacity(0.35), radius: 8, y: 4)
+                .scaleEffect(downScaled ? 0.75 : 1, anchor: .bottomTrailing)
+                .transition(.scale(1))
+                .matchedGeometryEffect(id: "\(note.persistentModelID)-note-icon", in: ns, properties: [.position])
+                .opacity(downScaled ? 0.65 : 1)
+        }
         .background { shapeView().fill(.black).matchedGeometryEffect(id: "\(note.persistentModelID)-note-bg-fade-avoider", in: ns) }
         .onHover { x in withAnimation(.easeOut) { hovering = x } }
         .animation(.spring, value: widgetArrPosition)
@@ -124,10 +141,9 @@ struct NoteView: View, Equatable {
         }
         .transition(.scale(1))
         .zIndex(selected ? 1 : 0)
-        .onChangeDebounced(of: text.string, delay: 0.5) { _ in
+        .onReceive(context.objectWillChange) { _ in
             note.text = text
             note.updatedAt = Date()
-            try? note.modelContext?.save()
         }
     }
 }

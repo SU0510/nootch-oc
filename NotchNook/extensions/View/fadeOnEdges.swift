@@ -9,7 +9,7 @@ import SwiftUI
 import SmoothGradient
 
 extension View {
-    func fadeOnEdges(axis: Axis, fadeLength: Double, curve: UnitCurve = .easeInOut, disable: Bool = false) -> some View {
+    func fadeOnEdges(axis: Axis, topLeadingFadeLength: Double, bottomTrailingFadeLength: Double, curve: UnitCurve = .easeInOut, disable: Bool = false) -> some View {
         self
             .mask {
                 if !disable {
@@ -22,7 +22,7 @@ extension View {
                                 endPoint: axis == .horizontal ? .trailing : .bottom,
                                 curve: curve
                             )
-                            .frame(width: axis == .horizontal ? fadeLength : nil, height: axis == .vertical ? fadeLength : nil)
+                            .frame(width: axis == .horizontal ? topLeadingFadeLength : nil, height: axis == .vertical ? topLeadingFadeLength : nil)
                             Color.black.frame(maxWidth: .infinity)
                             SmoothLinearGradient(
                                 from: .black.opacity(0),
@@ -31,7 +31,7 @@ extension View {
                                 endPoint: axis == .horizontal ? .leading : .top,
                                 curve: curve
                             )
-                            .frame(width: axis == .horizontal ? fadeLength : nil, height: axis == .vertical ? fadeLength : nil)
+                            .frame(width: axis == .horizontal ? bottomTrailingFadeLength : nil, height: axis == .vertical ? bottomTrailingFadeLength : nil)
                         }
                     }
                 } else {

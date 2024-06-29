@@ -50,9 +50,10 @@ struct NotesWidgetView: View {
         .onAppear {
 //            try? modelContext.delete(model: Note.self)
             if notes.count < 4 {
+                let icons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
                 let notesToCreate = 4 - notes.count
-                Array(repeating: 0, count: notesToCreate).forEach { _ in
-                    let newNote = Note()
+                Array(Array(repeating: 0, count: notesToCreate).enumerated()).forEach { i, _ in
+                    let newNote = Note(icon: icons[i])
                     modelContext.insert(newNote)
                 }
             }

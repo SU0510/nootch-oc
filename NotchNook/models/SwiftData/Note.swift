@@ -14,8 +14,10 @@ final class Note {
     @Attribute(.transformable(by: NSAttributedStringTransformer.name.rawValue)) var text: NSAttributedString
     var createdAt: Date
     var updatedAt: Date
+    var icon: String
     
-    init(text: NSAttributedString = NSAttributedString(string: ""), createdAt: Date = Date(), updatedAt: Date = Date()) {
+    init(icon: String, text: NSAttributedString = NSAttributedString(string: ""), createdAt: Date = Date(), updatedAt: Date = Date()) {
+        self.icon = icon
         self.text = text
         self.createdAt = createdAt
         self.updatedAt = updatedAt

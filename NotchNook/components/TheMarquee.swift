@@ -63,7 +63,7 @@ struct TheMarquee<C: View>: View {
         }
         .scrollDisabled(true)
         .frame(width: width)
-        .fadeOnEdges(axis: .horizontal, fadeLength: fadeLength, disable: !shouldMove || fadeLength == 0)
+        .fadeOnEdges(axis: .horizontal, topLeadingFadeLength: fadeLength, bottomTrailingFadeLength: fadeLength, disable: !shouldMove || fadeLength == 0)
         .measure($containerSize)
         .compositingGroup()
         .opacity(measured ? 1 : 0)
