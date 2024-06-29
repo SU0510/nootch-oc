@@ -10,6 +10,13 @@ struct MirrorWidgetView: View {
     @Default(.nookSettings) private var nookSettings
     enum Mode { case stopped, loading, mirrorring }
     
+    var width: Double {
+        if case .unique(let size) = NookWidget.mirror.gridSizeType {
+            return size.width.screenPoints
+        }
+        return Double(2 * NookGrid.point)
+    }
+    
     var body: some View {
         Button {
             guard mode != .loading else { return }
@@ -68,12 +75,8 @@ struct MirrorWidgetView: View {
             .aspectRatio(1, contentMode: .fit)
             .frame(maxHeight: .infinity)
         }
-        .padding(EdgeInsets(
-            top: 0,
-            leading: arrayPosition == .first ? 0 : nookSettings.widgetsPadding,
-            bottom: 0,
-            trailing: arrayPosition == .last ? 0 : nookSettings.widgetsPadding
-        ))
+        .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
+        .frame(width: width)
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
         .onAppear {
             checkCameraPermission()

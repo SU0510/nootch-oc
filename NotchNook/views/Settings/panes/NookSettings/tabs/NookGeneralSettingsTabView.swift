@@ -39,12 +39,12 @@ struct NookGeneralSettingsTabView: View {
                 //                .resetToDefault($nookSettings.size.height, defaultValues.size.height)
             }
 
-            Settings.Section {
-                Text("Padding around widgets:")
-            } content: {
-                SliderPlus(value: $nookSettings.widgetsPadding, range: 2...24)
-                    .resetToDefault($nookSettings.widgetsPadding, defaultValues.widgetsPadding)
-            }
+//            Settings.Section {
+//                Text("Padding around widgets:")
+//            } content: {
+//                SliderPlus(value: $nookSettings.widgetsPadding, range: 2...24)
+//                    .resetToDefault($nookSettings.widgetsPadding, defaultValues.widgetsPadding)
+//            }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
         .onChange(of: nookSettings.size.width) { _, newValue in

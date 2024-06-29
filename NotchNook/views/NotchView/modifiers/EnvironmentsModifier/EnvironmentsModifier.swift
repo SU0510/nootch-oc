@@ -22,6 +22,7 @@ extension NotchView {
         @Environment(\.resignFirstResponder) internal var resignFirstResponder
         @Environment(\.focusFrontmostWindow) internal var focusFrontmostWindow
         @Environment(\.isEditingText) internal var isEditingText
+        @Environment(\.preventNextFocusFrontmostWindow) internal var preventNextFocusFrontmostWindow
         
         func body(content: Content) -> some View {
             content
@@ -29,6 +30,7 @@ extension NotchView {
                 .environment(\.closeNotch, closeNotch)
                 .environment(\.checkTrialOver, checkTrialOver)
                 .environment(\.openNotch, openNotch)
+                .environment(\.openApp, openApp)
                 .environment(\.namespace, ns)
                 .environment(\.trialOver, state.trialOver)
                 .transformEnvironment(\.notchSize) { $0.width += generalSettings.notchWidthFineTune }

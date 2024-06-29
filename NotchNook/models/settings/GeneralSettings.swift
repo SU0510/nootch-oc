@@ -18,5 +18,5 @@ struct GeneralSettings: Preferences {
     var disableHaptics = false
     var enableOnNonNotchScreens = true
     var preventUnhoverCloseWhenTyping = true
-    var lockNNWhenTyping = true
+    var lockNNWhenTyping = false
 }

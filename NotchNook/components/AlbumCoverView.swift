@@ -7,11 +7,13 @@
 
 import SwiftUI
 
-struct AlbumCoverView: View, Equatable {
+struct AlbumCoverView: View {
     var id: String?
     var artwork: NSImage?
     var appIcon: NSImage?
     var cornerRadius: Double
+    
+    @Environment(\.openApp) private var openApp
     
     var body: some View {
         Button {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NoMediaAppsView: View {
+    @Environment(\.openApp) private var openApp
     var body: some View {
         VStack {
             Text("No app seems to be running").font(.system(size: 11, weight: .medium)).opacity(0.75)

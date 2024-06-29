@@ -19,6 +19,7 @@ struct RootView: View {
     var focusFrontmostWindow: () -> ()
     var makeKeyWindow: (() -> ())?
     var resignFirstResponder: () -> ()
+    var preventNextFocusFrontmostWindow: () -> ()
     var isEditingText: Bool
     var isKeyWindow: Bool
     @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow

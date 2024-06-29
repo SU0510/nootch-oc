@@ -17,6 +17,7 @@ class WindowsManager {
     private var settingsPanes = [SettingsPane]()
     private var sparkleManager: SparkleManager
     private var changelogViewWindow: SwiftUIWindow<ChangelogView>?
+    private var preventNextFocusFrontmostWindow = false
     
     init(updater: SPUUpdater) {
         self.sparkleManager = SparkleManager(updater: updater)
@@ -119,6 +120,7 @@ class WindowsManager {
                 notchNook: notchNook,
                 focusFrontmostWindow: focusFrontmostWindow,
                 resignFirstResponder: {},
+                preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
                 isEditingText: false,
                 isKeyWindow: true
             )
@@ -173,7 +175,7 @@ class WindowsManager {
         }
                 
         hostingView.rootView.resignFirstResponder = {
-            newWindow.makeFirstResponder(nil)
+            _ = newWindow.makeFirstResponder(nil)
         }
         
         newWindow.orderFrontRegardless()
@@ -206,6 +208,10 @@ class WindowsManager {
     }
     
     func focusFrontmostWindow() {
+        if preventNextFocusFrontmostWindow {
+            preventNextFocusFrontmostWindow = false
+            return
+        }
         // Prevent refocusing of previous app if settings screen is open
         if settingsWindowController?.window?.isVisible ?? false { return }
         

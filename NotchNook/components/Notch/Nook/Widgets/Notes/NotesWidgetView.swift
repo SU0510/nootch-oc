@@ -9,8 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct NotesWidgetView: View {
+    static let spacing: Double = 6
     static let switchAnimation: Animation = .smooth(duration: 0.45, extraBounce: 0.175)
-//    var arrayPosition: ArrayPosition
+    var arrayPosition: ArrayPosition
+    var nookPrefs: NookSettings
     var prefs: NotesWidgetSettings
     @Query private var notes: [Note]
     @State private var selectedNoteId: PersistentIdentifier?
@@ -18,25 +20,28 @@ struct NotesWidgetView: View {
     @Namespace private var ns
 
     private var selectedNote: Note? { notes.first(where: { $0.persistentModelID == selectedNoteId }) }
+    private var mainNoteWidth: Double { prefs.size.width.screenPoints - (nookPrefs.widgetsPadding * 2) - Self.spacing - NoteView.smallSize }
     
     var body: some View {
         
-        HStack(alignment: .top, spacing: 6) {
+        HStack(alignment: .top, spacing: Self.spacing) {
             if let selectedNote {
-                NoteView(note: selectedNote, selected: true, width: prefs.size.width.screenPoints, prefs: prefs, ns: ns)
+                NoteView(note: selectedNote, selected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, prefs: prefs, ns: ns)
                     .id(selectedNote.persistentModelID)
-                VStack(alignment: .leading, spacing: 6) {
-                    ForEach(notes.filter { $0.id != selectedNoteId }.sorted(by: { $0.updatedAt < $1.updatedAt })) { note in
+                VStack(alignment: .leading, spacing: Self.spacing) {
+                    let otherNotes = notes.filter { $0.id != selectedNoteId }.sorted(by: { $0.updatedAt < $1.updatedAt })
+                    ForEach(Array(otherNotes.enumerated()), id: \.element) { i, note in
                         Button {
                             withAnimation(NotesWidgetView.switchAnimation) { selectedNoteId = note.persistentModelID }
                         } label: {
-                            NoteView(note: note, selected: false, width: prefs.size.width.screenPoints, prefs: prefs, ns: ns)
+                            NoteView(note: note, selected: false, width: mainNoteWidth, widgetArrPosition: i == (otherNotes.count - 1) ? arrayPosition : .middle, prefs: prefs, ns: ns)
                         }
                         .buttonStyle(ShrinkOnClick(minSize: 0.925))
                     }
                 }
             }
         }
+        .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookPrefs.widgetsPadding)
         .onChange(of: notes.count, initial: true) { _, _ in
             selectedNoteId = notes.first?.persistentModelID
         }

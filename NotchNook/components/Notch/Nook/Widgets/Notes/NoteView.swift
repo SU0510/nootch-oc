@@ -7,40 +7,61 @@
 
 import SwiftUI
 import RichTextKit
+import Defaults
 
 struct NoteView: View, Equatable {
+    static let smallSize: Double = 29
     static func == (lhs: NoteView, rhs: NoteView) -> Bool {
         lhs.note.persistentModelID == rhs.note.persistentModelID &&
         lhs.selected == rhs.selected &&
         rhs.width == lhs.width &&
-        rhs.prefs == lhs.prefs
+        rhs.widgetArrPosition == lhs.widgetArrPosition &&
+        rhs.prefs == lhs.prefs &&
+        rhs.ns == lhs.ns
     }
     
     var note: Note
     var selected: Bool
     var width: Double
+    var widgetArrPosition: ArrayPosition
     var prefs: NotesWidgetSettings
     var ns: Namespace.ID
     @State private var text: NSAttributedString
     @State private var showControls = false
     @State private var downScaled = false
-    @StateObject var context: RichTextContext
+    @Default(.generalSettings) private var generalSettings
+    @StateObject private var context: RichTextContext
     
-    init(note: Note, selected: Bool, width: Double, prefs: NotesWidgetSettings, ns: Namespace.ID, text: NSAttributedString = NSAttributedString(string: ""), context: RichTextContext = RichTextContext()) {
+    init(note: Note, selected: Bool, width: Double, widgetArrPosition: ArrayPosition, prefs: NotesWidgetSettings, ns: Namespace.ID, context: RichTextContext = RichTextContext()) {
         self.note = note
         self.selected = selected
         self.width = width
+        self.widgetArrPosition = widgetArrPosition
         self.prefs = prefs
         self.ns = ns
         let context = RichTextContext()
         context.isEditable = selected
-        self._context = .init(wrappedValue: context)
         self._text = .init(initialValue: note.text)
+        self._context = .init(wrappedValue: context)
         self._downScaled = .init(initialValue: selected)
     }
     
-    var body: some View {
+    @ViewBuilder func shapeView() -> UnevenRoundedRectangle {
         let cornerRadius: Double = selected ? 13 : 8
+        let edgeBiggerCornerRadius = NotchShape.maxNotchRadius - generalSettings.contentPadding
+        UnevenRoundedRectangle(
+            cornerRadii: .init(
+                topLeading: cornerRadius,
+                bottomLeading: selected && widgetArrPosition == .first ? edgeBiggerCornerRadius : cornerRadius,
+                bottomTrailing: widgetArrPosition == .last ? edgeBiggerCornerRadius : cornerRadius,
+                topTrailing: cornerRadius
+            ),
+            style: .continuous
+        )
+    }
+    
+    var body: some View {
+        
         ZStack(alignment: .bottomTrailing) {
             Group {
                 RichTextEditor(text: $text, context: context) { config in
@@ -53,12 +74,19 @@ struct NoteView: View, Equatable {
                 }
                 .focusedValue(\.richTextContext, context)
             }
-            .frame(width: width, height: selected ? nil : 100, alignment: .topLeading)
-            .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns)
+            .frame(width: width - (selected ? 0 : 8), height: selected ? nil : 100, alignment: .topLeading)
             .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
             .padding(!selected ? 6 : 0)
+            .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns)
             .fadeOnEdges(axis: .vertical, fadeLength: 20, curve: .easeOut, disable: !selected)
-            
+        }
+        .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
+        .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .white, backgroundColor: .clear))
+        .allowsHitTesting(selected)
+        .foregroundStyle(.white)
+        .matchedGeometryEffect(id: "\(note.persistentModelID)-note", in: ns)
+        .frame(maxWidth: selected ? .infinity : Self.smallSize, maxHeight: selected ? .infinity : Self.smallSize, alignment: .topLeading)
+        .overlay(alignment: .bottomTrailing) {
             if selected {
                 RichToolbarView(context: context)
                     .padding(4)
@@ -67,21 +95,18 @@ struct NoteView: View, Equatable {
                     .blur(radius: showControls ? 0 : 24)
             }
         }
-        .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
-        .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .white, backgroundColor: .clear))
-        .allowsHitTesting(selected)
-        .foregroundStyle(.white)
-        .frame(maxWidth: selected ? .infinity : 29, maxHeight: selected ? .infinity : 29, alignment: .topLeading)
+        .scaleEffect(1)
+        .clipped()
         .geometryGroup()
-        .matchedGeometryEffect(id: "\(note.persistentModelID)-note", in: ns)
         .contentShape(Rectangle())
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
         .mask {
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).fill(.black)
+            shapeView()
+                .fill(.black)
                 .matchedGeometryEffect(id: "\(note.persistentModelID)-note-mask", in: ns)
         }
         .background {
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).fill(.noteBG.shadow(.drop(radius: 16, y: 8)))
+            shapeView()
+                .fill(.noteBG.shadow(.drop(radius: 16, y: 8)))
                 .matchedGeometryEffect(id: "\(note.persistentModelID)-note-bg", in: ns)
         }
         .onAppear {
@@ -95,7 +120,6 @@ struct NoteView: View, Equatable {
             note.updatedAt = Date()
             try? note.modelContext?.save()
         }
-        .id(note.persistentModelID)
     }
 }
 
@@ -104,11 +128,11 @@ extension View {
         if #available(macOS 13.0, *) {
             return self.onContinuousHover { phase in
                 switch phase {
-                case .active(_):
-                    guard NSCursor.current != cursor else { return }
-                    cursor.push()
-                case .ended:
-                    NSCursor.pop()
+                    case .active(_):
+                        guard NSCursor.current != cursor else { return }
+                        cursor.push()
+                    case .ended:
+                        NSCursor.pop()
                 }
             }
         } else {

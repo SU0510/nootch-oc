@@ -97,6 +97,10 @@
 		3A801E142C15781F0076560D /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E132C15781F0076560D /* SwiftJWT */; };
 		3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E152C1579F40076560D /* getMacBookModel.swift */; };
 		3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E1B2C163B540076560D /* detectMeetings.swift */; };
+		3A8AA17F2C2FD1E400D727DA /* paddingDependingOnArrPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */; };
+		3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */; };
+		3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1822C2FE40500D727DA /* openApp.swift */; };
+		3A8AA1852C2FE43B00D727DA /* OpenAppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
 		3AC36D822C2530F40000F995 /* calendar.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3AC36D812C2530F40000F995 /* calendar.mov */; };
@@ -285,7 +289,6 @@
 		EC8D60632C001BB500E67ECC /* wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60622C001BB500E67ECC /* wait.swift */; };
 		EC8D60652C001D2D00E67ECC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60642C001D2D00E67ECC /* Track.swift */; };
 		EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60662C01697100E67ECC /* iconForApp.swift */; };
-		EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60682C016B5C00E67ECC /* openApp.swift */; };
 		ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6A6D2C070355000D9D27 /* measure.swift */; };
 		ECB9D6A72C0CCBC0009C8CE4 /* GesturesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */; };
 		ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */; };
@@ -385,6 +388,10 @@
 		3A801E0E2C1556E70076560D /* getRangeOfDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRangeOfDays.swift; sourceTree = "<group>"; };
 		3A801E152C1579F40076560D /* getMacBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMacBookModel.swift; sourceTree = "<group>"; };
 		3A801E1B2C163B540076560D /* detectMeetings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detectMeetings.swift; sourceTree = "<group>"; };
+		3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingDependingOnArrPos.swift; sourceTree = "<group>"; };
+		3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventNextFocusFrontmostWindowKey.swift; sourceTree = "<group>"; };
+		3A8AA1822C2FE40500D727DA /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
+		3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppKey.swift; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		3AC36D812C2530F40000F995 /* calendar.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendar.mov; sourceTree = "<group>"; };
@@ -568,7 +575,6 @@
 		EC8D60622C001BB500E67ECC /* wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wait.swift; sourceTree = "<group>"; };
 		EC8D60642C001D2D00E67ECC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		EC8D60662C01697100E67ECC /* iconForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconForApp.swift; sourceTree = "<group>"; };
-		EC8D60682C016B5C00E67ECC /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
 		ECAC6A6D2C070355000D9D27 /* measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = measure.swift; sourceTree = "<group>"; };
 		ECB9D6A62C0CCBC0009C8CE4 /* GesturesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesSettingsView.swift; sourceTree = "<group>"; };
 		ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInnerTab.swift; sourceTree = "<group>"; };
@@ -689,6 +695,8 @@
 				3A1691EE2C2FB5040014C326 /* CloseNotchKey.swift */,
 				3A1691F02C2FB50B0014C326 /* OpenNotchKey.swift */,
 				3A1691F22C2FB5180014C326 /* CheckTrialOverKey.swift */,
+				3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */,
+				3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -709,6 +717,7 @@
 				3A3F59FB2C2A5BEA00906FFA /* closeNotch.swift */,
 				3A3F59FD2C2A5BF100906FFA /* openNotch.swift */,
 				3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */,
+				3A8AA1822C2FE40500D727DA /* openApp.swift */,
 			);
 			path = functions;
 			sourceTree = "<group>";
@@ -1188,7 +1197,6 @@
 				EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */,
 				EC8D60622C001BB500E67ECC /* wait.swift */,
 				EC8D60662C01697100E67ECC /* iconForApp.swift */,
-				EC8D60682C016B5C00E67ECC /* openApp.swift */,
 				EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */,
 				EC47FC7C2C0A81AC00591811 /* getDeviceSerialNumber.swift */,
 				EC47FC8A2C0ACB5600591811 /* isTrialOver.swift */,
@@ -1229,6 +1237,7 @@
 				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
 				3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */,
 				3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */,
+				3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1433,9 +1442,9 @@
 		EC8D60152BFC21CD00E67ECC /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				3A3F59E42C2A568E00906FFA /* Notes */,
 				EC7A0FA62C0ECD730063E78E /* CalendarWidget */,
 				EC2DD1E82C02E86F001FD54E /* MediaPlayerWidget */,
+				3A3F59E42C2A568E00906FFA /* Notes */,
 				EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */,
 				EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */,
 			);
@@ -1596,6 +1605,7 @@
 				3A1691D42C2FB1FE0014C326 /* SparkleManagerKey.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */,
+				3A8AA17F2C2FD1E400D727DA /* paddingDependingOnArrPos.swift in Sources */,
 				3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */,
@@ -1613,7 +1623,6 @@
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
 				3A1691DC2C2FB2160014C326 /* TrayKey.swift in Sources */,
 				3AE405452C2BD02600E8D927 /* NoteView.swift in Sources */,
-				EC8D60692C016B5C00E67ECC /* openApp.swift in Sources */,
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */,
@@ -1622,6 +1631,7 @@
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */,
+				3A8AA1852C2FE43B00D727DA /* OpenAppKey.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
 				3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */,
 				3A1691EA2C2FB24F0014C326 /* IsKeyWindowKey.swift in Sources */,
@@ -1680,6 +1690,7 @@
 				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
+				3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
 				3A3ABCEF2C2B9C5500132228 /* Note.swift in Sources */,
 				3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */,
@@ -1839,6 +1850,7 @@
 				3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
 				EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */,
+				3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */,
 				EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */,
 				EC758F842BF2F19B00B873B0 /* TrayView.swift in Sources */,
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,

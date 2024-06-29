@@ -21,10 +21,10 @@ struct NotesWidgetSettingsView: View {
     }
     
     var body: some View {
-        let enabled = nookSettings.enabledWidgets.contains(.calendar)
+        let enabled = nookSettings.enabledWidgets.contains(.notes)
         Settings.Container(contentWidth: 520.0) {
             let min: Double = 4
-            let max = !enabled ? 12 : availableWidth.double <= min ? min + 1 : availableWidth.double
+            let max = !enabled ? nookSettings.size.width.double : availableWidth.double <= min ? min + 1 : availableWidth.double
             Settings.Section {
                 Text("Width:").frame(minWidth: 200, alignment: .trailing)
             } content: {

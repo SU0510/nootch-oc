@@ -32,13 +32,14 @@ struct NookView: View {
                         case .calendar:
                             CalendarWidgetView()
                         case .notes: 
-                            NotesWidgetView(prefs: notesWidgetSettigs)
+                            NotesWidgetView(arrayPosition: arrPos, nookPrefs: nookSettings, prefs: notesWidgetSettigs)
                         default: EmptyView()
                     }
                 }
                 .widgetDefaultProps(arrPos: arrPos, pref: widget.prefs, disableDivider: !nookSettings.showDividers)
             }
         }
+        .animation(.smooth, value: nookSettings.enabledWidgets)
         .frame(nookSettings.size.screenPtsCGSize)
         .fixedSize()
     }
