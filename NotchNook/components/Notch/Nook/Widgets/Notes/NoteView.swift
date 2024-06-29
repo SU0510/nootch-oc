@@ -78,7 +78,7 @@ struct NoteView: View, Equatable {
             .fixedSize(horizontal: true, vertical: !selected)
             .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
             .padding(downScaled ? 2 : 0)
-            .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns)
+            .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns, properties: [.position])
             .fadeOnEdges(axis: .vertical, fadeLength: 20, curve: .easeOut, disable: !selected)
         }
         .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
@@ -128,30 +128,6 @@ struct NoteView: View, Equatable {
             note.text = text
             note.updatedAt = Date()
             try? note.modelContext?.save()
-        }
-    }
-}
-
-extension View {
-    public func cursor(_ cursor: NSCursor) -> some View {
-        if #available(macOS 13.0, *) {
-            return self.onContinuousHover { phase in
-                switch phase {
-                    case .active(_):
-                        guard NSCursor.current != cursor else { return }
-                        cursor.push()
-                    case .ended:
-                        NSCursor.pop()
-                }
-            }
-        } else {
-            return self.onHover { inside in
-                if inside {
-                    cursor.push()
-                } else {
-                    NSCursor.pop()
-                }
-            }
         }
     }
 }

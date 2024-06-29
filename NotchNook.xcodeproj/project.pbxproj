@@ -101,6 +101,7 @@
 		3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */; };
 		3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1822C2FE40500D727DA /* openApp.swift */; };
 		3A8AA1852C2FE43B00D727DA /* OpenAppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */; };
+		3A8AA1872C2FEFE100D727DA /* shareToAppleNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1862C2FEFE100D727DA /* shareToAppleNotes.swift */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
 		3AC36D822C2530F40000F995 /* calendar.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3AC36D812C2530F40000F995 /* calendar.mov */; };
@@ -392,6 +393,7 @@
 		3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventNextFocusFrontmostWindowKey.swift; sourceTree = "<group>"; };
 		3A8AA1822C2FE40500D727DA /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
 		3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAppKey.swift; sourceTree = "<group>"; };
+		3A8AA1862C2FEFE100D727DA /* shareToAppleNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shareToAppleNotes.swift; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		3AC36D812C2530F40000F995 /* calendar.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendar.mov; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 				3A3F59FD2C2A5BF100906FFA /* openNotch.swift */,
 				3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */,
 				3A8AA1822C2FE40500D727DA /* openApp.swift */,
+				3A8AA1862C2FEFE100D727DA /* shareToAppleNotes.swift */,
 			);
 			path = functions;
 			sourceTree = "<group>";
@@ -1610,6 +1613,7 @@
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */,
 				3A1691E42C2FB23E0014C326 /* MakeKeyWindowKey.swift in Sources */,
+				3A8AA1872C2FEFE100D727DA /* shareToAppleNotes.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
 				3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,

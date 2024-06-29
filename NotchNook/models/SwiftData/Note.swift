@@ -35,14 +35,14 @@ class NSAttributedStringTransformer: ValueTransformer {
     override func transformedValue(_ value: Any?) -> Any? {
         guard let attributedString = value as? NSAttributedString else { return nil }
         if let data = try? attributedString.richTextData(for: .archivedData) {
-            return NSData(data: data)
+            return data
         }
         return nil
     }
 
     override func reverseTransformedValue(_ value: Any?) -> Any? {
-        guard let data = value as? NSData else { return nil }
-        if let attrStr = try? NSAttributedString(data: Data(referencing: data), format: .archivedData) {
+        guard let data = value as? Data else { return nil }
+        if let attrStr = try? NSAttributedString(data: data, format: .archivedData) {
             return attrStr
         }
         return nil

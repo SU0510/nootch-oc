@@ -48,6 +48,7 @@ struct NotesWidgetView: View {
             selectedNoteId = notes.first?.persistentModelID
         }
         .onAppear {
+//            try? modelContext.delete(model: Note.self)
             if notes.count < 4 {
                 let notesToCreate = 4 - notes.count
                 Array(repeating: 0, count: notesToCreate).forEach { _ in
