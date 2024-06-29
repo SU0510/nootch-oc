@@ -10,5 +10,4 @@ import SwiftUI
 struct NotesWidgetSettings: WidgetPrefs {
     var size: NookGrid.Size = .init(width: 5, height: 2)
     var showScrollIndicator = false
-    var lockNotchNookOnFocusWhenTyping = true
 }

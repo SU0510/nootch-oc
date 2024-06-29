@@ -9,16 +9,12 @@ import SwiftUI
 import Defaults
 
 struct NotchGesturer: View {
-    var hidden: Bool
-    var panPadding: EdgeInsets
-    @Binding var scaleDown: Double
-    @Binding var cancelPan: Bool
-    @Binding var panRawPadding: EdgeInsets
-    var mode: NotchNook.NotchMode
-    var closeNotch: (_ doVibrate: Bool, _ unhover: Bool) -> ()
-    var hideNotch: () -> ()
-    var openNotch: () -> ()
-    var changeTrack: (Bool) -> ()
+    var state: NotchViewModel
+    
+    @Environment(\.notchNook) private var notchNook
+    @Environment(\.closeNotch) private var closeNotch
+    @Environment(\.hideNotch) private var hideNotch
+    @Environment(\.openNotch) private var openNotch
     
     private var hasMediaLA: Bool { LiveActivitiesManager.shared.activeLiveActivities.contains(.media) }
     
@@ -26,88 +22,101 @@ struct NotchGesturer: View {
     
     var body: some View {
             ScrollWheelViewRepresentable(onDragChanged: onPan, onDragEnded: onPanEnded)
-//            .id(mode.rawValue + cancelPan.description)
     }
     
     // MARK: - Panning gesture functions
     
     func onPanEnded(_ translation: CGSize, _ scrollingPoint: CGPoint, _ velocity: CGSize) {
-        cancelPan = false
+        state.cancelPan = false
     }
     
     func onPan(_ translation: CGSize, _ scrollingPoint: CGPoint, _ velocity: CGSize, cancelGesture: () -> ()) {
-        if cancelPan || !gestureControlSettings.allowGestures { return }
+        if state.cancelPan || !gestureControlSettings.allowGestures { return }
         
-        // Handles scaleDown when swiping up
-        if scrollingPoint.y < 0 && // Check if gesture is upwards
-                max(panRawPadding.leading, panRawPadding.trailing) < 32 // Checks if there's any horizontal dragging accumulated
+        if // Handles scaleDown when swiping up
+            scrollingPoint.y < 0 && // Check if gesture is upwards
+                max(state.panRawPadding.leading, state.panRawPadding.trailing) < 32 // There cannot be any horizontal dragging accumulated
         {
             
             // Reacts to swipe in real time
+            // Interpolates raw scrolling amount into incremental
+            // scaleDown of contents inside the notch
             let interpolate = interpolatorBuilder([0, -150], value: scrollingPoint.y)
-            scaleDown += interpolate([0, mode != .closed ? 0.1 : 0.3], true)
+            state.scaleDown += interpolate([0, notchNook.mode != .closed ? 0.1 : 0.3], true)
             
-            // Handles actions
-            if scaleDown > (mode != .closed ? 0.03 : 0.1) || // if scaleDown is too big
+            if // Handles actions
+                state.scaleDown > (notchNook.mode != .closed ? 0.03 : 0.1) || // if scaleDown is too big
                     velocity.height < -NotchView.panVelocityTriggerThreshold // or if the gesture velocity is too high
             {
-                if mode != .closed {
+                if notchNook.mode != .closed {
                     vibrate()
                     closeNotch(true, false)
-                } else if !hidden && !LiveActivitiesManager.shared.activeLiveActivities.isEmpty {
+                } else if !notchNook.hidden && !LiveActivitiesManager.shared.activeLiveActivities.isEmpty {
                     vibrate()
                     hideNotch()
                 }
             }
         } else {
             // If it fails, reset scaleDown to 0
-            if scaleDown != 0 {
-                withAnimation(.smooth) { scaleDown = 0 }
+            if state.scaleDown != 0 {
+                withAnimation(.smooth) { state.scaleDown = 0 }
             }
         }
         
         // When not opened, only upward gestures work
-        if mode != .closed { return }
+        if notchNook.mode != .closed { return }
         
-        panRawPadding = .init(
+        state.panRawPadding = .init(
             top: 0,
-            leading: panRawPadding.leading + (scrollingPoint.x < 0 ? (abs(scrollingPoint.x) * (hasMediaLA ? 1 : 0.5)) : 0),
-            bottom: panRawPadding.bottom + (scrollingPoint.y > 0 ? scrollingPoint.y : 0),
-            trailing: panRawPadding.trailing + (scrollingPoint.x > 0 ? (scrollingPoint.x * (hasMediaLA ? 1 : 0.5)) : 0)
+            leading: state.panRawPadding.leading + (scrollingPoint.x < 0 ? (abs(scrollingPoint.x) * (hasMediaLA ? 1 : 0.5)) : 0),
+            bottom: state.panRawPadding.bottom + (scrollingPoint.y > 0 ? scrollingPoint.y : 0),
+            trailing: state.panRawPadding.trailing + (scrollingPoint.x > 0 ? (scrollingPoint.x * (hasMediaLA ? 1 : 0.5)) : 0)
         )
         
         // Reset the oposite side on horizontal dragging
         if scrollingPoint.x > 0 {
-            withAnimation(.smooth) { panRawPadding.leading = 0 }
+            withAnimation(.smooth) { state.panRawPadding.leading = 0 }
         } else if scrollingPoint.x < 0 {
-            withAnimation(.smooth) { panRawPadding.trailing = 0 }
+            withAnimation(.smooth) { state.panRawPadding.trailing = 0 }
         }
               
         // If downwards gesture breaks the threshold, open notch
-        if velocity.height > NotchView.panVelocityTriggerThreshold && (gestureControlSettings.controlOpenState || hidden) {
+        if velocity.height > NotchView.panVelocityTriggerThreshold && (gestureControlSettings.controlOpenState || notchNook.hidden) {
             vibrate()
-            openNotch()
+            openNotch(.nook)
         }
         
-        if !cancelPan {
+        if !state.cancelPan {
 
-            if panPadding.bottom > NotchView.maxVPanDrag && mode == .closed && (gestureControlSettings.controlOpenState || hidden) {
+            if state.panPadding.bottom > NotchView.maxVPanDrag && notchNook.mode == .closed && (gestureControlSettings.controlOpenState || notchNook.hidden) {
                 vibrate()
-                openNotch()
+                openNotch(.nook)
             }
             
             // Media forward/backward gestures
             if hasMediaLA && gestureControlSettings.controlMedia {
-                if panPadding.bottom < NotchView.maxVPanDrag / 3 {
-                    if panPadding.leading > (NotchView.maxHPanDrag) {
-                        changeTrack(true)
+                if state.panPadding.bottom < NotchView.maxVPanDrag / 3 {
+                    if state.panPadding.leading > (NotchView.maxHPanDrag) {
+                        changeTrack(prev: true)
                     }
-                    if panPadding.trailing > (NotchView.maxHPanDrag) {
-                        changeTrack(false)
+                    if state.panPadding.trailing > (NotchView.maxHPanDrag) {
+                        changeTrack(prev: false)
                     }
                 }
             }
             
+        }
+    }
+    
+    
+    // MARK: - Util functions
+    
+    func changeTrack(prev: Bool) {
+        withAnimation(.smooth) {
+            vibrate()
+            state.panRawPadding = .zero
+            state.cancelPan = true
+            if prev { state.panGestureCounter -= 1 } else { state.panGestureCounter += 1 }
         }
     }
 }

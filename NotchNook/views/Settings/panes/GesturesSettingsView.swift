@@ -12,6 +12,7 @@ import Settings
 struct GesturesSettingsView: View {
     @Default(.gestureControlSettings) private var gestureControlSettings
     var body: some View {
+        let contentMaxW: Double = 330
         Settings.Container(contentWidth: 550.0, minimumLabelWidth: 150) {
             Settings.Section {
                 Text("").frame(minWidth: 100, alignment: .trailing)
@@ -32,7 +33,7 @@ struct GesturesSettingsView: View {
                     Toggle("Invert media gestures actions", isOn: $gestureControlSettings.invertMediaGestures)
                         .disabled(!gestureControlSettings.allowGestures)
                     Text("If on, a left swipe will start the next song, if off, the previous one.")
-                        .settingDescription()
+                        .optionDescription(contentMaxW)
                 }
                 .disabled(!gestureControlSettings.allowGestures)
             }

@@ -12,6 +12,7 @@ import Defaults
 struct MediaLiveAcitivitySettingsView: View {
     @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     var body: some View {
+        let contentMaxW: Double = 400
         Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: "Album corner radius:") {
                 SliderPlus(value: $mediaLiveActivitySettings.albumCornerRadius, range: 5...16)
@@ -19,8 +20,7 @@ struct MediaLiveAcitivitySettingsView: View {
             Settings.Section(title: "") {
                 Toggle("Colored Spectograph", isOn: $mediaLiveActivitySettings.coloredSpectograph)
                 Text("If enabled, the audio spectograph will take the color of the current playing album, otherwise, it'll be white.")
-                    .settingDescription()
-                    .frame(width: 400, alignment: .leading)
+                    .optionDescription(contentMaxW)
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)

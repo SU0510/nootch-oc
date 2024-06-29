@@ -16,12 +16,12 @@ struct MirrorWidgetView: View {
             
             let prevMode = mode
             
-            withAnimation(.smooth(extraBounce: 0.15)) {
+            withAnimation(.bouncySmooth) {
                 mode = prevMode != .stopped ? .stopped : .loading
             } completion: {
                 if prevMode == .stopped {
                     setupCamera {
-                        withAnimation(.smooth(extraBounce: 0.15)) {
+                        withAnimation(.bouncySmooth) {
                             mode = .mirrorring
                         }
                     }

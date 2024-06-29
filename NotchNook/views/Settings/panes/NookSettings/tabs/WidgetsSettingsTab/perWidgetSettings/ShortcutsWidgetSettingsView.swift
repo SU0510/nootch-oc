@@ -24,8 +24,9 @@ struct ShortcutsWidgetSettingsView: View {
         let enabled = nookSettings.enabledWidgets.contains(.shortcuts)
         let widgetW = Int(shortcutsWidgetSettings.size.width.double)
         let cols = widgetW / Int(shortcutsWidgetSettings.shortcutButtonWidth.double)
+        let contentMaxW: Double = 300
         VStack {
-            Settings.Container(contentWidth: 520.0, minimumLabelWidth: 150) {
+            Settings.Container(contentWidth: 520.0, minimumLabelWidth: 200) {
                 
                 Settings.Section(title: "Width (in cells):") {
                     let min: Double = 2
@@ -58,8 +59,7 @@ struct ShortcutsWidgetSettingsView: View {
                     .horizontalRadioGroupLayout()
 
                     Text("Each column contains 2 rows (2 shortcuts).")
-                        .settingDescription()
-                        .frame(maxWidth: 300, alignment: .leading)
+                        .optionDescription(contentMaxW)
                 }
             }
             

@@ -19,7 +19,7 @@ struct MiniPlayerView: View {
                     forwardFn: player.nextTrack
                 )
             }
-            .animation(.smooth(extraBounce: 0.15), value: [player.track.title, player.track.album, player.track.artist])
+            .animation(.bouncySmooth, value: [player.track.title, player.track.album, player.track.artist])
         }
     }
 }

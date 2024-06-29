@@ -14,6 +14,7 @@ struct GeneralSettingsView: View {
     @Default(.generalSettings) private var generalSettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     var body: some View {
+        let contentMaxW: Double = 340
         let defaultGeneral = GeneralSettings()
         Settings.Container(contentWidth: 550.0, minimumLabelWidth: 200) {
             
@@ -26,6 +27,11 @@ struct GeneralSettingsView: View {
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
             }
+            Settings.Section(title: "Typing effects:") {
+                Toggle("Prevent from closing on mouse leave", isOn: $generalSettings.preventUnhoverCloseWhenTyping)
+                Toggle("Lock while typing", isOn: $generalSettings.lockNNWhenTyping)
+                    .disabled(!generalSettings.preventUnhoverCloseWhenTyping)
+            }
             Settings.Section(title: "Content padding:") {
                 SliderPlus(value: $generalSettings.contentPadding, range: 0...32)
             }
@@ -37,8 +43,8 @@ struct GeneralSettingsView: View {
                     Text("\(num > 0 ? "+" : "")\(Int(num))")
                 }
                 Text("NotchNook tries it's best to guess you notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch.")
-                    .settingDescription()
-                    .frame(width: 330, alignment: .leading)
+//                    .settingDescription()
+                    .optionDescription(contentMaxW)
             }
             
             Settings.Section(title: "Handler (no-notch screens):", bottomDivider: true) {
@@ -57,7 +63,7 @@ struct GeneralSettingsView: View {
                 Toggle("Transparent handler", isOn: $generalSettings.transparentHandle)
                 
                 Text("Will only show up on mouse hover.")
-                    .settingDescription()
+                    .optionDescription(contentMaxW)
                     .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
             }
             
@@ -65,15 +71,18 @@ struct GeneralSettingsView: View {
                 Button("Reset all settings") { resetDefaults() }
                 
                 Text("This will reset everything except your license.")
-                    .settingDescription()
+                    .optionDescription(contentMaxW)
                 
                 Toggle("Demo mode", isOn: $generalSettings.demoMode)
                 Text("Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens).")
-                    .fixedSize(horizontal: false, vertical: true)
-                    .settingDescription()
-                    .frame(width: 330, alignment: .leading)
+                    .optionDescription(contentMaxW)
+                
+                Button("Quit NotchNook") { NSApp.terminate(nil) }
+                Text("You can also right click it.")
+                    .optionDescription(contentMaxW)
             }
         }
+        .frame(width: 610)
     }
 }
 

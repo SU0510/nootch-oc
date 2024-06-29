@@ -30,7 +30,7 @@ struct LockedIndicatorView: View {
         let iconColor = (lockedOrTyping ? Color.blue : Color.white)
         let rgb = NSColor(iconColor).rgb
         let colorProvider = ColorValueProvider(.init(r: rgb.0, g: rgb.1, b: rgb.2, a: iconColor.alpha))
-        let iconOpacity = lockedOrTyping ? 1 : pressing ? 0.35 : 0.25
+        let iconOpacity = lockedOrTyping ? 1 : pressing ? 0.75 : 0.5
         Button {
             if typing { resignFirstResponder() } else { toggleLock?() }
         } label: {
@@ -130,7 +130,7 @@ struct LockedIndicatorView: View {
         .onChange(of: typing) { oldVal, newVal in
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: locked || newVal ? 0 : 0.3, repeats: false) { _ in
-                withAnimation(!locked && newVal ? nil : .smooth(extraBounce: 0.15)) { self.showKeyboardIcon = newVal }
+                withAnimation(!locked && newVal ? nil : .bouncySmooth) { self.showKeyboardIcon = newVal }
             }
         }
     }

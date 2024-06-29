@@ -55,7 +55,7 @@ struct AlbumCoverView: View, Equatable {
                 }
                 .transition(.scaleAndBlur)
             }
-            .animation(.smooth(extraBounce: 0.15), value: artwork)
+            .animation(.bouncySmooth, value: artwork)
             .aspectRatio(1/1, contentMode: .fit)
             .frame(maxHeight: .infinity)
         }

@@ -11,9 +11,9 @@ import SwiftUI
 extension NotchView {
     var standardPadding: EdgeInsets {
         var pad: Double = 0
-        if mode == .closed {
-            if hovering {
-                if pressing {
+        if notchNook.mode == .closed {
+            if state.hovering {
+                if state.pressing {
                     pad = 4
                 } else {
                     pad = 8

@@ -37,7 +37,7 @@ struct HelloView: View {
             if step > 2 {
                 HStack {
                     StartButton()
-                    Button("See Tutorial") { withAnimation(.smooth(extraBounce: 0.15)) { tutorial.toggle() } }
+                    Button("See Tutorial") { withAnimation(.bouncySmooth) { tutorial.toggle() } }
                 }
                 .buttonStyle(ActionButton())
             }

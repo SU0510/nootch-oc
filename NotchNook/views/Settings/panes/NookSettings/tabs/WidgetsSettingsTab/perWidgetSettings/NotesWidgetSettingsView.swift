@@ -25,8 +25,11 @@ struct NotesWidgetSettingsView: View {
         Settings.Container(contentWidth: 520.0) {
             let min: Double = 4
             let max = !enabled ? 12 : availableWidth.double <= min ? min + 1 : availableWidth.double
-            Settings.Section(title: "Width", bottomDivider: true) {
+            Settings.Section {
+                Text("Width:").frame(minWidth: 200, alignment: .trailing)
+            } content: {
                 SliderPlus(value: $notesWidgetSettigs.size.width.double, range: min...max)
+                Toggle("Show scroll indicator", isOn: $notesWidgetSettigs.showScrollIndicator)
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)

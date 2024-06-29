@@ -57,7 +57,7 @@ struct MediaPlayerView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
         }
-        .animation(.smooth(extraBounce: 0.15), value: [track.title, track.album, track.artist])
+        .animation(.bouncySmooth, value: [track.title, track.album, track.artist])
         .foregroundStyle(.white)
     }
 }

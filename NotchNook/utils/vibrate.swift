@@ -9,7 +9,9 @@ import Foundation
 import Defaults
 import AppKit
 
+private let inMemoryGeneralSettings = InMemoryDefault(key: .generalSettings)
+
 func vibrate() {
-    if Defaults[.generalSettings].disableHaptics { return }
+    if inMemoryGeneralSettings.value.disableHaptics { return }
     NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
 }

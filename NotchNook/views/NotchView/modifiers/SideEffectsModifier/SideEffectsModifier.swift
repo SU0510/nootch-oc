@@ -1,0 +1,56 @@
+//
+//  SideEffectsModifier.swift
+//  NotchNook
+//
+//  Created by Igor Marcossi on 28/06/24.
+//
+
+import SwiftUI
+import Defaults
+
+
+extension NotchView {
+    struct SideEffectsModifier: ViewModifier {
+        var state: NotchViewModel
+        
+        @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
+        @Default(.generalSettings) internal var generalSettings
+        @Default(.intro) internal var intro
+        @Default(.lastBuildNumber) internal var lastBuildNumber
+        @Environment(\.sparkleManager) internal var sparkleManager
+        @Environment(\.showChangelog) internal var showChangelog
+        
+        func body(content: Content) -> some View {
+            content
+                .onAppear {
+                    //                            checkForUpdates()
+                    //                            resetTrialAndHandleChangelog()
+                    //                            insertUpdateLAIfOldVersion()
+                    //                            fetchEvents()
+                }
+                .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
+                    if !old.contains(.calendar) && new.contains(.calendar) {
+                        Task { try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount) }
+                    }
+                }
+                .onChange(of: state.hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
+                .onChange(of: intro, initial: true) { _, new in
+                    doAfter(0.3) { withAnimation(NotchView.intenseAnimation) { state.showIntro = new } }
+                }
+                .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
+                    if !state.fineTuningNotchWidth {
+                        withAnimation(NotchView.intenseAnimation) { state.fineTuningNotchWidth = true }
+                    }
+                }
+                .onChangeDebounced(of: generalSettings.notchWidthFineTune, delay: 2) { _ in
+                    withAnimation(NotchView.intenseAnimation) { state.fineTuningNotchWidth = false }
+                }
+                .onChangeDebounced(of: state.panRawPadding, delay: 0.05) { _ in
+                    withAnimation(.smooth) { state.panRawPadding = .zero }
+                }
+                .onChangeDebounced(of: state.scaleDown, delay: 0.05) { _ in
+                    withAnimation(.smooth) { state.scaleDown = 0 }
+                }
+        }
+    }
+}

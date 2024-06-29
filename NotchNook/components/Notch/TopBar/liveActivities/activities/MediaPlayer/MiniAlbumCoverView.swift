@@ -37,7 +37,7 @@ struct MiniAlbumCoverView: View {
                         .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
                 }
                 .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
-                .animation(.smooth(extraBounce: 0.15), value: [player.track.title, player.track.album, player.track.artist])
+                .animation(.bouncySmooth, value: [player.track.title, player.track.album, player.track.artist])
                 .onHover { hovering in
                     if laPrefs.enableQuickPeek, let quickPeeks {
                         notchNook.quickPeeks = hovering ? quickPeeks : nil
