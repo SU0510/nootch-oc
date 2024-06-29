@@ -14,7 +14,7 @@ struct NotesWidgetView: View {
     var arrayPosition: ArrayPosition
     var nookPrefs: NookSettings
     var prefs: NotesWidgetSettings
-    @Query private var notes: [Note]
+    @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @State private var selectedNoteId: PersistentIdentifier?
     @Environment(\.modelContext) private var modelContext
     @Namespace private var ns
@@ -22,6 +22,8 @@ struct NotesWidgetView: View {
     private var selectedNote: Note? { notes.first(where: { $0.persistentModelID == selectedNoteId }) }
     private var mainNoteWidth: Double { prefs.size.width.screenPoints - (nookPrefs.widgetsPadding * 2) - Self.spacing - NoteView.smallSize }
     
+    var otherNotes: [Note] { notes.filter { $0.id != selectedNoteId }.sorted(by: { $0.updatedAt > $1.updatedAt }) }
+    var otherNotesIds: [PersistentIdentifier] { otherNotes.map { $0.persistentModelID } }
     var body: some View {
         
         HStack(alignment: .top, spacing: Self.spacing) {
@@ -29,7 +31,6 @@ struct NotesWidgetView: View {
                 NoteView(note: selectedNote, selected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, prefs: prefs, ns: ns)
                     .id(selectedNote.persistentModelID)
                 VStack(alignment: .leading, spacing: Self.spacing) {
-                    let otherNotes = notes.filter { $0.id != selectedNoteId }.sorted(by: { $0.updatedAt < $1.updatedAt })
                     ForEach(Array(otherNotes.enumerated()), id: \.element) { i, note in
                         Button {
                             withAnimation(NotesWidgetView.switchAnimation) { selectedNoteId = note.persistentModelID }
@@ -41,6 +42,7 @@ struct NotesWidgetView: View {
                 }
             }
         }
+        .animation(.spring, value: otherNotesIds)
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookPrefs.widgetsPadding)
         .onChange(of: notes.count, initial: true) { _, _ in
             selectedNoteId = notes.first?.persistentModelID

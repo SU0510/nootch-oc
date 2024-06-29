@@ -29,6 +29,8 @@ struct NoteView: View, Equatable {
     @State private var text: NSAttributedString
     @State private var showControls = false
     @State private var downScaled = false
+    @State private var hovering = false
+    //    @State private var showEditor = false
     @Default(.generalSettings) private var generalSettings
     @StateObject private var context: RichTextContext
     
@@ -63,18 +65,17 @@ struct NoteView: View, Equatable {
     var body: some View {
         
         ZStack(alignment: .bottomTrailing) {
-            Group {
-                RichTextEditor(text: $text, context: context) { config in
-                    if let textView = config as? NSTextView {
-                        textView.isEditable = selected
-                        textView.backgroundColor = .clear
-                        textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
-                        textView.enclosingScrollView?.additionalSafeAreaInsets = selected ? .init(10) : .zero
-                    }
+            RichTextEditor(text: $text, context: context) { config in
+                if let textView = config as? NSTextView {
+                    textView.isEditable = selected
+                    textView.backgroundColor = .clear
+                    textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
+                    textView.enclosingScrollView?.additionalSafeAreaInsets = selected ? .init(10) : .zero
                 }
-                .focusedValue(\.richTextContext, context)
             }
+            .focusedValue(\.richTextContext, context)
             .frame(width: width - (selected ? 0 : 8), height: selected ? nil : 100, alignment: .topLeading)
+            .fixedSize(horizontal: true, vertical: !selected)
             .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
             .padding(!selected ? 6 : 0)
             .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns)
@@ -109,7 +110,16 @@ struct NoteView: View, Equatable {
                 .fill(.noteBG.shadow(.drop(radius: 16, y: 8)))
                 .matchedGeometryEffect(id: "\(note.persistentModelID)-note-bg", in: ns)
         }
+        .compositingGroup()
+        .opacity(hovering || selected ? 1 : 0.75)
+        .background { shapeView().fill(.black).matchedGeometryEffect(id: "\(note.persistentModelID)-note-bg-fade-avoider", in: ns) }
+        .onHover { x in withAnimation(.easeOut) { hovering = x } }
+        .animation(.spring, value: widgetArrPosition)
         .onAppear {
+            if selected {
+                note.updatedAt = Date()
+                try? note.modelContext?.save()
+            }
             withAnimation(NotesWidgetView.switchAnimation) { downScaled.toggle() }
             withAnimation(.spring.delay(0.3)) { showControls = true }
         }
