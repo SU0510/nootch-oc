@@ -17,8 +17,12 @@ extension NotchView {
         @Default(.generalSettings) internal var generalSettings
         @Default(.intro) internal var intro
         @Default(.lastBuildNumber) internal var lastBuildNumber
+        @Environment(\.notchNook) internal var notchNook
         @Environment(\.sparkleManager) internal var sparkleManager
         @Environment(\.showChangelog) internal var showChangelog
+        @Environment(\.closeNotch) internal var closeNotch
+        @Environment(\.isEditingText) internal var isEditingText
+        @Environment(\.isKeyWindow) internal var isKeyWindow
         
         func body(content: Content) -> some View {
             content
@@ -50,6 +54,11 @@ extension NotchView {
                 }
                 .onChangeDebounced(of: state.scaleDown, delay: 0.05) { _ in
                     withAnimation(.smooth) { state.scaleDown = 0 }
+                }
+                .onChange(of: isKeyWindow) { _, newVal in
+                    if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {
+                        closeNotch(false, true)
+                    }
                 }
         }
     }

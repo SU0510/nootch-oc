@@ -10,7 +10,6 @@ import SwiftUI
 
 extension NotchView.EnvironmentsModifier {
     func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
-        if isEditingText || notchNook.locked { return }
         canBecomeKey.wrappedValue = false
         focusFrontmostWindow()
         withAnimation(.smooth(duration: 0.4)) {

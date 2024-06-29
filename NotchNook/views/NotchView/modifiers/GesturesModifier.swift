@@ -63,6 +63,7 @@ extension NotchView {
                     makeKeyWindow()
                 }
             } else {
+                if (generalSettings.preventUnhoverCloseWhenTyping && isEditingText) || notchNook.locked { return }
                 closeNotch(false, true)
             }
         }
