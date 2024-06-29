@@ -49,7 +49,7 @@ struct NoteView: View, Equatable {
     }
     
     @ViewBuilder func shapeView() -> UnevenRoundedRectangle {
-        let cornerRadius: Double = selected ? 13 : 8
+        let cornerRadius: Double = !downScaled ? 13 : 8
         let edgeBiggerCornerRadius = NotchShape.maxNotchRadius - generalSettings.contentPadding
         UnevenRoundedRectangle(
             cornerRadii: .init(
@@ -70,14 +70,14 @@ struct NoteView: View, Equatable {
                     textView.isEditable = selected
                     textView.backgroundColor = .clear
                     textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
-                    textView.enclosingScrollView?.additionalSafeAreaInsets = selected ? .init(10) : .zero
+                    textView.enclosingScrollView?.additionalSafeAreaInsets = .init(10)
                 }
             }
             .focusedValue(\.richTextContext, context)
-            .frame(width: width - (selected ? 0 : 8), height: selected ? nil : 100, alignment: .topLeading)
+            .frame(width: width - (downScaled ? 0 : 8), height: selected ? nil : 100, alignment: .topLeading)
             .fixedSize(horizontal: true, vertical: !selected)
             .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
-            .padding(!selected ? 6 : 0)
+            .padding(downScaled ? 2 : 0)
             .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns)
             .fadeOnEdges(axis: .vertical, fadeLength: 20, curve: .easeOut, disable: !selected)
         }
@@ -97,7 +97,6 @@ struct NoteView: View, Equatable {
             }
         }
         .scaleEffect(1)
-        .clipped()
         .geometryGroup()
         .contentShape(Rectangle())
         .mask {
