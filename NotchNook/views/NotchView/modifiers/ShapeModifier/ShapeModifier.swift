@@ -41,9 +41,12 @@ extension NotchView {
         func body(content: Content) -> some View {
             content
                 .mask(alignment: .top) { notchShapeView(shadow: false, transparentHandle: false) }
+                .background { NotchGesturer(state: state) }
                 .contentShape(NotchShape(notchSize: notchSize))
                 .background(alignment: .top) {
                     ZStack {
+                        
+                        
                         Color.hitBox
                         
                         let showFileDropView = notchNook.mode == .closed || notchNook.mode == .dragging
@@ -53,7 +56,7 @@ extension NotchView {
                         
                         notchShapeView()
                         
-                        NotchGesturer(state: state)
+                        
                     }
                 }
         }

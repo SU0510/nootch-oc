@@ -23,10 +23,10 @@ extension NotchView {
         func body(content: Content) -> some View {
             content
                 .onAppear {
-                    //                            checkForUpdates()
-                    //                            resetTrialAndHandleChangelog()
-                    //                            insertUpdateLAIfOldVersion()
-                    //                            fetchEvents()
+                    checkForUpdates()
+                    resetTrialAndHandleChangelog()
+                    insertUpdateLAIfOldVersion()
+                    fetchEvents()
                 }
                 .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
                     if !old.contains(.calendar) && new.contains(.calendar) {
