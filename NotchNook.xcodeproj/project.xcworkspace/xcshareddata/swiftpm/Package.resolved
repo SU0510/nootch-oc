@@ -1,5 +1,5 @@
 {
-  "originHash" : "faa312bf3cf575a53dc549e085056a9c55bfa14732b0723b94725d70a504a802",
+  "originHash" : "bd913a6e3bf5f51b02e29cf04579cb4af7e84aa1d63d2fbc6415cfcca27b236a",
   "pins" : [
     {
       "identity" : "bluecryptor",
@@ -76,10 +76,10 @@
     {
       "identity" : "richtextkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/RichTextKit.git",
+      "location" : "https://github.com/lo-cafe/RichTextKit.git",
       "state" : {
-        "revision" : "f0ecceb71ff3cb12a3143eed13b8b62fea7c34e5",
-        "version" : "1.0.0"
+        "branch" : "main",
+        "revision" : "80d2d0be53b74dab9f391ea6a44b316124982dc7"
       }
     },
     {

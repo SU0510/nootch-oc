@@ -15,6 +15,7 @@ final class Note {
     var createdAt: Date
     var updatedAt: Date
     var icon: String
+    var scrollPos: Double = 0
     
     init(icon: String, text: NSAttributedString = NSAttributedString(string: ""), createdAt: Date = Date(), updatedAt: Date = Date()) {
         self.icon = icon

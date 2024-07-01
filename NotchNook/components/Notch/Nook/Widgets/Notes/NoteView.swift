@@ -31,7 +31,7 @@ struct NoteView: View, Equatable {
     @State private var showControls = false
     @State private var downScaled = false
     @State private var hovering = false
-//    @State private var showEditor = false
+//    @State private var scrollPos: Double = 0
     @Default(.generalSettings) private var generalSettings
     @StateObject private var context: RichTextContext
     
@@ -65,11 +65,10 @@ struct NoteView: View, Equatable {
     }
     
     var body: some View {
-//        context
         ZStack(alignment: .bottomTrailing) {
-            Group {
+            ZStack {
                 if selected {
-                    RichTextEditor(text: $text, context: context) { config in
+                    CRichTextEditor(text: $text, context: context, initialScrollPos: 201) { config in
                         if let textView = config as? NSTextView {
                             textView.isEditable = selected
                             textView.backgroundColor = .clear
@@ -86,7 +85,8 @@ struct NoteView: View, Equatable {
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(EdgeInsets(top: 13, leading: 13, bottom: 40, trailing: 13))
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .coordinateSpace(name: "scroll")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .clipped()
                     .scrollDisabled(true)
                     .allowsHitTesting(false)
@@ -95,7 +95,7 @@ struct NoteView: View, Equatable {
             .focusedValue(\.richTextContext, context)
             .frame(width: width - (downScaled ? 0 : 8), height: selected ? nil : 100, alignment: .topLeading)
             .fixedSize(horizontal: true, vertical: !selected)
-            .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
+//            .scaleEffect(downScaled ? 0.29 : 1, anchor: .topLeading)
             .padding(downScaled ? 2 : 0)
             .matchedGeometryEffect(id: "\(note.persistentModelID)-note-editor", in: ns, properties: [.position])
             .opacity(downScaled ? 0.25 : 0.9)
@@ -132,26 +132,14 @@ struct NoteView: View, Equatable {
         .compositingGroup()
         .opacity(hovering || selected ? 1 : 0.75)
         .overlay(alignment: !selected ? .bottomTrailing : .bottomLeading) {
-            Image(systemName: note.icon)
-                .font(.system(size: 14, weight: .semibold))
-                .frame(24)
-                .padding(downScaled ? 2 : 4)
-                .foregroundStyle(.blue)
-                .shadow(color: .black.opacity(0.25), radius: 6, y: 0)
-                .shadow(color: .black.opacity(0.35), radius: 8, y: 4)
-                .scaleEffect(downScaled ? 0.75 : 1, anchor: .bottomTrailing)
-                .transition(.scale(1))
-                .matchedGeometryEffect(id: "\(note.persistentModelID)-note-icon", in: ns, properties: [.position])
-                .opacity(downScaled ? 0.65 : 1)
+            NoteIconView(noteId: "\(note.persistentModelID)", icon: note.icon, downScaled: downScaled, ns: ns)
         }
         .background { shapeView().fill(.black).matchedGeometryEffect(id: "\(note.persistentModelID)-note-bg-fade-avoider", in: ns) }
-        .onHover { x in withAnimation(.easeOut) { hovering = x } }
+        .onHover { x in if !selected { withAnimation(.easeOut) { hovering = x } } }
+        .zIndex(selected ? 1 : 0)
         .animation(.spring, value: widgetArrPosition)
         .onAppear {
             if selected {
-//                doAfter(1) {
-//                    showEditor = true
-//                }
                 note.updatedAt = Date()
                 try? note.modelContext?.save()
             }
@@ -159,7 +147,6 @@ struct NoteView: View, Equatable {
             withAnimation(.spring.delay(0.3)) { showControls = true }
         }
         .transition(.scale(1))
-        .zIndex(selected ? 1 : 0)
         .onReceive(context.objectWillChange) { _ in
             note.text = text
             note.updatedAt = Date()
