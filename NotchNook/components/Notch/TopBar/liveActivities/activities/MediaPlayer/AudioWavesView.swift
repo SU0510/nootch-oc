@@ -23,7 +23,7 @@ struct AudioWavesView: View {
                 MediaPlayer.shared.app?.toggleIsPlaying()
             } label: {
                 ZStack {
-                    AudioSpectrograph(playing: isPlaying, volume: volume, color: color)
+                    AudioSpectrographRepresentable(playing: isPlaying, volume: volume, color: color)
                         .blur(radius: hovering ? 1.25 : 0)
 //                        .opacity(hovering ? 0.75 : 1)
                     if hovering {

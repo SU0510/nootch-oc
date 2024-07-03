@@ -1,5 +1,5 @@
 {
-  "originHash" : "faa312bf3cf575a53dc549e085056a9c55bfa14732b0723b94725d70a504a802",
+  "originHash" : "88fdf041719fa39666a51a0e29ec17de820d6419cf9e36d9eb1aa2a5c248f6bd",
   "pins" : [
     {
       "identity" : "bluecryptor",
@@ -121,7 +121,7 @@
     {
       "identity" : "swift-jwt",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/Swift-JWT.git",
+      "location" : "https://github.com/Kitura/Swift-JWT",
       "state" : {
         "revision" : "f68ec28fbd90a651597e9e825ea7f315f8d52a1f",
         "version" : "4.0.1"
