@@ -13,9 +13,6 @@ struct RichToolbarView: View {
     @State private var hovering = false
     var body: some View {
         HStack(spacing: 3) {
-//            Button("export") {
-//                shareToAppleNotes(attributedString: context.attributedString)
-//            }
             RichToolbarButtonView(icon: context.fontSize == 13 ? "textformat.size.smaller" : "character", tooltip: "Underline", action: {
                 context.fontSize = context.fontSize == 13 ? 15 : 13
             }, active: false)

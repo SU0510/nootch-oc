@@ -52,6 +52,8 @@
 		3A1691F32C2FB5180014C326 /* CheckTrialOverKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691F22C2FB5180014C326 /* CheckTrialOverKey.swift */; };
 		3A1691F72C2FBA410014C326 /* InMemoryDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */; };
 		3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691FB2C2FC7D20014C326 /* GesturesModifier.swift */; };
+		3A1FFE1E2C35310400BB4A03 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE1D2C35310400BB4A03 /* CodeEditor */; };
+		3A1FFE212C353F6D00BB4A03 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE202C353F6D00BB4A03 /* CodeEditor */; };
 		3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F16D2C2F845F006A7E1F /* optionDescription.swift */; };
 		3A20F1712C2F8937006A7E1F /* SideEffectsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1702C2F8937006A7E1F /* SideEffectsModifier.swift */; };
 		3A20F1732C2F8A59006A7E1F /* AnimationsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1722C2F8A59006A7E1F /* AnimationsModifier.swift */; };
@@ -87,6 +89,10 @@
 		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
 		3A459C272C2E955D0045995D /* lock.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A459C262C2E955D0045995D /* lock.lottie */; };
 		3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A471A402C224C6C00FCD355 /* FolderMonitor.swift */; };
+		3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */; };
+		3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */; };
+		3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */; };
+		3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -106,6 +112,9 @@
 		3A8AA18B2C3116CF00D727DA /* NoteIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */; };
 		3A8AA18E2C311B6300D727DA /* CRichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA18D2C311B6300D727DA /* CRichTextEditor.swift */; };
 		3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8AA2CE2C313B6300D727DA /* RichTextKit */; };
+		3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFD82C352D8600BA2F80 /* CodeEditor */; };
+		3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDA2C352EB000BA2F80 /* CodeEditor */; };
+		3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDD2C352EC600BA2F80 /* CodeEditor */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
 		3AC36D822C2530F40000F995 /* calendar.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3AC36D812C2530F40000F995 /* calendar.mov */; };
@@ -383,6 +392,10 @@
 		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
 		3A459C262C2E955D0045995D /* lock.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.lottie; sourceTree = "<group>"; };
 		3A471A402C224C6C00FCD355 /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
+		3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCodeEditor.swift; sourceTree = "<group>"; };
+		3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRichEditor.swift; sourceTree = "<group>"; };
+		3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShapeModifier.swift; sourceTree = "<group>"; };
+		3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRichEditor.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -600,12 +613,17 @@
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
+				3A1FFE212C353F6D00BB4A03 /* CodeEditor in Frameworks */,
+				3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
+				3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
 				3A801E142C15781F0076560D /* SwiftJWT in Frameworks */,
+				3A1FFE1E2C35310400BB4A03 /* CodeEditor in Frameworks */,
+				3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,10 +798,14 @@
 		3A3F59E42C2A568E00906FFA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */,
+				3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */,
 				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
+				3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */,
+				3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */,
+				3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */,
 				3AE405442C2BD02600E8D927 /* NoteView.swift */,
 				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
-				3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -1532,6 +1554,11 @@
 				3A801E0A2C154EA30076560D /* SmoothGradient */,
 				3A801E132C15781F0076560D /* SwiftJWT */,
 				3A8AA2CE2C313B6300D727DA /* RichTextKit */,
+				3AA6FFD82C352D8600BA2F80 /* CodeEditor */,
+				3AA6FFDA2C352EB000BA2F80 /* CodeEditor */,
+				3AA6FFDD2C352EC600BA2F80 /* CodeEditor */,
+				3A1FFE1D2C35310400BB4A03 /* CodeEditor */,
+				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1577,6 +1604,7 @@
 				3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */,
 				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */,
+				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1644,6 +1672,7 @@
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
 				3A1691DC2C2FB2160014C326 /* TrayKey.swift in Sources */,
+				3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */,
 				3AE405452C2BD02600E8D927 /* NoteView.swift in Sources */,
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
@@ -1687,6 +1716,7 @@
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
 				3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */,
+				3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */,
 				3A3F59EE2C2A58CC00906FFA /* fetchEvents.swift in Sources */,
 				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
@@ -1694,6 +1724,7 @@
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
 				EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */,
+				3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */,
 				3A8AA18E2C311B6300D727DA /* CRichTextEditor.swift in Sources */,
 				3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */,
 				3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */,
@@ -1868,6 +1899,7 @@
 				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				3A1691D62C2FB2040014C326 /* ShowChangelogKey.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
+				3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */,
 				EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */,
 				EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */,
 				EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */,
@@ -2114,6 +2146,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lo-cafe/CodeEditor.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raymondjavaxx/SmoothGradient.git";
@@ -2197,6 +2237,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3A1FFE1D2C35310400BB4A03 /* CodeEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CodeEditor;
+		};
+		3A1FFE202C353F6D00BB4A03 /* CodeEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */;
+			productName = CodeEditor;
+		};
 		3A801E0A2C154EA30076560D /* SmoothGradient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */;
@@ -2211,6 +2260,18 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */;
 			productName = RichTextKit;
+		};
+		3AA6FFD82C352D8600BA2F80 /* CodeEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CodeEditor;
+		};
+		3AA6FFDA2C352EB000BA2F80 /* CodeEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CodeEditor;
+		};
+		3AA6FFDD2C352EC600BA2F80 /* CodeEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CodeEditor;
 		};
 		BB2A5E542C006B63008F3081 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

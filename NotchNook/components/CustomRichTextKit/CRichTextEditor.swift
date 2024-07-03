@@ -32,6 +32,9 @@ public struct CRichTextEditor: NSViewRepresentable {
         guard let textView = scrollView.documentView as? RichTextView else { return scrollView }
         textView.delegate = context.coordinator
         context.coordinator.textView = textView
+        textView.textContainer?.lineFragmentPadding = 16
+        textView.isRichText = true
+        textView.bottomOverscroll = 32
         textView.setup(with: text, format: format)
         textView.configuration = context.environment.richTextEditorConfig
         textView.theme = context.environment.richTextEditorStyle
@@ -46,15 +49,17 @@ public struct CRichTextEditor: NSViewRepresentable {
         
 //        if let initialScrollPos = initialScrollPos {
 //            doAfter(0) {
-//                scrollView.contentView.scroll(to: .init(x: scrollView.contentView.bounds.origin.x, y: initialScrollPos))
+//                scrollView.contentView.scroll(to: .init(x: scrollView.contentView.bounds.origin.x, y: -10))
 //            }
 //        }
         
         return scrollView
     }
     
-    public func updateNSView(_ view: NSViewType, context: Context) {
+    public func updateNSView(_ scrollView: NSViewType, context: Context) {
         context.coordinator.onScrollChange = onScrollChange
+        guard let textView = scrollView.documentView as? RichTextView else { return }
+        textView.scrollViewDidResize(scrollView)
 //        let currentScrollPosition = view.contentView.bounds.origin
 //          
 //          // Update the document view if needed
@@ -112,4 +117,8 @@ public class CRichTextCoordinator: RichTextCoordinator {
             onScrollChange?(newScrollPosition)
         }
     }
+}
+
+class CustomLayoutManager: NSLayoutManager {
+    override var extraLineFragmentRect: NSRect { NSRect(x: 0, y: 0, width: 0, height: 0) }
 }

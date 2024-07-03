@@ -8,18 +8,22 @@
 import SwiftUI
 import SwiftDate
 import SwiftData
+import CodeEditor
 
 @Model
 final class Note {
-    @Attribute(.transformable(by: NSAttributedStringTransformer.name.rawValue)) var text: NSAttributedString
+    @Attribute(.transformable(by: NSAttributedStringTransformer.name.rawValue)) var richText = NSAttributedString()
+    var codeText = ""
+    var codeLanguage = CodeEditor.Language.markdown.rawValue
     var createdAt: Date
     var updatedAt: Date
     var icon: String
     var scrollPos: Double = 0
     
-    init(icon: String, text: NSAttributedString = NSAttributedString(string: ""), createdAt: Date = Date(), updatedAt: Date = Date()) {
+    init(icon: String, richText: NSAttributedString = NSAttributedString(string: ""), codeText: String = "", createdAt: Date = Date(), updatedAt: Date = Date()) {
         self.icon = icon
-        self.text = text
+        self.richText = richText
+        self.codeText = codeText
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }

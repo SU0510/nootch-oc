@@ -22,6 +22,7 @@ struct NotesWidgetSettingsView: View {
     
     var body: some View {
         let enabled = nookSettings.enabledWidgets.contains(.notes)
+        let contentMaxW: Double = 300
         Settings.Container(contentWidth: 520.0) {
             let min: Double = 4
             let max = !enabled ? nookSettings.size.width.double : availableWidth.double <= min ? min + 1 : availableWidth.double
@@ -30,6 +31,9 @@ struct NotesWidgetSettingsView: View {
             } content: {
                 SliderPlus(value: $notesWidgetSettigs.size.width.double, range: min...max)
                 Toggle("Show scroll indicator", isOn: $notesWidgetSettigs.showScrollIndicator)
+                Toggle("Code mode", isOn: $notesWidgetSettigs.codeMode)
+                Text("Transforms notes into a code editor, with syntax highlighting (supports Markdown).")
+                    .optionDescription(contentMaxW)
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)

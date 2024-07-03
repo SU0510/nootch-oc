@@ -1,5 +1,5 @@
 {
-  "originHash" : "bd913a6e3bf5f51b02e29cf04579cb4af7e84aa1d63d2fbc6415cfcca27b236a",
+  "originHash" : "b85dbe47a9936a3ce0ec49d9a38d495f32350590b93d55291bcd7c32a9fe7b6d",
   "pins" : [
     {
       "identity" : "bluecryptor",
@@ -29,12 +29,30 @@
       }
     },
     {
+      "identity" : "codeeditor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lo-cafe/CodeEditor.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "33e13cd89a5b7d86b915c82dcc3d2fcbf7ec7052"
+      }
+    },
+    {
       "identity" : "defaults",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
         "branch" : "main",
         "revision" : "d8a954e69ff13b0f7805f3757c8f8d0c8ef5a8cb"
+      }
+    },
+    {
+      "identity" : "highlightr",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/helje5/Highlightr",
+      "state" : {
+        "revision" : "bd0358056ff1f12ea83833a9fc1b3b5a396a9da0",
+        "version" : "3.0.2"
       }
     },
     {
@@ -79,7 +97,7 @@
       "location" : "https://github.com/lo-cafe/RichTextKit.git",
       "state" : {
         "branch" : "main",
-        "revision" : "80d2d0be53b74dab9f391ea6a44b316124982dc7"
+        "revision" : "f4b874ac16e697a1f42487aadb9bc52fdfb0a25e"
       }
     },
     {
@@ -105,8 +123,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sparkle-project/Sparkle",
       "state" : {
-        "revision" : "41847a58cdef7506b257591fcca6f9495df591d4",
-        "version" : "2.6.2"
+        "revision" : "0ef1ee0220239b3776f433314515fd849025673f",
+        "version" : "2.6.4"
       }
     },
     {
@@ -132,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
-        "version" : "1.5.4"
+        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
+        "version" : "1.6.1"
       }
     },
     {
