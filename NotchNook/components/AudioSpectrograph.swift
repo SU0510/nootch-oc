@@ -5,42 +5,191 @@
 //  Created by Ethan Bills on 3/16/24.
 //
 
-import SpriteKit
+import Cocoa
+import QuartzCore
 import SwiftUI
-import Combine
-import AppKit
 
-private let barsCount: Int = 3
-
-struct AudioSpectrograph: View {
-    var playing: Bool
-    var volume: CGFloat = 1
-    var color: Color = .white
-    let minHeight: CGFloat = 5
-    let maxHeight: CGFloat = 15
-    let barsSpacing: CGFloat = 1.5
-    let barsThickness: CGFloat = 2
-    //    @State private var phases = (1...100).map { _ in (1...3).map { _ in CGFloat.random(in: 5...15) } }
-    var body: some View {
-        let volumeInterpolate = interpolatorBuilder([0.01, 1], value: volume)
-        let volumeModifier = volume == 0 ? 0 : volumeInterpolate([0.25, 1], false)
-        VStack {
-            TimelineView(.animation(minimumInterval: 0.25)) { _ in
-                let heights = (1...3).map { _ in CGFloat.random(in: 5...15) }
-                HStack(spacing: barsSpacing) {
-                    Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[0] * volumeModifier))
-                    Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[1] * volumeModifier))
-                    Capsule().frame(width: 2, height: !playing ? 2 : max(2, heights[2] * volumeModifier))
-                }
-                .animation(.easeIn(duration: 0.25), value: heights)
+class AudioSpectrographView: NSView {
+    private let barsCount = 3
+    private let minHeight: CGFloat = 1
+    private let maxHeight: CGFloat = 23
+    private let barsSpacing: CGFloat = 1.5
+    private let barsThickness: CGFloat = 2
+    
+    private var barLayers: [CAShapeLayer] = []
+    private var displayLink: CVDisplayLink?
+    private var targetHeights: [CGFloat] = []
+    private var currentHeights: [CGFloat] = []
+    
+    var playing: Bool = false {
+        didSet {
+            if playing {
+                startAnimation()
+            } else {
+                stopAnimation()
             }
         }
-        .foregroundColor(color)
-        .frame(width: maxHeight * 1.5, height: maxHeight * 1.5)
+    }
+    
+    var volume: CGFloat = 1 {
+        didSet {
+            updateBarHeights()
+        }
+    }
+    
+    var color: NSColor = .white {
+        didSet {
+            barLayers.forEach { $0.fillColor = color.cgColor }
+        }
+    }
+    
+    override init(frame: NSRect) {
+        super.init(frame: frame)
+        setupLayers()
+        setupDisplayLink()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupLayers()
+        setupDisplayLink()
+    }
+    
+    private func setupLayers() {
+        self.wantsLayer = true
+        self.layer = CALayer()
+        
+        for _ in 0..<barsCount {
+            let leftBarLayer = CAShapeLayer()
+            let rightBarLayer = CAShapeLayer()
+            leftBarLayer.fillColor = color.cgColor
+            rightBarLayer.fillColor = color.cgColor
+            layer?.addSublayer(leftBarLayer)
+            layer?.addSublayer(rightBarLayer)
+            barLayers.append(contentsOf: [leftBarLayer, rightBarLayer])
+            targetHeights.append(minHeight)
+            currentHeights.append(minHeight)
+        }
+        updateBarHeights()
+    }
+    
+    private func setupDisplayLink() {
+        CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
+        guard let displayLink = displayLink else { return }
+        
+        let displayLinkOutputCallback: CVDisplayLinkOutputCallback = { (displayLink, _, _, _, _, displayLinkContext) -> CVReturn in
+            let audioSpectrographView = unsafeBitCast(displayLinkContext, to: AudioSpectrographView.self)
+            audioSpectrographView.updateAnimation()
+            return kCVReturnSuccess
+        }
+        
+        let userInfo = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
+        CVDisplayLinkSetOutputCallback(displayLink, displayLinkOutputCallback, userInfo)
+    }
+    
+    private func startAnimation() {
+        guard let displayLink = displayLink else { return }
+        CVDisplayLinkStart(displayLink)
+    }
+    
+    private func stopAnimation() {
+        guard let displayLink = displayLink else { return }
+        CVDisplayLinkStop(displayLink)
+        resetBars()
+    }
+    
+    private func resetBars() {
+        for i in 0..<barsCount {
+            targetHeights[i] = minHeight
+            currentHeights[i] = minHeight
+        }
+        updateBarHeights()
+    }
+    
+    private func updateAnimation() {
+        DispatchQueue.main.async {
+            self.updateTargetHeights()
+            self.interpolateHeights()
+            self.updateBarHeights()
+        }
+    }
+    
+    private func updateTargetHeights() {
+        for i in 0..<barsCount {
+            if abs(currentHeights[i] - targetHeights[i]) < 0.1 || Bool.random() {
+                targetHeights[i] = CGFloat.random(in: minHeight...maxHeight)
+            }
+        }
+    }
+    
+    private func interpolateHeights() {
+        let interpolationStep: CGFloat = 0.05
+        for i in 0..<barsCount {
+            currentHeights[i] += (targetHeights[i] - currentHeights[i]) * interpolationStep
+        }
+    }
+    
+    private func updateBarHeights() {
+        let volumeInterpolate = interpolatorBuilder([0.01, 1], value: volume)
+        let volumeModifier = volume == 0 ? 0 : volumeInterpolate([0.25, 1], false)
+        
+        let totalWidth = CGFloat(barsCount) * (barsThickness + barsSpacing) - barsSpacing
+        let startX = (bounds.width - totalWidth) / 2
+        
+        for i in 0..<barsCount {
+            let height = playing ? max(2, currentHeights[i] * volumeModifier) : 2
+            let x = startX + CGFloat(i) * (barsThickness + barsSpacing)
+            
+            let leftBarRect = CGRect(x: x, y: (bounds.height - height) / 2, width: barsThickness, height: height)
+            let rightBarRect = CGRect(x: bounds.width - x - barsThickness, y: (bounds.height - height) / 2, width: barsThickness, height: height)
+            
+            let leftPath = NSBezierPath(roundedRect: leftBarRect, xRadius: barsThickness / 2, yRadius: barsThickness / 2)
+            let rightPath = NSBezierPath(roundedRect: rightBarRect, xRadius: barsThickness / 2, yRadius: barsThickness / 2)
+            
+            barLayers[i * 2].path = leftPath.cgPath
+            barLayers[i * 2 + 1].path = rightPath.cgPath
+        }
+    }
+    
+    deinit {
+        if let displayLink = displayLink {
+            CVDisplayLinkStop(displayLink)
+        }
+    }
+    
+    private func interpolatorBuilder(_ range: [CGFloat], value: CGFloat) -> ([CGFloat], Bool) -> CGFloat {
+        return { interpolationRange, _ in
+            let inputMin = range[0]
+            let inputMax = range[1]
+            let outputMin = interpolationRange[0]
+            let outputMax = interpolationRange[1]
+            
+            let inputRange = inputMax - inputMin
+            let outputRange = outputMax - outputMin
+            
+            let normalizedValue = (value - inputMin) / inputRange
+            return outputMin + (normalizedValue * outputRange)
+        }
     }
 }
 
-
+struct AudioSpectrographRepresentable: NSViewRepresentable {
+    var playing: Bool
+    var volume: CGFloat
+    var color: Color
+    
+    func makeNSView(context: Context) -> AudioSpectrographView {
+        let view = AudioSpectrographView(frame: .zero)
+        updateNSView(view, context: context)
+        return view
+    }
+    
+    func updateNSView(_ nsView: AudioSpectrographView, context: Context) {
+        nsView.playing = playing
+        nsView.volume = volume
+        nsView.color = NSColor(color)
+    }
+}
 
 // Custom NSView for displaying the audio spectrograph
 //class AudioSpectrographView: NSView {
