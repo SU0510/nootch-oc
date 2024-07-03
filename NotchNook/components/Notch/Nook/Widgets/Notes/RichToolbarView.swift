@@ -9,10 +9,17 @@ import SwiftUI
 import RichTextKit
 
 struct RichToolbarView: View {
+    var note: Note
     @ObservedObject var context: RichTextContext
     @State private var hovering = false
+    @Environment(\.expandedNoteManager) private var expandedNoteManager
     var body: some View {
         HStack(spacing: 3) {
+
+            RichToolbarButtonView(icon: "arrow.up.left.and.arrow.down.right", tooltip: "Expand", action: {
+                expandedNoteManager.activeNote = note
+            }, active: false)
+            
             RichToolbarButtonView(icon: context.fontSize == 13 ? "textformat.size.smaller" : "character", tooltip: "Underline", action: {
                 context.fontSize = context.fontSize == 13 ? 15 : 13
             }, active: false)

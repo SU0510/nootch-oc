@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,6 +54,10 @@
 		3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691FB2C2FC7D20014C326 /* GesturesModifier.swift */; };
 		3A1FFE1E2C35310400BB4A03 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE1D2C35310400BB4A03 /* CodeEditor */; };
 		3A1FFE212C353F6D00BB4A03 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE202C353F6D00BB4A03 /* CodeEditor */; };
+		3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */; };
+		3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */; };
+		3A1FFE2B2C354B6600BB4A03 /* ExpandedNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE2A2C354B6600BB4A03 /* ExpandedNoteView.swift */; };
+		3A1FFE2E2C3563BB00BB4A03 /* JNWAnimatableWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE2D2C3563BB00BB4A03 /* JNWAnimatableWindow */; };
 		3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F16D2C2F845F006A7E1F /* optionDescription.swift */; };
 		3A20F1712C2F8937006A7E1F /* SideEffectsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1702C2F8937006A7E1F /* SideEffectsModifier.swift */; };
 		3A20F1732C2F8A59006A7E1F /* AnimationsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1722C2F8A59006A7E1F /* AnimationsModifier.swift */; };
@@ -357,6 +361,9 @@
 		3A1691F22C2FB5180014C326 /* CheckTrialOverKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTrialOverKey.swift; sourceTree = "<group>"; };
 		3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDefault.swift; sourceTree = "<group>"; };
 		3A1691FB2C2FC7D20014C326 /* GesturesModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesModifier.swift; sourceTree = "<group>"; };
+		3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNoteManager.swift; sourceTree = "<group>"; };
+		3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNoteManagerKey.swift; sourceTree = "<group>"; };
+		3A1FFE2A2C354B6600BB4A03 /* ExpandedNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNoteView.swift; sourceTree = "<group>"; };
 		3A20F16D2C2F845F006A7E1F /* optionDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionDescription.swift; sourceTree = "<group>"; };
 		3A20F1702C2F8937006A7E1F /* SideEffectsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffectsModifier.swift; sourceTree = "<group>"; };
 		3A20F1722C2F8A59006A7E1F /* AnimationsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsModifier.swift; sourceTree = "<group>"; };
@@ -617,6 +624,7 @@
 				3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
+				3A1FFE2E2C3563BB00BB4A03 /* JNWAnimatableWindow in Frameworks */,
 				3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
@@ -721,6 +729,7 @@
 				3A1691F22C2FB5180014C326 /* CheckTrialOverKey.swift */,
 				3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */,
 				3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */,
+				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -772,6 +781,14 @@
 				3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */,
 			);
 			path = functions;
+			sourceTree = "<group>";
+		};
+		3A1FFE292C354B5D00BB4A03 /* ExpandedNote */ = {
+			isa = PBXGroup;
+			children = (
+				3A1FFE2A2C354B6600BB4A03 /* ExpandedNoteView.swift */,
+			);
+			path = ExpandedNote;
 			sourceTree = "<group>";
 		};
 		3A20F16F2C2F88ED006A7E1F /* modifiers */ = {
@@ -1064,6 +1081,7 @@
 		EC4173D52C02518F002889E7 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				3A1FFE292C354B5D00BB4A03 /* ExpandedNote */,
 				3A3F59E52C2A578D00906FFA /* NotchView */,
 				3A0816CA2C24E7A2008092F0 /* Changelog */,
 				EC4173D82C025589002889E7 /* Settings */,
@@ -1331,6 +1349,7 @@
 				3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */,
 				3A0816C42C24CA60008092F0 /* SparkleManager.swift */,
 				3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */,
+				3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1559,6 +1578,7 @@
 				3AA6FFDD2C352EC600BA2F80 /* CodeEditor */,
 				3A1FFE1D2C35310400BB4A03 /* CodeEditor */,
 				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
+				3A1FFE2D2C3563BB00BB4A03 /* JNWAnimatableWindow */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1605,6 +1625,7 @@
 				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
+				3A1FFE2C2C3563BB00BB4A03 /* XCLocalSwiftPackageReference "../../JNWAnimatableWindow" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1747,6 +1768,8 @@
 				3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
 				3A3ABCEF2C2B9C5500132228 /* Note.swift in Sources */,
+				3A1FFE2B2C354B6600BB4A03 /* ExpandedNoteView.swift in Sources */,
+				3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */,
 				3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */,
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaTrayTargetView.swift in Sources */,
 				3A1691E02C2FB2220014C326 /* CanBecomeKeyBindingKey.swift in Sources */,
@@ -1889,6 +1912,7 @@
 				3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */,
 				3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */,
 				3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */,
+				3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
 				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
@@ -2073,7 +2097,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2113,7 +2137,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2144,6 +2168,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		3A1FFE2C2C3563BB00BB4A03 /* XCLocalSwiftPackageReference "../../JNWAnimatableWindow" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../JNWAnimatableWindow;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
@@ -2245,6 +2276,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */;
 			productName = CodeEditor;
+		};
+		3A1FFE2D2C3563BB00BB4A03 /* JNWAnimatableWindow */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JNWAnimatableWindow;
 		};
 		3A801E0A2C154EA30076560D /* SmoothGradient */ = {
 			isa = XCSwiftPackageProductDependency;

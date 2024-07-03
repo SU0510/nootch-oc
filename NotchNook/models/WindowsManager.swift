@@ -10,6 +10,8 @@ import AppKit
 import Settings
 import SwiftUI
 import Sparkle
+import JNWAnimatableWindow
+import Observation
 
 class WindowsManager {
     var displayKits = [DisplayKit]()
@@ -18,6 +20,8 @@ class WindowsManager {
     private var sparkleManager: SparkleManager
     private var changelogViewWindow: SwiftUIWindow<ChangelogView>?
     private var preventNextFocusFrontmostWindow = false
+    private var expandedNoteManager = ExpandedNoteManager()
+    private var expandedNoteWindowController: NSWindowController?
     
     init(updater: SPUUpdater) {
         self.sparkleManager = SparkleManager(updater: updater)
@@ -40,11 +44,52 @@ class WindowsManager {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
         updateWindows()
+        
+//        withObservationTracking {
+//            _ = expandedNoteManager.activeNote
+//            } onChange: {
+//                print(1)
+//                if let activeNote = self.expandedNoteManager.activeNote {
+//                    print(2)
+//                    self.openNoteWindow(activeNote)
+//                }
+//            }
+        expandedNoteManager.openWindow = openNoteWindow
     }
     
     deinit {
         NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
+    }
+    
+    func openNoteWindow(_ note: Note) {
+        
+        let newWindow = SwiftUIAnimatedWindow(
+            styleMask: [.titled, .closable, .fullSizeContentView],
+            content: {
+                ExpandedNoteView()
+            }, onClose: {
+                NSApp.setActivationPolicy(.accessory)
+                self.expandedNoteManager.activeNote = nil
+            }
+        )
+        
+        let customToolbar = NSToolbar()
+        customToolbar.showsBaselineSeparator = false
+        newWindow.titlebarAppearsTransparent = true
+        newWindow.titleVisibility = .hidden
+        newWindow.toolbarStyle = .unified
+        newWindow.styleMask.insert(.titled)
+        newWindow.toolbar = customToolbar
+        newWindow.isOpaque = false
+        
+        let windowController = NSWindowController(window: newWindow)
+//        windowController.window?.contentView = viewHosting
+        
+        expandedNoteWindowController = windowController
+        preventNextFocusFrontmostWindow = true
+        NSApp.setActivationPolicy(.regular)
+        newWindow.show()
     }
     
     func showChangelogViewWindow() {
@@ -122,7 +167,8 @@ class WindowsManager {
                 resignFirstResponder: {},
                 preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
                 isEditingText: false,
-                isKeyWindow: true
+                isKeyWindow: true,
+                expandedNoteManager: expandedNoteManager
             )
         )
         let size = hostingView.intrinsicContentSize

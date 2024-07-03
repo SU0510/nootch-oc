@@ -22,6 +22,7 @@ struct RootView: View {
     var preventNextFocusFrontmostWindow: () -> ()
     var isEditingText: Bool
     var isKeyWindow: Bool
+    var expandedNoteManager: ExpandedNoteManager
     @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow
     @Environment(\.canBecomeKey) private var defaultCanBecomeKey
     
@@ -52,6 +53,7 @@ struct RootView: View {
             .environment(\.makeKeyWindow, makeKeyWindow ?? defaultBecomeKeyWindow)
             .environment(\.resignFirstResponder, resignFirstResponder)
             .environment(\.isEditingText, isEditingText)
+            .environment(\.expandedNoteManager, expandedNoteManager)
             .environment(\.isKeyWindow, isKeyWindow)
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)

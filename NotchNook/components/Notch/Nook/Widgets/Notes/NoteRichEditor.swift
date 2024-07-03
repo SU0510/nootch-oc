@@ -44,7 +44,7 @@ struct NoteRichEditor: View {
             .fadeOnEdges(axis: .vertical, topLeadingFadeLength: 20, bottomTrailingFadeLength: 40, curve: .easeInOut, disable: !selected || !prefs.fadeScrollEdges)
             .overlay(alignment: .bottomTrailing) {
                 if selected {
-                    RichToolbarView(context: richTextContext)
+                    RichToolbarView(note: note, context: richTextContext)
                         .padding(4)
                         .scaleEffect(showControls ? 1 : 0.75, anchor: .bottomTrailing)
                         .opacity(showControls ? 1 : 0)

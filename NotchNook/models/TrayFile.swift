@@ -48,6 +48,7 @@ class TrayFile: Equatable, Hashable, Identifiable {
                     Rectangle().stroke(.white, style: .init(lineWidth: 2)).shadow(color: .black.opacity(0.5), radius: 1)
                 }
             }
+            .geometryGroup()
     }
     
 }
