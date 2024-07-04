@@ -12,7 +12,7 @@ import SwiftUI
 class AudioSpectrographView: NSView {
     private let barsCount = 3
     private let minHeight: CGFloat = 1
-    private let maxHeight: CGFloat = 23
+    private let maxHeight: CGFloat = 15
     private let barsSpacing: CGFloat = 1.5
     private let barsThickness: CGFloat = 2
     
@@ -20,6 +20,7 @@ class AudioSpectrographView: NSView {
     private var displayLink: CVDisplayLink?
     private var targetHeights: [CGFloat] = []
     private var currentHeights: [CGFloat] = []
+    private var boundsWidth: CGFloat = 0
     
     var playing: Bool = false {
         didSet {
@@ -58,15 +59,16 @@ class AudioSpectrographView: NSView {
     private func setupLayers() {
         self.wantsLayer = true
         self.layer = CALayer()
+        self.layer?.drawsAsynchronously = true
+        self.layer?.isOpaque = true
         
         for _ in 0..<barsCount {
-            let leftBarLayer = CAShapeLayer()
-            let rightBarLayer = CAShapeLayer()
-            leftBarLayer.fillColor = color.cgColor
-            rightBarLayer.fillColor = color.cgColor
-            layer?.addSublayer(leftBarLayer)
-            layer?.addSublayer(rightBarLayer)
-            barLayers.append(contentsOf: [leftBarLayer, rightBarLayer])
+            let barLayer = CAShapeLayer()
+            barLayer.drawsAsynchronously = true
+            barLayer.isOpaque = true
+            barLayer.fillColor = color.cgColor
+            layer?.addSublayer(barLayer)
+            barLayers.append(barLayer)
             targetHeights.append(minHeight)
             currentHeights.append(minHeight)
         }
@@ -116,14 +118,14 @@ class AudioSpectrographView: NSView {
     
     private func updateTargetHeights() {
         for i in 0..<barsCount {
-            if abs(currentHeights[i] - targetHeights[i]) < 0.1 || Bool.random() {
-                targetHeights[i] = CGFloat.random(in: minHeight...maxHeight)
+            if abs(currentHeights[i] - targetHeights[i]) < 1 {
+                targetHeights[i] = CGFloat(Int.random(in: Int(minHeight)...Int(maxHeight)))
             }
         }
     }
     
     private func interpolateHeights() {
-        let interpolationStep: CGFloat = 0.05
+        let interpolationStep: CGFloat = 0.05 // Adjust interpolation speed
         for i in 0..<barsCount {
             currentHeights[i] += (targetHeights[i] - currentHeights[i]) * interpolationStep
         }
@@ -140,14 +142,11 @@ class AudioSpectrographView: NSView {
             let height = playing ? max(2, currentHeights[i] * volumeModifier) : 2
             let x = startX + CGFloat(i) * (barsThickness + barsSpacing)
             
-            let leftBarRect = CGRect(x: x, y: (bounds.height - height) / 2, width: barsThickness, height: height)
-            let rightBarRect = CGRect(x: bounds.width - x - barsThickness, y: (bounds.height - height) / 2, width: barsThickness, height: height)
+            let barRect = CGRect(x: x, y: (bounds.height - height) / 2, width: barsThickness, height: height)
             
-            let leftPath = NSBezierPath(roundedRect: leftBarRect, xRadius: barsThickness / 2, yRadius: barsThickness / 2)
-            let rightPath = NSBezierPath(roundedRect: rightBarRect, xRadius: barsThickness / 2, yRadius: barsThickness / 2)
+            let path = NSBezierPath(roundedRect: barRect, xRadius: barsThickness / 2, yRadius: barsThickness / 2)
             
-            barLayers[i * 2].path = leftPath.cgPath
-            barLayers[i * 2 + 1].path = rightPath.cgPath
+            barLayers[i].path = path.cgPath
         }
     }
     
@@ -190,172 +189,3 @@ struct AudioSpectrographRepresentable: NSViewRepresentable {
         nsView.color = NSColor(color)
     }
 }
-
-// Custom NSView for displaying the audio spectrograph
-//class AudioSpectrographView: NSView {
-//    var playing: Bool = false {
-//        didSet {
-//            if playing {
-//                startTimer()
-//            } else {
-//                stopTimer()
-//            }
-//        }
-//    }
-//    var volume: CGFloat = 1.0
-//    var color: NSColor = .white
-//    private var barHeights: [CGFloat] = []
-//    private var timer: Timer?
-//
-//    override init(frame frameRect: NSRect) {
-//        super.init(frame: frameRect)
-//        initializeBarHeights()
-//        self.wantsLayer = true  // Ensure the view uses layer-backed rendering.
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//        initializeBarHeights()
-//        self.wantsLayer = true
-//    }
-//    
-//    private func initializeBarHeights() {
-//        let numBars = Int(frame.width / (2 + 1.5))
-//        barHeights = Array(repeating: 5, count: numBars)
-//    }
-//
-//    private func startTimer() {
-//        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateBarHeights), userInfo: nil, repeats: true)
-//    }
-//
-//    private func stopTimer() {
-//        timer?.invalidate()
-//        timer = nil
-//    }
-//
-//    @objc private func updateBarHeights() {
-//        for i in 0..<barHeights.count {
-//            barHeights[i] = CGFloat.random(in: 5...15) * volume
-//        }
-//        DispatchQueue.main.async {
-//            self.needsDisplay = true
-//        }
-//    }
-//
-//    override func draw(_ dirtyRect: NSRect) {
-//        guard let context = NSGraphicsContext.current?.cgContext else { return }
-//        context.setFillColor(color.cgColor)
-//        
-//        let barWidth: CGFloat = 2
-//        let barSpacing: CGFloat = 1.5
-//        
-//        for i in 0..<barHeights.count {
-//            let height = playing ? barHeights[i] : 5
-//            let xPosition = CGFloat(i) * (barWidth + barSpacing)
-//            context.fill(CGRect(x: xPosition, y: (bounds.height - height) / 2, width: barWidth, height: height))
-//        }
-//    }
-//}
-//
-//// NSViewRepresentable wrapper for AudioSpectrographView
-//struct AudioSpectrographRepresentable: NSViewRepresentable {
-//    var playing: Bool
-//    var volume: CGFloat
-//    var color: Color
-//
-//    func makeNSView(context: Context) -> AudioSpectrographView {
-//        let view = AudioSpectrographView(frame: CGRect(x: 0, y: 0, width: 200, height: 50)) // Set a default size
-//        view.playing = playing
-//        view.volume = volume
-//        view.color = NSColor(color)
-//        return view
-//    }
-//
-//    func updateNSView(_ nsView: AudioSpectrographView, context: Context) {
-//        nsView.playing = playing
-//        nsView.volume = volume
-//        nsView.color = NSColor(color)
-//    }
-//}
-
-//import SwiftUI
-//import AppKit
-
-//struct AudioSpectrograph: NSViewRepresentable {
-//    var playing: Bool
-//    var volume: Double
-//    var color: Color
-//
-//    func makeNSView(context: Context) -> CustomBarView {
-//        let view = CustomBarView()
-//        view.barColor = NSColor(color)
-//        return view
-//    }
-//
-//    func updateNSView(_ nsView: CustomBarView, context: Context) {
-//        nsView.barColor = NSColor(color)
-//        nsView.playing = playing
-//    }
-//}
-//
-//class CustomBarView: NSView {
-//    var barColor: NSColor = .black {
-//        didSet {
-//            needsDisplay = true
-//        }
-//    }
-//
-//    var playing: Bool = true {
-//        didSet {
-//            if playing {
-//                startAnimating()
-//            } else {
-//                stopAnimating()
-//            }
-//        }
-//    }
-//
-//    private var heights: [CGFloat] = [2, 2, 2]
-//    private var timer: Timer?
-//
-//    override init(frame frameRect: NSRect) {
-//        super.init(frame: frameRect)
-//        startAnimating()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//
-//        guard let context = NSGraphicsContext.current?.cgContext else { return }
-//
-//        context.setFillColor(barColor.cgColor)
-//
-//        let barWidth: CGFloat = 2
-//        let spacing: CGFloat = 1
-//
-//        for i in 0..<3 {
-//            let x = CGFloat(i) * (barWidth + spacing)
-//            let rect = CGRect(x: x, y: 0, width: barWidth, height: heights[i])
-//            context.fill(rect)
-//        }
-//    }
-//
-//    private func startAnimating() {
-//        timer?.invalidate()
-//        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
-//            guard let self = self else { return }
-//            self.heights = (0..<3).map { _ in CGFloat.random(in: 5...15) }
-//            self.needsDisplay = true
-//        }
-//    }
-//
-//    private func stopAnimating() {
-//        timer?.invalidate()
-//        heights = [2, 2, 2]
-//        needsDisplay = true
-//    }
-//}
