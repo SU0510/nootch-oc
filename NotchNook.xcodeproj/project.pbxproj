@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,7 +57,6 @@
 		3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */; };
 		3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */; };
 		3A1FFE2B2C354B6600BB4A03 /* ExpandedNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE2A2C354B6600BB4A03 /* ExpandedNoteView.swift */; };
-		3A1FFE2E2C3563BB00BB4A03 /* JNWAnimatableWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE2D2C3563BB00BB4A03 /* JNWAnimatableWindow */; };
 		3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F16D2C2F845F006A7E1F /* optionDescription.swift */; };
 		3A20F1712C2F8937006A7E1F /* SideEffectsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1702C2F8937006A7E1F /* SideEffectsModifier.swift */; };
 		3A20F1732C2F8A59006A7E1F /* AnimationsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1722C2F8A59006A7E1F /* AnimationsModifier.swift */; };
@@ -93,10 +92,14 @@
 		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
 		3A459C272C2E955D0045995D /* lock.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A459C262C2E955D0045995D /* lock.lottie */; };
 		3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A471A402C224C6C00FCD355 /* FolderMonitor.swift */; };
+		3A5104D42C37AD3A0045F7E6 /* NoteExpandedMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */; };
+		3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */; };
+		3A5104D82C37B8460045F7E6 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D72C37B8430045F7E6 /* Numbers.swift */; };
 		3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */; };
 		3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */; };
 		3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */; };
 		3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */; };
+		3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -399,10 +402,14 @@
 		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
 		3A459C262C2E955D0045995D /* lock.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.lottie; sourceTree = "<group>"; };
 		3A471A402C224C6C00FCD355 /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
+		3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteExpandedMsgView.swift; sourceTree = "<group>"; };
+		3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSpringAnimation.swift; sourceTree = "<group>"; };
+		3A5104D72C37B8430045F7E6 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCodeEditor.swift; sourceTree = "<group>"; };
 		3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRichEditor.swift; sourceTree = "<group>"; };
 		3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShapeModifier.swift; sourceTree = "<group>"; };
 		3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRichEditor.swift; sourceTree = "<group>"; };
+		3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterWindow.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -624,7 +631,6 @@
 				3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
-				3A1FFE2E2C3563BB00BB4A03 /* JNWAnimatableWindow in Frameworks */,
 				3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
@@ -815,6 +821,7 @@
 		3A3F59E42C2A568E00906FFA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */,
 				3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */,
 				3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */,
 				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
@@ -1236,6 +1243,7 @@
 				3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */,
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
+				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1270,6 +1278,7 @@
 				3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */,
 				3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */,
 				3AD813BD2C28CB4300BB637C /* resetTrial.swift */,
+				3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1320,6 +1329,7 @@
 				3A105FF12C1FF4160015EC66 /* EKEvent.swift */,
 				3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */,
 				3A20F17C2C2FAB0B006A7E1F /* Animation.swift */,
+				3A5104D72C37B8430045F7E6 /* Numbers.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1578,7 +1588,6 @@
 				3AA6FFDD2C352EC600BA2F80 /* CodeEditor */,
 				3A1FFE1D2C35310400BB4A03 /* CodeEditor */,
 				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
-				3A1FFE2D2C3563BB00BB4A03 /* JNWAnimatableWindow */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1625,7 +1634,6 @@
 				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
-				3A1FFE2C2C3563BB00BB4A03 /* XCLocalSwiftPackageReference "../../JNWAnimatableWindow" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1772,6 +1780,7 @@
 				3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */,
 				3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */,
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaTrayTargetView.swift in Sources */,
+				3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */,
 				3A1691E02C2FB2220014C326 /* CanBecomeKeyBindingKey.swift in Sources */,
 				EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
@@ -1783,6 +1792,7 @@
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
+				3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */,
 				3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */,
 				3A3F59EA2C2A587700906FFA /* insertUpdateLAIfOldVersion.swift in Sources */,
 				EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */,
@@ -1807,6 +1817,7 @@
 				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* TrayFile.swift in Sources */,
+				3A5104D42C37AD3A0045F7E6 /* NoteExpandedMsgView.swift in Sources */,
 				3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */,
 				3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */,
 				3A1691CE2C2FB1E90014C326 /* ScreenSizeKey.swift in Sources */,
@@ -1894,6 +1905,7 @@
 				EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */,
 				EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */,
 				EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */,
+				3A5104D82C37B8460045F7E6 /* Numbers.swift in Sources */,
 				EC8D600C2BFAF57D00E67ECC /* NookView.swift in Sources */,
 				3A20F1792C2F8B2F006A7E1F /* LockedIndicatorModifier.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
@@ -2169,13 +2181,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		3A1FFE2C2C3563BB00BB4A03 /* XCLocalSwiftPackageReference "../../JNWAnimatableWindow" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../JNWAnimatableWindow;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -2276,10 +2281,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */;
 			productName = CodeEditor;
-		};
-		3A1FFE2D2C3563BB00BB4A03 /* JNWAnimatableWindow */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = JNWAnimatableWindow;
 		};
 		3A801E0A2C154EA30076560D /* SmoothGradient */ = {
 			isa = XCSwiftPackageProductDependency;

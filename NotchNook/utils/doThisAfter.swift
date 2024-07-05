@@ -7,7 +7,7 @@
 
 import Foundation
 
-func doAfter(_ seconds: CGFloat, callback: @escaping () -> Void) {
+func doAfter(_ seconds: CGFloat = 0, callback: @escaping () -> Void) {
     return DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
         callback()
     }

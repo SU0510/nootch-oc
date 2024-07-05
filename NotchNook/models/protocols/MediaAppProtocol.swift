@@ -35,9 +35,9 @@ protocol MediaApp: AnyObject {
 extension MediaApp {
     func monitorAppIsRunning() {
         self.appRunningMonitor = AppMonitor(bundleID: meta.bundleID, onAppLaunch: {
-            doAfter(0) { self.isAppRunning = true }
+            doAfter { self.isAppRunning = true }
         }, onAppTerminate: {
-            doAfter(0) { self.isAppRunning = false }
+            doAfter { self.isAppRunning = false }
         })
     }
     

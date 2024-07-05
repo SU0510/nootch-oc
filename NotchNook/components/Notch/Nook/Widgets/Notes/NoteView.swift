@@ -30,6 +30,8 @@ struct NoteView: View {
     @State private var showControls = false
     @State private var downScaled: Bool
     @State private var hovering = false
+    @Environment(\.expandedNoteManager) private var expandedNoteManager
+    @Environment(\.notchNook) private var notchNook
     
     init(note: Note, selected: Bool, width: Double, widgetArrPosition: ArrayPosition, prefs: NotesWidgetSettings, ns: Namespace.ID) {
         self.note = note
@@ -42,6 +44,7 @@ struct NoteView: View {
     }
     
     var body: some View {
+        let expanded = expandedNoteManager.activeNote?.id == note.id
         ZStack(alignment: .bottomTrailing) {
             Group {
                 if prefs.codeMode {
@@ -57,10 +60,18 @@ struct NoteView: View {
             .matchedGeometryEffect(id: "\(note.id)-note-editor", in: ns, properties: [.position])
             .opacity(downScaled ? 0.25 : 0.9)
         }
+        .onChange(of: expanded) { old, new in
+            if old, !new {
+                doAfter(0.6) {
+                    NSApp.setActivationPolicy(.accessory)
+                    notchNook.locked = false
+                }
+            }
+        }
         .allowsHitTesting(selected)
         .foregroundStyle(.white)
         .matchedGeometryEffect(id: "\(note.id)-note", in: ns)
-        .frame(maxWidth: selected ? nil : Self.smallSize, maxHeight: selected ? .infinity : Self.smallSize, alignment: .topLeading)
+        .frame(maxWidth: selected ? .infinity : Self.smallSize, maxHeight: selected ? .infinity : Self.smallSize, alignment: .topLeading)
         .modifier(
             ShapeModifier(
                 noteId: "\(note.id)",
@@ -76,6 +87,16 @@ struct NoteView: View {
         }
         .contentShape(Rectangle())
         .geometryGroup()
+        .scaleEffect(expanded ? 0.5 : 1, anchor: .bottom)
+        .blur(radius: expanded ? 40 : 0)
+        .offset(y: expanded ? 200 : 0)
+        .background {
+            if expanded {
+                NoteExpandedMsgView()
+                    .transition(.asymmetric(insertion: .opacity.animation(.easeInOut.delay(0.25)), removal: .opacity))
+            }
+        }
+        .animation(.spring, value: expanded)
         .onHover { x in if !selected { withAnimation(.easeOut) { hovering = x } } }
         .zIndex(selected ? 1 : 0)
         .animation(.spring, value: widgetArrPosition)

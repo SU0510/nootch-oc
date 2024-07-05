@@ -29,7 +29,7 @@ struct ShortcutsWidgetView: View {
                         .opacity(0.5)
                     Button("Choose Shortcuts") {
                         SettingsInnerPath.shared.tabIndex = 1
-                        doAfter(0) { openSettings(.nook) }
+                        doAfter { openSettings(.nook) }
                     }
                 }
                 .padding(.horizontal, padding)

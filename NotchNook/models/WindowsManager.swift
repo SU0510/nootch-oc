@@ -10,7 +10,6 @@ import AppKit
 import Settings
 import SwiftUI
 import Sparkle
-import JNWAnimatableWindow
 import Observation
 
 class WindowsManager {
@@ -44,16 +43,7 @@ class WindowsManager {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
         updateWindows()
-        
-//        withObservationTracking {
-//            _ = expandedNoteManager.activeNote
-//            } onChange: {
-//                print(1)
-//                if let activeNote = self.expandedNoteManager.activeNote {
-//                    print(2)
-//                    self.openNoteWindow(activeNote)
-//                }
-//            }
+
         expandedNoteManager.openWindow = openNoteWindow
     }
     
@@ -64,15 +54,16 @@ class WindowsManager {
     
     func openNoteWindow(_ note: Note) {
         
-        let newWindow = SwiftUIAnimatedWindow(
-            styleMask: [.titled, .closable, .fullSizeContentView],
-            content: {
-                ExpandedNoteView()
-            }, onClose: {
-                NSApp.setActivationPolicy(.accessory)
-                self.expandedNoteManager.activeNote = nil
-            }
-        )
+        let newWindow = SwiftUIAnimatedWindow(styleMask: [.titled, .closable, .fullSizeContentView]) {
+            ExpandedNoteView()
+        }
+        
+//        newWindow.onClose = {
+//            doAfter { NSApp.setActivationPolicy(.accessory) }
+//        }
+        newWindow.whileClosing = {
+            doAfter { self.expandedNoteManager.activeNote = nil }
+        }
         
         let customToolbar = NSToolbar()
         customToolbar.showsBaselineSeparator = false
@@ -82,9 +73,10 @@ class WindowsManager {
         newWindow.styleMask.insert(.titled)
         newWindow.toolbar = customToolbar
         newWindow.isOpaque = false
+        newWindow.backgroundColor = NSColor(Color.noteBG)
         
         let windowController = NSWindowController(window: newWindow)
-//        windowController.window?.contentView = viewHosting
+        //        windowController.window?.contentView = viewHosting
         
         expandedNoteWindowController = windowController
         preventNextFocusFrontmostWindow = true
@@ -219,7 +211,7 @@ class WindowsManager {
             NSApp.activate()
             newWindow.makeKey()
         }
-                
+        
         hostingView.rootView.resignFirstResponder = {
             _ = newWindow.makeFirstResponder(nil)
         }
@@ -237,7 +229,7 @@ class WindowsManager {
     
     func getMostUpfrontWindowID() -> CGWindowID? {
         guard let info = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] else { return nil }
-
+        
         let windows = info.compactMap { window -> (CGWindowID, pid_t)? in
             guard let windowLayer = window[kCGWindowLayer as String] as? Int,
                   windowLayer == 0,
@@ -245,11 +237,11 @@ class WindowsManager {
                   let windowNumber = window[kCGWindowNumber as String] as? CGWindowID else { return nil }
             return (windowNumber, windowOwnerPID)
         }
-
+        
         if let mostUpfrontWindow = windows.first {
             return mostUpfrontWindow.0
         }
-
+        
         return nil
     }
     
@@ -293,7 +285,7 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
     
     override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
         let success = super.makeFirstResponder(responder)
-
+        
         if success {
             firstResponderCb?(responder is NSWindow || responder == nil)
         }
@@ -304,7 +296,7 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
     func windowDidBecomeKey(_ notification: Notification) {
         becomeKeyCb?()
     }
-
+    
     func windowDidResignKey(_ notification: Notification) {
         resignedKeyCb?()
     }
@@ -317,5 +309,5 @@ class AcceptingFirstClickHostingView<C: View>: NSHostingView<C> {
 }
 
 class MyWindow: NSWindow {
-
+    
 }

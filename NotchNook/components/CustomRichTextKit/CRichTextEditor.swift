@@ -48,7 +48,7 @@ public struct CRichTextEditor: NSViewRepresentable {
         )
         
 //        if let initialScrollPos = initialScrollPos {
-//            doAfter(0) {
+//            doAfter {
 //                scrollView.contentView.scroll(to: .init(x: scrollView.contentView.bounds.origin.x, y: -10))
 //            }
 //        }

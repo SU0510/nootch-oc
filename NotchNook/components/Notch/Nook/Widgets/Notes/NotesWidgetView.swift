@@ -20,7 +20,7 @@ struct NotesWidgetView: View {
     @Namespace private var ns
 
     private var selectedNote: Note? { notes.first(where: { $0.persistentModelID == selectedNoteId }) }
-    private var mainNoteWidth: Double { prefs.size.width.screenPoints - (nookPrefs.widgetsPadding * 2) - Self.spacing - NoteView.smallSize }
+    private var mainNoteWidth: Double { prefs.size.width.screenPoints - (nookPrefs.widgetsPadding * (arrayPosition == .single ? 0 : arrayPosition == .middle ? 2 : 1)) - Self.spacing - NoteView.smallSize }
     
     var otherNotes: [Note] { notes.filter { $0.id != selectedNoteId }.sorted(by: { $0.updatedAt > $1.updatedAt }) }
     var otherNotesIds: [PersistentIdentifier] { otherNotes.map { $0.persistentModelID } }

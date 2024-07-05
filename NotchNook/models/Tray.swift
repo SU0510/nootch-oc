@@ -16,9 +16,9 @@ class Tray {
         willSet {
             let newSelectedFiles = selectedFiles.intersection(newValue)
             if selectedFiles.count != newSelectedFiles.count { 
-                doAfter(0) { self.selectedFiles = newSelectedFiles }
+                doAfter { self.selectedFiles = newSelectedFiles }
             }
-            doAfter(0) {
+            doAfter {
                 if newValue.isEmpty {
                     if LiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
                         LiveActivitiesManager.shared.activeLiveActivities.remove(.tray)

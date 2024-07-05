@@ -19,7 +19,7 @@ struct MiniAlbumCoverView: View {
     
     var quickPeeks: [NotchNook.QuickPeek]? {
         if let player = MediaPlayer.shared.app {
-            var newQuickPeeks: [NotchNook.QuickPeek] = [
+            let newQuickPeeks: [NotchNook.QuickPeek] = [
                 .init(icon: "music.note", text: player.track.title),
                 .init(icon: "music.mic", text: player.track.artist)
             ]

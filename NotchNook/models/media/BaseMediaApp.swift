@@ -16,13 +16,13 @@ class BaseMediaApp<App: SBApplicationProtocol>: MediaApp {
         willSet {
             if !isAppRunning && newValue {
                 self.setupApp()
-                doAfter(0) {
+                doAfter {
                     if MediaPlayer.shared.connectedApp == nil {
                         MediaPlayer.shared.connectedApp = self.meta
                     }
                 }
             } else if isAppRunning && !newValue {
-                doAfter(0) {
+                doAfter {
                     self.isPlaying = false
                     if MediaPlayer.shared.connectedApp == self.meta {
                         MediaPlayer.shared.connectedApp = nil

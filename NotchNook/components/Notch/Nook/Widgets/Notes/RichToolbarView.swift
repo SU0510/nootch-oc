@@ -13,10 +13,12 @@ struct RichToolbarView: View {
     @ObservedObject var context: RichTextContext
     @State private var hovering = false
     @Environment(\.expandedNoteManager) private var expandedNoteManager
+    @Environment(\.notchNook) private var notchNook
     var body: some View {
         HStack(spacing: 3) {
 
             RichToolbarButtonView(icon: "arrow.up.left.and.arrow.down.right", tooltip: "Expand", action: {
+                notchNook.locked = true
                 expandedNoteManager.activeNote = note
             }, active: false)
             
