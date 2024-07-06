@@ -38,7 +38,7 @@ struct NookSettingsView: View {
 let NookSettingsViewController: () -> SettingsPane = {
     let paneView = Settings.Pane(
         identifier: .nook,
-        title: "Nook",
+        title: String(localized: "Nook"),
         toolbarIcon: NSImage(systemSymbolName: "lamp.desk.fill", accessibilityDescription: "Nook settings")!
     ) {
         NookSettingsView()

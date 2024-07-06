@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Track: Equatable, Hashable, Identifiable {
-    static let empty = Track(title: "Unknown Title", artist: "Unknown Artist", album: "Unknown Album")
+    static let empty = Track(title: String(localized: "Unknown Title"), artist: String(localized: "Unknown Artist"), album: String(localized: "Unknown Album"))
     
 //    static func == (lhs: Track, rhs: Track) -> Bool {
 //        lhs.title == rhs.title && lhs.artist == rhs.artist && lhs.album == rhs.album

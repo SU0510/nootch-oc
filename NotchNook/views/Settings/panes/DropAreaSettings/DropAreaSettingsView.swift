@@ -25,7 +25,7 @@ struct DropAreaSettingsView: View {
 let DropAreaSettingsViewController: () -> SettingsPane = {
     let paneView = Settings.Pane(
         identifier: .dropArea,
-        title: "Drop Area",
+        title: String(localized: "Drop Area"),
         toolbarIcon: NSImage(systemSymbolName: "cursorarrow.and.square.on.square.dashed", accessibilityDescription: "Drop area settings")!
     ) {
         DropAreaSettingsView()

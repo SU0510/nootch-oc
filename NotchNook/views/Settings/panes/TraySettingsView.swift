@@ -33,7 +33,7 @@ struct TraySettingsView: View {
 let TraySettingsViewController: () -> SettingsPane = {
     let paneView = Settings.Pane(
         identifier: .tray,
-        title: "Tray",
+        title: String(localized: "Tray"),
         toolbarIcon: NSImage(systemSymbolName: "rectangle.dashed", accessibilityDescription: "Tray settings")!
     ) {
         TraySettingsView()

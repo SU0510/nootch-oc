@@ -31,10 +31,10 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     
     var name: String {
         return switch self {
-            case .media: "Media"
-            case .tray: "Files Tray"
-            case .calendar: "Calendar"
-            case .updateAvailable: "New Update"
+            case .media: String(localized: "Media")
+            case .tray: String(localized: "Files Tray")
+            case .calendar: String(localized: "Calendar")
+            case .updateAvailable: String(localized: "New Update")
         }
     }
 }

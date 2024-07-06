@@ -15,25 +15,25 @@ struct NookGeneralSettingsTabView: View {
         let defaultValues = NookSettings()
         let contentMaxW: Double = 350
         Settings.Container(contentWidth: 520.0, minimumLabelWidth: 150) {
-            Settings.Section(title: "", bottomDivider: true) {
+            Settings.Section(title: String(localized: ""), bottomDivider: true) {
                 Toggle("Enable nook", isOn: $nookSettings.enabled)
                     .resetToDefault($nookSettings.enabled, defaultValues.enabled)
                 Text("If disabled, clicking on the notch won't do anything.")
                     .optionDescription(contentMaxW)
             }
-            Settings.Section(title: "") {
+            Settings.Section(title: String(localized: "")) {
                 
                 Toggle("Show dividers between widgets", isOn: $nookSettings.showDividers)
                     .resetToDefault($nookSettings.showDividers, defaultValues.showDividers)
             }
             
-            Settings.Section(title: "Width:") {
+            Settings.Section(title: String(localized: "Width:")) {
                 SliderPlus(value: $nookSettings.size.width.double, range: 8...24)
                     .resetToDefault($nookSettings.size.width, defaultValues.size.width)
                 Text("The unit is measured in \"cells\" for the widgets grid. 1 cell means \(NookGrid.point) points/px.")
                     .optionDescription(contentMaxW)
                 
-                //                CustomLabeled(title: "height", icon: "arrow.up.and.down") {
+                //                CustomLabeled(title: String(localized: "height"), icon: "arrow.up.and.down") {
                 //                    SliderPlus(value: $nookSettings.size.height.double, range: 2...6)
                 //                }
                 //                .resetToDefault($nookSettings.size.height, defaultValues.size.height)

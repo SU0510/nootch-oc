@@ -25,10 +25,10 @@ struct CalendarWidgetSettingsView: View {
         Settings.Container(contentWidth: 520.0) {
             let min: Double = 3
             let max = !enabled ? 12 : availableWidth.double <= min ? min + 1 : availableWidth.double
-            Settings.Section(title: "Width:", bottomDivider: true) {
+            Settings.Section(title: String(localized: "Width:"), bottomDivider: true) {
                 SliderPlus(value: $calendarWidgetSettings.size.width.double, range: min...max)
             }
-            Settings.Section(title: "Manage other calendar settings:") {
+            Settings.Section(title: String(localized: "Manage other calendar settings:")) {
                 Button("Calendar Settings") {
                     openCalendarSettingsAccountsTab()
                 }

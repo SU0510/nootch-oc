@@ -120,7 +120,7 @@ struct AboutSettingsView: View {
 let AboutSettingsViewController: (_ sparkleManager: SparkleManager, _ showChangelog: (() -> ())?) -> SettingsPane = { sparkleManager, showChangelog in
     let paneView = Settings.Pane(
         identifier: .about,
-        title: "About",
+        title: String(localized: "About"),
         toolbarIcon: NSImage(systemSymbolName: "ellipsis.circle.fill", accessibilityDescription: "About settings")!
     ) {
         AboutSettingsView(sparkleManager: sparkleManager)

@@ -31,9 +31,9 @@ struct ChangelogView: View {
                 }
             }
             VStack(spacing: 16) {
-                VideoFeatureView(player: calendarPlayer, title: "Calendar Widget", description: "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon...")
-                VideoFeatureView(player: quickPeekPlayer, title: "Quick Peek", description: "Take a quick peek at useful info by hovering some of the live activities.")
-                VideoFeatureView(player: calendarLAPlayer, title: "Calendar Live Activity", description: "A new elegant way of getting notified about and joining a meeting. ")
+                VideoFeatureView(player: calendarPlayer, title: String(localized: "Calendar Widget"), description: String(localized: "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..."))
+                VideoFeatureView(player: quickPeekPlayer, title: String(localized: "Quick Peek"), description: String(localized: "Take a quick peek at useful info by hovering some of the live activities."))
+                VideoFeatureView(player: calendarLAPlayer, title: String(localized: "Calendar Live Activity"), description: String(localized: "A new elegant way of getting notified about and joining a meeting. "))
             }
             
             Button {

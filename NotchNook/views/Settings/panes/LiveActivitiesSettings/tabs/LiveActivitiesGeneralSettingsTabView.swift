@@ -13,7 +13,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     var body: some View {
         Settings.Container(contentWidth: 520.0) {
-            Settings.Section(title: "") {
+            Settings.Section(title: String(localized: "")) {
                 Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
             }
             
@@ -25,7 +25,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .settingDescription()
             }
             
-            Settings.Section(title: "Interactivity:") {
+            Settings.Section(title: String(localized: "Interactivity:")) {
                 Toggle("Enable interactive activities", isOn: $liveActivitiesSettings.interactive)
                 Text("Allow some activities to interact with mouse click.")
                     .settingDescription()

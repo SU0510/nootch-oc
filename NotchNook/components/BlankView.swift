@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BlankView: View {
-    var message: String = "Nothing selected"
+    var message: String = String(localized: "Nothing selected")
     var body: some View {
         VStack {
             Image(systemName: "cloud.fill")

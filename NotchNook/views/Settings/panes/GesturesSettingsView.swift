@@ -44,7 +44,7 @@ struct GesturesSettingsView: View {
 let GesturesSettingsViewController: () -> SettingsPane = {
     let paneView = Settings.Pane(
         identifier: .gestures,
-        title: "Gestures",
+        title: String(localized: "Gestures"),
         toolbarIcon: NSImage(systemSymbolName: "rectangle.and.hand.point.up.left.fill", accessibilityDescription: "Gestures settings")!
     ) {
         GesturesSettingsView()

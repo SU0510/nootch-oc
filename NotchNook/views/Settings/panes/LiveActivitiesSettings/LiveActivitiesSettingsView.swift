@@ -38,7 +38,7 @@ struct LiveActivitiesSettingsView: View {
 let LiveActivitiesSettingsViewController: () -> SettingsPane = {
     let paneView = Settings.Pane(
         identifier: .liveActivities,
-        title: "Live Activities",
+        title: String(localized: "Live Activities"),
         toolbarIcon: NSImage(systemSymbolName: "clock.badge.fill", accessibilityDescription: "Live activities settings")!
     ) {
         LiveActivitiesSettingsView()

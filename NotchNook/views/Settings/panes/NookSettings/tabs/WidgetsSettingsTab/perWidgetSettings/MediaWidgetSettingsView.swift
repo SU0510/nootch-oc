@@ -11,7 +11,7 @@ import Settings
 struct MediaWidgetSettingsView: View {
     var body: some View {
         Settings.Container(contentWidth: 520.0) {
-            Settings.Section(title: "") {
+            Settings.Section(title: String(localized: "")) {
                 BlankView(message: "No options for this one")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

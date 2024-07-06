@@ -1,0 +1,493 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    " %@" : {
+
+    },
+    " In use" : {
+
+    },
+    " Shortcuts" : {
+
+    },
+    "(see changelog)" : {
+
+    },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
+    "%@%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$lld"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld visible" : {
+
+    },
+    "%lld%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld%2$@"
+          }
+        }
+      }
+    },
+    "+%lld" : {
+
+    },
+    "A beautiful and native Reddit client app for iOS." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "个美观且原生的Reddit客户端应用程序，适用于iOS"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一個美觀且原生的Reddit客戶端應用程式，適用於iOS"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一個美觀同原生嘅Reddit客戶端應用程式，適用於iOS"
+          }
+        }
+      }
+    },
+    "A bunch of bug fixes and sweet new features!" : {
+
+    },
+    "A few of our apps" : {
+
+    },
+    "A group of talented friends from 4 different countries that develop amazing software together for nothing but passion." : {
+
+    },
+    "A new elegant way of getting notified about and joining a meeting. " : {
+
+    },
+    "A new way to interact with your mac" : {
+
+    },
+    "About" : {
+
+    },
+    "Album corner radius:" : {
+
+    },
+    "Allow gestures when hovering the notch" : {
+
+    },
+    "Allow some activities to interact with mouse click." : {
+
+    },
+    "Always open on hover" : {
+
+    },
+    "Animated wallpapers and overlay effects for macOS." : {
+
+    },
+    "Auto check for updates" : {
+
+    },
+    "Auto download updates" : {
+
+    },
+    "Calendar" : {
+
+    },
+    "Calendar Live Activity" : {
+
+    },
+    "Calendar Settings" : {
+
+    },
+    "Calendar Widget" : {
+
+    },
+    "Check for Updates…" : {
+
+    },
+    "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..." : {
+
+    },
+    "Choose Shortcuts" : {
+
+    },
+    "Choose your shortcuts in settings." : {
+
+    },
+    "Colored Spectograph" : {
+
+    },
+    "Columns:" : {
+
+    },
+    "Coming soon..." : {
+
+    },
+    "Content padding:" : {
+
+    },
+    "Control media with horizontal gestures" : {
+
+    },
+    "Customize activities" : {
+
+    },
+    "Customize pipelines" : {
+
+    },
+    "Customize widgets" : {
+
+    },
+    "Damn, that's awesome!" : {
+
+    },
+    "Demo mode" : {
+
+    },
+    "Detected" : {
+
+    },
+    "Disable haptics" : {
+
+    },
+    "Discord server" : {
+
+    },
+    "Drop Area" : {
+
+    },
+    "Each column contains 2 rows (2 shortcuts)." : {
+
+    },
+    "Email" : {
+
+    },
+    "Email us!" : {
+
+    },
+    "Enable" : {
+
+    },
+    "Enable interactive activities" : {
+
+    },
+    "Enable live activities" : {
+
+    },
+    "Enable nook" : {
+
+    },
+    "Enable Quick Peek" : {
+
+    },
+    "Files Tray" : {
+
+    },
+    "General" : {
+
+    },
+    "Gestures" : {
+
+    },
+    "Get a License" : {
+
+    },
+    "gjp1lh5dtzqp4yddn73uush9r4inv0" : {
+
+    },
+    "Handler (no-notch screens):" : {
+
+    },
+    "Height" : {
+
+    },
+    "Hidden, it doesn't fit." : {
+
+    },
+    "I'm sorry, your trial is over." : {
+
+    },
+    "If disabled, clicking on the notch won't do anything." : {
+
+    },
+    "If enabled, some live activities will show a short info on mouse hover." : {
+
+    },
+    "If enabled, the audio spectograph will take the color of the current playing album, otherwise, it'll be white." : {
+
+    },
+    "If on, a left swipe will start the next song, if off, the previous one." : {
+
+    },
+    "Inactivity timeout:" : {
+
+    },
+    "Interactivity:" : {
+
+    },
+    "Invert media gestures actions" : {
+
+    },
+    "john.doe@email.com" : {
+
+    },
+    "Key" : {
+
+    },
+    "License" : {
+
+    },
+    "License Type" : {
+
+    },
+    "Live Activities" : {
+
+    },
+    "lo.cafe site" : {
+
+    },
+    "Manage Billing" : {
+
+    },
+    "Manage other calendar settings:" : {
+
+    },
+    "Media" : {
+
+    },
+    "Media Player" : {
+
+    },
+    "Minutes before showing up:" : {
+
+    },
+    "Mirror" : {
+
+    },
+    "New Update" : {
+
+    },
+    "No app seems to be running" : {
+
+    },
+    "Nook" : {
+
+    },
+    "Notch width fine tune:" : {
+
+    },
+    "Notch:" : {
+
+    },
+    "NotchNook" : {
+
+    },
+    "NotchNook " : {
+
+    },
+    "NotchNook is made by" : {
+
+    },
+    "NotchNook tries it's best to guess you notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch." : {
+
+    },
+    "Notes" : {
+
+    },
+    "Nothing for today" : {
+
+    },
+    "Nothing selected" : {
+
+    },
+    "Open Settings" : {
+
+    },
+    "Open/close notch with vertical gestures" : {
+
+    },
+    "Other options:" : {
+
+    },
+    "Others:" : {
+
+    },
+    "Padding around widgets:" : {
+
+    },
+    "Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens)." : {
+
+    },
+    "Quick Apps" : {
+
+    },
+    "Quick Peek" : {
+
+    },
+    "Quit NotchNook" : {
+
+    },
+    "Register" : {
+
+    },
+    "Registered" : {
+
+    },
+    "REMAINING CELLS: %lld" : {
+
+    },
+    "Reset all settings" : {
+
+    },
+    "Reset to default" : {
+
+    },
+    "See Tutorial" : {
+
+    },
+    "Select some shortcuts" : {
+
+    },
+    "Send an email to hi@lo.cafe if this doesn't go away." : {
+
+    },
+    "Shortcuts" : {
+
+    },
+    "Show dividers between widgets" : {
+
+    },
+    "Show time lapsed while in events" : {
+
+    },
+    "Show while in events" : {
+
+    },
+    "Some links:" : {
+
+    },
+    "Something is wrong." : {
+
+    },
+    "Soon you'll be able to compress images, zip/unzip files and much more by dragging and dropping files." : {
+
+    },
+    "Sorry, you need to register to use NotchNook." : {
+
+    },
+    "Start" : {
+
+    },
+    "Start %lldh Trial" : {
+
+    },
+    "Start Trial" : {
+
+    },
+    "Status" : {
+
+    },
+    "Take a quick peek at useful info by hovering some of the live activities." : {
+
+    },
+    "The unit is measured in \"cells\" for the widgets grid. 1 cell means %lld points/px." : {
+
+    },
+    "This will reset everything except your license." : {
+
+    },
+    "Time Remaining" : {
+
+    },
+    "To-dos" : {
+
+    },
+    "TOTAL CELLS: %lld" : {
+
+    },
+    "Transluscent notch background (experimental)" : {
+
+    },
+    "Transparent handler" : {
+
+    },
+    "Tray" : {
+
+    },
+    "Trial" : {
+
+    },
+    "Tweak the time _(in seconds)_ that live activities take to go away after they become inactive (like when music pauses)." : {
+
+    },
+    "Unknown Album" : {
+
+    },
+    "Unknown Artist" : {
+
+    },
+    "Unknown Title" : {
+
+    },
+    "Unregister" : {
+
+    },
+    "Unregistered" : {
+
+    },
+    "v%@" : {
+
+    },
+    "v%@ " : {
+
+    },
+    "Wanna open one?" : {
+
+    },
+    "Welcome to NotchNook!" : {
+
+    },
+    "Width" : {
+
+    },
+    "Width (in cells):" : {
+
+    },
+    "Width:" : {
+
+    },
+    "Will only show up on mouse hover." : {
+
+    },
+    "You shouldn't be seeing this." : {
+
+    }
+  },
+  "version" : "1.0"
+}

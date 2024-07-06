@@ -28,7 +28,7 @@ struct ShortcutsWidgetSettingsView: View {
         VStack {
             Settings.Container(contentWidth: 520.0, minimumLabelWidth: 200) {
                 
-                Settings.Section(title: "Width (in cells):") {
+                Settings.Section(title: String(localized: "Width (in cells):")) {
                     let min: Double = 2
                     let max = !enabled ? nookSettings.size.width.double : availableWidth.double <= min ? min + 1 : availableWidth.double
                     SliderPlus(value: Binding(get: {

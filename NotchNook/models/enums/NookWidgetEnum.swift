@@ -41,13 +41,13 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
     
     var name: String {
         return switch self {
-            case .media: "Media Player"
-            case .shortcuts: "Shortcuts"
-            case .mirror: "Mirror"
-            case .calendar: "Calendar"
-            case .notes: "Notes"
-            case .quickApps: "Quick Apps"
-            case .todoList: "To-dos"
+            case .media: String(localized: "Media Player")
+            case .shortcuts: String(localized: "Shortcuts")
+            case .mirror: String(localized: "Mirror")
+            case .calendar: String(localized: "Calendar")
+            case .notes: String(localized: "Notes")
+            case .quickApps: String(localized: "Quick Apps")
+            case .todoList: String(localized: "To-dos")
         }
     }
     

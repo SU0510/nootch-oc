@@ -18,11 +18,11 @@ struct GeneralSettingsView: View {
         let defaultGeneral = GeneralSettings()
         Settings.Container(contentWidth: 550.0, minimumLabelWidth: 200) {
             
-            Settings.Section(title: "", bottomDivider: true) {
+            Settings.Section(title: String(localized: ""), bottomDivider: true) {
                 LaunchAtLogin.Toggle()
             }
             
-            Settings.Section(title: "Notch:") {
+            Settings.Section(title: String(localized: "Notch:")) {
                 Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
@@ -32,10 +32,10 @@ struct GeneralSettingsView: View {
                 Toggle("Lock while typing", isOn: $generalSettings.lockNNWhenTyping)
                     .disabled(!generalSettings.preventUnhoverCloseWhenTyping)
             }
-            Settings.Section(title: "Content padding:") {
+            Settings.Section(title: String(localized: "Content padding:") {
                 SliderPlus(value: $generalSettings.contentPadding, range: 0...32)
             }
-            Settings.Section(title: "Notch width fine tune:", bottomDivider: true) {
+            Settings.Section(title: String(localized: "Notch width fine tune:"), bottomDivider: true) {
                 HStack {
                     Slider(value: $generalSettings.notchWidthFineTune, in: -8...8, step: 1)
                         .frame(maxWidth: 200)
@@ -47,15 +47,15 @@ struct GeneralSettingsView: View {
                     .optionDescription(contentMaxW)
             }
             
-            Settings.Section(title: "Handler (no-notch screens):", bottomDivider: true) {
+            Settings.Section(title: String(localized: "Handler (no-notch screens):"), bottomDivider: true) {
                 Toggle("Enable", isOn: $generalSettings.enableOnNonNotchScreens)
                 
-                CustomLabeled(title: "Width") {
+                CustomLabeled(title: String(localized: "Width")) {
                     SliderPlus(value: $generalSettings.handleSize.width, range: 30...250, step: 16)
                 }
                 .resetToDefault($generalSettings.handleSize.width, defaultGeneral.handleSize.width)
                 
-                CustomLabeled(title: "Height") {
+                CustomLabeled(title: String(localized: "Height")) {
                     SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.minHeight)
                 }
                 .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
@@ -67,7 +67,7 @@ struct GeneralSettingsView: View {
                     .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
             }
             
-            Settings.Section(title: "Others:") {
+            Settings.Section(title: String(localized: "Others:")) {
                 Button("Reset all settings") { resetDefaults() }
                 
                 Text("This will reset everything except your license.")
@@ -89,7 +89,7 @@ struct GeneralSettingsView: View {
 let GeneralSettingsViewController: () -> SettingsPane = {
     let paneView = Settings.Pane(
         identifier: .general,
-        title: "General",
+        title: String(localized: "General"),
         toolbarIcon: NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: "General settings")!
     ) {
         GeneralSettingsView()
