@@ -119,6 +119,7 @@
 		3A8AA18B2C3116CF00D727DA /* NoteIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */; };
 		3A8AA18E2C311B6300D727DA /* CRichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA18D2C311B6300D727DA /* CRichTextEditor.swift */; };
 		3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8AA2CE2C313B6300D727DA /* RichTextKit */; };
+		3A9E6BF52C39908B009948F5 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6BF42C39908B009948F5 /* WaveView.swift */; };
 		3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFD82C352D8600BA2F80 /* CodeEditor */; };
 		3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDA2C352EB000BA2F80 /* CodeEditor */; };
 		3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDD2C352EC600BA2F80 /* CodeEditor */; };
@@ -426,6 +427,7 @@
 		3A8AA1882C30AA9900D727DA /* onScrollChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onScrollChange.swift; sourceTree = "<group>"; };
 		3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteIconView.swift; sourceTree = "<group>"; };
 		3A8AA18D2C311B6300D727DA /* CRichTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRichTextEditor.swift; sourceTree = "<group>"; };
+		3A9E6BF42C39908B009948F5 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		3AC36D812C2530F40000F995 /* calendar.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendar.mov; sourceTree = "<group>"; };
@@ -1241,6 +1243,7 @@
 				3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */,
 				3A0816B72C23AAC8008092F0 /* FileDropView.swift */,
 				3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */,
+				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
@@ -1760,6 +1763,7 @@
 				EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */,
 				EC8D5FEA2BFA704D00E67ECC /* concurrentMap.swift in Sources */,
 				3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */,
+				3A9E6BF52C39908B009948F5 /* WaveView.swift in Sources */,
 				3A3ABCEC2C2B712500132228 /* QuickAppsWidgetSettings.swift in Sources */,
 				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,
 				EC0E30F12C0434640060B47E /* BlankView.swift in Sources */,
