@@ -17,7 +17,7 @@ final class Note {
     var codeLanguage = CodeEditor.Language.markdown.rawValue
     var createdAt: Date
     var updatedAt: Date
-    var icon: String
+    var icon: String = "circle"
     var scrollPos: Double = 0
     
     init(icon: String, richText: NSAttributedString = NSAttributedString(string: ""), codeText: String = "", createdAt: Date = Date(), updatedAt: Date = Date()) {
