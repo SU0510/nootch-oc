@@ -82,7 +82,7 @@ struct NotchView: View {
         .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
         .modifier(AnimationsModifier(disableNotchNook: disableNotchNook))
         .modifier(GesturesModifier(state: state, disableNotchNook: disableNotchNook))
-        .frame(width: screenSize.width, height: 215, alignment: .top)
+        .frame(width: screenSize.width, height: 250, alignment: .top)
         .modifier(SideEffectsModifier(state: state))
         .modifier(EnvironmentsModifier(state: state))
     }
