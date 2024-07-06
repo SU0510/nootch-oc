@@ -23,7 +23,7 @@ struct DropAction: Identifiable, Equatable {
 
 let allDropActions: [DropAction] = [
     DropAction(
-        id: "airdrop", label: "AirDrop",
+        id: "airdrop", label: String(localized: "AirDrop"),
         icon: Image(nsImage: NSWorkspace.shared.icon(forFileType: "com.apple.airdrop")),
         allowedFileTypes: [.fileURL],
         action: { fileURLs, dropAreaCoords in

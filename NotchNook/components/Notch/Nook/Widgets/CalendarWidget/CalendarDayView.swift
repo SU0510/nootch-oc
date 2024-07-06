@@ -21,13 +21,12 @@ struct CalendarDayView: View, Equatable {
         let isToday = date.isToday
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                let weekArr = date.weekdayName(.standaloneShort).split(separator: "")
-                let lA = weekArr[0]
-                let lB = weekArr[1]
-                let lC = weekArr[2]
-                Text(lA.uppercased())
-                if selected {
-                    Text((lB + lC).uppercased())
+                let weekArr = Array(date.weekdayName(.standaloneShort))
+                if let lA = weekArr.first {
+                    Text(String(lA).uppercased())
+                }
+                if selected && weekArr.count > 1 {
+                    Text(String(weekArr.dropFirst()).uppercased())
                         .transition(.scale.combined(with: .opacity))
                 }
             }

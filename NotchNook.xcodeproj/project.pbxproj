@@ -131,6 +131,7 @@
 		3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D892C2619730000F995 /* SwiftUIWindow.swift */; };
 		3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */; };
 		3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D8D2C264A250000F995 /* openCalendarSettingsAccountsTab.swift */; };
+		3AD390F12C38DD55003AFB20 /* removeNotesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD390F02C38DD53003AFB20 /* removeNotesWidget.swift */; };
 		3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */; };
 		3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */; };
 		3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */; };
@@ -436,6 +437,7 @@
 		3AC36D892C2619730000F995 /* SwiftUIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWindow.swift; sourceTree = "<group>"; };
 		3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openCalendarApp.swift; sourceTree = "<group>"; };
 		3AC36D8D2C264A250000F995 /* openCalendarSettingsAccountsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openCalendarSettingsAccountsTab.swift; sourceTree = "<group>"; };
+		3AD390F02C38DD53003AFB20 /* removeNotesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = removeNotesWidget.swift; sourceTree = "<group>"; };
 		3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableDaysView.swift; sourceTree = "<group>"; };
 		3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettingsView.swift; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 		3A3F59E62C2A580000906FFA /* onAppearTasks */ = {
 			isa = PBXGroup;
 			children = (
+				3AD390F02C38DD53003AFB20 /* removeNotesWidget.swift */,
 				3A3F59E72C2A582600906FFA /* checkForUpdates.swift */,
 				3A3F59E92C2A587700906FFA /* insertUpdateLAIfOldVersion.swift */,
 				3A3F59EB2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift */,
@@ -1753,6 +1756,7 @@
 				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
 				3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */,
+				3AD390F12C38DD55003AFB20 /* removeNotesWidget.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
 				EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */,

@@ -39,8 +39,6 @@ struct TrayFileView: View, Equatable {
         .foregroundStyle(.white)
         .padding(6)
         .frame(maxHeight: .infinity)
-        .contentShape(Rectangle())
-        .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { hovering = x } }
         .background {
             if !preview {
                 FileDraggableView(onSelect: {
@@ -55,18 +53,24 @@ struct TrayFileView: View, Equatable {
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) {
-            if hovering {
-                Button {
-                    tray.removeFile(file)
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 16))
-                        .foregroundStyle(.gray)
+            VStack {
+                if hovering {
+                    Button {
+                        tray.removeFile(file)
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.gray)
+                    }
+                    .buttonStyle(ShrinkOnClick())
+                    .transition(.scale)
+                    .offset(x: 2, y: -2)
                 }
-                .buttonStyle(ShrinkOnClick())
-                .transition(.scale)
-                .offset(x: 2, y: -2)
             }
+            .frame(20)
+            .contentShape(Circle())
+            .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { hovering = x } }
+
         }
         .transition(.scaleAndBlur)
     }

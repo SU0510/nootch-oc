@@ -19,7 +19,9 @@ struct GeneralSettingsView: View {
         Settings.Container(contentWidth: 550.0, minimumLabelWidth: 200) {
             
             Settings.Section(title: String(localized: ""), bottomDivider: true) {
-                LaunchAtLogin.Toggle()
+                LaunchAtLogin.Toggle {
+                    Text("Launch at login")
+                }
             }
             
             Settings.Section(title: String(localized: "Notch:")) {
@@ -94,6 +96,6 @@ let GeneralSettingsViewController: () -> SettingsPane = {
     ) {
         GeneralSettingsView()
     }
-
+    
     return Settings.PaneHostingController(pane: paneView)
 }

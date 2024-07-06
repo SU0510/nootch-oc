@@ -12,14 +12,13 @@ struct TopBarTabsView: View {
     @Environment(\.notchNook) private var notchNook
     
     var body: some View {
-        let mode = notchNook.mode
         let collapsed = totalWidth < .init(9)
         HStack(spacing: 2) {
             
-            TopBarTabView(icon: "lamp.desk.fill", label: collapsed ? nil : "Nook", active: notchNook.mode == .nook)
+            TopBarTabView(icon: "lamp.desk.fill", label: collapsed ? nil : String(localized: "Nook"), active: notchNook.mode == .nook)
                 .onTapGesture { withAnimation(.smooth(extraBounce: 0.25)) { notchNook.mode = .nook } }
             
-            TopBarTabView(icon: LiveActivity.tray.icon, label: collapsed ? nil : "Tray", active: notchNook.mode == .tray)
+            TopBarTabView(icon: LiveActivity.tray.icon, label: collapsed ? nil : String(localized: "Tray"), active: notchNook.mode == .tray)
                 .onTapGesture { withAnimation(.smooth(extraBounce: 0.25)) { notchNook.mode = .tray } }
         }
         .padding(.trailing, 4)
