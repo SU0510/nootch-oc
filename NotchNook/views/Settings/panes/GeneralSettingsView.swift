@@ -29,12 +29,12 @@ struct GeneralSettingsView: View {
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
             }
-            Settings.Section(title: "Typing effects:") {
+            Settings.Section(title: String(localized: "Typing effects:")) {
                 Toggle("Prevent from closing on mouse leave", isOn: $generalSettings.preventUnhoverCloseWhenTyping)
                 Toggle("Lock while typing", isOn: $generalSettings.lockNNWhenTyping)
                     .disabled(!generalSettings.preventUnhoverCloseWhenTyping)
             }
-            Settings.Section(title: String(localized: "Content padding:") {
+            Settings.Section(title: String(localized: "Content padding:")) {
                 SliderPlus(value: $generalSettings.contentPadding, range: 0...32)
             }
             Settings.Section(title: String(localized: "Notch width fine tune:"), bottomDivider: true) {
