@@ -12,17 +12,17 @@ struct NoteRichEditor: View {
     var note: Note
     var selected: Bool
     var showControls: Bool
-    var prefs: NotesWidgetSettings
+
+    @Environment(\.notesWidgetSettings) private var prefs
     @State private var localRichText: NSAttributedString
     @State private var initialRichText: AttributedString
     @StateObject private var richTextContext = RichTextContext()
     
-    init(note: Note, selected: Bool, showControls: Bool, prefs: NotesWidgetSettings) {
+    init(note: Note, selected: Bool, showControls: Bool) {
         self.note = note
         self.selected = selected
         self.showControls = showControls
         self.initialRichText = AttributedString(note.richText)
-        self.prefs = prefs
         self._localRichText = .init(initialValue: note.richText)
     }
     

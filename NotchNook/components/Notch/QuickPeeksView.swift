@@ -10,8 +10,10 @@ import Defaults
 
 struct QuickPeeksView: View {
     var quickPeeks: [NotchNook.QuickPeek]
+    
     @Environment(\.notchSize) private var notchSize
-    @Default(.generalSettings) private var generalSettings
+    @Environment(\.generalSettings) private var generalSettings
+    
     var body: some View {
         TheMarquee(width: (notchSize.width == 0 ? generalSettings.handleSize.width : notchSize.width) + (TopBarView.liveActionWidth * 2), spacingBetweenElements: 12) {
             HStack(spacing: 12) {

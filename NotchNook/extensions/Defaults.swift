@@ -8,6 +8,12 @@
 import SwiftUI
 import Defaults
 
+
+
+
+
+
+
 // Define the defaults keys
 extension Defaults.Keys {
     static let lastBuildNumber = Key<String>("lastBuildNumber", default: "0")
@@ -34,7 +40,7 @@ extension Defaults.Keys {
     static let shortcutsWidgetSettings = Key<ShortcutsWidgetSettings>("shortcutsWidgetSettings", default: .init())
     static let mirrorWidgetSettings = Key<MirrorWidgetSettings>("mirrorWidgetSettings", default: .init())
     static let calendarWidgetSettings = Key<CalendarWidgetSettings>("calendarWidgetSettings", default: .init())
-    static let notesWidgetSettigs = Key<NotesWidgetSettings>("notesWidgetSettigs", default: .init())
-    static let todoListWidgetSettigs = Key<TodoListWidgetSettings>("todoListWidgetSettigs", default: .init())
+    static let notesWidgetSettings = Key<NotesWidgetSettings>("notesWidgetSettings", default: .init())
+    static let todoListWidgetSettings = Key<TodoListWidgetSettings>("todoListWidgetSettings", default: .init())
     static let quickAppsWidgetSettings = Key<QuickAppsWidgetSettings>("quickAppsWidgetSettings", default: .init())
 }

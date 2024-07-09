@@ -15,11 +15,14 @@ struct ShadowedNotchShapeView: View, Equatable {
         lhs.transparentHandle == rhs.transparentHandle &&
         lhs.fineTuning == rhs.fineTuning
     }
+    
     var shadow: Bool
     var transparentHandle: Bool
     var fineTuning: Bool = false
+    
     @Environment(\.notchSize) private var notchSize
-    @Default(.generalSettings) private var generalSettings
+    @Environment(\.generalSettings) private var generalSettings
+
     var body: some View {
         let notchSize = notchSize.height == 0 ? generalSettings.handleSize : notchSize
         let color: Color = fineTuning ? .purple : .black.opacity(transparentHandle && !shadow && notchSize.height == 0 ? 0 : 1)

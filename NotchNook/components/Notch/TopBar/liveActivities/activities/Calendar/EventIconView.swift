@@ -13,7 +13,7 @@ struct EventIconView: View {
     var eventTitle: String
     var startDate: Date
     var endDate: Date
-    var laPrefs: LiveActivitiesSettings
+    var enableQuickPeek = true
     @Environment(\.getNow) private var getNow
     @Environment(\.notchNook) private var notchNook
     

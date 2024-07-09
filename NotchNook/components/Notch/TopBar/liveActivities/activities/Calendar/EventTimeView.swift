@@ -13,8 +13,8 @@ struct EventTimeView: View {
     var notes: String?
     var startDate: Date
     var endDate: Date
-    var prefs: CalendarLiveActivitySettings
     @State private var hovering = false
+    @Environment(\.calendarWidgetSettings) private var prefs
     @Environment(\.openURL) private var openURL
     @Environment(\.getNow) private var getNow
     var body: some View {

@@ -13,7 +13,7 @@ struct DropArea: View {
     var availableActions: [DropAction]
     var hoveredDropTargetID: String?
     
-    @Default(.dropAreaSettings) private var dropAreaSettings
+    @Environment(\.dropAreaSettings) private var dropAreaSettings
 
     var body: some View {
         HStack(spacing: 8) {

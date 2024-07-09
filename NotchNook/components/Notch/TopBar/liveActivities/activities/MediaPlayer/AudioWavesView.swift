@@ -10,8 +10,10 @@ import SwiftUI
 struct AudioWavesView: View {
     var altImg: NSImage?
     var altIsPlaying: Bool?
-    var prefs: MediaLiveActivitySettings
+    
     @State private var hovering = false
+    @Environment(\.mediaLiveActivitySettings) private var prefs
+    
     var body: some View {
         if let player = MediaPlayer.shared.app {
             let isPlaying = altIsPlaying ?? MediaPlayer.shared.app?.isPlaying ?? false

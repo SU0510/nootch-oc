@@ -9,10 +9,12 @@ import SwiftUI
 import Defaults
 
 struct ShortcutsWidgetView: View {
-    @Default(.nookSettings) private var nookSettings
-    var prefs: ShortcutsWidgetSettings
     var arrayPosition: ArrayPosition
+    
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.nookSettings) private var nookSettings
+    @Environment(\.shortcutsWidgetSettings) private var prefs
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             let shortcuts = Array(prefs.shortcutsToDisplay)

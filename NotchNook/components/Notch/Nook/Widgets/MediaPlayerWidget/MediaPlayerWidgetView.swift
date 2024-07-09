@@ -11,7 +11,8 @@ import Defaults
 
 struct MediaPlayerWidgetView: View {
     var arrayPosition: ArrayPosition
-    @Default(.nookSettings) private var nookSettings
+    @Environment(\.nookSettings) private var nookSettings
+    
     var body: some View {
         VStack {
             if let app = MediaPlayer.shared.app, app.isAppRunning {
@@ -20,11 +21,6 @@ struct MediaPlayerWidgetView: View {
                 NoMediaAppsView()
             }
         }
-        .padding(EdgeInsets(
-            top: 0,
-            leading: arrayPosition == .first ? 0 : nookSettings.widgetsPadding,
-            bottom: 0,
-            trailing: arrayPosition == .last ? 0 : nookSettings.widgetsPadding)
-        )
+        .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
     }
 }

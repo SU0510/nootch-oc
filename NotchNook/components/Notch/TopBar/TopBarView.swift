@@ -12,19 +12,21 @@ struct TopBarView: View {
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let minHeight: CGFloat = 32
     static let liveActionWidth: CGFloat = 35
+    
     var panGestureCounter: Int
     var scale: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
+    
     @Environment(\.notchSize) private var notchSize
     @Environment(\.trialOver) private var trialOver
     @Environment(\.openSettings) private var openSettings
     @Environment(\.notchNook) private var notchNook
-    @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
-    @Default(.gestureControlSettings) private var gestureControlSettings
-    @Default(.liveActivitiesSettings) private var liveActivitiesSettings
-    @Default(.nookSettings) private var nookSettings
-    @Default(.traySettings) private var traySettings
+    @Environment(\.gestureControlSettings) private var gestureControlSettings
+    @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
+    @Environment(\.nookSettings) private var nookSettings
+    @Environment(\.traySettings) private var traySettings
+
     var body: some View {
         // If notch height is bigger than 2/3 of minHeight, use it
         let height = notchSize.height > (TopBarView.minHeight * 0.66) ? notchSize.height : TopBarView.minHeight

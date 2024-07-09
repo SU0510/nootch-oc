@@ -25,7 +25,7 @@ struct NoteView: View {
     var selected: Bool
     var width: Double
     var widgetArrPosition: ArrayPosition
-    var prefs: NotesWidgetSettings
+    var codeMode: Bool
     var ns: Namespace.ID
     @State private var showControls = false
     @State private var downScaled: Bool
@@ -33,12 +33,12 @@ struct NoteView: View {
     @Environment(\.expandedNoteManager) private var expandedNoteManager
     @Environment(\.notchNook) private var notchNook
     
-    init(note: Note, selected: Bool, width: Double, widgetArrPosition: ArrayPosition, prefs: NotesWidgetSettings, ns: Namespace.ID) {
+    init(note: Note, selected: Bool, width: Double, widgetArrPosition: ArrayPosition, codeMode: Bool, ns: Namespace.ID) {
         self.note = note
         self.selected = selected
         self.width = width
         self.widgetArrPosition = widgetArrPosition
-        self.prefs = prefs
+        self.codeMode = codeMode
         self.ns = ns
         self._downScaled = .init(initialValue: selected)
     }
@@ -47,10 +47,10 @@ struct NoteView: View {
         let expanded = expandedNoteManager.activeNote?.id == note.id
         ZStack(alignment: .bottomTrailing) {
             Group {
-                if prefs.codeMode {
-                    NoteCodeEditor(note: note, selected: selected, showControls: showControls, prefs: prefs)
+                if codeMode {
+                    NoteCodeEditor(note: note, selected: selected, showControls: showControls)
                 } else {
-                    NoteRichEditor(note: note, selected: selected, showControls: showControls, prefs: prefs)
+                    NoteRichEditor(note: note, selected: selected, showControls: showControls)
                 }
             }
             .frame(width: width - (downScaled ? 0 : 8), height: selected ? nil : 100, alignment: .topLeading)

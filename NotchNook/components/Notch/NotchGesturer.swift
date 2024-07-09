@@ -18,7 +18,7 @@ struct NotchGesturer: View {
     
     private var hasMediaLA: Bool { ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.media) }
     
-    @Default(.gestureControlSettings) private var gestureControlSettings
+    @Environment(\.gestureControlSettings) private var gestureControlSettings
     
     var body: some View {
             ScrollWheelViewRepresentable(onDragChanged: onPan, onDragEnded: onPanEnded)

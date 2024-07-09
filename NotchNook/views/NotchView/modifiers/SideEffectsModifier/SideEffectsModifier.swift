@@ -13,10 +13,10 @@ extension NotchView {
     struct SideEffectsModifier: ViewModifier {
         var state: NotchViewModel
         
-        @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
-        @Default(.generalSettings) internal var generalSettings
         @Default(.intro) internal var intro
         @Default(.lastBuildNumber) internal var lastBuildNumber
+        @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
+        @Environment(\.generalSettings) private var generalSettings
         @Environment(\.notchNook) internal var notchNook
         @Environment(\.sparkleManager) internal var sparkleManager
         @Environment(\.showChangelog) internal var showChangelog

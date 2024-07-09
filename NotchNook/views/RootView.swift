@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Defaults
 
 struct RootView: View {
     var canBecomeKey: Binding<Bool>?
@@ -25,6 +26,21 @@ struct RootView: View {
     var expandedNoteManager: ExpandedNoteManager
     @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow
     @Environment(\.canBecomeKey) private var defaultCanBecomeKey
+    @Default(.generalSettings) private var generalSettings
+    @Default(.gestureControlSettings) private var gestureControlSettings
+    @Default(.liveActivitiesSettings) private var liveActivitiesSettings
+    @Default(.nookSettings) private var nookSettings
+    @Default(.traySettings) private var traySettings
+    @Default(.dropAreaSettings) private var dropAreaSettings
+    @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
+    @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
+    @Default(.mediaWidgetSettings) private var mediaWidgetSettings
+    @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
+    @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
+    @Default(.calendarWidgetSettings) private var calendarWidgetSettings
+    @Default(.notesWidgetSettings) private var notesWidgetSettings
+    @Default(.todoListWidgetSettings) private var todoListWidgetSettings
+    @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
     
     var sharedModelContainer: ModelContainer = {
         NSAttributedStringTransformer.register()
@@ -57,5 +73,32 @@ struct RootView: View {
             .environment(\.isKeyWindow, isKeyWindow)
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)
+        // Defaults
+            .environment(\.generalSettings, generalSettings)
+            .environment(\.gestureControlSettings, gestureControlSettings)
+            .environment(\.liveActivitiesSettings, liveActivitiesSettings)
+            .environment(\.nookSettings, nookSettings)
+            .environment(\.traySettings, traySettings)
+            .environment(\.dropAreaSettings, dropAreaSettings)
+            .environment(\.mediaLiveActivitySettings, mediaLiveActivitySettings)
+            .environment(\.calendarLiveActivitySettings, calendarLiveActivitySettings)
+            .environment(\.mediaWidgetSettings, mediaWidgetSettings)
+            .environment(\.shortcutsWidgetSettings, shortcutsWidgetSettings)
+            .environment(\.mirrorWidgetSettings, mirrorWidgetSettings)
+            .environment(\.calendarWidgetSettings, calendarWidgetSettings)
+            .environment(\.notesWidgetSettings, notesWidgetSettings)
+            .environment(\.todoListWidgetSettings, todoListWidgetSettings)
+            .environment(\.quickAppsWidgetSettings, quickAppsWidgetSettings)
+            .environment(\.generalSettings, generalSettings)
+            .environment(\.gestureControlSettings, gestureControlSettings)
+            .environment(\.liveActivitiesSettings, liveActivitiesSettings)
+            .environment(\.nookSettings, nookSettings)
+            .environment(\.traySettings, traySettings)
+            .environment(\.dropAreaSettings, dropAreaSettings)
+            .environment(\.mediaLiveActivitySettings, mediaLiveActivitySettings)
+            .environment(\.calendarLiveActivitySettings, calendarLiveActivitySettings)
+            .environment(\.mediaWidgetSettings, mediaWidgetSettings)
+            .environment(\.shortcutsWidgetSettings, shortcutsWidgetSettings)
+            .environment(\.mirrorWidgetSettings, mirrorWidgetSettings)
     }
 }

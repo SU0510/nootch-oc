@@ -9,70 +9,15 @@ import SwiftUI
 import Defaults
 import SwiftDate
 
-//struct MockTopBar: View {
-//    var liveActivities: Set<LiveActivity>
-//    @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
-//    var body: some View {
-//        let la = liveActivities
-//        let liveActionWidth = TopBarView.liveActionWidth
-//        HStack(spacing: 0) {
-//
-//            Group {
-//                if !la.isEmpty {
-//                    HStack {
-//                        if la.contains(.media) {
-//                            AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
-//                        } else if la.contains(.tray) {
-//                            TrayIconView()
-//                        }
-//                    }
-//                    .frame(width: liveActionWidth)
-//                }
-//            }
-//            .transition(.scaleAndBlur(anchor: .topTrailing))
-//
-//            TopBarSpacerView(height: TopBarView.minHeight)
-//
-//            Group {
-//                if !la.isEmpty {
-//                    HStack {
-//                        if la.contains(.tray) {
-//                            TrayFilesCountView()
-//                        } else if la.contains(.media) {
-//                            AudioWavesView(
-//                                altImg: .loCafeAvatar,
-//                                altIsPlaying: true,
-//                                prefs: mediaLiveActivitySettings
-//                            )
-//                        }
-//                    }
-//                    .frame(width: liveActionWidth)
-//                }
-//            }
-//            .transition(.scaleAndBlur(anchor: .topTrailing))
-//
-//        }
-//        .frame(height: TopBarView.minHeight)
-//    }
-//}
-
-
-
-
-
-
-
-
-
 struct MockTopBar: View {
     var activity: LiveActivity
     @Environment(\.notchSize) private var notchSize
-    @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
-    @Default(.gestureControlSettings) private var gestureControlSettings
-    @Default(.liveActivitiesSettings) private var liveActivitiesSettings
-    @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
-    @Default(.nookSettings) private var nookSettings
-    @Default(.traySettings) private var traySettings
+    @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
+    @Environment(\.gestureControlSettings) private var gestureControlSettings
+    @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
+    @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
+    @Environment(\.nookSettings) private var nookSettings
+    @Environment(\.traySettings) private var traySettings
     @SilentState private var fakeNow = Date()
     
     func staticNow() -> Date {
@@ -93,10 +38,10 @@ struct MockTopBar: View {
             
             Group {
                 switch activity {
-                    case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, laPrefs: liveActivitiesSettings).environment(\.getNow, staticNow)
+                    case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek).environment(\.getNow, staticNow)
                     case .media: AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
                     case .tray: TrayIconView()
-                    case .updateAvailable: UpdateAppIconView(laPrefs: liveActivitiesSettings)
+                    case .updateAvailable: UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
@@ -107,8 +52,8 @@ struct MockTopBar: View {
             
             Group {
                 switch activity {
-                    case .calendar: EventTimeView(notes: mockedEvent.notes, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, prefs: calendarLiveActivitySettings).environment(\.getNow, staticNow)
-                    case .media: AudioWavesView(prefs: mediaLiveActivitySettings)
+                    case .calendar: EventTimeView(notes: mockedEvent.notes, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate).environment(\.getNow, staticNow)
+                    case .media: AudioWavesView()
                     case .tray: TrayFilesCountView()
                     case .updateAvailable: UpdateButtonIconView()
                 }

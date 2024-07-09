@@ -14,7 +14,7 @@ struct TrayView: View {
     var hovered: Bool
     var full: Bool
     
-    @Default(.traySettings) private var traySettings
+    @Environment(\.traySettings) private var traySettings
     @Environment(\.tray) private var tray
     
     var body: some View {

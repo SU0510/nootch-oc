@@ -12,7 +12,8 @@ import SwiftDate
 
 struct CalendarWidgetView: View {
     static let showingDatesCount = 90
-    @Default(.calendarWidgetSettings) private var calendarWidgetSettings
+    
+//    @Environment(\.calendarWidgetSettings) private var calendarWidgetSettings
     @State private var selectedDateIndex = Self.showingDatesCount / 2
     @State private var showingDates: [Date] = getRangeOfDays(count: Self.showingDatesCount)
     @State private var offset: Double = 0

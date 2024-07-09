@@ -57,9 +57,9 @@ enum NookWidget: String, MetaInfo, Codable, CaseIterable {
             case .media: Defaults[.mediaWidgetSettings]
             case .shortcuts: Defaults[.shortcutsWidgetSettings]
             case .mirror: Defaults[.mirrorWidgetSettings]
-            case .notes: Defaults[.notesWidgetSettigs]
+            case .notes: Defaults[.notesWidgetSettings]
             case .quickApps: Defaults[.quickAppsWidgetSettings]
-            case .todoList: Defaults[.todoListWidgetSettigs]
+            case .todoList: Defaults[.todoListWidgetSettings]
         }
     }
     

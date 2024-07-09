@@ -11,8 +11,8 @@ import SwiftDate
 
 struct LicenseStateView: View {
     @Default(.license) private var license
-    @Default(.nookSettings) private var nookSettings
     @Default(.trialInitialTime) private var trialInitialTime
+    @Environment(\.nookSettings) private var nookSettings
     @Environment(\.openSettings) private var openSettings
     @Environment(\.trialOver) private var trialOver
     @Environment(\.notchSize) private var notchSize

@@ -7,7 +7,7 @@ struct MirrorWidgetView: View {
     
     @State private var session: AVCaptureSession?
     @State private var mode = Mode.stopped
-    @Default(.nookSettings) private var nookSettings
+    @Environment(\.nookSettings) private var nookSettings
     enum Mode { case stopped, loading, mirrorring }
     
     var width: Double {

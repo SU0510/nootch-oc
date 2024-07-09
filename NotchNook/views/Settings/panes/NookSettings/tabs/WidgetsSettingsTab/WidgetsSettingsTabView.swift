@@ -13,9 +13,9 @@ struct WidgetsSettingsTabView: View {
     @Default(.mediaWidgetSettings) private var mediaWidgetSettings
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
-    @Default(.notesWidgetSettigs) private var notesWidgetSettigs
+    @Default(.notesWidgetSettings) private var notesWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
-    @Default(.todoListWidgetSettigs) private var todoListWidgetSettigs
+    @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.nookSettings) private var nookSettings
     
     var body: some View {

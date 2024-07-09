@@ -9,13 +9,8 @@ import SwiftUI
 import Defaults
 
 struct NookView: View {
-    @Default(.nookSettings) private var nookSettings
-    @Default(.mediaWidgetSettings) private var mediaWidgetSettings
-    @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
-    @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
-    @Default(.notesWidgetSettigs) private var notesWidgetSettigs
-    @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
-    @Default(.todoListWidgetSettigs) private var todoListWidgetSettigs
+    @Environment(\.nookSettings) private var nookSettings
+    
     var body: some View {
         let widgets = nookSettings.enabledWidgets
         HStack(alignment: .center, spacing: 0) {
@@ -26,13 +21,13 @@ struct NookView: View {
                         case .media:
                             MediaPlayerWidgetView(arrayPosition: arrPos)
                         case .shortcuts:
-                            ShortcutsWidgetView(prefs: shortcutsWidgetSettings, arrayPosition: ArrayPosition(total: widgets.count, i: i))
+                            ShortcutsWidgetView(arrayPosition: ArrayPosition(total: widgets.count, i: i))
                         case .mirror:
                             MirrorWidgetView(arrayPosition: arrPos)
                         case .calendar:
                             CalendarWidgetView()
                         case .notes: 
-                            NotesWidgetView(arrayPosition: arrPos, nookPrefs: nookSettings, prefs: notesWidgetSettigs)
+                            NotesWidgetView(arrayPosition: arrPos, internalPadding: nookSettings.widgetsPadding)
                         default: EmptyView()
                     }
                 }

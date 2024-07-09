@@ -11,9 +11,10 @@ import Defaults
 extension NotchView {
     struct ShapeModifier: ViewModifier {
         var state: NotchViewModel
-        @Default(.generalSettings) internal var generalSettings
+        
         @Default(.intro) internal var intro
-        @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
+        @Environment(\.generalSettings) internal var generalSettings
+        @Environment(\.liveActivitiesSettings) internal var liveActivitiesSettings
         @Environment(\.notchNook) internal var notchNook
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.hideNotch) internal var hideNotch

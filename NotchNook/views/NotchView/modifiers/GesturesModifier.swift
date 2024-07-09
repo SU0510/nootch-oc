@@ -12,6 +12,7 @@ extension NotchView {
     struct GesturesModifier: ViewModifier {
         var state: NotchViewModel
         var disableNotchNook: Bool
+        
         @Environment(\.notchNook) internal var notchNook
         @Environment(\.isEditingText) internal var isEditingText
         @Environment(\.resignFirstResponder) internal var resignFirstResponder
@@ -21,8 +22,8 @@ extension NotchView {
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.tray) internal var tray
         @Environment(\.checkTrialOver) internal var checkTrialOver
-        @Default(.nookSettings) internal var nookSettings
-        @Default(.generalSettings) internal var generalSettings
+        @Environment(\.nookSettings) private var nookSettings
+        @Environment(\.generalSettings) private var generalSettings
         @Default(.license) internal var license
         func body(content: Content) -> some View {
             content

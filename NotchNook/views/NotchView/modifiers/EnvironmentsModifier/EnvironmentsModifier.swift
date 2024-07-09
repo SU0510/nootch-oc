@@ -11,11 +11,11 @@ import Defaults
 extension NotchView {
     struct EnvironmentsModifier: ViewModifier {
         var state: NotchViewModel
-        @Default(.generalSettings) internal var generalSettings
+
         @Default(.trialInitialTime) internal var trialInitialTime
         @Default(.license) internal var license
         @Namespace internal var ns
-        
+        @Environment(\.generalSettings) private var generalSettings
         @Environment(\.notchNook) internal var notchNook
         @Environment(\.canBecomeKey) internal var canBecomeKey
         @Environment(\.makeKeyWindow) internal var makeKeyWindow

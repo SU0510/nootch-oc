@@ -12,9 +12,11 @@ struct NoteCodeEditor: View {
     var note: Note
     var selected: Bool
     var showControls: Bool
-    var prefs: NotesWidgetSettings
+
+    @Environment(\.notesWidgetSettings) private var prefs
     @State private var localCodeText: String = ""
     @State private var localLanguage: CodeEditor.Language = .markdown
+    
     var body: some View {
         CodeEditor(
             source: $localCodeText,

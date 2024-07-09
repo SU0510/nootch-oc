@@ -18,7 +18,8 @@ extension NoteView {
         var widgetArrPosition: ArrayPosition
         var ns: Namespace.ID
         
-        @Default(.generalSettings) private var generalSettings
+        @Environment(\.generalSettings) private var generalSettings
+        
         func body(content: Content) -> some View {
             content
                 .mask {

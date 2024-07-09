@@ -25,9 +25,9 @@ struct NotchView: View {
     @Environment(\.notchSize) internal var notchSize
     @Environment(\.screenSize) internal var screenSize
     @Environment(\.notchNook) internal var notchNook
+    @Environment(\.generalSettings) private var generalSettings
     @Default(.intro) internal var intro
     @Default(.license) internal var license
-    @Default(.generalSettings) internal var generalSettings
     @Default(.trialInitialTime) internal var trialInitialTime
     
     var actualScale: Double { (state.hovering && !state.pressing && (notchNook.mode == .closed) ? NotchView.hoverScale : 1) - state.scaleDown }

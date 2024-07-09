@@ -10,7 +10,7 @@ import Defaults
 
 struct TopBarSpacerView: View {
     @Environment(\.notchSize) private var notchSize
-    @Default(.generalSettings) private var generalSettings
+    @Environment(\.generalSettings) private var generalSettings
     var height: Double
     var body: some View {
         Color.clear

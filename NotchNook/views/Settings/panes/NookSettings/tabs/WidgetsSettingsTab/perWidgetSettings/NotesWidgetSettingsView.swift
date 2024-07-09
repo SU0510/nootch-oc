@@ -10,7 +10,7 @@ import Settings
 import Defaults
 
 struct NotesWidgetSettingsView: View {
-    @Default(.notesWidgetSettigs) private var notesWidgetSettigs
+    @Default(.notesWidgetSettings) private var notesWidgetSettings
     @Default(.nookSettings) private var nookSettings
     
     var availableWidth: NookGrid.Point {
@@ -29,9 +29,9 @@ struct NotesWidgetSettingsView: View {
             Settings.Section {
                 Text("Width:").frame(minWidth: 200, alignment: .trailing)
             } content: {
-                SliderPlus(value: $notesWidgetSettigs.size.width.double, range: min...max)
-                Toggle("Show scroll indicator", isOn: $notesWidgetSettigs.showScrollIndicator)
-                Toggle("Code mode", isOn: $notesWidgetSettigs.codeMode)
+                SliderPlus(value: $notesWidgetSettings.size.width.double, range: min...max)
+                Toggle("Show scroll indicator", isOn: $notesWidgetSettings.showScrollIndicator)
+                Toggle("Code mode", isOn: $notesWidgetSettings.codeMode)
                 Text("Transforms notes into a code editor, with syntax highlighting (supports Markdown).")
                     .optionDescription(contentMaxW)
             }

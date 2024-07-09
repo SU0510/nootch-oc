@@ -11,16 +11,24 @@ import SwiftData
 struct NotesWidgetView: View {
     static let spacing: Double = 6
     static let switchAnimation: Animation = .smooth(duration: 0.45, extraBounce: 0.175)
+    
     var arrayPosition: ArrayPosition
-    var nookPrefs: NookSettings
-    var prefs: NotesWidgetSettings
+    var internalPadding: Double
+    
+    @Environment(\.notesWidgetSettings) private var prefs
     @Query(sort: \Note.updatedAt, order: .reverse) private var notes: [Note]
     @State private var selectedNoteId: PersistentIdentifier?
     @Environment(\.modelContext) private var modelContext
     @Namespace private var ns
 
     private var selectedNote: Note? { notes.first(where: { $0.persistentModelID == selectedNoteId }) }
-    private var mainNoteWidth: Double { prefs.size.width.screenPoints - (nookPrefs.widgetsPadding * (arrayPosition == .single ? 0 : arrayPosition == .middle ? 2 : 1)) - Self.spacing - NoteView.smallSize }
+    private var mainNoteWidth: Double {
+        let widgetWidth = prefs.size.width.screenPoints
+        let internalTotalPadding = (internalPadding * (arrayPosition == .single ? 0 : arrayPosition == .middle ? 2 : 1))
+        let hStackSpacing = Self.spacing
+        let smallNotesWidth = NoteView.smallSize
+        return (widgetWidth - internalTotalPadding - hStackSpacing - smallNotesWidth)
+    }
     
     var otherNotes: [Note] { notes.filter { $0.id != selectedNoteId }.sorted(by: { $0.updatedAt > $1.updatedAt }) }
     var otherNotesIds: [PersistentIdentifier] { otherNotes.map { $0.persistentModelID } }
@@ -28,14 +36,14 @@ struct NotesWidgetView: View {
         
         HStack(alignment: .top, spacing: Self.spacing) {
             if let selectedNote {
-                NoteView(note: selectedNote, selected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, prefs: prefs, ns: ns)
+                NoteView(note: selectedNote, selected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, codeMode: prefs.codeMode, ns: ns)
                     .id(selectedNote.persistentModelID)
                 VStack(alignment: .leading, spacing: Self.spacing) {
                     ForEach(Array(otherNotes.enumerated()), id: \.element) { i, note in
                         Button {
                             withAnimation(NotesWidgetView.switchAnimation) { selectedNoteId = note.persistentModelID }
                         } label: {
-                            NoteView(note: note, selected: false, width: mainNoteWidth, widgetArrPosition: i == (otherNotes.count - 1) ? arrayPosition : .middle, prefs: prefs, ns: ns)
+                            NoteView(note: note, selected: false, width: mainNoteWidth, widgetArrPosition: i == (otherNotes.count - 1) ? arrayPosition : .middle, codeMode: prefs.codeMode, ns: ns)
                         }
                         .buttonStyle(ShrinkOnClick(minSize: 0.925))
                     }
@@ -43,7 +51,7 @@ struct NotesWidgetView: View {
             }
         }
         .animation(.spring, value: otherNotesIds)
-        .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookPrefs.widgetsPadding)
+        .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
         .onChange(of: notes.count, initial: true) { _, _ in
             selectedNoteId = notes.first?.persistentModelID
         }

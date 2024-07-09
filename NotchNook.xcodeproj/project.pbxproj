@@ -126,6 +126,9 @@
 		3A9E6C032C3AABAC009948F5 /* GIFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */; };
 		3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C072C3AAD41009948F5 /* GIFView.swift */; };
 		3A9E6C142C3ABA4D009948F5 /* michael.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A9E6C132C3ABA4D009948F5 /* michael.gif */; };
+		3A9E6C172C3D5A95009948F5 /* GeneralSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */; };
+		3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */; };
+		3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */; };
 		3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFD82C352D8600BA2F80 /* CodeEditor */; };
 		3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDA2C352EB000BA2F80 /* CodeEditor */; };
 		3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDD2C352EC600BA2F80 /* CodeEditor */; };
@@ -439,6 +442,9 @@
 		3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFViewer.swift; sourceTree = "<group>"; };
 		3A9E6C072C3AAD41009948F5 /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		3A9E6C132C3ABA4D009948F5 /* michael.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = michael.gif; sourceTree = "<group>"; };
+		3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsKeys.swift; sourceTree = "<group>"; };
+		3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerLiveActivitiesSettingsKeys.swift; sourceTree = "<group>"; };
+		3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerWidgetSettingsKeys.swift; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		3AC36D812C2530F40000F995 /* calendar.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendar.mov; sourceTree = "<group>"; };
@@ -727,6 +733,7 @@
 		3A1691C82C2FB1B70014C326 /* EnvironmentValues */ = {
 			isa = PBXGroup;
 			children = (
+				3A9E6C152C3D597B009948F5 /* Defaults */,
 				3A1691C92C2FB1C90014C326 /* OpenSettingsKey.swift */,
 				3A1691CB2C2FB1E20014C326 /* NamespaceKey.swift */,
 				3A1691CD2C2FB1E90014C326 /* ScreenSizeKey.swift */,
@@ -914,6 +921,16 @@
 				3A9E6C132C3ABA4D009948F5 /* michael.gif */,
 			);
 			path = gifs;
+			sourceTree = "<group>";
+		};
+		3A9E6C152C3D597B009948F5 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */,
+				3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */,
+				3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */,
+			);
+			path = Defaults;
 			sourceTree = "<group>";
 		};
 		3AC36D732C25124B0000F995 /* lottie */ = {
@@ -1738,6 +1755,7 @@
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				EC8D60612C00065D00E67ECC /* AppleMusicApp.swift in Sources */,
+				3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */,
 				3A1691ED2C2FB4FB0014C326 /* HideNotchKey.swift in Sources */,
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
@@ -1833,6 +1851,7 @@
 				EC47FC912C0B806800591811 /* IntroView.swift in Sources */,
 				EC14B5CF2C07AB17000FC6B6 /* TraySettingsView.swift in Sources */,
 				3A3F59FC2C2A5BEA00906FFA /* closeNotch.swift in Sources */,
+				3A9E6C172C3D5A95009948F5 /* GeneralSettingsKeys.swift in Sources */,
 				EC758F822BF2F19B00B873B0 /* ShadowedNotchShapeView.swift in Sources */,
 				3A20F1772C2F8B01006A7E1F /* ShapeModifier.swift in Sources */,
 				ECC22A3D2C0818C10000139C /* move.swift in Sources */,
@@ -1840,6 +1859,7 @@
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
 				3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */,
+				3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */,
 				3A1691D22C2FB1F50014C326 /* GetNowKey.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,

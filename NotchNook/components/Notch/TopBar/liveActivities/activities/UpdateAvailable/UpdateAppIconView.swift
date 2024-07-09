@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct UpdateAppIconView: View {
-    var laPrefs: LiveActivitiesSettings
-    
+    var enableQuickPeek = true
     var quickPeeks: [NotchNook.QuickPeek] { [.init(icon: "sparkles", text: "New update available for NotchNook!", iconColor: .yellow)] }
     
     @Environment(\.sparkleManager) private var sparkleManager
@@ -26,7 +25,7 @@ struct UpdateAppIconView: View {
                 ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.updateAvailable)
             }
             .onHover { hovering in
-                if laPrefs.enableQuickPeek {
+                if enableQuickPeek {
                     notchNook.quickPeeks = hovering ? quickPeeks : nil
                 }
             }

@@ -14,9 +14,9 @@ struct LiveActivityView: View {
     var side: ActivitySide
     var activeActivities: Set<LiveActivity>
     var mockEvent: NookEvent?
-    @Default(.liveActivitiesSettings) private var liveActivitiesSettings
-    @Default(.mediaLiveActivitySettings) private var mediaLiveActivitySettings
-    @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
+    @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
+    @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
+    @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     
     var activityToShow: LiveActivity? {
         if activeActivities.isEmpty { return nil }
@@ -41,14 +41,14 @@ struct LiveActivityView: View {
                     case .calendar:
                         if let event = mockEvent ?? closestEvent(in: CalendarManager.shared.events)?.getNookEvent() {
                             switch side {
-                                case .left: EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, laPrefs: liveActivitiesSettings)
-                                case .right: EventTimeView(notes: event.notes, startDate: event.startDate, endDate: event.endDate, prefs: calendarLiveActivitySettings)
+                                case .left: EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                                case .right: EventTimeView(notes: event.notes, startDate: event.startDate, endDate: event.endDate)
                             }
                         }
                     case .media:
                         switch side {
-                            case .left: MiniAlbumCoverView(laPrefs: liveActivitiesSettings, prefs: mediaLiveActivitySettings)
-                            case .right: AudioWavesView(prefs: mediaLiveActivitySettings)
+                            case .left: MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek, albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
+                            case .right: AudioWavesView()
                         }
                     case .tray:
                         switch side {
@@ -57,7 +57,7 @@ struct LiveActivityView: View {
                         }
                     case .updateAvailable:
                         switch side {
-                            case .left: UpdateAppIconView(laPrefs: liveActivitiesSettings)
+                            case .left: UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
                             case .right: UpdateButtonIconView()
                         }
                 }
