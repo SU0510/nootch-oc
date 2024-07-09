@@ -35,7 +35,7 @@ struct EventIconView: View {
             .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onHover { hovering in
-                if laPrefs.enableQuickPeek {
+                if enableQuickPeek {
                     notchNook.quickPeeks = hovering ? quickPeeks : nil
                 }
             }

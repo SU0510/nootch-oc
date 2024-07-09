@@ -25,7 +25,7 @@ struct NotchView: View {
     @Environment(\.notchSize) internal var notchSize
     @Environment(\.screenSize) internal var screenSize
     @Environment(\.notchNook) internal var notchNook
-    @Environment(\.generalSettings) private var generalSettings
+    @Environment(\.generalSettings) internal var generalSettings
     @Default(.intro) internal var intro
     @Default(.license) internal var license
     @Default(.trialInitialTime) internal var trialInitialTime

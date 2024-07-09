@@ -15,8 +15,8 @@ extension NotchView {
         
         @Default(.intro) internal var intro
         @Default(.lastBuildNumber) internal var lastBuildNumber
-        @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
-        @Environment(\.generalSettings) private var generalSettings
+        @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
+        @Environment(\.generalSettings) internal var generalSettings
         @Environment(\.notchNook) internal var notchNook
         @Environment(\.sparkleManager) internal var sparkleManager
         @Environment(\.showChangelog) internal var showChangelog

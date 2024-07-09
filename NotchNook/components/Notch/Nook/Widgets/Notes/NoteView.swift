@@ -17,7 +17,6 @@ struct NoteView: View {
         lhs.selected == rhs.selected &&
         rhs.width == lhs.width &&
         rhs.widgetArrPosition == lhs.widgetArrPosition &&
-        rhs.prefs == lhs.prefs &&
         rhs.ns == lhs.ns
     }
     
