@@ -24,7 +24,7 @@ struct Pipeline: Identifiable, Equatable {
 let allPipelines: [Pipeline] = [
     Pipeline(
         id: "airdrop", label: String(localized: "AirDrop"),
-        icon: Image(nsImage: NSWorkspace.shared.icon(forFileType: "com.apple.airdrop")),
+        icon: Image(nsImage: NSWorkspace.shared.icon(for: .init("com.apple.airdrop")!)),
         allowedFileTypes: [.fileURL],
         action: { fileURLs, dropAreaCoords in
             airDropFiles(urls: fileURLs)
