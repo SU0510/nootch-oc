@@ -10,6 +10,9 @@ import SmoothGradient
 
 extension View {
     func fadeOnEdges(axis: Axis, topLeadingFadeLength: Double, bottomTrailingFadeLength: Double, curve: UnitCurve = .easeInOut, disable: Bool = false) -> some View {
+        self.fadeOnEdges(axis: axis, topLeadingFadeLength: topLeadingFadeLength, bottomTrailingFadeLength: bottomTrailingFadeLength, curveStart: curve, curveEnd: curve, disable: disable)
+    }
+    func fadeOnEdges(axis: Axis, topLeadingFadeLength: Double, bottomTrailingFadeLength: Double, curveStart: UnitCurve = .easeInOut, curveEnd: UnitCurve = .easeInOut, disable: Bool = false) -> some View {
         self
             .mask {
                 if !disable {
@@ -20,7 +23,7 @@ extension View {
                                 to: .black.opacity(1),
                                 startPoint: axis == .horizontal ? .leading : .top,
                                 endPoint: axis == .horizontal ? .trailing : .bottom,
-                                curve: curve
+                                curve: curveStart
                             )
                             .frame(width: axis == .horizontal ? topLeadingFadeLength : nil, height: axis == .vertical ? topLeadingFadeLength : nil)
                             Color.black.frame(maxWidth: .infinity)
@@ -29,7 +32,7 @@ extension View {
                                 to: .black.opacity(1),
                                 startPoint: axis == .horizontal ? .trailing : .bottom,
                                 endPoint: axis == .horizontal ? .leading : .top,
-                                curve: curve
+                                curve: curveEnd
                             )
                             .frame(width: axis == .horizontal ? bottomTrailingFadeLength : nil, height: axis == .vertical ? bottomTrailingFadeLength : nil)
                         }

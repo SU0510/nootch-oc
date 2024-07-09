@@ -23,7 +23,7 @@ struct UpdateAppIconView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
             .onTapGesture {
                 sparkleManager.checkForUpdates()
-                LiveActivitiesManager.shared.activeLiveActivities.remove(.updateAvailable)
+                ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.updateAvailable)
             }
             .onHover { hovering in
                 if laPrefs.enableQuickPeek {

@@ -23,9 +23,25 @@ struct AudioWavesView: View {
                 MediaPlayer.shared.app?.toggleIsPlaying()
             } label: {
                 ZStack {
-                    AudioSpectrographRepresentable(playing: isPlaying, volume: volume, color: color)
-                        .blur(radius: hovering ? 1.25 : 0)
-//                        .opacity(hovering ? 0.75 : 1)
+                    Group {
+                        switch prefs.effect {
+                            case .audioSpectrograph:
+                                AudioSpectrographRepresentable(playing: isPlaying, volume: volume, color: color)
+                                    .blur(radius: hovering ? 1.25 : 0)
+                                
+                            case .waves:
+                                WaveViewRepresentable(volume: volume, color: color)
+                                    .blur(radius: hovering ? 1.25 : 0)
+                                    .fadeOnEdges(axis: .horizontal, topLeadingFadeLength: 8, bottomTrailingFadeLength: 12, curve: .easeIn)
+                                
+                            case .gif:
+                                GIFView()
+                                    .offset(y: prefs.gifOffset)
+                        }
+                    }
+                    .transition(.scaleAndBlur)
+                    
+                    
                     if hovering {
                         Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                             .font(.system(size: 12))
@@ -34,6 +50,7 @@ struct AudioWavesView: View {
                             .transition(.scaleAndBlur)
                     }
                 }
+                .animation(.spring, value: prefs.effect)
                 .background(.black.opacity(0.001))
                 .contentShape(Rectangle())
                 .onHover { newHovering in

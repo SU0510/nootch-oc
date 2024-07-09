@@ -20,12 +20,12 @@ class Tray {
             }
             doAfter {
                 if newValue.isEmpty {
-                    if LiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
-                        LiveActivitiesManager.shared.activeLiveActivities.remove(.tray)
+                    if ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
+                        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.tray)
                     }
                 } else {
-                    if !LiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
-                        LiveActivitiesManager.shared.activeLiveActivities.insert(.tray)
+                    if !ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
+                        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.tray)
                     }
                 }
             }

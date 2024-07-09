@@ -67,7 +67,7 @@
 		3A20F17D2C2FAB0B006A7E1F /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F17C2C2FAB0B006A7E1F /* Animation.swift */; };
 		3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */; };
 		3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* FineTuningView.swift */; };
-		3A3ABCDC2C2A81FC00132228 /* LiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDB2C2A81FC00132228 /* LiveActivitiesManager.swift */; };
+		3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */; };
 		3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */; };
 		3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */; };
 		3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCE12C2A9CF700132228 /* dropUpdated.swift */; };
@@ -120,6 +120,12 @@
 		3A8AA18E2C311B6300D727DA /* CRichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA18D2C311B6300D727DA /* CRichTextEditor.swift */; };
 		3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8AA2CE2C313B6300D727DA /* RichTextKit */; };
 		3A9E6BF52C39908B009948F5 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6BF42C39908B009948F5 /* WaveView.swift */; };
+		3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A9E6BF72C3A9C3F009948F5 /* DynamicColor */; };
+		3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6BF92C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift */; };
+		3A9E6BFC2C3AA7B7009948F5 /* MathCGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6BFB2C3AA7B3009948F5 /* MathCGPoint.swift */; };
+		3A9E6C032C3AABAC009948F5 /* GIFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */; };
+		3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C072C3AAD41009948F5 /* GIFView.swift */; };
+		3A9E6C142C3ABA4D009948F5 /* michael.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A9E6C132C3ABA4D009948F5 /* michael.gif */; };
 		3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFD82C352D8600BA2F80 /* CodeEditor */; };
 		3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDA2C352EB000BA2F80 /* CodeEditor */; };
 		3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDD2C352EC600BA2F80 /* CodeEditor */; };
@@ -378,7 +384,7 @@
 		3A20F17C2C2FAB0B006A7E1F /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppProtocol.swift; sourceTree = "<group>"; };
 		3A357F112C294FD20076DB37 /* FineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineTuningView.swift; sourceTree = "<group>"; };
-		3A3ABCDB2C2A81FC00132228 /* LiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesManager.swift; sourceTree = "<group>"; };
+		3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveLiveActivitiesManager.swift; sourceTree = "<group>"; };
 		3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropEntered.swift; sourceTree = "<group>"; };
 		3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finishDragging.swift; sourceTree = "<group>"; };
 		3A3ABCE12C2A9CF700132228 /* dropUpdated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropUpdated.swift; sourceTree = "<group>"; };
@@ -428,6 +434,11 @@
 		3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteIconView.swift; sourceTree = "<group>"; };
 		3A8AA18D2C311B6300D727DA /* CRichTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRichTextEditor.swift; sourceTree = "<group>"; };
 		3A9E6BF42C39908B009948F5 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		3A9E6BF92C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveActivityEffectEnum.swift; sourceTree = "<group>"; };
+		3A9E6BFB2C3AA7B3009948F5 /* MathCGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathCGPoint.swift; sourceTree = "<group>"; };
+		3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFViewer.swift; sourceTree = "<group>"; };
+		3A9E6C072C3AAD41009948F5 /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
+		3A9E6C132C3ABA4D009948F5 /* michael.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = michael.gif; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		3AC36D812C2530F40000F995 /* calendar.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendar.mov; sourceTree = "<group>"; };
@@ -625,6 +636,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
@@ -678,6 +690,7 @@
 			children = (
 				EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */,
 				EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */,
+				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -893,6 +906,14 @@
 				3A8AA18D2C311B6300D727DA /* CRichTextEditor.swift */,
 			);
 			path = CustomRichTextKit;
+			sourceTree = "<group>";
+		};
+		3A9E6C042C3AAD05009948F5 /* gifs */ = {
+			isa = PBXGroup;
+			children = (
+				3A9E6C132C3ABA4D009948F5 /* michael.gif */,
+			);
+			path = gifs;
 			sourceTree = "<group>";
 		};
 		3AC36D732C25124B0000F995 /* lottie */ = {
@@ -1118,7 +1139,7 @@
 				ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */,
 				EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */,
 				EC8D601B2BFC2A3200E67ECC /* MediaPlayer.swift */,
-				3A3ABCDB2C2A81FC00132228 /* LiveActivitiesManager.swift */,
+				3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -1126,6 +1147,7 @@
 		EC47FC942C0B824500591811 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				3A9E6C042C3AAD05009948F5 /* gifs */,
 				3AC36D742C2512510000F995 /* videos */,
 				3AC36D732C25124B0000F995 /* lottie */,
 			);
@@ -1247,6 +1269,7 @@
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
+				3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1386,6 +1409,7 @@
 				EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */,
 				EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */,
 				EC4173CA2C01919D002889E7 /* MediaAppMetaEnum.swift */,
+				3A9E6BF92C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift */,
 			);
 			path = enums;
 			sourceTree = "<group>";
@@ -1434,6 +1458,7 @@
 		EC8D5FD52BFA703200E67ECC /* CGPoint */ = {
 			isa = PBXGroup;
 			children = (
+				3A9E6BFB2C3AA7B3009948F5 /* MathCGPoint.swift */,
 				EC8D5FD32BFA703200E67ECC /* calculateDistance.swift */,
 				EC8D5FD42BFA703200E67ECC /* CGPointHashable.swift */,
 			);
@@ -1591,6 +1616,7 @@
 				3AA6FFDD2C352EC600BA2F80 /* CodeEditor */,
 				3A1FFE1D2C35310400BB4A03 /* CodeEditor */,
 				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
+				3A9E6BF72C3A9C3F009948F5 /* DynamicColor */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1637,6 +1663,7 @@
 				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
+				3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1657,6 +1684,7 @@
 				3AC36D822C2530F40000F995 /* calendar.mov in Resources */,
 				3AC36D862C2543DC0000F995 /* calendarLA.mov in Resources */,
 				3AC36D852C2543DC0000F995 /* quickPeek.mov in Resources */,
+				3A9E6C142C3ABA4D009948F5 /* michael.gif in Resources */,
 				3A0816C32C24C201008092F0 /* update.lottie in Resources */,
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
@@ -1690,6 +1718,7 @@
 				3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */,
+				3A9E6C032C3AABAC009948F5 /* GIFViewer.swift in Sources */,
 				3A1691E42C2FB23E0014C326 /* MakeKeyWindowKey.swift in Sources */,
 				3A8AA1872C2FEFE100D727DA /* shareToAppleNotes.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
@@ -1699,7 +1728,7 @@
 				3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */,
 				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
-				3A3ABCDC2C2A81FC00132228 /* LiveActivitiesManager.swift in Sources */,
+				3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
@@ -1903,6 +1932,7 @@
 				3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
+				3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */,
 				3A1691EF2C2FB5040014C326 /* CloseNotchKey.swift in Sources */,
 				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
@@ -1922,6 +1952,7 @@
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
 				3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */,
+				3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Tray.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
@@ -1957,6 +1988,7 @@
 				EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */,
 				3A20F17D2C2FAB0B006A7E1F /* Animation.swift in Sources */,
 				EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */,
+				3A9E6BFC2C3AA7B7009948F5 /* MathCGPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2093,7 +2125,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2133,7 +2165,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2218,6 +2250,14 @@
 				kind = branch;
 			};
 		};
+		3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yannickl/DynamicColor.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -2300,6 +2340,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */;
 			productName = RichTextKit;
+		};
+		3A9E6BF72C3A9C3F009948F5 /* DynamicColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */;
+			productName = DynamicColor;
 		};
 		3AA6FFD82C352D8600BA2F80 /* CodeEditor */ = {
 			isa = XCSwiftPackageProductDependency;

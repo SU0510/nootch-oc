@@ -23,7 +23,7 @@ extension NotchView {
         @Namespace internal var ns
         
         var shouldRender: Bool {
-            let showingLiveActvs = LiveActivitiesManager.shared.activeLiveActivities.filter {
+            let showingLiveActvs = ActiveLiveActivitiesManager.shared.activeLiveActivities.filter {
                 liveActivitiesSettings.enabledLiveActivities.contains($0)
             }
             return (
@@ -58,6 +58,7 @@ extension NotchView {
                         
                         
                     }
+                    .animation(.bouncySmooth, value: liveActivitiesSettings)
                 }
         }
     }

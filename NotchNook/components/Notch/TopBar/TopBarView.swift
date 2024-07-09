@@ -29,7 +29,7 @@ struct TopBarView: View {
         // If notch height is bigger than 2/3 of minHeight, use it
         let height = notchSize.height > (TopBarView.minHeight * 0.66) ? notchSize.height : TopBarView.minHeight
         let mode = notchNook.mode
-        let liveActvs = LiveActivitiesManager.shared.activeLiveActivities
+        let liveActvs = ActiveLiveActivitiesManager.shared.activeLiveActivities
         
         VStack(spacing: 0) {
             HStack(spacing: 0) {

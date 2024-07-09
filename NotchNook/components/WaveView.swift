@@ -6,118 +6,180 @@
 //
 
 import SwiftUI
-import Cocoa
 import QuartzCore
+import CoreImage
+import CoreGraphics
+import CoreImage.CIFilterBuiltins
+import Cocoa
+import DynamicColor
 
-class GradientBlobView: NSView {
-    private var displayLink: CVDisplayLink?
-    private var startTime: CFTimeInterval?
-    private var circleCount = 5
-    private var colors: [CGColor] = [
-        NSColor.systemRed.cgColor,
-        NSColor.systemBlue.cgColor,
-        NSColor.systemGreen.cgColor,
-        NSColor.systemYellow.cgColor,
-        NSColor.systemPurple.cgColor,
-        NSColor.systemOrange.cgColor
-    ]
+struct MiddlePoint {
+    var control: CGPoint
+    var direction1: CGPoint
+    var direction2: CGPoint
+}
 
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setupDisplayLink()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupDisplayLink()
-    }
-    
-    deinit {
-        CVDisplayLinkStop(displayLink!)
-    }
-    
-    private func setupDisplayLink() {
-        CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
-        CVDisplayLinkSetOutputCallback(displayLink!, { (_, _, _, _, _, userInfo) -> CVReturn in
-            let view = Unmanaged<GradientBlobView>.fromOpaque(userInfo!).takeUnretainedValue()
-            DispatchQueue.main.async {
-                view.needsDisplay = true
-            }
-            return kCVReturnSuccess
-        }, Unmanaged.passUnretained(self).toOpaque())
-        CVDisplayLinkStart(displayLink!)
-        startTime = CACurrentMediaTime()
-    }
-    
-    // Modify the draw function to ensure the context image is not nil before creating CIImage
-    override func draw(_ dirtyRect: NSRect) {
-        guard let context = NSGraphicsContext.current?.cgContext else { return }
-        context.clear(bounds)
-
-        let currentTime = CACurrentMediaTime()
-        let elapsedTime = currentTime - (startTime ?? currentTime)
-
-        drawAnimatedCircles(in: context, time: elapsedTime)
-
-        guard let cgImage = context.makeImage() else { return }
-        let baseImage = CIImage(cgImage: cgImage)
-
-        let blurFilter = CIFilter(name: "CIGaussianBlur")!
-        blurFilter.setValue(baseImage, forKey: "inputRadius")
-        blurFilter.setValue(20, forKey: kCIInputRadiusKey)
-
-        let contextCI = CIContext(options: nil)
-        guard let outputImage = blurFilter.outputImage, let cgimg = contextCI.createCGImage(outputImage, from: outputImage.extent) else { return }
-
-        context.draw(cgimg, in: bounds)
-    }
-    
-    private var circleCenters: [CGPoint] = []
-    private var circleDirections: [CGPoint] = []
-    private var circleColors: [CGColor] = []
-
-    private func drawAnimatedCircles(in context: CGContext, time: CFTimeInterval) {
-        let maxRadius = hypot(bounds.width, bounds.height) * 0.35
-        let numCircles = 5
-
-        if circleCenters.isEmpty {
-            for _ in 0..<numCircles {
-                let xPos = CGFloat(arc4random_uniform(UInt32(bounds.width)))
-                let yPos = CGFloat(arc4random_uniform(UInt32(bounds.height)))
-                circleCenters.append(CGPoint(x: xPos, y: yPos))
-                circleDirections.append(CGPoint(x: CGFloat(drand48() - 0.5), y: CGFloat(drand48() - 0.5)))
-                let color = NSColor(calibratedRed: CGFloat(drand48()),
-                                    green: CGFloat(drand48()),
-                                    blue: CGFloat(drand48()),
-                                    alpha: 1.0).cgColor
-                circleColors.append(color)
+class WobblyBezierView: NSView {
+    var volume: Double = 1
+    var color: NSColor = .white {
+        didSet {
+            shapeLayers.forEach { layers in
+                layers.forEach { layer in
+                    let i = CGFloat(try! Int(value: layer.name ?? "0"))
+                    layer.strokeColor = color.darkened(amount: i * 0.1).shaded(amount: i * 0.2).cgColor
+                }
             }
         }
-
-        for i in 0..<numCircles {
-            circleCenters[i].x += circleDirections[i].x
-            circleCenters[i].y += circleDirections[i].y
-
-            if circleCenters[i].x < 0 || circleCenters[i].x > bounds.width {
-                circleDirections[i].x *= -1
+    }
+    private var middlePoints: [MiddlePoint]
+    private var movementTimer: Timer?
+    private var blurTimer: Timer?
+    private var blurFilter = CIFilter(name: "CIGaussianBlur")!
+    
+    private lazy var shapeLayers: [[CAShapeLayer]] = {
+        var layers = [[CAShapeLayer]]()
+        for i in 0..<middlePoints.count {
+            var innerLayers = [CAShapeLayer]()
+            for _ in 0..<2 {
+                let layer = CAShapeLayer()
+                layer.strokeColor = color.darkened(amount: CGFloat(i) * 0.2).cgColor
+                layer.lineWidth = 1
+                layer.fillColor = NSColor.clear.cgColor
+                layer.name = "\(i)"
+                //            layer.opacity = 1.0 - (Float(i) * 0.3)
+                innerLayers.append(layer)
+                layer.zPosition = CGFloat(middlePoints.count - i)
+                self.layer?.addSublayer(layer)
             }
-            if circleCenters[i].y < 0 || circleCenters[i].y > bounds.height {
-                circleDirections[i].y *= -1
+            layers.append(innerLayers)
+        }
+        return layers
+    }()
+
+    init(frame frameRect: NSRect, linesCount: Int = 3) {
+        middlePoints = Array(repeating: MiddlePoint(control: .zero, direction1: .zero, direction2: .zero), count: linesCount)
+        super.init(frame: frameRect)
+        self.layer = CALayer()
+        blurFilter.name = "blur"
+        self.layer?.filters = [blurFilter]
+        self.layer?.setValue(0, forKeyPath: "filters.blur.inputRadius")
+        self.wantsLayer = true
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func changeBlur(to radius: Double) {
+        let animation = CABasicAnimation(keyPath: "filters.blur.inputRadius")
+        animation.timingFunction = .init(name: .easeInEaseOut)
+        animation.duration = 1
+        animation.fromValue = nil
+        animation.toValue = radius
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
+        self.layer?.add(animation, forKey: nil)
+    }
+
+    func moveControlPoint(to newControlPoint: CGPoint, direction1 newDirectionPoint1: CGPoint, direction2 newDirectionPoint2: CGPoint, withAnimationDuration duration: TimeInterval, index: Int) {
+        let innerLayers = shapeLayers[index]
+        Array(innerLayers.enumerated()).forEach { i, layer in
+            let animation = CABasicAnimation(keyPath: "path")
+            animation.timingFunction = .init(name: .linear)
+            animation.duration = duration
+            animation.fromValue = layer.presentation()?.path
+            
+            animation.isRemovedOnCompletion = true
+            
+            let newPath = NSBezierPath()
+            newPath.move(to: CGPoint(x: bounds.minX, y: bounds.midY))
+            newPath.curve(to: CGPoint(x: bounds.maxX, y: bounds.midY + (i == 0 ? -3 : 3)), controlPoint1: newDirectionPoint1, controlPoint2: newDirectionPoint2)
+            animation.toValue = newPath.cgPath
+            
+            layer.add(animation, forKey: "a")
+            layer.path = newPath.cgPath
+            
+            middlePoints[index] = MiddlePoint(control: newControlPoint, direction1: newDirectionPoint1, direction2: newDirectionPoint2)
+        }
+    }
+    
+    func startRandomMovement() {
+//        blurTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+//            guard let self = self else {
+//                timer.invalidate()
+//                return
+//            }
+//            
+//            self.changeBlur(to: .random(in: 0...2))
+//        }
+        movementTimer = Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
             }
 
-            context.setFillColor(circleColors[i])
-            context.fillEllipse(in: CGRect(x: circleCenters[i].x - maxRadius, y: circleCenters[i].y - maxRadius, width: maxRadius * 2, height: maxRadius * 2))
+            for i in 0..<self.middlePoints.count {
+                let minX = self.bounds.minX
+                let maxX = self.bounds.maxX
+                let midY = self.bounds.midY
+                let randomX = CGFloat.random(in: (minX + 8)...(maxX - 8))
+                let height = self.bounds.height
+                let maxYVariation = height * 0.55
+                let yOffset = (maxYVariation / 2) * volume
+                let randomY = CGFloat.random(in: (midY - yOffset)...(midY + yOffset))
+
+                var angle = CGFloat.random(in: 0...360) * .pi / 180
+                while cos(angle) > 0.5 || cos(angle) < -0.5 {
+                    angle = CGFloat.random(in: 0...360) * .pi / 180
+                }
+
+                let distance = CGFloat.random(in: 1...10)
+
+                let newControlPoint = CGPoint(x: randomX, y: randomY)
+                let newDirectionPoint1 = CGPoint(x: newControlPoint.x - abs(cos(angle)) * distance, y: newControlPoint.y + sin(angle) * distance)
+                let newDirectionPoint2 = CGPoint(x: newControlPoint.x + abs(cos(angle)) * distance, y: newControlPoint.y - sin(angle) * distance)
+
+//                self.changeBlur(to: .random(in: 0...2))
+                self.moveControlPoint(to: newControlPoint, direction1: newDirectionPoint1, direction2: newDirectionPoint2, withAnimationDuration: 0.35, index: i)
+            }
         }
     }
 }
 
 
 struct WaveViewRepresentable: NSViewRepresentable {
-    func makeNSView(context: Context) -> NSView {
-        return GradientBlobView(frame: .zero)
+    var volume: Double = 1
+    var color: Color
+    func makeNSView(context: Context) -> WobblyBezierView {
+        let view = WobblyBezierView(frame: .zero)
+        view.startRandomMovement()
+        return view
     }
     
-    func updateNSView(_ nsView: NSView, context: Context) {
+    func updateNSView(_ nsView: WobblyBezierView, context: Context) {
+        nsView.color = NSColor(color)
+        nsView.volume = volume
         // Update the view if needed
     }
+    
+    func createShadowLayer() -> CALayer {
+        let shadowLayer = CALayer()
+        shadowLayer.shadowColor = NSColor.red.cgColor
+        shadowLayer.shadowOffset = CGSize.zero
+        shadowLayer.shadowRadius = 9.0
+        shadowLayer.shadowOpacity = 1.0
+        shadowLayer.backgroundColor = NSColor.clear.cgColor
+        return shadowLayer
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

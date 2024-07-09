@@ -61,9 +61,9 @@ extension MediaApp {
     
     func updateLiveActivities(_ altIsPlaying: Bool? = nil) {
         if altIsPlaying ?? self.isPlaying {
-            LiveActivitiesManager.shared.activeLiveActivities.insert(.media)
+            ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.media)
         } else {
-            LiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
         }
     }
 }

@@ -12,7 +12,7 @@ struct TrayFilesCountView: View {
     var body: some View {
         HStack(spacing: 2) {
             Text("\(tray.files.count)")
-            Image(systemName: LiveActivitiesManager.shared.activeLiveActivities.count > 1 ? LiveActivity.tray.icon : "doc.fill")
+            Image(systemName: ActiveLiveActivitiesManager.shared.activeLiveActivities.count > 1 ? LiveActivity.tray.icon : "doc.fill")
                 .contentTransition(.symbolEffect)
         }
         .frame(maxWidth: .infinity)

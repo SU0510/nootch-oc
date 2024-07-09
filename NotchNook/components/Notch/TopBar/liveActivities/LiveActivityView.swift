@@ -19,10 +19,9 @@ struct LiveActivityView: View {
     @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     
     var activityToShow: LiveActivity? {
-        let activeEnabledActivities = activeActivities.filter { liveActivitiesSettings.enabledLiveActivities.contains($0) }
-        if activeEnabledActivities.isEmpty { return nil }
-        if activeEnabledActivities.count == 1, let act = activeEnabledActivities.first { return act }
-        let orderedActivities = activeEnabledActivities.sorted {
+        if activeActivities.isEmpty { return nil }
+        if activeActivities.count == 1, let act = activeActivities.first { return act }
+        let orderedActivities = activeActivities.sorted {
             guard let first = activitiesByPriority.firstIndex(of: $0),
                   let second = activitiesByPriority.firstIndex(of: $1) else {
                 return false

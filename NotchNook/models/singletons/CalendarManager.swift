@@ -116,7 +116,7 @@ public final class CalendarManager {
         func addLiveActivity(event: EKEvent) {
             addedLiveActivity = true
             Task { await MainActor.run {
-                LiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
+                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
             } }
         }
         
@@ -139,7 +139,7 @@ public final class CalendarManager {
             }
         }
         if !addedLiveActivity {
-            LiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
         }
     }
     

@@ -10,4 +10,6 @@ import Foundation
 struct MediaLiveActivitySettings: Preferences {
     var coloredSpectograph = true
     var albumCornerRadius: Double = 5
+    var effect: MediaLiveActivityEffectEnum = .audioSpectrograph
+    var gifOffset: Double = 0
 }
