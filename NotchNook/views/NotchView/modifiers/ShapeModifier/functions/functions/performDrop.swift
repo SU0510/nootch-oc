@@ -13,7 +13,7 @@ extension NotchView.ShapeModifier {
         if state.trialOver { return false }
         let isTray = state.hoveredDropTargetID == TrayView.id
         var cb: (([URL]) -> ()) = tray.addFilesFromURLs
-        let dropAction = allDropActions.first(where: { $0.id == state.hoveredDropTargetID })
+        let dropAction = allPipelines.first(where: { $0.id == state.hoveredDropTargetID })
         var hasFiles = false
         let loadItemGroup = DispatchGroup()
         

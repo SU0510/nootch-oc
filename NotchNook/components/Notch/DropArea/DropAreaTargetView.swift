@@ -9,7 +9,7 @@ import SwiftUI
 import AppKit
 
 struct DropAreaTargetView: View {
-    var action: DropAction
+    var action: Pipeline
     var hovered: Bool
     
     var body: some View {

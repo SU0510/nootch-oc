@@ -15,7 +15,7 @@ class NotchViewModel {
     var droppingCoords: CGPoint?
     
     // Available actions for the type of the file being dragged.
-    var availableActions = [DropAction]()
+    var availableActions = [Pipeline]()
     
     // Coordinates in points of the available file dropping actions.
     var targetsCoords = [String:CGRect]()

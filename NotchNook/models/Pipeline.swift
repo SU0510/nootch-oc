@@ -1,5 +1,5 @@
 //
-//  DropAction.swift
+//  Pipeline.swift
 //  Notchway
 //
 //  Created by Igor Marcossi on 12/05/24.
@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct DropAction: Identifiable, Equatable {
-    static func == (lhs: DropAction, rhs: DropAction) -> Bool {
+struct Pipeline: Identifiable, Equatable {
+    static func == (lhs: Pipeline, rhs: Pipeline) -> Bool {
         lhs.id == rhs.id
     }
     
@@ -21,8 +21,8 @@ struct DropAction: Identifiable, Equatable {
     let action: (_ fileURLs: [URL], _ dropAreaCoords: CGRect) -> Void
 }
 
-let allDropActions: [DropAction] = [
-    DropAction(
+let allPipelines: [Pipeline] = [
+    Pipeline(
         id: "airdrop", label: String(localized: "AirDrop"),
         icon: Image(nsImage: NSWorkspace.shared.icon(forFileType: "com.apple.airdrop")),
         allowedFileTypes: [.fileURL],
@@ -30,7 +30,7 @@ let allDropActions: [DropAction] = [
             airDropFiles(urls: fileURLs)
         }
     )
-//    DropAction(
+//    Pipeline(
 //        id: "opt-img", label: "Compress", 
 //        icon: Image(systemName: "photo.stack.fill"),
 //        allowedFileTypes: [.image],

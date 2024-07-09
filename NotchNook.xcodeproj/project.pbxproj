@@ -251,7 +251,7 @@
 		EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8A2BF2F1A400B873B0 /* blurTransitions.swift */; };
 		EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */; };
 		EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */; };
-		EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F902BF2F1A400B873B0 /* DropAction.swift */; };
+		EC758F9A2BF2F1A400B873B0 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F902BF2F1A400B873B0 /* Pipeline.swift */; };
 		EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F912BF2F1A400B873B0 /* NotchNook.swift */; };
 		EC758FA32BF2F1C600B873B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA22BF2F1C500B873B0 /* main.swift */; };
 		EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA42BF2F20100B873B0 /* AppDelegate.swift */; };
@@ -562,7 +562,7 @@
 		EC758F8A2BF2F1A400B873B0 /* blurTransitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = blurTransitions.swift; sourceTree = "<group>"; };
 		EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindDropAreaCoords.swift; sourceTree = "<group>"; };
 		EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.swift; sourceTree = "<group>"; };
-		EC758F902BF2F1A400B873B0 /* DropAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropAction.swift; sourceTree = "<group>"; };
+		EC758F902BF2F1A400B873B0 /* Pipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipeline.swift; sourceTree = "<group>"; };
 		EC758F912BF2F1A400B873B0 /* NotchNook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchNook.swift; sourceTree = "<group>"; };
 		EC758FA22BF2F1C500B873B0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1386,7 +1386,7 @@
 				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
-				EC758F902BF2F1A400B873B0 /* DropAction.swift */,
+				EC758F902BF2F1A400B873B0 /* Pipeline.swift */,
 				EC8D5FBC2BF9743200E67ECC /* Tray.swift */,
 				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC8D5FBE2BF9744800E67ECC /* TrayFile.swift */,
@@ -1741,7 +1741,7 @@
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
 				3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
-				EC758F9A2BF2F1A400B873B0 /* DropAction.swift in Sources */,
+				EC758F9A2BF2F1A400B873B0 /* Pipeline.swift in Sources */,
 				3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */,
 				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,

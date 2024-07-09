@@ -10,7 +10,7 @@ import Defaults
 
 struct DropArea: View {
     @Binding var targetsCoords: [String:CGRect]
-    var availableActions: [DropAction]
+    var availableActions: [Pipeline]
     var hoveredDropTargetID: String?
     
     @Environment(\.dropAreaSettings) private var dropAreaSettings
