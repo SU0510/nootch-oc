@@ -8,39 +8,29 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct TrayFileView: View, Equatable {
-    static func == (lhs: TrayFileView, rhs: TrayFileView) -> Bool {
-        lhs.file == rhs.file && lhs.isSelected == rhs.isSelected
-    }
+struct TrayFileView: View {
     
     let file: TrayFile
     let isSelected: Bool
-    var preview: Bool = false
+    var isPreview: Bool = false
     
-    @State private var hovering = false
+    @State private var isHovering = false
+    
     @Environment(\.tray) private var tray
     
     var body: some View {
         VStack(spacing: 2) {
-            file.iconView()
+            TrayFileIconView(file: file)
                 .frame(width: 42, height: 42)
                 .allowsHitTesting(false)
             
-            VStack(alignment: .leading) {
-                Text(file.nameTruncated).font(.caption)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(width: 56, alignment: .center)
-                    .multilineTextAlignment(.center)
-                    .allowsHitTesting(false)
-            }
-            
+            fileNameView
         }
         .foregroundStyle(.white)
         .padding(6)
         .frame(maxHeight: .infinity)
         .background {
-            if !preview {
+            if !isPreview {
                 FileDraggableView(onSelect: {
                     tray.selectFile(file)
                 }, onDropCompleted: { success in
@@ -54,7 +44,7 @@ struct TrayFileView: View, Equatable {
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) {
             VStack {
-                if hovering {
+                if isHovering {
                     Button {
                         tray.removeFile(file)
                     } label: {
@@ -69,9 +59,29 @@ struct TrayFileView: View, Equatable {
             }
             .frame(20)
             .contentShape(Circle())
-            .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { hovering = x } }
+            .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
 
         }
         .transition(.scaleAndBlur)
+        .contextMenu {
+            Button("Copy") {
+                // TODO: implement copying
+            }
+            Button("Rename") {
+                // TODO: implement renaming
+            }
+        }
+    }
+    
+    var fileNameView: some View {
+        VStack(alignment: .leading) {
+            Text(file.nameTruncated)
+                .font(.caption)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(width: 56, alignment: .center)
+                .multilineTextAlignment(.center)
+                .allowsHitTesting(false)
+        }
     }
 }

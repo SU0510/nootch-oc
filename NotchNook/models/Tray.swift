@@ -10,22 +10,28 @@ import Cocoa
 
 @Observable
 class Tray {
+    
     private var tempDirectory: URL?
     private var folderMonitor: FolderMonitor?
+    
+    let activitiesManager: ActiveLiveActivitiesManager
+    
     private(set) var files = Set<TrayFile>() {
         willSet {
-            let newSelectedFiles = selectedFiles.intersection(newValue)
-            if selectedFiles.count != newSelectedFiles.count { 
-                doAfter { self.selectedFiles = newSelectedFiles }
-            }
-            doAfter {
+            doAfter { [weak self] in
+                guard let self else { return }
+                let newSelectedFiles = self.selectedFiles.intersection(newValue)
+                if self.selectedFiles.count != newSelectedFiles.count {
+                    self.selectedFiles = newSelectedFiles
+                }
+                let isTrayActive = self.activitiesManager.activeLiveActivities.contains(.tray)
                 if newValue.isEmpty {
-                    if ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
-                        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.tray)
+                    if isTrayActive {
+                        self.activitiesManager.activeLiveActivities.remove(.tray)
                     }
                 } else {
-                    if !ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.tray) {
-                        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.tray)
+                    if !isTrayActive {
+                        self.activitiesManager.activeLiveActivities.insert(.tray)
                     }
                 }
             }
@@ -33,19 +39,24 @@ class Tray {
     }
     private(set) var selectedFiles = Set<TrayFile>()
     private var pressedKeysEvent: NSEvent?
-    var isCombiningKeyPressed: Bool {
-        return (pressedKeysEvent?.modifierFlags.contains(NSEvent.ModifierFlags.command) ?? false ||
-                pressedKeysEvent?.modifierFlags.contains(NSEvent.ModifierFlags.shift) ?? false)
+    
+    private var isCombiningKeyPressed: Bool {
+        guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
+        
+        return pressedKeysFlags.contains(NSEvent.ModifierFlags.command) ||
+                pressedKeysFlags.contains(NSEvent.ModifierFlags.shift)
     }
     
-    init() {
+    init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
+        self.activitiesManager = activitiesManager
+        
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
             self?.handleKeyEvent(event: event)
             return event
         }
     }
     
-    func removeFile(_ file: TrayFile) { _ = withAnimation(.smooth) { self.files.remove(file) } }
+    func removeFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.remove(file) } }
     func addFile(_ file: TrayFile) { _ = withAnimation(.smooth) { self.files.insert(file) } }
     func addFiles(_ newFiles: [TrayFile]) { withAnimation(.smooth) { self.files = self.files.union(newFiles) } }
     
@@ -55,19 +66,20 @@ class Tray {
     }
     
     func selectFile(_ file: TrayFile?) {
-        if let file {
-            if self.selectedFiles.contains(file) {
-                if isCombiningKeyPressed {
-                    self.selectedFiles.remove(file)
-                }
-            } else {
-                if !isCombiningKeyPressed {
-                    self.selectedFiles.removeAll()
-                }
-                self.selectedFiles.insert(file)
+        guard let file else {
+            selectedFiles.removeAll()
+            return
+        }
+        
+        if selectedFiles.contains(file) {
+            if isCombiningKeyPressed {
+                selectedFiles.remove(file)
             }
         } else {
-            self.selectedFiles.removeAll()
+            if !isCombiningKeyPressed {
+                selectedFiles.removeAll()
+            }
+            selectedFiles.insert(file)
         }
     }
     

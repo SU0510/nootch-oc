@@ -14,7 +14,7 @@ struct TrayFileDragPreviewView: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            TrayFileView(file: draggedFile, isSelected: true, preview: true)
+            TrayFileView(file: draggedFile, isSelected: true, isPreview: true)
               .zIndex(1)
             
             if tray.selectedFiles.count > 1 {

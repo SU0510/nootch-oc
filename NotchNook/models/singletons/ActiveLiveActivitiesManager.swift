@@ -10,10 +10,19 @@ import Defaults
 
 @Observable
 class ActiveLiveActivitiesManager {
+    
     static let shared = ActiveLiveActivitiesManager()
+    
     var activeLiveActivities: Set<LiveActivity> {
-        get { liveActivitiesSettingsCache.enabled ? _activeLiveActivities.filter { liveActivitiesSettingsCache.enabledLiveActivities.contains($0) } : [] }
-        set { withAnimation(TopBarView.animation) { _activeLiveActivities = newValue } }
+        get {
+            let enabledLiveActivities = _activeLiveActivities.filter {
+                liveActivitiesSettingsCache.enabledLiveActivities.contains($0)
+            }
+            return liveActivitiesSettingsCache.enabled ? enabledLiveActivities : []
+        }
+        set {
+            withAnimation(TopBarView.animation) { _activeLiveActivities = newValue }
+        }
     }
     private var _activeLiveActivities = Set<LiveActivity>()
     private var liveActivitiesSettingsCache: LiveActivitiesSettings = Defaults[.liveActivitiesSettings]

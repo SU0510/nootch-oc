@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
 		3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */; };
@@ -329,6 +330,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
 		3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppIconView.swift; sourceTree = "<group>"; };
@@ -1450,6 +1452,7 @@
 				EC8D5FC02BF9767A00E67ECC /* TrayFileView.swift */,
 				EC2DD1EF2C03DB15001FD54E /* TrayFilesScrollView.swift */,
 				EC758F7E2BF2F19B00B873B0 /* TrayView.swift */,
+				36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */,
 			);
 			path = Tray;
 			sourceTree = "<group>";
@@ -1977,6 +1980,7 @@
 				EC8D5FBD2BF9743200E67ECC /* Tray.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
 				3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */,
+				36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */,
 				3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */,
 				3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */,
 				3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */,
