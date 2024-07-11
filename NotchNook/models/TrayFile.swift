@@ -14,11 +14,13 @@ class TrayFile: Hashable, Identifiable {
         lhs.id == rhs.id
     }
     
-    let url: URL
-    let id: String
+    private(set) var url: URL
+    private(set) var id: String
+    private(set) var nameTruncated: String
+    private(set) var name: String
+
     let image: Image
     let addedAt: Date
-    let nameTruncated: String
     let isImage: Bool
     
     init(url: URL) {
@@ -26,8 +28,35 @@ class TrayFile: Hashable, Identifiable {
         id = url.absoluteString
         image = loadImgFromURL(url) ?? iconForFile(at: url)
         addedAt = Date()
+        name = url.lastPathComponent
         nameTruncated = truncateFileName(url.lastPathComponent, maxLength: 16)
         isImage = url.isImg
+    }
+    
+    func rename(to name: String) {
+        let fileManager = FileManager.default
+        let originalURL = self.url
+        
+        //TODO: fix the logic for reusing the same file extension (it's currently duplicating it
+        var newURL = originalURL
+            .deletingLastPathComponent()
+            .deletingPathExtension()
+            .appendingPathComponent(name)
+            .appendingPathExtension(originalURL.pathExtension)
+
+        do {
+            try fileManager.moveItem(at: originalURL, to: newURL)
+            updateData(with: newURL)
+        } catch {
+            print("Failed to rename file: \(error)")
+        }
+    }
+    
+    private func updateData(with url: URL) {
+        self.url = url
+        id = url.absoluteString
+        name = url.lastPathComponent
+        nameTruncated = truncateFileName(url.lastPathComponent, maxLength: 16)
     }
     
     func hash(into hasher: inout Hasher) {

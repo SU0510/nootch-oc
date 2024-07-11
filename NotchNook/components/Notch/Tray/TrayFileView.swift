@@ -15,7 +15,10 @@ struct TrayFileView: View {
     var isPreview: Bool = false
     
     @State private var isHovering = false
-    
+    @State private var isEditing: Bool = false
+    @State private var isTextFieldFocused: Bool = false
+    @State private var fileName: String = ""
+
     @Environment(\.tray) private var tray
     
     var body: some View {
@@ -42,46 +45,90 @@ struct TrayFileView: View {
             }
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .overlay(alignment: .topTrailing) {
-            VStack {
-                if isHovering {
-                    Button {
-                        tray.removeFile(file)
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 16))
-                            .foregroundStyle(.gray)
-                    }
-                    .buttonStyle(ShrinkOnClick())
-                    .transition(.scale)
-                    .offset(x: 2, y: -2)
-                }
-            }
-            .frame(20)
-            .contentShape(Circle())
-            .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
-
-        }
+        .overlay(alignment: .topTrailing) { removeButton }
         .transition(.scaleAndBlur)
         .contextMenu {
             Button("Copy") {
                 // TODO: implement copying
             }
             Button("Rename") {
-                // TODO: implement renaming
+                isEditing = true
             }
         }
     }
     
     var fileNameView: some View {
         VStack(alignment: .leading) {
-            Text(file.nameTruncated)
-                .font(.caption)
-                .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(width: 56, alignment: .center)
-                .multilineTextAlignment(.center)
-                .allowsHitTesting(false)
+            if isEditing {
+                TextField("", text: $fileName, onCommit: {
+                    file.rename(to: fileName)
+                    isEditing = false
+                })
+                .textFieldStyle(EditingTextFieldStyle())
+                .onAppear() {
+                    fileName = file.name
+                }
+            } else {
+                Text(file.nameTruncated)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .allowsHitTesting(false)
+                    .padding(2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4).fill(isSelected ? Color.blue : Color.clear)
+                    )
+                    .onTapGesture {
+                        doAfter {
+                            isEditing = true
+                        }
+                    }
+                    .font(.caption)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(width: 56, alignment: .center)
+
+            }
         }
+        .font(.caption)
+    }
+    
+    var removeButton: some View {
+        VStack {
+            if isHovering {
+                Button {
+                    tray.removeFile(file)
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 16))
+                        .foregroundStyle(.gray)
+                }
+                .buttonStyle(ShrinkOnClick())
+                .transition(.scale)
+                .offset(x: 2, y: -2)
+            }
+        }
+        .frame(20)
+        .contentShape(Circle())
+        .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
+    }
+}
+
+struct EditingTextFieldStyle: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        //TODO: break line when string is too large
+        //TODO: unfocus text field when tapping anywhere else
+        configuration
+            .font(.caption)
+            .frame(width: 56, alignment: .center)
+            .onAppear {
+                doAfter {
+                    if let textField = configuration as? NSTextField {
+                        //TODO: fix this selection which is not working
+                        if let dotIndex = textField.stringValue.lastIndex(of: ".") {
+                            let range = NSRange(location: 0, length: textField.stringValue.distance(from: textField.stringValue.startIndex, to: dotIndex))
+                            textField.currentEditor()?.selectedRange = range
+                        }
+                    }
+                }
+            }
     }
 }
