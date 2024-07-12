@@ -31,6 +31,17 @@ struct NotchView: View {
     @Default(.trialInitialTime) internal var trialInitialTime
     
     var actualScale: Double { (state.hovering && !state.pressing && (notchNook.mode == .closed) ? NotchView.hoverScale : 1) - state.scaleDown }
+    var actualScaleX: Double { 
+        let padFactor = (state.panPadding.bottom * 0.02)
+        let sd = (state.scaleDown + padFactor) * (padFactor > 0 ? -1 : 1)
+        return (state.hovering && !state.pressing && (notchNook.mode == .closed) ? NotchView.hoverScale : 1) - sd
+    }
+    var actualScaleY: Double {
+        let padFactor = (state.panPadding.bottom * 0.0075)
+        let sd = ((state.scaleDown + padFactor) * 3) * (padFactor > 0 ? -1 : 1)
+        return (state.hovering && !state.pressing && (notchNook.mode == .closed) ? NotchView.hoverScale : 1) - sd
+    }
+
     var disableNotchNook: Bool { notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens }
     
     var body: some View {        
@@ -43,7 +54,8 @@ struct NotchView: View {
                     if license != nil || !state.trialOver {
                         TopBarView(
                             panGestureCounter: state.panGestureCounter,
-                            scale: actualScale,
+                            scaleX: actualScaleX,
+                            scaleY: actualScaleY,
                             panPadding: state.panPadding,
                             hide: notchNook.hidden
                         )
@@ -61,7 +73,7 @@ struct NotchView: View {
                             }
                         }
                     }
-                    .scaleEffect(actualScale, anchor: .top)
+                    .scaleEffect(x: actualScaleX, y: actualScaleY, anchor: .init(x: 0.5, y: -0.25))
                     .transition(NotchView.defaultTransition)
                 }
             }

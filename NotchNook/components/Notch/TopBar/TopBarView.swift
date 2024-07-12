@@ -14,7 +14,8 @@ struct TopBarView: View {
     static let liveActionWidth: CGFloat = 35
     
     var panGestureCounter: Int
-    var scale: Double = 1
+    var scaleX: Double = 1
+    var scaleY: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
     
@@ -45,7 +46,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .topTrailing)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .topTrailing)
                     .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
                     .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                 }
@@ -71,7 +72,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .topLeading)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .topLeading)
                     .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
                     .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                 }
@@ -90,7 +91,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .trailing)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .trailing)
                     .transition(.scaleAndBlur(anchor: .trailing))
                     
                     TopBarSpacerView(height: height)
@@ -104,7 +105,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .leading)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .leading)
                     .transition(.scaleAndBlur(anchor: .leading))
                 }
             }
