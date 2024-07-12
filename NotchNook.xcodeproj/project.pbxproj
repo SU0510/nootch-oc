@@ -99,6 +99,7 @@
 		3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */; };
 		3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */; };
 		3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */; };
+		3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3A7404992C416B090049081C /* Localizable.xcstrings */; };
 		3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
@@ -419,6 +420,7 @@
 		3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRichEditor.swift; sourceTree = "<group>"; };
 		3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShapeModifier.swift; sourceTree = "<group>"; };
 		3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRichEditor.swift; sourceTree = "<group>"; };
+		3A7404992C416B090049081C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterWindow.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
@@ -1249,6 +1251,7 @@
 				EC758F6F2BF2F18900B873B0 /* Assets.xcassets */,
 				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
 				EC47FC802C0AA67100591811 /* Info.plist */,
+				3A7404992C416B090049081C /* Localizable.xcstrings */,
 			);
 			path = NotchNook;
 			sourceTree = "<group>";
@@ -1698,6 +1701,7 @@
 			files = (
 				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
+				3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */,
 				3AC36D822C2530F40000F995 /* calendar.mov in Resources */,
 				3AC36D862C2543DC0000F995 /* calendarLA.mov in Resources */,
 				3AC36D852C2543DC0000F995 /* quickPeek.mov in Resources */,
