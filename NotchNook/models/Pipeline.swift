@@ -17,7 +17,7 @@ struct Pipeline: Identifiable, Equatable {
     let id: String
     let label: String
     let icon: Image
-    var allowedFileTypes: [NSPasteboard .PasteboardType]
+    var allowedFileTypes: [NSPasteboard.PasteboardType]
     let action: (_ fileURLs: [URL], _ dropAreaCoords: CGRect) -> Void
 }
 
