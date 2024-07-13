@@ -2,17 +2,73 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SUScheduledCheckInterval</key>
-	<integer>86400</integer>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>0</integer>
+			<key>CFBundleTypeName</key>
+			<string>NotchNook Pipeline Installer</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>lo.cafe.NotchNook.pipeline-installer</string>
+			</array>
+		</dict>
+	</array>
 	<key>NSCalendarsFullAccessUsageDescription</key>
 	<string>NotchNook needs Calendar access to power the calendar widget and LA.</string>
 	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
 	<string>NotchNook needs Calendar access to power the calendar widget and LA.</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
 	<key>SUFeedURL</key>
 	<string>https://lo.cafe/notchnook-files/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>3DhmF9fTgJEvwxALa0MoAMflZtjyhtSaVg/UAB0Q2PA=</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.zip-archive</string>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>NotchNook Pipeline Installer</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>lo.cafe.NotchNook.pipeline-installer</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>nookpipeline</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.folder</string>
+				<string>public.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>NotchNook Resources File</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>lo.cafe.NotchNook.resources-file</string>
+			<key>UTTypeTagSpecification</key>
+			<dict/>
+		</dict>
+	</array>
 </dict>
 </plist>
