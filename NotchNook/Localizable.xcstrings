@@ -903,7 +903,17 @@
         }
       }
     },
+    "Close it to restore." : {
+
+    },
+    "Code mode" : {
+
+    },
+    "Colored effects" : {
+
+    },
     "Colored Spectograph" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -1323,6 +1333,9 @@
         }
       }
     },
+    "Effect type:" : {
+
+    },
     "Email" : {
       "localizations" : {
         "ja" : {
@@ -1631,6 +1644,9 @@
         }
       }
     },
+    "GIF vertical offset:" : {
+
+    },
     "gjp1lh5dtzqp4yddn73uush9r4inv0" : {
 
     },
@@ -1689,6 +1705,9 @@
           }
         }
       }
+    },
+    "Hello, World!" : {
+
     },
     "Hidden, it doesn't fit." : {
       "localizations" : {
@@ -1774,6 +1793,9 @@
         }
       }
     },
+    "If enabled, effects will take the color of the current playing album, otherwise, it'll be white." : {
+
+    },
     "If enabled, some live activities will show a short info on mouse hover." : {
       "localizations" : {
         "ja" : {
@@ -1803,6 +1825,7 @@
       }
     },
     "If enabled, the audio spectograph will take the color of the current playing album, otherwise, it'll be white." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -2137,6 +2160,9 @@
           }
         }
       }
+    },
+    "Lock while typing" : {
+
     },
     "Manage Billing" : {
       "localizations" : {
@@ -2755,6 +2781,7 @@
       }
     },
     "Padding around widgets:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -2781,6 +2808,9 @@
           }
         }
       }
+    },
+    "Prevent from closing on mouse leave" : {
+
     },
     "Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens)." : {
       "localizations" : {
@@ -3174,6 +3204,9 @@
         }
       }
     },
+    "Show scroll indicator" : {
+
+    },
     "Show time lapsed while in events" : {
       "localizations" : {
         "ja" : {
@@ -3482,6 +3515,9 @@
         }
       }
     },
+    "The note flew away." : {
+
+    },
     "The unit is measured in \"cells\" for the widgets grid. 1 cell means %lld points/px." : {
       "localizations" : {
         "ja" : {
@@ -3622,6 +3658,9 @@
         }
       }
     },
+    "Transforms notes into a code editor, with syntax highlighting (supports Markdown)." : {
+
+    },
     "Transluscent notch background (experimental)" : {
       "localizations" : {
         "ja" : {
@@ -3761,6 +3800,9 @@
           }
         }
       }
+    },
+    "Typing effects:" : {
+
     },
     "Unknown Album" : {
       "localizations" : {
@@ -4125,6 +4167,9 @@
           }
         }
       }
+    },
+    "You can also right click it." : {
+
     },
     "You shouldn't be seeing this." : {
       "localizations" : {
