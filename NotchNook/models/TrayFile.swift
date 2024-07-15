@@ -33,15 +33,13 @@ class TrayFile: Hashable, Identifiable {
         isImage = url.isImg
     }
     
-    func rename(to name: String) {
+    func rename(to newName: String) {
         let fileManager = FileManager.default
         let originalURL = self.url
-        
-        //TODO: fix the logic for reusing the same file extension (it's currently duplicating it
-        var newURL = originalURL
+        let newBaseName = newName.components(separatedBy: ".").first ?? newName
+        let newURL = originalURL
             .deletingLastPathComponent()
-            .deletingPathExtension()
-            .appendingPathComponent(name)
+            .appendingPathComponent(newBaseName)
             .appendingPathExtension(originalURL.pathExtension)
 
         do {

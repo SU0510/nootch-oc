@@ -20,6 +20,7 @@ struct TrayFileView: View {
     @State private var fileName: String = ""
 
     @Environment(\.tray) private var tray
+//    @EnvironmentObject var pasteboard: NSPasteboard
     
     var body: some View {
         VStack(spacing: 2) {
@@ -49,11 +50,15 @@ struct TrayFileView: View {
         .transition(.scaleAndBlur)
         .contextMenu {
             Button("Copy") {
-                // TODO: implement copying
+                // TODO: implement copying file to clipboard
+//                doAfter { pasteboard.string = file.url.absoluteString }
             }
             Button("Rename") {
-                isEditing = true
+                doAfter { isEditing = true }
             }
+        }
+        .onTapGesture {
+            doAfter { if isEditing && !isHovering { isEditing = false } }
         }
     }
     
@@ -95,7 +100,7 @@ struct TrayFileView: View {
         VStack {
             if isHovering {
                 Button {
-                    tray.removeFile(file)
+                    doAfter { tray.removeFile(file) }
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))
@@ -114,15 +119,14 @@ struct TrayFileView: View {
 
 struct EditingTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
-        //TODO: break line when string is too large
-        //TODO: unfocus text field when tapping anywhere else
         configuration
             .font(.caption)
             .frame(width: 56, alignment: .center)
             .onAppear {
                 doAfter {
-                    if let textField = configuration as? NSTextField {
-                        //TODO: fix this selection which is not working
+                    //TODO: fix this selection which is not working (the name without the extension should be selected every time the edition starts)
+                    if let textField = NSApp.keyWindow?.firstResponder as? NSTextField {
+                        textField.selectText(nil)
                         if let dotIndex = textField.stringValue.lastIndex(of: ".") {
                             let range = NSRange(location: 0, length: textField.stringValue.distance(from: textField.stringValue.startIndex, to: dotIndex))
                             textField.currentEditor()?.selectedRange = range
