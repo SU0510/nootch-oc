@@ -20,7 +20,6 @@ struct TrayFileView: View {
     @State private var fileName: String = ""
 
     @Environment(\.tray) private var tray
-//    @EnvironmentObject var pasteboard: NSPasteboard
     
     var body: some View {
         VStack(spacing: 2) {
@@ -50,9 +49,11 @@ struct TrayFileView: View {
         .transition(.scaleAndBlur)
         .contextMenu {
             Button("Copy") {
-                // TODO: implement copying file to clipboard
-//                doAfter { pasteboard.string = file.url.absoluteString }
+                let pasteboard = NSPasteboard.general
+                pasteboard.clearContents()
+                pasteboard.writeObjects([file.url as NSPasteboardWriting])
             }
+            .keyboardShortcut("c", modifiers: .command)
             Button("Rename") {
                 doAfter { isEditing = true }
             }

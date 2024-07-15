@@ -40,6 +40,11 @@ class Tray {
     private(set) var selectedFiles = Set<TrayFile>()
     private var pressedKeysEvent: NSEvent?
     
+    private var isCommandPressed: Bool {
+        guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
+        
+        return pressedKeysFlags.contains(NSEvent.ModifierFlags.command)
+    }
     private var isCombiningKeyPressed: Bool {
         guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
         
@@ -49,10 +54,26 @@ class Tray {
     
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
         self.activitiesManager = activitiesManager
-        
+        setupEvents()
+    }
+    
+    func setupEvents() {
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
-            self?.handleKeyEvent(event: event)
+            self?.pressedKeysEvent = event
             return event
+        }
+        
+        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true]
+        let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
+        
+        if accessEnabled {
+            NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+                guard let self = self else { return event }
+                if event.keyCode == 8 && self.isCommandPressed {
+                    self.copySelectedFilesToClipboard()
+                }
+                return event
+            }
         }
     }
     
@@ -83,5 +104,10 @@ class Tray {
         }
     }
     
-    private func handleKeyEvent(event: NSEvent) { pressedKeysEvent = event }
+    func copySelectedFilesToClipboard() {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        let urls = selectedFiles.map { $0.url }
+        pasteboard.writeObjects(urls as [NSPasteboardWriting])
+    }
 }
