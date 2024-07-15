@@ -36,8 +36,8 @@ struct TrayFileView: View {
             if !isPreview {
                 FileDraggableView(onSelect: {
                     tray.selectFile(file)
-                }, onDropCompleted: { success in
-                    if !success { return }
+                }, onDropCompleted: { didMoveFile in
+                    if !didMoveFile { return }
                     tray.selectedFiles.forEach { tray.removeFile($0) }
                 }, selectedURLs: tray.selectedFiles.map { $0.url }) {
                     TrayFileDragPreviewView(draggedFile: file)
