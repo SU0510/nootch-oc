@@ -24,6 +24,6 @@ extension NotchView {
         } else {
             pad = generalSettings.contentPadding
         }
-        return EdgeInsets(top: 0, leading: pad, bottom: pad, trailing: pad)
+        return EdgeInsets(top: 1, leading: pad, bottom: pad, trailing: pad)
     }
 }

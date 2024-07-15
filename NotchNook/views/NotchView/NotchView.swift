@@ -11,6 +11,7 @@ import Cocoa
 import UniformTypeIdentifiers
 
 struct NotchView: View {
+    static let windowHeight: Double = 250
     static let mainVSpacing: Double = 8
     static let hoverScale: Double = 1.25
     static let animation: Animation = .bouncy(extraBounce: 0.075)
@@ -82,7 +83,7 @@ struct NotchView: View {
         .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
         .modifier(AnimationsModifier(disableNotchNook: disableNotchNook))
         .modifier(GesturesModifier(state: state, disableNotchNook: disableNotchNook))
-        .frame(width: screenSize.width, height: 250, alignment: .top)
+        .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
         .modifier(SideEffectsModifier(state: state))
         .modifier(EnvironmentsModifier(state: state))
     }

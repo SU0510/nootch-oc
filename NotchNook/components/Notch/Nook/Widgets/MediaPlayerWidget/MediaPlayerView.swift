@@ -15,7 +15,7 @@ struct MediaPlayerView: View {
         HStack(spacing: 12) {
             
             AlbumCoverView(artwork: track.albumArt, appIcon: appIcon, cornerRadius: 28)
-                .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
+                .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns, properties: [.position])
             
             VStack(alignment: .leading, spacing: 2) {
                 VStack(alignment: .leading, spacing: 2) {

@@ -33,8 +33,8 @@ struct MiniAlbumCoverView: View {
             if let player = MediaPlayer.shared.app {
                 VStack {
                     AlbumCoverView(artwork: altImg ?? player.track.albumArt, cornerRadius: albumCornerRadius)
-                        .padding(EdgeInsets(top: 6, leading: 6, bottom: 5, trailing: 6))
-                        .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
+                        .padding(6)
+                        .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns, properties: [.position])
                 }
                 .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
                 .animation(.bouncySmooth, value: [player.track.title, player.track.album, player.track.artist])

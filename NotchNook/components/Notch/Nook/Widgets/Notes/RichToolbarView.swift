@@ -10,17 +10,22 @@ import RichTextKit
 
 struct RichToolbarView: View {
     var note: Note
+    
     @ObservedObject var context: RichTextContext
     @State private var hovering = false
     @Environment(\.expandedNoteManager) private var expandedNoteManager
     @Environment(\.notchNook) private var notchNook
+    @Environment(\.displayKitId) private var displayKitId
+    
     var body: some View {
         HStack(spacing: 3) {
 
+            let expandedNoteId = "notes-widget"
             RichToolbarButtonView(icon: "arrow.up.left.and.arrow.down.right", tooltip: "Expand", action: {
                 notchNook.locked = true
-                expandedNoteManager.activeNote = note
+                expandedNoteManager.openNote(note, buttonId: expandedNoteId, displayKitId: displayKitId)
             }, active: false)
+            .syncOriginWithExpandedNoteManger(id: expandedNoteId)
             
             RichToolbarButtonView(icon: context.fontSize == 13 ? "textformat.size.smaller" : "character", tooltip: "Underline", action: {
                 context.fontSize = context.fontSize == 13 ? 15 : 13

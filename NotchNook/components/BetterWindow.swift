@@ -5,6 +5,7 @@
 //  Created by Igor Marcossi on 04/07/24.
 //
 
+import SwiftUI
 import AppKit
 import ScreenCaptureKit
 
@@ -12,8 +13,8 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
     var whileClosing: (() -> ())?
     var onClose: (() -> ())?
     private var _disableConstrainedWindow = false
-    private var fakeScreenshotWindow: NSWindow?
-    private var fakeScreenshotWindowLayer: CALayer?
+    private var fakeFullscreenScreenshotWindow: NSWindow?
+    private var fakeFullscreenScreenshotWindowLayer: CALayer?
     private var openTransactions: Int = 0
     
     override init(contentRect: NSRect = .zero, styleMask: NSWindow.StyleMask = [], backing: NSWindow.BackingStoreType = .buffered, defer doDefer: Bool = true) {
@@ -37,7 +38,7 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
     func makeKeyAndOrderFront(withDuration duration: CFTimeInterval, timing: CAMediaTimingFunction?, setup: ((CALayer) -> Void)?, animations: @escaping (CALayer) -> Void) {
         setupIfNeeded(with: setup) {
             
-            doAfter {
+            DispatchQueue.main.sync {
                 if !self.isVisible {
                     super.makeKeyAndOrderFront(nil)
                 }
@@ -59,10 +60,17 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
             self.makeKeyAndOrderFront(nil)
         }
         
+        self.layoutIfNeeded()
+        self.contentView?.layoutSubtreeIfNeeded()
+        
         DispatchQueue.main.async {
             let windowNumber = self.windowNumber
             let scaleFactor = self.backingScaleFactor
             SCShareableContent.getCurrentProcessShareableContent { shareableContent, error in
+                if let error {
+                    print("error-tuin")
+                    print(error)
+                }
                 if let scWin = shareableContent?.windows.first(where: { $0.windowID == windowNumber }) {
                     let contentFilter = SCContentFilter(desktopIndependentWindow: scWin)
                     let streamConfig = SCStreamConfiguration()
@@ -76,10 +84,12 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
                     streamConfig.excludesCurrentProcessAudio = true
                     SCScreenshotManager.captureImage(contentFilter: contentFilter, configuration: streamConfig) { cgImg, error in
                         if let error {
+                            print("error-bleu")
                             print(error)
                         }
                         if let cgImg {
-                            DispatchQueue.main.async {
+                            DispatchQueue.main.sync {
+                                if !onScreen { self.alphaValue = 0.0 }
                                 self.setFrameOrigin(previousRect.origin)
                                 self._disableConstrainedWindow = false
                             }
@@ -110,23 +120,23 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
     }
     
     func initializeFakeScreenshotWindowLayer() {
-        fakeScreenshotWindowLayer = CALayer()
+        fakeFullscreenScreenshotWindowLayer = CALayer()
         
-        guard let fakeScreenshotWindowLayer else { return }
+        guard let fakeFullscreenScreenshotWindowLayer else { return }
         
-        fakeScreenshotWindowLayer.masksToBounds = false
-        fakeScreenshotWindowLayer.contentsScale = self.backingScaleFactor
-        fakeScreenshotWindowLayer.rasterizationScale = self.backingScaleFactor
-        fakeScreenshotWindowLayer.shouldRasterize = true
+        fakeFullscreenScreenshotWindowLayer.masksToBounds = false
+        fakeFullscreenScreenshotWindowLayer.contentsScale = self.backingScaleFactor
+        fakeFullscreenScreenshotWindowLayer.rasterizationScale = self.backingScaleFactor
+//        fakeFullscreenScreenshotWindowLayer.shouldRasterize = true
         
         let shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.75)
-        fakeScreenshotWindowLayer.shadowColor = shadowColor
-        fakeScreenshotWindowLayer.shadowOffset = .init(width: 0, height: -16)
-        fakeScreenshotWindowLayer.shadowRadius = 20
-        fakeScreenshotWindowLayer.shadowOpacity = 1.0
+        fakeFullscreenScreenshotWindowLayer.shadowColor = shadowColor
+        fakeFullscreenScreenshotWindowLayer.shadowOffset = .init(width: 0, height: -16)
+        fakeFullscreenScreenshotWindowLayer.shadowRadius = 20
+        fakeFullscreenScreenshotWindowLayer.shadowOpacity = 1.0
 
         let shadowPath = CGPath(rect: shadowRect, transform: nil)
-        fakeScreenshotWindowLayer.shadowPath = shadowPath
+        fakeFullscreenScreenshotWindowLayer.shadowPath = shadowPath
         
         let insetBorderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 0.2)
         let insetBorderLayer = CALayer()
@@ -134,7 +144,7 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
         insetBorderLayer.borderColor = insetBorderColor
         insetBorderLayer.borderWidth = 1
         insetBorderLayer.cornerRadius = 10
-        fakeScreenshotWindowLayer.addSublayer(insetBorderLayer)
+        fakeFullscreenScreenshotWindowLayer.addSublayer(insetBorderLayer)
         
         let borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.95)
         let borderLayer = CALayer()
@@ -142,15 +152,15 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
         borderLayer.borderColor = borderColor
         borderLayer.borderWidth = 0.5
         borderLayer.cornerRadius = 10.5
-        fakeScreenshotWindowLayer.addSublayer(borderLayer)
+        fakeFullscreenScreenshotWindowLayer.addSublayer(borderLayer)
 
-        fakeScreenshotWindowLayer.contentsGravity = .resize
-        fakeScreenshotWindowLayer.isOpaque = false
+        fakeFullscreenScreenshotWindowLayer.contentsGravity = .resize
+        fakeFullscreenScreenshotWindowLayer.isOpaque = false
     }
     
     func initializeFakeScreenshotWindow() {
         guard let screen = self.screen else { return }
-        fakeScreenshotWindow = NSWindow(
+        fakeFullscreenScreenshotWindow = NSWindow(
             contentRect: CGRect(origin: .zero, size: screen.frame.size),
             styleMask: .borderless,
             backing: .buffered,
@@ -158,46 +168,43 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
             screen: screen
         )
         
-        fakeScreenshotWindow?.animationBehavior = .none
-        fakeScreenshotWindow?.backgroundColor = .clear
-        fakeScreenshotWindow?.isMovableByWindowBackground = false
-        fakeScreenshotWindow?.ignoresMouseEvents = false
-        fakeScreenshotWindow?.level = level
-        fakeScreenshotWindow?.hasShadow = false
-        fakeScreenshotWindow?.isOpaque = false
-        fakeScreenshotWindow?.contentView = AnimatableWindowContentView(frame: .zero)
+        fakeFullscreenScreenshotWindow?.animationBehavior = .none
+        fakeFullscreenScreenshotWindow?.backgroundColor = .clear
+        fakeFullscreenScreenshotWindow?.isMovableByWindowBackground = false
+        fakeFullscreenScreenshotWindow?.ignoresMouseEvents = false
+        fakeFullscreenScreenshotWindow?.level = level
+        fakeFullscreenScreenshotWindow?.hasShadow = false
+        fakeFullscreenScreenshotWindow?.isOpaque = false
+        fakeFullscreenScreenshotWindow?.contentView = AnimatableWindowContentView(frame: .zero)
     }
     
     func setupIfNeeded(with setupBlock: ((CALayer) -> Void)?, closing: Bool = false, cb: @escaping () -> ()) {
-        guard self.fakeScreenshotWindowLayer == nil else { return }
+        guard self.fakeFullscreenScreenshotWindowLayer == nil else { return }
 
         initializeFakeScreenshotWindow()
         initializeFakeScreenshotWindowLayer()
         
-        guard let fakeScreenshotWindow, let fakeScreenshotWindowLayer else { return }
+        guard let fakeFullscreenScreenshotWindow, let fakeFullscreenScreenshotWindowLayer else { return }
         
         
-//        fakeScreenshotWindowLayer.sca
         let frame = self.convertWindowFrameToScreenFrame(self.frame)
-//        let paddedFrame = CGRect(origin: frame.origin, size: .init(width: frame.size.width + 50, height: frame.size.height))
-        fakeScreenshotWindowLayer.frame = frame
-        guard let layer = fakeScreenshotWindow.contentView?.layer else { return }
-        layer.addSublayer(fakeScreenshotWindowLayer)
+        fakeFullscreenScreenshotWindowLayer.frame = frame
+        
+        guard let layer = fakeFullscreenScreenshotWindow.contentView?.layer else { return }
+        layer.addSublayer(fakeFullscreenScreenshotWindowLayer)
 
         takeScreenshot { image in
-            DispatchQueue.main.sync { if !closing { self.alphaValue = 0.0 } }
-            
             CATransaction.begin()
             CATransaction.setDisableActions(true)
 
-            fakeScreenshotWindowLayer.contents = image
+            fakeFullscreenScreenshotWindowLayer.contents = image
             
-            setupBlock?(fakeScreenshotWindowLayer)
+            setupBlock?(fakeFullscreenScreenshotWindowLayer)
             
             CATransaction.commit()
             
-            doAfter {
-                fakeScreenshotWindow.makeKeyAndOrderFront(nil)
+            DispatchQueue.main.sync {
+                fakeFullscreenScreenshotWindow.makeKeyAndOrderFront(nil)
                 if closing { self.alphaValue = 0.0 }
             }
             
@@ -206,7 +213,7 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
     }
 
     func performAnimations(_ animations: @escaping (CALayer) -> Void, duration: CFTimeInterval, timing: CAMediaTimingFunction?, cb: (() -> ())? = nil) {
-        guard let fakeScreenshotWindowLayer else { return }
+        guard let fakeFullscreenScreenshotWindowLayer else { return }
 
         NSAnimationContext.beginGrouping()
         CATransaction.begin()
@@ -217,7 +224,7 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
             cb?()
         }
         
-        animations(fakeScreenshotWindowLayer)
+        animations(fakeFullscreenScreenshotWindowLayer)
         openTransactions += 1
 
         CATransaction.commit()
@@ -239,12 +246,12 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
     func destroyTransformingWindow() {
         self.alphaValue = 1.0
 
-        self.fakeScreenshotWindowLayer?.removeFromSuperlayer()
-        self.fakeScreenshotWindowLayer?.contents = nil
-        self.fakeScreenshotWindowLayer = nil
+        self.fakeFullscreenScreenshotWindowLayer?.removeFromSuperlayer()
+        self.fakeFullscreenScreenshotWindowLayer?.contents = nil
+        self.fakeFullscreenScreenshotWindowLayer = nil
             
-        self.fakeScreenshotWindow?.orderOut(nil)
-        self.fakeScreenshotWindow = nil
+        self.fakeFullscreenScreenshotWindow?.orderOut(nil)
+        self.fakeFullscreenScreenshotWindow = nil
     }
     
     func convertWindowFrameToScreenFrame(_ windowFrame: CGRect) -> CGRect {
@@ -273,6 +280,7 @@ class AnimatableWindowContentView: NSView {
         super.init(frame: frameRect)
         self.wantsLayer = true
         self.layer = CALayer()
+        self.layerUsesCoreImageFilters = true
         self.layerContentsRedrawPolicy = .never
     }
     

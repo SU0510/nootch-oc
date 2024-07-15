@@ -10,6 +10,7 @@ import SwiftData
 import Defaults
 
 struct RootView: View {
+    var displayKitId: UUID
     var canBecomeKey: Binding<Bool>?
     var showSettings: (SettingsLib.PaneIdentifier?) -> ()
     var screenSize: CGSize
@@ -70,6 +71,7 @@ struct RootView: View {
             .environment(\.resignFirstResponder, resignFirstResponder)
             .environment(\.isEditingText, isEditingText)
             .environment(\.expandedNoteManager, expandedNoteManager)
+            .environment(\.displayKitId, displayKitId)
             .environment(\.isKeyWindow, isKeyWindow)
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)

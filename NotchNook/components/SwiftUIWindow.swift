@@ -8,6 +8,7 @@
 import SwiftUI
 import AppKit
 import ScreenCaptureKit
+import QuartzCore
 
 class SwiftUIWindow<Content>: NSWindow, NSWindowDelegate where Content: View {
     private var viewBuilder: () -> Content
@@ -54,40 +55,45 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
             hostingView.rootView = viewBuilder()
         }
     }
+    private var visibleFrame: NSRect = .zero
+    private var openingOrigin: CGPoint = .zero
     
-    init(contentRect: NSRect = .zero, styleMask: NSWindow.StyleMask = [], backing: NSWindow.BackingStoreType = .buffered, defer doDefer: Bool = true, @ViewBuilder viewBuilder: @escaping () -> Content) {
+    init(contentRect: NSRect = .zero, styleMask: NSWindow.StyleMask = [], backing: NSWindow.BackingStoreType = .buffered, defer doDefer: Bool = true, screen: NSScreen? = nil, origin: CGPoint, @ViewBuilder viewBuilder: @escaping () -> Content) {
         self.viewBuilder = viewBuilder
+        self.openingOrigin = origin
+        if let screen { self.visibleFrame = screen.visibleFrame }
         super.init(contentRect: contentRect, styleMask: styleMask, backing: backing, defer: doDefer)
     }
     
-    func show() {
-        let contentView = viewBuilder()
-        let view = NSHostingView(rootView: contentView)
-        
-        let intrinsicSize = view.intrinsicContentSize
-//        let screenF = self.screen?.frame.size ?? .zero
-        self.contentView = view
+    func show(origin: CGPoint) {
+        let hostingView = NSHostingView(rootView: viewBuilder())
+        let intrinsicSize = hostingView.intrinsicContentSize
+        self.contentView = hostingView
         var finalSize = intrinsicSize
         if self.toolbar != nil {
             finalSize.height += 51  // Add toolbar height if present
         }
         self.setContentSize(finalSize)
-        self.center()
-        self.setFrameOrigin(.init(x: self.frame.origin.x, y: self.frame.origin.x - 200))
-
+        let minX = visibleFrame.origin.x + ((visibleFrame.width - finalSize.width) / 2)
+        let minY = visibleFrame.origin.y + ((visibleFrame.height - finalSize.height) / 2)
+        self.setFrameOrigin(CGPoint(x: minX, y: minY))
+        
         guard let blurFilter = CIFilter(name: "CIGaussianBlur") else { return }
         blurFilter.name = "blur"
         
         let blurAnimation = getSpringAnimation("filters.blur.inputRadius", from: 120, to: 0)
         let scaleX1Animation = getSpringAnimation("transform.scale.x", from: 0.01, to: 0.35, m: 0.25)
         let scaleX2Animation = getSpringAnimation("transform.scale.x", from: nil, to: 1, m: 0.25)
-        let scaleYAnimation = getSpringAnimation("transform.scale.y", from: 0.35, to: 1)
+        let scaleYAnimation = getSpringAnimation("transform.scale.y", from: 0.2, to: 1)
         let rotationAnimation = getSpringAnimation("transform.rotation.z", from: 5.radians, to: 0.radians)
         let positionYAnimation = getSpringAnimation("position.y")
         scaleX2Animation.beginTime = CACurrentMediaTime() + (scaleX1Animation.duration / 5 )
         
         var x = 0.0
         var y = 0.0
+        let openingOriginAbsX = abs(openingOrigin.x - visibleFrame.midX)
+        let maxAbsX = visibleFrame.midX - (finalSize.width / 2)
+        let anchorOffset = min(0.5, (openingOriginAbsX * 0.5) / maxAbsX) * (openingOrigin.x > visibleFrame.midX ? 1 : -1)
         
         doAfter {
             self.makeKeyAndOrderFront(withDuration: 0.45, timing: nil) { layer in
@@ -95,25 +101,24 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
                 layer.setValue(120, forKeyPath: "filters.blur.inputRadius")
                 
                 let oldAnchorPoint = layer.anchorPoint
-                layer.anchorPoint = CGPoint(x: 0.65, y: 1)
+                layer.anchorPoint = CGPoint(x: 0.5 + anchorOffset, y: 1)
                 let newPoint = CGPoint(x: layer.bounds.size.width * (layer.anchorPoint.x - oldAnchorPoint.x),
                                        y: layer.bounds.size.height * (layer.anchorPoint.y - oldAnchorPoint.y))
                 x = layer.position.x + newPoint.x
                 y = layer.position.y + newPoint.y
                 
-                positionYAnimation.fromValue = y + 350
+                positionYAnimation.fromValue = self.openingOrigin.y + 32
                 positionYAnimation.toValue = y
-                layer.position = CGPoint(x: x, y: y + 350)
+                layer.position = CGPoint(x: x, y: self.openingOrigin.y + 32)
             } animations: { layer in
-                layer.add(positionYAnimation, forKey: "positionY")
                 layer.add(blurAnimation, forKey: "blur")
+                layer.add(positionYAnimation, forKey: "positionY")
                 layer.add(scaleX1Animation, forKey: "scaleX1")
                 layer.add(scaleX2Animation, forKey: "scaleX2")
-                layer.add(rotationAnimation, forKey: "rotation")
                 layer.add(scaleYAnimation, forKey: "scaleY")
+                layer.add(rotationAnimation, forKey: "rotation")
             }
         }
-
     }
     
     override func close() {
@@ -122,14 +127,14 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
         self.animatedClose(withDuration: 0.45, timing: nil, setup: { layer in
             layer.filters = [CIFilter(name: "CIGaussianBlur")!]
             layer.setValue(0, forKeyPath: "filters.blur.inputRadius")
-
+            
             let oldAnchorPoint = layer.anchorPoint
             layer.anchorPoint = CGPoint(x: 0.65, y: 1)
             let newPoint = CGPoint(x: layer.bounds.size.width * (layer.anchorPoint.x - oldAnchorPoint.x),
                                    y: layer.bounds.size.height * (layer.anchorPoint.y - oldAnchorPoint.y))
             x = layer.position.x + newPoint.x
             y = layer.position.y + newPoint.y
-
+            
             layer.position = CGPoint(x: x, y: y)
         }, animations: { layer in
             let halfScreenW = (self.screen?.frame.size.width ?? 0) / 2
@@ -137,7 +142,7 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
             let xOffset = halfScreenW - hCenterOrigin
             let rotationInterpolator = interpolatorBuilder([0, halfScreenW], value: abs(xOffset))
             let rotation = rotationInterpolator([0, 25], true) * (xOffset > 0 ? -1 : 1)
-//            let originX = self.frame.origin.x
+            //            let originX = self.frame.origin.x
             
             let blurAnimation = getSpringAnimation("filters.blur.inputRadius", from: 0, to: 120)
             let scaleXAnimation = getSpringAnimation("transform.scale.x", from: 1, to: 0.01)
@@ -146,9 +151,9 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
             let rotationAnimation = getSpringAnimation("transform.rotation.z", from: 0.radians, to: rotation.radians)
             let positionYAnimation = getSpringAnimation("position.y", from: nil, to: y + 350)
             let positionXAnimation = getSpringAnimation("position.x", from: nil, to: x + xOffset)
-
+            
             scaleY2Animation.beginTime = CACurrentMediaTime() + (scaleY1Animation.duration / 5 )
-
+            
             layer.add(positionYAnimation, forKey: "positionY")
             layer.add(positionXAnimation, forKey: "positionX")
             layer.add(blurAnimation, forKey: "blur")
