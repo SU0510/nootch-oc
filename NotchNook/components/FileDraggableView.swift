@@ -30,6 +30,7 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
 }
 
 class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
+    
     var onSelect: () -> () = {}
     var onDropCompleted: (Bool) -> () = { _ in }
     var selectedURLs: [URL] = []
@@ -37,6 +38,8 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     
     private var initialMouseDownLocation: NSPoint?
     private let minimumDragDistance: CGFloat = 3.0
+    
+    // MARK: - NSResponder Methods
     
     override func mouseDown(with event: NSEvent) {
         onSelect()
@@ -51,33 +54,40 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
         
         if distance >= minimumDragDistance {
             let items = selectedURLs.map { url -> NSDraggingItem in
-                let pasteboardItem = NSPasteboardItem()
-                pasteboardItem.setString(url.absoluteString, forType: .fileURL)
-                pasteboardItem.setString("<a href=\"\(url.absoluteString)\">Link</a>", forType: .html)
-                pasteboardItem.setString(url.absoluteString, forType: .string)
-                
-                let draggingItem = NSDraggingItem(pasteboardWriter: pasteboardItem)
-                
-                if let dragPreview {
-                    let previewImage = renderPreview(dragPreview)
-                    draggingItem.setDraggingFrame(self.bounds, contents: previewImage)
-                }
-                
-                return draggingItem
+                getDraggingItem(for: url)
             }
             let session = beginDraggingSession(with: items, event: event, source: self)
             session.draggingFormation = .none
         }
     }
     
-    func renderPreview(_ preview: () -> DragPreviewChild) -> NSImage {
+    // MARK: - Helpers
+    
+    private func getDraggingItem(for url: URL) -> NSDraggingItem {
+        let pasteboardItem = NSPasteboardItem()
+        pasteboardItem.setString(url.absoluteString, forType: .fileURL)
+        pasteboardItem.setString("<a href=\"\(url.absoluteString)\">Link</a>", forType: .html)
+        pasteboardItem.setString(url.absoluteString, forType: .string)
+        
+        let draggingItem = NSDraggingItem(pasteboardWriter: pasteboardItem)
+        
+        if let dragPreview {
+            let previewImage = renderPreview(dragPreview)
+            draggingItem.setDraggingFrame(self.bounds, contents: previewImage)
+        }
+        
+        return draggingItem
+    }
+    
+    private func renderPreview(_ preview: () -> DragPreviewChild) -> NSImage {
         let scaleFactor = NSScreen.main?.backingScaleFactor ?? 1.0
         let renderer = ImageRenderer(content: preview())
         renderer.scale = scaleFactor
         return renderer.nsImage!
     }
     
-    // NSDraggingSource methods
+    // MARK: - NSDraggingSource Methods
+    
     func draggingSession(_ session: NSDraggingSession, endedAt point: NSPoint, operation: NSDragOperation) {
         let didMoveFile = operation == .move
         onDropCompleted(didMoveFile)
@@ -86,6 +96,8 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
         return [.copy, .move]
     }
+    
+    // MARK: - NSDraggingDestination Methods
     
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         let supportedTypes: [NSPasteboard.PasteboardType] = [.fileURL, .string, .html, .png, .pdf]
@@ -97,7 +109,6 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
         
         return .copy
     }
-
 
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
         let pasteboard = sender.draggingPasteboard
