@@ -219,7 +219,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : " %@"
           }
         },
@@ -505,8 +505,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " In use"
+            "state" : "translated",
+            "value" : " Используется"
           }
         },
         "sr" : {
@@ -689,8 +689,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " Shortcuts"
+            "state" : "translated",
+            "value" : " Ярлыки"
           }
         },
         "sr" : {
@@ -873,8 +873,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "(see changelog)"
+            "state" : "translated",
+            "value" : "(см. список изменений)"
           }
         },
         "sr" : {
@@ -955,7 +955,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%@ - %@"
           }
         },
@@ -1139,7 +1139,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%@%lld"
           }
         },
@@ -1323,7 +1323,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld"
           }
         },
@@ -1507,8 +1507,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%lld visible"
+            "state" : "translated",
+            "value" : "%lld sichtbar"
           }
         },
         "el" : {
@@ -1691,7 +1691,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%@"
           }
         },
@@ -1875,7 +1875,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "+%lld"
           }
         },
@@ -2161,8 +2161,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A beautiful and native Reddit client app for iOS."
+            "state" : "translated",
+            "value" : "Красивое и нативное приложение Reddit для iOS."
           }
         },
         "sr" : {
@@ -2345,8 +2345,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A bunch of bug fixes and sweet new features!"
+            "state" : "translated",
+            "value" : "Несколько исправлений ошибок и новые функции!"
           }
         },
         "sr" : {
@@ -2529,8 +2529,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A few of our apps"
+            "state" : "translated",
+            "value" : "Несколько наших приложений"
           }
         },
         "sr" : {
@@ -2611,8 +2611,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A group of talented friends from 4 different countries that develop amazing software together for nothing but passion."
+            "state" : "translated",
+            "value" : "Eine Gruppe talentierter Freunde aus 4 verschiedenen Ländern, die zusammen beeindruckende Software aus Leidenschaft entwickeln."
           }
         },
         "el" : {
@@ -2713,8 +2713,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A group of talented friends from 4 different countries that develop amazing software together for nothing but passion."
+            "state" : "translated",
+            "value" : "Группа талантливых друзей из 4 разных стран, которые разрабатывают удивительное программное обеспечение вместе."
           }
         },
         "sr" : {
@@ -2795,8 +2795,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new elegant way of getting notified about and joining a meeting. "
+            "state" : "translated",
+            "value" : "Eine neue elegante Möglichkeit, sich über ein Meeting erinnern zu lassen und daran teilzunehmen. "
           }
         },
         "el" : {
@@ -2897,8 +2897,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new elegant way of getting notified about and joining a meeting. "
+            "state" : "translated",
+            "value" : "Новый и элегантный способ получать уведомления о встрече и присоединяться к ней. "
           }
         },
         "sr" : {
@@ -2979,8 +2979,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new way to interact with your mac"
+            "state" : "translated",
+            "value" : "Eine neue Art mit deinem Mac zu interagieren"
           }
         },
         "el" : {
@@ -3081,8 +3081,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new way to interact with your mac"
+            "state" : "translated",
+            "value" : "Новый способ взаимодействия с маком"
           }
         },
         "sr" : {
@@ -3265,8 +3265,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "About"
+            "state" : "translated",
+            "value" : "О нас"
           }
         },
         "sr" : {
@@ -3449,7 +3449,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "AirDrop"
           }
         },
@@ -3633,8 +3633,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Album corner radius:"
+            "state" : "translated",
+            "value" : "Радиус угла альбома:"
           }
         },
         "sr" : {
@@ -3715,8 +3715,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow gestures when hovering the notch"
+            "state" : "translated",
+            "value" : "Gesten beim Überfahren der Notch erlauben"
           }
         },
         "el" : {
@@ -3817,8 +3817,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow gestures when hovering the notch"
+            "state" : "translated",
+            "value" : "Разрешить жесты при наведении на notch"
           }
         },
         "sr" : {
@@ -3899,8 +3899,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow some activities to interact with mouse click."
+            "state" : "translated",
+            "value" : "Erlaube einigen Aktivitäten mit der Maus zu interagieren."
           }
         },
         "el" : {
@@ -4083,8 +4083,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Always open on hover"
+            "state" : "translated",
+            "value" : "Immer beim Hover öffnen"
           }
         },
         "el" : {
@@ -4185,8 +4185,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Always open on hover"
+            "state" : "translated",
+            "value" : "Всегда открывать при наведении курсора"
           }
         },
         "sr" : {
@@ -4267,8 +4267,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Animated wallpapers and overlay effects for macOS."
+            "state" : "translated",
+            "value" : "Animierte Hintergründe und Overlay-Effekte für macOS."
           }
         },
         "el" : {
@@ -4369,8 +4369,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Animated wallpapers and overlay effects for macOS."
+            "state" : "translated",
+            "value" : "Анимированные обои и эффекты для macOS."
           }
         },
         "sr" : {
@@ -4451,8 +4451,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Auto check for updates"
+            "state" : "translated",
+            "value" : "Automatische Suche nach Updates"
           }
         },
         "el" : {
@@ -4553,8 +4553,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Auto check for updates"
+            "state" : "translated",
+            "value" : "Автоматическая проверка обновлений"
           }
         },
         "sr" : {
@@ -4635,8 +4635,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Auto download updates"
+            "state" : "translated",
+            "value" : "Updates automatisch herunterladen"
           }
         },
         "el" : {
@@ -4737,8 +4737,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Auto download updates"
+            "state" : "translated",
+            "value" : "Автоматическая загрузка обновлений"
           }
         },
         "sr" : {
@@ -4921,8 +4921,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar"
+            "state" : "translated",
+            "value" : "Календарь"
           }
         },
         "sr" : {
@@ -5105,8 +5105,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar Live Activity"
+            "state" : "translated",
+            "value" : "Активность в календаре"
           }
         },
         "sr" : {
@@ -5289,8 +5289,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar Settings"
+            "state" : "translated",
+            "value" : "Настройки календаря"
           }
         },
         "sr" : {
@@ -5473,8 +5473,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar Widget"
+            "state" : "translated",
+            "value" : "Виджет календаря"
           }
         },
         "sr" : {
@@ -5657,8 +5657,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check for Updates…"
+            "state" : "translated",
+            "value" : "Проверить наличие обновлений…"
           }
         },
         "sr" : {
@@ -5739,8 +5739,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..."
+            "state" : "translated",
+            "value" : "Schau dir deine kommenden Events in einer schönen Oberfläche an und mit fantastischer Haptik. Editieren von Events und vieles mehr wird demnächst kommen..."
           }
         },
         "el" : {
@@ -5841,8 +5841,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..."
+            "state" : "translated",
+            "value" : "Следите за предстоящими событиями в приятном интерфейсе. Скоро появится редактирование событий и многое другое..."
           }
         },
         "sr" : {
@@ -6025,8 +6025,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose Shortcuts"
+            "state" : "translated",
+            "value" : "Выберите ярлыки"
           }
         },
         "sr" : {
@@ -6209,8 +6209,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your shortcuts in settings."
+            "state" : "translated",
+            "value" : "Выберите ярлыки в настройках."
           }
         },
         "sr" : {
@@ -6291,8 +6291,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored Spectograph"
+            "state" : "translated",
+            "value" : "Farbiger Spektograph"
           }
         },
         "el" : {
@@ -6475,8 +6475,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Columns:"
+            "state" : "translated",
+            "value" : "Spalten:"
           }
         },
         "el" : {
@@ -6577,8 +6577,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Columns:"
+            "state" : "translated",
+            "value" : "Столбцы:"
           }
         },
         "sr" : {
@@ -6761,8 +6761,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Coming soon..."
+            "state" : "translated",
+            "value" : "Скоро..."
           }
         },
         "sr" : {
@@ -6843,8 +6843,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Content padding:"
+            "state" : "translated",
+            "value" : "Inhaltsfüllung:"
           }
         },
         "el" : {
@@ -7027,8 +7027,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Control media with horizontal gestures"
+            "state" : "translated",
+            "value" : "Medien mit horizontalen Gesten steuern"
           }
         },
         "el" : {
@@ -7129,8 +7129,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Control media with horizontal gestures"
+            "state" : "translated",
+            "value" : "Управление медиа с помощью горизонтальных жестов"
           }
         },
         "sr" : {
@@ -7211,8 +7211,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize activities"
+            "state" : "translated",
+            "value" : "Aktivitäten anpassen"
           }
         },
         "el" : {
@@ -7313,8 +7313,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize activities"
+            "state" : "translated",
+            "value" : "Настройка активности"
           }
         },
         "sr" : {
@@ -7395,8 +7395,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize pipelines"
+            "state" : "translated",
+            "value" : "Pipelines anpassen"
           }
         },
         "el" : {
@@ -7579,8 +7579,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize widgets"
+            "state" : "translated",
+            "value" : "Widgets anpassen"
           }
         },
         "el" : {
@@ -7681,8 +7681,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize widgets"
+            "state" : "translated",
+            "value" : "Настройка виджетов"
           }
         },
         "sr" : {
@@ -7763,8 +7763,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Damn, that's awesome!"
+            "state" : "translated",
+            "value" : "Verdammt, das ist großartig!"
           }
         },
         "el" : {
@@ -7865,8 +7865,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Damn, that's awesome!"
+            "state" : "translated",
+            "value" : "Чёрт, это потрясающе!"
           }
         },
         "sr" : {
@@ -7947,8 +7947,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Demo mode"
+            "state" : "translated",
+            "value" : "Demo-Modus"
           }
         },
         "el" : {
@@ -8049,8 +8049,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Demo mode"
+            "state" : "translated",
+            "value" : "Демо режим"
           }
         },
         "sr" : {
@@ -8233,8 +8233,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Detected"
+            "state" : "translated",
+            "value" : "Обнаружено"
           }
         },
         "sr" : {
@@ -8315,8 +8315,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable haptics"
+            "state" : "translated",
+            "value" : "Haptik deaktivieren"
           }
         },
         "el" : {
@@ -8417,8 +8417,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable haptics"
+            "state" : "translated",
+            "value" : "Отключить вибрацию"
           }
         },
         "sr" : {
@@ -8601,8 +8601,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Discord server"
+            "state" : "translated",
+            "value" : "Discord сервер"
           }
         },
         "sr" : {
@@ -8969,8 +8969,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Each column contains 2 rows (2 shortcuts)."
+            "state" : "translated",
+            "value" : "Каждый столбец содержит 2 строки (2 ярлыка)."
           }
         },
         "sr" : {
@@ -9153,7 +9153,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Email"
           }
         },
@@ -9337,8 +9337,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email us!"
+            "state" : "translated",
+            "value" : "Отправьте нам письмо!"
           }
         },
         "sr" : {
@@ -9603,8 +9603,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Enable interactive activities"
+            "state" : "translated",
+            "value" : "Interaktive Aktivitäten aktivieren"
           }
         },
         "el" : {
@@ -9787,8 +9787,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Enable live activities"
+            "state" : "translated",
+            "value" : "Live-Aktivitäten aktivieren"
           }
         },
         "el" : {
@@ -9971,8 +9971,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Enable nook"
+            "state" : "translated",
+            "value" : "Notch aktivieren"
           }
         },
         "el" : {
@@ -10155,8 +10155,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Enable Quick Peek"
+            "state" : "translated",
+            "value" : "Schnellansicht aktivieren"
           }
         },
         "el" : {
@@ -10339,8 +10339,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Files Tray"
+            "state" : "translated",
+            "value" : "Dateiablage"
           }
         },
         "el" : {
@@ -10523,8 +10523,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "General"
+            "state" : "translated",
+            "value" : "Allgemein"
           }
         },
         "el" : {
@@ -10707,8 +10707,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Gestures"
+            "state" : "translated",
+            "value" : "Gesten"
           }
         },
         "el" : {
@@ -10891,8 +10891,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Get a License"
+            "state" : "translated",
+            "value" : "Lizenz erhalten"
           }
         },
         "el" : {
@@ -11075,7 +11075,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "gjp1lh5dtzqp4yddn73uush9r4inv0"
           }
         },
@@ -11259,8 +11259,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Handler (no-notch screens):"
+            "state" : "translated",
+            "value" : "Handler (Keine Notch Bildschirme):"
           }
         },
         "el" : {
@@ -11443,8 +11443,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Height"
+            "state" : "translated",
+            "value" : "Höhe"
           }
         },
         "el" : {
@@ -11627,8 +11627,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hidden, it doesn't fit."
+            "state" : "translated",
+            "value" : "Versteckt, es passt nicht."
           }
         },
         "el" : {
@@ -11811,8 +11811,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I'm sorry, your trial is over."
+            "state" : "translated",
+            "value" : "Tut mir leid, Ihre Testversion ist vorbei."
           }
         },
         "el" : {
@@ -11995,8 +11995,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If disabled, clicking on the notch won't do anything."
+            "state" : "translated",
+            "value" : "Wenn deaktiviert, wird mit einem Klick auf die Notch nichts getan."
           }
         },
         "el" : {
@@ -12179,8 +12179,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, some live activities will show a short info on mouse hover."
+            "state" : "translated",
+            "value" : "Wenn aktiviert, werden einige Live-Aktivitäten eine kurze Information beim Mauszeiger anzeigen."
           }
         },
         "el" : {
@@ -12363,8 +12363,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, the audio spectograph will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "Wenn aktiviert, nimmt der Audio-Spektograph die Farbe des aktuellen Albums an, andernfalls wird er weiß sein."
           }
         },
         "el" : {
@@ -12547,8 +12547,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If on, a left swipe will start the next song, if off, the previous one."
+            "state" : "translated",
+            "value" : "Wenn aktiviert, startet ein linker Wischen das nächste Lied, falls ausgeschaltet, das vorherige Lied."
           }
         },
         "el" : {
@@ -12731,8 +12731,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Inactivity timeout:"
+            "state" : "translated",
+            "value" : "Inaktivitätszeitüberschreitung:"
           }
         },
         "el" : {
@@ -12915,8 +12915,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Interactivity:"
+            "state" : "translated",
+            "value" : "Interaktivität:"
           }
         },
         "el" : {
@@ -13099,8 +13099,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invert media gestures actions"
+            "state" : "translated",
+            "value" : "Mediengesten umkehren"
           }
         },
         "el" : {
@@ -13283,7 +13283,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "john.doe@email.com"
           }
         },
@@ -13467,8 +13467,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Key"
+            "state" : "translated",
+            "value" : "Schlüssel"
           }
         },
         "el" : {
@@ -13651,8 +13651,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Launch at login"
+            "state" : "translated",
+            "value" : "Beim Anmelden starten"
           }
         },
         "el" : {
@@ -16697,7 +16697,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "NotchNook"
           }
         },
@@ -16881,7 +16881,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "NotchNook "
           }
         },
@@ -17065,8 +17065,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "NotchNook is made by"
+            "state" : "translated",
+            "value" : "NotchNook сделан"
           }
         },
         "sr" : {
@@ -17433,8 +17433,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Notes"
+            "state" : "translated",
+            "value" : "Заметки"
           }
         },
         "sr" : {
@@ -17617,8 +17617,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Nothing for today"
+            "state" : "translated",
+            "value" : "Ничего на сегодня"
           }
         },
         "sr" : {
@@ -17801,8 +17801,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Nothing selected"
+            "state" : "translated",
+            "value" : "Ничего не выбрано"
           }
         },
         "sr" : {
@@ -17985,8 +17985,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open Settings"
+            "state" : "translated",
+            "value" : "Открыть настройки"
           }
         },
         "sr" : {
@@ -18169,8 +18169,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open/close notch with vertical gestures"
+            "state" : "translated",
+            "value" : "Открыть/закрыть notch с помощью вертикальных жестов"
           }
         },
         "sr" : {
@@ -18353,8 +18353,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Other options:"
+            "state" : "translated",
+            "value" : "Другие параметры:"
           }
         },
         "sr" : {
@@ -18537,8 +18537,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Others:"
+            "state" : "translated",
+            "value" : "Другие:"
           }
         },
         "sr" : {
@@ -18619,8 +18619,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Padding around widgets:"
+            "state" : "translated",
+            "value" : "Füllung um Widgets:"
           }
         },
         "el" : {
@@ -18803,8 +18803,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens)."
+            "state" : "translated",
+            "value" : "Verhindert das Verstecken von NotchNook im Hintergrund. Nützlich für Bildschirmaufnahmen (dies hat keinen Effekt auf nicht notched Bildschirmen)."
           }
         },
         "el" : {
@@ -18905,8 +18905,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens)."
+            "state" : "translated",
+            "value" : "Предотвращает скрытие NotchNook в бездействии. Полезно для записи экрана (это не влияет на экраны без NotchNook)."
           }
         },
         "sr" : {
@@ -18987,8 +18987,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Quick Apps"
+            "state" : "translated",
+            "value" : "Schnell-Apps"
           }
         },
         "el" : {
@@ -19089,8 +19089,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Quick Apps"
+            "state" : "translated",
+            "value" : "Быстрые приложения"
           }
         },
         "sr" : {
@@ -19171,8 +19171,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Quick Peek"
+            "state" : "translated",
+            "value" : "Schnellansicht"
           }
         },
         "el" : {
@@ -19355,8 +19355,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Quit NotchNook"
+            "state" : "translated",
+            "value" : "NotchNook beenden"
           }
         },
         "el" : {
@@ -19457,8 +19457,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Quit NotchNook"
+            "state" : "translated",
+            "value" : "Выйти из NotchNook"
           }
         },
         "sr" : {
@@ -19539,8 +19539,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Register"
+            "state" : "translated",
+            "value" : "Registrieren"
           }
         },
         "el" : {
@@ -19641,8 +19641,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Register"
+            "state" : "translated",
+            "value" : "Регистрация"
           }
         },
         "sr" : {
@@ -19723,8 +19723,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Registered"
+            "state" : "translated",
+            "value" : "Registriert"
           }
         },
         "el" : {
@@ -19825,8 +19825,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Registered"
+            "state" : "translated",
+            "value" : "Зарегистрирован"
           }
         },
         "sr" : {
@@ -19907,8 +19907,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "REMAINING CELLS: %lld"
+            "state" : "translated",
+            "value" : "Verbleibende Zellen: %lld"
           }
         },
         "el" : {
@@ -20091,8 +20091,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Reset all settings"
+            "state" : "translated",
+            "value" : "Alle Einstellungen zurücksetzen"
           }
         },
         "el" : {
@@ -20193,8 +20193,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Reset all settings"
+            "state" : "translated",
+            "value" : "Сбросить все настройки"
           }
         },
         "sr" : {
@@ -20275,8 +20275,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Reset to default"
+            "state" : "translated",
+            "value" : "Auf Standard zurücksetzen"
           }
         },
         "el" : {
@@ -20377,8 +20377,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Reset to default"
+            "state" : "translated",
+            "value" : "Сброс к заводским настройкам"
           }
         },
         "sr" : {
@@ -20459,8 +20459,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "See Tutorial"
+            "state" : "translated",
+            "value" : "Tutorial ansehen"
           }
         },
         "el" : {
@@ -20561,8 +20561,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "See Tutorial"
+            "state" : "translated",
+            "value" : "Посмотреть руководство"
           }
         },
         "sr" : {
@@ -20643,8 +20643,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select some shortcuts"
+            "state" : "translated",
+            "value" : "Verknüpfungen auswählen"
           }
         },
         "el" : {
@@ -20745,8 +20745,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select some shortcuts"
+            "state" : "translated",
+            "value" : "Выберите ярлыки"
           }
         },
         "sr" : {
@@ -20827,8 +20827,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send an email to hi@lo.cafe if this doesn't go away."
+            "state" : "translated",
+            "value" : "Senden Sie eine E-Mail an hi@lo.cafe, falls dies nicht verschwindet."
           }
         },
         "el" : {
@@ -20929,8 +20929,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send an email to hi@lo.cafe if this doesn't go away."
+            "state" : "translated",
+            "value" : "Отправьте письмо на hi@lo.cafe, если это не уйдет."
           }
         },
         "sr" : {
@@ -21011,8 +21011,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
+            "state" : "translated",
+            "value" : "Kurzbefehle"
           }
         },
         "el" : {
@@ -21113,8 +21113,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
+            "state" : "translated",
+            "value" : "Ярлыки"
           }
         },
         "sr" : {
@@ -21195,8 +21195,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show dividers between widgets"
+            "state" : "translated",
+            "value" : "Zeige Trennlinien zwischen Widgets"
           }
         },
         "el" : {
@@ -21297,8 +21297,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show dividers between widgets"
+            "state" : "translated",
+            "value" : "Показать разделители между виджетами"
           }
         },
         "sr" : {
@@ -21379,8 +21379,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show time lapsed while in events"
+            "state" : "translated",
+            "value" : "Zeige abgelaufene Zeit während der Ereignisse"
           }
         },
         "el" : {
@@ -21563,8 +21563,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show while in events"
+            "state" : "translated",
+            "value" : "Während Ereignis anzeigen"
           }
         },
         "el" : {
@@ -21747,8 +21747,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Some links:"
+            "state" : "translated",
+            "value" : "Einige Links:"
           }
         },
         "el" : {
@@ -21931,8 +21931,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Something is wrong."
+            "state" : "translated",
+            "value" : "Etwas stimmt nicht."
           }
         },
         "el" : {
@@ -22115,8 +22115,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Soon you'll be able to compress images, zip/unzip files and much more by dragging and dropping files."
+            "state" : "translated",
+            "value" : "Bald können Sie Bilder komprimieren, Zip-Dateien entpacken und vieles mehr durch Ziehen und Ablegen von Dateien."
           }
         },
         "el" : {
@@ -22299,8 +22299,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sorry, you need to register to use NotchNook."
+            "state" : "translated",
+            "value" : "Du musst dich registrieren, um NotchNook nutzen zu können."
           }
         },
         "el" : {
@@ -22483,7 +22483,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Start"
           }
         },
@@ -22667,8 +22667,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Start %lldh Trial"
+            "state" : "translated",
+            "value" : "Starte %lldh Testversion"
           }
         },
         "el" : {
@@ -22851,8 +22851,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Start Trial"
+            "state" : "translated",
+            "value" : "Starte h Testversion"
           }
         },
         "el" : {
@@ -25059,8 +25059,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Tweak the time _(in seconds)_ that live activities take to go away after they become inactive (like when music pauses)."
+            "state" : "translated",
+            "value" : "Stellen Sie die Zeit _(in Sekunden)_ ein, bis die Live-Aktivitäten nach der Inaktivität verschwindet (wie wenn Musik pausiert)."
           }
         },
         "el" : {
@@ -26163,7 +26163,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@"
           }
         },
@@ -26347,7 +26347,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@ "
           }
         },
