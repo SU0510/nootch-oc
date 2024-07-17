@@ -87,8 +87,8 @@ extension AnyTransition {
     }
     static var scaleAndBlur: AnyTransition {
         .modifier(
-            active: ScaleAndBlurEffect(blur: 30, isActive: false),
-            identity: ScaleAndBlurEffect(blur: 30, isActive: true)
+            active: ScaleAndBlurEffect(blur: 24, isActive: false),
+            identity: ScaleAndBlurEffect(blur: 24, isActive: true)
         )
     }
     static func scaleAndBlur(anchor: UnitPoint = .center, blur: Double = 30) -> AnyTransition {
