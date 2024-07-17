@@ -82,7 +82,7 @@ struct NotchView: View {
                 FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
             }
         }
-        .blur(radius: state.scaleDown * 100)
+        .blur(radius: state.scaleDown * 150)
         .fixedSize(horizontal: true, vertical: false)
         .frame(
             minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune,
