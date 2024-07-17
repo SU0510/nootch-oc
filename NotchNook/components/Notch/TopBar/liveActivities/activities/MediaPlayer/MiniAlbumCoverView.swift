@@ -33,10 +33,10 @@ struct MiniAlbumCoverView: View {
             if let player = MediaPlayer.shared.app {
                 let songId = player.track.title + player.track.album + player.track.artist
                 VStack {
-                    AlbumCoverView(artwork: altImg ?? player.track.albumArt, cornerRadius: albumCornerRadius)
+                    AlbumCoverView(id: songId, artwork: altImg ?? player.track.albumArt, cornerRadius: albumCornerRadius)
                         .id(songId)
                         .padding(6)
-                        .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns, properties: [.position])
+                        .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
                 }
                 .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
                 .animation(.bouncySmooth, value: songId)

@@ -17,7 +17,7 @@ struct MediaPlayerView: View {
             let songId = track.title + track.album + track.artist
             
             AlbumCoverView(id: songId, artwork: track.albumArt, appIcon: appIcon, cornerRadius: 28)
-                .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns, properties: [.position])
+                .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
             
             VStack(alignment: .leading, spacing: 2) {
                 VStack(alignment: .leading, spacing: 2) {
