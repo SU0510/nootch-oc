@@ -10,7 +10,12 @@ import SwiftUI
 
 extension NotchView.EnvironmentsModifier {
     func closeNotch(vibrate doVibrate: Bool = false, unhover: Bool = false) {
-        if state.cancelPan { return }
+        if unhover {
+            withAnimation(.smooth(duration: 0.4)) {
+                state.hovering = false
+            }
+        }
+        if state.cancelPan && notchNook.mode == .closed { return }
         canBecomeKey.wrappedValue = false
         focusFrontmostWindow()
         if notchNook.mode != .closed {
@@ -25,7 +30,6 @@ extension NotchView.EnvironmentsModifier {
             }
         }
         withAnimation(.smooth(duration: 0.4)) {
-            if unhover {  state.hovering = false }
             if doVibrate { vibrate() }
             if notchNook.mode != .closed {
                 notchNook.mode = .closed
