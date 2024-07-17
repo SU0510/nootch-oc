@@ -86,7 +86,7 @@
 		3A3F59FE2C2A5BF100906FFA /* openNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FD2C2A5BF100906FFA /* openNotch.swift */; };
 		3A3F5A002C2A5C4400906FFA /* checkTrialOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */; };
 		3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */; };
-		3A3F5A052C2A5C9500906FFA /* standardPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A042C2A5C9500906FFA /* standardPadding.swift */; };
+		3A3F5A052C2A5C9500906FFA /* computedVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A042C2A5C9500906FFA /* computedVariables.swift */; };
 		3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */; };
 		3A459C1E2C2E710B0045995D /* LockedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */; };
 		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
@@ -409,7 +409,7 @@
 		3A3F59FD2C2A5BF100906FFA /* openNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openNotch.swift; sourceTree = "<group>"; };
 		3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkTrialOver.swift; sourceTree = "<group>"; };
 		3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notchShapeView.swift; sourceTree = "<group>"; };
-		3A3F5A042C2A5C9500906FFA /* standardPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standardPadding.swift; sourceTree = "<group>"; };
+		3A3F5A042C2A5C9500906FFA /* computedVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = computedVariables.swift; sourceTree = "<group>"; };
 		3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEdgeInsets.swift; sourceTree = "<group>"; };
 		3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedIndicatorView.swift; sourceTree = "<group>"; };
 		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
@@ -867,7 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				3A20F16F2C2F88ED006A7E1F /* modifiers */,
-				3A3F5A032C2A5C8A00906FFA /* computedVariables */,
+				3A3F5A042C2A5C9500906FFA /* computedVariables.swift */,
 				3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */,
 				EC758F7D2BF2F19B00B873B0 /* NotchView.swift */,
 			);
@@ -896,14 +896,6 @@
 			);
 			name = fileDropping;
 			path = functions;
-			sourceTree = "<group>";
-		};
-		3A3F5A032C2A5C8A00906FFA /* computedVariables */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F5A042C2A5C9500906FFA /* standardPadding.swift */,
-			);
-			path = computedVariables;
 			sourceTree = "<group>";
 		};
 		3A801E032C1530490076560D /* decorators */ = {
@@ -1893,7 +1885,7 @@
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
 				3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */,
-				3A3F5A052C2A5C9500906FFA /* standardPadding.swift in Sources */,
+				3A3F5A052C2A5C9500906FFA /* computedVariables.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
 				EC47FCB92C0BD5A000591811 /* LoCafeLogoView.swift in Sources */,
