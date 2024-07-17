@@ -60,6 +60,7 @@ extension NotchView {
                         
                     }
                     .animation(.bouncySmooth, value: liveActivitiesSettings)
+                    .animation(.bouncySmooth, value: ActiveLiveActivitiesManager.shared.activeLiveActivities)
                 }
         }
     }

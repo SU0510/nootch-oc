@@ -8,7 +8,15 @@
 import SwiftUI
 import Defaults
 
-struct TopBarView: View {
+struct TopBarView: View, Equatable {
+    static func == (lhs: TopBarView, rhs: TopBarView) -> Bool {
+        lhs.panGestureCounter == rhs.panGestureCounter &&
+        lhs.scaleX == rhs.scaleX &&
+        lhs.scaleY == rhs.scaleY &&
+        lhs.panPadding == rhs.panPadding &&
+        lhs.hide == rhs.hide
+    }
+    
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let minHeight: CGFloat = 32
     static let liveActionWidth: CGFloat = 35

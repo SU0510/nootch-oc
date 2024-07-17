@@ -57,7 +57,7 @@ extension NotchView {
                 }
                 .onChange(of: isKeyWindow) { _, newVal in
                     if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {
-                        closeNotch(false, true)
+                        closeNotch(false, false)
                     }
                 }
         }
