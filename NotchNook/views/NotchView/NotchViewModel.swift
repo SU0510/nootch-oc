@@ -55,7 +55,7 @@ class NotchViewModel {
     var trialOver = false
     
     // Simple Bool that controls if intro is being shown.
-    // Works in conjunction with Defaults[.info] Bool.
+    // Works in conjunction with Defaults[.intro] Bool.
     // Made for being able to delay intro start bc of app intialization freezes.
     var showIntro = false
     

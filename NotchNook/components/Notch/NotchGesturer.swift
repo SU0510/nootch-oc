@@ -79,7 +79,7 @@ struct NotchGesturer: View {
         } else if scrollingPoint.x < 0 {
             withAnimation(.smooth) { state.panRawPadding.trailing = 0 }
         }
-              
+
         // If downwards gesture breaks the threshold, open notch
         if velocity.height > NotchView.panVelocityTriggerThreshold && (gestureControlSettings.controlOpenState || notchNook.hidden) {
             vibrate()

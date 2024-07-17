@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlbumCoverView: View {
-    var id: String?
+    var id: String
     var artwork: NSImage?
     var appIcon: NSImage?
     var cornerRadius: Double
@@ -63,5 +63,6 @@ struct AlbumCoverView: View {
         }
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
         .transition(.scaleAndBlur)
+        .id(id)
     }
 }
