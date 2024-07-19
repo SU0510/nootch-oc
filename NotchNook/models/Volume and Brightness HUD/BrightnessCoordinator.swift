@@ -13,34 +13,22 @@ import IOKit.graphics
 class BrightnessCoordinator {
     private init() {}
     
-    private static var method = BrightnessMethod.standard
-    
-    private enum BrightnessMethod: Error {
-        case standard
-        case alternate
-        case failed
+    enum BrightnessError: Error {
+        case standardMethodFailed
+        case alternateMethodFailed
+        case allMethodsFailed
     }
     
     static func getDisplayBrightness() throws -> Float {
-        switch method {
-        case .standard:
-            do {
-                return try getStandardDisplayBrightness()
-            } catch {
-                print("Standard method failed with error: \(error)")
-                method = .alternate
-            }
-        case .alternate:
+        do {
+            return try getStandardDisplayBrightness()
+        } catch {
             do {
                 return try getAlternateDisplayBrightness()
             } catch {
-                print("Alternate method failed with error: \(error)")
-                method = .failed
+                throw BrightnessError.allMethodsFailed
             }
-        case .failed:
-            throw BrightnessMethod.failed
         }
-        return try getDisplayBrightness()
     }
     
     private static func getStandardDisplayBrightness() throws -> Float {
@@ -52,7 +40,7 @@ class BrightnessCoordinator {
         
         let result = IODisplayGetFloatParameter(service, 0, kIODisplayBrightnessKey as CFString, &brightness)
         guard result == kIOReturnSuccess else {
-            throw BrightnessMethod.standard
+            throw BrightnessError.standardMethodFailed
         }
         return brightness
     }
@@ -79,7 +67,7 @@ class BrightnessCoordinator {
             let plist = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? NSDictionary,
             let displays = plist["CBDisplays"] as? [String: [String: Any]]
         else {
-            throw BrightnessMethod.alternate
+            throw BrightnessError.alternateMethodFailed
         }
         
         for display in displays.values {
@@ -91,6 +79,6 @@ class BrightnessCoordinator {
                 return brightness
             }
         }
-        throw BrightnessMethod.alternate
+        throw BrightnessError.alternateMethodFailed
     }
 }
