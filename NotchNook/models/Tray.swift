@@ -7,9 +7,15 @@
 
 import SwiftUI
 import Cocoa
+import Quartz
 
 @Observable
 class Tray {
+    
+    private enum KeyCode: UInt16 {
+        case c = 8
+        case spaceBar = 49
+    }
     
     private var tempDirectory: URL?
     private var folderMonitor: FolderMonitor?
@@ -43,13 +49,13 @@ class Tray {
     private var isCommandPressed: Bool {
         guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
         
-        return pressedKeysFlags.contains(NSEvent.ModifierFlags.command)
+        return pressedKeysFlags.contains(.command)
     }
     private var isCombiningKeyPressed: Bool {
         guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
         
-        return pressedKeysFlags.contains(NSEvent.ModifierFlags.command) ||
-                pressedKeysFlags.contains(NSEvent.ModifierFlags.shift)
+        return pressedKeysFlags.contains(.command) ||
+                pressedKeysFlags.contains(.shift)
     }
     
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
@@ -69,8 +75,12 @@ class Tray {
         if accessEnabled {
             NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
                 guard let self = self else { return event }
-                if event.keyCode == 8 && self.isCommandPressed {
+                if event.keyCode == KeyCode.spaceBar.rawValue {
+                    self.quickLookSelectedFiles()
+                    return nil
+                } else if event.keyCode == KeyCode.c.rawValue && self.isCommandPressed {
                     self.copySelectedFilesToClipboard()
+                    return nil
                 }
                 return event
             }
@@ -78,8 +88,8 @@ class Tray {
     }
     
     func removeFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.remove(file) } }
-    func addFile(_ file: TrayFile) { _ = withAnimation(.smooth) { self.files.insert(file) } }
-    func addFiles(_ newFiles: [TrayFile]) { withAnimation(.smooth) { self.files = self.files.union(newFiles) } }
+    func addFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.insert(file) } }
+    func addFiles(_ newFiles: [TrayFile]) { withAnimation(.smooth) { files = files.union(newFiles) } }
     
     func addFilesFromURLs(_ fileURLs: [URL]) {
         let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
@@ -109,5 +119,28 @@ class Tray {
         pasteboard.clearContents()
         let urls = selectedFiles.map { $0.url }
         pasteboard.writeObjects(urls as [NSPasteboardWriting])
+    }
+    
+    func openSelectedFiles() {
+        let fileURLs = selectedFiles.map { $0.url }
+        for url in fileURLs {
+            NSWorkspace.shared.open(url)
+        }
+    }
+
+    func quickLookSelectedFiles() {
+        guard let firstFile = selectedFiles.first?.url, let panel = QLPreviewPanel.shared() else { return }
+        panel.dataSource = self
+        panel.makeKeyAndOrderFront(nil)
+    }
+}
+
+extension Tray: QLPreviewPanelDataSource {
+    func numberOfPreviewItems(in panel: QLPreviewPanel!) -> Int {
+        return selectedFiles.count
+    }
+
+    func previewPanel(_ panel: QLPreviewPanel!, previewItemAt index: Int) -> QLPreviewItem! {
+        return selectedFiles[selectedFiles.index(selectedFiles.startIndex, offsetBy: index)].url as QLPreviewItem
     }
 }

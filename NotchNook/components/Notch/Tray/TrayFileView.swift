@@ -25,7 +25,6 @@ struct TrayFileView: View {
         VStack(spacing: 2) {
             TrayFileIconView(file: file)
                 .frame(width: 42, height: 42)
-                .allowsHitTesting(false)
             
             fileNameView
         }
@@ -76,9 +75,9 @@ struct TrayFileView: View {
                 }
             } else {
                 Text(file.nameTruncated)
+                    .allowsHitTesting(true)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
-                    .allowsHitTesting(false)
                     .padding(2)
                     .background(
                         RoundedRectangle(cornerRadius: 4).fill(isSelected ? Color.blue : Color.clear)
