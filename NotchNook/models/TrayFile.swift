@@ -7,30 +7,41 @@
 
 import SwiftUI
 import SwiftDate
+import Combine
 
-@Observable
-class TrayFile: Hashable, Identifiable {
-    static func == (lhs: TrayFile, rhs: TrayFile) -> Bool {
-        lhs.id == rhs.id
-    }
+class TrayFile: ObservableObject {
     
     private(set) var url: URL
-    private(set) var id: String
+    private(set) var inode: UInt64?
     private(set) var nameTruncated: String
-    private(set) var name: String
+    
+    @Published var name: String {
+        didSet {
+            guard oldValue != name else { return }
+            rename(to: name)
+        }
+    }
 
     let image: Image
     let addedAt: Date
     let isImage: Bool
     
+    private var fileSystemSource: DispatchSourceFileSystemObject?
+    private var fileDescriptor: Int32 = -1
+    
     init(url: URL) {
         self.url = url
-        id = url.absoluteString
         image = loadImgFromURL(url) ?? iconForFile(at: url)
         addedAt = Date()
         name = url.lastPathComponent
         nameTruncated = truncateFileName(url.lastPathComponent, maxLength: 16)
         isImage = url.isImg
+        inode = getInode(url)
+        startObservingFileChanges()
+    }
+    
+    deinit {
+        stopObservingFileChanges()
     }
     
     func rename(to newName: String) {
@@ -50,15 +61,65 @@ class TrayFile: Hashable, Identifiable {
         }
     }
     
+    private func updateFileName() {
+        let fileManager = FileManager.default
+        let parentDirectory = url.deletingLastPathComponent()
+        do {
+            let files = try fileManager.contentsOfDirectory(at: parentDirectory, includingPropertiesForKeys: [.fileResourceIdentifierKey])
+            if let newFile = files.first(where: { getInode($0) == self.inode }) {
+                DispatchQueue.main.async {
+                    self.updateData(with: newFile)
+                }
+            }
+        } catch {
+            print("Failed to update file name: \(error)")
+        }
+    }
+    
     private func updateData(with url: URL) {
         self.url = url
-        id = url.absoluteString
+        inode = getInode(url)
         name = url.lastPathComponent
         nameTruncated = truncateFileName(url.lastPathComponent, maxLength: 16)
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    private func startObservingFileChanges() {
+        fileDescriptor = open(url.deletingLastPathComponent().path, O_EVTONLY)
+        guard fileDescriptor >= 0 else { return }
+
+        fileSystemSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fileDescriptor, eventMask: .write, queue: DispatchQueue.main)
+
+        fileSystemSource?.setEventHandler { [weak self] in
+            guard let self = self else { return }
+            self.updateFileName()
+        }
+
+        fileSystemSource?.setCancelHandler {
+            close(self.fileDescriptor)
+        }
+
+        fileSystemSource?.resume()
     }
     
+    private func stopObservingFileChanges() {
+        fileSystemSource?.cancel()
+        fileSystemSource = nil
+    }
+    
+    private func getInode(_ url: URL) -> UInt64? {
+        let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
+        return attributes?[.systemFileNumber] as? UInt64
+    }
+}
+
+extension TrayFile: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(inode)
+    }
+}
+
+extension TrayFile: Identifiable {
+    static func == (lhs: TrayFile, rhs: TrayFile) -> Bool {
+        lhs.inode == rhs.inode
+    }
 }

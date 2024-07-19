@@ -10,15 +10,14 @@ import UniformTypeIdentifiers
 
 struct TrayFileView: View {
     
-    let file: TrayFile
+    @ObservedObject var file: TrayFile
     let isSelected: Bool
     var isPreview: Bool = false
     
     @State private var isHovering = false
     @State private var isEditing: Bool = false
-    @State private var isTextFieldFocused: Bool = false
-    @State private var fileName: String = ""
-
+    @FocusState private var isTextFieldFocused: Bool
+    
     @Environment(\.tray) private var tray
     
     var body: some View {
@@ -54,7 +53,10 @@ struct TrayFileView: View {
             }
             .keyboardShortcut("c", modifiers: .command)
             Button("Rename") {
-                doAfter { isEditing = true }
+                doAfter {
+                    isEditing = true
+                    isTextFieldFocused = true
+                }
             }
         }
         .onTapGesture {
@@ -65,14 +67,11 @@ struct TrayFileView: View {
     var fileNameView: some View {
         VStack(alignment: .leading) {
             if isEditing {
-                TextField("", text: $fileName, onCommit: {
-                    file.rename(to: fileName)
+                TextField("", text: $file.name, onCommit: {
                     isEditing = false
                 })
                 .textFieldStyle(EditingTextFieldStyle())
-                .onAppear() {
-                    fileName = file.name
-                }
+                .focused($isTextFieldFocused)
             } else {
                 Text(file.nameTruncated)
                     .allowsHitTesting(true)
@@ -85,12 +84,12 @@ struct TrayFileView: View {
                     .onTapGesture {
                         doAfter {
                             isEditing = true
+                            isTextFieldFocused = true
                         }
                     }
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: 56, alignment: .center)
-
             }
         }
         .font(.caption)
@@ -124,7 +123,6 @@ struct EditingTextFieldStyle: TextFieldStyle {
             .frame(width: 56, alignment: .center)
             .onAppear {
                 doAfter {
-                    //TODO: fix this selection which is not working (the name without the extension should be selected every time the edition starts)
                     if let textField = NSApp.keyWindow?.firstResponder as? NSTextField {
                         textField.selectText(nil)
                         if let dotIndex = textField.stringValue.lastIndex(of: ".") {

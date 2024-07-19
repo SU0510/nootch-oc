@@ -58,9 +58,33 @@ class Tray {
                 pressedKeysFlags.contains(.shift)
     }
     
+    // MARK: - Initialization
+    
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
         self.activitiesManager = activitiesManager
+        setupTempDirectory()
+        setupFolderMonitor()
         setupEvents()
+    }
+    
+    // MARK: - Setup methods
+    
+    private func setupTempDirectory() {
+        let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent("TrayFiles", isDirectory: true)
+        do {
+            try FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true, attributes: nil)
+            tempDirectory = tempDir
+        } catch {
+            print("Failed to create temp directory")
+        }
+    }
+    
+    func setupFolderMonitor() {
+        guard let tempDirectory else { return }
+        folderMonitor = FolderMonitor(path: tempDirectory.path()) { [weak self] in
+            doAfter { self?.updateFiles() }
+        }
+        folderMonitor?.start()
     }
     
     func setupEvents() {
@@ -86,6 +110,8 @@ class Tray {
             }
         }
     }
+    
+    // MARK: Handling files methods
     
     func removeFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.remove(file) } }
     func addFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.insert(file) } }
@@ -114,7 +140,7 @@ class Tray {
         }
     }
     
-    func copySelectedFilesToClipboard() {
+    private func copySelectedFilesToClipboard() {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         let urls = selectedFiles.map { $0.url }
@@ -128,11 +154,47 @@ class Tray {
         }
     }
 
-    func quickLookSelectedFiles() {
-        guard let firstFile = selectedFiles.first?.url, let panel = QLPreviewPanel.shared() else { return }
+    private func quickLookSelectedFiles() {
+        guard let panel = QLPreviewPanel.shared() else { return }
         panel.dataSource = self
         panel.makeKeyAndOrderFront(nil)
     }
+    
+    private func updateFiles() {
+        let fileManager = FileManager.default
+        let currentURLs = files.map { $0.url }
+        var updatedFiles = Set<TrayFile>()
+
+        guard let directory = tempDirectory else { return }
+        let existingFiles = try? fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
+
+        for file in files {
+            let fileExists = existingFiles?.contains(where: { $0.lastPathComponent == file.url.lastPathComponent }) ?? false
+            if fileExists {
+                updatedFiles.insert(file)
+            } else {
+                if let newURL = findExistingFile(for: file.url) {
+                    updatedFiles.insert(TrayFile(url: newURL))
+                }
+            }
+        }
+
+        DispatchQueue.main.async {
+            self.files = updatedFiles
+        }
+    }
+    
+    private func findExistingFile(for oldURL: URL) -> URL? {
+        guard let directory = oldURL.deletingLastPathComponent() as URL?,
+              let enumerator = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: nil) else { return nil }
+        for case let fileURL as URL in enumerator {
+            if fileURL.lastPathComponent != oldURL.lastPathComponent && fileURL.deletingPathExtension().lastPathComponent == oldURL.deletingPathExtension().lastPathComponent {
+                return fileURL
+            }
+        }
+        return nil
+    }
+    
 }
 
 extension Tray: QLPreviewPanelDataSource {
