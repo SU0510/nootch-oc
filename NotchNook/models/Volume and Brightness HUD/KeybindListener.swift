@@ -114,7 +114,8 @@ class KeybindListener {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
                 do {
                     let newVolume = try SoundCoordinator.getSoundVolume()
-                    print(newVolume)
+                    let device = try SoundCoordinator.getAudioDeviceType()
+                    print(newVolume, device)
                 } catch {
                     print("Failed to get volume: \(error)")
                 }
