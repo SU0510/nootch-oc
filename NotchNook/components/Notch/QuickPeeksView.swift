@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 
 struct QuickPeeksView: View {
-    var quickPeeks: [NotchNook.QuickPeek]
+    var quickPeeks: [NotchNookState.QuickPeek]
     
     @Environment(\.notchSize) private var notchSize
     @Environment(\.generalSettings) private var generalSettings
@@ -24,7 +24,7 @@ struct QuickPeeksView: View {
 }
 
 struct QuickPeekView: View {
-    var quickPeek: NotchNook.QuickPeek
+    var quickPeek: NotchNookState.QuickPeek
     var body: some View {
             HStack(spacing: 4) {
                 if let icon = quickPeek.icon {

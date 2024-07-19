@@ -10,7 +10,7 @@ import SwiftUI
 import Defaults
 
 @Observable
-class NotchNook {
+class NotchNookState {
     var hidden: Bool = false {
         willSet {
             if !hidden && newValue { vibrate() }

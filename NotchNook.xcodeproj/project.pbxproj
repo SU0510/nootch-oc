@@ -155,6 +155,12 @@
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
+		BB50026F2C4AC8FD0028FCB5 /* KeybindListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50026E2C4AC8FA0028FCB5 /* KeybindListener.swift */; };
+		BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */; };
+		BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */; };
+		BBF6EDB32C4AE07600F70035 /* BrightnessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */; };
+		BBF6EDB92C4AE75900F70035 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB82C4AE75500F70035 /* HUDManager.swift */; };
+		BBF6EDBB2C4AE8C400F70035 /* SoundCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */; };
 		EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */; };
 		EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */; };
 		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
@@ -470,6 +476,12 @@
 		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3AE405502C2D499300E8D927 /* RichToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarView.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		BB50026E2C4AC8FA0028FCB5 /* KeybindListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindListener.swift; sourceTree = "<group>"; };
+		BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemIntegrationHelper.swift; sourceTree = "<group>"; };
+		BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtil.swift; sourceTree = "<group>"; };
+		BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessCoordinator.swift; sourceTree = "<group>"; };
+		BBF6EDB82C4AE75500F70035 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
+		BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCoordinator.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
 		EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveActivitySettings.swift; sourceTree = "<group>"; };
 		EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureControlSettings.swift; sourceTree = "<group>"; };
@@ -955,6 +967,17 @@
 			path = videos;
 			sourceTree = "<group>";
 		};
+		BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */ = {
+			isa = PBXGroup;
+			children = (
+				BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */,
+				BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */,
+				BBF6EDB82C4AE75500F70035 /* HUDManager.swift */,
+				BB50026E2C4AC8FA0028FCB5 /* KeybindListener.swift */,
+			);
+			path = "Volume and Brightness HUD";
+			sourceTree = "<group>";
+		};
 		EC0E30CC2C0414510060B47E /* NookSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1381,6 +1404,7 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
 				3A3ABCED2C2B9BB600132228 /* SwiftData */,
 				EC81E2632C069D9100790517 /* protocols */,
@@ -1388,6 +1412,7 @@
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
 				EC758F902BF2F1A400B873B0 /* Pipeline.swift */,
+				BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */,
 				EC8D5FBC2BF9743200E67ECC /* Tray.swift */,
 				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC8D5FBE2BF9744800E67ECC /* TrayFile.swift */,
@@ -1404,6 +1429,7 @@
 				3A0816C42C24CA60008092F0 /* SparkleManager.swift */,
 				3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */,
 				3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */,
+				BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1790,6 +1816,7 @@
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
 				EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */,
 				EC4173E02C0271ED002889E7 /* SettingsLib.swift in Sources */,
+				BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */,
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				3A1691F12C2FB50B0014C326 /* OpenNotchKey.swift in Sources */,
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
@@ -1803,6 +1830,7 @@
 				3A3F59EE2C2A58CC00906FFA /* fetchEvents.swift in Sources */,
 				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				EC8D605F2C00065500E67ECC /* SpotifyApp.swift in Sources */,
+				BBF6EDB92C4AE75900F70035 /* HUDManager.swift in Sources */,
 				3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
@@ -1812,6 +1840,7 @@
 				3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */,
 				3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */,
 				EC0E30E42C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift in Sources */,
+				BBF6EDB32C4AE07600F70035 /* BrightnessCoordinator.swift in Sources */,
 				EC8D5FEA2BFA704D00E67ECC /* concurrentMap.swift in Sources */,
 				3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */,
 				3A9E6BF52C39908B009948F5 /* WaveView.swift in Sources */,
@@ -1827,6 +1856,7 @@
 				3AD5CADB2C14FE260090A9D1 /* vibrate.swift in Sources */,
 				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
+				BB50026F2C4AC8FD0028FCB5 /* KeybindListener.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
@@ -1871,6 +1901,7 @@
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
 				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
 				EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */,
+				BBF6EDBB2C4AE8C400F70035 /* SoundCoordinator.swift in Sources */,
 				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* TrayFile.swift in Sources */,
@@ -1980,6 +2011,7 @@
 				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Tray.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
+				BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */,
 				3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */,
 				3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */,
 				3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */,

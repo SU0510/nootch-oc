@@ -5521,6 +5521,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "Check for Updates…" : {
       "localizations" : {
         "af" : {
@@ -17874,6 +17877,9 @@
           }
         }
       }
+    },
+    "OK" : {
+
     },
     "Open Settings" : {
       "localizations" : {

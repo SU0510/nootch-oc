@@ -1,10 +1,9 @@
 //
 //  AppDelegate.swift
-//  Notchway
+//  NotchNook
 //
 //  Created by Igor Marcossi on 12/05/24.
 //
-
 import Foundation
 import SwiftUI
 import Sparkle
@@ -18,6 +17,7 @@ import SwiftData
     var nsMenu: NSMenu?
     let updaterDelegate = UpdaterDelegate()
     let updaterController: SPUStandardUpdaterController
+    var keybindListener: KeybindListener?
     
     override init() {
         SwiftDate.defaultRegion = Region.local
@@ -42,6 +42,18 @@ import SwiftData
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
         windowsManager = WindowsManager(updater: updaterController.updater)
+        
+        // Initialize and start the keybind listener
+        if true { // inject default option toggle here
+            HUDManager.disable() // disable volume and brightness hud
+            
+            keybindListener = KeybindListener()
+            keybindListener?.start()
+        }
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        HUDManager.enable() // enable volume and brightness hud
     }
     
     func setupMenu() {

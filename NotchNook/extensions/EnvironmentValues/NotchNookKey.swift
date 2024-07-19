@@ -8,11 +8,11 @@
 import SwiftUI
 
 private struct NotchNookKey: EnvironmentKey {
-    static var defaultValue = NotchNook()
+    static var defaultValue = NotchNookState()
 }
 
 extension EnvironmentValues {
-    var notchNook: NotchNook {
+    var notchNook: NotchNookState {
         get { self[NotchNookKey.self] }
         set { self[NotchNookKey.self] = newValue }
     }
