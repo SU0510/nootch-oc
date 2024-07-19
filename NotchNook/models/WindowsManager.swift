@@ -44,7 +44,7 @@ class WindowsManager {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
         updateWindows()
 
-        expandedNoteManager.openWindow = openNoteWindow
+        expandedNoteManager.setOpenWindowFunction(openNoteWindow)
     }
     
     deinit {
@@ -52,9 +52,11 @@ class WindowsManager {
         NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
     }
     
-    func openNoteWindow(_ note: Note) {
+    func openNoteWindow(_ note: Note, inDisplayKitId: UUID) {
         
-        let newWindow = SwiftUIAnimatedWindow(styleMask: [.titled, .closable, .fullSizeContentView]) {
+        let screen = displayKits.first { $0.id == inDisplayKitId }?.windowController.window?.screen
+        
+        let newWindow = SwiftUIAnimatedWindow(styleMask: [.titled, .closable, .fullSizeContentView], screen: screen, origin: self.expandedNoteManager.windowOrigin ?? .zero) {
             ExpandedNoteView()
         }
         
@@ -62,7 +64,7 @@ class WindowsManager {
 //            doAfter { NSApp.setActivationPolicy(.accessory) }
 //        }
         newWindow.whileClosing = {
-            doAfter { self.expandedNoteManager.activeNote = nil }
+            doAfter { self.expandedNoteManager.openNote(nil) }
         }
         
         let customToolbar = NSToolbar()
@@ -76,12 +78,14 @@ class WindowsManager {
         newWindow.backgroundColor = NSColor(Color.noteBG)
         
         let windowController = NSWindowController(window: newWindow)
-        //        windowController.window?.contentView = viewHosting
         
         expandedNoteWindowController = windowController
         preventNextFocusFrontmostWindow = true
         NSApp.setActivationPolicy(.regular)
-        newWindow.show()
+        
+        if let windowOrigin = expandedNoteManager.windowOrigin {
+            newWindow.show(origin: windowOrigin)
+        }
     }
     
     func showChangelogViewWindow() {
@@ -140,7 +144,7 @@ class WindowsManager {
     
     
     func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
-        let id = UUID()
+        let displayKitId = UUID()
         let screenF = screen.frame
         let showSettings = settingsWindowController?.show ?? { _ in }
         let notchHeight = screen.safeAreaInsets.top
@@ -149,6 +153,7 @@ class WindowsManager {
         let notchNook = NotchNook()
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
+                displayKitId: displayKitId,
                 showSettings: showSettings,
                 screenSize: screenF.size,
                 sparkleManager: sparkleManager,
@@ -219,7 +224,7 @@ class WindowsManager {
         newWindow.orderFrontRegardless()
         
         return DisplayKit(
-            id: id,
+            id: displayKitId,
             windowController: newWindowController,
             screen: screen,
             notchSize: notchSize,

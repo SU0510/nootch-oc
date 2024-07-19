@@ -11,6 +11,7 @@ import Cocoa
 import UniformTypeIdentifiers
 
 struct NotchView: View {
+    static let windowHeight: Double = 250
     static let mainVSpacing: Double = 8
     static let hoverScale: Double = 1.25
     static let animation: Animation = .bouncy(extraBounce: 0.075)
@@ -18,8 +19,8 @@ struct NotchView: View {
     static let maxVPanDrag: Double = 14
     static let maxHPanDrag: Double = 24
     static let panVelocityTriggerThreshold: Double = 500
-    static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: .top).animation(.smooth(duration: 0.2))) }
-    static let defaultTransition = NotchView.defaultTransition(anchor: .top)
+    static func defaultTransition(anchor: UnitPoint, delay: Double = 0.1) -> AnyTransition { AnyTransition.asymmetric(insertion: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.35).delay(delay)), removal: .scaleAndBlur(anchor: anchor).animation(.smooth(duration: 0.2))) }
+    static let defaultTransition = NotchView.defaultTransition(anchor: .init(x: 0.5, y: -0.25))
 
     @State internal var state = NotchViewModel()
     @Environment(\.notchSize) internal var notchSize
@@ -29,11 +30,11 @@ struct NotchView: View {
     @Default(.intro) internal var intro
     @Default(.license) internal var license
     @Default(.trialInitialTime) internal var trialInitialTime
-    
-    var actualScale: Double { (state.hovering && !state.pressing && (notchNook.mode == .closed) ? NotchView.hoverScale : 1) - state.scaleDown }
+
     var disableNotchNook: Bool { notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens }
     
     var body: some View {        
+        
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if !disableNotchNook {
                 if intro && state.showIntro {
@@ -43,7 +44,8 @@ struct NotchView: View {
                     if license != nil || !state.trialOver {
                         TopBarView(
                             panGestureCounter: state.panGestureCounter,
-                            scale: actualScale,
+                            scaleX: actualScaleX,
+                            scaleY: actualScaleY,
                             panPadding: state.panPadding,
                             hide: notchNook.hidden
                         )
@@ -61,15 +63,15 @@ struct NotchView: View {
                             }
                         }
                     }
-                    .scaleEffect(actualScale, anchor: .top)
                     .transition(NotchView.defaultTransition)
+                    .scaleEffect(x: actualScaleX, y: actualScaleY, anchor: .init(x: 0.5, y: -0.25))
                 }
             }
             if state.fineTuningNotchWidth {
                 FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
             }
         }
-        .blur(radius: state.scaleDown * 100)
+        .blur(radius: state.scaleDown * 150)
         .fixedSize(horizontal: true, vertical: false)
         .frame(
             minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune,
@@ -82,7 +84,7 @@ struct NotchView: View {
         .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
         .modifier(AnimationsModifier(disableNotchNook: disableNotchNook))
         .modifier(GesturesModifier(state: state, disableNotchNook: disableNotchNook))
-        .frame(width: screenSize.width, height: 250, alignment: .top)
+        .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
         .modifier(SideEffectsModifier(state: state))
         .modifier(EnvironmentsModifier(state: state))
     }

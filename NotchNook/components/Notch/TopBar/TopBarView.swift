@@ -8,13 +8,22 @@
 import SwiftUI
 import Defaults
 
-struct TopBarView: View {
+struct TopBarView: View, Equatable {
+    static func == (lhs: TopBarView, rhs: TopBarView) -> Bool {
+        lhs.panGestureCounter == rhs.panGestureCounter &&
+        lhs.scaleX == rhs.scaleX &&
+        lhs.scaleY == rhs.scaleY &&
+        lhs.panPadding == rhs.panPadding &&
+        lhs.hide == rhs.hide
+    }
+    
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let minHeight: CGFloat = 32
     static let liveActionWidth: CGFloat = 35
     
     var panGestureCounter: Int
-    var scale: Double = 1
+    var scaleX: Double = 1
+    var scaleY: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
     
@@ -45,7 +54,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .topTrailing)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .topTrailing)
                     .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
                     .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                 }
@@ -71,7 +80,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .topLeading)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .topLeading)
                     .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
                     .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                 }
@@ -90,7 +99,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .trailing)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .trailing)
                     .transition(.scaleAndBlur(anchor: .trailing))
                     
                     TopBarSpacerView(height: height)
@@ -104,7 +113,7 @@ struct TopBarView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .scaleEffect(scale, anchor: .leading)
+                    .scaleEffect(x: scaleX, y: scaleY, anchor: .leading)
                     .transition(.scaleAndBlur(anchor: .leading))
                 }
             }

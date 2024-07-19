@@ -30,7 +30,7 @@ struct NotchShape: Shape {
         let mainShapePath = UnevenRoundedRectangle(
             cornerRadii: .init(bottomLeading: notchRadius, bottomTrailing: notchRadius),
             style: .continuous
-        ).size(width: rect.width, height: rect.height + 1).path(in: rect)
+        ).size(width: rect.width, height: rect.height).path(in: rect)
         
         let leftDecorationPath = Rectangle()
             .path(in: CGRect(x: -decorationSize, y: 0, width: decorationSize, height: decorationSize))

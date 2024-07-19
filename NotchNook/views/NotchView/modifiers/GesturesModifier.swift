@@ -25,6 +25,7 @@ extension NotchView {
         @Environment(\.nookSettings) private var nookSettings
         @Environment(\.generalSettings) private var generalSettings
         @Default(.license) internal var license
+        
         func body(content: Content) -> some View {
             content
                 .allowsHitTesting(!disableNotchNook)

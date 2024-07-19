@@ -87,7 +87,7 @@
 		3A3F59FE2C2A5BF100906FFA /* openNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FD2C2A5BF100906FFA /* openNotch.swift */; };
 		3A3F5A002C2A5C4400906FFA /* checkTrialOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */; };
 		3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */; };
-		3A3F5A052C2A5C9500906FFA /* standardPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A042C2A5C9500906FFA /* standardPadding.swift */; };
+		3A3F5A052C2A5C9500906FFA /* computedVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A042C2A5C9500906FFA /* computedVariables.swift */; };
 		3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */; };
 		3A459C1E2C2E710B0045995D /* LockedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */; };
 		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
@@ -101,6 +101,8 @@
 		3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */; };
 		3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */; };
 		3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3A7404992C416B090049081C /* Localizable.xcstrings */; };
+		3A74049C2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */; };
+		3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */; };
 		3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
@@ -409,7 +411,7 @@
 		3A3F59FD2C2A5BF100906FFA /* openNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openNotch.swift; sourceTree = "<group>"; };
 		3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkTrialOver.swift; sourceTree = "<group>"; };
 		3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notchShapeView.swift; sourceTree = "<group>"; };
-		3A3F5A042C2A5C9500906FFA /* standardPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standardPadding.swift; sourceTree = "<group>"; };
+		3A3F5A042C2A5C9500906FFA /* computedVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = computedVariables.swift; sourceTree = "<group>"; };
 		3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEdgeInsets.swift; sourceTree = "<group>"; };
 		3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedIndicatorView.swift; sourceTree = "<group>"; };
 		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
@@ -423,6 +425,8 @@
 		3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShapeModifier.swift; sourceTree = "<group>"; };
 		3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRichEditor.swift; sourceTree = "<group>"; };
 		3A7404992C416B090049081C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOriginWithExpandedNoteManger.swift; sourceTree = "<group>"; };
+		3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayKitIdKey.swift; sourceTree = "<group>"; };
 		3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterWindow.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
@@ -762,6 +766,7 @@
 				3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */,
 				3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */,
 				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
+				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -864,7 +869,7 @@
 			isa = PBXGroup;
 			children = (
 				3A20F16F2C2F88ED006A7E1F /* modifiers */,
-				3A3F5A032C2A5C8A00906FFA /* computedVariables */,
+				3A3F5A042C2A5C9500906FFA /* computedVariables.swift */,
 				3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */,
 				EC758F7D2BF2F19B00B873B0 /* NotchView.swift */,
 			);
@@ -893,14 +898,6 @@
 			);
 			name = fileDropping;
 			path = functions;
-			sourceTree = "<group>";
-		};
-		3A3F5A032C2A5C8A00906FFA /* computedVariables */ = {
-			isa = PBXGroup;
-			children = (
-				3A3F5A042C2A5C9500906FFA /* standardPadding.swift */,
-			);
-			path = computedVariables;
 			sourceTree = "<group>";
 		};
 		3A801E032C1530490076560D /* decorators */ = {
@@ -1352,6 +1349,7 @@
 				3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */,
 				3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */,
 				3A8AA1882C30AA9900D727DA /* onScrollChange.swift */,
+				3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1385,8 +1383,8 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				3A3ABCED2C2B9BB600132228 /* SwiftData */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
+				3A3ABCED2C2B9BB600132228 /* SwiftData */,
 				EC81E2632C069D9100790517 /* protocols */,
 				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
@@ -1770,6 +1768,7 @@
 				3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */,
 				3A8AA1852C2FE43B00D727DA /* OpenAppKey.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
+				3A74049C2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift in Sources */,
 				3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */,
 				3A1691EA2C2FB24F0014C326 /* IsKeyWindowKey.swift in Sources */,
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
@@ -1799,6 +1798,7 @@
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
 				3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */,
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
+				3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
 				3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */,
@@ -1888,7 +1888,7 @@
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
 				3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */,
-				3A3F5A052C2A5C9500906FFA /* standardPadding.swift in Sources */,
+				3A3F5A052C2A5C9500906FFA /* computedVariables.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
 				EC47FCB92C0BD5A000591811 /* LoCafeLogoView.swift in Sources */,
