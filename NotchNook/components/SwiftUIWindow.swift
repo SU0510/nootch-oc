@@ -141,7 +141,7 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
             let hCenterOrigin = self.frame.origin.x + (self.frame.size.width / 2)
             let xOffset = halfScreenW - hCenterOrigin
             let rotationInterpolator = interpolatorBuilder([0, halfScreenW], value: abs(xOffset))
-            let rotation = rotationInterpolator([0, 25], true) * (xOffset > 0 ? -1 : 1)
+            let rotation = rotationInterpolator([0, 25], true, .linear) * (xOffset > 0 ? -1 : 1)
             //            let originX = self.frame.origin.x
             
             let blurAnimation = getSpringAnimation("filters.blur.inputRadius", from: 0, to: 120)

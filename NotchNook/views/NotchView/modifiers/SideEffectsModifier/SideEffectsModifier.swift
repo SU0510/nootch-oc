@@ -55,6 +55,16 @@ extension NotchView {
                 .onChangeDebounced(of: state.scaleDown, delay: 0.05) { _ in
                     withAnimation(.smooth) { state.scaleDown = 0 }
                 }
+                .onChange(of: GlobalBrightnessAndVolume.shared.brightness) { _, new in
+                    withAnimation(.bouncySmooth) {
+                        notchNook.indicator = .init(kind: .brightness, value: new)
+                    }
+                }
+                .onChange(of: GlobalBrightnessAndVolume.shared.id) { _, _ in
+                    withAnimation(.bouncySmooth) {
+                        notchNook.indicator = .init(kind: .brightness, value: GlobalBrightnessAndVolume.shared.brightness)
+                    }
+                }
                 .onChange(of: isKeyWindow) { _, newVal in
                     if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {
                         closeNotch(false, false)

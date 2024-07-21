@@ -102,20 +102,22 @@ class KeybindListener {
         switch mediaKey {
         case .brightnessUp, .brightnessDown:
             // we need to delay this so the OS has time to process the change (brightness or volume)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
                 do {
                     let newBrightness = try BrightnessCoordinator.getDisplayBrightness()
-                    print(newBrightness)
+                    GlobalBrightnessAndVolume.shared.brightness = Double(newBrightness)
+//                    print(newBrightness)
                 } catch {
                     print("Error fetching brightness: \(error)")
                 }
             }
         case .volumeUp, .volumeDown, .mute:
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
                 do {
                     let newVolume = try SoundCoordinator.getSoundVolume()
                     let device = try SoundCoordinator.getAudioDeviceType()
-                    print(newVolume, device)
+                    GlobalBrightnessAndVolume.shared.volume = Double(newVolume)
+//                    print(newVolume, device)
                 } catch {
                     print("Failed to get volume: \(error)")
                 }

@@ -65,6 +65,7 @@
 		3A20F1792C2F8B2F006A7E1F /* LockedIndicatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F1782C2F8B2F006A7E1F /* LockedIndicatorModifier.swift */; };
 		3A20F17B2C2F8E33006A7E1F /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */; };
 		3A20F17D2C2FAB0B006A7E1F /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F17C2C2FAB0B006A7E1F /* Animation.swift */; };
+		3A342B092C4D965A003C369C /* UnitCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B082C4D965A003C369C /* UnitCurve.swift */; };
 		3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */; };
 		3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* FineTuningView.swift */; };
 		3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */; };
@@ -86,7 +87,7 @@
 		3A3F59FE2C2A5BF100906FFA /* openNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FD2C2A5BF100906FFA /* openNotch.swift */; };
 		3A3F5A002C2A5C4400906FFA /* checkTrialOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */; };
 		3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */; };
-		3A3F5A052C2A5C9500906FFA /* computedVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A042C2A5C9500906FFA /* computedVariables.swift */; };
+		3A3F5A052C2A5C9500906FFA /* NotchViewComputedVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F5A042C2A5C9500906FFA /* NotchViewComputedVars.swift */; };
 		3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */; };
 		3A459C1E2C2E710B0045995D /* LockedIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */; };
 		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
@@ -95,6 +96,9 @@
 		3A5104D42C37AD3A0045F7E6 /* NoteExpandedMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */; };
 		3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */; };
 		3A5104D82C37B8460045F7E6 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D72C37B8430045F7E6 /* Numbers.swift */; };
+		3A5F1E632C4B6AE7007E77ED /* GlobalBrightnessAndVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F1E622C4B6AE7007E77ED /* GlobalBrightnessAndVolume.swift */; };
+		3A5F1E652C4C5B3F007E77ED /* SunShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F1E642C4C5B3F007E77ED /* SunShape.swift */; };
+		3A5F1E682C4C699F007E77ED /* NotchViewStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F1E672C4C699F007E77ED /* NotchViewStatic.swift */; };
 		3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */; };
 		3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */; };
 		3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */; };
@@ -113,6 +117,10 @@
 		3A801E142C15781F0076560D /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E132C15781F0076560D /* SwiftJWT */; };
 		3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E152C1579F40076560D /* getMacBookModel.swift */; };
 		3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E1B2C163B540076560D /* detectMeetings.swift */; };
+		3A85076F2C4B2F2D0092B135 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A85076E2C4B2F290092B135 /* Indicator.swift */; };
+		3A8507722C4B3E370092B135 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8507712C4B3E370092B135 /* IndicatorView.swift */; };
+		3A8507742C4B4E5A0092B135 /* BrightnessIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8507732C4B4E5A0092B135 /* BrightnessIndicatorView.swift */; };
+		3A8507772C4B5A0C0092B135 /* HorizontalCometShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */; };
 		3A8AA17F2C2FD1E400D727DA /* paddingDependingOnArrPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */; };
 		3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */; };
 		3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1822C2FE40500D727DA /* openApp.swift */; };
@@ -394,6 +402,7 @@
 		3A20F1782C2F8B2F006A7E1F /* LockedIndicatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedIndicatorModifier.swift; sourceTree = "<group>"; };
 		3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
 		3A20F17C2C2FAB0B006A7E1F /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		3A342B082C4D965A003C369C /* UnitCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitCurve.swift; sourceTree = "<group>"; };
 		3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppProtocol.swift; sourceTree = "<group>"; };
 		3A357F112C294FD20076DB37 /* FineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineTuningView.swift; sourceTree = "<group>"; };
 		3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveLiveActivitiesManager.swift; sourceTree = "<group>"; };
@@ -415,7 +424,7 @@
 		3A3F59FD2C2A5BF100906FFA /* openNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openNotch.swift; sourceTree = "<group>"; };
 		3A3F59FF2C2A5C4400906FFA /* checkTrialOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkTrialOver.swift; sourceTree = "<group>"; };
 		3A3F5A012C2A5C5C00906FFA /* notchShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notchShapeView.swift; sourceTree = "<group>"; };
-		3A3F5A042C2A5C9500906FFA /* computedVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = computedVariables.swift; sourceTree = "<group>"; };
+		3A3F5A042C2A5C9500906FFA /* NotchViewComputedVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewComputedVars.swift; sourceTree = "<group>"; };
 		3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEdgeInsets.swift; sourceTree = "<group>"; };
 		3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedIndicatorView.swift; sourceTree = "<group>"; };
 		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
@@ -424,6 +433,9 @@
 		3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteExpandedMsgView.swift; sourceTree = "<group>"; };
 		3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSpringAnimation.swift; sourceTree = "<group>"; };
 		3A5104D72C37B8430045F7E6 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		3A5F1E622C4B6AE7007E77ED /* GlobalBrightnessAndVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBrightnessAndVolume.swift; sourceTree = "<group>"; };
+		3A5F1E642C4C5B3F007E77ED /* SunShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunShape.swift; sourceTree = "<group>"; };
+		3A5F1E672C4C699F007E77ED /* NotchViewStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewStatic.swift; sourceTree = "<group>"; };
 		3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCodeEditor.swift; sourceTree = "<group>"; };
 		3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRichEditor.swift; sourceTree = "<group>"; };
 		3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShapeModifier.swift; sourceTree = "<group>"; };
@@ -440,6 +452,10 @@
 		3A801E0E2C1556E70076560D /* getRangeOfDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRangeOfDays.swift; sourceTree = "<group>"; };
 		3A801E152C1579F40076560D /* getMacBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMacBookModel.swift; sourceTree = "<group>"; };
 		3A801E1B2C163B540076560D /* detectMeetings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detectMeetings.swift; sourceTree = "<group>"; };
+		3A85076E2C4B2F290092B135 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		3A8507712C4B3E370092B135 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		3A8507732C4B4E5A0092B135 /* BrightnessIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorView.swift; sourceTree = "<group>"; };
+		3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCometShape.swift; sourceTree = "<group>"; };
 		3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingDependingOnArrPos.swift; sourceTree = "<group>"; };
 		3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventNextFocusFrontmostWindowKey.swift; sourceTree = "<group>"; };
 		3A8AA1822C2FE40500D727DA /* openApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openApp.swift; sourceTree = "<group>"; };
@@ -879,8 +895,9 @@
 			isa = PBXGroup;
 			children = (
 				3A20F16F2C2F88ED006A7E1F /* modifiers */,
-				3A3F5A042C2A5C9500906FFA /* computedVariables.swift */,
+				3A3F5A042C2A5C9500906FFA /* NotchViewComputedVars.swift */,
 				3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */,
+				3A5F1E672C4C699F007E77ED /* NotchViewStatic.swift */,
 				EC758F7D2BF2F19B00B873B0 /* NotchView.swift */,
 			);
 			path = NotchView;
@@ -916,6 +933,23 @@
 				3A801E022C1530490076560D /* SilentState.swift */,
 			);
 			path = decorators;
+			sourceTree = "<group>";
+		};
+		3A8507702C4B3E2E0092B135 /* Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				3A8507752C4B59E80092B135 /* BrightnessIndicator */,
+				3A8507712C4B3E370092B135 /* IndicatorView.swift */,
+			);
+			path = Indicator;
+			sourceTree = "<group>";
+		};
+		3A8507752C4B59E80092B135 /* BrightnessIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				3A8507732C4B4E5A0092B135 /* BrightnessIndicatorView.swift */,
+			);
+			path = BrightnessIndicator;
 			sourceTree = "<group>";
 		};
 		3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */ = {
@@ -974,6 +1008,7 @@
 				BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */,
 				BBF6EDB82C4AE75500F70035 /* HUDManager.swift */,
 				BB50026E2C4AC8FA0028FCB5 /* KeybindListener.swift */,
+				3A5F1E622C4B6AE7007E77ED /* GlobalBrightnessAndVolume.swift */,
 			);
 			path = "Volume and Brightness HUD";
 			sourceTree = "<group>";
@@ -1279,10 +1314,13 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				3A8507702C4B3E2E0092B135 /* Indicator */,
 				3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */,
 				EC47FCA52C0BA33900591811 /* intro */,
 				EC8D600D2BFC127600E67ECC /* buttonStyles */,
 				EC8D5FF32BFAE75400E67ECC /* notch */,
+				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
+				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */,
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
@@ -1397,6 +1435,7 @@
 				3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */,
 				3A20F17C2C2FAB0B006A7E1F /* Animation.swift */,
 				3A5104D72C37B8430045F7E6 /* Numbers.swift */,
+				3A342B082C4D965A003C369C /* UnitCurve.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1411,10 +1450,11 @@
 				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
+				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
+				3A85076E2C4B2F290092B135 /* Indicator.swift */,
 				EC758F902BF2F1A400B873B0 /* Pipeline.swift */,
 				BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */,
 				EC8D5FBC2BF9743200E67ECC /* Tray.swift */,
-				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				EC8D5FBE2BF9744800E67ECC /* TrayFile.swift */,
 				EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */,
 				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
@@ -1751,6 +1791,7 @@
 				EC8D5FC12BF9767A00E67ECC /* TrayFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
+				3A5F1E632C4B6AE7007E77ED /* GlobalBrightnessAndVolume.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */,
@@ -1823,6 +1864,8 @@
 				3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */,
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */,
+				3A85076F2C4B2F2D0092B135 /* Indicator.swift in Sources */,
+				3A8507742C4B4E5A0092B135 /* BrightnessIndicatorView.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
 				3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */,
@@ -1850,6 +1893,7 @@
 				3A1691F32C2FB5180014C326 /* CheckTrialOverKey.swift in Sources */,
 				3A3F59F82C2A5BB900906FFA /* hideNotch.swift in Sources */,
 				EC8D5FDB2BFA703300E67ECC /* EdgeInsetZero.swift in Sources */,
+				3A5F1E652C4C5B3F007E77ED /* SunShape.swift in Sources */,
 				3A1691CC2C2FB1E20014C326 /* NamespaceKey.swift in Sources */,
 				EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */,
 				3A1691E82C2FB2490014C326 /* IsEditingTextKey.swift in Sources */,
@@ -1857,9 +1901,11 @@
 				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
 				BB50026F2C4AC8FD0028FCB5 /* KeybindListener.swift in Sources */,
+				3A342B092C4D965A003C369C /* UnitCurve.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				3A8AA1832C2FE40500D727DA /* openApp.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
+				3A5F1E682C4C699F007E77ED /* NotchViewStatic.swift in Sources */,
 				3A3ABCEF2C2B9C5500132228 /* Note.swift in Sources */,
 				3A1FFE2B2C354B6600BB4A03 /* ExpandedNoteView.swift in Sources */,
 				3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */,
@@ -1916,7 +1962,7 @@
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
 				3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */,
-				3A3F5A052C2A5C9500906FFA /* computedVariables.swift in Sources */,
+				3A3F5A052C2A5C9500906FFA /* NotchViewComputedVars.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
 				EC0E30E62C041CC90060B47E /* WidgetsSettingsTabView.swift in Sources */,
 				EC47FCB92C0BD5A000591811 /* LoCafeLogoView.swift in Sources */,
@@ -1944,6 +1990,7 @@
 				EC13C6DC2C09180600B45C6E /* TextInput.swift in Sources */,
 				EC0E31032C0548A10060B47E /* NookGrid.swift in Sources */,
 				3A105FCE2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift in Sources */,
+				3A8507722C4B3E370092B135 /* IndicatorView.swift in Sources */,
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* BaseMediaApp.swift in Sources */,
 				3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */,
@@ -2000,6 +2047,7 @@
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
 				3A1691CA2C2FB1C90014C326 /* OpenSettingsKey.swift in Sources */,
 				EC14B5D12C07AB2A000FC6B6 /* DropAreaSettingsView.swift in Sources */,
+				3A8507772C4B5A0C0092B135 /* HorizontalCometShape.swift in Sources */,
 				3A1691E62C2FB2430014C326 /* ResignFirstResponderKey.swift in Sources */,
 				3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */,
 				EC0E30EE2C0433960060B47E /* TrayLiveActivitySettingsView.swift in Sources */,

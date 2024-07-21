@@ -11,6 +11,7 @@ import Defaults
 
 @Observable
 class NotchNookState {
+    
     var hidden: Bool = false {
         willSet {
             if !hidden && newValue { vibrate() }
@@ -25,7 +26,21 @@ class NotchNookState {
         }
     }
     var hiddenTimer: Timer?
+    
+    var indicator: Indicator? {
+        willSet { indicatorTimer?.invalidate() }
+        didSet {
+            if indicator != nil {
+                indicatorTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    withAnimation(.smooth) { self.indicator = nil }
+                }
+            }
+        }
+    }
+    var indicatorTimer: Timer?
+    
     var locked = false
+    
     var quickPeeks: [QuickPeek]? {
         get { _quickPeek }
         set {
@@ -48,3 +63,4 @@ class NotchNookState {
         var iconColor: Color? = nil
     }
 }
+

@@ -12,7 +12,7 @@ extension NotchView.ShapeModifier {
     @ViewBuilder func notchShapeView(shadow: Bool? = nil, transparentHandle: Bool? = nil) -> some View {
         GeometryReader { geo in
             ShadowedNotchShapeView(
-                shadow: shadow ?? (notchNook.mode != .closed || state.hovering),
+                shadow: shadow ?? (notchNook.mode != .closed || state.hovering || notchNook.indicator != nil),
                 transparentHandle: transparentHandle ?? generalSettings.transparentHandle,
                 fineTuning: state.fineTuningNotchWidth
             )

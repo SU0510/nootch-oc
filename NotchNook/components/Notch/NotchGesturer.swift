@@ -42,7 +42,7 @@ struct NotchGesturer: View {
             // Interpolates raw scrolling amount into incremental
             // scaleDown of contents inside the notch
             let interpolate = interpolatorBuilder([0, -150], value: scrollingPoint.y)
-            state.scaleDown += interpolate([0, notchNook.mode != .closed ? 0.1 : 0.3], true)
+            state.scaleDown += interpolate([0, notchNook.mode != .closed ? 0.1 : 0.3], true, .linear)
             
             if // Handles actions
                 state.scaleDown > (notchNook.mode != .closed ? 0.03 : 0.1) || // if scaleDown is too big
