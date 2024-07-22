@@ -47,15 +47,11 @@ class Tray {
     private var pressedKeysEvent: NSEvent?
     
     private var isCommandPressed: Bool {
-        guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
-        
-        return pressedKeysFlags.contains(.command)
+        pressedKeysEvent?.modifierFlags.contains(.command) ?? false
     }
     private var isCombiningKeyPressed: Bool {
-        guard let pressedKeysFlags = pressedKeysEvent?.modifierFlags else { return false }
-        
-        return pressedKeysFlags.contains(.command) ||
-                pressedKeysFlags.contains(.shift)
+        let flags = pressedKeysEvent?.modifierFlags ?? []
+        return flags.contains(.command) || flags.contains(.shift)
     }
     
     // MARK: - Initialization
@@ -148,8 +144,7 @@ class Tray {
     }
     
     func openSelectedFiles() {
-        let fileURLs = selectedFiles.map { $0.url }
-        for url in fileURLs {
+        for url in selectedFiles.map(\.url) {
             NSWorkspace.shared.open(url)
         }
     }
@@ -162,7 +157,6 @@ class Tray {
     
     private func updateFiles() {
         let fileManager = FileManager.default
-        let currentURLs = files.map { $0.url }
         var updatedFiles = Set<TrayFile>()
 
         guard let directory = tempDirectory else { return }
@@ -197,12 +191,14 @@ class Tray {
     
 }
 
+// MARK: - QuickLook Datasource
+
 extension Tray: QLPreviewPanelDataSource {
     func numberOfPreviewItems(in panel: QLPreviewPanel!) -> Int {
-        return selectedFiles.count
+        selectedFiles.count
     }
 
     func previewPanel(_ panel: QLPreviewPanel!, previewItemAt index: Int) -> QLPreviewItem! {
-        return selectedFiles[selectedFiles.index(selectedFiles.startIndex, offsetBy: index)].url as QLPreviewItem
+        selectedFiles[selectedFiles.index(selectedFiles.startIndex, offsetBy: index)].url as QLPreviewItem
     }
 }

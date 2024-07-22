@@ -12,13 +12,20 @@ struct TrayFileView: View {
     
     @ObservedObject var file: TrayFile
     let isSelected: Bool
-    var isPreview: Bool = false
-    
+    var isPreview: Bool
+    @Binding var isEditing: Bool
+
     @State private var isHovering = false
-    @State private var isEditing: Bool = false
     @FocusState private var isTextFieldFocused: Bool
     
     @Environment(\.tray) private var tray
+    
+    init(file: TrayFile, isSelected: Bool, isPreview: Bool = false, isEditing: Binding<Bool> = .constant(false)) {
+        self.file = file
+        self.isSelected = isSelected
+        self.isPreview = isPreview
+        self._isEditing = isEditing
+    }
     
     var body: some View {
         VStack(spacing: 2) {
@@ -123,13 +130,12 @@ struct EditingTextFieldStyle: TextFieldStyle {
             .frame(width: 56, alignment: .center)
             .onAppear {
                 doAfter {
-                    if let textField = NSApp.keyWindow?.firstResponder as? NSTextField {
-                        textField.selectText(nil)
-                        if let dotIndex = textField.stringValue.lastIndex(of: ".") {
-                            let range = NSRange(location: 0, length: textField.stringValue.distance(from: textField.stringValue.startIndex, to: dotIndex))
-                            textField.currentEditor()?.selectedRange = range
-                        }
-                    }
+                    guard let textField = NSApp.keyWindow?.firstResponder as? NSTextField else { return }
+                    textField.selectText(nil)
+                    guard let dotIndex = textField.stringValue.lastIndex(of: ".") else { return }
+                    let rangeLenght = textField.stringValue.distance(from: textField.stringValue.startIndex, to: dotIndex)
+                    let range = NSRange(location: 0, length: rangeLenght)
+                    textField.currentEditor()?.selectedRange = range
                 }
             }
     }
