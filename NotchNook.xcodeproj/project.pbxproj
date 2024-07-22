@@ -66,6 +66,9 @@
 		3A20F17B2C2F8E33006A7E1F /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */; };
 		3A20F17D2C2FAB0B006A7E1F /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A20F17C2C2FAB0B006A7E1F /* Animation.swift */; };
 		3A342B092C4D965A003C369C /* UnitCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B082C4D965A003C369C /* UnitCurve.swift */; };
+		3A342B0B2C4DEC2B003C369C /* BrightnessIndicatorSunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B0A2C4DEC2B003C369C /* BrightnessIndicatorSunView.swift */; };
+		3A342B0D2C4DF5FA003C369C /* BrightnessIndicatorValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B0C2C4DF5FA003C369C /* BrightnessIndicatorValueView.swift */; };
+		3A342B0F2C4DF691003C369C /* BrightnessIndicatorCometView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B0E2C4DF691003C369C /* BrightnessIndicatorCometView.swift */; };
 		3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */; };
 		3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* FineTuningView.swift */; };
 		3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */; };
@@ -403,6 +406,9 @@
 		3A20F17A2C2F8E33006A7E1F /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
 		3A20F17C2C2FAB0B006A7E1F /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		3A342B082C4D965A003C369C /* UnitCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitCurve.swift; sourceTree = "<group>"; };
+		3A342B0A2C4DEC2B003C369C /* BrightnessIndicatorSunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorSunView.swift; sourceTree = "<group>"; };
+		3A342B0C2C4DF5FA003C369C /* BrightnessIndicatorValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorValueView.swift; sourceTree = "<group>"; };
+		3A342B0E2C4DF691003C369C /* BrightnessIndicatorCometView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorCometView.swift; sourceTree = "<group>"; };
 		3A357F0F2C29408A0076DB37 /* MediaAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAppProtocol.swift; sourceTree = "<group>"; };
 		3A357F112C294FD20076DB37 /* FineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineTuningView.swift; sourceTree = "<group>"; };
 		3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveLiveActivitiesManager.swift; sourceTree = "<group>"; };
@@ -948,6 +954,9 @@
 			isa = PBXGroup;
 			children = (
 				3A8507732C4B4E5A0092B135 /* BrightnessIndicatorView.swift */,
+				3A342B0A2C4DEC2B003C369C /* BrightnessIndicatorSunView.swift */,
+				3A342B0C2C4DF5FA003C369C /* BrightnessIndicatorValueView.swift */,
+				3A342B0E2C4DF691003C369C /* BrightnessIndicatorCometView.swift */,
 			);
 			path = BrightnessIndicator;
 			sourceTree = "<group>";
@@ -1792,6 +1801,7 @@
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
 				3A5F1E632C4B6AE7007E77ED /* GlobalBrightnessAndVolume.swift in Sources */,
+				3A342B0D2C4DF5FA003C369C /* BrightnessIndicatorValueView.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
 				EC758F812BF2F19B00B873B0 /* NotchShape.swift in Sources */,
 				3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */,
@@ -1851,6 +1861,7 @@
 				3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */,
 				EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */,
 				3A3F59E82C2A582600906FFA /* checkForUpdates.swift in Sources */,
+				3A342B0B2C4DEC2B003C369C /* BrightnessIndicatorSunView.swift in Sources */,
 				EC758F962BF2F1A400B873B0 /* truncateFileName.swift in Sources */,
 				EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */,
 				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
@@ -1958,6 +1969,7 @@
 				3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */,
 				3A1691D82C2FB20B0014C326 /* CloseWindowKey.swift in Sources */,
 				ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */,
+				3A342B0F2C4DF691003C369C /* BrightnessIndicatorCometView.swift in Sources */,
 				EC8D60042BFAE90D00E67ECC /* TrayFilesCountView.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
