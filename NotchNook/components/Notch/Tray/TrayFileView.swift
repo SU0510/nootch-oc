@@ -13,18 +13,16 @@ struct TrayFileView: View {
     @ObservedObject var file: TrayFile
     let isSelected: Bool
     var isPreview: Bool
-    @Binding var isEditing: Bool
 
     @State private var isHovering = false
     @FocusState private var isTextFieldFocused: Bool
     
     @Environment(\.tray) private var tray
     
-    init(file: TrayFile, isSelected: Bool, isPreview: Bool = false, isEditing: Binding<Bool> = .constant(false)) {
+    init(file: TrayFile, isSelected: Bool, isPreview: Bool = false) {
         self.file = file
         self.isSelected = isSelected
         self.isPreview = isPreview
-        self._isEditing = isEditing
     }
     
     var body: some View {
@@ -61,21 +59,23 @@ struct TrayFileView: View {
             .keyboardShortcut("c", modifiers: .command)
             Button("Rename") {
                 doAfter {
-                    isEditing = true
+                    tray.isEditing = true
                     isTextFieldFocused = true
                 }
             }
         }
         .onTapGesture {
-            doAfter { if isEditing && !isHovering { isEditing = false } }
+            doAfter {
+                if tray.isEditing && !isHovering { tray.isEditing = false }
+            }
         }
     }
     
     var fileNameView: some View {
         VStack(alignment: .leading) {
-            if isEditing {
+            if tray.isEditing {
                 TextField("", text: $file.name, onCommit: {
-                    isEditing = false
+                    tray.isEditing = false
                 })
                 .textFieldStyle(EditingTextFieldStyle())
                 .focused($isTextFieldFocused)
@@ -90,7 +90,7 @@ struct TrayFileView: View {
                     )
                     .onTapGesture {
                         doAfter {
-                            isEditing = true
+                            tray.isEditing = true
                             isTextFieldFocused = true
                         }
                     }

@@ -12,6 +12,8 @@ import Quartz
 @Observable
 class Tray {
     
+    var isEditing: Bool = false
+    
     private enum KeyCode: UInt16 {
         case c = 8
         case spaceBar = 49
@@ -95,6 +97,9 @@ class Tray {
         if accessEnabled {
             NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
                 guard let self = self else { return event }
+                
+                if isEditing { return event }
+                
                 if event.keyCode == KeyCode.spaceBar.rawValue {
                     self.quickLookSelectedFiles()
                     return nil
