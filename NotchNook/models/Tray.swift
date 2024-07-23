@@ -13,11 +13,13 @@ import Quartz
 class Tray {
     
     var isEditing: Bool = false
+    var shouldRename: Bool = false
     
     private enum KeyCode: UInt16 {
         case c = 8
         case spaceBar = 49
         case returnKey = 36
+        case esc = 53
     }
     
     private var tempDirectory: URL?
@@ -78,7 +80,7 @@ class Tray {
         }
     }
     
-    func setupFolderMonitor() {
+    private func setupFolderMonitor() {
         guard let tempDirectory else { return }
         folderMonitor = FolderMonitor(path: tempDirectory.path()) { [weak self] in
             doAfter { self?.updateFiles() }
@@ -86,7 +88,7 @@ class Tray {
         folderMonitor?.start()
     }
     
-    func setupEvents() {
+    private func setupEvents() {
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
             self?.pressedKeysEvent = event
             return event
@@ -95,32 +97,56 @@ class Tray {
         let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true]
         let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
         
-        if accessEnabled {
-            NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
-                guard let self = self else { return event }
-                
-                guard let keyCode = KeyCode(rawValue: event.keyCode) else { return event }
-                
-                if self.isEditing && keyCode != .returnKey {
-                    return event
-                }
-                                
-                switch keyCode {
-                    case .c:
-                        guard self.isCommandPressed else { return event }
-                        self.copySelectedFilesToClipboard()
-                        return nil
-                        
-                    case .spaceBar:
-                        self.quickLookSelectedFiles()
-                        return nil 
-                        
-                    case .returnKey:
-                        guard self.selectedFiles.count == 1 else { return event }
-                        self.isEditing.toggle()
-                        return nil
-                }
+        guard accessEnabled else { return }
+        
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard 
+                let self = self,
+                let keyCode = KeyCode(rawValue: event.keyCode)
+            else { return event }
+            
+            if isEditing {
+                return handleEditingKeys(event: event, key: keyCode)
+            } else {
+                return handleNonEditingKeys(event: event, key: keyCode)
             }
+        }
+    }
+    
+    private func handleEditingKeys(event: NSEvent, key: KeyCode) -> NSEvent? {
+        guard selectedFiles.count == 1 else { return event }
+        shouldRename = false
+        
+        switch key {
+            case .returnKey:
+                shouldRename = true
+                isEditing.toggle()
+                return nil
+                
+            case .esc:
+                self.isEditing = false
+                return nil
+                
+            default: return event
+        }
+    }
+    
+    private func handleNonEditingKeys(event: NSEvent, key: KeyCode) -> NSEvent? {
+        switch key {
+            case .c:
+                guard self.isCommandPressed else { return event }
+                self.copySelectedFilesToClipboard()
+                return nil
+                
+            case .spaceBar:
+                self.toggleQuickLookState()
+                return nil
+                
+            case .returnKey:
+                self.isEditing.toggle()
+                return nil
+                
+            default: return event
         }
     }
     
@@ -161,10 +187,15 @@ class Tray {
         pasteboard.writeObjects(urls as [NSPasteboardWriting])
     }
 
-    private func quickLookSelectedFiles() {
+    private func toggleQuickLookState() {
         guard let panel = QLPreviewPanel.shared() else { return }
-        panel.dataSource = self
-        panel.makeKeyAndOrderFront(nil)
+        
+        if panel.isVisible {
+            panel.orderOut(nil)
+        } else {
+            panel.dataSource = self
+            panel.makeKeyAndOrderFront(nil)
+        }
     }
     
     private func updateFiles() {

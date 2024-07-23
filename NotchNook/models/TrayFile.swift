@@ -61,6 +61,7 @@ class TrayFile: ObservableObject {
         }
     }
     
+    /// To be called when the rename is done externally
     private func updateFileName() {
         let fileManager = FileManager.default
         let parentDirectory = url.deletingLastPathComponent()

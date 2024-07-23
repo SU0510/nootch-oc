@@ -15,12 +15,14 @@ struct TrayFileView: View {
     var isPreview: Bool
 
     @State private var isHovering = false
+    @State private var fileName: String
     @FocusState private var isTextFieldFocused: Bool
     
     @Environment(\.tray) private var tray
     
     init(file: TrayFile, isSelected: Bool, isPreview: Bool = false) {
         self.file = file
+        self.fileName = file.name
         self.isSelected = isSelected
         self.isPreview = isPreview
     }
@@ -75,16 +77,21 @@ struct TrayFileView: View {
     var fileNameView: some View {
         VStack(alignment: .leading) {
             if tray.isEditing {
-                TextField("", text: $file.name, onCommit: {
-                    tray.isEditing = false
-                })
-                .textFieldStyle(EditingTextFieldStyle())
-                .focused($isTextFieldFocused)
-                .onAppear {
-                    doAfter {
-                        if tray.isEditing { isTextFieldFocused = true }
+                TextField("", text: $fileName)
+                    .textFieldStyle(EditingTextFieldStyle())
+                    .focused($isTextFieldFocused)
+                    .onAppear {
+                        doAfter {
+                            isTextFieldFocused = true
+                            fileName = file.name
+                        }
                     }
-                }
+                    .onDisappear {
+                        doAfter {
+                            guard tray.shouldRename else { return }
+                            file.rename(to: fileName)
+                        }
+                    }
             } else {
                 Text(file.nameTruncated)
                     .allowsHitTesting(true)
