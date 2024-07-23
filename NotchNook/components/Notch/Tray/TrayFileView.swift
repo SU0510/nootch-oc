@@ -64,9 +64,10 @@ struct TrayFileView: View {
                 }
             }
         }
-        .onTapGesture {
+        .onTapGesture(count: 2) {
             doAfter {
-                if tray.isEditing && !isHovering { tray.isEditing = false }
+                guard NSApp.currentEvent?.clickCount == 2 else { return }
+                tray.openFile(file)
             }
         }
     }
@@ -79,6 +80,11 @@ struct TrayFileView: View {
                 })
                 .textFieldStyle(EditingTextFieldStyle())
                 .focused($isTextFieldFocused)
+                .onAppear {
+                    doAfter {
+                        if tray.isEditing { isTextFieldFocused = true }
+                    }
+                }
             } else {
                 Text(file.nameTruncated)
                     .allowsHitTesting(true)

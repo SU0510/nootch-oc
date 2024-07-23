@@ -17,6 +17,7 @@ class Tray {
     private enum KeyCode: UInt16 {
         case c = 8
         case spaceBar = 49
+        case returnKey = 36
     }
     
     private var tempDirectory: URL?
@@ -98,16 +99,27 @@ class Tray {
             NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
                 guard let self = self else { return event }
                 
-                if isEditing { return event }
+                guard let keyCode = KeyCode(rawValue: event.keyCode) else { return event }
                 
-                if event.keyCode == KeyCode.spaceBar.rawValue {
-                    self.quickLookSelectedFiles()
-                    return nil
-                } else if event.keyCode == KeyCode.c.rawValue && self.isCommandPressed {
-                    self.copySelectedFilesToClipboard()
-                    return nil
+                if self.isEditing && keyCode != .returnKey {
+                    return event
                 }
-                return event
+                                
+                switch keyCode {
+                    case .c:
+                        guard self.isCommandPressed else { return event }
+                        self.copySelectedFilesToClipboard()
+                        return nil
+                        
+                    case .spaceBar:
+                        self.quickLookSelectedFiles()
+                        return nil 
+                        
+                    case .returnKey:
+                        guard self.selectedFiles.count == 1 else { return event }
+                        self.isEditing.toggle()
+                        return nil
+                }
             }
         }
     }
@@ -117,6 +129,7 @@ class Tray {
     func removeFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.remove(file) } }
     func addFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.insert(file) } }
     func addFiles(_ newFiles: [TrayFile]) { withAnimation(.smooth) { files = files.union(newFiles) } }
+    func openFile(_ file: TrayFile) { NSWorkspace.shared.open(file.url) }
     
     func addFilesFromURLs(_ fileURLs: [URL]) {
         let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
@@ -146,12 +159,6 @@ class Tray {
         pasteboard.clearContents()
         let urls = selectedFiles.map { $0.url }
         pasteboard.writeObjects(urls as [NSPasteboardWriting])
-    }
-    
-    func openSelectedFiles() {
-        for url in selectedFiles.map(\.url) {
-            NSWorkspace.shared.open(url)
-        }
     }
 
     private func quickLookSelectedFiles() {
