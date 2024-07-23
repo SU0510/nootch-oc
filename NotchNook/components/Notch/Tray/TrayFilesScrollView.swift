@@ -22,9 +22,6 @@ struct TrayFilesScrollView: View {
                 HStack(spacing: 4) {
                     ForEach(Array(files).sorted(by: { $0.addedAt.timeIntervalSince1970 > $1.addedAt.timeIntervalSince1970 })) { file in
                         TrayFileView(file: file, isSelected: selectedFiles.contains(file))
-                            .onTapGesture {
-                                selectFile(file)
-                            }
                     }
                 }
                 .padding(.all, 8)
