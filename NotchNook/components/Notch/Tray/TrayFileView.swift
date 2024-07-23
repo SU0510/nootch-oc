@@ -61,7 +61,7 @@ struct TrayFileView: View {
             .keyboardShortcut("c", modifiers: .command)
             Button("Rename") {
                 doAfter {
-                    tray.isEditing = true
+                    tray.editingFile = file
                     isTextFieldFocused = true
                 }
             }
@@ -76,7 +76,7 @@ struct TrayFileView: View {
     
     var fileNameView: some View {
         VStack(alignment: .leading) {
-            if tray.isEditing {
+            if let editingFile = tray.editingFile, editingFile == file {
                 TextField("", text: $fileName)
                     .textFieldStyle(EditingTextFieldStyle())
                     .focused($isTextFieldFocused)
@@ -103,7 +103,7 @@ struct TrayFileView: View {
                     )
                     .onTapGesture {
                         doAfter {
-                            tray.isEditing = true
+                            tray.editingFile = file
                             isTextFieldFocused = true
                         }
                     }

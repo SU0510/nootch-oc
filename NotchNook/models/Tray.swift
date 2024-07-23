@@ -12,7 +12,7 @@ import Quartz
 @Observable
 class Tray {
     
-    var isEditing: Bool = false
+    var editingFile: TrayFile?
     var shouldRename: Bool = false
     
     private enum KeyCode: UInt16 {
@@ -105,7 +105,7 @@ class Tray {
                 let keyCode = KeyCode(rawValue: event.keyCode)
             else { return event }
             
-            if isEditing {
+            if let editingFile {
                 return handleEditingKeys(event: event, key: keyCode)
             } else {
                 return handleNonEditingKeys(event: event, key: keyCode)
@@ -120,11 +120,11 @@ class Tray {
         switch key {
             case .returnKey:
                 shouldRename = true
-                isEditing.toggle()
+                editingFile = nil
                 return nil
                 
             case .esc:
-                self.isEditing = false
+                editingFile = nil
                 return nil
                 
             default: return event
@@ -143,7 +143,9 @@ class Tray {
                 return nil
                 
             case .returnKey:
-                self.isEditing.toggle()
+                if let file = selectedFiles.first, selectedFiles.count == 1 {
+                    editingFile = file
+                }
                 return nil
                 
             default: return event
