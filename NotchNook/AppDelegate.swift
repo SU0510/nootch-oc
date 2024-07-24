@@ -10,6 +10,7 @@ import Sparkle
 import AppKit
 import SwiftDate
 import SwiftData
+import Defaults
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
@@ -44,7 +45,7 @@ import SwiftData
         windowsManager = WindowsManager(updater: updaterController.updater)
         
         // Initialize and start the keybind listener
-        if true { // inject default option toggle here
+        if Defaults[.liveActivitiesSettings].enableHUDReplacement {
             HUDManager.disable() // disable volume and brightness hud
             
             keybindListener = KeybindListener()

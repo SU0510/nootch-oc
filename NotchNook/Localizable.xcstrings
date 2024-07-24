@@ -10324,6 +10324,9 @@
         }
       }
     },
+    "Enable volume and brightness HUD replacement" : {
+
+    },
     "Files Tray" : {
       "localizations" : {
         "af" : {
@@ -12725,6 +12728,9 @@
           }
         }
       }
+    },
+    "If you change this setting, you need to restart the app." : {
+
     },
     "Inactivity timeout:" : {
       "localizations" : {
@@ -23597,6 +23603,9 @@
           }
         }
       }
+    },
+    "This setting requires you to provide NotchNook with accessibility permissions so we can listen for media key presses (volume and brightness buttons)." : {
+
     },
     "This will reset everything except your license." : {
       "localizations" : {

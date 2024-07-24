@@ -34,6 +34,14 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 Text("If enabled, some live activities will show a short info on mouse hover.")
                     .settingDescription()
             }
+            
+            Settings.Section(title: String(localized: "")) {
+                Toggle("Enable volume and brightness HUD replacement", isOn: $liveActivitiesSettings.enableHUDReplacement)
+                Text("This setting requires you to provide NotchNook with accessibility permissions.")
+                    .settingDescription()
+                Text("If you change this setting, you will need to restart the app to apply your changes.")
+                    .settingDescription()
+            }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
     }
