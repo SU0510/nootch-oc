@@ -12729,7 +12729,7 @@
         }
       }
     },
-    "If you change this setting, you need to restart the app." : {
+    "If you change this setting, you will need to restart the app to apply your changes." : {
 
     },
     "Inactivity timeout:" : {
@@ -23604,7 +23604,7 @@
         }
       }
     },
-    "This setting requires you to provide NotchNook with accessibility permissions so we can listen for media key presses (volume and brightness buttons)." : {
+    "This setting requires you to provide NotchNook with accessibility permissions." : {
 
     },
     "This will reset everything except your license." : {
