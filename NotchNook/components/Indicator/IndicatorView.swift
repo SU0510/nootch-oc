@@ -10,11 +10,14 @@ import SwiftUI
 struct IndicatorView: View {
     var indicator: Indicator
     @Environment(\.notchSize) private var notchSize
+    
     var body: some View {
         Group {
             switch indicator.kind {
-                case .brightness: BrightnessIndicatorView(indicator: indicator)
-                case .volume: BrightnessIndicatorView(indicator: indicator)
+            case .brightness:
+                BrightnessIndicatorView(indicator: indicator)
+            case .volume:
+                VolumeIndicatorView(indicator: indicator)
             }
         }
         .frame(

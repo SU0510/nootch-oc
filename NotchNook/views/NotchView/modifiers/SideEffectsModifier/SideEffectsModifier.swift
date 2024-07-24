@@ -60,9 +60,9 @@ extension NotchView {
                         notchNook.indicator = .init(kind: .brightness, value: new)
                     }
                 }
-                .onChange(of: GlobalBrightnessAndVolume.shared.id) { _, _ in
+                .onChange(of: GlobalBrightnessAndVolume.shared.volume) { _, _ in
                     withAnimation(.bouncySmooth) {
-                        notchNook.indicator = .init(kind: .brightness, value: GlobalBrightnessAndVolume.shared.brightness)
+                        notchNook.indicator = .init(kind: .volume, value: GlobalBrightnessAndVolume.shared.volume)
                     }
                 }
                 .onChange(of: isKeyWindow) { _, newVal in

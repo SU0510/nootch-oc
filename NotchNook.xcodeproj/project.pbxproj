@@ -166,6 +166,7 @@
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
+		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
 		BB50026F2C4AC8FD0028FCB5 /* KeybindListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50026E2C4AC8FA0028FCB5 /* KeybindListener.swift */; };
 		BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */; };
 		BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */; };
@@ -498,6 +499,7 @@
 		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3AE405502C2D499300E8D927 /* RichToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarView.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorView.swift; sourceTree = "<group>"; };
 		BB50026E2C4AC8FA0028FCB5 /* KeybindListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindListener.swift; sourceTree = "<group>"; };
 		BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemIntegrationHelper.swift; sourceTree = "<group>"; };
 		BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtil.swift; sourceTree = "<group>"; };
@@ -944,6 +946,7 @@
 		3A8507702C4B3E2E0092B135 /* Indicator */ = {
 			isa = PBXGroup;
 			children = (
+				BB3D6BDE2C51482200E3B0C5 /* VolumeIndicator */,
 				3A8507752C4B59E80092B135 /* BrightnessIndicator */,
 				3A8507712C4B3E370092B135 /* IndicatorView.swift */,
 			);
@@ -1008,6 +1011,14 @@
 				3AC36D832C2543DC0000F995 /* quickPeek.mov */,
 			);
 			path = videos;
+			sourceTree = "<group>";
+		};
+		BB3D6BDE2C51482200E3B0C5 /* VolumeIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */,
+			);
+			path = VolumeIndicator;
 			sourceTree = "<group>";
 		};
 		BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */ = {
@@ -1934,6 +1945,7 @@
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
+				BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */,
 				3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */,
 				3A357F102C29408A0076DB37 /* MediaAppProtocol.swift in Sources */,
 				3A3F59EA2C2A587700906FFA /* insertUpdateLAIfOldVersion.swift in Sources */,
