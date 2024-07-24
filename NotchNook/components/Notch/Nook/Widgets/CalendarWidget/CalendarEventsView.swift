@@ -11,14 +11,15 @@ import SmoothGradient
 
 struct CalendarEventsView: View {
     var events: [EKEvent]?
+    
     var body: some View {
         GeometryReader { geo in
             Group {
                 if let events {
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack(spacing: 0) {
-                            ForEach(events, id: \.eventIdentifier) { event in
-                                CalendarEventView(event: event, width: geo.size.width)
+                            ForEach(events.indices, id: \.self) { index in
+                                CalendarEventView(event: events[index], width: geo.size.width)
                             }
                         }
                         .padding(EdgeInsets(top: CalendarEventsViewShadows.height, leading: 0, bottom: CalendarEventsViewShadows.height + 8, trailing: 0))
@@ -37,6 +38,9 @@ struct CalendarEventsView: View {
                 }
             }
             .transition(.scaleAndBlur)
+        }
+        .onAppear {
+            print("CalendarEventsView received events: \(events?.count ?? 0)")
         }
     }
 }

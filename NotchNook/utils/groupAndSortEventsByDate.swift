@@ -8,18 +8,17 @@
 import EventKit
 import SwiftDate
 
-func groupAndSortEventsByDate(_ events: [EKEvent]) -> [Date: [EKEvent]] {
+func groupAndSortEventsByDateAndTime(_ events: [EKEvent]) -> [Date: [EKEvent]] {
     var groupedEvents = [Date: [EKEvent]]()
     let calendar = Calendar.current
     
     for event in events {
-        let startDate = calendar.startOfDay(for: event.startDate)
+        let startDate = calendar.date(bySettingHour: calendar.component(.hour, from: event.startDate),
+                                      minute: calendar.component(.minute, from: event.startDate),
+                                      second: calendar.component(.second, from: event.startDate),
+                                      of: calendar.startOfDay(for: event.startDate))
         
-        if groupedEvents[startDate] != nil {
-            groupedEvents[startDate]?.append(event)
-        } else {
-            groupedEvents[startDate] = [event]
-        }
+        groupedEvents[startDate ?? event.startDate, default: []].append(event)
     }
     
     for (date, events) in groupedEvents {
@@ -34,3 +33,5 @@ func groupAndSortEventsByDate(_ events: [EKEvent]) -> [Date: [EKEvent]] {
     
     return groupedEvents
 }
+
+

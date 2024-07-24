@@ -13,19 +13,29 @@ import SwiftDate
 struct CalendarWidgetView: View {
     static let showingDatesCount = 90
     
-//    @Environment(\.calendarWidgetSettings) private var calendarWidgetSettings
     @State private var selectedDateIndex = Self.showingDatesCount / 2
     @State private var showingDates: [Date] = getRangeOfDays(count: Self.showingDatesCount)
     @State private var offset: Double = 0
     
     var selectedDate: Date {
-        if selectedDateIndex < 0 { return showingDates[0] }
-        if selectedDateIndex >= showingDates.count { return showingDates[showingDates.count - 1] }
-        return showingDates[selectedDateIndex]
+        let baseDate: Date
+        if selectedDateIndex < 0 {
+            baseDate = showingDates[0]
+        } else if selectedDateIndex >= showingDates.count {
+            baseDate = showingDates[showingDates.count - 1]
+        } else {
+            baseDate = showingDates[selectedDateIndex]
+        }
+
+        let calendar = Calendar.current
+        let date = calendar.startOfDay(for: baseDate)
+        return date
     }
+
     
     var body: some View {
         let events = CalendarManager.shared.eventsDatesDict
+        
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
                 ScrollableDaysView(showingDates: showingDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
@@ -33,8 +43,14 @@ struct CalendarWidgetView: View {
                 CalendarEventsView(events: events[selectedDate])
             }
         }
+        .environmentObject(CalendarManager.shared)
         .task {
-            _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+            let startDate = Calendar.current.startOfDay(for: Date())
+            let endDate = Calendar.current.date(byAdding: .day, value: 7, to: startDate)!
+            try? await CalendarManager.shared.fetchEvents(startDate: startDate, endDate: endDate)
+        }
+        .onAppear {
+            print("Number of events for selected date: \(events[selectedDate].count)")
         }
     }
     

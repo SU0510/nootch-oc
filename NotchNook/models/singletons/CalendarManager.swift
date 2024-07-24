@@ -25,29 +25,29 @@ public enum CalendarManagerError: Error, LocalizedError {
     var localizedDescription: String {
         switch self {
             case .invalidEvent: return "Invalid event"
-            case .unableToAccessCalendar: return "Unable to access celendar"
+            case .unableToAccessCalendar: return "Unable to access calendar"
             case let .mapFromError(error): return error.localizedDescription
             case let .eventAuthorizationStatus(status):
                 if let status = status {
-                    return "Failed to authorize event persmissson, status: \(status)"
+                    return "Failed to authorize event permission, status: \(status)"
                 } else {
-                    return "Failed to authorize event persmissson"
+                    return "Failed to authorize event permission"
                 }
         }
     }
 }
 
-@Observable
-public final class CalendarManager {
+@MainActor
+class CalendarManager: ObservableObject {
     
     // MARK: - Properties
     
     /// Streams of EKEvent instances
-    public var eventsDatesDict = [Date:[EKEvent]]()
+    @Published var eventsDatesDict: [Date: [EKEvent]] = [:]
     public var events = [EKEvent]() {
         didSet {
             self.scheduleLiveActivities()
-            self.eventsDatesDict = groupAndSortEventsByDate(events)
+            self.eventsDatesDict = groupAndSortEventsByDateAndTime(events)
         }
     }
     
@@ -79,6 +79,7 @@ public final class CalendarManager {
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(_:)), name: .EKEventStoreChanged, object: eventStore)
+        print("Added observer for EKEventStoreChanged")
         dailyTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(dailyTask), userInfo: nil, repeats: true)
         defaultsTask = Task { [weak self] in
             for await _ in Defaults.updates(.calendarLiveActivitySettings) {
@@ -86,11 +87,13 @@ public final class CalendarManager {
             }
         }
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: .EKEventStoreChanged, object: eventStore)
+        print("Removed observer for EKEventStoreChanged")
         dailyTimer?.invalidate()
     }
+
     
     @objc private func storeChanged(_ notification: Notification) {
         Task {
@@ -149,10 +152,13 @@ public final class CalendarManager {
     /// - Returns: EKAuthorizationStatus enum
     public func requestEventStoreAuthorization() async throws -> EKAuthorizationStatus {
         let granted = try await requestCalendarAccess()
+        print("Calendar access granted: \(granted)")
         if granted {
-            return EKEventStore.authorizationStatus(for: .event)
-        }
-        else {
+            let authorizationStatus = EKEventStore.authorizationStatus(for: .event)
+            print("Authorization status: \(authorizationStatus.rawValue)")
+            return authorizationStatus
+        } else {
+            print("Unable to access calendar")
             throw CalendarManagerError.unableToAccessCalendar
         }
     }
@@ -269,27 +275,43 @@ public final class CalendarManager {
         endDate: Date,
         filterCalendarIDs: [String] = []
     ) async throws -> [EKEvent] {
+        print("Fetching events from \(startDate) to \(endDate)")
+
         let authorization = try await requestEventStoreAuthorization()
         guard authorization == .fullAccess else {
+            print("Authorization status is not fullAccess: \(authorization.rawValue)")
             throw CalendarManagerError.eventAuthorizationStatus(nil)
         }
-        
+
         let calendars = self.eventStore.calendars(for: .event).filter { calendar in
             if filterCalendarIDs.isEmpty { return true }
             return filterCalendarIDs.contains(calendar.calendarIdentifier)
         }
-        
+
         let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
-        let events = self.eventStore
-            .events(matching: predicate)
-            .uniqued(on: \.eventIdentifier) // filter duplicated events
-        
-        // MainActor is a type that runs code on main thread.
+        let events = self.eventStore.events(matching: predicate).uniqued(on: \.eventIdentifier)
+
         await MainActor.run {
-            self.events = events
+            for event in events {
+                let date = Calendar.current.startOfDay(for: event.startDate)
+                if self.eventsDatesDict[date] == nil {
+                    self.eventsDatesDict[date] = []
+                }
+                self.eventsDatesDict[date]?.append(event)
+            }
+            print("Updated eventsDatesDict: \(self.eventsDatesDict)")
         }
-        
+
+        print("Fetched \(events.count) events")
         return events
+    }
+
+    
+    public func fetchEvents(from startDate: Date = .now) async throws {
+        guard let endDate = Calendar.current.date(byAdding: .year, value: 1, to: startDate) else {
+            throw CalendarManagerError.invalidEvent
+        }
+        try await fetchEvents(startDate: startDate, endDate: endDate)
     }
     
     // MARK: Private
@@ -314,11 +336,16 @@ public final class CalendarManager {
     
     private func requestCalendarAccess() async throws -> Bool {
         try await withCheckedThrowingContinuation { [weak self] continuation in
-            guard let self else { return }
+            guard let self = self else {
+                print("Self is nil in requestCalendarAccess")
+                return
+            }
             let completion: RequestAccessCompletion = { granted, error in
                 if let error {
+                    print("Error requesting calendar access: \(error)")
                     continuation.resume(throwing: error)
                 } else {
+                    print("Calendar access granted: \(granted)")
                     continuation.resume(returning: granted)
                 }
             }
@@ -326,6 +353,7 @@ public final class CalendarManager {
             self.eventStore.requestFullAccessToEvents(completion: completion)
         }
     }
+
     
 }
 
@@ -384,7 +412,7 @@ extension EKEventStore {
     /// Calendar for current AppName
     /// - Returns: App calendar
     /// - Parameter calendarColor: default new calendar color
-    public func calendarForApp(calendarColor: CGColor = .init(red: 1, green: 0, blue: 0, alpha: 1)) -> EKCalendar? {
+    @MainActor public func calendarForApp(calendarColor: CGColor = .init(red: 1, green: 0, blue: 0, alpha: 1)) -> EKCalendar? {
         guard let appName = CalendarManager.appName else {
 #if DEBUG
             print("App name is nil, please config with `CalendarManager.configureWithAppName` in AppDelegate")
