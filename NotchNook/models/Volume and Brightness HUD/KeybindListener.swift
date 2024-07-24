@@ -6,20 +6,36 @@
 //
 
 import Cocoa
+import CoreGraphics
 
-class KeybindListener {
-    private var eventTap: CFMachPort?
+enum MediaKey: Int32 {
+    case brightnessUp = 2
+    case brightnessDown = 3
+    case volumeUp = 0
+    case volumeDown = 1
+    case mute = 7
+}
+
+struct KeyEvent {
+    let keycode: Int32
+    let keyFlags: Int32
+    let keyPressed: Bool
+    let keyRepeat: Bool
+}
+
+class KeybindListener: NSObject {
+    private var keyEventPort: CFMachPort?
     private var runLoopSource: CFRunLoopSource?
+    private var runLoop: CFRunLoop?
     
-    init() {}
+    private let keysToWatch: [MediaKey] = [.brightnessUp, .brightnessDown, .volumeUp, .volumeDown, .mute]
+    
+    override init() {
+        super.init()
+    }
     
     deinit {
         stop()
-    }
-    
-    private func checkAccessibilityPermissions() -> Bool {
-        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true]
-        return AXIsProcessTrustedWithOptions(options)
     }
     
     func start() {
@@ -39,97 +55,162 @@ class KeybindListener {
             return
         }
         
-        let eventMask = (1 << NX_SYSDEFINED)
+        do {
+            try startWatchingMediaKeys()
+        } catch {
+            print("Failed to start watching media keys: \(error)")
+        }
+    }
+    
+    func stop() {
+        stopWatchingMediaKeys()
+    }
+    
+    private func checkAccessibilityPermissions() -> Bool {
+        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true]
+        return AXIsProcessTrustedWithOptions(options)
+    }
+    
+    private func startWatchingMediaKeys() throws {
+        let eventCallback: CGEventTapCallBack = { proxy, type, event, refcon in
+            let listener = Unmanaged<KeybindListener>.fromOpaque(refcon!).takeUnretainedValue()
+            return listener.handleCGEvent(type: type, event: event)
+        }
         
         guard let eventTap = CGEvent.tapCreate(
             tap: .cghidEventTap,
             place: .headInsertEventTap,
-            options: .defaultTap,
-            eventsOfInterest: CGEventMask(eventMask),
-            callback: { (proxy, type, event, refcon) -> Unmanaged<CGEvent>? in
-                guard let listener = refcon?.load(as: KeybindListener.self) else { return Unmanaged.passUnretained(event) }
-                return listener.handleEvent(proxy: proxy, type: type, event: event)
-            },
+            options: .listenOnly, // Changed from .defaultTap to .listenOnly
+            eventsOfInterest: CGEventMask(1 << NX_SYSDEFINED),
+            callback: eventCallback,
             userInfo: Unmanaged.passUnretained(self).toOpaque()
         ) else {
-            print("Failed to create event tap")
-            return
+            throw EventTapError.eventTapCreationFailure
         }
         
-        self.eventTap = eventTap
+        keyEventPort = eventTap
         
         runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
-        CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+        guard let source = runLoopSource else {
+            throw EventTapError.runLoopSourceCreationFailure
+        }
+        
+        runLoop = CFRunLoopGetCurrent()
+        CFRunLoopAddSource(runLoop, source, .commonModes)
+        
         CGEvent.tapEnable(tap: eventTap, enable: true)
         
-        print("Keybind listener started")
+        print("Media key listener started")
     }
     
-    func stop() {
-        if let eventTap = eventTap {
-            CGEvent.tapEnable(tap: eventTap, enable: false)
+    private func stopWatchingMediaKeys() {
+        if let source = runLoopSource {
+            CFRunLoopSourceInvalidate(source)
         }
-        if let runLoopSource = runLoopSource {
-            CFRunLoopRemoveSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+        if let runLoop = runLoop {
+            CFRunLoopStop(runLoop)
         }
-        eventTap = nil
+        if let port = keyEventPort {
+            CFMachPortInvalidate(port)
+        }
+        
+        keyEventPort = nil
         runLoopSource = nil
-        print("Keybind listener stopped")
+        runLoop = nil
+        
+        print("Media key listener stopped")
     }
     
-    private func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
-        guard type.rawValue == NX_SYSDEFINED else { return Unmanaged.passUnretained(event) }
+    private func handleCGEvent(type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
+        guard type.rawValue == UInt32(NX_SYSDEFINED) else {
+            return Unmanaged.passRetained(event)
+        }
         
-        guard let nsEvent = NSEvent(cgEvent: event) else { return Unmanaged.passUnretained(event) }
+        guard let nsEvent = NSEvent(cgEvent: event) else {
+            return Unmanaged.passRetained(event)
+        }
         
-        if nsEvent.subtype.rawValue == NX_SUBTYPE_AUX_CONTROL_BUTTONS {
-            let data = nsEvent.data1
-            let keyCode = (data & 0xFFFF0000) >> 16
-            if let mediaKey = MediaKey(rawValue: Int32(keyCode)) {
-                handleMediaKey(mediaKey, event: nsEvent)
+        if nsEvent.isMediaKeyEvent {
+            let keyEvent = nsEvent.keyEvent
+            if let mediaKey = MediaKey(rawValue: keyEvent.keycode) {
+                handleMediaKey(mediaKey, event: keyEvent)
             }
         }
         
-        return Unmanaged.passUnretained(event)
+        return Unmanaged.passRetained(event)
     }
     
-    private func handleMediaKey(_ mediaKey: MediaKey, event: NSEvent) {
-        let keyState = event.data1 & 0x0000FFFF
-        let keyPressed = (keyState & 0xFF00) >> 8 == 0x0A
-        
-        guard keyPressed else { return }
+    private func handleMediaKey(_ mediaKey: MediaKey, event: KeyEvent) {
+        guard event.keyPressed else { return }
         
         switch mediaKey {
         case .brightnessUp, .brightnessDown:
-            // we need to delay this so the OS has time to process the change (brightness or volume)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
-                do {
-                    let newBrightness = try BrightnessCoordinator.getDisplayBrightness()
-                    GlobalBrightnessAndVolume.shared.brightness = Double(newBrightness)
-//                    print(newBrightness)
-                } catch {
-                    print("Error fetching brightness: \(error)")
-                }
-            }
+            handleBrightnessChange()
         case .volumeUp, .volumeDown, .mute:
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
-                do {
-                    let newVolume = try SoundCoordinator.getSoundVolume()
-                    let device = try SoundCoordinator.getAudioDeviceType()
-                    GlobalBrightnessAndVolume.shared.volume = Double(newVolume)
-//                    print(newVolume, device)
-                } catch {
-                    print("Failed to get volume: \(error)")
-                }
+            handleVolumeChange()
+        }
+    }
+    
+    private func handleBrightnessChange() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
+            do {
+                let newBrightness = try BrightnessCoordinator.getDisplayBrightness()
+                GlobalBrightnessAndVolume.shared.brightness = Double(newBrightness)
+            } catch {
+                print("Error fetching brightness: \(error)")
+            }
+        }
+    }
+    
+    private func handleVolumeChange() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
+            do {
+                let newVolume = try SoundCoordinator.getSoundVolume()
+//                let device = try SoundCoordinator.getAudioDeviceType()
+                GlobalBrightnessAndVolume.shared.volume = Double(newVolume)
+            } catch {
+                print("Failed to get volume: \(error)")
             }
         }
     }
 }
 
-enum MediaKey: Int32 {
-    case brightnessUp = 2
-    case brightnessDown = 3
-    case mute = 7
-    case volumeDown = 1
-    case volumeUp = 0
+// MARK: - Extensions
+
+extension NSEvent {
+    var isKeyEvent: Bool {
+        return subtype.rawValue == 8
+    }
+    
+    var keycode: Int32 {
+        return Int32((data1 & 0xffff0000) >> 16)
+    }
+    
+    var keyEvent: KeyEvent {
+        let keyFlags = Int32(data1 & 0x0000ffff)
+        let keyPressed = ((keyFlags & 0xff00) >> 8) == 0xa
+        let keyRepeat = (keyFlags & 0x1) == 0x1
+        return KeyEvent(keycode: keycode, keyFlags: keyFlags, keyPressed: keyPressed, keyRepeat: keyRepeat)
+    }
+    
+    var isMediaKeyEvent: Bool {
+        let mediaKeys: [Int32] = [
+            NX_KEYTYPE_PLAY,
+            NX_KEYTYPE_PREVIOUS,
+            NX_KEYTYPE_NEXT,
+            NX_KEYTYPE_FAST,
+            NX_KEYTYPE_REWIND,
+            NX_KEYTYPE_SOUND_UP,
+            NX_KEYTYPE_SOUND_DOWN,
+            NX_KEYTYPE_MUTE,
+            NX_KEYTYPE_BRIGHTNESS_UP,
+            NX_KEYTYPE_BRIGHTNESS_DOWN
+        ]
+        return isKeyEvent && mediaKeys.contains(keycode)
+    }
+}
+
+enum EventTapError: Error {
+    case eventTapCreationFailure
+    case runLoopSourceCreationFailure
 }
