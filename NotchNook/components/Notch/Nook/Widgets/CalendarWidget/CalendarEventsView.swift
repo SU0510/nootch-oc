@@ -32,9 +32,9 @@ struct CalendarEventsView: View {
         ScrollViewReader { proxy in
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 0) {
-                    ForEach(events ?? [], id: \.eventIdentifier) { event in
+                    ForEach(events ?? [], id: \.self) { event in
                         CalendarEventView(event: event, width: geo.size.width)
-                            .id(event.eventIdentifier)
+                            .id("\(event.eventIdentifier)_\(event.startDate.timeIntervalSince1970)")
                     }
                 }
                 .padding(EdgeInsets(top: CalendarEventsViewShadows.height, leading: 0, bottom: CalendarEventsViewShadows.height + 8, trailing: 0))
