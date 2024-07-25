@@ -34,7 +34,9 @@ extension NotchView {
                 }
                 .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
                     if !old.contains(.calendar) && new.contains(.calendar) {
-                        Task { try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount) }
+                        Task {
+                            try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarManager.numberOfDaysToDisplay)
+                        }
                     }
                 }
                 .onChange(of: state.hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }

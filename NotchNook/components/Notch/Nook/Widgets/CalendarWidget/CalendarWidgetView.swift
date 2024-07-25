@@ -11,20 +11,19 @@ import EventKit
 import SwiftDate
 
 struct CalendarWidgetView: View {
-    static let showingDatesCount = 90
-    
-    @State private var selectedDateIndex = Self.showingDatesCount / 2
-    @State private var showingDates: [Date] = getRangeOfDays(count: Self.showingDatesCount)
+
+    @State private var selectedDateIndex = CalendarManager.numberOfDaysToDisplay / 2
+    @State private var displayedDates: [Date] = getRangeOfDays(count: CalendarManager.numberOfDaysToDisplay)
     @State private var offset: Double = 0
     
     var selectedDate: Date {
         let baseDate: Date
         if selectedDateIndex < 0 {
-            baseDate = showingDates[0]
-        } else if selectedDateIndex >= showingDates.count {
-            baseDate = showingDates[showingDates.count - 1]
+            baseDate = displayedDates[0]
+        } else if selectedDateIndex >= displayedDates.count {
+            baseDate = displayedDates[displayedDates.count - 1]
         } else {
-            baseDate = showingDates[selectedDateIndex]
+            baseDate = displayedDates[selectedDateIndex]
         }
 
         let calendar = Calendar.current
@@ -38,7 +37,7 @@ struct CalendarWidgetView: View {
         
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
-                ScrollableDaysView(showingDates: showingDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
+                ScrollableDaysView(showingDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
                     .zIndex(1)
                 CalendarEventsView(events: events[selectedDate])
             }
@@ -50,7 +49,7 @@ struct CalendarWidgetView: View {
             try? await CalendarManager.shared.fetchEvents(startDate: startDate, endDate: endDate)
         }
         .onAppear {
-            print("Number of events for selected date: \(events[selectedDate].count)")
+            print("Events for selected date \(selectedDate)): \(events[selectedDate]?.count ?? 0)")
         }
     }
     

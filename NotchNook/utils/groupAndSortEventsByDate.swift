@@ -13,10 +13,12 @@ func groupAndSortEventsByDateAndTime(_ events: [EKEvent]) -> [Date: [EKEvent]] {
     let calendar = Calendar.current
     
     for event in events {
-        let startDate = calendar.date(bySettingHour: calendar.component(.hour, from: event.startDate),
-                                      minute: calendar.component(.minute, from: event.startDate),
-                                      second: calendar.component(.second, from: event.startDate),
-                                      of: calendar.startOfDay(for: event.startDate))
+        let startDate = calendar.date(
+            bySettingHour: calendar.component(.hour, from: event.startDate),
+            minute: calendar.component(.minute, from: event.startDate),
+            second: calendar.component(.second, from: event.startDate),
+            of: event.startDate
+        )
         
         groupedEvents[startDate ?? event.startDate, default: []].append(event)
     }
