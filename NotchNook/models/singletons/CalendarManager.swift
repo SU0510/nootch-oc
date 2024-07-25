@@ -160,21 +160,17 @@ class CalendarManager: ObservableObject {
     public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
         print("Fetching events from \(startDate) to \(endDate)")
 
-        let calendars = eventStore.calendars(for: .event).filter { calendar in
-            if filterCalendarIDs.isEmpty { return true }
-            return filterCalendarIDs.contains(calendar.calendarIdentifier)
-        }
+        let calendars = eventStore.calendars(for: .event)
 
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
-        let events = eventStore.events(matching: predicate).uniqued(on: \.eventIdentifier)
+        let fetchedEvents = eventStore.events(matching: predicate)
 
         await MainActor.run {
-            self.eventsDatesDict.removeAll()
-            self.events = events
+            self.events = fetchedEvents
         }
 
-        print("Fetched \(events.count) events")
-        return events
+        print("Fetched \(fetchedEvents.count) events")
+        return fetchedEvents
     }
     
     // MARK: - Private methods

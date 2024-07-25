@@ -38,17 +38,13 @@ struct CalendarWidgetView: View {
             VStack(spacing: -1) {
                 ScrollableDaysView(showingDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
                     .zIndex(1)
-                CalendarEventsView(events: events[selectedDate])
+                CalendarEventsView(events: events[selectedDate], selectedDate: selectedDate)
             }
         }
-        .environmentObject(CalendarManager.shared)
         .task {
-            let startDate = Calendar.current.startOfDay(for: Date())
-            let endDate = Calendar.current.date(byAdding: .day, value: 7, to: startDate)!
+            let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
+            let endDate = Calendar.current.date(byAdding: .day, value: 60, to: Date())!
             try? await CalendarManager.shared.fetchEvents(startDate: startDate, endDate: endDate)
-        }
-        .onAppear {
-            print("Events for selected date \(selectedDate)): \(events[selectedDate]?.count ?? 0)")
         }
     }
     
