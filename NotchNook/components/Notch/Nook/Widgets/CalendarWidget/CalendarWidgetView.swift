@@ -31,7 +31,6 @@ struct CalendarWidgetView: View {
         return date
     }
 
-    
     var body: some View {
         let events = CalendarManager.shared.eventsDatesDict
         

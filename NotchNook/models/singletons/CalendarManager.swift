@@ -169,13 +169,8 @@ class CalendarManager: ObservableObject {
         let events = eventStore.events(matching: predicate).uniqued(on: \.eventIdentifier)
 
         await MainActor.run {
-            for event in events {
-                let date = Calendar.current.startOfDay(for: event.startDate)
-                if eventsDatesDict[date] == nil {
-                    eventsDatesDict[date] = []
-                }
-                eventsDatesDict[date]?.append(event)
-            }
+            self.eventsDatesDict.removeAll()
+            self.events = events
         }
 
         print("Fetched \(events.count) events")
