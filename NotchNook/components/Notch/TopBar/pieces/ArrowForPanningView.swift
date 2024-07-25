@@ -35,9 +35,9 @@ struct ArrowForPanningView: View {
                     } completion: {
                         activated = false
                         if actionRight {
-                            MediaPlayer.shared.app?.nextTrack()
+                            MediaControls.shared.nextTrack()
                         } else {
-                            MediaPlayer.shared.app?.prevTrack()
+                            MediaControls.shared.previousTrack()
                         }
                     }
                 }

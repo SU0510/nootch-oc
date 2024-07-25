@@ -8,5 +8,5 @@
 import SwiftUI
 
 extension Animation {
-    static let bouncySmooth: Self = .bouncySmooth
+    static let bouncySmooth: Self = .smooth(extraBounce: 0.15)
 }

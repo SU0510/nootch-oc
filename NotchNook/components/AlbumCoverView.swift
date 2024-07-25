@@ -7,62 +7,46 @@
 
 import SwiftUI
 
-struct AlbumCoverView: View {
+struct AlbumCoverView: View, Identifiable, Equatable {
+    static func == (lhs: AlbumCoverView, rhs: AlbumCoverView) -> Bool {
+        lhs.id == rhs.id && lhs.cornerRadius == rhs.cornerRadius && lhs.artwork?.isValid == rhs.artwork?.isValid
+    }
+    
     var id: String
     var artwork: NSImage?
-    var appIcon: NSImage?
     var cornerRadius: Double
     
-    @Environment(\.openApp) private var openApp
-    
     var body: some View {
-        Button {
-            if let bundleID = MediaPlayer.shared.connectedApp?.bundleID {
-                openApp(bundleID)
-            }
-        } label: {
-            ZStack {
-                Group {
-                    if let artwork, artwork.isValid {
-                        Image(nsImage: artwork)
-                            .interpolation(.high)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .id(id ?? String(artwork.hashValue))
-                    } else {
-                        Color.selected
-                            .overlay {
-                                GeometryReader { geo in
-                                    Image(systemName: "music.note")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(geo.size * 0.55)
-                                        .frame(geo.size)
-                                        .foregroundStyle(.white.opacity(0.25))
-                                }
+        ZStack {
+            Color.clear
+                .overlay {
+                    Group {
+                        if let artwork, artwork.isValid {
+                            Image(nsImage: artwork)
+                                .interpolation(.high)
+                                .resizable()
+                                .scaledToFill()
+                        } else {
+                            GeometryReader { geo in
+                                Image(systemName: "music.note")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(geo.size * 0.55)
+                                    .frame(width: geo.size.height, height: geo.size.height)
+                                    .foregroundStyle(.white.opacity(0.25))
                             }
+                        }
                     }
+                    .frame(maxHeight: .infinity)
+                    .aspectRatio(1, contentMode: .fit)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .overlay(alignment: .bottomTrailing) {
-                    if let appIcon {
-                        Image(nsImage: appIcon)
-                            .resizable()
-                            .scaledToFit()
-                            .shadow(radius: 8, y: 0)
-                            .shadow(radius: 12, y: 8)
-                            .frame(32)
-                            .offset(x: 6, y: 6)
-                    }
-                }
+                .id(id)
                 .transition(.scaleAndBlur)
-            }
-            .animation(.bouncySmooth, value: artwork)
-            .aspectRatio(1/1, contentMode: .fit)
-            .frame(maxHeight: .infinity)
+                .aspectRatio(1, contentMode: .fit)
         }
-        .buttonStyle(ShrinkOnClick(minSize: 0.925))
+        .animation(.bouncySmooth, value: artwork)
+        .aspectRatio(1, contentMode: .fit)
         .transition(.scaleAndBlur)
-        .id(id)
     }
 }

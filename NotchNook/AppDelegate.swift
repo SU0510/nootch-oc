@@ -32,7 +32,7 @@ import SwiftData
         // Initialize (in memory ig) all singletons
         CalendarManager.configureWithAppName("NotchNook")
         _ = ShortcutsManager.shared
-        _ = MediaPlayer.shared
+        _ = MediaControls.shared
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
         _ = LicenseManager.shared
