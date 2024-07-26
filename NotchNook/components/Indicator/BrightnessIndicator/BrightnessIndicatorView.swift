@@ -46,27 +46,3 @@ struct BrightnessIndicatorView: View, Equatable {
         .drawingGroup()
     }
 }
-
-struct BrightnessIndicatorBarWrapperView: View, Equatable {
-    static func == (lhs: BrightnessIndicatorBarWrapperView, rhs: BrightnessIndicatorBarWrapperView) -> Bool {
-        lhs.brightnessValue == rhs.brightnessValue &&
-        lhs.overflowAmount == rhs.overflowAmount &&
-        lhs.glowColor == rhs.glowColor
-    }
-    
-    let brightnessValue: Double
-    let overflowAmount: Double
-    let glowColor: Color
-    
-    var body: some View {
-        GeometryReader { geo in
-            VStack(alignment: .trailing, spacing: 4) {
-                BrightnessIndicatorValueView(brightnessValue: brightnessValue, overflowAmount: overflowAmount, glowColor: glowColor)
-                BrightnessIndicatorCometView(brightnessValue: brightnessValue, overflowAmount: overflowAmount, glowColor: glowColor)
-            }
-            .frame(width: geo.size.width * brightnessValue, alignment: .trailing)
-        }
-        .frame(maxWidth: .infinity, maxHeight: 23, alignment: .leading)
-        .padding(.horizontal, 6)
-    }
-}

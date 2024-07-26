@@ -43,9 +43,10 @@ struct BrightnessIndicatorValueView: View, Equatable {
     
     var body: some View {
         Text("\(Int(brightnessValue * 100))%")
+//        IndicatorValueView(value: brightnessValue)
+            .fixedSize(horizontal: true, vertical: false)
             .contentTransition(.identity)
             .geometryGroup()
-            .offset(x: brightnessValue == 1.0 ? 0 : 12)
             .blur(radius: overflowInterpolator([0, 0.5], false, .linear))
             .foregroundStyle(EllipticalGradient(gradient: Gradient(colors: [textGradientColor3, textGradientColor2, textGradientColor1]), center: .init(x: brightnessValue == 1.0 ? 0.5 :0.25, y: 1), startRadiusFraction: 1, endRadiusFraction: 0.33))
             .font(.system(size: 12, weight: .semibold))

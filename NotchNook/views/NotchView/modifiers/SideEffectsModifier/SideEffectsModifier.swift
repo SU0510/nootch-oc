@@ -79,7 +79,7 @@ extension NotchView {
         }
         
         private func handleBrightnessChange() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 do {
                     let newBrightness = try BrightnessCoordinator.getDisplayBrightness()
                     withAnimation(.bouncySmooth) {
@@ -92,7 +92,7 @@ extension NotchView {
         }
         
         private func handleVolumeChange() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 do {
                     let newVolume = try SoundCoordinator.getSoundVolume()
                     //                let device = try SoundCoordinator.getAudioDeviceType()
