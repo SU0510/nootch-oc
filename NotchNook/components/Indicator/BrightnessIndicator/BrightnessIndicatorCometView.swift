@@ -37,9 +37,9 @@ struct BrightnessIndicatorCometView: View, Equatable {
     }
     
     var body: some View {
-        let one = glowInterpolator([0, 1], false, .linear)
-        let o5 = glowInterpolator([0, 0.5], false, .linear)
-        let o6 = glowInterpolator([0, 0.6], false, .linear)
+        let one = glowInterpolator([0.25, 1], false, .linear)
+        let o5 = glowInterpolator([0.25, 0.5], false, .linear)
+        let o6 = glowInterpolator([0.25, 0.6], false, .linear)
         HorizontalCometShape(leadingScale: minTrailingHeight / maxTrailingHeight, trailingScale: glowInterpolator([minTrailingHeight / maxTrailingHeight, overflowInterpolator([1, 1.35], false, .linear)], true, .linear))
             .fill(
                 mainGradient.opacity(one)

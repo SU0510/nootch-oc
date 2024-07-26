@@ -27,7 +27,7 @@ struct BrightnessIndicatorSunView: View, Equatable {
         let o5 = glowInterpolator([0, 0.5], false, .linear)
         let o6 = glowInterpolator([0, 0.6], false, .linear)
         let raysLength = overflowInterpolator([glowInterpolator([0, 1], false, .linear), 1.25], false, .linear)
-        let opacityInterp = glowInterpolator([0.1, 1], false, .linear)
+        let opacityInterp = glowInterpolator([0.5, 1], false, .linear)
         SunShape(raysLength: raysLength)
             .stroke(
                 .white.opacity(opacityInterp)
