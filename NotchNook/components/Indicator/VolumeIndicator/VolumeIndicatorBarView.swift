@@ -62,7 +62,7 @@ struct VolumeIndicatorBarView: View, Equatable {
                     .id("bar-\(barIndex)")
             }
         }
-        .frame(height: barsHeight)
+        .frame(maxWidth: .infinity, maxHeight: barsHeight)
         .onAppear { localVolumeLastBar = volumeLastBar }
         .onChange(of: volumeLastBar) { old, new in
             timer?.invalidate()

@@ -22,7 +22,7 @@ struct VolumeIndicatorBarWrapperView: View, Equatable {
         GeometryReader { geo in
             VStack(alignment: .leading, spacing: 4) {
                 VolumeIndicatorValueView(volumeValue: volumeValue, overflowAmount: overflowAmount, baseColor: baseColor)
-                    .frame(width: min(geo.size.width - 8, max(52, geo.size.width * volumeValue + 12)), alignment: .trailing)
+                    .frame(width: min(geo.size.width - 2, max(52, geo.size.width * volumeValue + 12)), alignment: .trailing)
                 VolumeIndicatorBarView(
                     totalWidth: geo.size.width, volumeValue: volumeValue, overflowAmount: overflowAmount, baseColor: baseColor
                 )
