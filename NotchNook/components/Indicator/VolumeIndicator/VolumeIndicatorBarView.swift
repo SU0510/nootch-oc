@@ -22,16 +22,29 @@ struct VolumeIndicatorBarView: View, Equatable {
     let volumeValue: Double
     let overflowAmount: Double
     let baseColor: Color
-    var barsHeight: Double = 12
-    var barsWidth: Double = 3
-    var barsSpacing: Double = 3.5
+    var barsHeight: Double
+    var barsWidth: Double
+    var barsSpacing: Double
+    
+    init(totalWidth: Double, volumeValue: Double, overflowAmount: Double, baseColor: Color, barsHeight: Double = 12, barsWidth: Double = 3, barsSpacing: Double = 3.5) {
+        self.totalWidth = totalWidth
+        self.volumeValue = volumeValue
+        self.overflowAmount = overflowAmount
+        self.baseColor = baseColor
+        self.barsHeight = barsHeight
+        self.barsWidth = barsWidth
+        self.barsSpacing = barsSpacing
+        let barsNumber = Int(totalWidth / (barsWidth + barsSpacing))
+        let volumeLastBar = Int(Double(barsNumber) * volumeValue)
+        self._localVolumeLastBar = .init(initialValue: volumeLastBar)
+    }
     
     var barsNumber: Int { Int(totalWidth / (barsWidth + barsSpacing)) }
     var volumeLastBar: Int { Int(Double(barsNumber) * volumeValue) }
     
     private var volumeInterpolator: InterpolatorBuilder { interpolatorBuilder([0.0, 1.0], value: volumeValue) }
     
-    @State private var localVolumeLastBar = 0
+    @State private var localVolumeLastBar: Int
     @State private var timer: Timer?
     
     func getBarColor(index: Int) -> Color {
@@ -63,7 +76,6 @@ struct VolumeIndicatorBarView: View, Equatable {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: barsHeight)
-        .onAppear { localVolumeLastBar = volumeLastBar }
         .onChange(of: volumeLastBar) { old, new in
             timer?.invalidate()
             let difference = Double(abs(new - localVolumeLastBar))
