@@ -68,8 +68,9 @@ struct TrayFileView: View {
         }
         .onTapGesture(count: 2) {
             doAfter {
-                guard NSApp.currentEvent?.clickCount == 2 else { return }
-                tray.openFile(file)
+                if let event = NSApp.currentEvent, event.clickCount == 2 {
+                    tray.openFile(file)
+                }
             }
         }
     }

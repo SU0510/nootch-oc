@@ -52,11 +52,10 @@ class Tray {
     private var pressedKeysEvent: NSEvent?
     
     private var isCommandPressed: Bool {
-        pressedKeysEvent?.modifierFlags.contains(.command) ?? false
+        NSEvent.modifierFlags.contains(.command)
     }
     private var isCombiningKeyPressed: Bool {
-        let flags = pressedKeysEvent?.modifierFlags ?? []
-        return flags.contains(.command) || flags.contains(.shift)
+        NSEvent.modifierFlags.contains(.command) || NSEvent.modifierFlags.contains(.shift)
     }
     
     // MARK: - Initialization
@@ -170,15 +169,10 @@ class Tray {
             return
         }
         
-        if selectedFiles.contains(file) {
-            if isCombiningKeyPressed {
-                selectedFiles.remove(file)
-            }
+        if isCombiningKeyPressed {
+            selectedFiles.toggle(file)
         } else {
-            if !isCombiningKeyPressed {
-                selectedFiles.removeAll()
-            }
-            selectedFiles.insert(file)
+            selectedFiles = [file]
         }
     }
     
