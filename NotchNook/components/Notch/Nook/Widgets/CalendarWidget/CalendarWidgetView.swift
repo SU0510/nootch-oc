@@ -28,6 +28,7 @@ struct CalendarWidgetView: View {
 
         let calendar = Calendar.current
         let date = calendar.startOfDay(for: baseDate)
+        
         return date
     }
 
@@ -39,6 +40,7 @@ struct CalendarWidgetView: View {
                 ScrollableDaysView(showingDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
                     .zIndex(1)
                 CalendarEventsView(events: events[selectedDate], selectedDate: selectedDate)
+                    .id(selectedDate)
             }
         }
         .task {

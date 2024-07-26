@@ -13,7 +13,10 @@ struct CalendarEventsView: View {
     var events: [EKEvent]?
     var selectedDate: Date
     
-    @State private var scrolledToInitialPosition = false
+    @State private var scrollOffset: CGFloat = 0
+    @State private var eventHeights: [String: CGFloat] = [:]
+    
+    let id = UUID()
     
     var body: some View {
         GeometryReader { geo in
@@ -26,27 +29,40 @@ struct CalendarEventsView: View {
             }
             .transition(.scaleAndBlur)
         }
+        .id(id)
     }
     
     func eventsScrollView(geo: GeometryProxy) -> some View {
-        ScrollViewReader { proxy in
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(spacing: 0) {
-                    ForEach(events ?? [], id: \.self) { event in
-                        CalendarEventView(event: event, width: geo.size.width)
-                            .id("\(event.eventIdentifier)_\(event.startDate.timeIntervalSince1970)")
-                    }
-                }
-                .padding(EdgeInsets(top: CalendarEventsViewShadows.height, leading: 0, bottom: CalendarEventsViewShadows.height + 8, trailing: 0))
-            }
-            .onAppear {
-                scrollToInitialPosition(proxy: proxy)
-            }
-            .onChange(of: selectedDate) { _ in
-                scrollToInitialPosition(proxy: proxy)
-            }
-            .overlay { CalendarEventsViewShadows() }
+        ScrollView(.vertical, showsIndicators: false) {
+            eventsStackView(geo: geo)
         }
+        .coordinateSpace(name: "ScrollView")
+        .onAppear {
+            doAfter { scrollToInitialPosition() }
+        }
+        .onChange(of: selectedDate) { _ in
+            doAfter { scrollToInitialPosition() }
+        }
+        .overlay { CalendarEventsViewShadows() }
+    }
+    
+    func eventsStackView(geo: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            ForEach(events ?? [], id: \.self) { event in
+                CalendarEventView(event: event, width: geo.size.width)
+                    .id("\(event.eventIdentifier)_\(event.startDate.timeIntervalSince1970)")
+                    .background(
+                        GeometryReader { itemGeo in
+                            Color.clear.onAppear {
+                                let frame = itemGeo.frame(in: .named("ScrollView"))
+                                eventHeights["\(event.eventIdentifier)_\(event.startDate.timeIntervalSince1970)"] = frame.height
+                            }
+                        }
+                    )
+            }
+        }
+        .padding(EdgeInsets(top: CalendarEventsViewShadows.height, leading: 0, bottom: CalendarEventsViewShadows.height + 8, trailing: 0))
+        .offset(y: -scrollOffset)
     }
     
     var emptyView: some View {
@@ -59,29 +75,22 @@ struct CalendarEventsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    // MARK: - Methods
-    
-    private func indexOfFirstUpcomingEvent() -> Int? {
-        guard Calendar.current.isDateInToday(selectedDate) else { return nil }
-        let now = Date()
-        return events?.firstIndex(where: { $0.startDate >= now })
-    }
-    
-    private func scrollToInitialPosition(proxy: ScrollViewProxy) {
-        guard !scrolledToInitialPosition else { return }
+    private func scrollToInitialPosition() {
+        guard let events = events, !events.isEmpty else { return }
+        
+        var targetOffset: CGFloat = 0
         
         if Calendar.current.isDateInToday(selectedDate) {
-            if let index = indexOfFirstUpcomingEvent() {
-                withAnimation {
-                    proxy.scrollTo(events?[index].eventIdentifier, anchor: .top)
-                }
-            }
-        } else {
-            withAnimation {
-                proxy.scrollTo(events?.first?.eventIdentifier, anchor: .top)
+            guard let nextEventIndex = events.firstIndex(where: { $0.startDate >= Date() }) else { return }
+            
+            for i in 0..<nextEventIndex {
+                let eventId = "\(events[i].eventIdentifier)_\(events[i].startDate.timeIntervalSince1970)"
+                targetOffset += eventHeights[eventId] ?? 0
             }
         }
         
-        scrolledToInitialPosition = true
+        withAnimation(.easeInOut(duration: 0.3)) {
+            scrollOffset = targetOffset
+        }
     }
 }
