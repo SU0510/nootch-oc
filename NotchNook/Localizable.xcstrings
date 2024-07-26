@@ -921,6 +921,9 @@
         }
       }
     },
+    "%" : {
+
+    },
     "%@ - %@" : {
       "localizations" : {
         "af" : {
@@ -12728,9 +12731,6 @@
           }
         }
       }
-    },
-    "If you change this setting, you will need to restart the app to apply your changes." : {
-
     },
     "Inactivity timeout:" : {
       "localizations" : {

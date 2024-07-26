@@ -22,7 +22,7 @@ enum AudioDeviceType {
     case unknown
 }
 
-class SoundCoordinator {
+struct SoundCoordinator {
     private init() {}
     
     static func getSoundVolume() throws -> Float {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HUDManager {
+struct HUDManager {
     private init() {}
 
     private static func executeProcess(at path: String, with arguments: [String]) throws {
@@ -19,7 +19,7 @@ class HUDManager {
         process.waitUntilExit()
     }
 
-    public static func enable() {
+    public static func enableSystemHUD() {
         do {
             try executeProcess(at: "/usr/bin/killall", with: ["-9", "OSDUIHelper"])
         } catch {
@@ -27,13 +27,13 @@ class HUDManager {
         }
     }
 
-    public static func disable() {
+    public static func disableSystemHUD() {
         do {
             // if OSDUIHelper is not running, start the process
             try executeProcess(at: "/bin/launchctl", with: ["kickstart", "gui/\(getuid())/com.apple.OSDUIHelper"])
             usleep(250000)
             
-            // kill to hide  the HUD
+            // kill to hide the HUD
             try executeProcess(at: "/usr/bin/killall", with: ["-STOP", "OSDUIHelper"])
         } catch {
             print("Failed to kill OSDUIHelper.")

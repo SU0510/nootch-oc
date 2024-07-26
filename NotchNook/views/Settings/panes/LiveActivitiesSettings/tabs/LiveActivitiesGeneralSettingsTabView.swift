@@ -11,7 +11,13 @@ import Settings
 
 struct LiveActivitiesGeneralSettingsTabView: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
+    
+    @Environment(\.volumeAndBrightnessListener) private var volumeAndBrightnessListener
+    @State private var disableHUDToggle = false
+    
     var body: some View {
+        let contentMaxW: Double = 375
+        
         Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: String(localized: "")) {
                 Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
@@ -36,11 +42,29 @@ struct LiveActivitiesGeneralSettingsTabView: View {
             }
             
             Settings.Section(title: String(localized: "")) {
-                Toggle("Enable volume and brightness HUD replacement", isOn: $liveActivitiesSettings.enableHUDReplacement)
+                HStack {
+                    Toggle("Enable volume and brightness HUD replacement", isOn: $liveActivitiesSettings.enableHUDReplacement)
+                        .disabled(disableHUDToggle)
+                    
+                    if disableHUDToggle {
+                        ProgressView().controlSize(.small)
+                    }
+                }
+                .onChange(of: liveActivitiesSettings.enableHUDReplacement) { oldValue, newValue in
+                    disableHUDToggle = true
+                    if newValue {
+                        HUDManager.disableSystemHUD()
+                        volumeAndBrightnessListener.start()
+                    } else {
+                        HUDManager.enableSystemHUD()
+                        volumeAndBrightnessListener.stop()
+                    }
+                    doAfter(2) { disableHUDToggle = false }
+                }
                 Text("This setting requires you to provide NotchNook with accessibility permissions.")
-                    .settingDescription()
-                Text("If you change this setting, you will need to restart the app to apply your changes.")
-                    .settingDescription()
+                    .optionDescription(contentMaxW)
+                //                Text("If you change this setting, you will need to restart the app to apply your changes.")
+                //                    .optionDescription(contentMaxW)
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)

@@ -38,12 +38,12 @@ struct BrightnessIndicatorView: View, Equatable {
         }
         .onChangeDebounced(of: indicator.id, delay: 0.35) { _ in
             if overflowAmount != 0 {
-//                withAnimation(.smooth(duration: 0.65)) {
-                withAnimation(.smooth(duration: 10)) {
+                withAnimation(.smooth) {
                     overflowAmount = 0
                 }
             }
         }
+        .drawingGroup()
     }
 }
 

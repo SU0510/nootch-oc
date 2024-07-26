@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 import IOKit.graphics
 
-class BrightnessCoordinator {
+struct BrightnessCoordinator {
     private init() {}
     
     enum BrightnessError: Error {

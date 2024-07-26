@@ -18,7 +18,6 @@ import Defaults
     var nsMenu: NSMenu?
     let updaterDelegate = UpdaterDelegate()
     let updaterController: SPUStandardUpdaterController
-    var keybindListener: KeybindListener?
     
     override init() {
         SwiftDate.defaultRegion = Region.local
@@ -46,15 +45,12 @@ import Defaults
         
         // Initialize and start the keybind listener
         if Defaults[.liveActivitiesSettings].enableHUDReplacement {
-            HUDManager.disable() // disable volume and brightness hud
-            
-            keybindListener = KeybindListener()
-            keybindListener?.start()
+            HUDManager.disableSystemHUD() // disable volume and brightness hud
         }
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        HUDManager.enable() // enable volume and brightness hud
+        HUDManager.enableSystemHUD()
     }
     
     func setupMenu() {

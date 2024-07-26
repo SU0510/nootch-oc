@@ -23,6 +23,8 @@ extension NotchView {
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.isEditingText) internal var isEditingText
         @Environment(\.isKeyWindow) internal var isKeyWindow
+        @Environment(\.notchSize) internal var notchSize
+        @Environment(\.volumeAndBrightnessListener) internal var volumeAndBrightnessListener
         
         func body(content: Content) -> some View {
             content
@@ -31,6 +33,7 @@ extension NotchView {
                     resetTrialAndHandleChangelog()
                     insertUpdateLAIfOldVersion()
                     fetchEvents()
+                    startBriVolKeyListener()
                 }
                 .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
                     if !old.contains(.calendar) && new.contains(.calendar) {
@@ -55,21 +58,51 @@ extension NotchView {
                 .onChangeDebounced(of: state.scaleDown, delay: 0.05) { _ in
                     withAnimation(.smooth) { state.scaleDown = 0 }
                 }
-                .onChange(of: GlobalBrightnessAndVolume.shared.brightness) { _, new in
-                    withAnimation(.bouncySmooth) {
-                        notchNook.indicator = .init(kind: .brightness, value: new)
-                    }
-                }
-                .onChange(of: GlobalBrightnessAndVolume.shared.volume) { _, _ in
-                    withAnimation(.bouncySmooth) {
-                        notchNook.indicator = .init(kind: .volume, value: GlobalBrightnessAndVolume.shared.volume)
-                    }
-                }
                 .onChange(of: isKeyWindow) { _, newVal in
                     if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {
                         closeNotch(false, false)
                     }
                 }
+        }
+        
+        internal func handleBriVolKeyPress(_ mediaKey: MediaKey) {
+            if !liveActivitiesSettings.enableHUDReplacement {
+                volumeAndBrightnessListener.stop()
+                return
+            }
+            switch mediaKey {
+                case .brightnessUp, .brightnessDown:
+                    handleBrightnessChange()
+                case .volumeUp, .volumeDown, .mute:
+                    handleVolumeChange()
+            }
+        }
+        
+        private func handleBrightnessChange() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
+                do {
+                    let newBrightness = try BrightnessCoordinator.getDisplayBrightness()
+                    withAnimation(.bouncySmooth) {
+                        notchNook.indicator = .init(kind: .brightness, value: Double(newBrightness))
+                    }
+                } catch {
+                    print("Error fetching brightness: \(error)")
+                }
+            }
+        }
+        
+        private func handleVolumeChange() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.015) {
+                do {
+                    let newVolume = try SoundCoordinator.getSoundVolume()
+                    //                let device = try SoundCoordinator.getAudioDeviceType()
+                    withAnimation(.bouncySmooth) {
+                        notchNook.indicator = .init(kind: .volume, value: Double(newVolume))
+                    }
+                } catch {
+                    print("Failed to get volume: \(error)")
+                }
+            }
         }
     }
 }
