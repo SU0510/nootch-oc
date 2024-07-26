@@ -88,6 +88,9 @@ struct AboutSettingsView: View {
                         SettingsLinkBtn(url: URL(string: "mailto:hi@lo.cafe")) {
                             Label("Email us!", systemImage: "at")
                         }
+                        SettingsLinkBtn(url: URL(string: "https://lo.cafe/notchnook/privacy-policy")) {
+                            Label("Privacy Policy", systemImage: "hand.raised.fill")
+                        }
                     }
                 }
                 .multilineTextAlignment(.center)
