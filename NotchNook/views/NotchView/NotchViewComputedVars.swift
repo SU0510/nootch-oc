@@ -23,7 +23,7 @@ extension NotchView {
     var standardPadding: EdgeInsets {
         var pad: Double = 0
         if notchNook.mode == .closed {
-            if state.hovering {
+            if state.hovering && notchNook.indicator == nil {
                 if state.pressing {
                     pad = NotchView.paddingWhileHovering / 2
                 } else {
