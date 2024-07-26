@@ -1040,11 +1040,11 @@
 			children = (
 				BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */,
 				3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */,
+				3A0C50252C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift */,
 				3A0C501D2C53478B0003867F /* VolumeIndicatorBarWrapperView.swift */,
 				3A0C50192C532A4F0003867F /* VolumeIndicatorValueView.swift */,
 				3A0C501B2C532A5E0003867F /* VolumeIndicatorBarView.swift */,
 				3A0C50232C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift */,
-				3A0C50252C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift */,
 			);
 			path = VolumeIndicator;
 			sourceTree = "<group>";
