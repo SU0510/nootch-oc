@@ -78,12 +78,11 @@ struct TrayFileView: View {
     var fileNameView: some View {
         VStack(alignment: .leading) {
             if let editingFile = tray.editingFile, editingFile.file == file {
-                TextField("", text: Binding(
+                MultilineTextField(text: Binding(
                     get: { tray.editingFile?.newName ?? "" },
                     set: { tray.editingFile?.newName = $0 }
                 ))
-                .textFieldStyle(EditingTextFieldStyle())
-                .focused($isTextFieldFocused)
+                .frame(width: 56)
                 .onAppear {
                     doAfter {
                         isTextFieldFocused = true
@@ -108,6 +107,7 @@ struct TrayFileView: View {
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: 56, alignment: .center)
+                    .truncationMode(.tail)
             }
         }
         .font(.caption)
@@ -131,24 +131,5 @@ struct TrayFileView: View {
         .frame(20)
         .contentShape(Circle())
         .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
-    }
-}
-
-struct EditingTextFieldStyle: TextFieldStyle {
-    func _body(configuration: TextField<Self._Label>) -> some View {
-        configuration
-            .font(.caption)
-            .frame(width: 56, alignment: .center)
-            .lineLimit(2)
-            .onAppear {
-                doAfter {
-                    guard let textField = NSApp.keyWindow?.firstResponder as? NSTextField else { return }
-                    textField.selectText(nil)
-                    guard let dotIndex = textField.stringValue.lastIndex(of: ".") else { return }
-                    let rangeLenght = textField.stringValue.distance(from: textField.stringValue.startIndex, to: dotIndex)
-                    let range = NSRange(location: 0, length: rangeLenght)
-                    textField.currentEditor()?.selectedRange = range
-                }
-            }
     }
 }
