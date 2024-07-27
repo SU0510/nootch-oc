@@ -32,7 +32,7 @@ struct TrayFilesScrollView: View {
                         .opacity(0.001)
                         .onTapGesture {
                             selectFile(nil)
-                            tray.editingFile = nil
+                            tray.rename()
                         }
                 )
             }

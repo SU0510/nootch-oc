@@ -61,7 +61,7 @@ struct TrayFileView: View {
             .keyboardShortcut("c", modifiers: .command)
             Button("Rename") {
                 doAfter {
-                    tray.editingFile = file
+                    tray.editingFile = (file, file.name)
                     isTextFieldFocused = true
                 }
             }
@@ -77,22 +77,19 @@ struct TrayFileView: View {
     
     var fileNameView: some View {
         VStack(alignment: .leading) {
-            if let editingFile = tray.editingFile, editingFile == file {
-                TextField("", text: $fileName)
-                    .textFieldStyle(EditingTextFieldStyle())
-                    .focused($isTextFieldFocused)
-                    .onAppear {
-                        doAfter {
-                            isTextFieldFocused = true
-                            fileName = file.name
-                        }
+            if let editingFile = tray.editingFile, editingFile.file == file {
+                TextField("", text: Binding(
+                    get: { tray.editingFile?.newName ?? "" },
+                    set: { tray.editingFile?.newName = $0 }
+                ))
+                .textFieldStyle(EditingTextFieldStyle())
+                .focused($isTextFieldFocused)
+                .onAppear {
+                    doAfter {
+                        isTextFieldFocused = true
+                        tray.editingFile?.newName = file.name
                     }
-                    .onDisappear {
-                        doAfter {
-                            guard tray.shouldRename else { return }
-                            file.rename(to: fileName)
-                        }
-                    }
+                }
             } else {
                 Text(file.nameTruncated)
                     .allowsHitTesting(true)
@@ -104,7 +101,7 @@ struct TrayFileView: View {
                     )
                     .onTapGesture {
                         doAfter {
-                            tray.editingFile = file
+                            tray.editingFile = (file, file.name)
                             isTextFieldFocused = true
                         }
                     }
@@ -142,6 +139,7 @@ struct EditingTextFieldStyle: TextFieldStyle {
         configuration
             .font(.caption)
             .frame(width: 56, alignment: .center)
+            .lineLimit(2)
             .onAppear {
                 doAfter {
                     guard let textField = NSApp.keyWindow?.firstResponder as? NSTextField else { return }
