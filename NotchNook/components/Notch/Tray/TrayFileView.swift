@@ -81,7 +81,9 @@ struct TrayFileView: View {
                 MultilineTextField(text: Binding(
                     get: { tray.editingFile?.newName ?? "" },
                     set: { tray.editingFile?.newName = $0 }
-                ))
+                ), onCommit: {
+                    tray.rename()
+                })
                 .frame(width: 56)
                 .onAppear {
                     doAfter {

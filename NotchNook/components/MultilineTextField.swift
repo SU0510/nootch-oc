@@ -12,17 +12,15 @@ struct MultilineTextField: View {
     var onCommit: (() -> Void)?
     
     private let minHeight: CGFloat = 18
-    private let maxHeight: CGFloat = 40
+    private let maxHeight: CGFloat = 36
     
     @State private var height: CGFloat = 18
     @FocusState private var isFocused: Bool
     
     var body: some View {
-        TextEditor(text: $text)
+        NonHyphenatingTextEditor(text: $text, onCommit: onCommit)
             .frame(height: height)
-            .font(.caption)
-            .focused($isFocused)
-            .onChange(of: text) { newValue in
+            .onChange(of: text) {
                 doAfter {
                     recalculateHeight()
                 }
@@ -40,15 +38,11 @@ struct MultilineTextField: View {
                 }
             }
             .border(Color(red: 0.23, green: 0.61, blue: 0.9, opacity: 0.6), width: 2.5)
-            .multilineTextAlignment(.center)
             .cornerRadius(3.0)
-            .disableAutocorrection(true)
-            .lineLimit(nil)
-            .fixedSize(horizontal: false, vertical: true)
     }
     
     private func recalculateHeight() {
-        let newHeight = text.heightWithConstrainedWidth(width: 56, font: .caption)
+        let newHeight = text.heightWithConstrainedWidth(width: 56)
         height = min(max(newHeight, minHeight), maxHeight)
     }
 }
@@ -57,5 +51,56 @@ struct ViewHeightKey: PreferenceKey {
     static var defaultValue: CGFloat { 0 }
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
+    }
+}
+
+struct NonHyphenatingTextEditor: NSViewRepresentable {
+    @Binding var text: String
+    var onCommit: (() -> Void)?
+    
+    func makeNSView(context: Context) -> NSTextView {
+        let textView = NSTextView()
+        textView.isAutomaticTextReplacementEnabled = false
+        textView.isAutomaticDashSubstitutionEnabled = false
+        textView.textContainer?.lineBreakMode = .byWordWrapping
+        textView.textContainer?.maximumNumberOfLines = 0
+        textView.textContainer?.lineFragmentPadding = 0
+        textView.alignment = .center
+        textView.font = NSFont.systemFont(ofSize: 10)
+        textView.delegate = context.coordinator
+        
+        textView.isVerticallyResizable = true
+        textView.autoresizingMask = [.width, .height]
+        textView.textContainer?.containerSize = NSSize(width: textView.frame.size.width, height: .greatestFiniteMagnitude)
+        textView.textContainer?.widthTracksTextView = true
+        return textView
+    }
+    
+    func updateNSView(_ nsView: NSTextView, context: Context) {
+        if nsView.string != text {
+            nsView.string = text
+            nsView.scrollRangeToVisible(NSRange(location: text.count, length: 0))
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, NSTextViewDelegate {
+        var parent: NonHyphenatingTextEditor
+        
+        init(_ parent: NonHyphenatingTextEditor) {
+            self.parent = parent
+        }
+        
+        func textDidChange(_ notification: Notification) {
+            guard let textView = notification.object as? NSTextView else { return }
+            parent.text = textView.string
+        }
+        
+        func textDidEndEditing(_ notification: Notification) {
+            parent.onCommit?()
+        }
     }
 }

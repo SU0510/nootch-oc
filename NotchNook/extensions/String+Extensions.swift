@@ -8,8 +8,8 @@
 import SwiftUI
 
 extension String {
-    func heightWithConstrainedWidth(width: CGFloat, font: Font) -> CGFloat {
-        let nsFont = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+    func heightWithConstrainedWidth(width: CGFloat) -> CGFloat {
+        let nsFont = NSFont.systemFont(ofSize: 10)
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [.font: nsFont], context: nil)
         return ceil(boundingBox.height)
