@@ -92,11 +92,8 @@ struct TrayFileView: View {
                     }
                 }
             } else {
-                Text(file.nameTruncated)
-                    .allowsHitTesting(true)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-                    .padding(2)
+                NonHyphenatingText(text: file.nameTruncated)
+                    .frame(width: 56, alignment: .center)
                     .background(
                         RoundedRectangle(cornerRadius: 4).fill(isSelected ? Color.blue : Color.clear)
                     )
@@ -106,10 +103,7 @@ struct TrayFileView: View {
                             isTextFieldFocused = true
                         }
                     }
-                    .font(.caption)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(width: 56, alignment: .center)
-                    .truncationMode(.tail)
+                    .id(file.id)
             }
         }
         .font(.caption)

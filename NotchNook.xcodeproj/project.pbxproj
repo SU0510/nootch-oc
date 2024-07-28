@@ -10,6 +10,7 @@
 		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709522C559D3B004D20BB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709512C559D3B004D20BB /* String+Extensions.swift */; };
+		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
 		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
@@ -339,6 +340,7 @@
 		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709512C559D3B004D20BB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
 		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
@@ -1295,6 +1297,7 @@
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
 				3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */,
 				3637094F2C559CFD004D20BB /* MultilineTextField.swift */,
+				363709532C56B8C0004D20BB /* NonHyphenatingText.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1788,6 +1791,7 @@
 				EC47FCC52C0BF61900591811 /* CheckForUpdatesViewModel.swift in Sources */,
 				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
+				363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				3A1691D02C2FB1EE0014C326 /* TrialOverKey.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* TrayFileDragPreviewView.swift in Sources */,
