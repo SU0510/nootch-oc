@@ -111,7 +111,6 @@ class MediaControls {
                         newTrack.mediaApp = SystemAppMeta(pid: pid)
                         
                         if self.track.isValidReplacement(newTrack) {
-                            print("preparing", newTrack)
                             TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
                                 DispatchQueue.main.async {
                                     self.track = newTrack
