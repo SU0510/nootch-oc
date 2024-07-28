@@ -61,6 +61,26 @@ struct SoundCoordinator {
             throw SoundError.failed
         }
         
+        // Check mute status
+        var isMuted: UInt32 = 0
+        var muteSize = UInt32(MemoryLayout.size(ofValue: isMuted))
+        var mutePropertyAddress = AudioObjectPropertyAddress(
+            mSelector: kAudioDevicePropertyMute,
+            mScope: kAudioDevicePropertyScopeOutput,
+            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMain))
+        
+        let muteStatus = AudioObjectGetPropertyData(
+            defaultOutputDeviceID,
+            &mutePropertyAddress,
+            0,
+            nil,
+            &muteSize,
+            &isMuted)
+        
+        if muteStatus == kAudioHardwareNoError && isMuted == 1 {
+            return 0.0 // Device is muted, return 0
+        }
+        
         var volume: Float32 = 0.0
         var volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
         var volumePropertyAddress = AudioObjectPropertyAddress(
