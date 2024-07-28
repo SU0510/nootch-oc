@@ -102,5 +102,13 @@ struct NonHyphenatingTextEditor: NSViewRepresentable {
         func textDidEndEditing(_ notification: Notification) {
             parent.onCommit?()
         }
+        
+        func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+            if (commandSelector == #selector(NSStandardKeyBindingResponding.moveLeft(_:)) ||
+                commandSelector == #selector(NSStandardKeyBindingResponding.moveRight(_:))) {
+                return false // Let the system handle these events
+            }
+            return false
+        }
     }
 }
