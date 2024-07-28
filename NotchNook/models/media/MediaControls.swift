@@ -111,10 +111,14 @@ class MediaControls {
                         newTrack.mediaApp = SystemAppMeta(pid: pid)
                         
                         if self.track.isValidReplacement(newTrack) {
-                            self.track = newTrack
+                            print("preparing", newTrack)
+                            TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
+                                DispatchQueue.main.async {
+                                    self.track = newTrack
+                                    self.updatePlaybackState()
+                                }
+                            }
                         }
-                        
-                        self.updatePlaybackState()
                     }
                 } else if !isActiveOrPaused {
                     self.track = .empty
