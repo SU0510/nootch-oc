@@ -11,7 +11,7 @@ import SwiftUI
 
 class AudioSpectrographView: NSView {
     private let barsCount = 3
-    private let minHeight: CGFloat = 1
+    private let minHeight: CGFloat = 2
     private let maxHeight: CGFloat = 15
     private let barsSpacing: CGFloat = 1.5
     private let barsThickness: CGFloat = 2
@@ -21,13 +21,12 @@ class AudioSpectrographView: NSView {
     private var targetHeights: [CGFloat] = []
     private var currentHeights: [CGFloat] = []
     private var boundsWidth: CGFloat = 0
+    private var animating = false
     
     var playing: Bool = false {
         didSet {
             if playing {
                 startAnimation()
-            } else {
-                stopAnimation()
             }
         }
     }
@@ -59,7 +58,7 @@ class AudioSpectrographView: NSView {
     private func setupLayers() {
         self.wantsLayer = true
         self.layer = CALayer()
-        self.layer?.drawsAsynchronously = true
+//        self.layer?.drawsAsynchronously = true
         self.layer?.isOpaque = true
         
         for _ in 0..<barsCount {
@@ -72,7 +71,7 @@ class AudioSpectrographView: NSView {
             targetHeights.append(minHeight)
             currentHeights.append(minHeight)
         }
-        updateBarHeights()
+        updateAnimation()
     }
     
     private func setupDisplayLink() {
@@ -91,11 +90,13 @@ class AudioSpectrographView: NSView {
     
     private func startAnimation() {
         guard let displayLink = displayLink else { return }
+        self.animating = true
         CVDisplayLinkStart(displayLink)
     }
     
     private func stopAnimation() {
         guard let displayLink = displayLink else { return }
+        animating = false
         CVDisplayLinkStop(displayLink)
         resetBars()
     }
@@ -119,7 +120,7 @@ class AudioSpectrographView: NSView {
     private func updateTargetHeights() {
         for i in 0..<barsCount {
             if abs(currentHeights[i] - targetHeights[i]) < 1 {
-                targetHeights[i] = CGFloat(Int.random(in: Int(minHeight)...Int(maxHeight)))
+                targetHeights[i] = !playing ? minHeight : CGFloat(Int.random(in: Int(minHeight)...Int(maxHeight)))
             }
         }
     }
@@ -127,7 +128,8 @@ class AudioSpectrographView: NSView {
     private func interpolateHeights() {
         let interpolationStep: CGFloat = 0.05 // Adjust interpolation speed
         for i in 0..<barsCount {
-            currentHeights[i] += (targetHeights[i] - currentHeights[i]) * interpolationStep
+            let newHeight = currentHeights[i] + ((targetHeights[i] - currentHeights[i]) * interpolationStep)
+            currentHeights[i] = abs(currentHeights[i] - newHeight) < 0.02 ? targetHeights[i] : newHeight
         }
     }
     
@@ -139,7 +141,7 @@ class AudioSpectrographView: NSView {
         let startX = (bounds.width - totalWidth) / 2
         
         for i in 0..<barsCount {
-            let height = playing ? max(2, currentHeights[i] * volumeModifier) : 2
+            let height = max(minHeight, currentHeights[i] * volumeModifier)
             let x = startX + CGFloat(i) * (barsThickness + barsSpacing)
             
             let barRect = CGRect(x: x, y: (bounds.height - height) / 2, width: barsThickness, height: height)
@@ -147,6 +149,15 @@ class AudioSpectrographView: NSView {
             let path = NSBezierPath(roundedRect: barRect, xRadius: barsThickness / 2, yRadius: barsThickness / 2)
             
             barLayers[i].path = path.cgPath
+        }
+        
+        let pausedAndSettled = !playing && currentHeights.reduce(true) { partialResult, height in
+            return partialResult && height == minHeight
+        }
+        
+        if pausedAndSettled && animating {
+            stopAnimation()
+            return
         }
     }
     
@@ -178,14 +189,15 @@ struct AudioSpectrographRepresentable: NSViewRepresentable {
     var color: Color
     
     func makeNSView(context: Context) -> AudioSpectrographView {
-        let view = AudioSpectrographView(frame: .zero)
-        updateNSView(view, context: context)
-        return view
+        let nsView = AudioSpectrographView(frame: .zero)
+        updateNSView(nsView, context: context)
+        return nsView
     }
     
     func updateNSView(_ nsView: AudioSpectrographView, context: Context) {
-        nsView.playing = playing
-        nsView.volume = volume
-        nsView.color = NSColor(color)
+        if nsView.playing != playing { nsView.playing = playing }
+        if nsView.volume != volume { nsView.volume = volume }
+        let newColor = NSColor(color)
+        if nsView.color != newColor { nsView.color = newColor }
     }
 }

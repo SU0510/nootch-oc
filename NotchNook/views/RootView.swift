@@ -73,6 +73,7 @@ struct RootView: View {
             .environment(\.expandedNoteManager, expandedNoteManager)
             .environment(\.displayKitId, displayKitId)
             .environment(\.isKeyWindow, isKeyWindow)
+            .environment(\.preventNextFocusFrontmostWindow, preventNextFocusFrontmostWindow)
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)
         // Defaults
