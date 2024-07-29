@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct TrayFileDragPreviewView: View {
-    let draggedFile: TrayFile
     
+    let draggedFile: TrayFile
     @Environment(\.tray) private var tray
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            TrayFileView(file: draggedFile, isSelected: true, isPreview: true)
-              .zIndex(1)
+            fileView.zIndex(1)
             
             if tray.selectedFiles.count > 1 {
                 Text("+\(tray.selectedFiles.count - 1)")
@@ -27,6 +26,20 @@ struct TrayFileDragPreviewView: View {
                     .multilineTextAlignment(.center)
             }
         }
+    }
+    
+    var fileView: some View {
+        VStack(spacing: 2) {
+            TrayFileIconView(file: draggedFile)
+                .frame(width: 42, height: 42)
+            
+            Text(draggedFile.nameTruncated)
+                .frame(width: 56, alignment: .center)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.blue))
+        }
+        .foregroundStyle(.white)
+        .padding(6)
+        .frame(maxHeight: .infinity)
     }
 }
 

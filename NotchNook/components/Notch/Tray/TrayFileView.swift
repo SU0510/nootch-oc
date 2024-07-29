@@ -12,7 +12,6 @@ struct TrayFileView: View {
     
     @ObservedObject var file: TrayFile
     let isSelected: Bool
-    var isPreview: Bool
 
     @State private var isHovering = false
     @State private var fileName: String
@@ -27,7 +26,6 @@ struct TrayFileView: View {
         self.file = file
         self.fileName = file.name
         self.isSelected = isSelected
-        self.isPreview = isPreview
     }
     
     var body: some View {
@@ -41,15 +39,13 @@ struct TrayFileView: View {
         .padding(6)
         .frame(maxHeight: .infinity)
         .background {
-            if !isPreview {
-                FileDraggableView(onSelect: {
-                    tray.selectFile(file)
-                }, onDropCompleted: { didMoveFile in
-                    if !didMoveFile { return }
-                    tray.selectedFiles.forEach { tray.removeFile($0) }
-                }, selectedURLs: tray.selectedFiles.map { $0.url }) {
-                    TrayFileDragPreviewView(draggedFile: file)
-                }
+            FileDraggableView(onSelect: {
+                tray.selectFile(file)
+            }, onDropCompleted: { didMoveFile in
+                if !didMoveFile { return }
+                tray.selectedFiles.forEach { tray.removeFile($0) }
+            }, selectedURLs: tray.selectedFiles.map { $0.url }) {
+                TrayFileDragPreviewView(draggedFile: file)
             }
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
