@@ -20,7 +20,7 @@ struct NoMediaAppsView: View {
             Text("Wanna open one?").font(.system(size: 13, weight: .semibold))
                 .fixedSize(horizontal: false, vertical: true)
             
-            HStack {
+            HStack(spacing: 8) {
                 ForEach(installedApps.randomSample(count: 4)) { mediaAppMeta in
                     Button {
                         preventNextFocusFrontmostWindow()
@@ -41,6 +41,7 @@ struct NoMediaAppsView: View {
                     Image(.youtubeLogo)
                         .resizable()
                         .scaledToFit()
+                        .frame(31)
                         .frame(38)
                 }
             }
