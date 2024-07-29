@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MultilineTextField: View {
     @Binding var text: String
-    
+
     private let minHeight: CGFloat = 18
     private let maxHeight: CGFloat = 36
     
@@ -18,11 +18,10 @@ struct MultilineTextField: View {
     
     var body: some View {
         NonHyphenatingTextEditor(text: $text)
+            .focused($isFocused)
             .frame(height: height)
             .onChange(of: text) {
-                doAfter {
-                    recalculateHeight()
-                }
+                doAfter { recalculateHeight() }
             }
             .background(GeometryReader { geo in
                 Color.clear.preference(key: ViewHeightKey.self, value: geo.size.height)
