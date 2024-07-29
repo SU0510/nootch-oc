@@ -153,7 +153,8 @@ class WindowsManager {
         let notchNook = NotchNook()
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
-                displayKitId: displayKitId,
+                displayKitId: displayKitId, 
+                windowManager: self,
                 showSettings: showSettings,
                 screenSize: screenF.size,
                 sparkleManager: sparkleManager,
@@ -268,6 +269,14 @@ class WindowsManager {
         app?.activate(options: [])
     }
     
+    func enableTextEditingForWindow(with id: UUID) {
+        if let displayKit = displayKits.first(where: { $0.id == id }),
+           let window = displayKit.windowController.window as? ForceFocusableWindow {
+            window.canThisWindowBecomeKeyWindow = true
+            window.makeKeyAndOrderFront(nil)
+        }
+    }
+    
     struct DisplayKit {
         let id: UUID
         var windowController: NSWindowController
@@ -288,6 +297,15 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
         self.delegate = self
     }
     
+    func enableTextEditing() {
+        canThisWindowBecomeKeyWindow = true
+        makeKeyAndOrderFront(nil)
+    }
+    
+    override var canBecomeKey: Bool {
+        canThisWindowBecomeKeyWindow
+    }
+    
     override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
         let success = super.makeFirstResponder(responder)
         
@@ -296,7 +314,6 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
         }
         return success
     }
-    override var canBecomeKey: Bool { self.canThisWindowBecomeKeyWindow }
     
     func windowDidBecomeKey(_ notification: Notification) {
         becomeKeyCb?()
@@ -311,8 +328,4 @@ class AcceptingFirstClickHostingView<C: View>: NSHostingView<C> {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
         return true
     }
-}
-
-class MyWindow: NSWindow {
-    
 }

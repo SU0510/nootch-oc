@@ -11,6 +11,7 @@ import Defaults
 
 struct RootView: View {
     var displayKitId: UUID
+    let windowManager: WindowsManager
     var canBecomeKey: Binding<Bool>?
     var showSettings: (SettingsLib.PaneIdentifier?) -> ()
     var screenSize: CGSize
@@ -61,6 +62,7 @@ struct RootView: View {
     var body: some View {
         NotchView()
             .environment(\.openSettings, showSettings)
+            .environment(\.windowManager, windowManager)
             .environment(\.screenSize, screenSize)
             .environment(\.sparkleManager, sparkleManager)
             .environment(\.showChangelog, showChangelog)
@@ -91,16 +93,5 @@ struct RootView: View {
             .environment(\.notesWidgetSettings, notesWidgetSettings)
             .environment(\.todoListWidgetSettings, todoListWidgetSettings)
             .environment(\.quickAppsWidgetSettings, quickAppsWidgetSettings)
-            .environment(\.generalSettings, generalSettings)
-            .environment(\.gestureControlSettings, gestureControlSettings)
-            .environment(\.liveActivitiesSettings, liveActivitiesSettings)
-            .environment(\.nookSettings, nookSettings)
-            .environment(\.traySettings, traySettings)
-            .environment(\.dropAreaSettings, dropAreaSettings)
-            .environment(\.mediaLiveActivitySettings, mediaLiveActivitySettings)
-            .environment(\.calendarLiveActivitySettings, calendarLiveActivitySettings)
-            .environment(\.mediaWidgetSettings, mediaWidgetSettings)
-            .environment(\.shortcutsWidgetSettings, shortcutsWidgetSettings)
-            .environment(\.mirrorWidgetSettings, mirrorWidgetSettings)
     }
 }

@@ -19,6 +19,9 @@ struct TrayFileView: View {
     @FocusState private var isTextFieldFocused: Bool
     
     @Environment(\.tray) private var tray
+    @Environment(\.windowManager) private var windowManager
+    @Environment(\.displayKitId) private var displayKitId
+    @Environment(\.makeKeyWindow) private var makeKeyWindow
     
     init(file: TrayFile, isSelected: Bool, isPreview: Bool = false) {
         self.file = file
@@ -62,7 +65,7 @@ struct TrayFileView: View {
             Button("Rename") {
                 doAfter {
                     tray.editingFile = (file, file.name)
-                    isTextFieldFocused = true
+                    enableTextEditing()
                 }
             }
         }
@@ -86,10 +89,8 @@ struct TrayFileView: View {
                 })
                 .frame(width: 56)
                 .onAppear {
-                    doAfter {
-                        isTextFieldFocused = true
-                        tray.editingFile?.newName = file.name
-                    }
+                    doAfter { tray.editingFile?.newName = file.name }
+                    enableTextEditing()
                 }
             } else {
                 NonHyphenatingText(text: file.nameTruncated)
@@ -100,7 +101,7 @@ struct TrayFileView: View {
                     .onTapGesture {
                         doAfter {
                             tray.editingFile = (file, file.name)
-                            isTextFieldFocused = true
+                            enableTextEditing()
                         }
                     }
                     .id(file.id)
@@ -127,5 +128,13 @@ struct TrayFileView: View {
         .frame(20)
         .contentShape(Circle())
         .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
+    }
+    
+    private func enableTextEditing() {
+        doAfter (0.1) {
+            windowManager?.enableTextEditingForWindow(with: displayKitId)
+            makeKeyWindow()
+            isTextFieldFocused = true
+        }
     }
 }

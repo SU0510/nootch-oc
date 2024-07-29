@@ -11,6 +11,7 @@
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709522C559D3B004D20BB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709512C559D3B004D20BB /* String+Extensions.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
+		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
 		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
@@ -341,6 +342,7 @@
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709512C559D3B004D20BB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
+		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
 		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
@@ -775,6 +777,7 @@
 				3A8AA1842C2FE43B00D727DA /* OpenAppKey.swift */,
 				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
 				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
+				363709552C572508004D20BB /* WindowManagerKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -2003,6 +2006,7 @@
 				3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */,
 				3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */,
 				3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */,
+				363709562C572508004D20BB /* WindowManagerKey.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
 				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
