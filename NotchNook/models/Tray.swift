@@ -175,7 +175,9 @@ class Tray {
         if isCombiningKeyPressed {
             selectedFiles.toggle(file)
         } else {
-            selectedFiles = [file]
+            if !selectedFiles.contains(file) {
+                selectedFiles = [file]
+            }
         }
     }
     
