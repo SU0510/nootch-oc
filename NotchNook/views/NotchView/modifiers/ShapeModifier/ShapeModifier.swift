@@ -28,6 +28,7 @@ extension NotchView {
                 liveActivitiesSettings.enabledLiveActivities.contains($0)
             }
             return (
+                notchNook.indicator != nil ||
                 notchNook.mode != .closed ||
                 state.fineTuningNotchWidth ||
                 (intro && state.showIntro) ||

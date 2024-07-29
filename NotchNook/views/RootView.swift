@@ -17,7 +17,7 @@ struct RootView: View {
     var sparkleManager: SparkleManager
     var showChangelog: () -> ()
     var notchSize: CGSize
-    var notchNook: NotchNook
+    var notchNook: NotchNookState
     var focusFrontmostWindow: () -> ()
     var makeKeyWindow: (() -> ())?
     var resignFirstResponder: () -> ()

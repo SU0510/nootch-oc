@@ -20,6 +20,9 @@ struct TopBarView: View, Equatable {
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let minHeight: CGFloat = 32
     static let liveActionWidth: CGFloat = 35
+    static func getHeight(_ notchHeight: CGFloat) -> CGFloat {
+        notchHeight > (TopBarView.minHeight * 0.66) ? notchHeight : TopBarView.minHeight
+    }
     
     var panGestureCounter: Int
     var scaleX: Double = 1
@@ -38,7 +41,7 @@ struct TopBarView: View, Equatable {
 
     var body: some View {
         // If notch height is bigger than 2/3 of minHeight, use it
-        let height = notchSize.height > (TopBarView.minHeight * 0.66) ? notchSize.height : TopBarView.minHeight
+        let height = TopBarView.getHeight(notchSize.height)
         let mode = notchNook.mode
         let liveActvs = ActiveLiveActivitiesManager.shared.activeLiveActivities
         

@@ -13,4 +13,5 @@ struct LiveActivitiesSettings: Preferences {
     var enabledLiveActivities: Set<LiveActivity> = [.tray, .media, .updateAvailable]
     var interactive = true
     var enableQuickPeek = true
+    var enableHUDReplacement = false
 }

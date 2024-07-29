@@ -1,5 +1,5 @@
 //
-//  standardPadding.swift
+//  NotchViewComputedVars.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 24/06/24.
@@ -23,11 +23,11 @@ extension NotchView {
     var standardPadding: EdgeInsets {
         var pad: Double = 0
         if notchNook.mode == .closed {
-            if state.hovering {
+            if state.hovering && notchNook.indicator == nil {
                 if state.pressing {
-                    pad = 4
+                    pad = NotchView.paddingWhileHovering / 2
                 } else {
-                    pad = 8
+                    pad = NotchView.paddingWhileHovering
                 }
             } else {
                 pad = 0

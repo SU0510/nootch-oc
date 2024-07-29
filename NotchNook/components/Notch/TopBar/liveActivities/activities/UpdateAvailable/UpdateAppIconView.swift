@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UpdateAppIconView: View {
     var enableQuickPeek = true
-    var quickPeeks: [NotchNook.QuickPeek] { [.init(icon: "sparkles", text: "New update available for NotchNook!", iconColor: .yellow)] }
+    var quickPeeks: [NotchNookState.QuickPeek] { [.init(icon: "sparkles", text: "New update available for NotchNook!", iconColor: .yellow)] }
     
     @Environment(\.sparkleManager) private var sparkleManager
     @Environment(\.notchNook) private var notchNook

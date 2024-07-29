@@ -921,6 +921,9 @@
         }
       }
     },
+    "%" : {
+
+    },
     "%@ - %@" : {
       "localizations" : {
         "af" : {
@@ -1840,6 +1843,9 @@
           }
         }
       }
+    },
+    "%lld%%" : {
+
     },
     "+%lld" : {
       "localizations" : {
@@ -5520,6 +5526,9 @@
           }
         }
       }
+    },
+    "Cancel" : {
+
     },
     "Check for Updates…" : {
       "localizations" : {
@@ -11041,6 +11050,9 @@
           }
         }
       }
+    },
+    "Enable volume and brightness HUD replacement" : {
+
     },
     "Files Tray" : {
       "localizations" : {
@@ -19323,6 +19335,9 @@
         }
       }
     },
+    "OK" : {
+
+    },
     "Open Settings" : {
       "localizations" : {
         "af" : {
@@ -25763,6 +25778,9 @@
           }
         }
       }
+    },
+    "This setting requires you to provide NotchNook with accessibility permissions." : {
+
     },
     "This will reset everything except your license." : {
       "localizations" : {

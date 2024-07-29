@@ -20,8 +20,8 @@ struct MiniAlbumCoverView: View, Equatable {
     @Environment(\.namespace) private var ns
     @Environment(\.notchNook) private var notchNook
     @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
-    
-    var quickPeeks: [NotchNook.QuickPeek]? {
+
+    var quickPeeks: [NotchNookState.QuickPeek]? {
         [
             .init(icon: "music.note", text: MediaControls.shared.track.title),
             .init(icon: "music.mic", text: MediaControls.shared.track.artist)
