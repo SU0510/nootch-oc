@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MultilineTextField: View {
     @Binding var text: String
-    var onCommit: (() -> Void)?
     
     private let minHeight: CGFloat = 18
     private let maxHeight: CGFloat = 36
@@ -18,7 +17,7 @@ struct MultilineTextField: View {
     @FocusState private var isFocused: Bool
     
     var body: some View {
-        NonHyphenatingTextEditor(text: $text, onCommit: onCommit)
+        NonHyphenatingTextEditor(text: $text)
             .frame(height: height)
             .onChange(of: text) {
                 doAfter {
@@ -56,7 +55,6 @@ struct ViewHeightKey: PreferenceKey {
 
 struct NonHyphenatingTextEditor: NSViewRepresentable {
     @Binding var text: String
-    var onCommit: (() -> Void)?
     
     func makeNSView(context: Context) -> NSTextView {
         let textView = NSTextView()
@@ -97,10 +95,6 @@ struct NonHyphenatingTextEditor: NSViewRepresentable {
         func textDidChange(_ notification: Notification) {
             guard let textView = notification.object as? NSTextView else { return }
             parent.text = textView.string
-        }
-        
-        func textDidEndEditing(_ notification: Notification) {
-            parent.onCommit?()
         }
         
         func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {

@@ -13,7 +13,6 @@ import Quartz
 class Tray {
     
     var editingFile: (file: TrayFile, newName: String)?
-    var shouldRename: Bool = false
     
     private enum KeyCode: UInt16 {
         case c = 8
@@ -120,7 +119,6 @@ class Tray {
     
     private func handleEditingKeys(event: NSEvent, key: KeyCode) -> NSEvent? {
         guard selectedFiles.count == 1 else { return event }
-        shouldRename = false
         
         switch key {
             case .returnKey:
