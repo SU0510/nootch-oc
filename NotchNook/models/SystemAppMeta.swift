@@ -7,11 +7,12 @@
 
 import Cocoa
 
-struct SystemAppMeta: Equatable {
+struct SystemAppMeta: Equatable, Identifiable {
     static func == (lhs: SystemAppMeta, rhs: SystemAppMeta) -> Bool {
         lhs.bundleId == rhs.bundleId
     }
     
+    var id: String { bundleId }
     var bundleId = ""
     var name = ""
     var icon = NSImage()
@@ -29,6 +30,17 @@ struct SystemAppMeta: Equatable {
         self.bundleId = bundleId
         self.name = name
         self.icon = icon
+    }
+    
+    init(bundleId: String) {
+        guard let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleId),
+              let bundle = Bundle(url: appURL),
+              let name = bundle.infoDictionary?["CFBundleName"] as? String else {
+            return
+        }
+        self.bundleId = bundleId
+        self.name = name
+        self.icon = NSWorkspace.shared.icon(forFile: appURL.path)
     }
     
     func getAppForProcess(pid: pid_t) -> NSRunningApplication? {

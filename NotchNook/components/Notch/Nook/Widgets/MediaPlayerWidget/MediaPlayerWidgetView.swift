@@ -19,7 +19,7 @@ struct MediaPlayerWidgetView: View {
             if player.track != .empty {
                 MediaPlayerView(track: player.track)
             } else {
-                ////                NoMediaPlayingView()
+                NoMediaAppsView()
             }
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
