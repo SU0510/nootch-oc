@@ -8,12 +8,6 @@
 import SwiftUI
 import Defaults
 
-
-
-
-
-
-
 // Define the defaults keys
 extension Defaults.Keys {
     static let lastBuildNumber = Key<String>("lastBuildNumber", default: "0")

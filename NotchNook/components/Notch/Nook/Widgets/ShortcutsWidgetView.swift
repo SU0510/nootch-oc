@@ -27,6 +27,7 @@ struct ShortcutsWidgetView: View {
                     Image(systemName: "sparkles").font(.system(size: 24))
                         .opacity(0.5)
                     Text("Choose your shortcuts in settings.")
+                        .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
                         .opacity(0.5)
                     Button("Choose Shortcuts") {

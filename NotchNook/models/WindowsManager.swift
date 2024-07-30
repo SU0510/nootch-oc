@@ -150,7 +150,7 @@ class WindowsManager {
         let notchHeight = screen.safeAreaInsets.top
         let notchWidth = notchHeight == 0 ? 0 : NotchShape.notchWidthInInches * screen.pointsPerInch.width
         let notchSize = CGSize(width: notchWidth, height: notchHeight)
-        let notchNook = NotchNook()
+        let notchNook = NotchNookState()
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
                 displayKitId: displayKitId, 
@@ -282,7 +282,7 @@ class WindowsManager {
         var windowController: NSWindowController
         var screen: NSScreen
         var notchSize: CGSize
-        var notchNook: NotchNook
+        var notchNook: NotchNookState
     }
 }
 

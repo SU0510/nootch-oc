@@ -15,8 +15,9 @@ struct MediaPlayerWidgetView: View {
     
     var body: some View {
         VStack {
-            if let app = MediaPlayer.shared.app, app.isAppRunning {
-                MediaPlayerView(track: app.track, appIcon: app.meta.icon)
+            let player = MediaControls.shared
+            if player.track != .empty {
+                MediaPlayerView(track: player.track)
             } else {
                 NoMediaAppsView()
             }

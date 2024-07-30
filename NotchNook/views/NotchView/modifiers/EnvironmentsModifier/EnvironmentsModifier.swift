@@ -30,10 +30,9 @@ extension NotchView {
                 .environment(\.closeNotch, closeNotch)
                 .environment(\.checkTrialOver, checkTrialOver)
                 .environment(\.openNotch, openNotch)
-                .environment(\.openApp, openApp)
                 .environment(\.namespace, ns)
                 .environment(\.trialOver, state.trialOver)
-                .transformEnvironment(\.notchSize) { $0.width += generalSettings.notchWidthFineTune }
+                .transformEnvironment(\.notchSize) { if $0.width != 0 { $0.width += generalSettings.notchWidthFineTune } }
                 .preferredColorScheme(.dark)
         }
     }

@@ -125,8 +125,6 @@ struct LockedIndicatorView: View {
             .animation(.snappy(duration: 0.3, extraBounce: 0.175), value: lockedOrTyping)
         }
         .buttonStyle(BindStatesStyle(pressing: $pressing))
-        .offset(x: -20, y: 20)
-        .transition(.scaleAndBlur(anchor: .topTrailing))
         .onChange(of: typing) { oldVal, newVal in
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: locked || newVal ? 0 : 0.3, repeats: false) { _ in

@@ -1,16 +1,16 @@
 //
 //  AppDelegate.swift
-//  Notchway
+//  NotchNook
 //
 //  Created by Igor Marcossi on 12/05/24.
 //
-
 import Foundation
 import SwiftUI
 import Sparkle
 import AppKit
 import SwiftDate
 import SwiftData
+import Defaults
 
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
     var windowController: NSWindowController? = nil
@@ -32,7 +32,7 @@ import SwiftData
         // Initialize (in memory ig) all singletons
         CalendarManager.configureWithAppName("NotchNook")
         _ = ShortcutsManager.shared
-        _ = MediaPlayer.shared
+        _ = MediaControls.shared
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
         _ = LicenseManager.shared
@@ -42,6 +42,15 @@ import SwiftData
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
         windowsManager = WindowsManager(updater: updaterController.updater)
+        
+        // Initialize and start the keybind listener
+        if Defaults[.liveActivitiesSettings].enableHUDReplacement {
+            HUDManager.disableSystemHUD() // disable volume and brightness hud
+        }
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        HUDManager.enableSystemHUD()
     }
     
     func setupMenu() {

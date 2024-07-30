@@ -10,34 +10,27 @@ import SwiftUI
 struct Track: Equatable, Hashable, Identifiable {
     static let empty = Track(title: String(localized: "Unknown Title"), artist: String(localized: "Unknown Artist"), album: String(localized: "Unknown Album"))
     
-//    static func == (lhs: Track, rhs: Track) -> Bool {
-//        lhs.title == rhs.title && lhs.artist == rhs.artist && lhs.album == rhs.album
-//    }
-    var id: String { title + artist + album }
-    var title: String
-    var artist: String
-    var album: String
+    static func == (lhs: Track, rhs: Track) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    var id: String { metaId + albumId + mediaApp.bundleId }
+    var metaId: String { title + artist + album + String(describing: loved) }
+    var albumId: String { artist + album + String(describing: albumArt.isValid) + String(describing: albumArt.size) }
+    var title = ""
+    var artist = ""
+    var album = ""
     var loved: Bool?
+    var mediaApp = SystemAppMeta()
     var albumArt = NSImage()
     
-    init(
-        title: String = "",
-        artist: String = "",
-        album: String = "",
-        loved: Bool? = nil,
-        albumArt: NSImage = NSImage()
-    ) {
-        self.title = title
-        self.artist = artist
-        self.album = album
-        self.loved = loved
-        self.albumArt = albumArt
+    var albumArtAverageColor: NSColor { albumArt.averageColor ?? .white }
+    
+    func isValidReplacement(_ track: Track) -> Bool {
+        return self.metaId != track.metaId || self.mediaApp != track.mediaApp || (!self.albumArt.isValid && track.albumArt.isValid)
     }
     
     public func hash(into hasher: inout Hasher) {
-      hasher.combine(self.title)
-      hasher.combine(self.artist)
-      hasher.combine(self.album)
-      hasher.combine(self.loved)
+      hasher.combine(self.id)
     }
 }
