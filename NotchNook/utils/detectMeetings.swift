@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import EventKit
 
 enum VideoConferenceService: String {
     case googleMeet = "Meet"
@@ -29,21 +30,26 @@ struct Meeting {
     var service: VideoConferenceService
 }
 
-func detectMeetings(_ text: String?) -> Meeting? {
-    guard let text else { return nil }
+func detectMeetings(in event: EKEvent?) -> Meeting? {
+    guard let event else { return nil }
     let patterns: [VideoConferenceService: String] = [
         .googleMeet: "https?://meet\\.google\\.com/[a-zA-Z0-9-]+",
-        .zoom: "https?://[\\w-]+\\.zoom\\.us/j/[0-9]+",
+        .zoom: "https?://[\\w-]+\\.zoom\\.us/j/[0-9]+(?:\\?[\\w=&.]+)?",
         .microsoftTeams: "https?://teams\\.microsoft\\.com/l/meetup-join/[\\w-/%]+",
         .webex: "https?://[\\w-]+\\.webex\\.com/[\\w-]+/j\\.php\\?MTID=[a-zA-Z0-9]+"
     ]
-
+    
     for (service, pattern) in patterns {
-        if let range = text.range(of: pattern, options: .regularExpression) {
+        if let (text, range) = range(of: pattern, for: event.location) ?? range(of: pattern, for: event.notes), let range {
             let url = String(text[range])
             return Meeting(url: url, service: service)
         }
     }
-
+    
+    func range(of pattern: String, for string: String?) -> (String, Range<String.Index>?)? {
+        guard let string else { return nil }
+        return (string, string.range(of: pattern, options: .regularExpression))
+    }
+    
     return nil
 }

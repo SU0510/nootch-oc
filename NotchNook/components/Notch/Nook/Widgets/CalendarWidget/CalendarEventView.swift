@@ -78,7 +78,7 @@ struct CalendarEventView: View {
         }
         .foregroundStyle(.white)
         .onAppear {
-            if let notes = event.notes { meeting = detectMeetings(notes) }
+            meeting = detectMeetings(in: event)
         }
     }
 }

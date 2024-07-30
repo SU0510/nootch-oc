@@ -98,7 +98,7 @@ class CalendarManager: ObservableObject {
         events.forEach { event in
             let now = Date()
             if event.endDate < now { return }
-            if prefs.onlyEventsWithMeetings, detectMeetings(event.notes ?? "") == nil { return }
+            if prefs.onlyEventsWithMeetings, detectMeetings(in: event) == nil { return }
             
             let fireAt = event.startDate - prefs.minutesBeforeEvent.minutes
             let willHappen = fireAt > now
