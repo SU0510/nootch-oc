@@ -76,21 +76,21 @@ struct CalendarEventsView: View {
     }
     
     private func scrollToInitialPosition() {
-        guard let events = events, !events.isEmpty else { return }
-        
-        var targetOffset: CGFloat = 0
-        
-        if Calendar.current.isDateInToday(selectedDate) {
-            guard let nextEventIndex = events.firstIndex(where: { $0.startDate >= Date() }) else { return }
-            
-            for i in 0..<nextEventIndex {
-                let eventId = "\(events[i].eventIdentifier)_\(events[i].startDate.timeIntervalSince1970)"
-                targetOffset += eventHeights[eventId] ?? 0
-            }
-        }
-        
-        withAnimation(.easeInOut(duration: 0.3)) {
-            scrollOffset = targetOffset
-        }
+//        guard let events = events, !events.isEmpty else { return }
+//        
+//        var targetOffset: CGFloat = 0
+//        
+//        if Calendar.current.isDateInToday(selectedDate) {
+//            guard let nextEventIndex = events.firstIndex(where: { $0.startDate >= Date() }) else { return }
+//            
+//            for i in 0..<nextEventIndex {
+//                let eventId = "\(events[i].eventIdentifier)_\(events[i].startDate.timeIntervalSince1970)"
+//                targetOffset += eventHeights[eventId] ?? 0
+//            }
+//        }
+//        
+//        withAnimation(.easeInOut(duration: 0.3)) {
+//            scrollOffset = targetOffset
+//        }
     }
 }
