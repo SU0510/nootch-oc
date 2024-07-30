@@ -11,7 +11,6 @@ import Quartz
 
 @Observable
 class Tray {
-    
     var editingFile: (file: TrayFile, newName: String)?
     
     private enum KeyCode: UInt16 {
@@ -179,6 +178,8 @@ class Tray {
                 selectedFiles = [file]
             }
         }
+        
+        editingFile = nil
     }
     
     private func copySelectedFilesToClipboard() {
