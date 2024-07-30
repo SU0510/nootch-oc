@@ -29,18 +29,18 @@ struct TrayFileView: View {
     }
     
     var body: some View {
-        VStack(spacing: 2) {
+        VStack {
             TrayFileIconView(file: file)
-                .frame(width: 42, height: 42)
+                .frame(width: 40, height: 40)
             
             fileNameView
         }
         .foregroundStyle(.white)
         .padding(6)
-        .frame(maxHeight: .infinity)
+        .frame(maxHeight: .infinity, alignment: .top)
         .background {
             FileDraggableView(onSelect: {
-                tray.selectFile(file)
+                doAfter(0.05) { tray.selectFile(file) }
             }, onDropCompleted: { didMoveFile in
                 if !didMoveFile { return }
                 tray.selectedFiles.forEach { tray.removeFile($0) }
@@ -94,8 +94,10 @@ struct TrayFileView: View {
                     )
                     .onTapGesture {
                         doAfter {
-                            tray.editingFile = (file, file.name)
-                            enableTextEditing()
+                            if isSelected {
+                                tray.editingFile = (file, file.name)
+                                enableTextEditing()
+                            }
                         }
                     }
                     .id(file.id)
