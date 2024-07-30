@@ -195,7 +195,7 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : " %@"
           }
         },
@@ -273,7 +273,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : " %@"
           }
         },
@@ -379,8 +379,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " In use"
+            "state" : "translated",
+            "value" : " قيد الاستخدام"
           }
         },
         "ca" : {
@@ -563,8 +563,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " Shortcuts"
+            "state" : "translated",
+            "value" : " الاختصارات"
           }
         },
         "ca" : {
@@ -701,8 +701,8 @@
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " Shortcuts"
+            "state" : "translated",
+            "value" : " Genvägar"
           }
         },
         "tr" : {
@@ -747,8 +747,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "(see changelog)"
+            "state" : "translated",
+            "value" : "(راجع سجل التغييرات)"
           }
         },
         "ca" : {
@@ -885,8 +885,8 @@
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "(see changelog)"
+            "state" : "translated",
+            "value" : "(se ändringsloggar)"
           }
         },
         "tr" : {
@@ -921,6 +921,9 @@
         }
       }
     },
+    "%" : {
+
+    },
     "%@ - %@" : {
       "localizations" : {
         "af" : {
@@ -931,7 +934,7 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%@ - %@"
           }
         },
@@ -1010,7 +1013,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ - %2$@"
+            "value" : "%@ - %@"
           }
         },
         "ko" : {
@@ -1115,7 +1118,7 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%@%lld"
           }
         },
@@ -1194,7 +1197,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@%2$lld"
+            "value" : "%@%lld"
           }
         },
         "ko" : {
@@ -1299,7 +1302,7 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld"
           }
         },
@@ -1377,7 +1380,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld"
           }
         },
@@ -1483,8 +1486,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%lld visible"
+            "state" : "translated",
+            "value" : "%lld مرئي"
           }
         },
         "ca" : {
@@ -1562,7 +1565,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld 可視"
+            "value" : "%lld 件が表示中"
           }
         },
         "ko" : {
@@ -1667,7 +1670,7 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%@"
           }
         },
@@ -1746,7 +1749,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld%2$@"
+            "value" : "%lld%@"
           }
         },
         "ko" : {
@@ -1841,6 +1844,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "+%lld" : {
       "localizations" : {
         "af" : {
@@ -1851,7 +1857,7 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "+%lld"
           }
         },
@@ -1929,7 +1935,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "+%lld"
           }
         },
@@ -2035,8 +2041,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A beautiful and native Reddit client app for iOS."
+            "state" : "translated",
+            "value" : "تطبيق Reddit جميل وأصيل لنظام iOS."
           }
         },
         "ca" : {
@@ -2114,7 +2120,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "美しくネイティブなRedditクライアントアプリ（iOS用）"
+            "value" : "iOSのための美しくネイティブなRedditクライアントアプリ。"
           }
         },
         "ko" : {
@@ -2204,7 +2210,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一款美觀的 iOS 原生 Reddit 客戶端應用程式。"
+            "value" : "一款美麗、原生於iOS 的Reddit 客戶端應用程式"
           }
         }
       }
@@ -2219,8 +2225,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A bunch of bug fixes and sweet new features!"
+            "state" : "translated",
+            "value" : "مجموعة من إصلاحات الأخطاء والميزات الجديدة الرائعة!"
           }
         },
         "ca" : {
@@ -2244,7 +2250,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein paar Fehlerbehebungen und schöne neue Funktionen!"
+            "value" : "Einige Fehlerbehebungen sowie interessante, neue Funktionen!"
           }
         },
         "el" : {
@@ -2388,7 +2394,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "大量的錯誤修復和超棒的新功能！"
+            "value" : "大量錯誤修復和超棒的新功能！"
           }
         }
       }
@@ -2403,8 +2409,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A few of our apps"
+            "state" : "translated",
+            "value" : "بعض من تطبيقاتنا"
           }
         },
         "ca" : {
@@ -2572,7 +2578,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "我們的一些應用程式"
+            "value" : "我們其他的App"
           }
         }
       }
@@ -2587,8 +2593,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A group of talented friends from 4 different countries that develop amazing software together for nothing but passion."
+            "state" : "translated",
+            "value" : "مجموعة من الأصدقاء الموهوبين من 4 دول مختلفة يطورون برامج مذهلة معًا من أجل الشغف."
           }
         },
         "ca" : {
@@ -2756,7 +2762,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一群來自四個不同國家且才華橫溢的朋友，因為熱情一同創造出令人驚豔的軟體。"
+            "value" : "四個來自不同國家，才華橫溢的朋友，在共同的熱情下創造出令人驚豔的軟體。"
           }
         }
       }
@@ -2771,8 +2777,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new elegant way of getting notified about and joining a meeting. "
+            "state" : "translated",
+            "value" : "طريقة جديدة وأنيقة للحصول على إشعارات حول اجتماع والانضمام إليه. "
           }
         },
         "ca" : {
@@ -2850,7 +2856,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スマートに次のミーティングの通知を受け取って、スムーズに参加しましょう。"
+            "value" : "スマートに次のミーティングの通知を受け取って、スムーズに参加しましょう。 "
           }
         },
         "ko" : {
@@ -2940,7 +2946,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一種優雅的新方式來取得通知並加入會議。 "
+            "value" : "以一種全新、優美的方式加入會議並取得通知。 "
           }
         }
       }
@@ -2955,8 +2961,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new way to interact with your mac"
+            "state" : "translated",
+            "value" : "طريقة جديدة للتفاعل مع الماك"
           }
         },
         "ca" : {
@@ -3124,7 +3130,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "與你 Mac 互動的新方式。"
+            "value" : "一種全新的方式與你的Mac互動"
           }
         }
       }
@@ -3139,8 +3145,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "About"
+            "state" : "translated",
+            "value" : "عن البرنامج"
           }
         },
         "ca" : {
@@ -3323,8 +3329,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "AirDrop"
+            "state" : "translated",
+            "value" : "الآيردروب"
           }
         },
         "ca" : {
@@ -3507,8 +3513,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Album corner radius:"
+            "state" : "translated",
+            "value" : "نصف قطر زاوية الألبوم:"
           }
         },
         "ca" : {
@@ -3676,7 +3682,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "專輯圓角效果大小："
+            "value" : "專輯封面圓角半徑:"
           }
         }
       }
@@ -3691,8 +3697,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow gestures when hovering the notch"
+            "state" : "translated",
+            "value" : "السماح بالإيماءات عند تحريك المؤشر فوق النوتش"
           }
         },
         "ca" : {
@@ -3860,7 +3866,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當懸停在凹槽上時允許使用手勢"
+            "value" : "當懸停在瀏海上時允許使用手勢"
           }
         }
       }
@@ -3875,8 +3881,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow some activities to interact with mouse click."
+            "state" : "translated",
+            "value" : "السماح لبعض الأنشطة بالتفاعل مع النقر بالماوس."
           }
         },
         "ca" : {
@@ -4059,8 +4065,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Always open on hover"
+            "state" : "translated",
+            "value" : "فتح دائمًا عند التحويم"
           }
         },
         "ca" : {
@@ -4243,8 +4249,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Animated wallpapers and overlay effects for macOS."
+            "state" : "translated",
+            "value" : "خلفيات متحركة وتأثيرات تراكب لنظام macOS."
           }
         },
         "ca" : {
@@ -4322,7 +4328,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "動く壁紙とオーバーレイ効果を追加できます (macOS用)"
+            "value" : "macOSのための動く壁紙とオーバーレイ効果を追加できます。"
           }
         },
         "ko" : {
@@ -4412,7 +4418,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "適用 macOS 疊蓋於桌面上的動態視覺特效。"
+            "value" : "適用於macOS 的動態桌布與覆蓋效果"
           }
         }
       }
@@ -4427,8 +4433,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Auto check for updates"
+            "state" : "translated",
+            "value" : "تحقق تلقائي من وجود تحديثات"
           }
         },
         "ca" : {
@@ -4611,8 +4617,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Auto download updates"
+            "state" : "translated",
+            "value" : "تحميل التحديثات تلقائياً"
           }
         },
         "ca" : {
@@ -4795,8 +4801,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar"
+            "state" : "translated",
+            "value" : "التقويم"
           }
         },
         "ca" : {
@@ -4979,8 +4985,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar Live Activity"
+            "state" : "translated",
+            "value" : "نشاط التقويم المباشر"
           }
         },
         "ca" : {
@@ -5136,7 +5142,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hoạt động Trực tiếp trên Lịch"
+            "value" : "Live Activity trên Lịch"
           }
         },
         "zh-Hans" : {
@@ -5148,7 +5154,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "日曆即時活動"
+            "value" : "日曆即時動態"
           }
         }
       }
@@ -5163,8 +5169,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar Settings"
+            "state" : "translated",
+            "value" : "إعدادات التقويم"
           }
         },
         "ca" : {
@@ -5347,8 +5353,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Calendar Widget"
+            "state" : "translated",
+            "value" : "ودجت التقويم"
           }
         },
         "ca" : {
@@ -5516,10 +5522,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "日曆小部件"
+            "value" : "日曆小工具"
           }
         }
       }
+    },
+    "Cancel" : {
+
     },
     "Check for Updates…" : {
       "localizations" : {
@@ -5531,8 +5540,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check for Updates…"
+            "state" : "translated",
+            "value" : "التحقق من وجود تحديثات…"
           }
         },
         "ca" : {
@@ -5715,8 +5724,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..."
+            "state" : "translated",
+            "value" : "يمكنك التحقق من الأحداث القادمة من خلال واجهة سهلة الاستخدام ومؤثرات لمسية رائعة. سيتم تحرير الأحداث والمزيد قريبًا..."
           }
         },
         "ca" : {
@@ -5899,8 +5908,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose Shortcuts"
+            "state" : "translated",
+            "value" : "اختر الاختصارات"
           }
         },
         "ca" : {
@@ -6083,8 +6092,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your shortcuts in settings."
+            "state" : "translated",
+            "value" : "اختر الاختصارات في الإعدادات."
           }
         },
         "ca" : {
@@ -6252,7 +6261,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在設置中選擇你的捷徑。"
+            "value" : "在設定中選擇你的捷徑。"
           }
         }
       }
@@ -6267,8 +6276,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "أغلقها للاستعادة."
           }
         },
         "ca" : {
@@ -6291,8 +6300,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "Schließe die App, um sie wiederherzustellen."
           }
         },
         "el" : {
@@ -6303,8 +6312,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "Cerrar para restaurar."
           }
         },
         "fi" : {
@@ -6315,8 +6324,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "Ferme-le pour restaurer."
           }
         },
         "he" : {
@@ -6345,14 +6354,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "復元するには閉じる必要があります。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "복원하려면 닫아야 합니다."
           }
         },
         "nl" : {
@@ -6369,8 +6378,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "Zamknij to, aby przywrócić."
           }
         },
         "pt-BR" : {
@@ -6423,8 +6432,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "Đóng để khôi phục."
           }
         },
         "zh-Hans" : {
@@ -6435,8 +6444,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
+            "state" : "translated",
+            "value" : "關閉即可還原"
           }
         }
       }
@@ -6451,8 +6460,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "وضع الكود"
           }
         },
         "ca" : {
@@ -6499,8 +6508,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "Mode code"
           }
         },
         "he" : {
@@ -6529,14 +6538,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "コードモード"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "코딩 모드"
           }
         },
         "nl" : {
@@ -6553,8 +6562,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "Tryb kodowania"
           }
         },
         "pt-BR" : {
@@ -6607,8 +6616,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "Chế độ lập trình"
           }
         },
         "zh-Hans" : {
@@ -6619,8 +6628,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
+            "state" : "translated",
+            "value" : "代碼模式"
           }
         }
       }
@@ -6635,8 +6644,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "تأثيرات ملونة"
           }
         },
         "ca" : {
@@ -6683,8 +6692,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "Effets colorés"
           }
         },
         "he" : {
@@ -6713,14 +6722,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "カラーエフェクト"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "컬러 효과"
           }
         },
         "nl" : {
@@ -6737,8 +6746,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "Efekty kolorystyczne"
           }
         },
         "pt-BR" : {
@@ -6791,8 +6800,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "Hiệu ứng sắc màu"
           }
         },
         "zh-Hans" : {
@@ -6803,8 +6812,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
+            "state" : "translated",
+            "value" : "彩色效果"
           }
         }
       }
@@ -6820,8 +6829,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored Spectograph"
+            "state" : "translated",
+            "value" : "طيف ملون"
           }
         },
         "ca" : {
@@ -7004,8 +7013,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Columns:"
+            "state" : "translated",
+            "value" : "الأعمدة:"
           }
         },
         "ca" : {
@@ -7188,8 +7197,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Coming soon..."
+            "state" : "translated",
+            "value" : "قريباً..."
           }
         },
         "ca" : {
@@ -7372,8 +7381,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Content padding:"
+            "state" : "translated",
+            "value" : "بعد المحتوى عن أطرف الشاشة:"
           }
         },
         "ca" : {
@@ -7556,8 +7565,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Control media with horizontal gestures"
+            "state" : "translated",
+            "value" : "التحكم في الوسائط مع الإيماءات الأفقية"
           }
         },
         "ca" : {
@@ -7740,8 +7749,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize activities"
+            "state" : "translated",
+            "value" : "تخصيص الأنشطة"
           }
         },
         "ca" : {
@@ -7924,8 +7933,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize pipelines"
+            "state" : "translated",
+            "value" : "تخصيص مسارات المهام"
           }
         },
         "ca" : {
@@ -8108,8 +8117,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Customize widgets"
+            "state" : "translated",
+            "value" : "تخصيص عنصر الواجهة"
           }
         },
         "ca" : {
@@ -8292,8 +8301,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Damn, that's awesome!"
+            "state" : "translated",
+            "value" : "نعم، هذا رائع!"
           }
         },
         "ca" : {
@@ -8476,8 +8485,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Demo mode"
+            "state" : "translated",
+            "value" : "عرض تجريبي"
           }
         },
         "ca" : {
@@ -8660,8 +8669,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Detected"
+            "state" : "translated",
+            "value" : "تم الكشف"
           }
         },
         "ca" : {
@@ -8829,7 +8838,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢測到"
+            "value" : "偵測到"
           }
         }
       }
@@ -8844,8 +8853,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable haptics"
+            "state" : "translated",
+            "value" : "تعطيل اللمس"
           }
         },
         "ca" : {
@@ -9013,7 +9022,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "停用觸覺反饋"
+            "value" : "關閉觸覺回饋"
           }
         }
       }
@@ -9028,8 +9037,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Discord server"
+            "state" : "translated",
+            "value" : "سيرفر الديسكورد"
           }
         },
         "ca" : {
@@ -9212,8 +9221,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Drop Area"
+            "state" : "translated",
+            "value" : "منطقة الإسقاط"
           }
         },
         "ca" : {
@@ -9381,7 +9390,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拖放區域"
+            "value" : "存放區"
           }
         }
       }
@@ -9396,8 +9405,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Each column contains 2 rows (2 shortcuts)."
+            "state" : "translated",
+            "value" : "يحتوي كل عمود على صفين (اختصارين)."
           }
         },
         "ca" : {
@@ -9616,8 +9625,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "Tipo de efecto:"
           }
         },
         "fi" : {
@@ -9628,8 +9637,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "Type d'effet :"
           }
         },
         "he" : {
@@ -9658,14 +9667,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "エフェクトの種類:"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "효과:"
           }
         },
         "nl" : {
@@ -9682,8 +9691,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "Typ efektu:"
           }
         },
         "pt-BR" : {
@@ -9736,8 +9745,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "Loại hiệu ứng:"
           }
         },
         "zh-Hans" : {
@@ -9748,8 +9757,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Effect type:"
+            "state" : "translated",
+            "value" : "效果類型："
           }
         }
       }
@@ -10105,7 +10114,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hãy gửi email cho chúng tôi!"
+            "value" : "Gửi email!"
           }
         },
         "zh-Hans" : {
@@ -10117,7 +10126,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用電子郵件聯絡我們！"
+            "value" : "使用電子郵件與我們聯絡！"
           }
         }
       }
@@ -10657,7 +10666,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bật hoạt động trực tiếp"
+            "value" : "Bật live activities"
           }
         },
         "zh-Hans" : {
@@ -10669,7 +10678,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟用實時活動"
+            "value" : "啟用即時動態"
           }
         }
       }
@@ -10853,7 +10862,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟用角落"
+            "value" : "啟用Nook"
           }
         }
       }
@@ -10905,7 +10914,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activar Quick Peek"
+            "value" : "Activar vista rápida"
           }
         },
         "fi" : {
@@ -11041,6 +11050,9 @@
           }
         }
       }
+    },
+    "Enable volume and brightness HUD replacement" : {
+
     },
     "Files Tray" : {
       "localizations" : {
@@ -11221,7 +11233,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件托盤"
+            "value" : "文件存放區"
           }
         }
       }
@@ -11824,8 +11836,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "Desplazamiento vertical del GIF:"
           }
         },
         "fi" : {
@@ -11836,8 +11848,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "Décalage vertical du GIF :"
           }
         },
         "he" : {
@@ -11866,14 +11878,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "GIFの垂直オフセット："
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "GIF의 수직 오프셋:"
           }
         },
         "nl" : {
@@ -11890,8 +11902,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "Przesunięcie pionowe GIFa:"
           }
         },
         "pt-BR" : {
@@ -11944,8 +11956,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "Điều chỉnh chiều dọc ảnh GIF:"
           }
         },
         "zh-Hans" : {
@@ -11956,8 +11968,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
+            "state" : "translated",
+            "value" : "GIF 垂直偏移："
           }
         }
       }
@@ -12050,7 +12062,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "gjp1lh5dtzqp4yddn73uush9r4inv0"
           }
         },
@@ -12313,7 +12325,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Giả lập notch (dành cho màn hình không có notch):"
+            "value" : "Handler (màn hình không có notch):"
           }
         },
         "zh-Hans" : {
@@ -12325,7 +12337,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "處理程序（無凹槽屏幕）："
+            "value" : "Handler (無瀏海螢幕):"
           }
         }
       }
@@ -12560,8 +12572,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
+            "state" : "translated",
+            "value" : "Hola mundo!"
           }
         },
         "fi" : {
@@ -12572,8 +12584,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
+            "state" : "translated",
+            "value" : "Salut, Monde !"
           }
         },
         "he" : {
@@ -12602,14 +12614,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Hello, World!"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
+            "state" : "translated",
+            "value" : "안녕, 세상!"
           }
         },
         "nl" : {
@@ -12626,8 +12638,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
+            "state" : "translated",
+            "value" : "Witaj Świecie!"
           }
         },
         "pt-BR" : {
@@ -12680,8 +12692,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
+            "state" : "translated",
+            "value" : "Xin chào thế giới!"
           }
         },
         "zh-Hans" : {
@@ -12692,8 +12704,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
+            "state" : "translated",
+            "value" : "你好，世界！"
           }
         }
       }
@@ -12787,7 +12799,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "隠れている、合わない。"
+            "value" : "隠れてしまうため、フィットしません。"
           }
         },
         "ko" : {
@@ -12877,7 +12889,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "隱藏，不合適。"
+            "value" : "隱藏，他並適合。"
           }
         }
       }
@@ -13245,7 +13257,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果停用，點擊凹槽將無法執行任何操作。"
+            "value" : "如果停用，點擊瀏海將無法執行任何動作。"
           }
         }
       }
@@ -13296,8 +13308,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "Si está activo, los efectos tomaran el color del álbum que se está reproduciendo, de lo contrario, usará un color blanco."
           }
         },
         "fi" : {
@@ -13308,8 +13320,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "Si activé, les effets prendront la couleur de l'album en cours de lecture, sinon ils seront blancs."
           }
         },
         "he" : {
@@ -13338,14 +13350,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "有効にすると、エフェクトはは現在再生中のアルバムアートワークの色になります。無効の場合は、白色になります。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "활성화되면 현재 재생중인 앨범의 색상이 효과에 반영됩니다. 비활성화된 경우 흰색이 반영됩니다."
           }
         },
         "nl" : {
@@ -13362,8 +13374,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "Jeśli włączone, efekty będą miały kolor bieżącego albumu odtwarzanego, w przeciwnym razie będą białe."
           }
         },
         "pt-BR" : {
@@ -13416,8 +13428,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "Nếu bật, hiệu ứng sẽ đổi màu theo album đang phát, nếu không, nó sẽ là màu trắng."
           }
         },
         "zh-Hans" : {
@@ -13428,8 +13440,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+            "state" : "translated",
+            "value" : "如果啟用，音波會採用目前播放中專輯的顏色，否則會是白色。"
           }
         }
       }
@@ -13601,7 +13613,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nếu bật, một vài hoạt động trực tiếp sẽ hiện một ít thông tin khi hơ chuột lên."
+            "value" : "Nếu bật, một vài live activities sẽ hiện một ít thông tin khi hơ chuột lên."
           }
         },
         "zh-Hans" : {
@@ -13613,7 +13625,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果啟用，某些實時活動將在鼠標懸停時顯示簡短信息。"
+            "value" : "如果啟用，某些即時動態將在滑鼠懸停時顯示簡短介紹。"
           }
         }
       }
@@ -14350,7 +14362,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互動性："
+            "value" : "互動:"
           }
         }
       }
@@ -14522,7 +14534,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đảo ngược cử chỉ media"
+            "value" : "Đảo ngược cử chỉ cho media"
           }
         },
         "zh-Hans" : {
@@ -14534,7 +14546,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "反轉媒體手勢操作"
+            "value" : "反轉操作媒體手勢"
           }
         }
       }
@@ -14627,7 +14639,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "john.doe@email.com"
           }
         },
@@ -15086,7 +15098,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登錄時啟動"
+            "value" : "在登入時啟動"
           }
         }
       }
@@ -15626,7 +15638,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hoạt động trực tiếp"
+            "value" : "Live Activities"
           }
         },
         "zh-Hans" : {
@@ -15638,7 +15650,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "實時活動"
+            "value" : "即時動態"
           }
         }
       }
@@ -15873,8 +15885,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "Bloquear mientras se escribe"
           }
         },
         "fi" : {
@@ -15885,8 +15897,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "Verrouiller lors de la saisie"
           }
         },
         "he" : {
@@ -15915,14 +15927,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "入力中にロックする"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "입력하는 동안 잠금"
           }
         },
         "nl" : {
@@ -15939,8 +15951,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "Zablokuj podczas pisania"
           }
         },
         "pt-BR" : {
@@ -15993,8 +16005,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "Khoá khi gõ phím"
           }
         },
         "zh-Hans" : {
@@ -16005,8 +16017,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
+            "state" : "translated",
+            "value" : "當輸入時鎖定"
           }
         }
       }
@@ -16190,7 +16202,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "管理賬單"
+            "value" : "帳單管理"
           }
         }
       }
@@ -16374,7 +16386,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "管理其他日曆設置："
+            "value" : "管理日曆設置:"
           }
         }
       }
@@ -17068,7 +17080,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отразить"
+            "value" : "Зеркало"
           }
         },
         "sr" : {
@@ -17478,7 +17490,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "似乎沒有應用程序在運行"
+            "value" : "似乎沒有應用程式正在運作"
           }
         }
       }
@@ -17662,7 +17674,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "角落"
+            "value" : "Nook"
           }
         }
       }
@@ -18030,7 +18042,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "凹槽："
+            "value" : "瀏海:"
           }
         }
       }
@@ -18123,7 +18135,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "NotchNook"
           }
         },
@@ -18307,7 +18319,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "NotchNook "
           }
         },
@@ -18766,7 +18778,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NotchNook 會盡力猜測你的凹槽寬度，但有時可能會有些偏差。你可以在這裡進行微調。它必須與你的凹槽大小完全一致。"
+            "value" : "NotchNook 會偵測你的瀏海寬度，但有時可能會有些許偏差。你可以在這裡進行調整。它必須與你的瀏海大小一致。"
           }
         }
       }
@@ -18781,8 +18793,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Notes"
+            "state" : "translated",
+            "value" : "الملاحظات"
           }
         },
         "ca" : {
@@ -18965,8 +18977,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Nothing for today"
+            "state" : "translated",
+            "value" : "لا شيء اليوم"
           }
         },
         "ca" : {
@@ -19149,8 +19161,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Nothing selected"
+            "state" : "translated",
+            "value" : "لم يتم تحديد أي شيء"
           }
         },
         "ca" : {
@@ -19323,6 +19335,9 @@
         }
       }
     },
+    "OK" : {
+
+    },
     "Open Settings" : {
       "localizations" : {
         "af" : {
@@ -19333,8 +19348,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open Settings"
+            "state" : "translated",
+            "value" : "فتح الإعدادات"
           }
         },
         "ca" : {
@@ -19502,7 +19517,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打開設置"
+            "value" : "打開設定"
           }
         }
       }
@@ -19517,8 +19532,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open/close notch with vertical gestures"
+            "state" : "translated",
+            "value" : "فتح/إغلاق النوتش مع الإيماءات الرأسية"
           }
         },
         "ca" : {
@@ -19644,7 +19659,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть/закрыть notch с помощью вертикальных жестов"
+            "value" : "Открыть/закрыть вырез с помощью вертикальных жестов"
           }
         },
         "sr" : {
@@ -19686,7 +19701,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用垂直手勢打開/關閉凹槽"
+            "value" : "用垂直手勢打開/關閉瀏海"
           }
         }
       }
@@ -19701,8 +19716,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Other options:"
+            "state" : "translated",
+            "value" : "خيارات أخرى:"
           }
         },
         "ca" : {
@@ -19885,8 +19900,8 @@
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Others:"
+            "state" : "translated",
+            "value" : "أخرى:"
           }
         },
         "ca" : {
@@ -20239,7 +20254,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "小工具周圍的填充："
+            "value" : "小工具與周圍的距離："
           }
         }
       }
@@ -20278,8 +20293,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "Verhindert das Schließen beim Verlassen mit der Maus"
           }
         },
         "el" : {
@@ -20290,8 +20305,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "Evitar cerrar cuando el ratón salga"
           }
         },
         "fi" : {
@@ -20302,8 +20317,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "Empêcher la fermeture lors de la saisie"
           }
         },
         "he" : {
@@ -20332,14 +20347,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "ポインタが領域外に出ても閉じないようにする"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "마우스 커서가 영역 밖으로 나가도 닫히지 않도록 방지"
           }
         },
         "nl" : {
@@ -20356,8 +20371,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "Zapobiegaj zamykaniu się po opuszczeniu myszy"
           }
         },
         "pt-BR" : {
@@ -20410,8 +20425,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "Ngăn cửa sổ đóng khi rời chuột"
           }
         },
         "zh-Hans" : {
@@ -20422,8 +20437,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
+            "state" : "translated",
+            "value" : "防止在滑鼠移開時關閉"
           }
         }
       }
@@ -20517,7 +20532,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アイドル時にNotchNookが隠れるのを防ぎます。画面録画に便利です（ノッチのないディスプレイには影響しません）。"
+            "value" : "アイドル時にNotchNookが隠れるのを防ぎます。画面録画に便利です。(ノッチのないディスプレイには影響しません)"
           }
         },
         "ko" : {
@@ -20607,7 +20622,191 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止 NotchNook 在閒置時隱藏。對於屏幕錄像很有用（對於沒有凹槽的屏幕沒有影響）。"
+            "value" : "防止 NotchNook 在閒置時隱藏。對於正在螢幕錄影很有用（對於沒有瀏海的螢幕沒有影響）。"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "localizations" : {
+        "af" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "no" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
           }
         }
       }
@@ -22447,7 +22646,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇一些快捷方式"
+            "value" : "選擇捷徑"
           }
         }
       }
@@ -22541,7 +22740,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "これが消えない場合は、hi@lo.cafeにメールでお知らせください。"
+            "value" : "これが消えない場合は、hi@lo.cafe にメールでお知らせください。"
           }
         },
         "ko" : {
@@ -22815,7 +23014,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快捷方式"
+            "value" : "捷徑"
           }
         }
       }
@@ -23050,8 +23249,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "Mostrar indicador de desplazamiento"
           }
         },
         "fi" : {
@@ -23062,8 +23261,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "Montrer l'indicateur de défilement"
           }
         },
         "he" : {
@@ -23092,14 +23291,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "スクロールインジケーターを表示する"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "스크롤바 표시"
           }
         },
         "nl" : {
@@ -23116,8 +23315,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "Pokaż wskaźnik przewijania"
           }
         },
         "pt-BR" : {
@@ -23170,8 +23369,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "Hiện báo hiệu có thanh cuộn"
           }
         },
         "zh-Hans" : {
@@ -23182,8 +23381,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
+            "state" : "translated",
+            "value" : "顯示捲動指示"
           }
         }
       }
@@ -23735,7 +23934,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一些鏈接："
+            "value" : "一些連接："
           }
         }
       }
@@ -24103,7 +24302,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "很快你就可以通過拖放文件來壓縮圖像、壓縮/解壓文件等等。"
+            "value" : "之後你將可以透過拖曳的方式來壓縮圖片、解/壓縮文件"
           }
         }
       }
@@ -24643,7 +24842,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bắt đầu bản dùng thử của %lldh"
+            "value" : "Bắt đầu bản thử của %lldh"
           }
         },
         "zh-Hans" : {
@@ -24827,7 +25026,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bắt đầu bản dùng thử"
+            "value" : "Bắt đầu dùng thử"
           }
         },
         "zh-Hans" : {
@@ -24839,7 +25038,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開始試用"
+            "value" : "開始您的試用"
           }
         }
       }
@@ -25194,8 +25393,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Take a quick peek at useful info by hovering some of the live activities."
+            "state" : "translated",
+            "value" : "Xem nhanh thông tin hữu ích bằng cách hơ chuột lên một vài live activities."
           }
         },
         "zh-Hans" : {
@@ -25207,7 +25406,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通過懸停在一些實時活動上快速查看有用的信息。"
+            "value" : "透過懸停在即時動態上快速查看有用的資訊。"
           }
         }
       }
@@ -25258,8 +25457,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "La nota fue archivada."
           }
         },
         "fi" : {
@@ -25270,8 +25469,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "La note s'est envolée."
           }
         },
         "he" : {
@@ -25300,14 +25499,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "メモは飛び去ってしまいました。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "메모가 날아가버렸습니다."
           }
         },
         "nl" : {
@@ -25324,8 +25523,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "Notatka uciekła."
           }
         },
         "pt-BR" : {
@@ -25378,8 +25577,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "Ghi chú đã bay màu."
           }
         },
         "zh-Hans" : {
@@ -25390,8 +25589,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
+            "state" : "translated",
+            "value" : "筆記悄悄地離開了。"
           }
         }
       }
@@ -25562,8 +25761,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "The unit is measured in \"cells\" for the widgets grid. 1 cell means %lld points/px."
+            "state" : "translated",
+            "value" : "Đơn vị được đo bằng số \"ô\" trong khung tiện ích. 1 ô bằng %lld điểm ảnh (pixel)."
           }
         },
         "zh-Hans" : {
@@ -25575,10 +25774,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "小工具網格的單位以“單元格”為單位。1個單元格意味著%lld點/像素。"
+            "value" : "小工具網格的單位以“格”為單位。1格意味著%lld點/像素。"
           }
         }
       }
+    },
+    "This setting requires you to provide NotchNook with accessibility permissions." : {
+
     },
     "This will reset everything except your license." : {
       "localizations" : {
@@ -25746,8 +25948,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will reset everything except your license."
+            "state" : "translated",
+            "value" : "Khôi phục toàn bộ cài đặt ngoại trừ cấp phép bản quyền của bạn."
           }
         },
         "zh-Hans" : {
@@ -25759,7 +25961,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "這將重置除了授權之外的所有設定。"
+            "value" : "這將重置授權以外的所有設定。"
           }
         }
       }
@@ -25930,8 +26132,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Time Remaining"
+            "state" : "translated",
+            "value" : "Thời Gian Còn Lại"
           }
         },
         "zh-Hans" : {
@@ -26114,8 +26316,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "To-dos"
+            "state" : "translated",
+            "value" : "Cần làm"
           }
         },
         "zh-Hans" : {
@@ -26298,8 +26500,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "TOTAL CELLS: %lld"
+            "state" : "translated",
+            "value" : "TỔNG SỐ Ô: %lld"
           }
         },
         "zh-Hans" : {
@@ -26311,7 +26513,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "總單元格：%lld"
+            "value" : "寬度：%lld"
           }
         }
       }
@@ -26350,8 +26552,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "Verwandelt Notizen in einen Code-Editor mit Syntaxhervorhebung (unterstützt Markdown)."
           }
         },
         "el" : {
@@ -26362,8 +26564,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "Transforma las notas en un editor de código, con resaltado de sintaxis (admite Markdown)."
           }
         },
         "fi" : {
@@ -26374,8 +26576,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "Transforme les notes en un éditeur de code, avec la coloration syntaxique (prend en charge Markdown)."
           }
         },
         "he" : {
@@ -26404,14 +26606,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "メモをコードエディタに変換し、構文ハイライトを行います。(Markdownに対応しています)"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "메모를 구문 강조 기능(마크다운 지원)이 포함된 코드 편집기로 변환합니다."
           }
         },
         "nl" : {
@@ -26428,8 +26630,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "Przekształca notatki w edytor kodu z podświetlaniem składni (obsługuje Markdown)."
           }
         },
         "pt-BR" : {
@@ -26482,8 +26684,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "Biến ghi chú thành công cụ lập trình, với khả năng highlight syntax (hỗ trợ Markdown)."
           }
         },
         "zh-Hans" : {
@@ -26494,8 +26696,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+            "state" : "translated",
+            "value" : "將筆記轉換成程式碼編輯器，並具備語法高亮顯示功能 (支援 Markdown)。"
           }
         }
       }
@@ -26589,7 +26791,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半透明のノッチ背景（実験的）"
+            "value" : "半透明のノッチ背景(実験的)"
           }
         },
         "ko" : {
@@ -26666,8 +26868,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transluscent notch background (experimental)"
+            "state" : "translated",
+            "value" : "Nền notch trong suốt (tính năng thử nghiệm)"
           }
         },
         "zh-Hans" : {
@@ -26679,7 +26881,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半透明凹槽背景（實驗性）"
+            "value" : "半透明瀏海 (實驗性質)"
           }
         }
       }
@@ -26850,8 +27052,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Transparent handler"
+            "state" : "translated",
+            "value" : "Handler trong suốt"
           }
         },
         "zh-Hans" : {
@@ -27034,8 +27236,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Tray"
+            "state" : "translated",
+            "value" : "Khay"
           }
         },
         "zh-Hans" : {
@@ -27047,7 +27249,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "托盤"
+            "value" : "文件存放區"
           }
         }
       }
@@ -27218,8 +27420,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Trial"
+            "state" : "translated",
+            "value" : "Bản thử"
           }
         },
         "zh-Hans" : {
@@ -27402,8 +27604,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Tweak the time _(in seconds)_ that live activities take to go away after they become inactive (like when music pauses)."
+            "state" : "translated",
+            "value" : "Tuỳ chỉnh thời gian _(giây)_ mà live activities đợi để đóng sau khi ngừng hoạt động (ví dụ khi nhạc ngừng chơi)."
           }
         },
         "zh-Hans" : {
@@ -27415,7 +27617,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "調整實時活動在變為非活動狀態後消失的時間（以秒為單位）（例如音樂暫停時）。"
+            "value" : "調整即時動態在非活動狀態後消失的時間 (以秒為單位) (例如音樂暫停時)。"
           }
         }
       }
@@ -27454,8 +27656,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "Effekte beim Schreiben:"
           }
         },
         "el" : {
@@ -27466,8 +27668,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "Efectos de escritura:"
           }
         },
         "fi" : {
@@ -27478,8 +27680,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "Effets de frappe :"
           }
         },
         "he" : {
@@ -27508,14 +27710,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "タイピングエフェクト:"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "타이핑 효과:"
           }
         },
         "nl" : {
@@ -27532,8 +27734,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "Efekty pisania:"
           }
         },
         "pt-BR" : {
@@ -27586,8 +27788,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "Hiệu ứng gõ phím:"
           }
         },
         "zh-Hans" : {
@@ -27598,8 +27800,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
+            "state" : "translated",
+            "value" : "打字效果："
           }
         }
       }
@@ -27770,7 +27972,7 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Unknown Album"
           }
         },
@@ -27783,7 +27985,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未知專輯"
+            "value" : "未知的專輯"
           }
         }
       }
@@ -27954,7 +28156,7 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Unknown Artist"
           }
         },
@@ -27967,7 +28169,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未知藝術家"
+            "value" : "未知創作家"
           }
         }
       }
@@ -28138,7 +28340,7 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Unknown Title"
           }
         },
@@ -28151,7 +28353,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未知標題"
+            "value" : "未知的標題"
           }
         }
       }
@@ -28322,8 +28524,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Unregister"
+            "state" : "translated",
+            "value" : "Gỡ đăng ký"
           }
         },
         "zh-Hans" : {
@@ -28506,8 +28708,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Unregistered"
+            "state" : "translated",
+            "value" : "Đã gỡ đăng ký"
           }
         },
         "zh-Hans" : {
@@ -28612,7 +28814,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@"
           }
         },
@@ -28690,7 +28892,7 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@"
           }
         },
@@ -28796,7 +28998,7 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@ "
           }
         },
@@ -28874,7 +29076,7 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@ "
           }
         },
@@ -29071,7 +29273,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "想打開一個嗎？"
+            "value" : "要打開一個嗎？"
           }
         }
       }
@@ -29242,8 +29444,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Welcome to NotchNook!"
+            "state" : "translated",
+            "value" : "Chào mừng đến với NotchNook!"
           }
         },
         "zh-Hans" : {
@@ -29426,8 +29628,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Width"
+            "state" : "translated",
+            "value" : "Chiều rộng"
           }
         },
         "zh-Hans" : {
@@ -29610,8 +29812,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Width (in cells):"
+            "state" : "translated",
+            "value" : "Chiều rộng (số ô):"
           }
         },
         "zh-Hans" : {
@@ -29623,7 +29825,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "寬度（單元格）："
+            "value" : "寬度 (格):"
           }
         }
       }
@@ -29794,8 +29996,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Width:"
+            "state" : "translated",
+            "value" : "Chiều rộng:"
           }
         },
         "zh-Hans" : {
@@ -29978,8 +30180,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Will only show up on mouse hover."
+            "state" : "translated",
+            "value" : "Chỉ hiện lên khi hơ chuột."
           }
         },
         "zh-Hans" : {
@@ -29991,7 +30193,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "僅在鼠標懸停時顯示。"
+            "value" : "僅在滑鼠懸停時顯示。"
           }
         }
       }
@@ -30030,8 +30232,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "Versuche es einmal mit einem Rechtsklick."
           }
         },
         "el" : {
@@ -30042,8 +30244,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "También puedes hacer clic derecho en él."
           }
         },
         "fi" : {
@@ -30054,8 +30256,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "Vous pouvez aussi faire un clic droit."
           }
         },
         "he" : {
@@ -30084,14 +30286,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "右クリックすることもできます。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "우클릭도 할 수 있습니다."
           }
         },
         "nl" : {
@@ -30108,8 +30310,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "Możesz również kliknąć prawym przyciskiem myszy."
           }
         },
         "pt-BR" : {
@@ -30162,8 +30364,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "Bạn cũng có thể nhấp chuột phải."
           }
         },
         "zh-Hans" : {
@@ -30174,8 +30376,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
+            "state" : "translated",
+            "value" : "您可以以滑鼠右鍵點選。"
           }
         }
       }
@@ -30346,8 +30548,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You shouldn't be seeing this."
+            "state" : "translated",
+            "value" : "Bạn không nên thấy thứ này."
           }
         },
         "zh-Hans" : {
@@ -30359,7 +30561,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你不應該看到這個。"
+            "value" : "你不該看到這個的。"
           }
         }
       }

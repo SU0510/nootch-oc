@@ -17,7 +17,7 @@ struct EventIconView: View {
     @Environment(\.getNow) private var getNow
     @Environment(\.notchNook) private var notchNook
     
-    var quickPeeks: [NotchNook.QuickPeek] {
+    var quickPeeks: [NotchNookState.QuickPeek] {
         let startTime = startDate.formatted(date: .omitted, time: .shortened)
         let endTime = endDate.formatted(date: .omitted, time: .shortened)
         return [

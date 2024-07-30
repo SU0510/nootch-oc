@@ -84,11 +84,11 @@ extension NotchViewModel {
         let bottomInterpolator = interpolatorBuilder([0, 200], value: panRawPadding.bottom)
         
         
-        let leading = leadingInterpolator([0, NotchView.maxHPanDrag], true)
-        let trailing = trailingInterpolator([0, NotchView.maxHPanDrag], true)
-        let bottom = bottomInterpolator([0, NotchView.maxVPanDrag], true)
+        let leading = leadingInterpolator([0, NotchView.maxHPanDrag], true, .linear)
+        let trailing = trailingInterpolator([0, NotchView.maxHPanDrag], true, .linear)
+        let bottom = bottomInterpolator([0, NotchView.maxVPanDrag], true, .linear)
         
-        let decrease = topInterpolator([0, 32], true)
+        let decrease = topInterpolator([0, 32], true, .linear)
         
         return .init(
             top: 0,

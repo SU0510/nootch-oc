@@ -14,15 +14,17 @@ extension NotchView {
         @Environment(\.isEditingText) internal var isEditingText
         func body(content: Content) -> some View {
             content
-                .overlay(alignment: .bottomLeading) {
+                .overlay(alignment: .bottomTrailing) {
                     if notchNook.mode != .closed && notchNook.mode != .dragging {
                         LockedIndicatorView(
                             locked: notchNook.locked,
                             toggleLock: { notchNook.locked.toggle() },
                             typing: isEditingText
                         )
-                        .scaleEffect(1 - state.scaleDown, anchor: .topTrailing)
+                        .scaleEffect(1 - state.scaleDown, anchor: .topLeading)
                         .blur(radius: state.scaleDown * 100)
+                        .offset(x: 20, y: 20)
+                        .transition(.scaleAndBlur(anchor: .topLeading))
                     }
                 }
         }

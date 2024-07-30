@@ -17,7 +17,7 @@ struct RootView: View {
     var sparkleManager: SparkleManager
     var showChangelog: () -> ()
     var notchSize: CGSize
-    var notchNook: NotchNook
+    var notchNook: NotchNookState
     var focusFrontmostWindow: () -> ()
     var makeKeyWindow: (() -> ())?
     var resignFirstResponder: () -> ()
@@ -73,6 +73,7 @@ struct RootView: View {
             .environment(\.expandedNoteManager, expandedNoteManager)
             .environment(\.displayKitId, displayKitId)
             .environment(\.isKeyWindow, isKeyWindow)
+            .environment(\.preventNextFocusFrontmostWindow, preventNextFocusFrontmostWindow)
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)
         // Defaults
