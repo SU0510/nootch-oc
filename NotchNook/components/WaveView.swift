@@ -104,14 +104,6 @@ class WobblyBezierView: NSView {
     }
     
     func startRandomMovement() {
-//        blurTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-//            guard let self = self else {
-//                timer.invalidate()
-//                return
-//            }
-//            
-//            self.changeBlur(to: .random(in: 0...2))
-//        }
         movementTimer = Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true) { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()
