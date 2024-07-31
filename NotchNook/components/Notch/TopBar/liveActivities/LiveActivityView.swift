@@ -13,7 +13,7 @@ private var activitiesByPriority: [LiveActivity] = [.tray, .calendar, .updateAva
 struct LiveActivityView: View {
     var side: ActivitySide
     var activeActivities: Set<LiveActivity>
-    var mockEvent: NookEvent?
+
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
@@ -39,10 +39,12 @@ struct LiveActivityView: View {
             if let activityToShow {
                 switch activityToShow {
                     case .calendar:
-                        if let event = mockEvent ?? closestEvent(in: CalendarManager.shared.events)?.getNookEvent() {
+                        if let event = closestEvent(in: CalendarManager.shared.events) {
                             switch side {
-                                case .left: EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
-                                case .right: EventTimeView(notes: event.notes, startDate: event.startDate, endDate: event.endDate)
+                                case .left: 
+                                    EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                                case .right: 
+                                    EventTimeView(event: event, startDate: event.startDate, endDate: event.endDate)
                             }
                         }
                     case .media:

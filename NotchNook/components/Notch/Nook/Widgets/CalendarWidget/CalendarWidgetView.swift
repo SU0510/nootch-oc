@@ -11,30 +11,42 @@ import EventKit
 import SwiftDate
 
 struct CalendarWidgetView: View {
-    static let showingDatesCount = 90
-    
-//    @Environment(\.calendarWidgetSettings) private var calendarWidgetSettings
-    @State private var selectedDateIndex = Self.showingDatesCount / 2
-    @State private var showingDates: [Date] = getRangeOfDays(count: Self.showingDatesCount)
+
+    @State private var selectedDateIndex = CalendarManager.numberOfDaysToDisplay / 2
+    @State private var displayedDates: [Date] = getRangeOfDays(count: CalendarManager.numberOfDaysToDisplay)
     @State private var offset: Double = 0
     
     var selectedDate: Date {
-        if selectedDateIndex < 0 { return showingDates[0] }
-        if selectedDateIndex >= showingDates.count { return showingDates[showingDates.count - 1] }
-        return showingDates[selectedDateIndex]
+        let baseDate: Date
+        if selectedDateIndex < 0 {
+            baseDate = displayedDates[0]
+        } else if selectedDateIndex >= displayedDates.count {
+            baseDate = displayedDates[displayedDates.count - 1]
+        } else {
+            baseDate = displayedDates[selectedDateIndex]
+        }
+
+        let calendar = Calendar.current
+        let date = calendar.startOfDay(for: baseDate)
+        
+        return date
     }
-    
+
     var body: some View {
         let events = CalendarManager.shared.eventsDatesDict
+        
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
-                ScrollableDaysView(showingDates: showingDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
+                ScrollableDaysView(showingDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
                     .zIndex(1)
-                CalendarEventsView(events: events[selectedDate])
+                CalendarEventsView(events: events[selectedDate], selectedDate: selectedDate)
+                    .id(selectedDate)
             }
         }
         .task {
-            _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+            let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
+            let endDate = Calendar.current.date(byAdding: .day, value: 60, to: Date())!
+            try? await CalendarManager.shared.fetchEvents(startDate: startDate, endDate: endDate)
         }
     }
     

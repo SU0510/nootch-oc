@@ -52,7 +52,7 @@ struct MockTopBar: View {
             
             Group {
                 switch activity {
-                    case .calendar: EventTimeView(notes: mockedEvent.notes, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate).environment(\.getNow, staticNow)
+                    case .calendar: EventTimeView(startDate: mockedEvent.startDate, endDate: mockedEvent.endDate).environment(\.getNow, staticNow)
                     case .media: AudioWavesView()
                     case .tray: TrayFilesCountView()
                     case .updateAvailable: UpdateButtonIconView()

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
+		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
+		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
+		36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
 		3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */; };
@@ -355,6 +359,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
+		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
+		36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarEventsViewShadows.swift; path = NotchNook/components/Notch/Nook/Widgets/CalendarWidget/CalendarEventsViewShadows.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
 		3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppIconView.swift; sourceTree = "<group>"; };
@@ -716,6 +724,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36C970242C51D73100956B57 /* errors */ = {
+			isa = PBXGroup;
+			children = (
+				36C970252C51D74500956B57 /* CalendarManagerError.swift */,
+			);
+			path = errors;
+			sourceTree = "<group>";
+		};
 		3A0816BB2C24C016008092F0 /* UpdateAvailable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1470,6 +1486,8 @@
 				3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */,
 				3A20F17C2C2FAB0B006A7E1F /* Animation.swift */,
 				3A5104D72C37B8430045F7E6 /* Numbers.swift */,
+				36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */,
+				36C970222C51D57600956B57 /* Date+Extensions.swift */,
 				3A342B082C4D965A003C369C /* UnitCurve.swift */,
 			);
 			path = extensions;
@@ -1478,6 +1496,7 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				36C970242C51D73100956B57 /* errors */,
 				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
 				3A3ABCED2C2B9BB600132228 /* SwiftData */,
@@ -1518,6 +1537,7 @@
 				3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */,
 				3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */,
 				3A801E002C151EAC0076560D /* CalendarWidgetView.swift */,
+				36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */,
 			);
 			path = CalendarWidget;
 			sourceTree = "<group>";
@@ -1877,6 +1897,7 @@
 				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
+				36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */,
 				3A1691D02C2FB1EE0014C326 /* TrialOverKey.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* TrayFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
@@ -1972,6 +1993,7 @@
 				3A20F1772C2F8B01006A7E1F /* ShapeModifier.swift in Sources */,
 				ECC22A3D2C0818C10000139C /* move.swift in Sources */,
 				ECB9D6A72C0CCBC0009C8CE4 /* GesturesSettingsView.swift in Sources */,
+				36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */,
 				EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */,
 				EC758F832BF2F19B00B873B0 /* NotchView.swift in Sources */,
 				3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */,
@@ -2042,6 +2064,7 @@
 				3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
+				36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */,
 				EC0E31092C055A560060B47E /* TraySettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				3A342B172C508903003C369C /* SystemAppMeta.swift in Sources */,
@@ -2076,6 +2099,7 @@
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
 				3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */,
+				36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */,
