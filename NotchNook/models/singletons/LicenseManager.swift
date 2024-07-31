@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Defaults
-import SwiftJWT
+import JWTKit
 
 @Observable
 class LicenseManager {
@@ -55,14 +55,14 @@ class LicenseManager {
         guard let newLicense = self.license ?? altLicense else { return nil }
         let result = await Self.checkLicense(newLicense)
         switch result {
-        case .invalid:
-            self.license = nil
-            self.networkErrorCounting = 0
-        case .networkError: self.networkErrorCounting += 1
-        case .valid:
-            if self.license != newLicense { self.license = newLicense }
-            self.networkErrorCounting = 0
-        case .noDeviceID: break
+            case .invalid:
+                self.license = nil
+                self.networkErrorCounting = 0
+            case .networkError: self.networkErrorCounting += 1
+            case .valid:
+                if self.license != newLicense { self.license = newLicense }
+                self.networkErrorCounting = 0
+            case .noDeviceID: break
         }
         if self.networkErrorCounting > Self.networkErrorLimit { self.license = nil }
         return result
@@ -96,30 +96,18 @@ class LicenseManager {
                 return .networkError
             }
             
-            // Decode and verify the JWT
-            let publicKeyString = pubKey
-            
-            // Convert the public key string (PEM format) to Data
-            guard let publicKeyData = publicKeyString.data(using: .utf8) else {
-                print("Invalid public key format")
-                return .invalid
-            }
-            
             // Create the JWTVerifier using the provided function
-            let jwtVerifier = JWTVerifier.rs256(publicKey: publicKeyData)
+            let keys = JWTKeyCollection()
             
             do {
-                let verified = JWT<Valid>.verify(tokenString, using: jwtVerifier)
-                if verified {
-                    let decodedJWT = try JWT<Valid>(jwtString: tokenString)
-                    if decodedJWT.claims.valid {
-                        return .valid
-                    } else {
-                        print("License check failed: \(decodedJWT.claims.error ?? "Unknown error")")
-                        return .invalid
-                    }
+                let key = try Insecure.RSA.PublicKey(pem: pubKey)
+                await keys.add(rsa: key, digestAlgorithm: .sha256)
+                let payload = try await keys.verify(tokenString, as: NNJWTPayload.self)
+                
+                if payload.valid {
+                    return .valid
                 } else {
-                    print("JWT Signature verification failed.")
+                    print("License check failed: \(payload.error ?? "Unknown error")")
                     return .invalid
                 }
             } catch {
@@ -149,7 +137,11 @@ struct License: Equatable, Codable, Hashable, Defaults.Serializable {
     }
 }
 
-struct Valid: Claims {
+struct NNJWTPayload: JWTPayload {
+    func verify(using algorithm: some JWTKit.JWTAlgorithm) async throws {}
+    
     let valid: Bool
+    let message: String?
     let error: String?
+    let iat: IssuedAtClaim
 }

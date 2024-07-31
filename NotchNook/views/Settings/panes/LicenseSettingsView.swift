@@ -16,6 +16,7 @@ struct LicenseSettingsView: View {
     @State private var keyType: License.KeyType = .subscription
     @State private var loading = false
     @State private var error: LicenseManager.CheckLicenseResult? = nil
+    @State private var errorStr: String?
     @Default(.license) private var license
     @Default(.trialInitialTime) private var trialInitialTime
     @Environment(\.openURL) private var openURL
