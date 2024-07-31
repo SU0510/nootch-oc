@@ -25,7 +25,7 @@ class WobblyBezierView: NSView {
         didSet {
             shapeLayers.forEach { layers in
                 layers.forEach { layer in
-                    let i = CGFloat(try! Int(value: layer.name ?? "0"))
+                    let i = CGFloat(try! Int(layer.name ?? "0")!)
                     layer.strokeColor = color.darkened(amount: i * 0.1).shaded(amount: i * 0.2).cgColor
                 }
             }
