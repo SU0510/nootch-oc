@@ -112,9 +112,11 @@ class MediaControls {
                         
                         if self.track.isValidReplacement(newTrack) {
                             TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
-                                DispatchQueue.main.async {
-                                    self.track = newTrack
-                                    self.updatePlaybackState()
+                                if self.track.isValidReplacement(newTrack) {
+                                    DispatchQueue.main.async {
+                                        self.track = newTrack
+                                        self.updatePlaybackState()
+                                    }
                                 }
                             }
                         }
