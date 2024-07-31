@@ -10,7 +10,7 @@ import EventKit
 import SwiftDate
 
 struct EventTimeView: View {
-    var notes: String?
+    var event: EKEvent?
     var startDate: Date
     var endDate: Date
     @State private var hovering = false
@@ -20,7 +20,7 @@ struct EventTimeView: View {
     var body: some View {
         TimelineView(.animation(minimumInterval: 1)) { ctx in
             let now = getNow()
-            let meeting = detectMeetings(notes)
+            let meeting = detectMeetings(in: event)
             let meetingStarted = startDate < now
             let shouldRemoveAct = prefs.showWhileInEvent ? endDate - 5.seconds < now : meetingStarted
             

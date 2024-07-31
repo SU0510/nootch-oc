@@ -11,7 +11,7 @@ import SwiftDate
 struct CalendarDayView: View, Equatable {
     static let width: Double = 32
     static func ==(lhs: CalendarDayView, rhs: CalendarDayView) -> Bool {
-        lhs.date.day == rhs.date.day && lhs.eventsCount == rhs.eventsCount && lhs.selected == rhs.selected
+        lhs.date == rhs.date && lhs.eventsCount == rhs.eventsCount && lhs.selected == rhs.selected
     }
     var date: Date
     var eventsCount = 0
@@ -35,14 +35,15 @@ struct CalendarDayView: View, Equatable {
             .foregroundStyle((isInWeekend ? Color.weekendPink : Color.white).opacity(0.35))
             
             
-            VStack(spacing: 2) {
+            VStack(spacing: 1.5) {
                 Text(String(format: "%02d", date.day))
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundStyle(isToday ? .blue : isInWeekend ? .weekendPink : .white)
+
                 HStack(spacing: 3) {
                     if eventsCount > 0 {
                         ForEach(Array(arrayLiteral: eventsCount), id: \.self) { _ in
-                            Circle().fill(.blue).frame(4)
+                            Circle().fill(.blue).frame(5)
                         }
                     }
                 }

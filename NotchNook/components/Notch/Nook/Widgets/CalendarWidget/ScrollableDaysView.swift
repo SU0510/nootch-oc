@@ -10,12 +10,12 @@ import SmoothGradient
 import EventKit
 import SwiftDate
 
-struct ScrollableDaysView: View, Equatable {
+struct ScrollableDaysView: View {
     static let leadingPadding: Double = 40
-    static func == (lhs: ScrollableDaysView, rhs: ScrollableDaysView) -> Bool {
-        lhs.showingDates == rhs.showingDates && lhs.selectedDateIndex == rhs.selectedDateIndex && lhs.offset == rhs.offset &&
-        lhs.events.values.reduce(0, { $0 + $1.count }) == rhs.events.values.reduce(0, { $0 + $1.count })
-    }
+//    static func == (lhs: ScrollableDaysView, rhs: ScrollableDaysView) -> Bool {
+//        lhs.showingDates == rhs.showingDates && lhs.selectedDateIndex == rhs.selectedDateIndex && lhs.offset == rhs.offset &&
+//        lhs.events.values.reduce(0, { $0 + $1.count }) == rhs.events.values.reduce(0, { $0 + $1.count })
+//    }
     
     var showingDates: [Date]
     @Binding var selectedDateIndex: Int
@@ -32,11 +32,14 @@ struct ScrollableDaysView: View, Equatable {
     
     var body: some View {
         let actualScroll = scrollPos + offset
+        let calendar = Calendar.current
+        
         GeometryReader { geo in
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top, spacing: 0) {
                     ForEach(Array(showingDates.enumerated()), id: \.element.timeIntervalSince1970) { i, date in
-                        CalendarDayView(date: date, eventsCount: events[date]?.count ?? 0, selected: selectedDateIndex == i)
+                        let actualDate = calendar.startOfDay(for: date)
+                        CalendarDayView(date: actualDate, eventsCount: events[actualDate]?.count ?? 0, selected: selectedDateIndex == i)
                             .onTapGesture { setDateToIndex(i) }
                     }
                 }
@@ -49,7 +52,7 @@ struct ScrollableDaysView: View, Equatable {
             }
             .scrollDisabled(true)
         }
-        .frame(height: 43)
+        .frame(height: 44)
         .animation(.spring, value: offset == 0)
         .onChange(of: offset) { oldOffset, newOffset in
             if oldOffset == newOffset { return }
