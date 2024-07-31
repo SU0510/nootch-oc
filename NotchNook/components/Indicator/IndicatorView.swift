@@ -10,6 +10,7 @@ import SwiftUI
 struct IndicatorView: View {
     var indicator: Indicator
     @Environment(\.notchSize) private var notchSize
+    @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
     
     var body: some View {
         Group {
@@ -17,7 +18,7 @@ struct IndicatorView: View {
             case .brightness:
                 BrightnessIndicatorView(indicator: indicator)
             case .volume:
-                VolumeIndicatorView(indicator: indicator)
+                    VolumeIndicatorView(indicator: indicator, disableColors: liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
             }
         }
         .frame(

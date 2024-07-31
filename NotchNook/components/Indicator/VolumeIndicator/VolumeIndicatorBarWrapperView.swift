@@ -17,6 +17,7 @@ struct VolumeIndicatorBarWrapperView: View, Equatable {
     let volumeValue: Double
     let overflowAmount: Double
     let baseColor: Color
+    var disableColors: Bool = false
     
     var body: some View {
         GeometryReader { geo in
@@ -24,7 +25,11 @@ struct VolumeIndicatorBarWrapperView: View, Equatable {
                 VolumeIndicatorValueView(volumeValue: volumeValue, overflowAmount: overflowAmount, baseColor: baseColor)
                     .frame(width: min(geo.size.width - 2, max(52, geo.size.width * volumeValue + 12)), alignment: .trailing)
                 VolumeIndicatorBarView(
-                    totalWidth: geo.size.width, volumeValue: volumeValue, overflowAmount: overflowAmount, baseColor: baseColor
+                    totalWidth: geo.size.width, 
+                    volumeValue: volumeValue,
+                    overflowAmount: overflowAmount,
+                    baseColor: baseColor,
+                    disableColors: disableColors
                 )
             }
         }

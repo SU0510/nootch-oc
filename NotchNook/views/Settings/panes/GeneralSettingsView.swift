@@ -27,6 +27,8 @@ struct GeneralSettingsView: View {
             Settings.Section(title: String(localized: "Notch:")) {
                 Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
+                Text("This will disable some of NotchNook's gestures.")
+                    .optionDescription(contentMaxW)
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
             }
             Settings.Section(title: String(localized: "Typing effects:")) {
@@ -45,7 +47,7 @@ struct GeneralSettingsView: View {
                     Text("\(num > 0 ? "+" : "")\(Int(num))")
                 }
                 Text("NotchNook tries it's best to guess you notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch.")
-//                    .settingDescription()
+                //                    .settingDescription()
                     .optionDescription(contentMaxW)
             }
             

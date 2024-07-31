@@ -23,6 +23,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
             }
             
+            
             Settings.Section {
                 Text("Inactivity timeout:").frame(minWidth: 150, alignment: .trailing)
             } content: {
@@ -31,7 +32,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .settingDescription()
             }
             
-            Settings.Section(title: String(localized: "Interactivity:")) {
+            Settings.Section(title: String(localized: "Interactivity:"), bottomDivider: true) {
                 Toggle("Enable interactive activities", isOn: $liveActivitiesSettings.interactive)
                 Text("Allow some activities to interact with mouse click.")
                     .settingDescription()
@@ -41,14 +42,13 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .settingDescription()
             }
             
-            Settings.Section(title: String(localized: "")) {
+            Settings.Section(title: String(localized: "HUD replacement:")) {
                 HStack {
-                    Toggle("Enable volume and brightness HUD replacement", isOn: $liveActivitiesSettings.enableHUDReplacement)
+                    Toggle("Enable", isOn: $liveActivitiesSettings.enableHUDReplacement)
                         .disabled(disableHUDToggle)
                     
-                    if disableHUDToggle {
-                        ProgressView().controlSize(.small)
-                    }
+                    ProgressView().controlSize(.mini)
+                        .opacity(disableHUDToggle ? 1 : 0)
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) { oldValue, newValue in
                     disableHUDToggle = true
@@ -63,8 +63,10 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 }
                 Text("This setting requires you to provide NotchNook with accessibility permissions.")
                     .optionDescription(contentMaxW)
-                //                Text("If you change this setting, you will need to restart the app to apply your changes.")
-                //                    .optionDescription(contentMaxW)
+                
+                Toggle("Disable colors on audio HUD replacement", isOn: $liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
+                    .fixedSize()
+                    .disabled(!liveActivitiesSettings.enableHUDReplacement)
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)

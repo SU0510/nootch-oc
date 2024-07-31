@@ -14,4 +14,5 @@ struct LiveActivitiesSettings: Preferences {
     var interactive = true
     var enableQuickPeek = true
     var enableHUDReplacement = false
+    var disableColorsOnAudioHUDReplacement = false
 }
