@@ -70,31 +70,31 @@ struct ShortcutsRowView: View {
     var padding: Double
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-                ForEach(Array(shortcuts.enumerated()), id: \.element.self) { i, shortcut in
-                    let innerArrPos = ArrayPosition(total: shortcuts.count, i: i)
-                    ShortcutView(shortcut: shortcut)
-                        .padding(EdgeInsets(
-                            top: 0,
-                            leading:
-                                innerArrPos == .middle || (innerArrPos == .last)
-                            ? 4
-                            : arrayPosition == .first && innerArrPos == .first ? 0 : padding,
-                            bottom: 0,
-                            trailing:
-                                innerArrPos == .middle || (innerArrPos == .first)
-                            ? 4
-                            : innerArrPos == .last && arrayPosition == .last ? 0 : padding
-                        ))
-                        .frame(width: btnWidth)
+            ForEach(Array(shortcuts.enumerated()), id: \.element.self) { i, shortcut in
+                let innerArrPos = ArrayPosition(total: shortcuts.count, i: i)
+                ShortcutView(shortcut: shortcut)
+                    .padding(EdgeInsets(
+                        top: 0,
+                        leading:
+                            innerArrPos == .middle || (innerArrPos == .last)
+                        ? 4
+                        : arrayPosition == .first && innerArrPos == .first ? 0 : padding,
+                        bottom: 0,
+                        trailing:
+                            innerArrPos == .middle || (innerArrPos == .first)
+                        ? 4
+                        : innerArrPos == .last && arrayPosition == .last ? 0 : padding
+                    ))
+                    .frame(width: btnWidth)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-//        .background(.red.opacity(0.25))
+        //        .background(.red.opacity(0.25))
     }
 }
 
 struct ShortcutView: View {
-//    var shortcut: Shortcut
+    //    var shortcut: Shortcut
     var shortcut: String
     @State private var bounce = 0
     var body: some View {
