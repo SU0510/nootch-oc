@@ -18,7 +18,7 @@ struct GeneralSettingsView: View {
         let defaultGeneral = GeneralSettings()
         Settings.Container(contentWidth: 550.0, minimumLabelWidth: 200) {
             
-            Settings.Section(title: String(localized: ""), bottomDivider: true) {
+            Settings.Section(title: "", bottomDivider: true) {
                 LaunchAtLogin.Toggle {
                     Text("Launch at login")
                 }

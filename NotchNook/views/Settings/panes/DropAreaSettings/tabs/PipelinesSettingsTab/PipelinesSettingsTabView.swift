@@ -11,7 +11,7 @@ import Settings
 struct PipelinesSettingsTabView: View {
     var body: some View {
         Settings.Container(contentWidth: 520.0) {
-            Settings.Section(title: String(localized: "")) {
+            Settings.Section(title: "") {
                 Text("Soon you'll be able to compress images, zip/unzip files and much more by dragging and dropping files.")
                     .padding(.top, 32)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

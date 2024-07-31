@@ -19,7 +19,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
         let contentMaxW: Double = 375
         
         Settings.Container(contentWidth: 520.0) {
-            Settings.Section(title: String(localized: "")) {
+            Settings.Section(title: "") {
                 Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
             }
             
