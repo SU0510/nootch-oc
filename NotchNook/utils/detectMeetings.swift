@@ -33,22 +33,26 @@ struct Meeting {
 func detectMeetings(in event: EKEvent?) -> Meeting? {
     guard let event else { return nil }
     let patterns: [VideoConferenceService: String] = [
-        .googleMeet: "https?://meet\\.google\\.com/[a-zA-Z0-9-]+",
-        .zoom: "https?://[\\w-]+\\.zoom\\.us/j/[0-9]+(?:\\?[\\w=&.]+)?",
-        .microsoftTeams: "https?://teams\\.microsoft\\.com/l/meetup-join/[\\w-/%]+",
-        .webex: "https?://[\\w-]+\\.webex\\.com/[\\w-]+/j\\.php\\?MTID=[a-zA-Z0-9]+"
+        .googleMeet: "https?://meet\\.google\\.com/[a-zA-Z0-9-]+(?:[?#][\\w=&.%-]+)?",
+        .zoom: "https?://[\\w.-]+\\.zoom\\.us/(?:j|my)/[\\w?=&.%-]+",
+        .microsoftTeams: "https://teams\\.microsoft\\.com/l/meetup-join/[\\w\\-%.]+/[\\w:]+\\?[\\w=&%.]+",
+        .webex: "https?://[\\w.-]+\\.webex\\.com/(?:[\\w.-]+/)?(?:j\\.php\\?MTID=[\\w]+|meet/[\\w]+)(?:[?#][\\w=&%.]+)?"
     ]
     
     for (service, pattern) in patterns {
-        if let (text, range) = range(of: pattern, for: event.location) ?? range(of: pattern, for: event.notes), let range {
+        if let (text, range) = range(of: pattern, for: event.location) ?? range(of: pattern, for: event.notes) {
             let url = String(text[range])
             return Meeting(url: url, service: service)
         }
     }
     
-    func range(of pattern: String, for string: String?) -> (String, Range<String.Index>?)? {
-        guard let string else { return nil }
-        return (string, string.range(of: pattern, options: .regularExpression))
+    func range(of pattern: String, for string: String?) -> (String, Range<String.Index>)? {
+        guard
+            let string,
+            let range = string.range(of: pattern, options: .regularExpression) 
+        else { return nil }
+        
+        return (string, range)
     }
     
     return nil
