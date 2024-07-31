@@ -122,6 +122,8 @@
 		3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */; };
 		3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */; };
 		3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A7C05DA2C59C65900435D99 /* JWTKit */; };
+		3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */; };
+		3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -467,6 +469,8 @@
 		3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOriginWithExpandedNoteManger.swift; sourceTree = "<group>"; };
 		3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayKitIdKey.swift; sourceTree = "<group>"; };
 		3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterWindow.swift; sourceTree = "<group>"; };
+		3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookWidgetsWidthKey.swift; sourceTree = "<group>"; };
+		3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subToAllWidgetsSettingsChanges.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -811,6 +815,7 @@
 				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
 				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
 				3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */,
+				3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -1444,6 +1449,7 @@
 				3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */,
 				3A8AA1882C30AA9900D727DA /* onScrollChange.swift */,
 				3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */,
+				3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2046,9 +2052,11 @@
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				3A342B172C508903003C369C /* SystemAppMeta.swift in Sources */,
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
+				3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */,
 				EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */,
 				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				3A3ABCEA2C2B70FD00132228 /* NotesWidgetSettings.swift in Sources */,
+				3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
 				3A0C502A2C5480700003867F /* TimersManager.swift in Sources */,
 				3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */,

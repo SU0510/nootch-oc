@@ -12,6 +12,15 @@ extension NotchView {
     struct EnvironmentsModifier: ViewModifier {
         var state: NotchViewModel
 
+        @Environment(\.mediaWidgetSettings) internal var mediaWidgetSettings
+        @Environment(\.notesWidgetSettings) internal var notesWidgetSettings
+        @Environment(\.mirrorWidgetSettings) internal var mirrorWidgetSettings
+        @Environment(\.calendarWidgetSettings) internal var calendarWidgetSettings
+        @Environment(\.shortcutsWidgetSettings) internal var shortcutsWidgetSettings
+        @Environment(\.todoListWidgetSettings) internal var todoListWidgetSettings
+        @Environment(\.quickAppsWidgetSettings) internal var quickAppsWidgetSettings
+        
+        @Default(.nookSettings) internal var nookSettings
         @Default(.trialInitialTime) internal var trialInitialTime
         @Default(.license) internal var license
         @Namespace internal var ns
@@ -24,12 +33,28 @@ extension NotchView {
         @Environment(\.isEditingText) internal var isEditingText
         @Environment(\.preventNextFocusFrontmostWindow) internal var preventNextFocusFrontmostWindow
         
+        var nookWidgetsWidth: NookGrid.Point {
+            return nookSettings.enabledWidgets.reduce(.zero) {
+                let adding = switch $1 {
+                    case .calendar: calendarWidgetSettings.size.width
+                    case .media: mediaWidgetSettings.size.width
+                    case .mirror: mirrorWidgetSettings.size.width
+                    case .notes: notesWidgetSettings.size.width
+                    case .quickApps: quickAppsWidgetSettings.size.width
+                    case .shortcuts: shortcutsWidgetSettings.size.width
+                    case .todoList: todoListWidgetSettings.size.width
+                }
+                return $0 + adding
+            }
+        }
+        
         func body(content: Content) -> some View {
             content
                 .environment(\.hideNotch, hideNotch)
                 .environment(\.closeNotch, closeNotch)
                 .environment(\.checkTrialOver, checkTrialOver)
                 .environment(\.openNotch, openNotch)
+                .environment(\.nookWidgetsWidth, nookWidgetsWidth)
                 .environment(\.namespace, ns)
                 .environment(\.trialOver, state.trialOver)
                 .transformEnvironment(\.notchSize) { if $0.width != 0 { $0.width += generalSettings.notchWidthFineTune } }

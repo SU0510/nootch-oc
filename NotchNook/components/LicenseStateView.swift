@@ -36,7 +36,7 @@ struct LicenseStateView: View {
                 Text("Send an email to hi@lo.cafe if this doesn't go away.")
             }
         }
-        .frame(nookSettings.size.screenPtsCGSize)
+        .frame(height: nookSettings.size.height.screenPoints)
         .padding(.top, 16)
         .padding(.top, notchSize.height)
         .multilineTextAlignment(.center)

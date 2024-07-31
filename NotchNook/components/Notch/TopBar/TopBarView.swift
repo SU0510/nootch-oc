@@ -38,6 +38,7 @@ struct TopBarView: View, Equatable {
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.traySettings) private var traySettings
+    @Environment(\.nookWidgetsWidth) private var nookWidgetsWidth
 
     var body: some View {
         // If notch height is bigger than 2/3 of minHeight, use it
@@ -53,7 +54,7 @@ struct TopBarView: View, Equatable {
                         switch mode {
                             case .closed: LiveActivityView(side: .left, activeActivities: liveActvs).frame(width: Self.liveActionWidth)
                             case .dragging: EmptyView()
-                            case .nook, .tray: TopBarTabsView(totalWidth: mode == .nook ? nookSettings.size.width : traySettings.size.width)
+                            case .nook, .tray: TopBarTabsView(totalWidth: mode == .nook ? nookWidgetsWidth : traySettings.size.width)
                         }
                     }
                     .frame(maxWidth: .infinity)

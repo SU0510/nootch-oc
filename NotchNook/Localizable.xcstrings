@@ -21735,6 +21735,7 @@
       }
     },
     "REMAINING CELLS: %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -25599,6 +25600,7 @@
       }
     },
     "The unit is measured in \"cells\" for the widgets grid. 1 cell means %lld points/px." : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -26341,6 +26343,7 @@
       }
     },
     "TOTAL CELLS: %lld" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -29653,6 +29656,7 @@
       }
     },
     "Width (in cells):" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {

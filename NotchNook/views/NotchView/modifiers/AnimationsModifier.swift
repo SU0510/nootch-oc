@@ -12,12 +12,15 @@ extension NotchView {
     struct AnimationsModifier: ViewModifier {
         var disableNotchNook: Bool
         @Default(.intro) private var intro
+        @Default(.nookSettings) private var nookSettings
         
         func body(content: Content) -> some View {
             content
                 .animation(.smooth, value: disableNotchNook)
                 .animation(.bouncySmooth, value: ActiveLiveActivitiesManager.shared.activeLiveActivities)
+                .animation(.bouncySmooth, value: nookSettings)
                 .animation(.bouncySmooth, value: intro)
+                .subToAllWidgetsSettingsChanges(animation: .bouncySmooth)
         }
     }
 }

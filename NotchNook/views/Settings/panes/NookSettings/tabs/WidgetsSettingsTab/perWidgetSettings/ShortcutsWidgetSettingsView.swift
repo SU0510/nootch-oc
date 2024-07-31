@@ -28,20 +28,34 @@ struct ShortcutsWidgetSettingsView: View {
         VStack {
             Settings.Container(contentWidth: 520.0, minimumLabelWidth: 200) {
                 
-                Settings.Section(title: String(localized: "Width (in cells):")) {
-                    let min: Double = 2
-                    let max = !enabled ? nookSettings.size.width.double : availableWidth.double <= min ? min + 1 : availableWidth.double
-                    SliderPlus(value: Binding(get: {
+//                Settings.Section(title: String(localized: "Width (in cells):")) {
+//                    let min: Double = 2
+//                    let max = !enabled ? nookSettings.size.width.double : availableWidth.double <= min ? min + 1 : availableWidth.double
+//                    SliderPlus(value: Binding(get: {
+//                        shortcutsWidgetSettings.size.width.double
+//                    }, set: { newVal in
+//                        let columnsOpts = findMultipliers(Int(shortcutsWidgetSettings.size.width.double)).filter { $0 > 1 }
+//                        let shortBtnW = Int(shortcutsWidgetSettings.shortcutButtonWidth.double)
+//                        if !columnsOpts.contains(shortBtnW), let newVal = columnsOpts.closest(to: shortBtnW) {
+//                            shortcutsWidgetSettings.shortcutButtonWidth.double = Double(newVal)
+//                        }
+//                        shortcutsWidgetSettings.size.width.double = newVal
+//                    }), range: 2...max)
+//                        .disabled(availableWidth.double <= min)
+//                }
+                
+                Settings.Section(title: String(localized: "Width:")) {
+                    let widthBinding = Binding(get: {
                         shortcutsWidgetSettings.size.width.double
                     }, set: { newVal in
-                        let columnsOpts = findMultipliers(Int(shortcutsWidgetSettings.size.width.double)).filter { $0 > 1 }
+                        let columnsOpts = findMultipliers(Int(newVal)).filter { $0 > 1 }
                         let shortBtnW = Int(shortcutsWidgetSettings.shortcutButtonWidth.double)
                         if !columnsOpts.contains(shortBtnW), let newVal = columnsOpts.closest(to: shortBtnW) {
                             shortcutsWidgetSettings.shortcutButtonWidth.double = Double(newVal)
                         }
                         shortcutsWidgetSettings.size.width.double = newVal
-                    }), range: 2...max)
-                        .disabled(availableWidth.double <= min)
+                    })
+                    SliderPlus(value: widthBinding, range: 2...16)
                 }
                 
                 Settings.Section {
@@ -52,7 +66,7 @@ struct ShortcutsWidgetSettingsView: View {
                     Picker("", selection: $shortcutsWidgetSettings.shortcutButtonWidth.double) {
                         ForEach(columnsOpts.filter { $0 > 1 }, id: \.self) { num in
                             let myCols = widgetW / num
-                            Text("\(myCols)\(columnsOpts.count > 4 ? "" : " Column\(cols > 1 ? "s" : "")")").tag(Double(num))
+                            Text("\(myCols)\(columnsOpts.count > 4 ? "" : " Column\(myCols > 1 ? "s" : "")")").tag(Double(num))
                         }
                     }
                     .pickerStyle(.radioGroup)
