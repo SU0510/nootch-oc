@@ -13,7 +13,7 @@ import SwiftDate
 struct CalendarWidgetView: View {
     static let showingDatesCount = 90
     
-//    @Environment(\.calendarWidgetSettings) private var calendarWidgetSettings
+    //    @Environment(\.calendarWidgetSettings) private var calendarWidgetSettings
     @State private var selectedDateIndex = Self.showingDatesCount / 2
     @State private var showingDates: [Date] = getRangeOfDays(count: Self.showingDatesCount)
     @State private var offset: Double = 0
@@ -29,6 +29,20 @@ struct CalendarWidgetView: View {
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
                 ScrollableDaysView(showingDates: showingDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
+                    .overlay {
+                        let monthName = selectedDate.monthName(.standaloneShort)
+                        ZStack {
+                            ScrollableDaysMonthOverlayView(monthName: monthName) {
+                                withAnimation(.spring) {
+                                    selectedDateIndex = showingDates.count / 2
+                                }
+                            }
+                            .id(monthName)
+                            .transition(.scaleAndBlur(anchor: .leading, blur: 0))
+                        }
+                        .transition(.scaleAndBlur(anchor: .leading, blur: 0))
+                        .animation(.snappy, value: monthName)
+                    }
                     .zIndex(1)
                 CalendarEventsView(events: events[selectedDate])
             }

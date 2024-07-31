@@ -9,6 +9,9 @@ import SwiftUI
 import SmoothGradient
 
 extension View {
+    func fadeOnEdges(axis: Axis, fadeLength: Double, curve: UnitCurve = .easeInOut, disable: Bool = false) -> some View {
+        self.fadeOnEdges(axis: axis, topLeadingFadeLength: fadeLength, bottomTrailingFadeLength: fadeLength, curveStart: curve, curveEnd: curve, disable: disable)
+    }
     func fadeOnEdges(axis: Axis, topLeadingFadeLength: Double, bottomTrailingFadeLength: Double, curve: UnitCurve = .easeInOut, disable: Bool = false) -> some View {
         self.fadeOnEdges(axis: axis, topLeadingFadeLength: topLeadingFadeLength, bottomTrailingFadeLength: bottomTrailingFadeLength, curveStart: curve, curveEnd: curve, disable: disable)
     }

@@ -124,6 +124,7 @@
 		3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A7C05DA2C59C65900435D99 /* JWTKit */; };
 		3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */; };
 		3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */; };
+		3A7C05E32C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -471,6 +472,7 @@
 		3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterWindow.swift; sourceTree = "<group>"; };
 		3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookWidgetsWidthKey.swift; sourceTree = "<group>"; };
 		3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subToAllWidgetsSettingsChanges.swift; sourceTree = "<group>"; };
+		3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableDaysMonthOverlayView.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -1524,6 +1526,7 @@
 				3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */,
 				3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */,
 				3A801E002C151EAC0076560D /* CalendarWidgetView.swift */,
+				3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */,
 			);
 			path = CalendarWidget;
 			sourceTree = "<group>";
@@ -1951,6 +1954,7 @@
 				3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */,
 				3AD5CAD52C13D2610090A9D1 /* ScrollableDaysView.swift in Sources */,
 				EC14B5CD2C07A7E6000FC6B6 /* DropAreaTrayTargetView.swift in Sources */,
+				3A7C05E32C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift in Sources */,
 				3A0C50262C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift in Sources */,
 				3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */,
 				3A1691E02C2FB2220014C326 /* CanBecomeKeyBindingKey.swift in Sources */,

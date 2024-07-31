@@ -10,6 +10,7 @@ import EventKit
 import SmoothGradient
 
 struct CalendarEventsView: View {
+    static let fadeHeight: Double = 16
     var events: [EKEvent]?
     var body: some View {
         GeometryReader { geo in
@@ -21,11 +22,11 @@ struct CalendarEventsView: View {
                                 CalendarEventView(event: event, width: geo.size.width)
                             }
                         }
-                        .padding(EdgeInsets(top: CalendarEventsViewShadows.height, leading: 0, bottom: CalendarEventsViewShadows.height + 8, trailing: 0))
+                        .padding(EdgeInsets(top: Self.fadeHeight, leading: 0, bottom: Self.fadeHeight + 8, trailing: 0))
                         .scrollTargetLayout()
                     }
                     .scrollTargetBehavior(.viewAligned)
-                    .overlay { CalendarEventsViewShadows() }
+                    .fadeOnEdges(axis: .vertical, fadeLength: Self.fadeHeight, curve: .easeInOut)
                 } else {
                     VStack {
                         Image(systemName: "calendar.badge.checkmark")
@@ -38,32 +39,5 @@ struct CalendarEventsView: View {
             }
             .transition(.scaleAndBlur)
         }
-    }
-}
-
-struct CalendarEventsViewShadows: View, Equatable {
-    static let height: Double = 16
-    var body: some View {
-        VStack(spacing:0) {
-            SmoothLinearGradient(
-                from: .black,
-                to: .black.opacity(0),
-                startPoint: .top,
-                endPoint: .bottom,
-                curve: .easeInOut
-            )
-            .frame(height: Self.height)
-            Spacer()
-            SmoothLinearGradient(
-                from: .black,
-                to: .black.opacity(0),
-                startPoint: .bottom,
-                endPoint: .top,
-                curve: .easeInOut
-            )
-            .frame(height: Self.height)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .allowsHitTesting(false)
     }
 }
