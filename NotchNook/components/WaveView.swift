@@ -25,7 +25,7 @@ class WobblyBezierView: NSView {
         didSet {
             shapeLayers.forEach { layers in
                 layers.forEach { layer in
-                    let i = CGFloat(try! Int(value: layer.name ?? "0"))
+                    let i = CGFloat(try! Int(layer.name ?? "0")!)
                     layer.strokeColor = color.darkened(amount: i * 0.1).shaded(amount: i * 0.2).cgColor
                 }
             }
@@ -104,14 +104,6 @@ class WobblyBezierView: NSView {
     }
     
     func startRandomMovement() {
-//        blurTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-//            guard let self = self else {
-//                timer.invalidate()
-//                return
-//            }
-//            
-//            self.changeBlur(to: .random(in: 0...2))
-//        }
         movementTimer = Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true) { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()

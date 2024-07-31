@@ -13,6 +13,7 @@ struct VolumeIndicatorView: View, Equatable {
     }
     
     var indicator: Indicator
+    var disableColors: Bool = false
     
     @State private var overflowAmount: Double = 0
     
@@ -24,7 +25,7 @@ struct VolumeIndicatorView: View, Equatable {
         VStack(alignment: .leading, spacing: -2) {
             VolumeIndicatorSpeakerView(volumeValue: indicator.value, overflowAmount: overflowAmount, baseColor: baseColor)
             
-            VolumeIndicatorBarWrapperView(volumeValue: indicator.value, overflowAmount: overflowAmount, baseColor: baseColor)
+            VolumeIndicatorBarWrapperView(volumeValue: indicator.value, overflowAmount: overflowAmount, baseColor: baseColor, disableColors: disableColors)
         }
         .animation(.smooth, value: indicator.value)
         .padding(EdgeInsets(top: 18, leading: 10, bottom: 15, trailing: 10))

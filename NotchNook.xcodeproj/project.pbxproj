@@ -125,6 +125,7 @@
 		3A74049C2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */; };
 		3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */; };
 		3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */; };
+		3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A7C05DA2C59C65900435D99 /* JWTKit */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -132,7 +133,6 @@
 		3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E0A2C154EA30076560D /* SmoothGradient */; };
 		3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0C2C1555790076560D /* groupAndSortEventsByDate.swift */; };
 		3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E0E2C1556E70076560D /* getRangeOfDays.swift */; };
-		3A801E142C15781F0076560D /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 3A801E132C15781F0076560D /* SwiftJWT */; };
 		3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E152C1579F40076560D /* getMacBookModel.swift */; };
 		3A801E1C2C163B540076560D /* detectMeetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E1B2C163B540076560D /* detectMeetings.swift */; };
 		3A85076F2C4B2F2D0092B135 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A85076E2C4B2F290092B135 /* Indicator.swift */; };
@@ -705,6 +705,7 @@
 				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
+				3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				3A1FFE212C353F6D00BB4A03 /* CodeEditor in Frameworks */,
@@ -715,7 +716,6 @@
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
-				3A801E142C15781F0076560D /* SwiftJWT in Frameworks */,
 				3A1FFE1E2C35310400BB4A03 /* CodeEditor in Frameworks */,
 				3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */,
 			);
@@ -1748,7 +1748,6 @@
 				EC7A0FAC2C0FE7800063E78E /* Algorithms */,
 				EC7A0FAF2C0FE8F10063E78E /* SwiftDate */,
 				3A801E0A2C154EA30076560D /* SmoothGradient */,
-				3A801E132C15781F0076560D /* SwiftJWT */,
 				3A8AA2CE2C313B6300D727DA /* RichTextKit */,
 				3AA6FFD82C352D8600BA2F80 /* CodeEditor */,
 				3AA6FFDA2C352EB000BA2F80 /* CodeEditor */,
@@ -1756,6 +1755,7 @@
 				3A1FFE1D2C35310400BB4A03 /* CodeEditor */,
 				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
 				3A9E6BF72C3A9C3F009948F5 /* DynamicColor */,
+				3A7C05DA2C59C65900435D99 /* JWTKit */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1799,10 +1799,10 @@
 				EC7A0FAB2C0FE7800063E78E /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */,
-				3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */,
 				3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */,
+				3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -2168,6 +2168,205 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3A7C05C92C59B26100435D99 /* Release Setapp */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = "Release Setapp";
+		};
+		3A7C05CA2C59B26100435D99 /* Release Setapp */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NotchNook/NotchNook.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 11;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotchNook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app requires access to accessibility features to handle keyboard events.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Used for the Mirror widget in the Nook.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.1.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-setapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = "Release Setapp";
+		};
+		3A7C05CB2C59B2EC00435D99 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Development;
+		};
+		3A7C05CC2C59B2EC00435D99 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = NotchNook/NotchNook.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 11;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotchNook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app requires access to accessibility features to handle keyboard events.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Used for the Mirror widget in the Nook.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.1.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Development;
+		};
 		EC758F752BF2F18900B873B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2309,7 +2508,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Used to control Spotify and Apple Music.";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app requires access to accessibility features to handle keyboard events.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Used for the Mirror widget in the Nook.";
@@ -2349,7 +2548,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSAppleEventsUsageDescription = "Used to control Spotify and Apple Music.";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app requires access to accessibility features to handle keyboard events.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for the Mirror widget in the Nook.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Used for the Mirror widget in the Nook.";
@@ -2374,7 +2573,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC758F752BF2F18900B873B0 /* Debug */,
+				3A7C05CB2C59B2EC00435D99 /* Development */,
 				EC758F762BF2F18900B873B0 /* Release */,
+				3A7C05C92C59B26100435D99 /* Release Setapp */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2383,7 +2584,9 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC758F782BF2F18900B873B0 /* Debug */,
+				3A7C05CC2C59B2EC00435D99 /* Development */,
 				EC758F792BF2F18900B873B0 /* Release */,
+				3A7C05CA2C59B26100435D99 /* Release Setapp */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2399,20 +2602,20 @@
 				kind = branch;
 			};
 		};
+		3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/jwt-kit.git";
+			requirement = {
+				kind = exactVersion;
+				version = "5.0.0-beta.4";
+			};
+		};
 		3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raymondjavaxx/SmoothGradient.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Kitura/Swift-JWT.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
 			};
 		};
 		3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
@@ -2499,15 +2702,15 @@
 			package = 3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */;
 			productName = CodeEditor;
 		};
+		3A7C05DA2C59C65900435D99 /* JWTKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */;
+			productName = JWTKit;
+		};
 		3A801E0A2C154EA30076560D /* SmoothGradient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */;
 			productName = SmoothGradient;
-		};
-		3A801E132C15781F0076560D /* SwiftJWT */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A801E122C15781F0076560D /* XCRemoteSwiftPackageReference "Swift-JWT" */;
-			productName = SwiftJWT;
 		};
 		3A8AA2CE2C313B6300D727DA /* RichTextKit */ = {
 			isa = XCSwiftPackageProductDependency;

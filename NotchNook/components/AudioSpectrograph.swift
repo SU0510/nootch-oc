@@ -58,7 +58,7 @@ class AudioSpectrographView: NSView {
     private func setupLayers() {
         self.wantsLayer = true
         self.layer = CALayer()
-//        self.layer?.drawsAsynchronously = true
+        self.layer?.drawsAsynchronously = true
         self.layer?.isOpaque = true
         
         for _ in 0..<barsCount {
@@ -133,7 +133,7 @@ class AudioSpectrographView: NSView {
         }
     }
     
-    private func updateBarHeights() {
+    func updateBarHeights() {
         let volumeInterpolate = interpolatorBuilder([0.01, 1], value: volume)
         let volumeModifier = volume == 0 ? 0 : volumeInterpolate([0.25, 1], false)
         
@@ -191,6 +191,9 @@ struct AudioSpectrographRepresentable: NSViewRepresentable {
     func makeNSView(context: Context) -> AudioSpectrographView {
         let nsView = AudioSpectrographView(frame: .zero)
         updateNSView(nsView, context: context)
+        doAfter(0.1) {
+            nsView.updateBarHeights()
+        }
         return nsView
     }
     
