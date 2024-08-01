@@ -129,6 +129,11 @@
 		3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */; };
 		3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */; };
 		3A7C05E32C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */; };
+		3A7C05E72C5AFDDE00435D99 /* ChangelogBubblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */; };
+		3A7C05E92C5B035A00435D99 /* ChangelogBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */; };
+		3A7C05ED2C5B2D3400435D99 /* indicators.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C05EB2C5B2D3400435D99 /* indicators.mov */; };
+		3A7C05EE2C5B2D3400435D99 /* global-media.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C05EA2C5B2D3400435D99 /* global-media.mov */; };
+		3A7C05EF2C5B2D3400435D99 /* lock.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C05EC2C5B2D3400435D99 /* lock.mov */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -164,9 +169,6 @@
 		3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDD2C352EC600BA2F80 /* CodeEditor */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
-		3AC36D822C2530F40000F995 /* calendar.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3AC36D812C2530F40000F995 /* calendar.mov */; };
-		3AC36D852C2543DC0000F995 /* quickPeek.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3AC36D832C2543DC0000F995 /* quickPeek.mov */; };
-		3AC36D862C2543DC0000F995 /* calendarLA.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3AC36D842C2543DC0000F995 /* calendarLA.mov */; };
 		3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D892C2619730000F995 /* SwiftUIWindow.swift */; };
 		3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */; };
 		3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D8D2C264A250000F995 /* openCalendarSettingsAccountsTab.swift */; };
@@ -481,6 +483,11 @@
 		3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookWidgetsWidthKey.swift; sourceTree = "<group>"; };
 		3A7C05E02C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subToAllWidgetsSettingsChanges.swift; sourceTree = "<group>"; };
 		3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableDaysMonthOverlayView.swift; sourceTree = "<group>"; };
+		3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogBubblesView.swift; sourceTree = "<group>"; };
+		3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogBubbleView.swift; sourceTree = "<group>"; };
+		3A7C05EA2C5B2D3400435D99 /* global-media.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "global-media.mov"; sourceTree = "<group>"; };
+		3A7C05EB2C5B2D3400435D99 /* indicators.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = indicators.mov; sourceTree = "<group>"; };
+		3A7C05EC2C5B2D3400435D99 /* lock.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = lock.mov; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -510,9 +517,6 @@
 		3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerWidgetSettingsKeys.swift; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
-		3AC36D812C2530F40000F995 /* calendar.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendar.mov; sourceTree = "<group>"; };
-		3AC36D832C2543DC0000F995 /* quickPeek.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = quickPeek.mov; sourceTree = "<group>"; };
-		3AC36D842C2543DC0000F995 /* calendarLA.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = calendarLA.mov; sourceTree = "<group>"; };
 		3AC36D892C2619730000F995 /* SwiftUIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWindow.swift; sourceTree = "<group>"; };
 		3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openCalendarApp.swift; sourceTree = "<group>"; };
 		3AC36D8D2C264A250000F995 /* openCalendarSettingsAccountsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = openCalendarSettingsAccountsTab.swift; sourceTree = "<group>"; };
@@ -968,6 +972,15 @@
 			path = functions;
 			sourceTree = "<group>";
 		};
+		3A7C05E52C5AFDCD00435D99 /* ChangelogBubbles */ = {
+			isa = PBXGroup;
+			children = (
+				3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */,
+				3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */,
+			);
+			path = ChangelogBubbles;
+			sourceTree = "<group>";
+		};
 		3A801E032C1530490076560D /* decorators */ = {
 			isa = PBXGroup;
 			children = (
@@ -1041,9 +1054,9 @@
 		3AC36D742C2512510000F995 /* videos */ = {
 			isa = PBXGroup;
 			children = (
-				3AC36D812C2530F40000F995 /* calendar.mov */,
-				3AC36D842C2543DC0000F995 /* calendarLA.mov */,
-				3AC36D832C2543DC0000F995 /* quickPeek.mov */,
+				3A7C05EA2C5B2D3400435D99 /* global-media.mov */,
+				3A7C05EB2C5B2D3400435D99 /* indicators.mov */,
+				3A7C05EC2C5B2D3400435D99 /* lock.mov */,
 			);
 			path = videos;
 			sourceTree = "<group>";
@@ -1243,6 +1256,7 @@
 		EC4173D52C02518F002889E7 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				3A7C05E52C5AFDCD00435D99 /* ChangelogBubbles */,
 				3A1FFE292C354B5D00BB4A03 /* ExpandedNote */,
 				3A3F59E52C2A578D00906FFA /* NotchView */,
 				3A0816CA2C24E7A2008092F0 /* Changelog */,
@@ -1830,13 +1844,13 @@
 				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
 				3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */,
-				3AC36D822C2530F40000F995 /* calendar.mov in Resources */,
-				3AC36D862C2543DC0000F995 /* calendarLA.mov in Resources */,
-				3AC36D852C2543DC0000F995 /* quickPeek.mov in Resources */,
 				3A9E6C142C3ABA4D009948F5 /* michael.gif in Resources */,
 				3A0816C32C24C201008092F0 /* update.lottie in Resources */,
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
+				3A7C05ED2C5B2D3400435D99 /* indicators.mov in Resources */,
+				3A7C05EE2C5B2D3400435D99 /* global-media.mov in Resources */,
+				3A7C05EF2C5B2D3400435D99 /* lock.mov in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
 				3A459C272C2E955D0045995D /* lock.lottie in Resources */,
 			);
@@ -1891,6 +1905,7 @@
 				3A1691ED2C2FB4FB0014C326 /* HideNotchKey.swift in Sources */,
 				3A342B132C50754B003C369C /* fit&Fill.swift in Sources */,
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
+				3A7C05E92C5B035A00435D99 /* ChangelogBubbleView.swift in Sources */,
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */,
@@ -1928,6 +1943,7 @@
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
 				3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */,
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
+				3A7C05E72C5AFDDE00435D99 /* ChangelogBubblesView.swift in Sources */,
 				3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */,
 				3A85076F2C4B2F2D0092B135 /* Indicator.swift in Sources */,
 				3A8507742C4B4E5A0092B135 /* BrightnessIndicatorView.swift in Sources */,

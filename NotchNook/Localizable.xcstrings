@@ -2216,6 +2216,7 @@
       }
     },
     "A bunch of bug fixes and sweet new features!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -2768,6 +2769,7 @@
       }
     },
     "A new elegant way of getting notified about and joining a meeting. " : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -4791,6 +4793,9 @@
         }
       }
     },
+    "Brightness/Volume HUD Replacement" : {
+
+    },
     "Calendar" : {
       "localizations" : {
         "af" : {
@@ -4976,6 +4981,7 @@
       }
     },
     "Calendar Live Activity" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -5344,6 +5350,7 @@
       }
     },
     "Calendar Widget" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -5715,6 +5722,7 @@
       }
     },
     "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -8292,6 +8300,7 @@
       }
     },
     "Damn, that's awesome!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -12158,6 +12167,9 @@
         }
       }
     },
+    "Global Media Controlling" : {
+
+    },
     "Handler (no-notch screens):" : {
       "localizations" : {
         "af" : {
@@ -12893,6 +12905,9 @@
           }
         }
       }
+    },
+    "Holy cow, amazing!" : {
+
     },
     "HUD replacement:" : {
 
@@ -15842,6 +15857,9 @@
         }
       }
     },
+    "Lock Button" : {
+
+    },
     "Lock while typing" : {
       "localizations" : {
         "af" : {
@@ -17129,6 +17147,9 @@
           }
         }
       }
+    },
+    "Natural animations and fresh new features!" : {
+
     },
     "New Update" : {
       "localizations" : {
@@ -19338,6 +19359,12 @@
         }
       }
     },
+    "Now you can control any media from any app!" : {
+
+    },
+    "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!" : {
+
+    },
     "OK" : {
 
     },
@@ -20446,6 +20473,9 @@
         }
       }
     },
+    "Prevent NN from auto-closing with the new lock button." : {
+
+    },
     "Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens)." : {
       "localizations" : {
         "af" : {
@@ -20999,6 +21029,7 @@
       }
     },
     "Quick Peek" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -25232,6 +25263,7 @@
       }
     },
     "Take a quick peek at useful info by hovering some of the live activities." : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {

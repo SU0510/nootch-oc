@@ -25,6 +25,8 @@ struct NotchView: View {
     var disableNotchNook: Bool { notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens }
     
     var body: some View {        
+        let nnMinWidth = notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune
+        let nnMinHeight = disableNotchNook ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             if let indicator = notchNook.indicator {
@@ -70,8 +72,8 @@ struct NotchView: View {
         .blur(radius: state.scaleDown * 150)
         .fixedSize(horizontal: true, vertical: false)
         .frame(
-            minWidth: notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune,
-            minHeight: disableNotchNook ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
+            minWidth: nnMinWidth,
+            minHeight: nnMinHeight
         )
         .padding((notchNook.mode == .closed ? state.panPadding : .zero) + standardPadding)
         .coordinateSpace(name: "drop-zone")
@@ -80,6 +82,10 @@ struct NotchView: View {
         .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
         .modifier(AnimationsModifier(disableNotchNook: disableNotchNook))
         .modifier(GesturesModifier(state: state, disableNotchNook: disableNotchNook))
+//        .background(alignment: .top) {
+//            ChangelogBubblesView()
+//                .padding(.top, nnMinHeight + 16)
+//        }
         .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
         .modifier(SideEffectsModifier(state: state))
         .modifier(EnvironmentsModifier(state: state))
