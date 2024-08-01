@@ -121,8 +121,9 @@ class MediaControls {
                     
                     // Get the PID of the currently playing application
                     self.MRMediaRemoteGetNowPlayingApplicationPID(DispatchQueue.main) { pid in
-                        newTrack.mediaApp = SystemAppMeta(pid: pid)
-                        
+                        let systemAppMeta = SystemAppMeta(pid: pid)
+                        if systemAppMeta.name == "NotchNook" { return }
+                        newTrack.mediaApp = systemAppMeta
                         if self.track.isValidReplacement(newTrack) {
                             TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
                                 if self.track.isValidReplacement(newTrack) {
