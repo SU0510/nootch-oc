@@ -10,19 +10,25 @@ import EventKit
 import SwiftDate
 
 struct EventTimeView: View {
+    
     var event: EKEvent?
     var startDate: Date
     var endDate: Date
+    
     @State private var hovering = false
+    
     @Environment(\.calendarLiveActivitySettings) private var prefs
     @Environment(\.openURL) private var openURL
     @Environment(\.getNow) private var getNow
+    
+    @StateObject private var activitiesManager = ActiveLiveActivitiesManager.shared
+    
     var body: some View {
         TimelineView(.animation(minimumInterval: 1)) { ctx in
             let now = getNow()
             let meeting = detectMeetings(in: event)
-            let meetingStarted = startDate < now
-            let shouldRemoveAct = prefs.showWhileInEvent ? endDate - 5.seconds < now : meetingStarted
+            let eventStarted = startDate < now
+            let shouldRemoveActivity = prefs.showWhileInEvent ? endDate - 5.seconds < now : eventStarted
             
             // Pre-call vars
             let remainingSeconds = startDate.timeIntervalSince1970 - now.timeIntervalSince1970
@@ -32,7 +38,7 @@ struct EventTimeView: View {
             // In-call vars
             let inCallText = prefs.showEventTimeLapsed ? formatSecs(now.timeIntervalSince1970 - startDate.timeIntervalSince1970) : nil
             
-            let text = meetingStarted ? inCallText : preCallText
+            let text = eventStarted ? inCallText : preCallText
             
             Button {
                 if let meeting, let url = URL(string: meeting.url) { openURL(url) }
@@ -47,16 +53,16 @@ struct EventTimeView: View {
                             Image(systemName: "phone.fill")
                         }
                     }
-                    .font(.system(size: meetingStarted ? 12 : 13, weight: .medium).width(meetingStarted ? .condensed : .standard))
+                    .font(.system(size: eventStarted ? 12 : 13, weight: .medium).width(eventStarted ? .condensed : .standard))
                     .foregroundStyle(.white)
-                    .padding(.horizontal, meetingStarted ? 6 : 0)
-                    .padding(.vertical, meetingStarted ? 3 : 0)
-                    .background(meetingStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
+                    .padding(.horizontal, eventStarted ? 6 : 0)
+                    .padding(.vertical, eventStarted ? 3 : 0)
+                    .background(eventStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
                     .frame(maxWidth: .infinity)
                     .blur(radius: hovering ? 1.25 : 0)
-                    .opacity(hovering ? 0.3 : meetingStarted ? 0.5 : 1)
+                    .opacity(hovering ? 0.3 : eventStarted ? 0.5 : 1)
                     .transition(.scaleAndBlur)
-                    .id(meetingStarted)
+                    .id(eventStarted)
                     
                     if hovering, let meeting {
                         Image(meeting.service.logo)
@@ -81,8 +87,10 @@ struct EventTimeView: View {
             .padding(.trailing, 2)
             .frame(maxWidth: .infinity)
             .allowsHitTesting(meeting != nil)
-            .onChange(of: shouldRemoveAct) { _, val in
-                if val { ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar) }
+            .onChange(of: shouldRemoveActivity) { _, newValue in
+                if newValue {
+                    ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                }
             }
         }
     }
@@ -91,9 +99,9 @@ struct EventTimeView: View {
         let hours = Int(secs) / 3600
         let minutes = (Int(secs) % 3600) / 60
         let seconds = Int(secs) % 60
-
+        
         if hours > 0 {
-//            return "\(hours)h\(minutes)m"
+            //            return "\(hours)h\(minutes)m"
             return "\(hours)h"
         } else if minutes > 0 {
             return "\(minutes)m"
