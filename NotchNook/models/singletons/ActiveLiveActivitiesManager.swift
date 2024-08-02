@@ -8,12 +8,21 @@
 import SwiftUI
 import Defaults
 
-@Observable
-class ActiveLiveActivitiesManager {
+class ActiveLiveActivitiesManager: ObservableObject {
+    
     static let shared = ActiveLiveActivitiesManager()
+    
     var activeLiveActivities: Set<LiveActivity> {
-        get { liveActivitiesSettingsCache.enabled ? _activeLiveActivities.filter { liveActivitiesSettingsCache.enabledLiveActivities.contains($0) } : [] }
-        set { withAnimation(TopBarView.animation) { _activeLiveActivities = newValue } }
+        get {
+            let isCacheEnabled = liveActivitiesSettingsCache.enabled
+            let liveActivitiesFromCache = _activeLiveActivities.filter {
+                liveActivitiesSettingsCache.enabledLiveActivities.contains($0)
+            }
+            return isCacheEnabled ? liveActivitiesFromCache : []
+        }
+        set {
+            withAnimation(TopBarView.animation) { _activeLiveActivities = newValue }
+        }
     }
     private var _activeLiveActivities = Set<LiveActivity>()
     private var liveActivitiesSettingsCache: LiveActivitiesSettings = Defaults[.liveActivitiesSettings]
