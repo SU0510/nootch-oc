@@ -18,7 +18,7 @@ struct IndicatorView: View {
             case .brightness:
                 BrightnessIndicatorView(indicator: indicator)
             case .volume:
-                    VolumeIndicatorView(indicator: indicator, disableColors: liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
+                VolumeIndicatorView(indicator: indicator, disableColors: liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
             }
         }
         .frame(
