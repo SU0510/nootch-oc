@@ -10,9 +10,9 @@ import SwiftUI
 extension NotchView.SideEffectsModifier {
     func startBriVolKeyListener() {
         if notchSize.height != 0 {
-            volumeAndBrightnessListener.addSideEffect(handleBriVolKeyPress, for: "default")
             if liveActivitiesSettings.enableHUDReplacement {
-                volumeAndBrightnessListener.start()
+                VolumeAndBrightnessListener.shared.start()
+                VolumeAndBrightnessListener.shared.addSideEffect(handleBriVolKeyPress, for: "default")
             }
         }
     }

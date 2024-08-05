@@ -11,8 +11,6 @@ import Settings
 
 struct LiveActivitiesGeneralSettingsTabView: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
-    
-    @Environment(\.volumeAndBrightnessListener) private var volumeAndBrightnessListener
     @State private var disableHUDToggle = false
     
     var body: some View {
@@ -52,12 +50,8 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) { oldValue, newValue in
                     disableHUDToggle = true
-                    if newValue {
-                        HUDManager.disableSystemHUD()
-                        volumeAndBrightnessListener.start()
-                    } else {
-                        HUDManager.enableSystemHUD()
-                        volumeAndBrightnessListener.stop()
+                    if !newValue {
+                        VolumeAndBrightnessListener.shared.stop()
                     }
                     doAfter(2) { disableHUDToggle = false }
                 }

@@ -20,7 +20,6 @@
 		3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */; };
 		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
 		3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */; };
-		3A0C50122C5304710003867F /* VolumeAndBrightnessListenerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */; };
 		3A0C50142C531CA70003867F /* startBriVolKeyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */; };
 		3A0C50182C532A390003867F /* VolumeIndicatorSpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */; };
 		3A0C501A2C532A4F0003867F /* VolumeIndicatorValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50192C532A4F0003867F /* VolumeIndicatorValueView.swift */; };
@@ -377,7 +376,6 @@
 		3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeekScaling.swift; sourceTree = "<group>"; };
 		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
 		3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
-		3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAndBrightnessListenerKey.swift; sourceTree = "<group>"; };
 		3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startBriVolKeyListener.swift; sourceTree = "<group>"; };
 		3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorSpeakerView.swift; sourceTree = "<group>"; };
 		3A0C50192C532A4F0003867F /* VolumeIndicatorValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorValueView.swift; sourceTree = "<group>"; };
@@ -836,7 +834,6 @@
 				3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */,
 				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
 				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
-				3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */,
 				3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */,
 			);
 			path = EnvironmentValues;
@@ -2025,7 +2022,6 @@
 				3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */,
 				3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */,
 				3A1691D22C2FB1F50014C326 /* GetNowKey.swift in Sources */,
-				3A0C50122C5304710003867F /* VolumeAndBrightnessListenerKey.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */,
