@@ -322,7 +322,7 @@
 		EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */; };
 		EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FF72BFAE7FF00E67ECC /* TopBarTabsView.swift */; };
 		EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFB2BFAE89400E67ECC /* MiniPlayerView.swift */; };
-		EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */; };
+		EC8D5FFE2BFAE8B000E67ECC /* AudioAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFD2BFAE8B000E67ECC /* AudioAnimationView.swift */; };
 		EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */; };
 		EC8D60042BFAE90D00E67ECC /* TrayFilesCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60032BFAE90D00E67ECC /* TrayFilesCountView.swift */; };
 		EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60052BFAE91800E67ECC /* TrayIconView.swift */; };
@@ -332,7 +332,7 @@
 		EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60192BFC294400E67ECC /* SpotifyApplication.swift */; };
 		EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */; };
 		EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */; };
-		EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */; };
+		EC8D602C2BFCFCAB00E67ECC /* AudioSpectrographView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */; };
 		EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */; };
 		EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */; };
 		EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */; };
@@ -664,7 +664,7 @@
 		EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		EC8D5FF72BFAE7FF00E67ECC /* TopBarTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTabsView.swift; sourceTree = "<group>"; };
 		EC8D5FFB2BFAE89400E67ECC /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
-		EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWavesView.swift; sourceTree = "<group>"; };
+		EC8D5FFD2BFAE8B000E67ECC /* AudioAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAnimationView.swift; sourceTree = "<group>"; };
 		EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAlbumCoverView.swift; sourceTree = "<group>"; };
 		EC8D60032BFAE90D00E67ECC /* TrayFilesCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayFilesCountView.swift; sourceTree = "<group>"; };
 		EC8D60052BFAE91800E67ECC /* TrayIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayIconView.swift; sourceTree = "<group>"; };
@@ -674,7 +674,7 @@
 		EC8D60192BFC294400E67ECC /* SpotifyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyApplication.swift; sourceTree = "<group>"; };
 		EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControlsView.swift; sourceTree = "<group>"; };
 		EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverView.swift; sourceTree = "<group>"; };
-		EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpectrograph.swift; sourceTree = "<group>"; };
+		EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpectrographView.swift; sourceTree = "<group>"; };
 		EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWidgetView.swift; sourceTree = "<group>"; };
 		EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetView.swift; sourceTree = "<group>"; };
 		EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
@@ -730,6 +730,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		367982D72C6155BD00BEB1F2 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */,
+				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
+				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
 		36C970242C51D73100956B57 /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,9 +778,9 @@
 		3A105FE02C1D1DB20015EC66 /* MediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				367982D72C6155BD00BEB1F2 /* Effects */,
 				EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */,
-				EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */,
-				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
+				EC8D5FFD2BFAE8B000E67ECC /* AudioAnimationView.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -1388,7 +1398,6 @@
 				EC8D5FF32BFAE75400E67ECC /* notch */,
 				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
 				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
-				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */,
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
@@ -1409,7 +1418,6 @@
 				3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */,
 				3A0816B72C23AAC8008092F0 /* FileDropView.swift */,
 				3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */,
-				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
@@ -1898,7 +1906,7 @@
 				3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */,
 				3A1691ED2C2FB4FB0014C326 /* HideNotchKey.swift in Sources */,
 				3A342B132C50754B003C369C /* fit&Fill.swift in Sources */,
-				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
+				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrographView.swift in Sources */,
 				3A7C05E92C5B035A00435D99 /* ChangelogBubbleView.swift in Sources */,
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
@@ -2145,7 +2153,7 @@
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
 				3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */,
 				3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */,
-				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
+				EC8D5FFE2BFAE8B000E67ECC /* AudioAnimationView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Tray.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
 				BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  AudioSpectrograph.swift
+//  AudioSpectrographView.swift
 //  kepler notes
 //
 //  Created by Ethan Bills on 3/16/24.
@@ -9,7 +9,30 @@ import Cocoa
 import QuartzCore
 import SwiftUI
 
-class AudioSpectrographView: NSView {
+/// Represents an AudioSpectrographNSView so it can be used in a SwiftUI class
+struct AudioSpectrographView: NSViewRepresentable {
+    var isPlaying: Bool
+    var volume: CGFloat
+    var color: Color
+    
+    func makeNSView(context: Context) -> AudioSpectrographNSView {
+        let nsView = AudioSpectrographNSView(frame: .zero)
+        updateNSView(nsView, context: context)
+        doAfter(0.1) {
+            nsView.updateBarHeights()
+        }
+        return nsView
+    }
+    
+    func updateNSView(_ nsView: AudioSpectrographNSView, context: Context) {
+        if nsView.playing != isPlaying { nsView.playing = isPlaying }
+        if nsView.volume != volume { nsView.volume = volume }
+        let newColor = NSColor(color)
+        if nsView.color != newColor { nsView.color = newColor }
+    }
+}
+
+class AudioSpectrographNSView: NSView {
     private let barsCount = 3
     private let minHeight: CGFloat = 2
     private let maxHeight: CGFloat = 15
@@ -79,7 +102,7 @@ class AudioSpectrographView: NSView {
         guard let displayLink = displayLink else { return }
         
         let displayLinkOutputCallback: CVDisplayLinkOutputCallback = { (displayLink, _, _, _, _, displayLinkContext) -> CVReturn in
-            let audioSpectrographView = unsafeBitCast(displayLinkContext, to: AudioSpectrographView.self)
+            let audioSpectrographView = unsafeBitCast(displayLinkContext, to: AudioSpectrographNSView.self)
             audioSpectrographView.updateAnimation()
             return kCVReturnSuccess
         }
@@ -180,27 +203,5 @@ class AudioSpectrographView: NSView {
             let normalizedValue = (value - inputMin) / inputRange
             return outputMin + (normalizedValue * outputRange)
         }
-    }
-}
-
-struct AudioSpectrographRepresentable: NSViewRepresentable {
-    var playing: Bool
-    var volume: CGFloat
-    var color: Color
-    
-    func makeNSView(context: Context) -> AudioSpectrographView {
-        let nsView = AudioSpectrographView(frame: .zero)
-        updateNSView(nsView, context: context)
-        doAfter(0.1) {
-            nsView.updateBarHeights()
-        }
-        return nsView
-    }
-    
-    func updateNSView(_ nsView: AudioSpectrographView, context: Context) {
-        if nsView.playing != playing { nsView.playing = playing }
-        if nsView.volume != volume { nsView.volume = volume }
-        let newColor = NSColor(color)
-        if nsView.color != newColor { nsView.color = newColor }
     }
 }

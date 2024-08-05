@@ -104,7 +104,7 @@ struct LiveActivityView: View {
                             case .left:
                                 MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek, albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
                             case .right:
-                                AudioWavesView()
+                                AudioAnimationView()
                         }
                         
                     case .tray:
