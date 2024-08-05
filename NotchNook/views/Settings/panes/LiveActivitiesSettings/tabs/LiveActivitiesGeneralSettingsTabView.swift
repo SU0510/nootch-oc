@@ -38,6 +38,10 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 Toggle("Enable Quick Peek", isOn: $liveActivitiesSettings.enableQuickPeek)
                 Text("If enabled, some live activities will show a short info on mouse hover.")
                     .settingDescription()
+                
+                Toggle("Unhide Automatically", isOn: $liveActivitiesSettings.unhideAutomatically)
+                Text("If enabled, live activities that have been dismissed (by swiping up) will automatically return.")
+                    .settingDescription()
             }
             
             Settings.Section(title: String(localized: "HUD replacement:")) {
