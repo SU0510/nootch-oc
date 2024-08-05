@@ -109,7 +109,7 @@ class VolumeAndBrightnessListener {
             return
         }
         
-        guard event.isMediaKeyEvent, let keyEvent = event.keyEvent, keyEvent.keyPressed else {
+        guard event.isMediaKeyEvent, keyEvent.keyPressed else {
             return
         }
         
@@ -152,6 +152,6 @@ extension NSEvent {
             NX_KEYTYPE_BRIGHTNESS_UP,
             NX_KEYTYPE_BRIGHTNESS_DOWN
         ]
-        return isKeyEvent != nil && mediaKeys.contains(keyEvent!.keycode)
+        return isKeyEvent && mediaKeys.contains(keyEvent!.keycode)
     }
 }

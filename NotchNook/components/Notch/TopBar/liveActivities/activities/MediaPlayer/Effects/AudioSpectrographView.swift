@@ -102,12 +102,14 @@ class AudioSpectrographNSView: NSView {
         guard let displayLink = displayLink else { return }
         
         let displayLinkOutputCallback: CVDisplayLinkOutputCallback = { (displayLink, _, _, _, _, displayLinkContext) -> CVReturn in
-            let audioSpectrographView = unsafeBitCast(displayLinkContext, to: AudioSpectrographNSView.self)
-            audioSpectrographView.updateAnimation()
+            let audioSpectrographView = Unmanaged<AudioSpectrographNSView>.fromOpaque(displayLinkContext!).takeUnretainedValue()
+            DispatchQueue.main.async {
+                audioSpectrographView.updateAnimation()
+            }
             return kCVReturnSuccess
         }
         
-        let userInfo = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
+        let userInfo = Unmanaged.passUnretained(self).toOpaque()
         CVDisplayLinkSetOutputCallback(displayLink, displayLinkOutputCallback, userInfo)
     }
     
@@ -133,11 +135,9 @@ class AudioSpectrographNSView: NSView {
     }
     
     private func updateAnimation() {
-        DispatchQueue.main.async {
-            self.updateTargetHeights()
-            self.interpolateHeights()
-            self.updateBarHeights()
-        }
+        self.updateTargetHeights()
+        self.interpolateHeights()
+        self.updateBarHeights()
     }
     
     private func updateTargetHeights() {
@@ -187,6 +187,7 @@ class AudioSpectrographNSView: NSView {
     deinit {
         if let displayLink = displayLink {
             CVDisplayLinkStop(displayLink)
+            CVDisplayLinkSetOutputCallback(displayLink, nil, nil)
         }
     }
     
