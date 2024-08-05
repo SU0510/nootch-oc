@@ -1,31 +1,13 @@
 {
-  "originHash" : "23fdd11bac2e25a2a27570c8fcb8c0a74b19dcf6b5dac246be45fae399c7ce95",
+  "originHash" : "a69accb25cf8748aa50f7e2814b6aa281f74b730c40e28450557eb417597bfac",
   "pins" : [
     {
-      "identity" : "bluecryptor",
+      "identity" : "bigint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/BlueCryptor.git",
+      "location" : "https://github.com/attaswift/BigInt.git",
       "state" : {
-        "revision" : "cec97c24b111351e70e448972a7d3fe68a756d6d",
-        "version" : "2.0.2"
-      }
-    },
-    {
-      "identity" : "blueecc",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/BlueECC.git",
-      "state" : {
-        "revision" : "1485268a54f8135435a825a855e733f026fa6cc8",
-        "version" : "1.2.201"
-      }
-    },
-    {
-      "identity" : "bluersa",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/BlueRSA.git",
-      "state" : {
-        "revision" : "440f78db26d8bb073f29590f1c7bd31004da09ae",
-        "version" : "1.0.201"
+        "revision" : "793a7fac0bfc318e85994bf6900652e827aef33e",
+        "version" : "5.4.1"
       }
     },
     {
@@ -65,12 +47,12 @@
       }
     },
     {
-      "identity" : "kituracontracts",
+      "identity" : "jwt-kit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/KituraContracts.git",
+      "location" : "https://github.com/vapor/jwt-kit.git",
       "state" : {
-        "revision" : "6edf7ac3dd2b3a2c61284778d430bbad7d8a6f23",
-        "version" : "2.0.1"
+        "revision" : "e4c067020c87cc4dad6b916ad5159b10c3b1b2a5",
+        "version" : "5.0.0-beta.4"
       }
     },
     {
@@ -80,15 +62,6 @@
       "state" : {
         "branch" : "main",
         "revision" : "a04ec1c363be3627734f6dad757d82f5d4fa8fcc"
-      }
-    },
-    {
-      "identity" : "loggerapi",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/LoggerAPI.git",
-      "state" : {
-        "revision" : "4e6b45e850ffa275e8e26a24c6454fd709d5b6ac",
-        "version" : "2.0.0"
       }
     },
     {
@@ -146,21 +119,30 @@
       }
     },
     {
-      "identity" : "swift-jwt",
+      "identity" : "swift-asn1",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Kitura/Swift-JWT.git",
+      "location" : "https://github.com/apple/swift-asn1.git",
       "state" : {
-        "revision" : "f68ec28fbd90a651597e9e825ea7f315f8d52a1f",
-        "version" : "4.0.1"
+        "revision" : "c7e239b5c1492ffc3ebd7fbcc7a92548ce4e78f0",
+        "version" : "1.1.0"
       }
     },
     {
-      "identity" : "swift-log",
+      "identity" : "swift-certificates",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-log.git",
+      "location" : "https://github.com/apple/swift-certificates.git",
       "state" : {
-        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
-        "version" : "1.6.1"
+        "revision" : "4688f242811d21a9c7a8ad669b3bc5b336759929",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "swift-crypto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-crypto.git",
+      "state" : {
+        "revision" : "46072478ca365fe48370993833cb22de9b41567f",
+        "version" : "3.5.2"
       }
     },
     {

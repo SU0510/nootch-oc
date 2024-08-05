@@ -13,7 +13,20 @@ import Defaults
 class MediaControls {
     static let shared = MediaControls()
     
-    var isPlaying: Bool = false
+    var isPlaying: Bool = false {
+        willSet {
+            let timerId = "pauseLiveActivityDismiss"
+            if isPlaying != newValue {
+                if newValue {
+                    TimersManager.shared.removeTimer(timerId)
+                } else {
+                    TimersManager.shared.addTimer(timerId, delay: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs) { _ in
+                        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+                    }
+                }
+            }
+        }
+    }
     var track: Track = .empty
     
     private let bundle: CFBundle
@@ -108,13 +121,16 @@ class MediaControls {
                     
                     // Get the PID of the currently playing application
                     self.MRMediaRemoteGetNowPlayingApplicationPID(DispatchQueue.main) { pid in
-                        newTrack.mediaApp = SystemAppMeta(pid: pid)
-                        
+                        let systemAppMeta = SystemAppMeta(pid: pid)
+                        if systemAppMeta.name == "NotchNook" { return }
+                        newTrack.mediaApp = systemAppMeta
                         if self.track.isValidReplacement(newTrack) {
                             TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
-                                DispatchQueue.main.async {
-                                    self.track = newTrack
-                                    self.updatePlaybackState()
+                                if self.track.isValidReplacement(newTrack) {
+                                    DispatchQueue.main.async {
+                                        self.track = newTrack
+                                        self.updatePlaybackState()
+                                    }
                                 }
                             }
                         }
@@ -154,6 +170,7 @@ class MediaControls {
     
     private func updateLiveActivities() {
         if track != .empty {
+            if !isPlaying { return }
             ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.media)
         } else {
             ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)

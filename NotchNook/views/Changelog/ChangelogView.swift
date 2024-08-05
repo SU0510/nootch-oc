@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ChangelogView: View {
-    @State private var calendarPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "calendar", withExtension: "mov")!)
-    @State private var calendarLAPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "calendarLA", withExtension: "mov")!)
-    @State private var quickPeekPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "quickPeek", withExtension: "mov")!)
+    @State private var globalMediaPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "global-media", withExtension: "mov")!)
+    @State private var indicatorsPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "indicators", withExtension: "mov")!)
+    @State private var lockPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "lock", withExtension: "mov")!)
     @Environment(\.closeWindow) private var closeWindow
     var body: some View {
         VStack(spacing: 32) {
@@ -27,19 +27,19 @@ struct ChangelogView: View {
                             Text("NotchNook ").font(.largeTitle).fontWeight(.bold)
                         }
                     }
-                    Text("A bunch of bug fixes and sweet new features!").font(.system(size: 16)).fontWeight(.regular)
+                    Text("Natural animations and fresh new features!").font(.system(size: 16)).fontWeight(.regular)
                 }
             }
             VStack(spacing: 16) {
-                VideoFeatureView(player: calendarPlayer, title: String(localized: "Calendar Widget"), description: String(localized: "Check your upcoming events in a lickable interface and fantastic haptics. Event editing and more will be coming soon..."))
-                VideoFeatureView(player: quickPeekPlayer, title: String(localized: "Quick Peek"), description: String(localized: "Take a quick peek at useful info by hovering some of the live activities."))
-                VideoFeatureView(player: calendarLAPlayer, title: String(localized: "Calendar Live Activity"), description: String(localized: "A new elegant way of getting notified about and joining a meeting. "))
+                VideoFeatureView(player: globalMediaPlayer, title: String(localized: "Global Media Controlling"), description: String(localized: "Now you can control any media from any app!"))
+                VideoFeatureView(player: indicatorsPlayer, title: String(localized: "Brightness/Volume HUD Replacement"), description: String(localized: "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"))
+                VideoFeatureView(player: lockPlayer, title: String(localized: "Lock Button"), description: String(localized: "Prevent NN from auto-closing with the new lock button."))
             }
             
             Button {
                 closeWindow()
             } label: {
-                Text("Damn, that's awesome!")
+                Text("Holy cow, amazing!")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 16)

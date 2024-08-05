@@ -15,7 +15,8 @@ struct VolumeIndicatorBarView: View, Equatable {
         lhs.baseColor == rhs.baseColor &&
         lhs.barsHeight == rhs.barsHeight &&
         lhs.barsWidth == rhs.barsWidth &&
-        lhs.barsSpacing == rhs.barsSpacing
+        lhs.barsSpacing == rhs.barsSpacing &&
+        lhs.disableColors == rhs.disableColors
     }
     
     let totalWidth: Double
@@ -25,8 +26,9 @@ struct VolumeIndicatorBarView: View, Equatable {
     var barsHeight: Double
     var barsWidth: Double
     var barsSpacing: Double
+    var disableColors: Bool
     
-    init(totalWidth: Double, volumeValue: Double, overflowAmount: Double, baseColor: Color, barsHeight: Double = 12, barsWidth: Double = 3, barsSpacing: Double = 3.5) {
+    init(totalWidth: Double, volumeValue: Double, overflowAmount: Double, baseColor: Color, barsHeight: Double = 12, barsWidth: Double = 3, barsSpacing: Double = 3.5, disableColors: Bool = false) {
         self.totalWidth = totalWidth
         self.volumeValue = volumeValue
         self.overflowAmount = overflowAmount
@@ -34,6 +36,7 @@ struct VolumeIndicatorBarView: View, Equatable {
         self.barsHeight = barsHeight
         self.barsWidth = barsWidth
         self.barsSpacing = barsSpacing
+        self.disableColors = disableColors
         let barsNumber = Int(totalWidth / (barsWidth + barsSpacing))
         let volumeLastBar = Int(Double(barsNumber) * volumeValue)
         self._localVolumeLastBar = .init(initialValue: volumeLastBar)
@@ -53,10 +56,11 @@ struct VolumeIndicatorBarView: View, Equatable {
         } else {
             let barsDouble = Double(barsNumber)
             
+            let neutralColor = Color(red: 0.7019, green: 0.7019, blue: 0.7019)
             let colors: [Int:Color] = [
-                Int(barsDouble * 0.675): Color(red: 0.7019, green: 0.7019, blue: 0.7019),
-                Int(barsDouble * 0.925): Color(red: 0.9176, green: 0.9254, blue: 0.5176),
-                Int(barsDouble * 1): Color(red: 0.9058, green: 0.3882, blue: 0.3882)
+                Int(barsDouble * 0.675): neutralColor,
+                Int(barsDouble * 0.925): disableColors ? neutralColor : Color(red: 0.9176, green: 0.9254, blue: 0.5176),
+                Int(barsDouble * 1): disableColors ? neutralColor : Color(red: 0.9058, green: 0.3882, blue: 0.3882)
             ]
             
             if let foundColor = Array(colors).sorted(by: { $0.key < $1.key }).first(where: { $0.key > index }) {

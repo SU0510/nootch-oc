@@ -35,7 +35,7 @@ struct MediaLiveAcitivitySettingsView: View {
                 }
                 .disabled(mediaLiveActivitySettings.effect != .gif)
             }
-            Settings.Section(title: String(localized: "")) {
+            Settings.Section(title: "") {
                 Toggle("Colored effects", isOn: $mediaLiveActivitySettings.coloredSpectograph)
                 Text("If enabled, effects will take the color of the current playing album, otherwise, it'll be white.")
                     .optionDescription(contentMaxW)

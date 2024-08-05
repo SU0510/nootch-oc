@@ -25,23 +25,23 @@ struct ReorderWidgetsView: View {
     
     var body: some View {
         VStack {
-            let usedCells = nookSettings.enabledWidgets.reduce(NookGrid.Point.zero) { $0 + $1.prefs.size.width }
-            let totalCells = nookSettings.size.width
-            let available = totalCells - usedCells
-            
-            HStack {
-                Text("REMAINING CELLS: \(available.value)")
-                Spacer()
-                Text("TOTAL CELLS: \(totalCells.value)")
-            }
-            .padding(.horizontal, 24)
-            .font(.system(size: 11, weight: .semibold))
-            .opacity(0.5)
+//            let usedCells = nookSettings.enabledWidgets.reduce(NookGrid.Point.zero) { $0 + $1.prefs.size.width }
+//            let totalCells = nookSettings.size.width
+//            let available = totalCells - usedCells
+//            
+//            HStack {
+//                Text("REMAINING CELLS: \(available.value)")
+//                Spacer()
+//                Text("TOTAL CELLS: \(totalCells.value)")
+//            }
+//            .padding(.horizontal, 24)
+//            .font(.system(size: 11, weight: .semibold))
+//            .opacity(0.5)
             
             ZStack(alignment: .top) {
                 HStack(spacing: spacing) {
                     let availableWidth = dragSize.width - (CGFloat(widgets.count - 1) * spacing)
-                    let cell = availableWidth / CGFloat(nookSettings.size.width.value)
+                    let cell = availableWidth / nookSettings.widgetsWidth.double
                     
                     ForEach(Array(widgets.enumerated()), id: \.element) { i, widget in
                         let arrPos = ArrayPosition(total: widgets.count, i: i)

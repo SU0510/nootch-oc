@@ -18,6 +18,7 @@ class TimersManager {
             if let foundTimer = timersDict[id] { foundTimer.invalidate() }
             timersDict[id] = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { timer in
                 cb(timer)
+                self.timersDict.removeValue(forKey: id)
             }
         }
     }
@@ -25,6 +26,7 @@ class TimersManager {
     func removeTimer(_ id: String) {
         dispatchQueue.sync {
             if let foundTimer = timersDict[id] { foundTimer.invalidate() }
+            timersDict.removeValue(forKey: id)
         }
     }
 }

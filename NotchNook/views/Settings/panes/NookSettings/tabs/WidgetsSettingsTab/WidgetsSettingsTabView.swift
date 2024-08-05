@@ -23,9 +23,10 @@ struct WidgetsSettingsTabView: View {
             elements: NookWidget.allCases,
             activeElements: $nookSettings.enabledWidgets,
             disableItem: { widget in
-                let otherEnabledWidgets = nookSettings.enabledWidgets.filter { $0 != widget }
-                let remainingWidth = nookSettings.size.width - otherEnabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width }
-                return widget.prefs.size.width > remainingWidth
+                return false
+//                let otherEnabledWidgets = nookSettings.enabledWidgets.filter { $0 != widget }
+//                let remainingWidth = nookSettings.size.width - otherEnabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width }
+//                return widget.prefs.size.width > remainingWidth
             }) { _ in
                 ReorderWidgetsView(widgets: $nookSettings.enabledWidgets)
                     .padding(.horizontal, 19)

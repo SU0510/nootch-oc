@@ -35,13 +35,27 @@ struct MockTopBar: View {
         )
         
         HStack(spacing: 0) {
-            
             Group {
                 switch activity {
-                    case .calendar: EventIconView(eventTitle: mockedEvent.title, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek).environment(\.getNow, staticNow)
-                    case .media: AlbumCoverView(id: "sample-album", artwork: .loCafeAvatar, cornerRadius: mediaLiveActivitySettings.albumCornerRadius).padding(.all, 6)
-                    case .tray: TrayIconView()
-                    case .updateAvailable: UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                    case .calendar: 
+                        EventIconView(
+                            eventTitle: mockedEvent.title,
+                            startDate: mockedEvent.startDate,
+                            endDate: mockedEvent.endDate,
+                            enableQuickPeek: liveActivitiesSettings.enableQuickPeek
+                        )
+                        .environment(\.getNow, staticNow)
+                    case .media: 
+                        AlbumCoverView(
+                            id: "sample-album",
+                            artwork: .loCafeAvatar,
+                            cornerRadius: mediaLiveActivitySettings.albumCornerRadius
+                        )
+                        .padding(.all, 6)
+                    case .tray: 
+                        TrayIconView()
+                    case .updateAvailable: 
+                        UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
@@ -52,7 +66,7 @@ struct MockTopBar: View {
             
             Group {
                 switch activity {
-                    case .calendar: EventTimeView(notes: mockedEvent.notes, startDate: mockedEvent.startDate, endDate: mockedEvent.endDate).environment(\.getNow, staticNow)
+                    case .calendar: EventTimeView(startDate: mockedEvent.startDate, endDate: mockedEvent.endDate).environment(\.getNow, staticNow)
                     case .media: AudioWavesView()
                     case .tray: TrayFilesCountView()
                     case .updateAvailable: UpdateButtonIconView()

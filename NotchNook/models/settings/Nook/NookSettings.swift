@@ -13,4 +13,6 @@ struct NookSettings: Preferences {
     var enabledWidgets: [NookWidget] = [.media, .shortcuts, .mirror]
     var showDividers = true
     var widgetsPadding: Double = 12
+    
+    var widgetsWidth: NookGrid.Point { enabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width } }
 }

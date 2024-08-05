@@ -12,7 +12,7 @@ extension NotchView.SideEffectsModifier {
     func fetchEvents() {
         if liveActivitiesSettings.enabledLiveActivities.contains(.calendar) {
             Task {
-                _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarWidgetView.showingDatesCount)
+                _ = try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarManager.numberOfDaysToDisplay)
             }
         }
     }
