@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Defaults
+import EventKit
 
 private var activitiesByPriority: [LiveActivity] = [.tray, .calendar, .updateAvailable, .media]
 
@@ -27,12 +28,22 @@ struct LiveActivityView: View {
     // MARK: Computed properties
     
     private var eventStarted: Bool {
-        guard let event = closestEvent(in: CalendarManager.shared.events) else { return false }
+        guard let event = closestEvent() else { return false }
         return event.startDate < Date()
     }
     
     private var shouldShowCalendarActivity: Bool {
-        eventStarted ? calendarLiveActivitySettings.showWhileInEvent : true
+        guard let event = closestEvent() else { return false }
+        let now = Date()
+        let timeUntilEventStart = event.startDate.timeIntervalSince(now)
+        let timeUntilEventEnd = event.endDate.timeIntervalSince(now)
+        let isEventInProgress = timeUntilEventStart <= 0 && timeUntilEventEnd > 0
+
+        let isWithinPreEventWindow = !isEventInProgress && timeUntilEventStart <= Double(calendarLiveActivitySettings.preEventWindow * 60)
+
+        let shouldShowDuringEvent = isEventInProgress && calendarLiveActivitySettings.showWhileInEvent
+        
+        return isWithinPreEventWindow || shouldShowDuringEvent
     }
     
     private var shouldShowEventTimeView: Bool {
@@ -75,7 +86,7 @@ struct LiveActivityView: View {
             if let activityToShow {
                 switch activityToShow {
                     case .calendar:
-                        if let event = closestEvent(in: CalendarManager.shared.events) {
+                        if let event = closestEvent() {
                             switch side {
                                 case .left:
                                     EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
@@ -120,5 +131,33 @@ struct LiveActivityView: View {
             }
         }
         .transition(.scaleAndBlur)
+    }
+    
+    func closestEvent() -> EKEvent? {
+        let events = CalendarManager.shared.events
+        let now = Date()
+        let calendar = Calendar.current
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: now)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
+        
+        let filteredEvents = events.filter { event in
+            !event.isAllDay &&
+            event.startDate >= yesterday &&
+            event.startDate <= tomorrow &&
+            event.endDate > now
+        }
+        
+        // Check for events within pre-event window
+        let preEventWindowEvents = filteredEvents.filter { event in
+            let timeUntilEventStart = event.startDate.timeIntervalSince(now)
+            return timeUntilEventStart > 0 && timeUntilEventStart <= Double(calendarLiveActivitySettings.preEventWindow * 60)
+        }
+        
+        // If there are events within pre-event window, return the closest one
+        if let closestPreEventWindowEvent = preEventWindowEvents.min(by: { $0.startDate < $1.startDate }) {
+            return closestPreEventWindowEvent
+        }
+        
+        return filteredEvents.min(by: { abs($0.startDate.timeIntervalSince(now)) < abs($1.startDate.timeIntervalSince(now)) })
     }
 }

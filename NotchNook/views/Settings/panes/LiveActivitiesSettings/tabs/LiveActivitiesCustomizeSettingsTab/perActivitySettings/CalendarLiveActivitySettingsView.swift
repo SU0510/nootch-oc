@@ -14,7 +14,7 @@ struct CalendarLiveActivitySettingsView: View {
     var body: some View {
         Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: String(localized: "Minutes before showing up:")) {
-                SliderPlus(value: $calendarLiveActivitySettings.minutesBeforeEvent, range: 1...60)
+                SliderPlus(value: $calendarLiveActivitySettings.preEventWindow, range: 1...60)
             }
             Settings.Section(title: String(localized: "Other options:"), bottomDivider: true) {
                 Toggle("Show while in events", isOn: $calendarLiveActivitySettings.showWhileInEvent)

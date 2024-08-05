@@ -37,7 +37,6 @@
 		3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCF2C1BADB60015EC66 /* EventIconView.swift */; };
 		3A105FD32C1BADE80015EC66 /* EventTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FD22C1BADE80015EC66 /* EventTimeView.swift */; };
 		3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE42C1E76450015EC66 /* LiveActivityView.swift */; };
-		3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE62C1E86080015EC66 /* closestEvent.swift */; };
 		3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */; };
 		3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */; };
 		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
@@ -393,7 +392,6 @@
 		3A105FCF2C1BADB60015EC66 /* EventIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIconView.swift; sourceTree = "<group>"; };
 		3A105FD22C1BADE80015EC66 /* EventTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeView.swift; sourceTree = "<group>"; };
 		3A105FE42C1E76450015EC66 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
-		3A105FE62C1E86080015EC66 /* closestEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closestEvent.swift; sourceTree = "<group>"; };
 		3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPeeksView.swift; sourceTree = "<group>"; };
 		3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMarquee.swift; sourceTree = "<group>"; };
 		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
@@ -1445,7 +1443,6 @@
 				3A801E0E2C1556E70076560D /* getRangeOfDays.swift */,
 				3A801E152C1579F40076560D /* getMacBookModel.swift */,
 				3A801E1B2C163B540076560D /* detectMeetings.swift */,
-				3A105FE62C1E86080015EC66 /* closestEvent.swift */,
 				3A0816C82C24E45D008092F0 /* getBuildNumber.swift */,
 				3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */,
 				3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */,
@@ -2142,7 +2139,6 @@
 				3A0C50242C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift in Sources */,
 				3A8507772C4B5A0C0092B135 /* HorizontalCometShape.swift in Sources */,
 				3A1691E62C2FB2430014C326 /* ResignFirstResponderKey.swift in Sources */,
-				3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */,
 				EC0E30EE2C0433960060B47E /* TrayLiveActivitySettingsView.swift in Sources */,
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,

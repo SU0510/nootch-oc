@@ -21,7 +21,7 @@ struct MockTopBar: View {
     @SilentState private var fakeNow = Date()
     
     func staticNow() -> Date {
-        fakeNow - calendarLiveActivitySettings.minutesBeforeEvent.minutes
+        fakeNow - calendarLiveActivitySettings.preEventWindow.minutes
     }
     
     var body: some View {
