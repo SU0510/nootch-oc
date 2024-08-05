@@ -201,7 +201,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : " %@"
           }
         },
@@ -357,7 +357,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : " %@"
           }
         },
@@ -385,8 +385,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " In use"
+            "state" : "translated",
+            "value" : " En ús"
           }
         },
         "cs" : {
@@ -404,7 +404,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In Benutzung"
+            "value" : " In Benutzung"
           }
         },
         "el" : {
@@ -569,8 +569,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : " Shortcuts"
+            "state" : "translated",
+            "value" : " Dreceres"
           }
         },
         "cs" : {
@@ -753,8 +753,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "(see changelog)"
+            "state" : "translated",
+            "value" : "(veure el registre de canvis)"
           }
         },
         "cs" : {
@@ -937,7 +937,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -955,7 +955,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -967,13 +967,13 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -1003,13 +1003,13 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -1033,7 +1033,7 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -1075,7 +1075,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -1093,14 +1093,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%"
+            "state" : "translated",
+            "value" : "％"
           }
         }
       }
@@ -1121,7 +1121,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%@ - %@"
           }
         },
@@ -1305,7 +1305,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%@%lld"
           }
         },
@@ -1489,7 +1489,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld"
           }
         },
@@ -1645,7 +1645,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld"
           }
         },
@@ -1673,7 +1673,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld visible"
           }
         },
@@ -1740,7 +1740,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld visibile"
+            "value" : "%lld Visibile"
           }
         },
         "ja" : {
@@ -1857,7 +1857,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%@"
           }
         },
@@ -2041,7 +2041,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2059,7 +2059,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2071,19 +2071,19 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2107,13 +2107,13 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2137,7 +2137,7 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2179,7 +2179,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2197,13 +2197,13 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         }
@@ -2225,7 +2225,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "+%lld"
           }
         },
@@ -2381,7 +2381,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "+%lld"
           }
         },
@@ -2409,8 +2409,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A beautiful and native Reddit client app for iOS."
+            "state" : "translated",
+            "value" : "Una nativa i bonica aplicació de client de Reddit per a iOS."
           }
         },
         "cs" : {
@@ -2572,7 +2572,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一款美麗、原生於iOS 的Reddit 客戶端應用程式"
+            "value" : "一款美麗、原生於iOS 的Reddit 客戶端應用程式。"
           }
         }
       }
@@ -2594,8 +2594,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A bunch of bug fixes and sweet new features!"
+            "state" : "translated",
+            "value" : "Una gran varietat de reparació d'errors i noves funcions!"
           }
         },
         "cs" : {
@@ -2757,7 +2757,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "大量的錯誤修復以及超棒的新功能！"
+            "value" : "大量的錯誤修復以及超棒的新功能!"
           }
         }
       }
@@ -2778,8 +2778,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A few of our apps"
+            "state" : "translated",
+            "value" : "Algunes aplicacions nostres"
           }
         },
         "cs" : {
@@ -2962,8 +2962,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A group of talented friends from 4 different countries that develop amazing software together for nothing but passion."
+            "state" : "translated",
+            "value" : "Un grup d'amics amb talent de 4 països diferents que han desenvolupat en conjunt un programari sorprenent només per passió."
           }
         },
         "cs" : {
@@ -3147,8 +3147,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new elegant way of getting notified about and joining a meeting. "
+            "state" : "translated",
+            "value" : "Una nova manera elegant d'informar-se i unir-se a les reunions programades. "
           }
         },
         "cs" : {
@@ -3331,8 +3331,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "A new way to interact with your mac"
+            "state" : "translated",
+            "value" : "Una nova manera d'interactuar amb el teu mac"
           }
         },
         "cs" : {
@@ -3494,7 +3494,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "與你 Mac 互動的新方式。"
+            "value" : "與你 Mac 互動的全新方式。"
           }
         }
       }
@@ -3515,8 +3515,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "About"
+            "state" : "translated",
+            "value" : "Informació"
           }
         },
         "cs" : {
@@ -3588,7 +3588,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "このアプリについて"
+            "value" : "NotchNookについて"
           }
         },
         "ko" : {
@@ -3699,7 +3699,7 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "AirDrop"
           }
         },
@@ -3883,8 +3883,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Album corner radius:"
+            "state" : "translated",
+            "value" : "Radi de la cantonada de l'àlbum:"
           }
         },
         "cs" : {
@@ -3902,7 +3902,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Albums Ecken Radius:"
+            "value" : "Eckradius der Albumsvorschau:"
           }
         },
         "el" : {
@@ -4067,8 +4067,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow gestures when hovering the notch"
+            "state" : "translated",
+            "value" : "Permetre gestos quan es mou el notch"
           }
         },
         "cs" : {
@@ -4251,8 +4251,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Allow some activities to interact with mouse click."
+            "state" : "translated",
+            "value" : "Permetre algunes activitats interactuar amb el clic del ratolí."
           }
         },
         "cs" : {
@@ -4435,8 +4435,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Always open on hover"
+            "state" : "translated",
+            "value" : "Obrir sempre en passar per sobre"
           }
         },
         "cs" : {
@@ -4619,8 +4619,8 @@
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Animated wallpapers and overlay effects for macOS."
+            "state" : "translated",
+            "value" : "Fons de pantalla animats i efectes de superposició pel macOS."
           }
         },
         "cs" : {
@@ -5189,8 +5189,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Helligkeit/Lautstärke-Einblendung ersetzen"
           }
         },
         "el" : {
@@ -5201,20 +5201,20 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Reemplazo de HUD de brillo/volumen"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Kirkkaus/äänenvoimakkuuden Hud Korvaus"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Remplacement du HUD de luminosité/Volume"
           }
         },
         "he" : {
@@ -5237,14 +5237,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Luminosità/Volume HUD"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "ディスプレイの輝度と音量調節の表示を変更"
           }
         },
         "ko" : {
@@ -5267,8 +5267,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Zmiana interfejsu głośności/jasności"
           }
         },
         "pt-BR" : {
@@ -5309,8 +5309,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "Parlaklık/Ses Düzeyi HUD Değişimi"
           }
         },
         "uk" : {
@@ -5327,14 +5327,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "更换HUD的亮度/体积"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
+            "state" : "translated",
+            "value" : "亮度/音量 介面替換"
           }
         }
       }
@@ -5797,7 +5797,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "カレンダーの設定を開く"
+            "value" : "カレンダーを開く"
           }
         },
         "ko" : {
@@ -6111,8 +6111,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "Abbrechen"
           }
         },
         "el" : {
@@ -6123,20 +6123,20 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "Peruuta"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "Annuler"
           }
         },
         "he" : {
@@ -6159,14 +6159,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "Elimina"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "キャンセル"
           }
         },
         "ko" : {
@@ -6189,8 +6189,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "Anuluj"
           }
         },
         "pt-BR" : {
@@ -6231,8 +6231,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "İptal"
           }
         },
         "uk" : {
@@ -6249,14 +6249,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "取消"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
+            "state" : "translated",
+            "value" : "取消"
           }
         }
       }
@@ -6529,7 +6529,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Controlla i tuoi eventi in programma tramite un'interfaccia lickable con feedback aptici. La modifica degli eventi e molte altre funzionalità arriveranno prossimamente..."
+            "value" : "Controlla i tuoi eventi in programma tramite un'interfaccia piacevole con feedback aptici. La modifica degli eventi e molte altre funzionalità arriveranno prossimamente..."
           }
         },
         "ja" : {
@@ -6625,7 +6625,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在美觀易用的介面中檢視即將到來的行程。編輯行程與更多的功能即將推出……"
+            "value" : "在優美的介面中檢視即將到來的行程，即將推出編輯行程與其他更多的功能。"
           }
         }
       }
@@ -7914,7 +7914,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一行捷徑數："
+            "value" : "一排捷徑數:"
           }
         }
       }
@@ -8466,7 +8466,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用水平手勢控制媒體"
+            "value" : "左右滑動快轉至上/下一首"
           }
         }
       }
@@ -9387,7 +9387,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "展示模式"
+            "value" : "演示模式"
           }
         }
       }
@@ -9610,8 +9610,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Farben der Einblendung für Audio-Steuerung ausschalten"
           }
         },
         "el" : {
@@ -9622,20 +9622,20 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Desactivar colores en el reemplazo de HUD de audio"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Poista värit käytöstä HUD-äänen korvaamisessa"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Désactiver les couleurs lors du remplacement d'un HUD audio"
           }
         },
         "he" : {
@@ -9658,14 +9658,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Disabilita i colori nella sostituzione HUD audio"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "音量調節の表示を変更しない"
           }
         },
         "ko" : {
@@ -9688,8 +9688,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Wyłącz kolory na zamienniku interfejsu audio"
           }
         },
         "pt-BR" : {
@@ -9730,8 +9730,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "Ses HUD değişiminde renkleri devre dışı bırak"
           }
         },
         "uk" : {
@@ -9748,14 +9748,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "禁用音频HUD替换颜色"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Disable colors on audio HUD replacement"
+            "state" : "translated",
+            "value" : "關閉音量介面色彩"
           }
         }
       }
@@ -11689,7 +11689,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "nookを有効にする"
+            "value" : "Nookを有効にする"
           }
         },
         "ko" : {
@@ -13060,7 +13060,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "gjp1lh5dtzqp4yddn73uush9r4inv0"
           }
         },
@@ -13106,8 +13106,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "Globale Mediensteuerung"
           }
         },
         "el" : {
@@ -13118,8 +13118,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "Control de medios globales"
           }
         },
         "fi" : {
@@ -13130,8 +13130,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "Contrôle global des médias"
           }
         },
         "he" : {
@@ -13154,14 +13154,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "Controllo multimediale globale"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "グローバルメディアコントロール"
           }
         },
         "ko" : {
@@ -13184,8 +13184,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "Globalna kontrola multimediów"
           }
         },
         "pt-BR" : {
@@ -13226,8 +13226,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "Genel Medya Kontrolü"
           }
         },
         "uk" : {
@@ -13244,14 +13244,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "全部媒体控制"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
+            "state" : "translated",
+            "value" : "整體媒體控制"
           }
         }
       }
@@ -14026,8 +14026,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "Wow, unglaublich!"
           }
         },
         "el" : {
@@ -14038,8 +14038,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "Vaca sagrada, ¡Increíble!"
           }
         },
         "fi" : {
@@ -14050,8 +14050,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "La vache, c'est incroyable !"
           }
         },
         "he" : {
@@ -14074,14 +14074,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "Oh cavolo, pazzesco!"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "新機能を体験しよう！"
           }
         },
         "ko" : {
@@ -14104,8 +14104,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "O kurczę, niesamowite!"
           }
         },
         "pt-BR" : {
@@ -14146,8 +14146,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "Vay canına, inanılmaz!"
           }
         },
         "uk" : {
@@ -14164,14 +14164,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "天哪，太棒了！"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Holy cow, amazing!"
+            "state" : "translated",
+            "value" : "超超超超棒！"
           }
         }
       }
@@ -14210,8 +14210,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "HUD-Ersatz:"
           }
         },
         "el" : {
@@ -14222,8 +14222,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "Reemplazo del HUD:"
           }
         },
         "fi" : {
@@ -14234,8 +14234,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "Remplacement du HUD :"
           }
         },
         "he" : {
@@ -14258,14 +14258,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "Sostituzione dell'HUD:"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "表示変更:"
           }
         },
         "ko" : {
@@ -14288,8 +14288,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "Zmiana interfejsu:"
           }
         },
         "pt-BR" : {
@@ -14330,8 +14330,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "HUD değişimi:"
           }
         },
         "uk" : {
@@ -14348,14 +14348,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "HUD切换:"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "HUD replacement:"
+            "state" : "translated",
+            "value" : "替代預設顯示介面"
           }
         }
       }
@@ -15370,7 +15370,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンの場合、左にスワイプすると次の曲が再生され、オフの場合は前の曲が再生されます。"
+            "value" : "有効の場合、左にスワイプすると次の曲が再生され、無効の場合は前の曲が再生されます。"
           }
         },
         "ko" : {
@@ -15460,7 +15460,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果開啟，向左滑動將開始下一首歌，如果關閉，則為上一首。"
+            "value" : "如果開啟，向左滑動會快轉至下一首歌，如果關閉，則為一首。"
           }
         }
       }
@@ -16012,7 +16012,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "反轉操作媒體手勢"
+            "value" : "反轉媒體控制手勢"
           }
         }
       }
@@ -16189,7 +16189,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "john.doe@email.com"
           }
         },
@@ -17339,8 +17339,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "Sperren"
           }
         },
         "el" : {
@@ -17351,8 +17351,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "Botón de bloqueo"
           }
         },
         "fi" : {
@@ -17363,8 +17363,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "Bouton de verrouillage"
           }
         },
         "he" : {
@@ -17387,14 +17387,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "Pulsante di blocco"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "ロックボタン"
           }
         },
         "ko" : {
@@ -17417,8 +17417,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "Przycisk blokady"
           }
         },
         "pt-BR" : {
@@ -17459,8 +17459,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "Kilit Düğmesi"
           }
         },
         "uk" : {
@@ -17477,14 +17477,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "锁定按钮"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
+            "state" : "translated",
+            "value" : "鎖定按鈕"
           }
         }
       }
@@ -18154,7 +18154,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Media"
+            "value" : "Multimedia"
           }
         },
         "pt-BR" : {
@@ -18811,8 +18811,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "Natürliche Animationen und frische neue Funktionen!"
           }
         },
         "el" : {
@@ -18823,8 +18823,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "¡Animaciones naturales y nuevas funciones!"
           }
         },
         "fi" : {
@@ -18835,8 +18835,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "Animations naturelles et nouvelles fonctionnalités !"
           }
         },
         "he" : {
@@ -18859,14 +18859,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "Animazioni naturali e nuove funzionalità!"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "滑らかなアニメーションと新しい魅力的な機能が追加！"
           }
         },
         "ko" : {
@@ -18889,8 +18889,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "Naturalne animacje i świeżutkie, nowe funkcje!"
           }
         },
         "pt-BR" : {
@@ -18931,8 +18931,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "Doğal animasyonlar ve yepyeni özellikler!"
           }
         },
         "uk" : {
@@ -18949,14 +18949,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "自然动画和新鲜的新功能！"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
+            "state" : "translated",
+            "value" : "流暢的動畫和全新的功能！"
           }
         }
       }
@@ -20053,7 +20053,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "NotchNook"
           }
         },
@@ -20237,7 +20237,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "NotchNook "
           }
         },
@@ -20612,7 +20612,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NotchNook 會偵測你的瀏海寬度，但有時可能會有些許偏差。你可以在這裡進行調整。它必須與你的瀏海大小一致。"
+            "value" : "NotchNook 會偵測你的瀏海寬度，但有時可能會有些許偏差。你可以在這裡進行調整，且必須與你的瀏海大小一致。"
           }
         }
       }
@@ -21203,8 +21203,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "Jetzt können Sie alle Medien von jeder App aus steuern!"
           }
         },
         "el" : {
@@ -21215,8 +21215,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "¡Ahora puedes controlar cualquier medio desde cualquier aplicación!"
           }
         },
         "fi" : {
@@ -21227,8 +21227,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "Maintenant vous pouvez contrôler n'importe quel média depuis n'importe quelle application !"
           }
         },
         "he" : {
@@ -21251,14 +21251,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "Ora puoi controllare qualsiasi elemento multimediale da qualunque app!"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "どんなアプリのメディアでも制御できるようになりました！"
           }
         },
         "ko" : {
@@ -21281,8 +21281,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "Teraz możesz kontrolować dowolne multimedia z dowolnej aplikacji!"
           }
         },
         "pt-BR" : {
@@ -21323,8 +21323,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "Artık herhangi bir medyayı herhangi bir uygulamadan kontrol edebilirsin!"
           }
         },
         "uk" : {
@@ -21341,14 +21341,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "现在，您可以从任何应用程序控制任何媒体！"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
+            "state" : "translated",
+            "value" : "現在可以輕鬆控制任何App 的播放、上/下首!"
           }
         }
       }
@@ -21387,8 +21387,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "Jetzt können Sie die Standard-Lautstärke- und Helligkeitsindikatoren in den \"Live-Aktivitäten\"-Einstellungen ersetzen!"
           }
         },
         "el" : {
@@ -21399,8 +21399,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "¡Ahora puede reemplazar los indicadores de volumen y brillo por defecto para personalizar la configuración de \"actividad en vivo\"!"
           }
         },
         "fi" : {
@@ -21411,8 +21411,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "Vous pouvez maintenant remplacer les indicateurs de volume et de luminosité par des indicateurs personnalisés dans les paramètres \"Activités en direct\" !"
           }
         },
         "he" : {
@@ -21435,14 +21435,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "Ora puoi sostituire gli indicatori del volume e della luminosità predefiniti con quelli personalizzati nelle impostazioni delle \"attività dal vivo\"!"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "「ライブアクティビティ」の設定から、音量とディスプレイの輝度のインジケーターをNotchNook用にカスタムできるようになりました！"
           }
         },
         "ko" : {
@@ -21465,8 +21465,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "Teraz możesz zastąpić domyślne wskaźniki głośności i jasności niestandardowymi, w ustawieniach \"Aktywności na żywo\"!"
           }
         },
         "pt-BR" : {
@@ -21507,8 +21507,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "Artık \"Canlı Etkinlikler\" ayarlarında varsayılan ses seviyesi ve parlaklık göstergelerini özelleştirilmiş olanlarla değiştirebilirsin!"
           }
         },
         "uk" : {
@@ -21525,14 +21525,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "现在，您可以在“实时活动”设置中用自定义指示器替换默认的音量和亮度指示器！"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+            "state" : "translated",
+            "value" : "現在可以在 ”即時動態” 中設定音量及亮度的顯示效果!"
           }
         }
       }
@@ -21571,7 +21571,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         },
@@ -21583,7 +21583,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         },
@@ -21595,8 +21595,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "OK"
+            "state" : "translated",
+            "value" : "D'accord"
           }
         },
         "he" : {
@@ -21619,13 +21619,13 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         },
@@ -21649,7 +21649,7 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         },
@@ -21691,8 +21691,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "OK"
+            "state" : "translated",
+            "value" : "Tamam"
           }
         },
         "uk" : {
@@ -21709,13 +21709,13 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "OK"
+            "state" : "translated",
+            "value" : "好"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         }
@@ -22084,7 +22084,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用垂直手勢打開/關閉瀏海"
+            "value" : "上下滑動開啟/關閉瀏海"
           }
         }
       }
@@ -22821,7 +22821,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止在滑鼠移開時關閉"
+            "value" : "防止滑鼠移開時關閉"
           }
         }
       }
@@ -22860,8 +22860,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "Verhindert das automatische Schließen von NN mit dem neuen Sperren-Knopf."
           }
         },
         "el" : {
@@ -22872,8 +22872,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "Evite que NN se cierre automáticamente con el nuevo botón de bloqueo."
           }
         },
         "fi" : {
@@ -22884,8 +22884,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "Empêchez la fermeture automatique de NN avec le nouveau bouton de verrouillage."
           }
         },
         "he" : {
@@ -22908,14 +22908,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "Previene che NN si chiuda automaticamente con il nuovo pulsante lucchetto."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "ロックボタンでNotchNookを自動的に閉じないようにします。"
           }
         },
         "ko" : {
@@ -22938,8 +22938,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "Zapobiegaj automatycznemu zamykaniu NN za pomocą nowego przycisku blokady."
           }
         },
         "pt-BR" : {
@@ -22980,8 +22980,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "Yeni kilit düğmesi ile NN'nin otomatik kapanmasını önle."
           }
         },
         "uk" : {
@@ -22998,14 +22998,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "使用新的锁定按钮来防止NN自动关闭。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
+            "state" : "translated",
+            "value" : "全新的鎖定按鈕可以防止NotchNook 自動關閉"
           }
         }
       }
@@ -23189,7 +23189,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止 NotchNook 在閒置時隱藏。對於正在螢幕錄影很有用（對於沒有瀏海的螢幕沒有影響）。"
+            "value" : "防止NotchNook 在閒置時隱藏，對於正在螢幕錄影時很有用 (而對沒有瀏海的螢幕沒有影響)"
           }
         }
       }
@@ -23282,8 +23282,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "プライバシーポリシー"
           }
         },
         "ko" : {
@@ -23366,14 +23366,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "隐私政策"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "隱私權政策"
           }
         }
       }
@@ -26319,7 +26319,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當在行程中顯示"
+            "value" : "當行程進行中顯示"
           }
         }
       }
@@ -28345,7 +28345,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "小工具網格的單位以“格”為單位。1格意味著%lld點/像素。"
+            "value" : "小工具以“格”為單位，1格意味著%lld點/像素。"
           }
         }
       }
@@ -28384,8 +28384,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "Diese Einstellung erfordert, dass Sie NotchNook Zugriffsrechte zur Verfügung stellen."
           }
         },
         "el" : {
@@ -28396,8 +28396,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "Esta configuración requiere que proporcione a NotchNook permisos de accesibilidad."
           }
         },
         "fi" : {
@@ -28408,8 +28408,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "Ce paramètre nécessite que vous fournissiez des permissions d'accessibilité à NotchNook."
           }
         },
         "he" : {
@@ -28432,14 +28432,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "Questa impostazione richiede che dai a NotchNook i permessi di accessibilità."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "この設定を有効にするには、NotchNookにアクシビリティの権限を付与する必要があります。"
           }
         },
         "ko" : {
@@ -28462,8 +28462,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "To ustawienie wymaga przyznania NotchNook uprawnień dostępności."
           }
         },
         "pt-BR" : {
@@ -28504,8 +28504,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "Bu ayar NotchNook'a erişilebilirlik izinleri vermeni gerektirir."
           }
         },
         "uk" : {
@@ -28522,14 +28522,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "此设置要求您为 NotchNook 提供访问权限。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This setting requires you to provide NotchNook with accessibility permissions."
+            "state" : "translated",
+            "value" : "這項設定需要您允許NotchNook 的取用權限。"
           }
         }
       }
@@ -28568,8 +28568,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "Dies wird einige der Gesten von NotchNook deaktivieren."
           }
         },
         "el" : {
@@ -28580,8 +28580,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "Esto desactivará algunos de los gestos de NotchNook."
           }
         },
         "fi" : {
@@ -28592,8 +28592,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "Ceci désactivera certains gestes de NotchNook."
           }
         },
         "he" : {
@@ -28616,14 +28616,14 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "Questo disabiliterà alcune delle gesture di NotchNook."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "NotchNookの一部のジェスチャーが無効になります。"
           }
         },
         "ko" : {
@@ -28646,8 +28646,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "Spowoduje to wyłączenie niektórych gestów NotchNook."
           }
         },
         "pt-BR" : {
@@ -28688,8 +28688,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "Bu, NotchNook'un bazı hareketlerini devre dışı bırakacaktır."
           }
         },
         "uk" : {
@@ -28706,14 +28706,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "这会导致Notch Nook的部分手势功能失效。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
+            "state" : "translated",
+            "value" : "這將會禁用一些NotchNook 操作手勢"
           }
         }
       }
@@ -30464,7 +30464,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ライブアクティビティが非アクティブになった後に消えるまでの時間_(秒)_を調整します(音楽が一時停止したときなど)。"
+            "value" : "ライブアクティビティが非アクティブになった後に消えるまでの時間(秒)を調整します(音楽が一時停止したときなど)。"
           }
         },
         "ko" : {
@@ -30554,7 +30554,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "調整即時動態在非活動狀態後消失的時間 (以秒為單位) (例如音樂暫停時)。"
+            "value" : "調整即時動態在非活動狀態後隱藏的時間 (例如音樂暫停時)，以秒為單位。"
           }
         }
       }
@@ -31835,7 +31835,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@"
           }
         },
@@ -32019,7 +32019,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "v%@ "
           }
         },
@@ -33225,7 +33225,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "右クリックすることもできます。"
+            "value" : "右クリックで終了することもできます。"
           }
         },
         "ko" : {
