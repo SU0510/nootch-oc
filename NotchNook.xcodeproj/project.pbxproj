@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
-		363709522C559D3B004D20BB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709512C559D3B004D20BB /* String+Extensions.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
 		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
 		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
@@ -370,7 +369,6 @@
 /* Begin PBXFileReference section */
 		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
-		363709512C559D3B004D20BB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
 		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
 		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
@@ -1527,7 +1525,6 @@
 				3A20F17C2C2FAB0B006A7E1F /* Animation.swift */,
 				3A5104D72C37B8430045F7E6 /* Numbers.swift */,
 				3637094D2C544926004D20BB /* Set+Extensions.swift */,
-				363709512C559D3B004D20BB /* String+Extensions.swift */,
 				36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */,
 				36C970222C51D57600956B57 /* Date+Extensions.swift */,
 				3A342B082C4D965A003C369C /* UnitCurve.swift */,
@@ -1899,7 +1896,6 @@
 				3A1691D42C2FB1FE0014C326 /* SparkleManagerKey.swift in Sources */,
 				EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */,
 				3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */,
-				363709522C559D3B004D20BB /* String+Extensions.swift in Sources */,
 				3A8AA17F2C2FD1E400D727DA /* paddingDependingOnArrPos.swift in Sources */,
 				3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
