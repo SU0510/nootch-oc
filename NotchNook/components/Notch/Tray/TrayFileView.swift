@@ -90,7 +90,7 @@ struct TrayFileView: View {
                 NonHyphenatingText(text: file.nameTruncated)
                     .frame(width: 56, alignment: .center)
                     .background(
-                        RoundedRectangle(cornerRadius: 4).fill(isSelected ? Color.blue : Color.clear)
+                        RoundedRectangle(cornerRadius: 3).fill(isSelected ? Color.blue : Color.clear)
                     )
                     .onTapGesture {
                         doAfter {

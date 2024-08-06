@@ -9,14 +9,12 @@ import SwiftUI
 
 struct MultilineTextField: View {
     @Binding var text: String
-
-    private let minHeight: CGFloat = 18
-    private let maxHeight: CGFloat = 36
-    
-    @State private var height: CGFloat = 18
+    @State private var height: CGFloat = 14
     @FocusState private var isFocused: Bool
     @State private var selectedRange: NSRange?
-    @State private var isInitialAppearance = true
+    
+    private let minHeight: CGFloat = 14
+    private let maxHeight: CGFloat = 28
     
     var body: some View {
         NonHyphenatingTextEditor(text: $text, selectedRange: $selectedRange, isInitialAppearance: $isInitialAppearance)
