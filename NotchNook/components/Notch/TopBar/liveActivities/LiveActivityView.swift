@@ -23,7 +23,7 @@ struct LiveActivityView: View {
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     
-    @StateObject var activitiesManager = ActiveLiveActivitiesManager.shared
+    var activitiesManager = ActiveLiveActivitiesManager.shared
     
     // MARK: Computed properties
     

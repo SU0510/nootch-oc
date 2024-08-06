@@ -8,7 +8,8 @@
 import SwiftUI
 import Defaults
 
-class ActiveLiveActivitiesManager: ObservableObject {
+@Observable
+class ActiveLiveActivitiesManager {
     
     static let shared = ActiveLiveActivitiesManager()
     
