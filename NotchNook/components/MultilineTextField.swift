@@ -49,7 +49,6 @@ struct MultilineTextField: View {
     
     private func selectFileNameWithoutExtension() {
         if let dotIndex = text.lastIndex(of: ".") {
-            let nameWithoutExtension = text[..<dotIndex]
             let startIndex = text.startIndex
             let length = text.distance(from: startIndex, to: dotIndex)
             selectedRange = NSRange(location: 0, length: length)
@@ -80,10 +79,6 @@ struct NonHyphenatingTextEditor: NSViewRepresentable {
         textView.font = NSFont.systemFont(ofSize: 10)
         textView.delegate = context.coordinator
         
-        textView.isVerticallyResizable = true
-        textView.autoresizingMask = [.width, .height]
-        textView.textContainer?.containerSize = NSSize(width: textView.frame.size.width, height: .greatestFiniteMagnitude)
-        textView.textContainer?.widthTracksTextView = true
         return textView
     }
     
