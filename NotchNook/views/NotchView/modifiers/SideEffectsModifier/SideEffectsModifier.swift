@@ -24,7 +24,6 @@ extension NotchView {
         @Environment(\.isEditingText) internal var isEditingText
         @Environment(\.isKeyWindow) internal var isKeyWindow
         @Environment(\.notchSize) internal var notchSize
-        @Environment(\.volumeAndBrightnessListener) internal var volumeAndBrightnessListener
         
         func body(content: Content) -> some View {
             content
@@ -33,6 +32,9 @@ extension NotchView {
                     resetTrialAndHandleChangelog()
                     insertUpdateLAIfOldVersion()
                     fetchEvents()
+                    startBriVolKeyListener()
+                }
+                .onChange(of: liveActivitiesSettings.enableHUDReplacement) {
                     startBriVolKeyListener()
                 }
                 .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
@@ -69,7 +71,7 @@ extension NotchView {
         
         internal func handleBriVolKeyPress(_ mediaKey: MediaKey) {
             if !liveActivitiesSettings.enableHUDReplacement {
-                volumeAndBrightnessListener.stop()
+                VolumeAndBrightnessListener.shared.stop()
                 return
             }
             switch mediaKey {

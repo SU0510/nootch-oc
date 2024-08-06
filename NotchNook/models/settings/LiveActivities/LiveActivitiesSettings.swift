@@ -15,4 +15,5 @@ struct LiveActivitiesSettings: Preferences {
     var enableQuickPeek = true
     var enableHUDReplacement = false
     var disableColorsOnAudioHUDReplacement = false
+    var unhideAutomatically = true
 }

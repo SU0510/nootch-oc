@@ -20,15 +20,12 @@ struct EventTimeView: View {
     @Environment(\.calendarLiveActivitySettings) private var prefs
     @Environment(\.openURL) private var openURL
     @Environment(\.getNow) private var getNow
-    
-    @StateObject private var activitiesManager = ActiveLiveActivitiesManager.shared
-    
+        
     var body: some View {
         TimelineView(.animation(minimumInterval: 1)) { ctx in
             let now = getNow()
             let meeting = detectMeetings(in: event)
-            let eventStarted = startDate < now
-            let shouldRemoveActivity = prefs.showWhileInEvent ? endDate - 5.seconds < now : eventStarted
+            let isEventStarted = startDate < now
             
             // Pre-call vars
             let remainingSeconds = startDate.timeIntervalSince1970 - now.timeIntervalSince1970
@@ -38,7 +35,7 @@ struct EventTimeView: View {
             // In-call vars
             let inCallText = prefs.showEventTimeLapsed ? formatSecs(now.timeIntervalSince1970 - startDate.timeIntervalSince1970) : nil
             
-            let text = eventStarted ? inCallText : preCallText
+            let text = isEventStarted ? inCallText : preCallText
             
             Button {
                 if let meeting, let url = URL(string: meeting.url) { openURL(url) }
@@ -53,16 +50,16 @@ struct EventTimeView: View {
                             Image(systemName: "phone.fill")
                         }
                     }
-                    .font(.system(size: eventStarted ? 12 : 13, weight: .medium).width(eventStarted ? .condensed : .standard))
+                    .font(.system(size: isEventStarted ? 12 : 13, weight: .medium).width(isEventStarted ? .condensed : .standard))
                     .foregroundStyle(.white)
-                    .padding(.horizontal, eventStarted ? 6 : 0)
-                    .padding(.vertical, eventStarted ? 3 : 0)
-                    .background(eventStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
+                    .padding(.horizontal, isEventStarted ? 6 : 0)
+                    .padding(.vertical, isEventStarted ? 3 : 0)
+                    .background(isEventStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
                     .frame(maxWidth: .infinity)
                     .blur(radius: hovering ? 1.25 : 0)
-                    .opacity(hovering ? 0.3 : eventStarted ? 0.5 : 1)
+                    .opacity(hovering ? 0.3 : isEventStarted ? 0.5 : 1)
                     .transition(.scaleAndBlur)
-                    .id(eventStarted)
+                    .id(isEventStarted)
                     
                     if hovering, let meeting {
                         Image(meeting.service.logo)
@@ -87,11 +84,6 @@ struct EventTimeView: View {
             .padding(.trailing, 2)
             .frame(maxWidth: .infinity)
             .allowsHitTesting(meeting != nil)
-            .onChange(of: shouldRemoveActivity) { _, newValue in
-                if newValue {
-                    ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
-                }
-            }
         }
     }
     

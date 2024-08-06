@@ -26,7 +26,6 @@
 		3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */; };
 		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
 		3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */; };
-		3A0C50122C5304710003867F /* VolumeAndBrightnessListenerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */; };
 		3A0C50142C531CA70003867F /* startBriVolKeyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */; };
 		3A0C50182C532A390003867F /* VolumeIndicatorSpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */; };
 		3A0C501A2C532A4F0003867F /* VolumeIndicatorValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50192C532A4F0003867F /* VolumeIndicatorValueView.swift */; };
@@ -44,7 +43,6 @@
 		3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCF2C1BADB60015EC66 /* EventIconView.swift */; };
 		3A105FD32C1BADE80015EC66 /* EventTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FD22C1BADE80015EC66 /* EventTimeView.swift */; };
 		3A105FE52C1E76450015EC66 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE42C1E76450015EC66 /* LiveActivityView.swift */; };
-		3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE62C1E86080015EC66 /* closestEvent.swift */; };
 		3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */; };
 		3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */; };
 		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
@@ -330,7 +328,7 @@
 		EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */; };
 		EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FF72BFAE7FF00E67ECC /* TopBarTabsView.swift */; };
 		EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFB2BFAE89400E67ECC /* MiniPlayerView.swift */; };
-		EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */; };
+		EC8D5FFE2BFAE8B000E67ECC /* AudioAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFD2BFAE8B000E67ECC /* AudioAnimationView.swift */; };
 		EC8D60002BFAE8C400E67ECC /* MiniAlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */; };
 		EC8D60042BFAE90D00E67ECC /* TrayFilesCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60032BFAE90D00E67ECC /* TrayFilesCountView.swift */; };
 		EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60052BFAE91800E67ECC /* TrayIconView.swift */; };
@@ -340,7 +338,7 @@
 		EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60192BFC294400E67ECC /* SpotifyApplication.swift */; };
 		EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */; };
 		EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */; };
-		EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */; };
+		EC8D602C2BFCFCAB00E67ECC /* AudioSpectrographView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */; };
 		EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */; };
 		EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */; };
 		EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */; };
@@ -389,7 +387,6 @@
 		3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeekScaling.swift; sourceTree = "<group>"; };
 		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
 		3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
-		3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAndBrightnessListenerKey.swift; sourceTree = "<group>"; };
 		3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startBriVolKeyListener.swift; sourceTree = "<group>"; };
 		3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorSpeakerView.swift; sourceTree = "<group>"; };
 		3A0C50192C532A4F0003867F /* VolumeIndicatorValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorValueView.swift; sourceTree = "<group>"; };
@@ -407,7 +404,6 @@
 		3A105FCF2C1BADB60015EC66 /* EventIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIconView.swift; sourceTree = "<group>"; };
 		3A105FD22C1BADE80015EC66 /* EventTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeView.swift; sourceTree = "<group>"; };
 		3A105FE42C1E76450015EC66 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
-		3A105FE62C1E86080015EC66 /* closestEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closestEvent.swift; sourceTree = "<group>"; };
 		3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickPeeksView.swift; sourceTree = "<group>"; };
 		3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMarquee.swift; sourceTree = "<group>"; };
 		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
@@ -680,7 +676,7 @@
 		EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		EC8D5FF72BFAE7FF00E67ECC /* TopBarTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarTabsView.swift; sourceTree = "<group>"; };
 		EC8D5FFB2BFAE89400E67ECC /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
-		EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWavesView.swift; sourceTree = "<group>"; };
+		EC8D5FFD2BFAE8B000E67ECC /* AudioAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAnimationView.swift; sourceTree = "<group>"; };
 		EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAlbumCoverView.swift; sourceTree = "<group>"; };
 		EC8D60032BFAE90D00E67ECC /* TrayFilesCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayFilesCountView.swift; sourceTree = "<group>"; };
 		EC8D60052BFAE91800E67ECC /* TrayIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayIconView.swift; sourceTree = "<group>"; };
@@ -690,7 +686,7 @@
 		EC8D60192BFC294400E67ECC /* SpotifyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyApplication.swift; sourceTree = "<group>"; };
 		EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControlsView.swift; sourceTree = "<group>"; };
 		EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverView.swift; sourceTree = "<group>"; };
-		EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpectrograph.swift; sourceTree = "<group>"; };
+		EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSpectrographView.swift; sourceTree = "<group>"; };
 		EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWidgetView.swift; sourceTree = "<group>"; };
 		EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsWidgetView.swift; sourceTree = "<group>"; };
 		EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
@@ -746,6 +742,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		367982D72C6155BD00BEB1F2 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */,
+				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
+				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
 		36C970242C51D73100956B57 /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,9 +790,9 @@
 		3A105FE02C1D1DB20015EC66 /* MediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				367982D72C6155BD00BEB1F2 /* Effects */,
 				EC8D5FFF2BFAE8C400E67ECC /* MiniAlbumCoverView.swift */,
-				EC8D5FFD2BFAE8B000E67ECC /* AudioWavesView.swift */,
-				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
+				EC8D5FFD2BFAE8B000E67ECC /* AudioAnimationView.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -1406,7 +1412,6 @@
 				EC8D5FF32BFAE75400E67ECC /* notch */,
 				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
 				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
-				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrograph.swift */,
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
@@ -1427,7 +1432,6 @@
 				3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */,
 				3A0816B72C23AAC8008092F0 /* FileDropView.swift */,
 				3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */,
-				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
@@ -1463,7 +1467,6 @@
 				3A801E0E2C1556E70076560D /* getRangeOfDays.swift */,
 				3A801E152C1579F40076560D /* getMacBookModel.swift */,
 				3A801E1B2C163B540076560D /* detectMeetings.swift */,
-				3A105FE62C1E86080015EC66 /* closestEvent.swift */,
 				3A0816C82C24E45D008092F0 /* getBuildNumber.swift */,
 				3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */,
 				3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */,
@@ -1923,7 +1926,7 @@
 				3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */,
 				3A1691ED2C2FB4FB0014C326 /* HideNotchKey.swift in Sources */,
 				3A342B132C50754B003C369C /* fit&Fill.swift in Sources */,
-				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrograph.swift in Sources */,
+				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrographView.swift in Sources */,
 				3A7C05E92C5B035A00435D99 /* ChangelogBubbleView.swift in Sources */,
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
@@ -2046,7 +2049,6 @@
 				3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */,
 				3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */,
 				3A1691D22C2FB1F50014C326 /* GetNowKey.swift in Sources */,
-				3A0C50122C5304710003867F /* VolumeAndBrightnessListenerKey.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
 				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
 				3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */,
@@ -2167,14 +2169,13 @@
 				3A0C50242C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift in Sources */,
 				3A8507772C4B5A0C0092B135 /* HorizontalCometShape.swift in Sources */,
 				3A1691E62C2FB2430014C326 /* ResignFirstResponderKey.swift in Sources */,
-				3A105FE72C1E86080015EC66 /* closestEvent.swift in Sources */,
 				EC0E30EE2C0433960060B47E /* TrayLiveActivitySettingsView.swift in Sources */,
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
 				3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */,
 				3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */,
-				EC8D5FFE2BFAE8B000E67ECC /* AudioWavesView.swift in Sources */,
+				EC8D5FFE2BFAE8B000E67ECC /* AudioAnimationView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Tray.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
 				BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */,
@@ -2286,7 +2287,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2307,7 +2308,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-setapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2389,7 +2390,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2410,7 +2411,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2549,7 +2550,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2570,7 +2571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2589,7 +2590,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2610,7 +2611,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

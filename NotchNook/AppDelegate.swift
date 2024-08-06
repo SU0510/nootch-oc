@@ -42,11 +42,6 @@ import Defaults
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
         windowsManager = WindowsManager(updater: updaterController.updater)
-        
-        // Initialize and start the keybind listener
-        if Defaults[.liveActivitiesSettings].enableHUDReplacement {
-            HUDManager.disableSystemHUD() // disable volume and brightness hud
-        }
     }
     
     func applicationWillTerminate(_ notification: Notification) {

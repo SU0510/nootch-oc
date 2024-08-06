@@ -18,7 +18,7 @@ class NotchNookState {
             if !newValue { hiddenTimer?.invalidate() }
         }
         didSet {
-            if hidden {
+            if hidden && Defaults[.liveActivitiesSettings].unhideAutomatically {
                 hiddenTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { _ in
                     withAnimation(.smooth) { self.hidden = false }
                 }

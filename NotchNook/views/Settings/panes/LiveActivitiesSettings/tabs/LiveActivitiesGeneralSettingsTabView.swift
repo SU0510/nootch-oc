@@ -11,8 +11,6 @@ import Settings
 
 struct LiveActivitiesGeneralSettingsTabView: View {
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
-    
-    @Environment(\.volumeAndBrightnessListener) private var volumeAndBrightnessListener
     @State private var disableHUDToggle = false
     
     var body: some View {
@@ -40,6 +38,10 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 Toggle("Enable Quick Peek", isOn: $liveActivitiesSettings.enableQuickPeek)
                 Text("If enabled, some live activities will show a short info on mouse hover.")
                     .settingDescription()
+                
+                Toggle("Unhide Automatically", isOn: $liveActivitiesSettings.unhideAutomatically)
+                Text("If enabled, live activities that have been dismissed (by swiping up) will automatically return.")
+                    .settingDescription()
             }
             
             Settings.Section(title: String(localized: "HUD replacement:")) {
@@ -52,12 +54,8 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) { oldValue, newValue in
                     disableHUDToggle = true
-                    if newValue {
-                        HUDManager.disableSystemHUD()
-                        volumeAndBrightnessListener.start()
-                    } else {
-                        HUDManager.enableSystemHUD()
-                        volumeAndBrightnessListener.stop()
+                    if !newValue {
+                        VolumeAndBrightnessListener.shared.stop()
                     }
                     doAfter(2) { disableHUDToggle = false }
                 }
