@@ -61,6 +61,7 @@ class NotchNookState {
         let icon: String?
         let text: String
         var iconColor: Color? = nil
+        var anchor: UnitPoint = .topLeading
     }
 }
 

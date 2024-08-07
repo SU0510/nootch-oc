@@ -137,7 +137,7 @@ struct TopBarView: View, Equatable {
         if let quickPeeks = notchNook.quickPeeks {
             QuickPeeksView(quickPeeks: quickPeeks)
                 .id(quickPeeks)
-                .transition(.scaleAndBlur(anchor: .leading, blur: 15))
+                .transition(.scaleAndBlur(anchor: quickPeeks.first?.anchor ?? .topLeading, blur: 15))
         }
     }
 }

@@ -18,6 +18,8 @@ struct LiveActivityView: View {
     }
     var side: ActivitySide
     var activeActivities: Set<LiveActivity>
+    
+    @State private var closestEventCache: EKEvent?
 
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
@@ -27,13 +29,18 @@ struct LiveActivityView: View {
     
     // MARK: Computed properties
     
+    @MainActor
+    private func updateClosestEventCache() {
+        closestEventCache = closestEvent()
+    }
+    
     private var eventStarted: Bool {
-        guard let event = closestEvent() else { return false }
+        guard let event = closestEventCache else { return false }
         return event.startDate < Date()
     }
     
     private var shouldShowCalendarActivity: Bool {
-        guard let event = closestEvent() else { return false }
+        guard let event = closestEventCache else { return false }
         let now = Date()
         let timeUntilEventStart = event.startDate.timeIntervalSince(now)
         let timeUntilEventEnd = event.endDate.timeIntervalSince(now)
@@ -49,20 +56,30 @@ struct LiveActivityView: View {
     private var shouldShowEventTimeView: Bool {
         eventStarted ? calendarLiveActivitySettings.showEventTimeLapsed : true
     }
+    
+    private var orderedActivities: [LiveActivity] {
+        activeActivities.sorted {
+            guard let first = activitiesByPriority.firstIndex(of: $0),
+                  let second = activitiesByPriority.firstIndex(of: $1) else {
+                return false
+            }
+            return first < second
+        }
+    }
+    
+    private var isFirstActivityCalendar: Bool {
+        orderedActivities.first == .calendar && shouldShowCalendarActivity && orderedActivities.count == 1
+    }
+    
+    private var shouldEnableQuickPeekForTime: Bool {
+        !isFirstActivityCalendar && liveActivitiesSettings.enableQuickPeek
+    }
         
     var activityToShow: LiveActivity? {
         if activeActivities.isEmpty { return nil }
         
         if activeActivities.count == 1, let firstActivity = activeActivities.first {
             return firstActivity == .calendar ? (shouldShowCalendarActivity ? .calendar : nil) : firstActivity
-        }
-        
-        let orderedActivities = activeActivities.sorted {
-            guard let first = activitiesByPriority.firstIndex(of: $0),
-                  let second = activitiesByPriority.firstIndex(of: $1) else {
-                return false
-            }
-            return first < second
         }
         
         if orderedActivities.first == .calendar {
@@ -93,6 +110,7 @@ struct LiveActivityView: View {
                                 case .right:
                                     if shouldShowEventTimeView {
                                         EventTimeView(event: event, startDate: event.startDate, endDate: event.endDate)
+                                            .environment(\.enableQuickPeek, shouldEnableQuickPeekForTime)
                                     } else {
                                         Spacer()
                                     }
@@ -125,15 +143,20 @@ struct LiveActivityView: View {
                 }
             }
         }
-        .onChange(of: activitiesManager.activeLiveActivities) { _ in
-            withAnimation {
+        .task {
+            await updateClosestEventCache()
+        }
+        .onChange(of: activitiesManager.activeLiveActivities) {
+            Task { @MainActor in
+                await updateClosestEventCache()
                 // Force view update
             }
         }
         .transition(.scaleAndBlur)
     }
     
-    func closestEvent() -> EKEvent? {
+    @MainActor
+    private func closestEvent() -> EKEvent? {
         let events = CalendarManager.shared.events
         let now = Date()
         let calendar = Calendar.current

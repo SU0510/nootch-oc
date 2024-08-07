@@ -41,7 +41,7 @@ struct MiniAlbumCoverView: View, Equatable {
             }
             .buttonStyle(ShrinkOnClick())
         }
-        .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
+        .quickPeekScaling(scaling: notchNook.quickPeeks?.first?.anchor == .topLeading)
         .animation(.bouncySmooth, value: track.id)
         .onHover { hovering in
             if enableQuickPeek {

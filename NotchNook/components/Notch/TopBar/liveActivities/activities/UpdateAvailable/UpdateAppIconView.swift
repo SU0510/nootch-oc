@@ -18,7 +18,7 @@ struct UpdateAppIconView: View {
             .resizable()
             .scaledToFit()
             .padding(EdgeInsets(top: 6, leading: 6, bottom: 5, trailing: 6))
-            .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
+            .quickPeekScaling(scaling: notchNook.quickPeeks?.first?.anchor == .topLeading)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
             .onTapGesture {
                 sparkleManager.checkForUpdates()
