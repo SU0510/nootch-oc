@@ -11,7 +11,7 @@ import Algorithms
 import SwiftDate
 import Defaults
 
-@MainActor
+
 class CalendarManager: ObservableObject {
     
     typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
@@ -26,7 +26,9 @@ class CalendarManager: ObservableObject {
     var events = [EKEvent]() {
         didSet {
             self.scheduleLiveActivities()
-            self.eventsDatesDict = groupAndSortEventsByDateAndTime(events)
+            DispatchQueue.main.sync {
+                self.eventsDatesDict = groupAndSortEventsByDateAndTime(events)
+            }
         }
     }
     

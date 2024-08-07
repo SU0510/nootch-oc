@@ -35,7 +35,7 @@ extension EKEventStore {
         try remove(event, span: span, commit: true)
     }
         
-    @MainActor public func calendarForApp(calendarColor: CGColor = .init(red: 1, green: 0, blue: 0, alpha: 1)) -> EKCalendar? {
+    public func calendarForApp() -> EKCalendar? {
         guard let calendarTitle = CalendarManager.calendarTitle else {
             print("App name is nil, please config with `CalendarManager.configureWithAppName` in AppDelegate")
             return nil
