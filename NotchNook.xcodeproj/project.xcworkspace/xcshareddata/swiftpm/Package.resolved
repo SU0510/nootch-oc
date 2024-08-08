@@ -1,5 +1,5 @@
 {
-  "originHash" : "a69accb25cf8748aa50f7e2814b6aa281f74b730c40e28450557eb417597bfac",
+  "originHash" : "02c969e061c28cc4385e52a5c321ced03f33c51babb4402ffbf18c2bd2695452",
   "pins" : [
     {
       "identity" : "bigint",
@@ -35,6 +35,15 @@
       "state" : {
         "revision" : "d9beca13ca85baa50ee29832d0db5129fba69630",
         "version" : "5.0.1"
+      }
+    },
+    {
+      "identity" : "fluidgradient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Cindori/FluidGradient.git",
+      "state" : {
+        "revision" : "9ddda4cf23671ef0228e88681ec6210cb3e0d7f7",
+        "version" : "1.0.0"
       }
     },
     {
@@ -112,7 +121,7 @@
     {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-algorithms.git",
+      "location" : "https://github.com/apple/swift-algorithms",
       "state" : {
         "revision" : "f6919dfc309e7f1b56224378b11e28bab5bccc42",
         "version" : "1.2.0"
