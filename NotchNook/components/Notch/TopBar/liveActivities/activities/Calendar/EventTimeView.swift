@@ -57,8 +57,10 @@ struct EventTimeView: View {
                             Text(text)
                                 .fixedSize(horizontal: true, vertical: false)
                                 .contentTransition(.numericText())
-                        } else {
+                        } else if let meeting {
                             Image(systemName: "phone.fill")
+                        } else {
+                            Spacer()
                         }
                     }
                     .font(.system(size: isEventStarted ? 12 : 13, weight: .medium).width(isEventStarted ? .condensed : .standard))

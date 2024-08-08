@@ -15,7 +15,7 @@ struct CalendarWidgetView: View {
     @State private var selectedDateIndex = CalendarManager.numberOfDaysToDisplay / 2
     @State private var displayedDates: [Date] = getRangeOfDays(count: CalendarManager.numberOfDaysToDisplay)
     @State private var offset: Double = 0
-    @ObservedObject private var calendarManager = CalendarManager.shared
+    @State private var calendarManager = CalendarManager.shared
     
     var selectedDate: Date {
         let baseDate: Date

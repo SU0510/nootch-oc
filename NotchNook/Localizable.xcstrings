@@ -28537,6 +28537,9 @@
         }
       }
     },
+    "This widget requires calendar permissions in order to show events, please enable access in settings." : {
+
+    },
     "This will disable some of NotchNook's gestures." : {
       "localizations" : {
         "af" : {

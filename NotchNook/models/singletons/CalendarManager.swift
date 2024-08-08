@@ -12,7 +12,8 @@ import SwiftDate
 import Defaults
 
 
-class CalendarManager: ObservableObject {
+@Observable
+class CalendarManager {
     
     typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
     
@@ -22,7 +23,7 @@ class CalendarManager: ObservableObject {
     static let shared = CalendarManager()
     
     /// Streams of EKEvent instances
-    @Published var eventsDatesDict: [Date: [EKEvent]] = [:]
+    var eventsDatesDict: [Date: [EKEvent]] = [:]
     var events = [EKEvent]() {
         didSet {
             self.scheduleLiveActivities()
@@ -31,6 +32,7 @@ class CalendarManager: ObservableObject {
             }
         }
     }
+    var authorizationStatus: EKAuthorizationStatus = .notDetermined
     
     public static var calendarTitle: String?
     
@@ -120,32 +122,6 @@ class CalendarManager: ObservableObject {
         }
     }
     
-    // MARK: - CRUD
-    
-    public func createEvent(
-        _ title: String,
-        startDate: Date,
-        endDate: Date?,
-        span: EKSpan = .thisEvent,
-        isAllDay: Bool = false,
-        calendar: EKCalendar? = nil
-    ) async throws -> EKEvent {
-        var theCalendar: EKCalendar
-        if let calendar = calendar {
-            theCalendar = calendar
-        } else {
-            theCalendar = try await accessCalendar()
-        }
-        
-        let createdEvent = try await eventStore.createEvent(title: title, startDate: startDate, endDate: endDate, calendar: theCalendar, span: span, isAllDay: isAllDay)
-        return createdEvent
-    }
-
-    public func deleteEvent(identifier: String, span: EKSpan = .thisEvent) async throws {
-        try await accessCalendar()
-        try eventStore.deleteEvent(identifier: identifier, span: span)
-    }
-    
     // MARK: - Events fetching
     
     public func fetchEventsForDaysOffset(_ days: Int, calendar: Calendar = .autoupdatingCurrent) async throws {
@@ -160,7 +136,7 @@ class CalendarManager: ObservableObject {
     /// Core functionality for fetching events within a range, ensuring events are cleared first
     @discardableResult
     public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
-        print("Fetching events from \(startDate) to \(endDate)")
+        _ = try await accessCalendar()
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -196,7 +172,11 @@ class CalendarManager: ObservableObject {
     private func requestEventStoreAuthorization() async throws -> EKAuthorizationStatus {
         let granted = try await requestCalendarAccess()
         if granted {
-            return EKEventStore.authorizationStatus(for: .event)
+            let status = EKEventStore.authorizationStatus(for: .event)
+            DispatchQueue.main.async {
+                self.authorizationStatus = status
+            }
+            return status
         } else {
             print("Unable to access calendar")
             throw CalendarManagerError.unableToAccessCalendar

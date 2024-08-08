@@ -19,8 +19,6 @@ struct LiveActivityView: View {
     var side: ActivitySide
     var activeActivities: Set<LiveActivity>
     
-    @State private var closestEventCache: EKEvent?
-
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
@@ -29,18 +27,13 @@ struct LiveActivityView: View {
     
     // MARK: Computed properties
     
-    @MainActor
-    private func updateClosestEventCache() {
-        closestEventCache = closestEvent()
-    }
-    
     private var eventStarted: Bool {
-        guard let event = closestEventCache else { return false }
+        guard let event = closestEvent() else { return false }
         return event.startDate < Date()
     }
     
     private var shouldShowCalendarActivity: Bool {
-        guard let event = closestEventCache else { return false }
+        guard let event = closestEvent() else { return false }
         let now = Date()
         let timeUntilEventStart = event.startDate.timeIntervalSince(now)
         let timeUntilEventEnd = event.endDate.timeIntervalSince(now)
@@ -143,19 +136,9 @@ struct LiveActivityView: View {
                 }
             }
         }
-        .task {
-            await updateClosestEventCache()
-        }
-        .onChange(of: activitiesManager.activeLiveActivities) {
-            Task { @MainActor in
-                await updateClosestEventCache()
-                // Force view update
-            }
-        }
         .transition(.scaleAndBlur)
     }
     
-    @MainActor
     private func closestEvent() -> EKEvent? {
         let events = CalendarManager.shared.events
         let now = Date()
