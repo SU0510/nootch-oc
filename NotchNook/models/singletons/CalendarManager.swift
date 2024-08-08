@@ -34,7 +34,7 @@ class CalendarManager: ObservableObject {
     
     public static var calendarTitle: String?
     
-    /// An object that accesses the user’s calendar and reminder events and supports the scheduling of new events.
+    /// An object that accesses the user's calendar and reminder events and supports the scheduling of new events.
     public private(set) var eventStore = EKEventStore()
     
     /// Returns calendar object from event kit
@@ -161,18 +161,19 @@ class CalendarManager: ObservableObject {
     @discardableResult
     public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
         print("Fetching events from \(startDate) to \(endDate)")
-
-        let calendars = eventStore.calendars(for: .event)
-
-        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
-        let fetchedEvents = eventStore.events(matching: predicate)
-
-        await MainActor.run {
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let calendars = self.eventStore.calendars(for: .event)
+            
+            let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
+            
+            let fetchedEvents = self.eventStore.events(matching: predicate)
             self.events = fetchedEvents
         }
 
-        print("Fetched \(fetchedEvents.count) events")
-        return fetchedEvents
+        print("Fetched \(self.events.count) events")
+        return self.events
     }
     
     // MARK: - Private methods
@@ -204,7 +205,10 @@ class CalendarManager: ObservableObject {
     
     private func requestCalendarAccess() async throws -> Bool {
         try await withCheckedThrowingContinuation { [weak self] continuation in
-            guard let self = self else { return }
+            guard let self = self else {
+                continuation.resume(throwing: CalendarManagerError.unableToAccessCalendar)
+                return
+            }
             
             let completion: RequestAccessCompletion = { granted, error in
                 if let error {
