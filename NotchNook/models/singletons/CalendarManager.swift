@@ -26,8 +26,8 @@ class CalendarManager: ObservableObject {
     var events = [EKEvent]() {
         didSet {
             self.scheduleLiveActivities()
-            DispatchQueue.main.sync {
-                self.eventsDatesDict = groupAndSortEventsByDateAndTime(events)
+            DispatchQueue.main.async {
+                self.eventsDatesDict = groupAndSortEventsByDateAndTime(self.events)
             }
         }
     }
