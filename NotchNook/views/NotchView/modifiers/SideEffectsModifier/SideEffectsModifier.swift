@@ -120,6 +120,9 @@ extension NotchView {
         
         private func handleBrightnessChange() async {
             do {
+                // Delay to ensure the brightness has changed
+                try await Task.sleep(nanoseconds: 50_000_000) // 0.05 seconds
+                
                 let newBrightness = try await BrightnessCoordinator.getDisplayBrightness()
                 withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                     notchNook.indicator = .init(kind: .brightness, value: Double(newBrightness))
@@ -128,9 +131,12 @@ extension NotchView {
                 print("Error fetching brightness: \(error)")
             }
         }
-        
+
         private func handleVolumeChange() async {
             do {
+                // Delay to ensure the volume has changed
+                try await Task.sleep(nanoseconds: 50_000_000) // 0.05 seconds
+                
                 let newVolume = try await SoundCoordinator.getSoundVolume()
                 withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                     notchNook.indicator = .init(kind: .volume, value: Double(newVolume))
