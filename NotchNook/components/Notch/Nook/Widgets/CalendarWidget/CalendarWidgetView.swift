@@ -34,7 +34,7 @@ struct CalendarWidgetView: View {
     }
     
     var body: some View {
-        let events = calendarManager.eventsDatesDict
+        @State var events = calendarManager.eventsDatesDict
         
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {

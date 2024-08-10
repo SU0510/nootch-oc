@@ -340,7 +340,7 @@
 		EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60372BFE688D00E67ECC /* NSImage.swift */; };
 		EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603B2BFE73FC00E67ECC /* consts.swift */; };
 		EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603D2BFEB7A600E67ECC /* NSColor.swift */; };
-		EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */; };
+		EC8D60402BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */; };
 		EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */; };
 		EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */; };
 		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
@@ -683,7 +683,7 @@
 		EC8D60372BFE688D00E67ECC /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		EC8D603B2BFE73FC00E67ECC /* consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = consts.swift; sourceTree = "<group>"; };
 		EC8D603D2BFEB7A600E67ECC /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
-		EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onSwipe.swift; sourceTree = "<group>"; };
+		EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWheelViewRepresentable.swift; sourceTree = "<group>"; };
 		EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onChangeDebounced.swift; sourceTree = "<group>"; };
 		EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowForPanningView.swift; sourceTree = "<group>"; };
 		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
@@ -1424,6 +1424,7 @@
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
 				3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */,
+				EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1476,7 +1477,6 @@
 			children = (
 				EC8D5FEB2BFA707F00E67ECC /* frame.swift */,
 				EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */,
-				EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */,
 				EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */,
 				ECAC6A6D2C070355000D9D27 /* measure.swift */,
 				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
@@ -2181,7 +2181,7 @@
 				EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */,
 				3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
-				EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */,
+				EC8D60402BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift in Sources */,
 				3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */,
 				EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */,
 				EC758F842BF2F19B00B873B0 /* TrayView.swift in Sources */,

@@ -138,18 +138,24 @@ class CalendarManager {
     public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
         _ = try await accessCalendar()
         
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            let calendars = self.eventStore.calendars(for: .event)
-            
-            let predicate = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
-            
-            let fetchedEvents = self.eventStore.events(matching: predicate)
+        let calendars = self.eventStore.calendars(for: .event)
+        
+        let fetchClosure: @Sendable (EKEventStore, Date, Date, [EKCalendar]) -> [EKEvent] = { store, start, end, cals in
+            let pred = store.predicateForEvents(withStart: start, end: end, calendars: cals)
+            return store.events(matching: pred)
+        }
+        
+        // Perform the fetch on a background queue
+        let fetchedEvents = await Task.detached {
+            fetchClosure(self.eventStore, startDate, endDate, calendars)
+        }.value
+        
+        await MainActor.run {
             self.events = fetchedEvents
         }
-
-        print("Fetched \(self.events.count) events")
-        return self.events
+        
+        print("Fetched \(fetchedEvents.count) events")
+        return fetchedEvents
     }
     
     // MARK: - Private methods
