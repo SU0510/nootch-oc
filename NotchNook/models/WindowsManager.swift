@@ -13,6 +13,8 @@ import Sparkle
 import Observation
 
 class WindowsManager {
+    static let shared = WindowsManager()
+    
     var displayKits = [DisplayKit]()
     var settingsWindowController: SettingsWindowController?
     private var settingsPanes = [SettingsPane]()
@@ -21,9 +23,12 @@ class WindowsManager {
     private var preventNextFocusFrontmostWindow = false
     private var expandedNoteManager = ExpandedNoteManager()
     private var expandedNoteWindowController: NSWindowController?
+    private var updateWindowsWorkItem: DispatchWorkItem?
+    private var lastKnownScreenConfigurations: [String: NSScreen.Configuration] = [:]
     
-    init(updater: SPUUpdater) {
-        self.sparkleManager = SparkleManager(updater: updater)
+    private init() {
+        print("WindowsManager: Initializing")
+        self.sparkleManager = SparkleManager(updater: SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil).updater)
         self.settingsPanes = [
             GeneralSettingsViewController(),
             GesturesSettingsViewController(),
@@ -40,19 +45,47 @@ class WindowsManager {
             animated: true
         )
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(screenDidChange), name: NSApplication.didChangeScreenParametersNotification, object: nil)
+        updateLastKnownScreenConfigurations()
         updateWindows()
-
+        
         expandedNoteManager.setOpenWindowFunction(openNoteWindow)
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSApplication.didChangeScreenParametersNotification, object: nil)
-        NotificationCenter.default.removeObserver(#selector(updateWindows), name: NSScreen.colorSpaceDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func debouncedUpdateWindows() {
+        updateWindowsWorkItem?.cancel()
+        
+        let workItem = DispatchWorkItem { [weak self] in
+            self?.updateWindows()
+        }
+        
+        updateWindowsWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
+    }
+    
+    private func updateWindows() {
+        print("WindowsManager: Updating windows")
+        displayKits.forEach { kit in
+            kit.windowController.close()
+        }
+        
+        let screens = NSScreen.screens
+        
+        var newDisplaysKits = [DisplayKit]()
+        screens.forEach { screen in
+            let displayKit = self.setupDisplayKitForScreen(screen)
+            newDisplaysKits.append(displayKit)
+        }
+        displayKits = newDisplaysKits
+        print("WindowsManager: Windows updated, new display kit count: \(newDisplaysKits.count)")
     }
     
     func openNoteWindow(_ note: Note, inDisplayKitId: UUID) {
+        print("WindowsManager: Opening note window for display kit ID: \(inDisplayKitId)")
         
         let screen = displayKits.first { $0.id == inDisplayKitId }?.windowController.window?.screen
         
@@ -60,9 +93,6 @@ class WindowsManager {
             ExpandedNoteView()
         }
         
-//        newWindow.onClose = {
-//            doAfter { NSApp.setActivationPolicy(.accessory) }
-//        }
         newWindow.whileClosing = {
             doAfter { self.expandedNoteManager.openNote(nil) }
         }
@@ -86,6 +116,8 @@ class WindowsManager {
         if let windowOrigin = expandedNoteManager.windowOrigin {
             newWindow.show(origin: windowOrigin)
         }
+        
+        print("WindowsManager: Note window opened")
     }
     
     func showChangelogViewWindow() {
@@ -97,7 +129,9 @@ class WindowsManager {
                 self.changelogViewWindow = nil
             }
         }
-        guard NSScreen.main != nil else { return }
+        guard NSScreen.main != nil else {
+            return
+        }
         
         let newWindow = SwiftUIWindow(
             styleMask: [.titled, .closable, .fullSizeContentView],
@@ -127,23 +161,8 @@ class WindowsManager {
         newWindow.show()
     }
     
-    @objc func updateWindows() {
-        displayKits.forEach { kit in
-            kit.windowController.close()
-        }
-        
-        let screens = NSScreen.screens
-        
-        var newDisplaysKits = [DisplayKit]()
-        screens.forEach { screen in
-            let displayKit = self.setupDisplayKitForScreen(screen)
-            newDisplaysKits.append(displayKit)
-        }
-        displayKits = newDisplaysKits
-    }
-    
-    
-    func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
+    private func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
+        print("WindowsManager: Setting up display kit for screen: \(screen)")
         let displayKitId = UUID()
         let screenF = screen.frame
         let showSettings = settingsWindowController?.show ?? { _ in }
@@ -190,9 +209,6 @@ class WindowsManager {
         newWindow.resignedKeyCb = {
             hostingView.rootView.isKeyWindow = false
         }
-        newWindow.firstResponderCb = { isTheWindow in
-            hostingView.rootView.isEditingText = !isTheWindow
-        }
         newWindow.isMovable = false
         newWindow.collectionBehavior = [
             .stationary, .canJoinAllSpaces, .canJoinAllApplications, .fullScreenAuxiliary, .ignoresCycle
@@ -207,11 +223,7 @@ class WindowsManager {
         newWindow.contentView = hostingView
         
         let newWindowController = NSWindowController(window: newWindow)
-        
-        hostingView.rootView.canBecomeKey = .init(get: {
-            newWindow.canThisWindowBecomeKeyWindow
-        }, set: { newWindow.canThisWindowBecomeKeyWindow = $0 })
-        
+
         hostingView.rootView.makeKeyWindow = {
             NSApp.activate()
             newWindow.makeKey()
@@ -223,6 +235,7 @@ class WindowsManager {
         
         newWindow.orderFrontRegardless()
         
+        print("WindowsManager: Display kit setup complete for screen: \(screen)")
         return DisplayKit(
             id: displayKitId,
             windowController: newWindowController,
@@ -233,7 +246,9 @@ class WindowsManager {
     }
     
     func getMostUpfrontWindowID() -> CGWindowID? {
-        guard let info = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] else { return nil }
+        guard let info = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] else {
+            return nil
+        }
         
         let windows = info.compactMap { window -> (CGWindowID, pid_t)? in
             guard let windowLayer = window[kCGWindowLayer as String] as? Int,
@@ -256,16 +271,70 @@ class WindowsManager {
             return
         }
         // Prevent refocusing of previous app if settings screen is open
-        if settingsWindowController?.window?.isVisible ?? false { return }
+        if settingsWindowController?.window?.isVisible ?? false {
+            return
+        }
         
-        guard let windowID = getMostUpfrontWindowID() else { return }
+        guard let windowID = getMostUpfrontWindowID() else {
+            return
+        }
         let options = CGWindowListOption(arrayLiteral: .optionIncludingWindow, .excludeDesktopElements)
         let windowList = CGWindowListCopyWindowInfo(options, windowID) as? [[String: Any]]
         guard let windowInfo = windowList?.first,
-              let pid = windowInfo[kCGWindowOwnerPID as String] as? pid_t else { return }
+              let pid = windowInfo[kCGWindowOwnerPID as String] as? pid_t else {
+            return
+        }
         
         let app = NSRunningApplication(processIdentifier: pid)
         app?.activate(options: [])
+    }
+    
+    @objc private func screenDidChange() {
+        if hasSignificantScreenChanges() {
+            debouncedUpdateWindows()
+        }
+    }
+    
+    private func hasSignificantScreenChanges() -> Bool {
+        let currentScreens = NSScreen.screens
+        
+        // Check if the number of screens has changed
+        if currentScreens.count != lastKnownScreenConfigurations.count {
+            updateLastKnownScreenConfigurations()
+            return true
+        }
+        
+        // Check for significant changes in existing screens
+        for screen in currentScreens {
+            let screenID = screen.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? NSNumber
+            let screenIDString = screenID?.stringValue ?? UUID().uuidString
+            
+            guard let lastConfig = lastKnownScreenConfigurations[screenIDString] else {
+                // New screen found
+                updateLastKnownScreenConfigurations()
+                return true
+            }
+            
+            let currentConfig = screen.configuration
+            
+            // Check for changes in frame, scale factor, or color space
+            if lastConfig.frame != currentConfig.frame ||
+                lastConfig.backingScaleFactor != currentConfig.backingScaleFactor ||
+                lastConfig.colorSpace.isEqual(currentConfig.colorSpace) == false {
+                updateLastKnownScreenConfigurations()
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    private func updateLastKnownScreenConfigurations() {
+        lastKnownScreenConfigurations = Dictionary(uniqueKeysWithValues: NSScreen.screens.map {
+            let screenID = $0.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? NSNumber
+            let screenIDString = screenID?.stringValue ?? UUID().uuidString
+            return (screenIDString, $0.configuration)
+        })
     }
     
     struct DisplayKit {
@@ -296,6 +365,7 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
         }
         return success
     }
+    
     override var canBecomeKey: Bool { self.canThisWindowBecomeKeyWindow }
     
     func windowDidBecomeKey(_ notification: Notification) {
@@ -313,6 +383,15 @@ class AcceptingFirstClickHostingView<C: View>: NSHostingView<C> {
     }
 }
 
-class MyWindow: NSWindow {
+// Extension to capture relevant screen configuration
+extension NSScreen {
+    struct Configuration {
+        let frame: CGRect
+        let backingScaleFactor: CGFloat
+        let colorSpace: NSColorSpace
+    }
     
+    var configuration: Configuration {
+        return Configuration(frame: frame, backingScaleFactor: backingScaleFactor, colorSpace: colorSpace ?? .genericGray)
+    }
 }

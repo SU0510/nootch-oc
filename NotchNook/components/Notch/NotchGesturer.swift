@@ -20,10 +20,15 @@ struct NotchGesturer: View {
     @State private var hasMediaLA: Bool = false
     
     var body: some View {
-        ScrollWheelViewRepresentable(onDragChanged: onPan, onDragEnded: onPanEnded)
-            .onAppear {
-                hasMediaLA = ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.media)
-            }
+        ScrollWheelViewRepresentable<EmptyView>(
+            onDragChanged: onPan,
+            onDragEnded: onPanEnded
+        ) {
+            EmptyView()
+        }
+        .onAppear {
+            hasMediaLA = ActiveLiveActivitiesManager.shared.activeLiveActivities.contains(.media)
+        }
     }
     
     // MARK: - Panning gesture functions

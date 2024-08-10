@@ -36,12 +36,12 @@ import Defaults
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
         _ = LicenseManager.shared
+        windowsManager = WindowsManager.shared
         
 //        ValueTransformer.setValueTransformer(NSAttributedStringTransformer(), forName: .nsAttributedString)
 
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
-        windowsManager = WindowsManager(updater: updaterController.updater)
     }
     
     func applicationWillTerminate(_ notification: Notification) {

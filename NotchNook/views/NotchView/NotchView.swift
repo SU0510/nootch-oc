@@ -52,7 +52,7 @@ struct NotchView: View {
                 .transition(NotchView.defaultTransition)
         } else {
             topBarContent
-                .opacity(notchNook.indicator == nil ? 1 : 0)            
+                .opacity(notchNook.indicator == nil ? 1 : 0)
             
             if !disableNotchNook {
                 if intro && state.showIntro {
