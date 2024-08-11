@@ -113,9 +113,7 @@ struct LiveActivityView: View {
                     case .media:
                         switch side {
                             case .left:
-                            MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek,
-                                               quickPeekEvent: liveActivitiesSettings.quickPeekEvent,
-                                               albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
+                                MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek, albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
                             case .right:
                                 AudioAnimationView()
                         }

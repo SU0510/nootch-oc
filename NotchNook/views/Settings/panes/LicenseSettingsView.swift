@@ -17,15 +17,13 @@ struct LicenseSettingsView: View {
     @State private var loading = false
     @State private var error: LicenseManager.CheckLicenseResult? = nil
     @State private var errorStr: String?
-    @State private var successMessage: String?
-    @State private var isEmailValid = true
     @Default(.license) private var license
     @Default(.trialInitialTime) private var trialInitialTime
     @Environment(\.openURL) private var openURL
     @Environment(\.trialOver) private var trialOver
-    
     var body: some View {
         Form {
+            
             Section("Status") {
                 HStack {
                     Image(systemName: license == nil ? "xmark.circle.fill" : "checkmark.circle.fill")
@@ -55,72 +53,27 @@ struct LicenseSettingsView: View {
             }
             
             Section("License") {
-                VStack(spacing: 4) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text("Email")
-                                .font(.headline)
-                                .frame(width: 100, alignment: .leading)
-                            
-                            Spacer()
-                            
-                            FixedWidthTextField(text: $email, placeholder: "john.doe@email.com", isSecure: false)
-                                .frame(width: 250, height: 24)
-                                .onChange(of: email) { _, _ in
-                                    withAnimation(.snappy) { isEmailValid = validateEmail(email) }
-                                }
-                        }
-                        if !isEmailValid && !email.isEmpty {
-                            Text("Please enter a valid email")
-                                .foregroundColor(.red)
-                                .font(.caption)
-                        }
+                Group {
+                    TextField(text: $email, prompt: Text("john.doe@email.com"), label: {
+                        Label("Email", systemImage: "at")
+                    })
+                    if license != nil {
+                        SecureField(text: $key, label: {
+                            Label("Key", systemImage: "key.horizontal.fill")
+                        })
+                    } else {
+                        TextField(text: $key, prompt: Text("gjp1lh5dtzqp4yddn73uush9r4inv0"), label: {
+                            Label("Key", systemImage: "key.horizontal.fill")
+                        })
                     }
-                    
-                    HStack {
-                        Text("License Key")
-                            .font(.headline)
-                            .frame(width: 100, alignment: .leading)
-                        
-                        Spacer()
-                        
-                        FixedWidthTextField(text: $key, placeholder: "gjp1lh5dtzqp4yddn73uush9r4inv0", isSecure: license != nil)
-                            .frame(width: 250, height: 24)
+                    Picker("License Type", selection: $keyType) {
+                        ForEach(License.KeyType.allCases) { Text($0.rawValue).tag($0) }
                     }
-                    
-                    HStack {
-                        Text("License Type")
-                            .font(.headline)
-                            .frame(width: 100, alignment: .leading)
-                        
-                        Spacer()
-                        
-                        Picker("", selection: $keyType) {
-                            ForEach(License.KeyType.allCases) { type in
-                                Text(type.rawValue).tag(type)
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 250)
-                    }
+                    .pickerStyle(.radioGroup)
                 }
                 .disabled(license != nil)
                 
                 HStack {
-                    VStack(alignment: .leading) {
-                        if let errorStr {
-                            Text(errorStr)
-                                .foregroundColor(.red)
-                        }
-                        
-                        if let successMessage {
-                            Text(successMessage)
-                                .foregroundColor(.green)
-                        }
-                    }
-                    
-                    Spacer()
-                    
                     if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
                     
                     if license == nil, let url = URL(string: "https://lo.cafe/notchnook") {
@@ -130,18 +83,21 @@ struct LicenseSettingsView: View {
                     }
                     
                     Button(license == nil ? "Register" : "Unregister") {
-                        if license != nil {
-                            license = nil
-                            successMessage = "License unregistered successfully"
-                            return
+                        if license != nil { license = nil; return }
+                        if !validateEmail(email) || key.isEmpty { return }
+                        loading = true
+                        let newLicense = License(email: email, key: key, type: keyType)
+                        Task {
+                            if let result = await LicenseManager.shared.checkLicense(newLicense), result != .valid {
+                                error = result
+                            }
+                            loading = false
                         }
-                        registerLicense()
                     }
-                    .disabled(loading || !isEmailValid || email.isEmpty || key.isEmpty)
-                    .buttonStyle(BorderedProminentButtonStyle())
+                    .disabled(loading)
                     
                     if license != nil && keyType == .subscription {
-                        Button("Manage Billing") {
+                        Button(license == nil ? "Register" : "Manage Billing") {
                             if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
                                 openURL(url)
                             }
@@ -161,59 +117,6 @@ struct LicenseSettingsView: View {
             }
         }
     }
-    
-    private func registerLicense() {
-        guard validateEmail(email) else {
-            errorStr = "Invalid email format"
-            return
-        }
-        guard !key.isEmpty else {
-            errorStr = "License key cannot be empty"
-            return
-        }
-        
-        loading = true
-        error = nil
-        successMessage = nil
-        
-        let newLicense = License(email: email, key: key, type: keyType)
-        Task {
-            let result = await LicenseManager.shared.checkLicense(newLicense)
-            DispatchQueue.main.async {
-                loading = false
-                switch result {
-                case .valid:
-                    license = newLicense
-                    successMessage = "License registered successfully"
-                case .invalid:
-                    errorStr = "Invalid license key"
-                case .networkError:
-                    errorStr = "Network error. Please try again later"
-                case .noDeviceID:
-                    errorStr = "Unable to retrieve device ID"
-                }
-                
-                if result == .valid {
-                    errorStr = nil
-                } else {
-                    successMessage = nil
-                }
-            }
-        }
-    }
-    
-    private func validateEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
-    private func noWhitespaceBinding(_ binding: Binding<String>) -> Binding<String> {
-        Binding<String>(
-            get: { binding.wrappedValue },
-            set: { binding.wrappedValue = $0.filter { !$0.isWhitespace } }
-        )
-    }
 }
 
 let LicenseSettingsViewController: () -> SettingsPane = {
@@ -224,42 +127,6 @@ let LicenseSettingsViewController: () -> SettingsPane = {
     ) {
         LicenseSettingsView()
     }
-    
-    return Settings.PaneHostingController(pane: paneView)
-}
 
-struct FixedWidthTextField: NSViewRepresentable {
-    @Binding var text: String
-    var placeholder: String
-    var isSecure: Bool
-    
-    func makeNSView(context: Context) -> NSTextField {
-        let textField = isSecure ? NSSecureTextField() : NSTextField()
-        textField.placeholderString = placeholder
-        textField.delegate = context.coordinator
-        textField.cell?.wraps = false
-        textField.cell?.isScrollable = true
-        return textField
-    }
-    
-    func updateNSView(_ nsView: NSTextField, context: Context) {
-        nsView.stringValue = text
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, NSTextFieldDelegate {
-        var parent: FixedWidthTextField
-        
-        init(_ parent: FixedWidthTextField) {
-            self.parent = parent
-        }
-        
-        func controlTextDidChange(_ obj: Notification) {
-            guard let textField = obj.object as? NSTextField else { return }
-            parent.text = textField.stringValue.filter { !$0.isWhitespace }
-        }
-    }
+    return Settings.PaneHostingController(pane: paneView)
 }

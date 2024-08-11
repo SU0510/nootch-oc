@@ -12889,7 +12889,6 @@
       }
     },
     "gjp1lh5dtzqp4yddn73uush9r4inv0" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16022,7 +16021,6 @@
       }
     },
     "john.doe@email.com" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16207,7 +16205,6 @@
       }
     },
     "Key" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16758,9 +16755,6 @@
           }
         }
       }
-    },
-    "License Key" : {
-
     },
     "License Type" : {
       "localizations" : {
@@ -22651,9 +22645,6 @@
         }
       }
     },
-    "Please enter a valid email" : {
-
-    },
     "Prevent from closing on mouse leave" : {
       "localizations" : {
         "af" : {
@@ -25968,9 +25959,6 @@
         }
       }
     },
-    "Show song change" : {
-
-    },
     "Show time lapsed while in events" : {
       "localizations" : {
         "af" : {
@@ -26154,9 +26142,6 @@
           }
         }
       }
-    },
-    "Show when a song changes while playing media via quick peek." : {
-
     },
     "Show while in events" : {
       "localizations" : {

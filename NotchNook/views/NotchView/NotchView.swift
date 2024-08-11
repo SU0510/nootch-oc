@@ -76,8 +76,7 @@ struct NotchView: View {
                 scaleX: actualScaleX,
                 scaleY: actualScaleY,
                 panPadding: state.panPadding,
-                hide: notchNook.hidden,
-                disableNotchNook: disableNotchNook
+                hide: notchNook.hidden
             )
             .equatable()
         }

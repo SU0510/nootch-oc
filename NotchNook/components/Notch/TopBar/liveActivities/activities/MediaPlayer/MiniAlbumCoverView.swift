@@ -6,25 +6,21 @@
 //
 
 import SwiftUI
-import Defaults
 
 struct MiniAlbumCoverView: View, Equatable {
     static func == (lhs: MiniAlbumCoverView, rhs: MiniAlbumCoverView) -> Bool {
-        lhs.enableQuickPeek == rhs.enableQuickPeek && lhs.quickPeekEvent == rhs.quickPeekEvent && lhs.albumCornerRadius == rhs.albumCornerRadius
+        lhs.enableQuickPeek == rhs.enableQuickPeek && lhs.albumCornerRadius == rhs.albumCornerRadius
     }
     
     static let transitionID = "album-cover"
     
     var enableQuickPeek = true
-    var quickPeekEvent = false
     var albumCornerRadius: Double
     
     @Environment(\.namespace) private var ns
     @Environment(\.notchNook) private var notchNook
     @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
-    
-    @State private var quickPeekTimer: Timer?
-    
+
     var quickPeeks: [NotchNookState.QuickPeek]? {
         [
             .init(icon: "music.note", text: MediaControls.shared.track.title),
@@ -53,20 +49,9 @@ struct MiniAlbumCoverView: View, Equatable {
             }
         }
         .onChange(of: track.title) { old, new in
-            if notchNook.quickPeeks == nil && quickPeekEvent {
-                quickPeekTimer?.invalidate()
-                
-                notchNook.quickPeeks = quickPeeks
-                
-                quickPeekTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-                    notchNook.quickPeeks = nil
-                }
-            } else if notchNook.quickPeeks != nil {
+            if notchNook.quickPeeks != nil {
                 notchNook.quickPeeks = quickPeeks
             }
-        }
-        .onDisappear {
-            quickPeekTimer?.invalidate()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
     }

@@ -16,6 +16,15 @@ class LicenseManager {
     static let networkErrorLimit = 20
     private var timer: Timer?
     
+    var license: License? {
+        get { Defaults[.license] }
+        set { Defaults[.license] = newValue }
+    }
+    var networkErrorCounting: Int {
+        get { Defaults[.networkErrorCounting] }
+        set { Defaults[.networkErrorCounting] = newValue }
+    }
+    
     var activeTasks = [Task<Void, Never>]()
     
     init() {
@@ -28,11 +37,7 @@ class LicenseManager {
     }
     
     func scheduleCheck() {
-        timer = Timer.scheduledTimer(withTimeInterval: 60*60*4, repeats: true) { [weak self] _ in
-            Task { [weak self] in
-                await self?.checkLicense()
-            }
-        }
+        timer = Timer.scheduledTimer(timeInterval: 60*60*4, target: self, selector: #selector(asyncCheckLicense), userInfo: nil, repeats: true)
     }
     
     func unscheduleCheck() {
@@ -40,40 +45,30 @@ class LicenseManager {
         timer = nil
     }
     
-    func checkLicense(_ altLicense: License? = nil) async -> CheckLicenseResult {
-        guard let license = Defaults[.license] ?? altLicense else { return .invalid }
-        
-        let result = await Self.checkLicense(license)
-        
-        await MainActor.run {
-            updateLicenseState(result: result, newLicense: license)
+    @objc private func asyncCheckLicense() {
+        Task {
+            await checkLicense()
         }
-        
+    }
+    
+    func checkLicense(_ altLicense: License? = nil) async -> CheckLicenseResult? {
+        guard let newLicense = self.license ?? altLicense else { return nil }
+        let result = await Self.checkLicense(newLicense)
+        switch result {
+            case .invalid:
+                self.license = nil
+                self.networkErrorCounting = 0
+            case .networkError: self.networkErrorCounting += 1
+            case .valid:
+                if self.license != newLicense { self.license = newLicense }
+                self.networkErrorCounting = 0
+            case .noDeviceID: break
+        }
+        if self.networkErrorCounting > Self.networkErrorLimit { self.license = nil }
         return result
     }
     
-    private func updateLicenseState(result: CheckLicenseResult, newLicense: License) {
-        switch result {
-        case .invalid:
-            Defaults[.license] = nil
-            Defaults[.networkErrorCounting] = 0
-        case .networkError:
-            Defaults[.networkErrorCounting] += 1
-        case .valid:
-            if Defaults[.license] != newLicense { Defaults[.license] = newLicense }
-            Defaults[.networkErrorCounting] = 0
-        case .noDeviceID:
-            break
-        }
-        
-        if Defaults[.networkErrorCounting] > Self.networkErrorLimit {
-            Defaults[.license] = nil
-        }
-    }
-    
     static func checkLicense(_ license: License) async -> CheckLicenseResult {
-        URLCache.shared.removeAllCachedResponses()
-        
         let url = URL(string: "https://lo.cafe/api/notchnook-verify-key-v2")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -123,6 +118,7 @@ class LicenseManager {
             return .networkError
         }
     }
+    
     
     enum CheckLicenseResult {
         case invalid, noDeviceID, networkError, valid
