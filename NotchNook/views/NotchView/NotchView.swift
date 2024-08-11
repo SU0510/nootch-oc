@@ -70,14 +70,13 @@ struct NotchView: View {
     
     @ViewBuilder
     private var topBarContent: some View {
-        if license != nil || !state.trialOver {
+        if (license != nil || !state.trialOver) && !disableNotchNook {
             TopBarView(
                 panGestureCounter: state.panGestureCounter,
                 scaleX: actualScaleX,
                 scaleY: actualScaleY,
                 panPadding: state.panPadding,
-                hide: notchNook.hidden,
-                disableNotchNook: disableNotchNook
+                hide: notchNook.hidden
             )
             .equatable()
         }
