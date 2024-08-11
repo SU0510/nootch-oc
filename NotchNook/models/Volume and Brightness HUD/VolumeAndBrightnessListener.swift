@@ -52,8 +52,11 @@ class VolumeAndBrightnessListener {
             }
             return
         }
-        HUDManager.disableSystemHUD()
-        startMonitoringMediaKeys()
+        
+        if globalMonitor == nil && localMonitor == nil {
+            HUDManager.disableSystemHUD()
+            startMonitoringMediaKeys()
+        }
     }
     
     func addSideEffect(_ sideEffect: @escaping (MediaKey) -> (), for id: String) {
