@@ -14,7 +14,8 @@ struct TopBarView: View, Equatable {
         lhs.scaleX == rhs.scaleX &&
         lhs.scaleY == rhs.scaleY &&
         lhs.panPadding == rhs.panPadding &&
-        lhs.hide == rhs.hide
+        lhs.hide == rhs.hide &&
+        lhs.disableNotchNook == rhs.disableNotchNook
     }
     
     static let animation: Animation = .bouncy(extraBounce: 0.075)
@@ -29,6 +30,7 @@ struct TopBarView: View, Equatable {
     var scaleY: Double = 1
     var panPadding: EdgeInsets
     var hide: Bool
+    var disableNotchNook: Bool
     
     @Environment(\.notchSize) private var notchSize
     @Environment(\.trialOver) private var trialOver
@@ -46,12 +48,13 @@ struct TopBarView: View, Equatable {
         let mode = notchNook.mode
         let liveActivities = ActiveLiveActivitiesManager.shared.activeLiveActivities
         
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                
-                if !hide && !trialOver {
-                    Group {
-                        switch mode {
+        if !disableNotchNook {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    
+                    if !hide && !trialOver {
+                        Group {
+                            switch mode {
                             case .closed:
                                 LiveActivityView(side: .left, activeActivities: liveActivities)
                                     .frame(width: Self.liveActionWidth)
@@ -59,21 +62,21 @@ struct TopBarView: View, Equatable {
                                 EmptyView()
                             case .nook, .tray: 
                                 TopBarTabsView(totalWidth: mode == .nook ? nookWidgetsWidth : traySettings.size.width)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
+                        .scaleEffect(x: scaleX, y: scaleY, anchor: .topTrailing)
+                        .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
+                        .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                     }
-                    .frame(maxWidth: .infinity)
-                    .scaleEffect(x: scaleX, y: scaleY, anchor: .topTrailing)
-                    .transition(NotchView.defaultTransition(anchor: .trailing, delay: 0.075))
-                    .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
-                }
-                
-                if (mode != .closed && !hide) || !liveActivities.isEmpty {
-                    TopBarSpacerView(height: height)
-                }
-                
-                if !hide && !trialOver {
-                    Group {
-                        switch mode {
+                    
+                    if (mode != .closed && !hide) || !liveActivities.isEmpty {
+                        TopBarSpacerView(height: height)
+                    }
+                    
+                    if !hide && !trialOver {
+                        Group {
+                            switch mode {
                             case .closed: 
                                 LiveActivityView(side: .right, activeActivities: liveActivities)
                                     .frame(width: Self.liveActionWidth)
@@ -88,56 +91,57 @@ struct TopBarView: View, Equatable {
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
+                        .scaleEffect(x: scaleX, y: scaleY, anchor: .topLeading)
+                        .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
+                        .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
                     }
-                    .frame(maxWidth: .infinity)
-                    .scaleEffect(x: scaleX, y: scaleY, anchor: .topLeading)
-                    .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
-                    .allowsHitTesting(liveActivitiesSettings.interactive || mode == .nook || mode == .tray)
+                    
                 }
-                
-            }
-            .animation(.smooth(extraBounce: 0.25), value: liveActivities)
-            .background {
-                HStack(spacing: 0) {
-                    let showArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
-                    Group {
-                        switch mode {
+                .animation(.smooth(extraBounce: 0.25), value: liveActivities)
+                .background {
+                    HStack(spacing: 0) {
+                        let showArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
+                        Group {
+                            switch mode {
                             case .closed:
                                 ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
                                     .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .leading)
                             case .dragging, .nook, .tray:
                                 EmptyView()
+                            }
                         }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .scaleEffect(x: scaleX, y: scaleY, anchor: .trailing)
-                    .transition(.scaleAndBlur(anchor: .trailing))
-                    
-                    TopBarSpacerView(height: height)
-                    
-                    Group {
-                        switch mode {
+                        .frame(maxWidth: .infinity)
+                        .scaleEffect(x: scaleX, y: scaleY, anchor: .trailing)
+                        .transition(.scaleAndBlur(anchor: .trailing))
+                        
+                        TopBarSpacerView(height: height)
+                        
+                        Group {
+                            switch mode {
                             case .closed:
                                 ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
                                     .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .trailing)
                             case .nook, .tray, .dragging: 
                                 EmptyView()
+                            }
                         }
+                        .frame(maxWidth: .infinity)
+                        .scaleEffect(x: scaleX, y: scaleY, anchor: .leading)
+                        .transition(.scaleAndBlur(anchor: .leading))
                     }
-                    .frame(maxWidth: .infinity)
-                    .scaleEffect(x: scaleX, y: scaleY, anchor: .leading)
-                    .transition(.scaleAndBlur(anchor: .leading))
                 }
+                .frame(height: (notchSize.height == 0 && mode == .closed && liveActivities.isEmpty) || hide ? nil : height)
+                .fixedSize(horizontal: false, vertical: true)
+                .zIndex(1)
             }
-            .frame(height: (notchSize.height == 0 && mode == .closed && liveActivities.isEmpty) || hide ? nil : height)
-            .fixedSize(horizontal: false, vertical: true)
-            .zIndex(1)
-        }
-        if let quickPeeks = notchNook.quickPeeks {
-            QuickPeeksView(quickPeeks: quickPeeks)
-                .id(quickPeeks)
-                .transition(.scaleAndBlur(anchor: quickPeeks.first?.anchor ?? .topLeading, blur: 15))
+            if let quickPeeks = notchNook.quickPeeks {
+                QuickPeeksView(quickPeeks: quickPeeks)
+                    .id(quickPeeks)
+                    .transition(.scaleAndBlur(anchor: quickPeeks.first?.anchor ?? .topLeading, blur: 15))
+            }
         }
     }
 }
