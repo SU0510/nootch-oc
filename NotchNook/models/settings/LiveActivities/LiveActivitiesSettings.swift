@@ -16,4 +16,5 @@ struct LiveActivitiesSettings: Preferences {
     var enableHUDReplacement = false
     var disableColorsOnAudioHUDReplacement = false
     var unhideAutomatically = true
+    var quickPeekEvent = false
 }
