@@ -38,9 +38,13 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 Toggle("Enable Quick Peek", isOn: $liveActivitiesSettings.enableQuickPeek)
                 Text("If enabled, some live activities will show a short info on mouse hover.")
                     .settingDescription()
-                
+                                
                 Toggle("Unhide Automatically", isOn: $liveActivitiesSettings.unhideAutomatically)
                 Text("If enabled, live activities that have been dismissed (by swiping up) will automatically return.")
+                    .settingDescription()
+                
+                Toggle("Show song change", isOn: $liveActivitiesSettings.quickPeekEvent)
+                Text("Show when a song changes while playing media via quick peek.")
                     .settingDescription()
             }
             
