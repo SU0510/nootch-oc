@@ -23,12 +23,15 @@ struct KeyEvent {
     let keyRepeat: Bool
 }
 
-
 class VolumeAndBrightnessListener {
     static let shared = VolumeAndBrightnessListener()
     private var sideEffects = [String:((MediaKey) -> ())]()
     private var globalMonitor: Any?
     private var localMonitor: Any?
+    
+    private var lastEventTime: DispatchTime = DispatchTime.now()
+    private var lastEventKey: MediaKey = .brightnessDown
+    private let debounceInterval: TimeInterval = 0.3
     
     private init() {}
     
@@ -116,8 +119,28 @@ class VolumeAndBrightnessListener {
             return
         }
         
-        if let mediaKey = MediaKey(rawValue: Int32(keyEvent.keycode)) {
-            sideEffects.values.forEach { $0(mediaKey )}
+        guard let mediaKey = MediaKey(rawValue: Int32(keyEvent.keycode)) else {
+            return
+        }
+        
+        let now = DispatchTime.now()
+        
+        if mediaKey != lastEventKey {
+            lastEventKey = mediaKey
+            
+            let timeSinceLastEvent = now.uptimeNanoseconds - lastEventTime.uptimeNanoseconds
+            let intervalInSeconds = Double(timeSinceLastEvent) / 1_000_000_000 // Convert nanoseconds to seconds
+            
+            if intervalInSeconds < debounceInterval {
+                return
+            }
+        }
+        
+        lastEventTime = now
+        
+        sideEffects.values.forEach { [weak self] sideEffect in
+            guard self != nil else { return }
+            sideEffect(mediaKey)
         }
     }
 }

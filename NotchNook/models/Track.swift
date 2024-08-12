@@ -24,7 +24,10 @@ struct Track: Equatable, Hashable, Identifiable {
     var mediaApp = SystemAppMeta()
     var albumArt = NSImage()
     
-    var albumArtAverageColor: NSColor { albumArt.averageColor ?? .white }
+    @MainActor
+    var albumArtAverageColor: NSColor {
+        return albumArt.averageColor() ?? .white
+    }
     
     func isValidReplacement(_ track: Track) -> Bool {
         return self.metaId != track.metaId || self.mediaApp != track.mediaApp || (!self.albumArt.isValid && track.albumArt.isValid)
