@@ -11,8 +11,9 @@ import Algorithms
 import SwiftDate
 import Defaults
 
-@MainActor
-class CalendarManager: ObservableObject {
+
+@Observable
+class CalendarManager {
     
     typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
     
@@ -22,17 +23,20 @@ class CalendarManager: ObservableObject {
     static let shared = CalendarManager()
     
     /// Streams of EKEvent instances
-    @Published var eventsDatesDict: [Date: [EKEvent]] = [:]
+    var eventsDatesDict: [Date: [EKEvent]] = [:]
     var events = [EKEvent]() {
         didSet {
             self.scheduleLiveActivities()
-            self.eventsDatesDict = groupAndSortEventsByDateAndTime(events)
+            DispatchQueue.main.async {
+                self.eventsDatesDict = groupAndSortEventsByDateAndTime(self.events)
+            }
         }
     }
+    var authorizationStatus: EKAuthorizationStatus = .notDetermined
     
     public static var calendarTitle: String?
     
-    /// An object that accesses the user’s calendar and reminder events and supports the scheduling of new events.
+    /// An object that accesses the user's calendar and reminder events and supports the scheduling of new events.
     public private(set) var eventStore = EKEventStore()
     
     /// Returns calendar object from event kit
@@ -118,32 +122,6 @@ class CalendarManager: ObservableObject {
         }
     }
     
-    // MARK: - CRUD
-    
-    public func createEvent(
-        _ title: String,
-        startDate: Date,
-        endDate: Date?,
-        span: EKSpan = .thisEvent,
-        isAllDay: Bool = false,
-        calendar: EKCalendar? = nil
-    ) async throws -> EKEvent {
-        var theCalendar: EKCalendar
-        if let calendar = calendar {
-            theCalendar = calendar
-        } else {
-            theCalendar = try await accessCalendar()
-        }
-        
-        let createdEvent = try await eventStore.createEvent(title: title, startDate: startDate, endDate: endDate, calendar: theCalendar, span: span, isAllDay: isAllDay)
-        return createdEvent
-    }
-
-    public func deleteEvent(identifier: String, span: EKSpan = .thisEvent) async throws {
-        try await accessCalendar()
-        try eventStore.deleteEvent(identifier: identifier, span: span)
-    }
-    
     // MARK: - Events fetching
     
     public func fetchEventsForDaysOffset(_ days: Int, calendar: Calendar = .autoupdatingCurrent) async throws {
@@ -158,17 +136,24 @@ class CalendarManager: ObservableObject {
     /// Core functionality for fetching events within a range, ensuring events are cleared first
     @discardableResult
     public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
-        print("Fetching events from \(startDate) to \(endDate)")
-
-        let calendars = eventStore.calendars(for: .event)
-
-        let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
-        let fetchedEvents = eventStore.events(matching: predicate)
-
+        _ = try await accessCalendar()
+        
+        let calendars = self.eventStore.calendars(for: .event)
+        
+        let fetchClosure: @Sendable (EKEventStore, Date, Date, [EKCalendar]) -> [EKEvent] = { store, start, end, cals in
+            let pred = store.predicateForEvents(withStart: start, end: end, calendars: cals)
+            return store.events(matching: pred)
+        }
+        
+        // Perform the fetch on a background queue
+        let fetchedEvents = await Task.detached {
+            fetchClosure(self.eventStore, startDate, endDate, calendars)
+        }.value
+        
         await MainActor.run {
             self.events = fetchedEvents
         }
-
+        
         print("Fetched \(fetchedEvents.count) events")
         return fetchedEvents
     }
@@ -193,7 +178,11 @@ class CalendarManager: ObservableObject {
     private func requestEventStoreAuthorization() async throws -> EKAuthorizationStatus {
         let granted = try await requestCalendarAccess()
         if granted {
-            return EKEventStore.authorizationStatus(for: .event)
+            let status = EKEventStore.authorizationStatus(for: .event)
+            DispatchQueue.main.async {
+                self.authorizationStatus = status
+            }
+            return status
         } else {
             print("Unable to access calendar")
             throw CalendarManagerError.unableToAccessCalendar
@@ -202,7 +191,10 @@ class CalendarManager: ObservableObject {
     
     private func requestCalendarAccess() async throws -> Bool {
         try await withCheckedThrowingContinuation { [weak self] continuation in
-            guard let self = self else { return }
+            guard let self = self else {
+                continuation.resume(throwing: CalendarManagerError.unableToAccessCalendar)
+                return
+            }
             
             let completion: RequestAccessCompletion = { granted, error in
                 if let error {

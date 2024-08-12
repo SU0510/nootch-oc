@@ -39,7 +39,7 @@ struct TopBarView: View, Equatable {
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.traySettings) private var traySettings
     @Environment(\.nookWidgetsWidth) private var nookWidgetsWidth
-
+    
     var body: some View {
         // If notch height is bigger than 2/3 of minHeight, use it
         let height = TopBarView.getHeight(notchSize.height)
@@ -48,17 +48,16 @@ struct TopBarView: View, Equatable {
         
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                
                 if !hide && !trialOver {
                     Group {
                         switch mode {
-                            case .closed:
-                                LiveActivityView(side: .left, activeActivities: liveActivities)
-                                    .frame(width: Self.liveActionWidth)
-                            case .dragging: 
-                                EmptyView()
-                            case .nook, .tray: 
-                                TopBarTabsView(totalWidth: mode == .nook ? nookWidgetsWidth : traySettings.size.width)
+                        case .closed:
+                            LiveActivityView(side: .left, activeActivities: liveActivities)
+                                .frame(width: Self.liveActionWidth)
+                        case .dragging:
+                            EmptyView()
+                        case .nook, .tray:
+                            TopBarTabsView(totalWidth: mode == .nook ? nookWidgetsWidth : traySettings.size.width)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -74,20 +73,20 @@ struct TopBarView: View, Equatable {
                 if !hide && !trialOver {
                     Group {
                         switch mode {
-                            case .closed: 
-                                LiveActivityView(side: .right, activeActivities: liveActivities)
-                                    .frame(width: Self.liveActionWidth)
-                            case .dragging: 
-                                EmptyView()
-                            case .nook, .tray:
-                                HStack(spacing: 2) {
-                                    if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() }
-                                    
-                                    CircleButton(icon: "gearshape.fill", iconSize: 13) {
-                                        openSettings(nil)
-                                    }
+                        case .closed:
+                            LiveActivityView(side: .right, activeActivities: liveActivities)
+                                .frame(width: Self.liveActionWidth)
+                        case .dragging:
+                            EmptyView()
+                        case .nook, .tray:
+                            HStack(spacing: 2) {
+                                if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() }
+                                
+                                CircleButton(icon: "gearshape.fill", iconSize: 13) {
+                                    openSettings(nil)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -103,11 +102,11 @@ struct TopBarView: View, Equatable {
                     let showArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
                     Group {
                         switch mode {
-                            case .closed:
-                                ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
-                                    .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .leading)
-                            case .dragging, .nook, .tray:
-                                EmptyView()
+                        case .closed:
+                            ArrowForPanningView(x:  !showArrows ? 0 : -panPadding.leading, right: false, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
+                                .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .leading)
+                        case .dragging, .nook, .tray:
+                            EmptyView()
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -118,11 +117,11 @@ struct TopBarView: View, Equatable {
                     
                     Group {
                         switch mode {
-                            case .closed:
-                                ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
-                                    .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .trailing)
-                            case .nook, .tray, .dragging: 
-                                EmptyView()
+                        case .closed:
+                            ArrowForPanningView(x: !showArrows ? 0 : panPadding.trailing, right: true, inverted: gestureControlSettings.invertMediaGestures, counter: panGestureCounter)
+                                .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: .trailing)
+                        case .nook, .tray, .dragging:
+                            EmptyView()
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -137,7 +136,7 @@ struct TopBarView: View, Equatable {
         if let quickPeeks = notchNook.quickPeeks {
             QuickPeeksView(quickPeeks: quickPeeks)
                 .id(quickPeeks)
-                .transition(.scaleAndBlur(anchor: .leading, blur: 15))
+                .transition(.scaleAndBlur(anchor: quickPeeks.first?.anchor ?? .topLeading, blur: 15))
         }
     }
 }

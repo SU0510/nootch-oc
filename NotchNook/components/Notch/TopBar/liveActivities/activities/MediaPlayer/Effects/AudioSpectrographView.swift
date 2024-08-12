@@ -9,17 +9,16 @@ import Cocoa
 import QuartzCore
 import SwiftUI
 
-/// Represents an AudioSpectrographNSView so it can be used in a SwiftUI class
 struct AudioSpectrographView: NSViewRepresentable {
     var isPlaying: Bool
     var volume: CGFloat
     var color: Color
-    
+        
     func makeNSView(context: Context) -> AudioSpectrographNSView {
         let nsView = AudioSpectrographNSView(frame: .zero)
         updateNSView(nsView, context: context)
-        doAfter(0.1) {
-            nsView.updateBarHeights()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak nsView] in
+            nsView?.updateBarHeights()
         }
         return nsView
     }
@@ -29,6 +28,10 @@ struct AudioSpectrographView: NSViewRepresentable {
         if nsView.volume != volume { nsView.volume = volume }
         let newColor = NSColor(color)
         if nsView.color != newColor { nsView.color = newColor }
+    }
+    
+    static func dismantleNSView(_ nsView: AudioSpectrographNSView, coordinator: ()) {
+        nsView.cleanup()
     }
 }
 
@@ -46,23 +49,32 @@ class AudioSpectrographNSView: NSView {
     private var boundsWidth: CGFloat = 0
     private var animating = false
     
+    private var isBeingDeallocated = false
+    
     var playing: Bool = false {
         didSet {
             if playing {
                 startAnimation()
+            } else {
+                stopAnimation()
             }
         }
     }
     
     var volume: CGFloat = 1 {
         didSet {
-            updateBarHeights()
+            DispatchQueue.main.async { [weak self] in
+                self?.updateBarHeights()
+            }
         }
     }
     
     var color: NSColor = .white {
         didSet {
-            barLayers.forEach { $0.fillColor = color.cgColor }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.barLayers.forEach { $0.fillColor = self.color.cgColor }
+            }
         }
     }
     
@@ -79,22 +91,25 @@ class AudioSpectrographNSView: NSView {
     }
     
     private func setupLayers() {
-        self.wantsLayer = true
-        self.layer = CALayer()
-        self.layer?.drawsAsynchronously = true
-        self.layer?.isOpaque = true
-        
-        for _ in 0..<barsCount {
-            let barLayer = CAShapeLayer()
-            barLayer.drawsAsynchronously = true
-            barLayer.isOpaque = true
-            barLayer.fillColor = color.cgColor
-            layer?.addSublayer(barLayer)
-            barLayers.append(barLayer)
-            targetHeights.append(minHeight)
-            currentHeights.append(minHeight)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.wantsLayer = true
+            self.layer = CALayer()
+            self.layer?.drawsAsynchronously = true
+            self.layer?.isOpaque = true
+            
+            for _ in 0..<self.barsCount {
+                let barLayer = CAShapeLayer()
+                barLayer.drawsAsynchronously = true
+                barLayer.isOpaque = true
+                barLayer.fillColor = self.color.cgColor
+                self.layer?.addSublayer(barLayer)
+                self.barLayers.append(barLayer)
+                self.targetHeights.append(self.minHeight)
+                self.currentHeights.append(self.minHeight)
+            }
+            self.updateAnimation()
         }
-        updateAnimation()
     }
     
     private func setupDisplayLink() {
@@ -103,8 +118,8 @@ class AudioSpectrographNSView: NSView {
         
         let displayLinkOutputCallback: CVDisplayLinkOutputCallback = { (displayLink, _, _, _, _, displayLinkContext) -> CVReturn in
             let audioSpectrographView = Unmanaged<AudioSpectrographNSView>.fromOpaque(displayLinkContext!).takeUnretainedValue()
-            DispatchQueue.main.async {
-                audioSpectrographView.updateAnimation()
+            DispatchQueue.main.async { [weak audioSpectrographView] in
+                audioSpectrographView?.updateAnimation()
             }
             return kCVReturnSuccess
         }
@@ -114,13 +129,13 @@ class AudioSpectrographNSView: NSView {
     }
     
     private func startAnimation() {
-        guard let displayLink = displayLink else { return }
+        guard let displayLink = displayLink, !CVDisplayLinkIsRunning(displayLink) else { return }
         self.animating = true
         CVDisplayLinkStart(displayLink)
     }
     
     private func stopAnimation() {
-        guard let displayLink = displayLink else { return }
+        guard let displayLink = displayLink, CVDisplayLinkIsRunning(displayLink) else { return }
         animating = false
         CVDisplayLinkStop(displayLink)
         resetBars()
@@ -131,7 +146,9 @@ class AudioSpectrographNSView: NSView {
             targetHeights[i] = minHeight
             currentHeights[i] = minHeight
         }
-        updateBarHeights()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateBarHeights()
+        }
     }
     
     private func updateAnimation() {
@@ -157,13 +174,21 @@ class AudioSpectrographNSView: NSView {
     }
     
     func updateBarHeights() {
+        // Ensure this method is called on the main thread
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateBarHeights()
+            }
+            return
+        }
+        
         let volumeInterpolate = interpolatorBuilder([0.01, 1], value: volume)
         let volumeModifier = volume == 0 ? 0 : volumeInterpolate([0.25, 1], false)
         
         let totalWidth = CGFloat(barsCount) * (barsThickness + barsSpacing) - barsSpacing
         let startX = (bounds.width - totalWidth) / 2
         
-        for i in 0..<barsCount {
+        for i in 0..<min(barsCount, barLayers.count) {
             let height = max(minHeight, currentHeights[i] * volumeModifier)
             let x = startX + CGFloat(i) * (barsThickness + barsSpacing)
             
@@ -180,14 +205,6 @@ class AudioSpectrographNSView: NSView {
         
         if pausedAndSettled && animating {
             stopAnimation()
-            return
-        }
-    }
-    
-    deinit {
-        if let displayLink = displayLink {
-            CVDisplayLinkStop(displayLink)
-            CVDisplayLinkSetOutputCallback(displayLink, nil, nil)
         }
     }
     
@@ -203,6 +220,44 @@ class AudioSpectrographNSView: NSView {
             
             let normalizedValue = (value - inputMin) / inputRange
             return outputMin + (normalizedValue * outputRange)
+        }
+    }
+    
+    func cleanup() {
+        guard !isBeingDeallocated else { return }
+        
+        stopAnimation()
+        if let displayLink = displayLink {
+            CVDisplayLinkStop(displayLink)
+            CVDisplayLinkSetOutputCallback(displayLink, nil, nil)
+        }
+        displayLink = nil
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, !self.isBeingDeallocated else { return }
+            
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            
+            self.barLayers.forEach { $0.removeFromSuperlayer() }
+            self.barLayers.removeAll()
+            
+            self.layer?.sublayers?.removeAll()
+            
+            CATransaction.commit()
+        }
+    }
+    
+    deinit {
+        isBeingDeallocated = true
+        
+        // Perform synchronous cleanup on the main thread
+        if Thread.isMainThread {
+            cleanup()
+        } else {
+            DispatchQueue.main.sync { [weak self] in
+                self?.cleanup()
+            }
         }
     }
 }

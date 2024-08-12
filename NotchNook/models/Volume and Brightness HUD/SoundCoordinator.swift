@@ -10,7 +10,7 @@ import Foundation
 import CoreAudio
 import AudioToolbox
 
-private enum SoundError: Error {
+enum SoundError: Error {
     case failed
 }
 
@@ -22,22 +22,32 @@ enum AudioDeviceType {
     case unknown
 }
 
-struct SoundCoordinator {
+actor SoundCoordinator {
     private init() {}
     
-    static func getSoundVolume() throws -> Float {
-        do {
-            return try getStandardSoundVolume()
-        } catch {
-            throw SoundError.failed
+    static func getSoundVolume() async throws -> Float {
+        try await withCheckedThrowingContinuation { continuation in
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let volume = try getStandardSoundVolume()
+                    continuation.resume(returning: volume)
+                } catch {
+                    continuation.resume(throwing: SoundError.failed)
+                }
+            }
         }
     }
     
-    static func getAudioDeviceType() throws -> AudioDeviceType {
-        do {
-            return try getCurrentAudioDeviceType()
-        } catch {
-            throw SoundError.failed
+    static func getAudioDeviceType() async throws -> AudioDeviceType {
+        try await withCheckedThrowingContinuation { continuation in
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let deviceType = try getCurrentAudioDeviceType()
+                    continuation.resume(returning: deviceType)
+                } catch {
+                    continuation.resume(throwing: SoundError.failed)
+                }
+            }
         }
     }
     

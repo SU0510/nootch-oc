@@ -25,6 +25,8 @@ extension NotchView {
         @Environment(\.isKeyWindow) internal var isKeyWindow
         @Environment(\.notchSize) internal var notchSize
         
+        @State private var isAnimating: Bool = false
+        
         func body(content: Content) -> some View {
             content
                 .onAppear {
@@ -69,43 +71,58 @@ extension NotchView {
                 }
         }
         
+        private func withOptimizedAnimation(_ animation: Animation = .smooth, _ body: @escaping () -> Void) {
+            guard !isAnimating else { return }
+            isAnimating = true
+            withAnimation(animation) {
+                body()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                isAnimating = false
+            }
+        }
+        
         internal func handleBriVolKeyPress(_ mediaKey: MediaKey) {
-            if !liveActivitiesSettings.enableHUDReplacement {
+            guard liveActivitiesSettings.enableHUDReplacement else {
                 VolumeAndBrightnessListener.shared.stop()
                 return
             }
-            switch mediaKey {
+            
+            Task { @MainActor in
+                switch mediaKey {
                 case .brightnessUp, .brightnessDown:
-                    handleBrightnessChange()
+                    await handleBrightnessChange()
                 case .volumeUp, .volumeDown, .mute:
-                    handleVolumeChange()
-            }
-        }
-        
-        private func handleBrightnessChange() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                do {
-                    let newBrightness = try BrightnessCoordinator.getDisplayBrightness()
-                    withAnimation(.bouncySmooth) {
-                        notchNook.indicator = .init(kind: .brightness, value: Double(newBrightness))
-                    }
-                } catch {
-                    print("Error fetching brightness: \(error)")
+                    await handleVolumeChange()
                 }
             }
         }
         
-        private func handleVolumeChange() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                do {
-                    let newVolume = try SoundCoordinator.getSoundVolume()
-                    //                let device = try SoundCoordinator.getAudioDeviceType()
-                    withAnimation(.bouncySmooth) {
-                        notchNook.indicator = .init(kind: .volume, value: Double(newVolume))
-                    }
-                } catch {
-                    print("Failed to get volume: \(error)")
+        private func handleBrightnessChange() async {
+            do {
+                // Delay to ensure the brightness has changed
+                try await Task.sleep(nanoseconds: 50_000_000) // 0.05 seconds
+                
+                let newBrightness = try await BrightnessCoordinator.getDisplayBrightness()
+                withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    notchNook.indicator = .init(kind: .brightness, value: Double(newBrightness))
                 }
+            } catch {
+                print("Error fetching brightness: \(error)")
+            }
+        }
+
+        private func handleVolumeChange() async {
+            do {
+                // Delay to ensure the volume has changed
+                try await Task.sleep(nanoseconds: 50_000_000) // 0.05 seconds
+                
+                let newVolume = try await SoundCoordinator.getSoundVolume()
+                withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    notchNook.indicator = .init(kind: .volume, value: Double(newVolume))
+                }
+            } catch {
+                print("Failed to get volume: \(error)")
             }
         }
     }

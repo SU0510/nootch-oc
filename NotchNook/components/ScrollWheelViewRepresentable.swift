@@ -1,5 +1,5 @@
 //
-//  onSwipe.swift
+//  ScrollWheelViewRepresentable.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 22/05/24.
@@ -68,9 +68,11 @@ struct ScrollWheelViewRepresentable<Content: View>: NSViewRepresentable {
     var onDragEnded: (CGSize, CGPoint, CGSize) -> Void
     var content: () -> Content
     
-    init(onDragChanged: @escaping (CGSize, CGPoint, CGSize, () -> Void) -> Void,
-         onDragEnded: @escaping (CGSize, CGPoint, CGSize) -> Void,
-         @ViewBuilder content: @escaping () -> Content = { EmptyView() }) {
+    init(
+        onDragChanged: @escaping (CGSize, CGPoint, CGSize, () -> Void) -> Void,
+        onDragEnded: @escaping (CGSize, CGPoint, CGSize) -> Void,
+        @ViewBuilder content: @escaping () -> Content = { EmptyView() }
+    ) {
         self.onDragChanged = onDragChanged
         self.onDragEnded = onDragEnded
         self.content = content

@@ -345,7 +345,7 @@
 		EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60372BFE688D00E67ECC /* NSImage.swift */; };
 		EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603B2BFE73FC00E67ECC /* consts.swift */; };
 		EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603D2BFEB7A600E67ECC /* NSColor.swift */; };
-		EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */; };
+		EC8D60402BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */; };
 		EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */; };
 		EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */; };
 		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
@@ -363,6 +363,7 @@
 		ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */ = {isa = PBXBuildFile; fileRef = ECB9D6AC2C0CDE88009C8CE4 /* tray.lottie */; };
 		ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3A2C07F3320000139C /* resetToDefault.swift */; };
 		ECC22A3D2C0818C10000139C /* move.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC22A3C2C0818C10000139C /* move.swift */; };
+		ECCEFE6F2C64453600F3385C /* FluidGradient in Frameworks */ = {isa = PBXBuildFile; productRef = ECCEFE6E2C64453600F3385C /* FluidGradient */; };
 		ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF429262C07B0FB0086B07A /* SliderPlus.swift */; };
 /* End PBXBuildFile section */
 
@@ -692,7 +693,7 @@
 		EC8D60372BFE688D00E67ECC /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		EC8D603B2BFE73FC00E67ECC /* consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = consts.swift; sourceTree = "<group>"; };
 		EC8D603D2BFEB7A600E67ECC /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
-		EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onSwipe.swift; sourceTree = "<group>"; };
+		EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWheelViewRepresentable.swift; sourceTree = "<group>"; };
 		EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onChangeDebounced.swift; sourceTree = "<group>"; };
 		EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowForPanningView.swift; sourceTree = "<group>"; };
 		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
@@ -720,6 +721,7 @@
 			files = (
 				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
+				ECCEFE6F2C64453600F3385C /* FluidGradient in Frameworks */,
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
@@ -1436,6 +1438,7 @@
 				3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */,
 				3637094F2C559CFD004D20BB /* MultilineTextField.swift */,
 				363709532C56B8C0004D20BB /* NonHyphenatingText.swift */,
+				EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1488,7 +1491,6 @@
 			children = (
 				EC8D5FEB2BFA707F00E67ECC /* frame.swift */,
 				EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */,
-				EC8D603F2BFEBA5B00E67ECC /* onSwipe.swift */,
 				EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */,
 				ECAC6A6D2C070355000D9D27 /* measure.swift */,
 				ECC22A3A2C07F3320000139C /* resetToDefault.swift */,
@@ -1797,6 +1799,7 @@
 				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
 				3A9E6BF72C3A9C3F009948F5 /* DynamicColor */,
 				3A7C05DA2C59C65900435D99 /* JWTKit */,
+				ECCEFE6E2C64453600F3385C /* FluidGradient */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1844,6 +1847,7 @@
 				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 				3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */,
+				ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -2197,7 +2201,7 @@
 				EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */,
 				3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
-				EC8D60402BFEBA5B00E67ECC /* onSwipe.swift in Sources */,
+				EC8D60402BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift in Sources */,
 				3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */,
 				EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */,
 				EC758F842BF2F19B00B873B0 /* TrayView.swift in Sources */,
@@ -2283,7 +2287,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2304,7 +2308,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-setapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2386,7 +2390,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2407,7 +2411,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2546,7 +2550,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2567,7 +2571,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2586,7 +2590,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2607,7 +2611,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2739,6 +2743,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cindori/FluidGradient.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2817,6 +2829,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */;
 			productName = SwiftDate;
+		};
+		ECCEFE6E2C64453600F3385C /* FluidGradient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */;
+			productName = FluidGradient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

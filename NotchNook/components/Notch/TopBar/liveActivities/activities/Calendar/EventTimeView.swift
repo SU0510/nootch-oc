@@ -15,11 +15,22 @@ struct EventTimeView: View {
     var startDate: Date
     var endDate: Date
     
-    @State private var hovering = false
+    @State private var isHovering = false
     
     @Environment(\.calendarLiveActivitySettings) private var prefs
     @Environment(\.openURL) private var openURL
     @Environment(\.getNow) private var getNow
+    @Environment(\.notchNook) private var notchNook
+    @Environment(\.enableQuickPeek) private var enableQuickPeek
+    
+    var quickPeeks: [NotchNookState.QuickPeek] {
+        let startTime = startDate.formatted(date: .omitted, time: .shortened)
+        let endTime = endDate.formatted(date: .omitted, time: .shortened)
+        return [
+            .init(icon: "calendar", text: event?.title ?? "", anchor: .topTrailing),
+            .init(icon: "clock", text: "\(startTime) - \(endTime)", anchor: .topTrailing),
+        ]
+    }
         
     var body: some View {
         TimelineView(.animation(minimumInterval: 1)) { ctx in
@@ -46,8 +57,10 @@ struct EventTimeView: View {
                             Text(text)
                                 .fixedSize(horizontal: true, vertical: false)
                                 .contentTransition(.numericText())
-                        } else {
+                        } else if let meeting {
                             Image(systemName: "phone.fill")
+                        } else {
+                            Spacer()
                         }
                     }
                     .font(.system(size: isEventStarted ? 12 : 13, weight: .medium).width(isEventStarted ? .condensed : .standard))
@@ -56,12 +69,12 @@ struct EventTimeView: View {
                     .padding(.vertical, isEventStarted ? 3 : 0)
                     .background(isEventStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
                     .frame(maxWidth: .infinity)
-                    .blur(radius: hovering ? 1.25 : 0)
-                    .opacity(hovering ? 0.3 : isEventStarted ? 0.5 : 1)
+                    .blur(radius: isHovering ? 1.25 : 0)
+                    .opacity(isHovering ? 0.3 : isEventStarted ? 0.5 : 1)
                     .transition(.scaleAndBlur)
                     .id(isEventStarted)
                     
-                    if hovering, let meeting {
+                    if isHovering, let meeting {
                         Image(meeting.service.logo)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -73,9 +86,12 @@ struct EventTimeView: View {
                 .background(.black.opacity(0.001))
                 .contentShape(Rectangle())
                 .onHover { newHovering in
-                    if meeting == nil { return }
-                    withAnimation(.smooth(duration: 0.25)) {
-                        hovering = newHovering
+                    if meeting != nil {
+                        withAnimation(.smooth(duration: 0.25)) {
+                            isHovering = newHovering
+                        }
+                    } else if enableQuickPeek {
+                        notchNook.quickPeeks = newHovering ? quickPeeks : nil
                     }
                 }
             }
@@ -83,7 +99,8 @@ struct EventTimeView: View {
             .buttonStyle(ShrinkOnClick())
             .padding(.trailing, 2)
             .frame(maxWidth: .infinity)
-            .allowsHitTesting(meeting != nil)
+            .allowsHitTesting(meeting != nil || enableQuickPeek)
+            .quickPeekScaling(scaling: notchNook.quickPeeks?.first?.anchor == .topTrailing, anchor: .topTrailing)
         }
     }
     
@@ -100,5 +117,16 @@ struct EventTimeView: View {
         } else {
             return "\(seconds)s"
         }
+    }
+}
+
+private struct EnableQuickPeekKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
+extension EnvironmentValues {
+    var enableQuickPeek: Bool {
+        get { self[EnableQuickPeekKey.self] }
+        set { self[EnableQuickPeekKey.self] = newValue }
     }
 }

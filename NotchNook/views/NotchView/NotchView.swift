@@ -19,7 +19,6 @@ struct NotchView: View {
     @Default(.intro) private var intro
     @Default(.license) private var license
     @Default(.trialInitialTime) private var trialInitialTime
-
     private var disableNotchNook: Bool {
         notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
     }
@@ -52,6 +51,9 @@ struct NotchView: View {
             IndicatorView(indicator: indicator)
                 .transition(NotchView.defaultTransition)
         } else {
+            topBarContent
+                .opacity(notchNook.indicator == nil ? 1 : 0)
+            
             if !disableNotchNook {
                 if intro && state.showIntro {
                     IntroView()
@@ -59,6 +61,7 @@ struct NotchView: View {
                     nonIntroContent
                 }
             }
+            
             if state.fineTuningNotchWidth {
                 FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
             }
@@ -66,8 +69,8 @@ struct NotchView: View {
     }
     
     @ViewBuilder
-    private var nonIntroContent: some View {
-        if license != nil || !state.trialOver {
+    private var topBarContent: some View {
+        if (license != nil || !state.trialOver) && !disableNotchNook {
             TopBarView(
                 panGestureCounter: state.panGestureCounter,
                 scaleX: actualScaleX,
@@ -75,8 +78,20 @@ struct NotchView: View {
                 panPadding: state.panPadding,
                 hide: notchNook.hidden
             )
+            .equatable()
         }
-        
+    }
+    
+    @ViewBuilder
+    private var indicatorContent: some View {
+        if let indicator = notchNook.indicator {
+            IndicatorView(indicator: indicator)
+                .transition(NotchView.defaultTransition)
+        }
+    }
+    
+    @ViewBuilder
+    private var nonIntroContent: some View {
         Group {
             if license == nil && (trialInitialTime == nil || state.trialOver) && notchNook.mode != .closed {
                 LicenseStateView()

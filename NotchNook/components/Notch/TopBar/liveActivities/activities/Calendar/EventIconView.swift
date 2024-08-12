@@ -32,7 +32,7 @@ struct EventIconView: View {
             .font(.system(size: 13))
             .foregroundStyle(.blue)
             .padding(.top, 4)
-            .quickPeekScaling(scaling: notchNook.quickPeeks != nil)
+            .quickPeekScaling(scaling: notchNook.quickPeeks?.first?.anchor == .topLeading)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onHover { hovering in
                 if enableQuickPeek {

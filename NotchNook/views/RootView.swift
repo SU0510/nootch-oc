@@ -44,6 +44,13 @@ struct RootView: View {
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
     
+    mutating func updateForScreen(displayKitId: UUID, screenSize: CGSize, notchSize: CGSize, notchNook: NotchNookState) {
+        self.displayKitId = displayKitId
+        self.screenSize = screenSize
+        self.notchSize = notchSize
+        self.notchNook = notchNook
+    }
+    
     var sharedModelContainer: ModelContainer = {
         NSAttributedStringTransformer.register()
         

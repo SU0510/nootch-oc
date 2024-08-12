@@ -19,6 +19,11 @@ struct CalendarEventsView: View {
     
     let id = UUID()
     
+    var isAccessNotGranted: Bool {
+        let status = CalendarManager.shared.authorizationStatus
+        return status != .fullAccess
+    }
+    
     var body: some View {
         GeometryReader { geo in
             Group {
@@ -69,8 +74,9 @@ struct CalendarEventsView: View {
     var emptyView: some View {
         VStack {
             Image(systemName: "calendar.badge.checkmark")
-            Text("Nothing for today")
+            Text(isAccessNotGranted ? "This widget requires calendar permissions in order to show events, please enable access in settings." : "Nothing for today")
                 .foregroundStyle(.white)
+                .multilineTextAlignment(.center)
         }
         .opacity(0.5)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
