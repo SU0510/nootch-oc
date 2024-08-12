@@ -49,7 +49,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
             }
             
             Settings.Section(title: String(localized: "HUD replacement:")) {
-                HStack {
+                HStack(spacing: 8) {
                     Toggle("Enable", isOn: $liveActivitiesSettings.enableHUDReplacement)
                         .disabled(disableHUDToggle)
                     
