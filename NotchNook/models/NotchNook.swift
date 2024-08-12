@@ -45,7 +45,7 @@ class NotchNookState {
         get { _quickPeek }
         set {
             if let newValue, !newValue.isEmpty { vibrate() }
-            withAnimation(TopBarView.animation) { _quickPeek = newValue }
+            withAnimation((newValue?.isEmpty ?? true) ? .smooth : TopBarView.animation) { _quickPeek = newValue }
         }
     }
     private var _quickPeek: [QuickPeek]?

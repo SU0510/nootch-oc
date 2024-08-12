@@ -58,7 +58,7 @@ struct MiniAlbumCoverView: View, Equatable {
                 
                 notchNook.quickPeeks = quickPeeks
                 
-                quickPeekTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+                quickPeekTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { _ in
                     notchNook.quickPeeks = nil
                 }
             } else if notchNook.quickPeeks != nil {
