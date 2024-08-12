@@ -8,6 +8,7 @@
 import SwiftUI
 import Defaults
 
+
 extension NotchView {
     struct SideEffectsModifier: ViewModifier {
         var state: NotchViewModel
@@ -24,71 +25,50 @@ extension NotchView {
         @Environment(\.isKeyWindow) internal var isKeyWindow
         @Environment(\.notchSize) internal var notchSize
         
-        @State private var hasAppeared: Bool = false
         @State private var isAnimating: Bool = false
         
         func body(content: Content) -> some View {
             content
                 .onAppear {
-                    if !hasAppeared {
-                        hasAppeared = true
-                        Task {
-                            await performInitialSetup()
-                        }
-                    }
+                    checkForUpdates()
+                    resetTrialAndHandleChangelog()
+                    insertUpdateLAIfOldVersion()
+                    fetchEvents()
+                    startBriVolKeyListener()
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) {
                     startBriVolKeyListener()
                 }
-                .onChange(of: liveActivitiesSettings.enabledLiveActivities) { old, new in
+                .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
                     if !old.contains(.calendar) && new.contains(.calendar) {
                         Task {
                             try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarManager.numberOfDaysToDisplay)
                         }
                     }
                 }
-                .onChange(of: state.hoveredDropTargetID) { old, new in
-                    if old != new && new != nil {
-                        Task { @MainActor in
-                            vibrate()
-                        }
-                    }
-                }
-                .onChange(of: intro) { _, new in
-                    withOptimizedAnimation {
-                        state.showIntro = new
-                    }
+                .onChange(of: state.hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
+                .onChange(of: intro, initial: true) { _, new in
+                    doAfter(0.3) { withAnimation(NotchView.intenseAnimation) { state.showIntro = new } }
                 }
                 .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
-                    withOptimizedAnimation {
-                        state.fineTuningNotchWidth = true
+                    if !state.fineTuningNotchWidth {
+                        withAnimation(NotchView.intenseAnimation) { state.fineTuningNotchWidth = true }
                     }
+                }
+                .onChangeDebounced(of: generalSettings.notchWidthFineTune, delay: 2) { _ in
+                    withAnimation(NotchView.intenseAnimation) { state.fineTuningNotchWidth = false }
+                }
+                .onChangeDebounced(of: state.panRawPadding, delay: 0.05) { _ in
+                    withAnimation(.smooth) { state.panRawPadding = .zero }
+                }
+                .onChangeDebounced(of: state.scaleDown, delay: 0.05) { _ in
+                    withAnimation(.smooth) { state.scaleDown = 0 }
                 }
                 .onChange(of: isKeyWindow) { _, newVal in
                     if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {
                         closeNotch(false, false)
                     }
                 }
-                .onChange(of: state.panRawPadding) { _, _ in
-                    withOptimizedAnimation {
-                        state.panRawPadding = .zero
-                    }
-                }
-                .onChange(of: state.scaleDown) { _ in
-                    withOptimizedAnimation {
-                        state.scaleDown = 0
-                    }
-                }
-        }
-        
-        private func performInitialSetup() async {
-            await MainActor.run {
-                checkForUpdates()
-                resetTrialAndHandleChangelog()
-                insertUpdateLAIfOldVersion()
-                startBriVolKeyListener()
-                fetchEvents()
-            }
         }
         
         private func withOptimizedAnimation(_ animation: Animation = .smooth, _ body: @escaping () -> Void) {
