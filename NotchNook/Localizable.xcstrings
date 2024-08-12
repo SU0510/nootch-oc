@@ -16763,6 +16763,7 @@
 
     },
     "License Type" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
