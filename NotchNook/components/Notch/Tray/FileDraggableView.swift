@@ -16,8 +16,8 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
         view.dragPreview = dragPreview
         
         // Enable dragging
-        view.registerForDraggedTypes([.fileURL, .html, .string])
-        
+        view.registerForDraggedTypes([.fileURL, .html, .string, .pdf, .png, .fileContents])
+
         return view
     }
     
@@ -64,16 +64,13 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     // MARK: - Helpers
     
     private func getDraggingItem(for url: URL) -> NSDraggingItem {
-        let pasteboardItem = NSPasteboardItem()
-        pasteboardItem.setString(url.absoluteString, forType: .fileURL)
-        pasteboardItem.setString("<a href=\"\(url.absoluteString)\">Link</a>", forType: .html)
-        pasteboardItem.setString(url.absoluteString, forType: .string)
-        
-        let draggingItem = NSDraggingItem(pasteboardWriter: pasteboardItem)
+        let draggingItem = NSDraggingItem(pasteboardWriter: url as NSURL)
         
         if let dragPreview {
             let previewImage = renderPreview(dragPreview)
             draggingItem.setDraggingFrame(self.bounds, contents: previewImage)
+        } else {
+            draggingItem.setDraggingFrame(self.bounds, contents: url as NSURL)
         }
         
         return draggingItem
@@ -94,7 +91,14 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     }
     
     func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
-        return [.copy, .move]
+        [.copy, .move, .link, .generic]
+    }
+    
+    func draggingSession(_ session: NSDraggingSession, willBeginAt screenPoint: NSPoint) {
+        session.draggingPasteboard.clearContents()
+        for url in selectedURLs {
+            session.draggingPasteboard.writeObjects([url as NSURL])
+        }
     }
     
     // MARK: - NSDraggingDestination Methods

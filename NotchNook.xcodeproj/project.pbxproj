@@ -11,11 +11,11 @@
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
 		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
-		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
 		36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */; };
+		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
 		3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */; };
@@ -372,11 +372,11 @@
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
 		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
-		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
 		36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarEventsViewShadows.swift; path = NotchNook/components/Notch/Nook/Widgets/CalendarWidget/CalendarEventsViewShadows.swift; sourceTree = SOURCE_ROOT; };
+		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
 		3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppIconView.swift; sourceTree = "<group>"; };
@@ -1412,7 +1412,6 @@
 				EC8D5FF32BFAE75400E67ECC /* notch */,
 				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
 				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
-				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
 				EC13C6DB2C09180600B45C6E /* TextInput.swift */,
@@ -1614,6 +1613,7 @@
 				EC2DD1EF2C03DB15001FD54E /* TrayFilesScrollView.swift */,
 				EC758F7E2BF2F19B00B873B0 /* TrayView.swift */,
 				36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */,
+				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 			);
 			path = Tray;
 			sourceTree = "<group>";

@@ -8471,6 +8471,9 @@
         }
       }
     },
+    "Copy" : {
+
+    },
     "Customize activities" : {
       "localizations" : {
         "af" : {
@@ -24496,6 +24499,9 @@
           }
         }
       }
+    },
+    "Rename" : {
+
     },
     "Reset all settings" : {
       "localizations" : {
