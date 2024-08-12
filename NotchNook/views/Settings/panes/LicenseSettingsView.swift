@@ -56,99 +56,95 @@ struct LicenseSettingsView: View {
             
             Section("License") {
                 VStack(spacing: 4) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text("Email")
-                                .font(.headline)
-                                .frame(width: 100, alignment: .leading)
-                            
-                            Spacer()
-                            
-                            FixedWidthTextField(text: $email, placeholder: "john.doe@email.com", isSecure: false)
-                                .frame(width: 250, height: 24)
-                                .onChange(of: email) { _, _ in
-                                    withAnimation(.snappy) { isEmailValid = validateEmail(email) }
-                                }
-                        }
+                    HStack {
+                        Label("Email", systemImage: "at")
+                        
                         if !isEmailValid && !email.isEmpty {
                             Text("Please enter a valid email")
                                 .foregroundColor(.red)
                                 .font(.caption)
                         }
-                    }
-                    
-                    HStack {
-                        Text("License Key")
-                            .font(.headline)
-                            .frame(width: 100, alignment: .leading)
                         
                         Spacer()
                         
-                        FixedWidthTextField(text: $key, placeholder: "gjp1lh5dtzqp4yddn73uush9r4inv0", isSecure: license != nil)
+                        FixedWidthTextField(text: $email, placeholder: "john.doe@email.com", isSecure: false)
+                            .frame(width: 250, height: 24)
+                            .onChange(of: email) { _, _ in
+                                withAnimation(.snappy) { isEmailValid = validateEmail(email) }
+                            }
+                    }
+                    .disabled(license != nil)
+                    
+                    HStack {
+                        Label("License Key", systemImage: "key.horizontal.fill")
+                        
+                        Spacer()
+                        
+                        FixedWidthTextField(text: $key, placeholder: "Ex: gjp1lh5dtzqp4yddn73uush9r4inv0", isSecure: license != nil)
                             .frame(width: 250, height: 24)
                     }
+                    .disabled(license != nil)
                     
-                    HStack {
-                        Text("License Type")
-                            .font(.headline)
-                            .frame(width: 100, alignment: .leading)
-                        
-                        Spacer()
+                    HStack(spacing: 0) {
+                        Color.white.opacity(0.05)
+                            .frame(maxWidth: .infinity, maxHeight: 1)
                         
                         Picker("", selection: $keyType) {
                             ForEach(License.KeyType.allCases) { type in
                                 Text(type.rawValue).tag(type)
                             }
                         }
+                        .padding(.top, -18)
                         .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 250)
+                        .frame(width: 250, height: 23)
                     }
-                }
-                .disabled(license != nil)
-                
-                HStack {
-                    VStack(alignment: .leading) {
-                        if let errorStr {
-                            Text(errorStr)
-                                .foregroundColor(.red)
+                    .padding(EdgeInsets(top: 5, leading: 0, bottom: 8, trailing: 0))
+                    .disabled(license != nil)
+                    
+                    HStack {
+                        VStack(alignment: .leading) {
+                            if let errorStr {
+                                Text(errorStr)
+                                    .foregroundColor(.red)
+                            }
+                            
+                            if let successMessage {
+                                Text(successMessage)
+                                    .foregroundColor(.green)
+                            }
                         }
                         
-                        if let successMessage {
-                            Text(successMessage)
-                                .foregroundColor(.green)
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
-                    
-                    if license == nil, let url = URL(string: "https://lo.cafe/notchnook") {
-                        Button("Get a License") {
-                            openURL(url)
-                        }
-                    }
-                    
-                    Button(license == nil ? "Register" : "Unregister") {
-                        if license != nil {
-                            license = nil
-                            successMessage = "License unregistered successfully"
-                            return
-                        }
-                        registerLicense()
-                    }
-                    .disabled(loading || !isEmailValid || email.isEmpty || key.isEmpty)
-                    .buttonStyle(BorderedProminentButtonStyle())
-                    
-                    if license != nil && keyType == .subscription {
-                        Button("Manage Billing") {
-                            if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
+                        Spacer()
+                        
+                        if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
+                        
+                        if license == nil, let url = URL(string: "https://lo.cafe/notchnook") {
+                            Button("Get a License") {
                                 openURL(url)
                             }
                         }
+                        
+                        Button(license == nil ? "Register" : "Unregister") {
+                            if license != nil {
+                                license = nil
+                                successMessage = "License unregistered successfully"
+                                return
+                            }
+                            registerLicense()
+                        }
+                        .disabled(loading || !isEmailValid || email.isEmpty || key.isEmpty)
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        
+                        if license != nil && keyType == .subscription {
+                            Button("Manage Billing") {
+                                if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
+                                    openURL(url)
+                                }
+                            }
+                        }
                     }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
         .formStyle(.grouped)
