@@ -12,10 +12,10 @@ struct TutorialView: View {
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 24) {
-                TutorialItemView(animation: "drag", description: "Swipe horizontally to change song tracks.")
-                TutorialItemView(animation: "drag", description: "Swipe vertically to open, close or hide the notch.", rotate: -90)
-                TutorialItemView(animation: "click", description: "Click to open the Nook, where your widgets live.")
-                TutorialItemView(animation: "tray", description: "Drag and drop files to access multiple functions.")
+                TutorialItemView(animation: "drag", description: String(localized: "Swipe horizontally to change song tracks."))
+                TutorialItemView(animation: "drag", description: String(localized: "Swipe vertically to open, close or hide the notch."), rotate: -90)
+                TutorialItemView(animation: "click", description: String(localized: "Click to open the Nook, where your widgets live."))
+                TutorialItemView(animation: "tray", description: String(localized: "Drag and drop files to access multiple functions."))
             }
             
             StartButton()

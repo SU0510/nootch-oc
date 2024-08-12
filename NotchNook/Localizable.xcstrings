@@ -6998,6 +6998,9 @@
         }
       }
     },
+    "Click to open the Nook, where your widgets live." : {
+
+    },
     "Close it to restore." : {
       "localizations" : {
         "af" : {
@@ -10127,6 +10130,9 @@
           }
         }
       }
+    },
+    "Drag and drop files to access multiple functions." : {
+
     },
     "Drop Area" : {
       "localizations" : {
@@ -27814,6 +27820,12 @@
           }
         }
       }
+    },
+    "Swipe horizontally to change song tracks." : {
+
+    },
+    "Swipe vertically to open, close or hide the notch." : {
+
     },
     "Take a quick peek at useful info by hovering some of the live activities." : {
       "extractionState" : "stale",
