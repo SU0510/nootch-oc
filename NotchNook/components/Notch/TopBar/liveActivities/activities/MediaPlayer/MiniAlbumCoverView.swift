@@ -48,17 +48,19 @@ struct MiniAlbumCoverView: View, Equatable {
         .quickPeekScaling(scaling: notchNook.quickPeeks?.first?.anchor == .topLeading)
         .animation(.bouncySmooth, value: track.id)
         .onHover { hovering in
-            if enableQuickPeek {
-                notchNook.quickPeeks = hovering ? quickPeeks : nil
+            if enableQuickPeek, hovering {
+                notchNook.quickPeeks = quickPeeks
+            } else if !hovering {
+                notchNook.quickPeeks = nil
             }
         }
         .onChange(of: track.title) { old, new in
-            if notchNook.quickPeeks == nil && quickPeekEvent {
+            if notchNook.quickPeeks == nil, quickPeekEvent, track != .empty {
                 quickPeekTimer?.invalidate()
                 
                 notchNook.quickPeeks = quickPeeks
                 
-                quickPeekTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+                quickPeekTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { _ in
                     notchNook.quickPeeks = nil
                 }
             } else if notchNook.quickPeeks != nil {
@@ -66,6 +68,7 @@ struct MiniAlbumCoverView: View, Equatable {
             }
         }
         .onDisappear {
+            notchNook.quickPeeks = nil
             quickPeekTimer?.invalidate()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)

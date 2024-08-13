@@ -10,9 +10,10 @@ import SwiftUI
 
 extension NotchView.ShapeModifier {
     @ViewBuilder func notchShapeView(shadow: Bool? = nil, transparentHandle: Bool? = nil) -> some View {
+        let quickPeeksNotEmpty = !(notchNook.quickPeeks?.isEmpty ?? true)
         GeometryReader { geo in
             ShadowedNotchShapeView(
-                shadow: shadow ?? (notchNook.mode != .closed || state.hovering || notchNook.indicator != nil),
+                shadow: shadow ?? (quickPeeksNotEmpty || notchNook.mode != .closed || state.hovering || notchNook.indicator != nil || (intro && state.showIntro)),
                 transparentHandle: transparentHandle ?? generalSettings.transparentHandle,
                 fineTuning: state.fineTuningNotchWidth
             )

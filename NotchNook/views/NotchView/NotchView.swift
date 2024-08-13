@@ -51,8 +51,6 @@ struct NotchView: View {
             IndicatorView(indicator: indicator)
                 .transition(NotchView.defaultTransition)
         } else {
-            topBarContent
-                .opacity(notchNook.indicator == nil ? 1 : 0)
             
             if !disableNotchNook {
                 if intro && state.showIntro {
@@ -70,7 +68,7 @@ struct NotchView: View {
     
     @ViewBuilder
     private var topBarContent: some View {
-        if (license != nil || !state.trialOver) && !disableNotchNook {
+        if license != nil || !state.trialOver {
             TopBarView(
                 panGestureCounter: state.panGestureCounter,
                 scaleX: actualScaleX,
@@ -92,6 +90,10 @@ struct NotchView: View {
     
     @ViewBuilder
     private var nonIntroContent: some View {
+        
+        topBarContent
+            .opacity(notchNook.indicator == nil ? 1 : 0)
+        
         Group {
             if license == nil && (trialInitialTime == nil || state.trialOver) && notchNook.mode != .closed {
                 LicenseStateView()

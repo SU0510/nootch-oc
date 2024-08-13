@@ -19,6 +19,8 @@ struct LicenseStateView: View {
     var body: some View {
         VStack {
             if license == nil {
+                Image(systemName: "clock.badge.exclamationmark")
+                    .font(.system(size: 32))
                 if trialOver {
                     Text("I'm sorry, your trial is over.")
                 } else {
@@ -36,8 +38,7 @@ struct LicenseStateView: View {
                 Text("Send an email to hi@lo.cafe if this doesn't go away.")
             }
         }
-        .frame(height: nookSettings.size.height.screenPoints)
-        .padding(.top, 16)
+        .padding(.vertical, 8)
         .padding(.top, notchSize.height)
         .multilineTextAlignment(.center)
     }
