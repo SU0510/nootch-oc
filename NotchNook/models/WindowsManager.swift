@@ -298,6 +298,16 @@ class WindowsManager {
         }
     }
     
+    func updateEditingTextState(for displayKitId: UUID, isEditing: Bool) {
+        if let displayKit = displayKits.first(where: { $0.id == displayKitId }),
+           let window = displayKit.windowController.window as? ForceFocusableWindow {
+            window.canThisWindowBecomeKeyWindow = isEditing
+            if let hostingView = window.contentView as? AcceptingFirstClickHostingView<RootView> {
+                hostingView.rootView.isEditingText = isEditing
+            }
+        }
+    }
+    
     @objc private func screenDidChange() {
         if hasSignificantScreenChanges() {
             debouncedUpdateWindows()

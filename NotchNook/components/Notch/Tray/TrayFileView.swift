@@ -86,6 +86,9 @@ struct TrayFileView: View {
                     doAfter { tray.editingFile?.newName = file.name }
                     enableTextEditing()
                 }
+                .onDisappear {
+                    windowManager?.updateEditingTextState(for: displayKitId, isEditing: false)
+                }
             } else {
                 NonHyphenatingText(text: file.nameTruncated)
                     .frame(width: 56, alignment: .center)
