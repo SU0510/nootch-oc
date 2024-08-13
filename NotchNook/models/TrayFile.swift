@@ -9,13 +9,14 @@ import SwiftUI
 import SwiftDate
 import Combine
 
-class TrayFile: ObservableObject {
+@Observable
+class TrayFile {
     
     private(set) var url: URL
     private(set) var inode: UInt64?
     private(set) var nameTruncated: String
     
-    @Published var name: String {
+    var name: String {
         didSet {
             guard oldValue != name else { return }
             rename(to: name)

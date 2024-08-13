@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 struct TrayFileView: View {
     
-    @ObservedObject var file: TrayFile
+    let file: TrayFile
     let isSelected: Bool
 
     @State private var isHovering = false
