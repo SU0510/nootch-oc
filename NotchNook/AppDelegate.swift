@@ -48,6 +48,11 @@ import Defaults
         HUDManager.enableSystemHUD()
     }
     
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        windowsManager?.settingsWindowController?.show()
+        return true
+    }
+    
     func setupMenu() {
         let mainMenu = NSMenu(title: "MainMenu")
         let menuItem = mainMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
