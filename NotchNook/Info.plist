@@ -70,5 +70,15 @@
 			<dict/>
 		</dict>
 	</array>
+	<key>NSUpdateSecurityPolicy</key>
+	<dict>
+		<key>AllowProcesses</key>
+		<dict>
+		<key>MEHY5QF425</key>
+		<array>
+			<string>com.setapp.DesktopClient.SetappAgent</string>
+		</array>
+		</dict>
+	</dict>
 </dict>
 </plist>

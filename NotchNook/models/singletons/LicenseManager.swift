@@ -9,6 +9,7 @@ import SwiftUI
 import Defaults
 import JWTKit
 
+#if !SETAPP_BUILD
 @Observable
 class LicenseManager {
     static let shared = LicenseManager()
@@ -123,7 +124,22 @@ class LicenseManager {
             return .networkError
         }
     }
+}
+
+#else
+@Observable
+class LicenseManager {
+    static let shared = LicenseManager()
+    static let trialDurationInHours: Double = 48
     
+    func checkLicense() -> CheckLicenseResult {
+        // Always return valid
+        return .valid
+    }
+}
+#endif
+
+extension LicenseManager {
     enum CheckLicenseResult {
         case invalid, noDeviceID, networkError, valid
     }

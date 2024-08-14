@@ -180,6 +180,9 @@
 		3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */; };
 		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
+		BB1A9AFF2C69126800DA8FD0 /* setappPublicKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */; };
+		BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */; };
+		BB2942332C6A657B00616445 /* Setapp in Frameworks */ = {isa = PBXBuildFile; productRef = BB2942322C6A657B00616445 /* Setapp */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
@@ -527,6 +530,8 @@
 		3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3AE405502C2D499300E8D927 /* RichToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarView.swift; sourceTree = "<group>"; };
+		BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = setappPublicKey.pem; sourceTree = "<group>"; };
+		BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthTextField.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorView.swift; sourceTree = "<group>"; };
 		BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAndBrightnessListener.swift; sourceTree = "<group>"; };
@@ -710,6 +715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
+				BB2942332C6A657B00616445 /* Setapp in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				ECCEFE6F2C64453600F3385C /* FluidGradient in Frameworks */,
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
@@ -1386,6 +1392,7 @@
 				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
 				EC47FC802C0AA67100591811 /* Info.plist */,
 				3A7404992C416B090049081C /* Localizable.xcstrings */,
+				BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */,
 			);
 			path = NotchNook;
 			sourceTree = "<group>";
@@ -1393,6 +1400,7 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */,
 				3A8507702C4B3E2E0092B135 /* Indicator */,
 				3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */,
 				EC47FCA52C0BA33900591811 /* intro */,
@@ -1784,6 +1792,7 @@
 				3A9E6BF72C3A9C3F009948F5 /* DynamicColor */,
 				3A7C05DA2C59C65900435D99 /* JWTKit */,
 				ECCEFE6E2C64453600F3385C /* FluidGradient */,
+				BB2942322C6A657B00616445 /* Setapp */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1832,6 +1841,7 @@
 				3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 				3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */,
 				ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */,
+				BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1847,6 +1857,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB1A9AFF2C69126800DA8FD0 /* setappPublicKey.pem in Resources */,
 				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
 				3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */,
@@ -2128,6 +2139,7 @@
 				EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */,
 				3A20F1712C2F8937006A7E1F /* SideEffectsModifier.swift in Sources */,
 				3A1691DA2C2FB2110014C326 /* NotchSizeKey.swift in Sources */,
+				BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */,
 				3A20F1752C2F8AA6006A7E1F /* EnvironmentsModifier.swift in Sources */,
 				EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */,
 				EC8D5FE92BFA704D00E67ECC /* ClosestNumber.swift in Sources */,
@@ -2251,7 +2263,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(BUILT_PRODUCTS_DIR)/libSetapp.a",
+					"-force_load",
+				);
 				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SETAPP_BUILD;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = "Release Setapp";
@@ -2666,6 +2683,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/Setapp-framework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.1;
+			};
+		};
 		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -2773,6 +2798,11 @@
 		3AA6FFDD2C352EC600BA2F80 /* CodeEditor */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CodeEditor;
+		};
+		BB2942322C6A657B00616445 /* Setapp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */;
+			productName = Setapp;
 		};
 		BB2A5E542C006B63008F3081 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

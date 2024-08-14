@@ -28,22 +28,23 @@ struct LicenseSettingsView: View {
         Form {
             Section("Status") {
                 HStack {
-                    Image(systemName: license == nil ? "xmark.circle.fill" : "checkmark.circle.fill")
+                    Image(systemName: isLicenseValid ? "checkmark.circle.fill" : "xmark.circle.fill")
                         .symbolRenderingMode(.multicolor)
-                        .foregroundStyle(license == nil ? .red : .blue)
+                        .foregroundStyle(isLicenseValid ? .blue : .red)
                         .font(.system(size: 24))
                     
                     Spacer()
                     
                     VStack(alignment: .trailing) {
                         Text("Status").font(.title2)
-                        Text(license == nil ? "Unregistered" : "Registered")
+                        Text(isLicenseValid ? "Registered" : "Unregistered")
                             .fontWeight(.semibold)
-                            .foregroundStyle(license == nil ? .red : .blue)
+                            .foregroundStyle(isLicenseValid ? .blue : .red)
                     }
                 }
             }
             
+            #if !SETAPP_BUILD
             if license == nil, let trialInitialTime, !isTrialOver() {
                 Section("Trial") {
                     if trialOver {
@@ -53,38 +54,54 @@ struct LicenseSettingsView: View {
                     }
                 }
             }
+            #endif
             
             Section("License") {
                 VStack(spacing: 4) {
                     HStack {
                         Label("Email", systemImage: "at")
                         
+                        #if !SETAPP_BUILD
                         if !isEmailValid && !email.isEmpty {
                             Text("Please enter a valid email")
                                 .foregroundColor(.red)
                                 .font(.caption)
                         }
+                        #endif
                         
                         Spacer()
                         
+                        #if SETAPP_BUILD
+                        FixedWidthTextField(text: $email, placeholder: "Thanks for using Setapp!", isSecure: false)
+                            .frame(width: 250, height: 24)
+                            .disabled(true)
+                        #else
                         FixedWidthTextField(text: $email, placeholder: "john.doe@email.com", isSecure: false)
                             .frame(width: 250, height: 24)
                             .onChange(of: email) { _, _ in
                                 withAnimation(.snappy) { isEmailValid = validateEmail(email) }
                             }
+                            .disabled(isLicenseValid)
+                        #endif
                     }
-                    .disabled(license != nil)
                     
                     HStack {
                         Label("License Key", systemImage: "key.horizontal.fill")
                         
                         Spacer()
                         
-                        FixedWidthTextField(text: $key, placeholder: "Ex: gjp1lh5dtzqp4yddn73uush9r4inv0", isSecure: license != nil)
+                        #if SETAPP_BUILD
+                        FixedWidthTextField(text: $email, placeholder: "You don't need to worry about a license.", isSecure: false)
                             .frame(width: 250, height: 24)
+                            .disabled(true)
+                        #else
+                        FixedWidthTextField(text: $key, placeholder: "Ex: gjp1lh5dtzqp4yddn73uush9r4inv0", isSecure: isLicenseValid)
+                            .frame(width: 250, height: 24)
+                            .disabled(isLicenseValid)
+                        #endif
                     }
-                    .disabled(license != nil)
                     
+                    #if !SETAPP_BUILD
                     HStack(spacing: 0) {
                         Color.white.opacity(0.05)
                             .frame(maxWidth: .infinity, maxHeight: 1)
@@ -99,7 +116,8 @@ struct LicenseSettingsView: View {
                         .frame(width: 250, height: 23)
                     }
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 8, trailing: 0))
-                    .disabled(license != nil)
+                    .disabled(isLicenseValid)
+                    #endif
                     
                     HStack {
                         VStack(alignment: .leading) {
@@ -116,16 +134,17 @@ struct LicenseSettingsView: View {
                         
                         Spacer()
                         
+                        #if !SETAPP_BUILD
                         if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
                         
-                        if license == nil, let url = URL(string: "https://lo.cafe/notchnook") {
+                        if !isLicenseValid, let url = URL(string: "https://lo.cafe/notchnook") {
                             Button("Get a License") {
                                 openURL(url)
                             }
                         }
                         
-                        Button(license == nil ? "Register" : "Unregister") {
-                            if license != nil {
+                        Button(isLicenseValid ? "Unregister" : "Register") {
+                            if isLicenseValid {
                                 license = nil
                                 successMessage = "License unregistered successfully"
                                 return
@@ -135,13 +154,18 @@ struct LicenseSettingsView: View {
                         .disabled(loading || !isEmailValid || email.isEmpty || key.isEmpty)
                         .buttonStyle(BorderedProminentButtonStyle())
                         
-                        if license != nil && keyType == .subscription {
+                        if isLicenseValid && keyType == .subscription {
                             Button("Manage Billing") {
                                 if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
                                     openURL(url)
                                 }
                             }
                         }
+                        #else
+                        Text("License provided by Setapp")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        #endif
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
@@ -150,14 +174,25 @@ struct LicenseSettingsView: View {
         .formStyle(.grouped)
         .defaultSettingsProps()
         .onAppear {
+            #if !SETAPP_BUILD
             if let license {
                 email = license.email
                 key = license.key
                 keyType = license.type
             }
+            #endif
         }
     }
     
+    private var isLicenseValid: Bool {
+        #if SETAPP_BUILD
+        return true
+        #else
+        return license != nil
+        #endif
+    }
+    
+    #if !SETAPP_BUILD
     private func registerLicense() {
         guard validateEmail(email) else {
             errorStr = "Invalid email format"
@@ -203,13 +238,7 @@ struct LicenseSettingsView: View {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-    
-    private func noWhitespaceBinding(_ binding: Binding<String>) -> Binding<String> {
-        Binding<String>(
-            get: { binding.wrappedValue },
-            set: { binding.wrappedValue = $0.filter { !$0.isWhitespace } }
-        )
-    }
+    #endif
 }
 
 let LicenseSettingsViewController: () -> SettingsPane = {
@@ -222,40 +251,4 @@ let LicenseSettingsViewController: () -> SettingsPane = {
     }
     
     return Settings.PaneHostingController(pane: paneView)
-}
-
-struct FixedWidthTextField: NSViewRepresentable {
-    @Binding var text: String
-    var placeholder: String
-    var isSecure: Bool
-    
-    func makeNSView(context: Context) -> NSTextField {
-        let textField = isSecure ? NSSecureTextField() : NSTextField()
-        textField.placeholderString = placeholder
-        textField.delegate = context.coordinator
-        textField.cell?.wraps = false
-        textField.cell?.isScrollable = true
-        return textField
-    }
-    
-    func updateNSView(_ nsView: NSTextField, context: Context) {
-        nsView.stringValue = text
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, NSTextFieldDelegate {
-        var parent: FixedWidthTextField
-        
-        init(_ parent: FixedWidthTextField) {
-            self.parent = parent
-        }
-        
-        func controlTextDidChange(_ obj: Notification) {
-            guard let textField = obj.object as? NSTextField else { return }
-            parent.text = textField.stringValue.filter { !$0.isWhitespace }
-        }
-    }
 }
