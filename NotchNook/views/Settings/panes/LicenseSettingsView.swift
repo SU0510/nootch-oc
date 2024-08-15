@@ -79,7 +79,7 @@ struct LicenseSettingsView: View {
                         .scaledToFit()
                         .frame(width: 291, height: 68)
                         .padding(.leading, 80)
-                        .opacity(0.1)
+                        .opacity(0.125)
                 }
 #else
                 
