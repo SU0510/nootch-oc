@@ -58,7 +58,10 @@ struct TrayFileView: View {
                 }
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .overlay(alignment: .topTrailing) { removeButton }
+        .overlay(alignment: .topTrailing) {
+            removeButton
+                .zIndex(1)
+        }
         .transition(.scaleAndBlur)
         .contextMenu {
             Button("Copy") {
@@ -136,6 +139,7 @@ struct TrayFileView: View {
         .frame(20)
         .contentShape(Circle())
         .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
+        .allowsHitTesting(true)
     }
     
     private func enableTextEditing() {

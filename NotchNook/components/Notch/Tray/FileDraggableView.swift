@@ -17,6 +17,11 @@ struct FileDraggableView<DragPreview: View>: NSViewRepresentable {
         
         // Enable dragging
         view.registerForDraggedTypes([.fileURL, .html, .string, .pdf, .png, .fileContents])
+        
+        view.hitTestBlock = { point in
+            let removeButtonFrame = NSRect(x: view.bounds.width - 20, y: view.bounds.height - 20, width: 20, height: 20)
+            return !removeButtonFrame.contains(point)
+        }
 
         return view
     }
@@ -35,6 +40,15 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     var onDropCompleted: (Bool) -> () = { _ in }
     var selectedURLs: [URL] = []
     var dragPreview: (() -> DragPreviewChild)?
+    
+    var hitTestBlock: ((NSPoint) -> Bool)?
+    
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        if let hitTestBlock = hitTestBlock, !hitTestBlock(point) {
+            return nil
+        }
+        return super.hitTest(point)
+    }
     
     private var initialMouseDownLocation: NSPoint?
     private let minimumDragDistance: CGFloat = 3.0
