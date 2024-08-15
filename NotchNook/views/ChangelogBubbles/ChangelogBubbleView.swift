@@ -18,9 +18,9 @@ struct ChangelogBubbleView: View, Equatable {
     var body: some View {
         let rotationDegrees: Double = 15
         HStack {
-            Image(.starChangelog)
-                .resizable()
-                .frame(20)
+//            Image(.starChangelog)
+//                .resizable()
+//                .frame(20)
         }
         .frame(32)
         .background {
