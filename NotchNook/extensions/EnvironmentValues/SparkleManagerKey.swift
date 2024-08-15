@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if !SETAPP_BUILD
 private struct SparkleManagerKey: EnvironmentKey {
     static var defaultValue = SparkleManager(updater: nil)
 }
@@ -17,3 +18,4 @@ extension EnvironmentValues {
         set { self[SparkleManagerKey.self] = newValue }
     }
 }
+#endif

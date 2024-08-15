@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+#if !SETAPP_BUILD
 import Sparkle
 
 class UpdaterDelegate: NSObject, SPUUpdaterDelegate, SPUStandardUserDriverDelegate {
@@ -18,3 +20,4 @@ class UpdaterDelegate: NSObject, SPUUpdaterDelegate, SPUStandardUserDriverDelega
         return false
     }
 }
+#endif

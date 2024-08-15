@@ -4,7 +4,7 @@
 //
 //  Created by Igor Marcossi on 20/06/24.
 //
-
+#if !SETAPP_BUILD
 import SwiftUI
 import Sparkle
 import Combine
@@ -117,3 +117,4 @@ class SparkleManager {
     func resetUpdateCycleAfterShortDelay() { updater?.resetUpdateCycleAfterShortDelay() }
     func start() throws { try updater?.start() }
 }
+#endif

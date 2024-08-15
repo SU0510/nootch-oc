@@ -6,7 +6,9 @@
 //
 import Foundation
 import SwiftUI
+#if !SETAPP_BUILD
 import Sparkle
+#endif
 import AppKit
 import SwiftDate
 import SwiftData
@@ -16,12 +18,16 @@ import Defaults
     var windowController: NSWindowController? = nil
     var windowsManager: WindowsManager?
     var nsMenu: NSMenu?
+#if !SETAPP_BUILD
     let updaterDelegate = UpdaterDelegate()
     let updaterController: SPUStandardUpdaterController
+#endif
     
     override init() {
         SwiftDate.defaultRegion = Region.local
+#if !SETAPP_BUILD
         updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: updaterDelegate, userDriverDelegate: updaterDelegate)
+#endif
     }
     
     func application(_ application: NSApplication, open urls: [URL]) {

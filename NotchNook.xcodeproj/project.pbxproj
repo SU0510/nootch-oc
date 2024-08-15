@@ -161,6 +161,7 @@
 		3A9E6C172C3D5A95009948F5 /* GeneralSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */; };
 		3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */; };
 		3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */; };
+		3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */ = {isa = PBXBuildFile; productRef = 3A9FEA162C6DCBF500AE6515 /* Setapp */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
 		3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D892C2619730000F995 /* SwiftUIWindow.swift */; };
@@ -178,7 +179,6 @@
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
 		BB1A9AFF2C69126800DA8FD0 /* setappPublicKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */; };
 		BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */; };
-		BB2942332C6A657B00616445 /* Setapp in Frameworks */ = {isa = PBXBuildFile; productRef = BB2942322C6A657B00616445 /* Setapp */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
@@ -270,7 +270,6 @@
 		EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */; };
 		EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */; };
 		EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC22C0BF4B900591811 /* rowlify.swift */; };
-		EC47FCC52C0BF61900591811 /* CheckForUpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */; };
 		EC47FCC92C0C067600591811 /* DropAreaGeneralSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCC82C0C067600591811 /* DropAreaGeneralSettingsTabView.swift */; };
 		EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47FCCC2C0C06F200591811 /* PipelinesSettingsTabView.swift */; };
 		EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC758F6F2BF2F18900B873B0 /* Assets.xcassets */; };
@@ -615,7 +614,6 @@
 		EC47FCBE2C0BF30100591811 /* SettingsLinkBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLinkBtn.swift; sourceTree = "<group>"; };
 		EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRecommendation.swift; sourceTree = "<group>"; };
 		EC47FCC22C0BF4B900591811 /* rowlify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rowlify.swift; sourceTree = "<group>"; };
-		EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesViewModel.swift; sourceTree = "<group>"; };
 		EC47FCC82C0C067600591811 /* DropAreaGeneralSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropAreaGeneralSettingsTabView.swift; sourceTree = "<group>"; };
 		EC47FCCC2C0C06F200591811 /* PipelinesSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelinesSettingsTabView.swift; sourceTree = "<group>"; };
 		EC758F682BF2F18700B873B0 /* NotchNook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchNook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -711,7 +709,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
-				BB2942332C6A657B00616445 /* Setapp in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				ECCEFE6F2C64453600F3385C /* FluidGradient in Frameworks */,
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
@@ -724,6 +721,7 @@
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 				3A1DC6172C6DAE6500D97B5E /* CodeEditor in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
+				3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,6 +1371,7 @@
 				EC758F8F2BF2F1A400B873B0 /* extensions */,
 				3A801E032C1530490076560D /* decorators */,
 				EC47FC942C0B824500591811 /* assets */,
+				BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
 				EC758F922BF2F1A400B873B0 /* models */,
@@ -1384,7 +1383,6 @@
 				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
 				EC47FC802C0AA67100591811 /* Info.plist */,
 				3A7404992C416B090049081C /* Localizable.xcstrings */,
-				BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */,
 			);
 			path = NotchNook;
 			sourceTree = "<group>";
@@ -1543,7 +1541,6 @@
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 				EC0E31022C0548A10060B47E /* NookGrid.swift */,
 				EC47FCC02C0BF3ED00591811 /* AppRecommendation.swift */,
-				EC47FCC42C0BF61900591811 /* CheckForUpdatesViewModel.swift */,
 				3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */,
 				3A471A402C224C6C00FCD355 /* FolderMonitor.swift */,
 				3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */,
@@ -1779,8 +1776,8 @@
 				3A9E6BF72C3A9C3F009948F5 /* DynamicColor */,
 				3A7C05DA2C59C65900435D99 /* JWTKit */,
 				ECCEFE6E2C64453600F3385C /* FluidGradient */,
-				BB2942322C6A657B00616445 /* Setapp */,
 				3A1DC6162C6DAE6500D97B5E /* CodeEditor */,
+				3A9FEA162C6DCBF500AE6515 /* Setapp */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1828,8 +1825,8 @@
 				3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 				3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */,
 				ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */,
-				BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
 				3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */,
+				3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -1922,7 +1919,6 @@
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
-				EC47FCC52C0BF61900591811 /* CheckForUpdatesViewModel.swift in Sources */,
 				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
@@ -2672,9 +2668,9 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */ = {
+		3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MacPaw/Setapp-framework";
+			repositoryURL = "https://github.com/MacPaw/Setapp-framework.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.2.1;
@@ -2772,9 +2768,9 @@
 			package = 3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */;
 			productName = DynamicColor;
 		};
-		BB2942322C6A657B00616445 /* Setapp */ = {
+		3A9FEA162C6DCBF500AE6515 /* Setapp */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */;
+			package = 3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */;
 			productName = Setapp;
 		};
 		BB2A5E542C006B63008F3081 /* Defaults */ = {

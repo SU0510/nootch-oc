@@ -7,15 +7,21 @@
 
 import SwiftUI
 import Settings
+#if !SETAPP_BUILD
 import Sparkle
+#endif
 import Defaults
 
 struct AboutSettingsView: View {
+#if !SETAPP_BUILD
     @State private var sparkleManager: SparkleManager
+#endif
     @Environment(\.showChangelog) private var showChangelog
+#if !SETAPP_BUILD
     init(sparkleManager: SparkleManager) {
         self._sparkleManager = .init(initialValue: sparkleManager)
     }
+#endif
     var body: some View {
         VStack(spacing: 16) {
             HStack {
@@ -26,9 +32,11 @@ struct AboutSettingsView: View {
                     HStack(alignment: .bottom) {
                         Text("NotchNook").font(.title).fontWeight(.bold)
                         Spacer()
+#if !SETAPP_BUILD
                         Button("Check for Updates…", action: sparkleManager.checkForUpdates)
                             .disabled(!sparkleManager.canCheckForUpdates)
                             .padding(.bottom, 3)
+#endif
                     }
                     
                     HStack(alignment: .top) {
@@ -36,6 +44,7 @@ struct AboutSettingsView: View {
                             .opacity(0.75)
                             .onTapGesture(perform: showChangelog)
                         Spacer()
+#if !SETAPP_BUILD
                         HStack {
                             if sparkleManager.automaticallyChecksForUpdates {
                                 Toggle("Auto download updates", isOn: $sparkleManager.automaticallyDownloadsUpdates)
@@ -50,8 +59,9 @@ struct AboutSettingsView: View {
                                     }
                                 }
                         }
+#endif
                     }
-
+                    
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -120,7 +130,11 @@ struct AboutSettingsView: View {
     }
 }
 
-let AboutSettingsViewController: (_ sparkleManager: SparkleManager, _ showChangelog: (() -> ())?) -> SettingsPane = { sparkleManager, showChangelog in
+#if !SETAPP_BUILD
+let AboutSettingsViewController: (
+    _ sparkleManager: SparkleManager,
+    _ showChangelog: (() -> ())?
+) -> SettingsPane = { sparkleManager, showChangelog in
     let paneView = Settings.Pane(
         identifier: .about,
         title: String(localized: "About"),
@@ -130,9 +144,25 @@ let AboutSettingsViewController: (_ sparkleManager: SparkleManager, _ showChange
             .environment(\.sparkleManager, sparkleManager)
             .environment(\.showChangelog, showChangelog ?? {})
     }
-
+    
     return Settings.PaneHostingController(pane: paneView)
 }
+#else 
+let AboutSettingsViewController: (
+    _ showChangelog: (() -> ())?
+) -> SettingsPane = { showChangelog in
+    let paneView = Settings.Pane(
+        identifier: .about,
+        title: String(localized: "About"),
+        toolbarIcon: NSImage(systemSymbolName: "ellipsis.circle.fill", accessibilityDescription: "About settings")!
+    ) {
+        AboutSettingsView()
+            .environment(\.showChangelog, showChangelog ?? {})
+    }
+    
+    return Settings.PaneHostingController(pane: paneView)
+}
+#endif
 
 private struct AppRecommendationView: View {
     var app: AppRecommendation

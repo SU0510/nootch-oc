@@ -44,7 +44,7 @@ struct LicenseSettingsView: View {
                 }
             }
             
-            #if !SETAPP_BUILD
+#if !SETAPP_BUILD
             if license == nil, let trialInitialTime, !isTrialOver() {
                 Section("Trial") {
                     if trialOver {
@@ -54,35 +54,53 @@ struct LicenseSettingsView: View {
                     }
                 }
             }
-            #endif
+#endif
             
             Section("License") {
-                VStack(spacing: 4) {
+#if SETAPP_BUILD
+                HStack {
+                    Image(.setappLogo)
+                        .resizable()
+                        .frame(80)
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("Authenticated with Setapp!")
+                            .font(.system(size: 15 , weight: .semibold))
+                        Text("Enjoy NotchNook ❤️")
+                            .font(.system(size: 12))
+                            .opacity(0.5)
+                    }
+                }
+                .background(alignment: .leading) {
+                    Image(.dashedSetappLine)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 291, height: 68)
+                        .padding(.leading, 80)
+                        .opacity(0.1)
+                }
+#else
+                
+                VStack(spacing: 8) {
                     HStack {
                         Label("Email", systemImage: "at")
                         
-                        #if !SETAPP_BUILD
                         if !isEmailValid && !email.isEmpty {
                             Text("Please enter a valid email")
                                 .foregroundColor(.red)
                                 .font(.caption)
                         }
-                        #endif
                         
                         Spacer()
                         
-                        #if SETAPP_BUILD
-                        FixedWidthTextField(text: $email, placeholder: "Thanks for using Setapp!", isSecure: false)
-                            .frame(width: 250, height: 24)
-                            .disabled(true)
-                        #else
                         FixedWidthTextField(text: $email, placeholder: "john.doe@email.com", isSecure: false)
-                            .frame(width: 250, height: 24)
                             .onChange(of: email) { _, _ in
                                 withAnimation(.snappy) { isEmailValid = validateEmail(email) }
                             }
                             .disabled(isLicenseValid)
-                        #endif
+                            .frame(width: 250, height: 24)
                     }
                     
                     HStack {
@@ -90,18 +108,11 @@ struct LicenseSettingsView: View {
                         
                         Spacer()
                         
-                        #if SETAPP_BUILD
-                        FixedWidthTextField(text: $email, placeholder: "You don't need to worry about a license.", isSecure: false)
-                            .frame(width: 250, height: 24)
-                            .disabled(true)
-                        #else
                         FixedWidthTextField(text: $key, placeholder: "Ex: gjp1lh5dtzqp4yddn73uush9r4inv0", isSecure: isLicenseValid)
                             .frame(width: 250, height: 24)
                             .disabled(isLicenseValid)
-                        #endif
                     }
                     
-                    #if !SETAPP_BUILD
                     HStack(spacing: 0) {
                         Color.white.opacity(0.05)
                             .frame(maxWidth: .infinity, maxHeight: 1)
@@ -117,7 +128,6 @@ struct LicenseSettingsView: View {
                     }
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 8, trailing: 0))
                     .disabled(isLicenseValid)
-                    #endif
                     
                     HStack {
                         VStack(alignment: .leading) {
@@ -134,7 +144,6 @@ struct LicenseSettingsView: View {
                         
                         Spacer()
                         
-                        #if !SETAPP_BUILD
                         if loading { ProgressView().controlSize(.small).padding(.horizontal, 4) }
                         
                         if !isLicenseValid, let url = URL(string: "https://lo.cafe/notchnook") {
@@ -149,6 +158,7 @@ struct LicenseSettingsView: View {
                                 successMessage = "License unregistered successfully"
                                 return
                             }
+                            
                             registerLicense()
                         }
                         .disabled(loading || !isEmailValid || email.isEmpty || key.isEmpty)
@@ -161,38 +171,34 @@ struct LicenseSettingsView: View {
                                 }
                             }
                         }
-                        #else
-                        Text("License provided by Setapp")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        #endif
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
+#endif
             }
         }
         .formStyle(.grouped)
         .defaultSettingsProps()
         .onAppear {
-            #if !SETAPP_BUILD
+#if !SETAPP_BUILD
             if let license {
                 email = license.email
                 key = license.key
                 keyType = license.type
             }
-            #endif
+#endif
         }
     }
     
     private var isLicenseValid: Bool {
-        #if SETAPP_BUILD
+#if SETAPP_BUILD
         return true
-        #else
+#else
         return license != nil
-        #endif
+#endif
     }
     
-    #if !SETAPP_BUILD
+#if !SETAPP_BUILD
     private func registerLicense() {
         guard validateEmail(email) else {
             errorStr = "Invalid email format"
@@ -238,7 +244,7 @@ struct LicenseSettingsView: View {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-    #endif
+#endif
 }
 
 let LicenseSettingsViewController: () -> SettingsPane = {

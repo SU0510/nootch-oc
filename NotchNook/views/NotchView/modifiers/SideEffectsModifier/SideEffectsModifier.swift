@@ -18,7 +18,9 @@ extension NotchView {
         @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
         @Environment(\.generalSettings) internal var generalSettings
         @Environment(\.notchNook) internal var notchNook
+#if !SETAPP_BUILD
         @Environment(\.sparkleManager) internal var sparkleManager
+#endif
         @Environment(\.showChangelog) internal var showChangelog
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.isEditingText) internal var isEditingText
@@ -30,7 +32,9 @@ extension NotchView {
         func body(content: Content) -> some View {
             content
                 .onAppear {
+#if !SETAPP_BUILD
                     checkForUpdates()
+#endif
                     resetTrialAndHandleChangelog()
                     insertUpdateLAIfOldVersion()
                     fetchEvents()

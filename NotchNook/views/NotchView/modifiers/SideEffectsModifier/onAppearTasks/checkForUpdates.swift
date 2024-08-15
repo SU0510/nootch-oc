@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+#if !SETAPP_BUILD
 extension NotchView.SideEffectsModifier {
     func checkForUpdates() {
         if sparkleManager.automaticallyChecksForUpdates {
@@ -15,3 +16,4 @@ extension NotchView.SideEffectsModifier {
         }
     }
 }
+#endif

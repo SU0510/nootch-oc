@@ -9,7 +9,9 @@ import Foundation
 import AppKit
 import Settings
 import SwiftUI
+#if !SETAPP_BUILD
 import Sparkle
+#endif
 import Observation
 
 class WindowsManager {
@@ -18,7 +20,9 @@ class WindowsManager {
     var displayKits = [DisplayKit]()
     var settingsWindowController: SettingsWindowController?
     private var settingsPanes = [SettingsPane]()
+#if !SETAPP_BUILD
     private var sparkleManager: SparkleManager
+#endif
     private var changelogViewWindow: SwiftUIWindow<ChangelogView>?
     private var preventNextFocusFrontmostWindow = false
     private var expandedNoteManager = ExpandedNoteManager()
@@ -28,8 +32,11 @@ class WindowsManager {
     
     private init() {
         print("WindowsManager: Initializing")
+#if !SETAPP_BUILD
         self.sparkleManager = SparkleManager(updater: SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil).updater)
-        self.settingsPanes = [
+#endif
+        
+        var newSettingsPanes: [SettingsPane] = [
             GeneralSettingsViewController(),
             GesturesSettingsViewController(),
             LiveActivitiesSettingsViewController(),
@@ -37,8 +44,15 @@ class WindowsManager {
             TraySettingsViewController(),
             DropAreaSettingsViewController(),
             LicenseSettingsViewController(),
-            AboutSettingsViewController(sparkleManager, showChangelogViewWindow)
         ]
+        
+#if !SETAPP_BUILD
+        newSettingsPanes.append(AboutSettingsViewController(sparkleManager, showChangelogViewWindow))
+#else
+        AboutSettingsViewController(showChangelogViewWindow)
+#endif
+        
+        self.settingsPanes = newSettingsPanes
         
         settingsWindowController = SettingsWindowController(
             panes: self.settingsPanes,
@@ -170,6 +184,9 @@ class WindowsManager {
         let notchWidth = notchHeight == 0 ? 0 : NotchShape.notchWidthInInches * screen.pointsPerInch.width
         let notchSize = CGSize(width: notchWidth, height: notchHeight)
         let notchNook = NotchNookState()
+        
+        
+#if !SETAPP_BUILD
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
                 displayKitId: displayKitId,
@@ -187,6 +204,26 @@ class WindowsManager {
                 expandedNoteManager: expandedNoteManager
             )
         )
+#else
+        let hostingView = AcceptingFirstClickHostingView(
+            rootView: RootView(
+                displayKitId: displayKitId,
+                showSettings: showSettings,
+                screenSize: screenF.size,
+                showChangelog: showChangelogViewWindow,
+                notchSize: notchSize,
+                notchNook: notchNook,
+                focusFrontmostWindow: focusFrontmostWindow,
+                resignFirstResponder: {},
+                preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
+                isEditingText: false,
+                isKeyWindow: true,
+                expandedNoteManager: expandedNoteManager
+            )
+        )
+#endif
+        
+        
         let size = hostingView.intrinsicContentSize
         let newWindow = ForceFocusableWindow(
             contentRect: .init(

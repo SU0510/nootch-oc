@@ -11,7 +11,9 @@ import Lottie
 struct UpdateButtonIconView: View {
     @State private var playbackMode: LottiePlaybackMode = .paused(at: .progress(0))
     @State private var hovered = false
+#if !SETAPP_BUILD
     @Environment(\.sparkleManager) private var sparkleManager
+#endif
     var body: some View {
         LottieView {
             try await DotLottieFile.named("update").animationSource
@@ -31,7 +33,9 @@ struct UpdateButtonIconView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
         .contentShape(Rectangle())
         .onTapGesture {
+#if !SETAPP_BUILD
             sparkleManager.checkForUpdates()
+#endif
             ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.updateAvailable)
         }
         .onHover { hovering in

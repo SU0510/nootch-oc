@@ -11,7 +11,9 @@ struct UpdateAppIconView: View {
     var enableQuickPeek = true
     var quickPeeks: [NotchNookState.QuickPeek] { [.init(icon: "sparkles", text: "New update available for NotchNook!", iconColor: .yellow)] }
     
+#if !SETAPP_BUILD
     @Environment(\.sparkleManager) private var sparkleManager
+#endif
     @Environment(\.notchNook) private var notchNook
     var body: some View {
         Image(.internalAppIconPaddingless)
@@ -21,7 +23,9 @@ struct UpdateAppIconView: View {
             .quickPeekScaling(scaling: notchNook.quickPeeks?.first?.anchor == .topLeading)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
             .onTapGesture {
+#if !SETAPP_BUILD
                 sparkleManager.checkForUpdates()
+#endif
                 ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.updateAvailable)
             }
             .onHover { hovering in

@@ -14,7 +14,9 @@ struct RootView: View {
     var canBecomeKey: Binding<Bool>?
     var showSettings: (SettingsLib.PaneIdentifier?) -> ()
     var screenSize: CGSize
+#if !SETAPP_BUILD
     var sparkleManager: SparkleManager
+#endif
     var showChangelog: () -> ()
     var notchSize: CGSize
     var notchNook: NotchNookState
@@ -69,7 +71,9 @@ struct RootView: View {
         NotchView()
             .environment(\.openSettings, showSettings)
             .environment(\.screenSize, screenSize)
+#if !SETAPP_BUILD
             .environment(\.sparkleManager, sparkleManager)
+#endif
             .environment(\.showChangelog, showChangelog)
             .environment(\.notchSize, notchSize)
             .environment(\.notchNook, notchNook)
