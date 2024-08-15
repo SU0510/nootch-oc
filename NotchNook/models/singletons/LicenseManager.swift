@@ -133,6 +133,8 @@ class LicenseManager {
     static let trialDurationInHours: Double = 48
     
     func checkLicense() -> CheckLicenseResult {
+        Defaults[.license] = License(email: "", key: "", type: .license)
+        
         // Always return valid
         return .valid
     }
