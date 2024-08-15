@@ -162,6 +162,7 @@
 		3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */; };
 		3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */; };
 		3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */ = {isa = PBXBuildFile; productRef = 3A9FEA162C6DCBF500AE6515 /* Setapp */; };
+		3A9FEA192C6E804700AE6515 /* setappPublicKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FEA182C6E804700AE6515 /* setappPublicKey.pem */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
 		3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D892C2619730000F995 /* SwiftUIWindow.swift */; };
@@ -177,7 +178,6 @@
 		3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */; };
 		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
-		BB1A9AFF2C69126800DA8FD0 /* setappPublicKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */; };
 		BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */; };
 		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
@@ -510,6 +510,7 @@
 		3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsKeys.swift; sourceTree = "<group>"; };
 		3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerLiveActivitiesSettingsKeys.swift; sourceTree = "<group>"; };
 		3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerWidgetSettingsKeys.swift; sourceTree = "<group>"; };
+		3A9FEA182C6E804700AE6515 /* setappPublicKey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setappPublicKey.pem; sourceTree = "<group>"; };
 		3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFeatureView.swift; sourceTree = "<group>"; };
 		3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVLooperPlayer.swift; sourceTree = "<group>"; };
 		3AC36D892C2619730000F995 /* SwiftUIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIWindow.swift; sourceTree = "<group>"; };
@@ -525,7 +526,6 @@
 		3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3AE405502C2D499300E8D927 /* RichToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarView.swift; sourceTree = "<group>"; };
-		BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = setappPublicKey.pem; sourceTree = "<group>"; };
 		BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthTextField.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorView.swift; sourceTree = "<group>"; };
@@ -1371,7 +1371,7 @@
 				EC758F8F2BF2F1A400B873B0 /* extensions */,
 				3A801E032C1530490076560D /* decorators */,
 				EC47FC942C0B824500591811 /* assets */,
-				BB1A9AFE2C69126800DA8FD0 /* setappPublicKey.pem */,
+				3A9FEA182C6E804700AE6515 /* setappPublicKey.pem */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
 				EC758F922BF2F1A400B873B0 /* models */,
@@ -1842,7 +1842,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB1A9AFF2C69126800DA8FD0 /* setappPublicKey.pem in Resources */,
+				3A9FEA192C6E804700AE6515 /* setappPublicKey.pem in Resources */,
 				EC47FCB32C0BAE8000591811 /* click.lottie in Resources */,
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
 				3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */,
@@ -2289,7 +2289,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.2.4;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libSetapp.a\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-setapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

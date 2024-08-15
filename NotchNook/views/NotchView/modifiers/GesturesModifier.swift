@@ -57,10 +57,10 @@ extension NotchView {
             
             if hovering {
                 if notchNook.mode == .closed {
-//#if SETAPP_BUILD
-//                        SetappManager.shared.reportUsageEvent(.userInteraction)
-//#endif
-
+#if SETAPP_BUILD
+                    SetappManager.shared.reportUsageEvent(.userInteraction)
+#endif
+                    
                     if !tray.files.isEmpty || generalSettings.alwaysOpenNotchOnHover {
                         openNotch(tray.files.isEmpty ? .nook : .tray)
                     } else {
