@@ -65,8 +65,7 @@
 		3A1691F32C2FB5180014C326 /* CheckTrialOverKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691F22C2FB5180014C326 /* CheckTrialOverKey.swift */; };
 		3A1691F72C2FBA410014C326 /* InMemoryDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */; };
 		3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691FB2C2FC7D20014C326 /* GesturesModifier.swift */; };
-		3A1FFE1E2C35310400BB4A03 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE1D2C35310400BB4A03 /* CodeEditor */; };
-		3A1FFE212C353F6D00BB4A03 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1FFE202C353F6D00BB4A03 /* CodeEditor */; };
+		3A1DC6172C6DAE6500D97B5E /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1DC6162C6DAE6500D97B5E /* CodeEditor */; };
 		3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */; };
 		3A1FFE282C3542E600BB4A03 /* ExpandedNoteManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */; };
 		3A1FFE2B2C354B6600BB4A03 /* ExpandedNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1FFE2A2C354B6600BB4A03 /* ExpandedNoteView.swift */; };
@@ -162,9 +161,6 @@
 		3A9E6C172C3D5A95009948F5 /* GeneralSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */; };
 		3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C182C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift */; };
 		3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C1A2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift */; };
-		3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFD82C352D8600BA2F80 /* CodeEditor */; };
-		3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDA2C352EB000BA2F80 /* CodeEditor */; };
-		3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA6FFDD2C352EC600BA2F80 /* CodeEditor */; };
 		3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7D2C251E450000F995 /* VideoFeatureView.swift */; };
 		3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D7F2C251EC10000F995 /* AVLooperPlayer.swift */; };
 		3AC36D8A2C2619730000F995 /* SwiftUIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC36D892C2619730000F995 /* SwiftUIWindow.swift */; };
@@ -722,16 +718,12 @@
 				3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
-				3A1FFE212C353F6D00BB4A03 /* CodeEditor in Frameworks */,
-				3AA6FFDB2C352EB000BA2F80 /* CodeEditor in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
-				3AA6FFDE2C352EC600BA2F80 /* CodeEditor in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				EC4173D22C025136002889E7 /* Settings in Frameworks */,
+				3A1DC6172C6DAE6500D97B5E /* CodeEditor in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
-				3A1FFE1E2C35310400BB4A03 /* CodeEditor in Frameworks */,
-				3AA6FFD92C352D8600BA2F80 /* CodeEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1784,15 +1776,11 @@
 				EC7A0FAF2C0FE8F10063E78E /* SwiftDate */,
 				3A801E0A2C154EA30076560D /* SmoothGradient */,
 				3A8AA2CE2C313B6300D727DA /* RichTextKit */,
-				3AA6FFD82C352D8600BA2F80 /* CodeEditor */,
-				3AA6FFDA2C352EB000BA2F80 /* CodeEditor */,
-				3AA6FFDD2C352EC600BA2F80 /* CodeEditor */,
-				3A1FFE1D2C35310400BB4A03 /* CodeEditor */,
-				3A1FFE202C353F6D00BB4A03 /* CodeEditor */,
 				3A9E6BF72C3A9C3F009948F5 /* DynamicColor */,
 				3A7C05DA2C59C65900435D99 /* JWTKit */,
 				ECCEFE6E2C64453600F3385C /* FluidGradient */,
 				BB2942322C6A657B00616445 /* Setapp */,
+				3A1DC6162C6DAE6500D97B5E /* CodeEditor */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1837,11 +1825,11 @@
 				EC7A0FAE2C0FE8F10063E78E /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				3A801E092C154EA30076560D /* XCRemoteSwiftPackageReference "SmoothGradient" */,
 				3A8AA2CD2C313B6300D727DA /* XCRemoteSwiftPackageReference "RichTextKit" */,
-				3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 				3A7C05D92C59C65900435D99 /* XCRemoteSwiftPackageReference "jwt-kit" */,
 				ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */,
 				BB2942312C6A657B00616445 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
+				3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -2643,7 +2631,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
+		3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lo-cafe/CodeEditor.git";
 			requirement = {
@@ -2758,13 +2746,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3A1FFE1D2C35310400BB4A03 /* CodeEditor */ = {
+		3A1DC6162C6DAE6500D97B5E /* CodeEditor */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = CodeEditor;
-		};
-		3A1FFE202C353F6D00BB4A03 /* CodeEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A1FFE1F2C353F6D00BB4A03 /* XCRemoteSwiftPackageReference "CodeEditor" */;
+			package = 3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */;
 			productName = CodeEditor;
 		};
 		3A7C05DA2C59C65900435D99 /* JWTKit */ = {
@@ -2786,18 +2770,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A9E6BF62C3A9C3F009948F5 /* XCRemoteSwiftPackageReference "DynamicColor" */;
 			productName = DynamicColor;
-		};
-		3AA6FFD82C352D8600BA2F80 /* CodeEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CodeEditor;
-		};
-		3AA6FFDA2C352EB000BA2F80 /* CodeEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CodeEditor;
-		};
-		3AA6FFDD2C352EC600BA2F80 /* CodeEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CodeEditor;
 		};
 		BB2942322C6A657B00616445 /* Setapp */ = {
 			isa = XCSwiftPackageProductDependency;
