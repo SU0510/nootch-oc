@@ -18,7 +18,8 @@ struct TrayFileView: View {
     @FocusState private var isTextFieldFocused: Bool
     
     @Environment(\.tray) private var tray
-    @Environment(\.windowManager) private var windowManager
+    @Environment(\.enableTextEditingForWindowWith) private var enableTextEditingForWindowWith
+    @Environment(\.updateEditingTextStateFor) private var updateEditingTextStateFor
     @Environment(\.displayKitId) private var displayKitId
     @Environment(\.makeKeyWindow) private var makeKeyWindow
     
@@ -99,7 +100,7 @@ struct TrayFileView: View {
                     enableTextEditing()
                 }
                 .onDisappear {
-                    windowManager?.updateEditingTextState(for: displayKitId, isEditing: false)
+                    updateEditingTextStateFor(displayKitId, false)
                 }
             } else {
                 NonHyphenatingText(text: file.nameTruncated)
@@ -144,7 +145,7 @@ struct TrayFileView: View {
     
     private func enableTextEditing() {
         doAfter (0.1) {
-            windowManager?.enableTextEditingForWindow(with: displayKitId)
+            enableTextEditingForWindowWith(displayKitId)
             makeKeyWindow()
             isTextFieldFocused = true
         }

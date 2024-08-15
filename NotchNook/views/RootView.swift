@@ -11,7 +11,8 @@ import Defaults
 
 struct RootView: View {
     var displayKitId: UUID
-    let windowManager: WindowsManager
+    var enableTextEditingForWindowWith: (_ id: UUID) -> ()
+    var updateEditingTextStateFor: (_ id: UUID, _ isEditing: Bool) -> ()
     var canBecomeKey: Binding<Bool>?
     var showSettings: (SettingsLib.PaneIdentifier?) -> ()
     var screenSize: CGSize
@@ -71,7 +72,8 @@ struct RootView: View {
     var body: some View {
         NotchView()
             .environment(\.openSettings, showSettings)
-            .environment(\.windowManager, windowManager)
+            .environment(\.enableTextEditingForWindowWith, enableTextEditingForWindowWith)
+            .environment(\.updateEditingTextStateFor, updateEditingTextStateFor)
             .environment(\.screenSize, screenSize)
 #if !SETAPP_BUILD
             .environment(\.sparkleManager, sparkleManager)

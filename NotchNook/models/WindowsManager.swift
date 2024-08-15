@@ -190,7 +190,8 @@ class WindowsManager {
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
                 displayKitId: displayKitId, 
-                windowManager: self,
+                enableTextEditingForWindowWith: self.enableTextEditingForWindow,
+                updateEditingTextStateFor: self.updateEditingTextState,
                 showSettings: showSettings,
                 screenSize: screenF.size,
                 sparkleManager: sparkleManager,
@@ -209,6 +210,8 @@ class WindowsManager {
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
                 displayKitId: displayKitId,
+                enableTextEditingForWindowWith: self.enableTextEditingForWindow,
+                updateEditingTextStateFor: self.updateEditingTextState,
                 showSettings: showSettings,
                 screenSize: screenF.size,
                 showChangelog: showChangelogViewWindow,

@@ -7,13 +7,21 @@
 
 import SwiftUI
 
-struct WindowManagerKey: EnvironmentKey {
-    static let defaultValue: WindowsManager? = nil
+struct EnableTextEditingForWindowWithKey: EnvironmentKey {
+    static let defaultValue: (_ id: UUID) -> () = { _ in }
+}
+
+struct UpdateEditingTextStateForKey: EnvironmentKey {
+    static let defaultValue: (_ id: UUID, _ isEditing: Bool) -> () = { _, _ in }
 }
 
 extension EnvironmentValues {
-    var windowManager: WindowsManager? {
-        get { self[WindowManagerKey.self] }
-        set { self[WindowManagerKey.self] = newValue }
+    var enableTextEditingForWindowWith: (_ id: UUID) -> () {
+        get { self[EnableTextEditingForWindowWithKey.self] }
+        set { self[EnableTextEditingForWindowWithKey.self] = newValue }
+    }
+    var updateEditingTextStateFor: (_ id: UUID, _ isEditing: Bool) -> () {
+        get { self[UpdateEditingTextStateForKey.self] }
+        set { self[UpdateEditingTextStateForKey.self] = newValue }
     }
 }
