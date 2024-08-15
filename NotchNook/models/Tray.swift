@@ -18,6 +18,7 @@ class Tray {
         case spaceBar = 49
         case returnKey = 36
         case esc = 53
+        case delete = 51
     }
     
     private var tempDirectory: URL?
@@ -149,6 +150,10 @@ class Tray {
                 }
                 return nil
                 
+            case .delete:
+                removeSelectedFiles()
+                return nil
+                
             default: return event
         }
     }
@@ -232,6 +237,13 @@ class Tray {
             }
         }
         return nil
+    }
+    
+    private func removeSelectedFiles() {
+        withAnimation(.smooth) {
+            files.subtract(selectedFiles)
+            selectedFiles.removeAll()
+        }
     }
     
 }
