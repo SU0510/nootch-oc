@@ -12,7 +12,7 @@ import SwiftDate
 extension NotchView.EnvironmentsModifier {
     func checkTrialOver() {
         if license == nil {
-            if let trialInitialTime, (((Date().timeIntervalSince1970 - trialInitialTime) / 60) / 60) > LicenseManager.trialDurationInHours {
+            if let trialInitialTime, isTrialOver(startTime: trialInitialTime) {
                 if !state.trialOver { state.trialOver = true }
             } else {
                 if state.trialOver { state.trialOver = false }
