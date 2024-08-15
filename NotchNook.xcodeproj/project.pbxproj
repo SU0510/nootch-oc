@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
+		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
+		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
+		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
 		36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */; };
+		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
 		3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */; };
@@ -361,10 +366,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
+		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
+		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
 		36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarEventsViewShadows.swift; path = NotchNook/components/Notch/Nook/Widgets/CalendarWidget/CalendarEventsViewShadows.swift; sourceTree = SOURCE_ROOT; };
+		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
 		3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppIconView.swift; sourceTree = "<group>"; };
@@ -840,6 +850,8 @@
 				3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */,
 				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
 				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
+				363709552C572508004D20BB /* WindowManagerKey.swift */,
+				3A0C50112C5304710003867F /* VolumeAndBrightnessListenerKey.swift */,
 				3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */,
 			);
 			path = EnvironmentValues;
@@ -1398,7 +1410,6 @@
 				EC8D5FF32BFAE75400E67ECC /* notch */,
 				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
 				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
-				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
 				EC8D60292BFCEEF900E67ECC /* AlbumCoverView.swift */,
 				EC13C6DB2C09180600B45C6E /* TextInput.swift */,
@@ -1422,6 +1433,8 @@
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
 				3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */,
+				3637094F2C559CFD004D20BB /* MultilineTextField.swift */,
+				363709532C56B8C0004D20BB /* NonHyphenatingText.swift */,
 				EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */,
 			);
 			path = components;
@@ -1510,6 +1523,7 @@
 				3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */,
 				3A20F17C2C2FAB0B006A7E1F /* Animation.swift */,
 				3A5104D72C37B8430045F7E6 /* Numbers.swift */,
+				3637094D2C544926004D20BB /* Set+Extensions.swift */,
 				36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */,
 				36C970222C51D57600956B57 /* Date+Extensions.swift */,
 				3A342B082C4D965A003C369C /* UnitCurve.swift */,
@@ -1595,6 +1609,8 @@
 				EC8D5FC02BF9767A00E67ECC /* TrayFileView.swift */,
 				EC2DD1EF2C03DB15001FD54E /* TrayFilesScrollView.swift */,
 				EC758F7E2BF2F19B00B873B0 /* TrayView.swift */,
+				36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */,
+				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
 			);
 			path = Tray;
 			sourceTree = "<group>";
@@ -1921,6 +1937,7 @@
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
 				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
+				363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */,
 				3A1691D02C2FB1EE0014C326 /* TrialOverKey.swift in Sources */,
@@ -1958,6 +1975,7 @@
 				3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */,
 				EC8D5FEC2BFA707F00E67ECC /* frame.swift in Sources */,
 				EC8D5FFC2BFAE89400E67ECC /* MiniPlayerView.swift in Sources */,
+				363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */,
 				EC13C6D82C09099800B45C6E /* ShortcutsApplication.swift in Sources */,
 				3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */,
 				3A8AA18E2C311B6300D727DA /* CRichTextEditor.swift in Sources */,
@@ -2158,9 +2176,11 @@
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
 				BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */,
 				3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */,
+				36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */,
 				3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */,
 				3A1691FC2C2FC7D20014C326 /* GesturesModifier.swift in Sources */,
 				3A1FFE262C35427700BB4A03 /* ExpandedNoteManager.swift in Sources */,
+				363709562C572508004D20BB /* WindowManagerKey.swift in Sources */,
 				3A0C501E2C53478B0003867F /* VolumeIndicatorBarWrapperView.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
 				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
@@ -2189,6 +2209,7 @@
 				EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */,
 				3A20F17D2C2FAB0B006A7E1F /* Animation.swift in Sources */,
 				EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */,
+				3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */,
 				3A9E6BFC2C3AA7B7009948F5 /* MathCGPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

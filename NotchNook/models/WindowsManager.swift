@@ -189,7 +189,8 @@ class WindowsManager {
 #if !SETAPP_BUILD
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
-                displayKitId: displayKitId,
+                displayKitId: displayKitId, 
+                windowManager: self,
                 showSettings: showSettings,
                 screenSize: screenF.size,
                 sparkleManager: sparkleManager,
@@ -326,6 +327,24 @@ class WindowsManager {
         app?.activate(options: [])
     }
     
+    func enableTextEditingForWindow(with id: UUID) {
+        if let displayKit = displayKits.first(where: { $0.id == id }),
+           let window = displayKit.windowController.window as? ForceFocusableWindow {
+            window.canThisWindowBecomeKeyWindow = true
+            window.makeKeyAndOrderFront(nil)
+        }
+    }
+    
+    func updateEditingTextState(for displayKitId: UUID, isEditing: Bool) {
+        if let displayKit = displayKits.first(where: { $0.id == displayKitId }),
+           let window = displayKit.windowController.window as? ForceFocusableWindow {
+            window.canThisWindowBecomeKeyWindow = isEditing
+            if let hostingView = window.contentView as? AcceptingFirstClickHostingView<RootView> {
+                hostingView.rootView.isEditingText = isEditing
+            }
+        }
+    }
+    
     @objc private func screenDidChange() {
         if hasSignificantScreenChanges() {
             debouncedUpdateWindows()
@@ -394,6 +413,15 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
         self.delegate = self
     }
     
+    func enableTextEditing() {
+        canThisWindowBecomeKeyWindow = true
+        makeKeyAndOrderFront(nil)
+    }
+    
+    override var canBecomeKey: Bool {
+        canThisWindowBecomeKeyWindow
+    }
+    
     override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
         let success = super.makeFirstResponder(responder)
         
@@ -402,8 +430,6 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
         }
         return success
     }
-    
-    override var canBecomeKey: Bool { self.canThisWindowBecomeKeyWindow }
     
     func windowDidBecomeKey(_ notification: Notification) {
         becomeKeyCb?()

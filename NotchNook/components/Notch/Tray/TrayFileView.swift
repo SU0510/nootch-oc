@@ -8,70 +8,145 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct TrayFileView: View, Equatable {
-    static func == (lhs: TrayFileView, rhs: TrayFileView) -> Bool {
-        lhs.file == rhs.file && lhs.isSelected == rhs.isSelected
-    }
+struct TrayFileView: View {
     
     let file: TrayFile
     let isSelected: Bool
-    var preview: Bool = false
+
+    @State private var isHovering = false
+    @State private var fileName: String
+    @FocusState private var isTextFieldFocused: Bool
     
-    @State private var hovering = false
     @Environment(\.tray) private var tray
+    @Environment(\.windowManager) private var windowManager
+    @Environment(\.displayKitId) private var displayKitId
+    @Environment(\.makeKeyWindow) private var makeKeyWindow
+    
+    init(file: TrayFile, isSelected: Bool, isPreview: Bool = false) {
+        self.file = file
+        self.fileName = file.name
+        self.isSelected = isSelected
+    }
     
     var body: some View {
-        VStack(spacing: 2) {
-            file.iconView()
-                .frame(width: 42, height: 42)
-                .allowsHitTesting(false)
+        VStack {
+            TrayFileIconView(file: file)
+                .frame(width: 40, height: 40)
             
-            VStack(alignment: .leading) {
-                Text(file.nameTruncated).font(.caption)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(width: 56, alignment: .center)
-                    .multilineTextAlignment(.center)
-                    .allowsHitTesting(false)
-            }
-            
+            fileNameView
         }
         .foregroundStyle(.white)
         .padding(6)
-        .frame(maxHeight: .infinity)
+        .frame(maxHeight: .infinity, alignment: .top)
         .background {
-            if !preview {
-                FileDraggableView(onSelect: {
-                    tray.selectFile(file)
-                }, onDropCompleted: { success in
-                    if !success { return }
-                    tray.selectedFiles.forEach { tray.removeFile($0) }
-                }, selectedURLs: tray.selectedFiles.map { $0.url }) {
+            FileDraggableView(
+                onSelect: {
+                    doAfter(0.04) {
+                        tray.selectFile(file)
+                    }
+                },
+                onDropCompleted: { didMoveFile in
+                    if !didMoveFile { return }
+                    doAfter {
+                        tray.selectedFiles.forEach {
+                            tray.removeFile($0)
+                        }
+                    }
+                },
+                selectedURLs: tray.selectedFiles.map { $0.url }) {
                     TrayFileDragPreviewView(draggedFile: file)
                 }
-            }
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) {
-            VStack {
-                if hovering {
-                    Button {
-                        tray.removeFile(file)
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 16))
-                            .foregroundStyle(.gray)
-                    }
-                    .buttonStyle(ShrinkOnClick())
-                    .transition(.scale)
-                    .offset(x: 2, y: -2)
-                }
-            }
-            .frame(20)
-            .contentShape(Circle())
-            .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { hovering = x } }
-
+            removeButton
+                .zIndex(1)
         }
         .transition(.scaleAndBlur)
+        .contextMenu {
+            Button("Copy") {
+                let pasteboard = NSPasteboard.general
+                pasteboard.clearContents()
+                pasteboard.writeObjects([file.url as NSPasteboardWriting])
+            }
+            .keyboardShortcut("c", modifiers: .command)
+            Button("Rename") {
+                doAfter {
+                    tray.editingFile = (file, file.name)
+                    enableTextEditing()
+                }
+            }
+        }
+        .onTapGesture(count: 2) {
+            doAfter {
+                if let event = NSApp.currentEvent, event.type == .leftMouseUp, event.clickCount == 2 {
+                    tray.openFile(file)
+                }
+            }
+        }
+    }
+    
+    var fileNameView: some View {
+        VStack(alignment: .leading) {
+            if let editingFile = tray.editingFile, editingFile.file == file {
+                MultilineTextField(text: Binding(
+                    get: { tray.editingFile?.newName ?? "" },
+                    set: { tray.editingFile?.newName = $0 }
+                ))
+                .frame(width: 56)
+                .onAppear {
+                    doAfter { tray.editingFile?.newName = file.name }
+                    enableTextEditing()
+                }
+                .onDisappear {
+                    windowManager?.updateEditingTextState(for: displayKitId, isEditing: false)
+                }
+            } else {
+                NonHyphenatingText(text: file.nameTruncated)
+                    .frame(width: 56, alignment: .center)
+                    .background(
+                        RoundedRectangle(cornerRadius: 3).fill(isSelected ? Color.blue : Color.clear)
+                    )
+                    .onTapGesture {
+                        doAfter {
+                            if isSelected {
+                                tray.editingFile = (file, file.name)
+                                enableTextEditing()
+                            }
+                        }
+                    }
+                    .id(file.id)
+            }
+        }
+        .font(.caption)
+    }
+    
+    var removeButton: some View {
+        VStack {
+            if isHovering {
+                Button {
+                    doAfter { tray.removeFile(file) }
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 16))
+                        .foregroundStyle(.gray)
+                }
+                .buttonStyle(ShrinkOnClick())
+                .transition(.scale)
+                .offset(x: 2, y: -2)
+            }
+        }
+        .frame(20)
+        .contentShape(Circle())
+        .onHover { x in withAnimation(.smooth(duration: 0.3, extraBounce: 0.15)) { isHovering = x } }
+        .allowsHitTesting(true)
+    }
+    
+    private func enableTextEditing() {
+        doAfter (0.1) {
+            windowManager?.enableTextEditingForWindow(with: displayKitId)
+            makeKeyWindow()
+            isTextFieldFocused = true
+        }
     }
 }

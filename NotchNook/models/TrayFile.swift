@@ -7,48 +7,121 @@
 
 import SwiftUI
 import SwiftDate
+import Combine
 
 @Observable
-class TrayFile: Equatable, Hashable, Identifiable {
-    static func == (lhs: TrayFile, rhs: TrayFile) -> Bool {
-        lhs.url.absoluteString == rhs.url.absoluteString
+class TrayFile {
+    
+    private(set) var url: URL
+    private(set) var inode: UInt64?
+    private(set) var nameTruncated: String
+    
+    var name: String {
+        didSet {
+            guard oldValue != name else { return }
+            rename(to: name)
+        }
     }
+
+    let image: Image
+    let addedAt: Date
+    let isImage: Bool
     
-    var id: String {
-        self.url.absoluteString
-    }
-    var image: Image
-    var rawFileImage: Image?
-    var url: URL
-    var addedAt: Date
-    
-    var name: String { self.url.lastPathComponent }
-    
-    var nameTruncated: String { truncateFileName(self.name, maxLength: 16) }
+    private var fileSystemSource: DispatchSourceFileSystemObject?
+    private var fileDescriptor: Int32 = -1
     
     init(url: URL) {
-        self.image = iconForFile(at: url)
         self.url = url
-        self.addedAt = Date()
-        self.addedAt = Date()
-        self.rawFileImage = loadImgFromURL(url)
+        image = loadImgFromURL(url) ?? iconForFile(at: url)
+        addedAt = Date()
+        name = url.lastPathComponent
+        nameTruncated = truncateFileName(url.lastPathComponent, maxLength: 16)
+        isImage = url.isImg
+        inode = getInode(url)
+        startObservingFileChanges()
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    deinit {
+        stopObservingFileChanges()
     }
     
-    @ViewBuilder func iconView() -> some View {
-        (self.rawFileImage ?? self.image)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .background { if url.isImg { Color.white } }
-            .overlay {
-                if url.isImg {
-                    Rectangle().stroke(.white, style: .init(lineWidth: 2)).shadow(color: .black.opacity(0.5), radius: 1)
+    func rename(to newName: String) {
+        let fileManager = FileManager.default
+        let originalURL = self.url
+        let newBaseName = newName.components(separatedBy: ".").first ?? newName
+        let newURL = originalURL
+            .deletingLastPathComponent()
+            .appendingPathComponent(newBaseName)
+            .appendingPathExtension(originalURL.pathExtension)
+
+        do {
+            try fileManager.moveItem(at: originalURL, to: newURL)
+            updateData(with: newURL)
+        } catch {
+            print("Failed to rename file: \(error)")
+        }
+    }
+    
+    /// To be called when the rename is done externally
+    private func updateFileName() {
+        let fileManager = FileManager.default
+        let parentDirectory = url.deletingLastPathComponent()
+        do {
+            let files = try fileManager.contentsOfDirectory(at: parentDirectory, includingPropertiesForKeys: [.fileResourceIdentifierKey])
+            if let newFile = files.first(where: { getInode($0) == self.inode }) {
+                DispatchQueue.main.async {
+                    self.updateData(with: newFile)
                 }
             }
-            .geometryGroup()
+        } catch {
+            print("Failed to update file name: \(error)")
+        }
     }
     
+    private func updateData(with url: URL) {
+        self.url = url
+        inode = getInode(url)
+        name = url.lastPathComponent
+        nameTruncated = truncateFileName(url.lastPathComponent, maxLength: 16)
+    }
+    
+    private func startObservingFileChanges() {
+        fileDescriptor = open(url.deletingLastPathComponent().path, O_EVTONLY)
+        guard fileDescriptor >= 0 else { return }
+
+        fileSystemSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fileDescriptor, eventMask: .write, queue: DispatchQueue.main)
+
+        fileSystemSource?.setEventHandler { [weak self] in
+            guard let self = self else { return }
+            self.updateFileName()
+        }
+
+        fileSystemSource?.setCancelHandler {
+            close(self.fileDescriptor)
+        }
+
+        fileSystemSource?.resume()
+    }
+    
+    private func stopObservingFileChanges() {
+        fileSystemSource?.cancel()
+        fileSystemSource = nil
+    }
+    
+    private func getInode(_ url: URL) -> UInt64? {
+        let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
+        return attributes?[.systemFileNumber] as? UInt64
+    }
+}
+
+extension TrayFile: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(inode)
+    }
+}
+
+extension TrayFile: Identifiable {
+    static func == (lhs: TrayFile, rhs: TrayFile) -> Bool {
+        lhs.inode == rhs.inode
+    }
 }
