@@ -1310,6 +1310,7 @@
 				3A9E6C042C3AAD05009948F5 /* gifs */,
 				3AC36D742C2512510000F995 /* videos */,
 				3AC36D732C25124B0000F995 /* lottie */,
+				3A9FEA182C6E804700AE6515 /* setappPublicKey.pem */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -1382,7 +1383,6 @@
 				EC758F8F2BF2F1A400B873B0 /* extensions */,
 				3A801E032C1530490076560D /* decorators */,
 				EC47FC942C0B824500591811 /* assets */,
-				3A9FEA182C6E804700AE6515 /* setappPublicKey.pem */,
 				EC8D603A2BFE73F600E67ECC /* globals */,
 				EC8D60162BFC293B00E67ECC /* ScriptingBridge  */,
 				EC758F922BF2F1A400B873B0 /* models */,
