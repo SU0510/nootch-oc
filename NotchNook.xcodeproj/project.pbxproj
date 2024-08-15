@@ -2293,6 +2293,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.2.4;
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/libSetapp.a",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-setapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
