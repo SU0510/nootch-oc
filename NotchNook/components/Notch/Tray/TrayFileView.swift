@@ -39,14 +39,23 @@ struct TrayFileView: View {
         .padding(6)
         .frame(maxHeight: .infinity, alignment: .top)
         .background {
-            FileDraggableView(onSelect: {
-                doAfter(0.05) { tray.selectFile(file) }
-            }, onDropCompleted: { didMoveFile in
-                if !didMoveFile { return }
-                tray.selectedFiles.forEach { tray.removeFile($0) }
-            }, selectedURLs: tray.selectedFiles.map { $0.url }) {
-                TrayFileDragPreviewView(draggedFile: file)
-            }
+            FileDraggableView(
+                onSelect: {
+                    doAfter(0.04) {
+                        tray.selectFile(file)
+                    }
+                },
+                onDropCompleted: { didMoveFile in
+                    if !didMoveFile { return }
+                    doAfter {
+                        tray.selectedFiles.forEach {
+                            tray.removeFile($0)
+                        }
+                    }
+                },
+                selectedURLs: tray.selectedFiles.map { $0.url }) {
+                    TrayFileDragPreviewView(draggedFile: file)
+                }
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) { removeButton }

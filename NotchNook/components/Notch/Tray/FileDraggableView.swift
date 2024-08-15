@@ -42,7 +42,6 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     // MARK: - NSResponder Methods
     
     override func mouseDown(with event: NSEvent) {
-        onSelect()
         initialMouseDownLocation = event.locationInWindow
     }
     
@@ -59,6 +58,10 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
             let session = beginDraggingSession(with: items, event: event, source: self)
             session.draggingFormation = .none
         }
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        onSelect()
     }
     
     // MARK: - Helpers
