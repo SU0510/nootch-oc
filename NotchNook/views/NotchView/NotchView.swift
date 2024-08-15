@@ -53,7 +53,7 @@ struct NotchView: View {
         } else {
             
             if !disableNotchNook {
-                if intro && state.showIntro {
+                if (intro && state.showIntro) || state.showIntro {
                     IntroView()
                 } else if !intro {
                     nonIntroContent

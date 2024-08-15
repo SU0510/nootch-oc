@@ -24,6 +24,7 @@ extension NotchView {
         @Environment(\.showChangelog) internal var showChangelog
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.isEditingText) internal var isEditingText
+        @Environment(\.checkTrialOver) internal var checkTrialOver
         @Environment(\.isKeyWindow) internal var isKeyWindow
         @Environment(\.notchSize) internal var notchSize
         
@@ -34,8 +35,9 @@ extension NotchView {
                 .onAppear {
 #if !SETAPP_BUILD
                     checkForUpdates()
-#endif
                     resetTrialAndHandleChangelog()
+                    checkTrialOver()
+#endif
                     insertUpdateLAIfOldVersion()
                     fetchEvents()
                     startBriVolKeyListener()
@@ -52,7 +54,7 @@ extension NotchView {
                 }
                 .onChange(of: state.hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
                 .onChange(of: intro, initial: true) { _, new in
-                    doAfter(0.3) { withAnimation(NotchView.intenseAnimation) { state.showIntro = new } }
+                    doAfter(new ? 0.3 : 0) { withAnimation(new ? NotchView.intenseAnimation : .smooth) { state.showIntro = new } }
                 }
                 .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
                     if !state.fineTuningNotchWidth {
