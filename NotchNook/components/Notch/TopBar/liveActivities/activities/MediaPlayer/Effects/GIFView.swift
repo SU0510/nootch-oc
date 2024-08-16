@@ -11,7 +11,6 @@ struct GIFView: View {
     @State private var url: URL = Bundle.main.url(forResource: "michael", withExtension: "gif")!
     var body: some View {
         QLImage(url: url)
-//        GIFViewer(url: $url)
             .scaledToFit()
             .frame(40, .bottomTrailing)
             .padding(.trailing, 2)

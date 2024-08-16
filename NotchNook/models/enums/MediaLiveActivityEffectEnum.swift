@@ -10,12 +10,18 @@ import Defaults
 
 enum MediaLiveActivityEffectEnum: String, Codable, Defaults.Serializable, Identifiable, CaseIterable {
     var id: String { rawValue }
-    case audioSpectrograph, waves, gif
+    
+    case audioSpectrograph
+    case waves
+    case gif
+    case vibratingCircle
+    
     var name: String {
         switch self {
             case .audioSpectrograph: "Audio Spectrograph"
             case .waves: "Waves"
             case .gif: "GIF"
+            case .vibratingCircle: "Vibrating Circle"
         }
     }
 }
