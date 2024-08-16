@@ -68,7 +68,6 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
             let scaleFactor = self.backingScaleFactor
             SCShareableContent.getCurrentProcessShareableContent { shareableContent, error in
                 if let error {
-                    print("error-tuin")
                     print(error)
                 }
                 if let scWin = shareableContent?.windows.first(where: { $0.windowID == windowNumber }) {
@@ -84,7 +83,6 @@ class BetterWindow: NSWindow, NSWindowDelegate, CAAnimationDelegate {
                     streamConfig.excludesCurrentProcessAudio = true
                     SCScreenshotManager.captureImage(contentFilter: contentFilter, configuration: streamConfig) { cgImg, error in
                         if let error {
-                            print("error-bleu")
                             print(error)
                         }
                         if let cgImg {

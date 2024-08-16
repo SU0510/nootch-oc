@@ -60,7 +60,6 @@ struct NoMediaAppsView: View {
             
             let appsBundleIds = [spotubeBundleID, spotifyBundleID, ciderBundleID, appleBundleID, tidalBundleID, voxBundleID]
             installedApps = appsBundleIds.compactMap { isAppInstalled($0) ? SystemAppMeta(bundleId: $0) : nil }
-            //            print(installedAppsa)
         }
     }
 }
