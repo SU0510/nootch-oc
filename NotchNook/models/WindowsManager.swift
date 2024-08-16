@@ -33,7 +33,7 @@ class WindowsManager {
     private init() {
         print("WindowsManager: Initializing")
 #if !SETAPP_BUILD
-        self.sparkleManager = SparkleManager(updater: SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil).updater)
+        self.sparkleManager = SparkleManager(updaterController: SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil))
 #endif
         
         var newSettingsPanes: [SettingsPane] = [

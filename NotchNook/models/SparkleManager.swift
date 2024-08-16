@@ -11,7 +11,8 @@ import Combine
 
 @Observable
 class SparkleManager {
-    weak var updater: SPUUpdater?
+    var updaterController: SPUStandardUpdaterController?
+    weak var updater: SPUUpdater? { updaterController?.updater }
     
     var cancellables = [AnyCancellable?]()
     
@@ -68,8 +69,8 @@ class SparkleManager {
             set { _userAgentString = newValue }
         }
     
-    init(updater: SPUUpdater?) {
-        self.updater = updater
+    init(updaterController: SPUStandardUpdaterController?) {
+        self.updaterController = updaterController
         guard let updater = self.updater else { return }
         setupInitialVars(updater: updater)
         setupUpdateListeners(updater: updater)

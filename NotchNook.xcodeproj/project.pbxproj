@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
+		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
@@ -117,6 +119,7 @@
 		3A5104D42C37AD3A0045F7E6 /* NoteExpandedMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */; };
 		3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */; };
 		3A5104D82C37B8460045F7E6 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D72C37B8430045F7E6 /* Numbers.swift */; };
+		3A59A4252C6FC93C004D9273 /* InfoSetapp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A59A4242C6FC93C004D9273 /* InfoSetapp.plist */; };
 		3A5F1E652C4C5B3F007E77ED /* SunShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F1E642C4C5B3F007E77ED /* SunShape.swift */; };
 		3A5F1E682C4C699F007E77ED /* NotchViewStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F1E672C4C699F007E77ED /* NotchViewStatic.swift */; };
 		3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */; };
@@ -366,6 +369,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
+		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
@@ -475,6 +480,7 @@
 		3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteExpandedMsgView.swift; sourceTree = "<group>"; };
 		3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSpringAnimation.swift; sourceTree = "<group>"; };
 		3A5104D72C37B8430045F7E6 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		3A59A4242C6FC93C004D9273 /* InfoSetapp.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoSetapp.plist; sourceTree = "<group>"; };
 		3A5F1E642C4C5B3F007E77ED /* SunShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunShape.swift; sourceTree = "<group>"; };
 		3A5F1E672C4C699F007E77ED /* NotchViewStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewStatic.swift; sourceTree = "<group>"; };
 		3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCodeEditor.swift; sourceTree = "<group>"; };
@@ -744,6 +750,8 @@
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */,
 				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
 				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
+				36A356D92C4968FE001902E4 /* VibratingCircleView.swift */,
+				3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -1393,6 +1401,7 @@
 				EC758F6F2BF2F18900B873B0 /* Assets.xcassets */,
 				EC758F742BF2F18900B873B0 /* NotchNook.entitlements */,
 				EC47FC802C0AA67100591811 /* Info.plist */,
+				3A59A4242C6FC93C004D9273 /* InfoSetapp.plist */,
 				3A7404992C416B090049081C /* Localizable.xcstrings */,
 			);
 			path = NotchNook;
@@ -1870,6 +1879,7 @@
 				3A7C05EF2C5B2D3400435D99 /* lock.mov in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
 				3A459C272C2E955D0045995D /* lock.lottie in Resources */,
+				3A59A4252C6FC93C004D9273 /* InfoSetapp.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2073,6 +2083,7 @@
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				3A1691F72C2FBA410014C326 /* InMemoryDefault.swift in Sources */,
+				36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
 				3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */,
@@ -2132,6 +2143,7 @@
 				EC8D5FC72BF97AF500E67ECC /* TrayEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
+				3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */,
 				3A3F59F42C2A5B4C00906FFA /* performDrop.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				3A3ABCE82C2B6CED00132228 /* TodoListWidgetSettings.swift in Sources */,
@@ -2294,7 +2306,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotchNook/Info.plist;
+				INFOPLIST_FILE = NotchNook/InfoSetapp.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotchNook;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;

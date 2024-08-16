@@ -24,7 +24,7 @@ struct AudioSpectrographView: NSViewRepresentable {
     }
     
     func updateNSView(_ nsView: AudioSpectrographNSView, context: Context) {
-        if nsView.playing != isPlaying { nsView.playing = isPlaying }
+        if nsView.isPlaying != isPlaying { nsView.isPlaying = isPlaying }
         if nsView.volume != volume { nsView.volume = volume }
         let newColor = NSColor(color)
         if nsView.color != newColor { nsView.color = newColor }
@@ -51,9 +51,9 @@ class AudioSpectrographNSView: NSView {
     
     private var isBeingDeallocated = false
     
-    var playing: Bool = false {
+    var isPlaying: Bool = false {
         didSet {
-            if playing {
+            if isPlaying {
                 startAnimation()
             } else {
                 stopAnimation()
@@ -160,7 +160,7 @@ class AudioSpectrographNSView: NSView {
     private func updateTargetHeights() {
         for i in 0..<barsCount {
             if abs(currentHeights[i] - targetHeights[i]) < 1 {
-                targetHeights[i] = !playing ? minHeight : CGFloat(Int.random(in: Int(minHeight)...Int(maxHeight)))
+                targetHeights[i] = !isPlaying ? minHeight : CGFloat(Int.random(in: Int(minHeight)...Int(maxHeight)))
             }
         }
     }
@@ -199,7 +199,7 @@ class AudioSpectrographNSView: NSView {
             barLayers[i].path = path.cgPath
         }
         
-        let pausedAndSettled = !playing && currentHeights.reduce(true) { partialResult, height in
+        let pausedAndSettled = !isPlaying && currentHeights.reduce(true) { partialResult, height in
             return partialResult && height == minHeight
         }
         

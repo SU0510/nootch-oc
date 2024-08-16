@@ -23,16 +23,6 @@
 	<string>NotchNook needs Calendar access to power the calendar widget and LA.</string>
 	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
 	<string>NotchNook needs Calendar access to power the calendar widget and LA.</string>
-	<key>NSUpdateSecurityPolicy</key>
-	<dict>
-		<key>AllowProcesses</key>
-		<dict>
-			<key>MEHY5QF425</key>
-			<array>
-				<string>com.setapp.DesktopClient.SetappAgent</string>
-			</array>
-		</dict>
-	</dict>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>

@@ -16,6 +16,7 @@ import DynamicColor
 struct WaveView: NSViewRepresentable {
     var volume: Double
     var color: Color
+    var isPlaying: Bool
     
     func makeNSView(context: Context) -> WaveNSView {
         let view = WaveNSView(frame: .zero)
@@ -26,6 +27,7 @@ struct WaveView: NSViewRepresentable {
     func updateNSView(_ nsView: WaveNSView, context: Context) {
         nsView.color = NSColor(color)
         nsView.volume = volume
+        nsView.isPlaying = isPlaying
     }
     
     static func dismantleNSView(_ nsView: WaveNSView, coordinator: ()) {
@@ -38,6 +40,15 @@ class WaveNSView: NSView {
     var color: NSColor = .white {
         didSet {
             updateLayerColors()
+        }
+    }
+    var isPlaying: Bool = false {
+        didSet {
+            if isPlaying {
+                startRandomMovement()
+            } else {
+                stopRandomMovement()
+            }
         }
     }
     
@@ -103,6 +114,7 @@ class WaveNSView: NSView {
     }
     
     func startRandomMovement() {
+        guard isPlaying else { return }
         stopRandomMovement()
         movementTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { [weak self] _ in
             self?.randomizeMovement()

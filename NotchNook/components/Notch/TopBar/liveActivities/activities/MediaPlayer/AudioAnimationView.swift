@@ -32,14 +32,19 @@ struct AudioAnimationView: View {
                                 .blur(radius: isHovering ? 1.25 : 0)
                             
                         case .waves:
-                            WaveView(volume: volume, color: color)
+                            WaveView(volume: volume, color: color, isPlaying: isPlaying)
                                 .blur(radius: isHovering ? 1.25 : 0)
                                 .fadeOnEdges(axis: .horizontal, topLeadingFadeLength: 8, bottomTrailingFadeLength: 12, curve: .easeIn)
                             
                         case .gif:
                             GIFView()
                                 .offset(y: userPrefs.gifOffset)
+                            
+                        case .vibratingCircle:
+                            VibratingCircleView(color: color, isPlaying: isPlaying)
+                                .frame(width: 24, height: 24)
                     }
+
                 }
                 .transition(.scaleAndBlur)
                 
@@ -66,4 +71,3 @@ struct AudioAnimationView: View {
         .animation(.smooth, value: albumAverageColor)
     }
 }
-
