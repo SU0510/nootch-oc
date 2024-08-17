@@ -92,7 +92,7 @@ struct ScrollWheelViewRepresentable<Content: View>: NSViewRepresentable {
     func updateNSView(_ nsView: ScrollWheelNSView, context: Context) {
         nsView.onDragChanged = onDragChanged
         nsView.onDragEnded = onDragEnded
-//
+        
         setupHostingView(for: nsView, with: content)
     }
     
@@ -102,7 +102,6 @@ struct ScrollWheelViewRepresentable<Content: View>: NSViewRepresentable {
         } else {
             let hostingView = NSHostingView(rootView: content())
             hostingView.translatesAutoresizingMaskIntoConstraints = false
-//            hostingView.sizingOptions = .intrinsicContentSize
             nsView.addSubview(hostingView)
             
             NSLayoutConstraint.activate([

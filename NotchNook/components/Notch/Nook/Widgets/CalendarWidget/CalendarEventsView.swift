@@ -47,7 +47,7 @@ struct CalendarEventsView: View {
         .onAppear {
             doAfter { scrollToInitialPosition() }
         }
-        .onChange(of: selectedDate) { _ in
+        .onChange(of: selectedDate) {
             doAfter { scrollToInitialPosition() }
         }
     }

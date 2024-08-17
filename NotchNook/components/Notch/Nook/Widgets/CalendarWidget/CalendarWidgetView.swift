@@ -38,21 +38,8 @@ struct CalendarWidgetView: View {
         
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
-                ScrollableDaysView(showingDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
-                    .overlay {
-                        let monthName = selectedDate.monthName(.standaloneShort)
-                        ZStack {
-                            ScrollableDaysMonthOverlayView(monthName: monthName) {
-                                withAnimation(.spring) {
-                                    selectedDateIndex = displayedDates.count / 2
-                                }
-                            }
-                            .id(monthName)
-                            .transition(.scaleAndBlur(anchor: .leading, blur: 0))
-                        }
-                        .transition(.scaleAndBlur(anchor: .leading, blur: 0))
-                        .animation(.snappy, value: monthName)
-                    }
+                ScrollableDaysView(displayedDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
+                    .overlay { monthNameOverlayView }
                     .zIndex(1)
                 CalendarEventsView(events: events[selectedDate], selectedDate: selectedDate)
                     .id(selectedDate)
@@ -61,8 +48,22 @@ struct CalendarWidgetView: View {
         .task {
             let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
             let endDate = Calendar.current.date(byAdding: .day, value: 60, to: Date())!
-            try? await CalendarManager.shared.fetchEvents(startDate: startDate, endDate: endDate)
+            try? await calendarManager.fetchEvents(startDate: startDate, endDate: endDate)
         }
+    }
+    
+    var monthNameOverlayView: some View {
+        ZStack {
+            ScrollableDaysMonthOverlayView(monthName: selectedDate.monthName(.standaloneShort)) {
+                withAnimation(.spring) {
+                    selectedDateIndex = displayedDates.count / 2
+                }
+            }
+            .id(selectedDate.monthName(.standaloneShort))
+            .transition(.scaleAndBlur(anchor: .leading, blur: 0))
+        }
+        .transition(.scaleAndBlur(anchor: .leading, blur: 0))
+        .animation(.snappy, value: selectedDate.monthName(.standaloneShort))
     }
     
     // MARK: - Functions
