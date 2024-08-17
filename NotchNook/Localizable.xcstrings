@@ -7551,6 +7551,7 @@
       }
     },
     "Colored effects" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
