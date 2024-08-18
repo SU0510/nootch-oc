@@ -1410,12 +1410,12 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */,
 				3A8507702C4B3E2E0092B135 /* Indicator */,
 				3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */,
 				EC47FCA52C0BA33900591811 /* intro */,
 				EC8D600D2BFC127600E67ECC /* buttonStyles */,
 				EC8D5FF32BFAE75400E67ECC /* notch */,
+				BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */,
 				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
 				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
 				EC8D60272BFCEE9500E67ECC /* MediaControlsView.swift */,
