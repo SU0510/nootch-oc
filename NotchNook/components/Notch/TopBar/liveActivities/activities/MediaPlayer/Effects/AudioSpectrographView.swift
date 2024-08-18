@@ -36,6 +36,7 @@ struct AudioSpectrographView: NSViewRepresentable {
 }
 
 class AudioSpectrographNSView: NSView {
+    private let id = "spectograph-\(UUID().uuidString)"
     private let barsCount = 3
     private let minHeight: CGFloat = 2
     private let maxHeight: CGFloat = 15
@@ -48,15 +49,19 @@ class AudioSpectrographNSView: NSView {
     private var currentHeights: [CGFloat] = []
     private var boundsWidth: CGFloat = 0
     private var animating = false
+    private var isAnimatingBackTimer: Timer?
     
     private var isBeingDeallocated = false
     
     var isPlaying: Bool = false {
         didSet {
             if isPlaying {
+                TimersManager.shared.removeTimer(id)
                 startAnimation()
             } else {
-                stopAnimation()
+                TimersManager.shared.addTimer(id, delay: 0.5) { _ in
+                    self.stopAnimation()
+                }
             }
         }
     }
