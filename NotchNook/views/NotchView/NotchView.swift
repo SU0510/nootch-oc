@@ -68,7 +68,7 @@ struct NotchView: View {
     
     @ViewBuilder
     private var topBarContent: some View {
-        if license != nil || !state.trialOver {
+        if license != nil || (!state.trialOver && trialInitialTime != nil) {
             TopBarView(
                 panGestureCounter: state.panGestureCounter,
                 scaleX: actualScaleX,
