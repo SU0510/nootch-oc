@@ -26,6 +26,8 @@ struct GeneralSettingsView: View {
             
             Settings.Section(title: String(localized: "Notch:")) {
                 Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(width: 340, alignment: .leading)
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Text("This will disable some of NotchNook's gestures.")
                     .optionDescription(contentMaxW)
