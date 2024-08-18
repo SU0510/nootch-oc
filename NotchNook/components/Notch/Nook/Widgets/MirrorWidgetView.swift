@@ -170,6 +170,10 @@ struct CameraPreview: NSViewRepresentable {
         private func setupLayer(session: AVCaptureSession) {
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
             videoPreviewLayer.videoGravity = .resizeAspectFill
+            if let connection = videoPreviewLayer.connection, connection.isVideoMirroringSupported {
+                connection.automaticallyAdjustsVideoMirroring = false
+                connection.isVideoMirrored = true
+            }
             layer = videoPreviewLayer
         }
     }
