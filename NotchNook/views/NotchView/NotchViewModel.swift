@@ -46,9 +46,9 @@ class NotchViewModel {
         let trailingInterpolator = interpolatorBuilder([0, 150], value: panRawPadding.trailing)
         let bottomInterpolator = interpolatorBuilder([0, 200], value: panRawPadding.bottom)
         
-        let leading = leadingInterpolator([0, NotchView.maxHPanDrag], true, .linear)
-        let trailing = trailingInterpolator([0, NotchView.maxHPanDrag], true, .linear)
-        let bottom = bottomInterpolator([0, NotchView.maxVPanDrag], true, .linear)
+        let leading = leadingInterpolator([0, NotchView.maxHPanDrag + 8], true, .linear)
+        let trailing = trailingInterpolator([0, NotchView.maxHPanDrag + 8], true, .linear)
+        let bottom = bottomInterpolator([0, NotchView.maxVPanDrag + 8], true, .linear)
         
         let decrease = topInterpolator([0, 32], true, .linear)
         
