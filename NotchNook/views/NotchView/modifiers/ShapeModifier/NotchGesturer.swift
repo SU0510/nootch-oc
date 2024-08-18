@@ -97,9 +97,11 @@ struct NotchGesturer: View {
             if hasMediaLA && gestureControlSettings.controlMedia {
                 if state.panPadding.bottom < NotchView.maxVPanDrag / 3 {
                     if state.panPadding.leading > (NotchView.maxHPanDrag) {
+                        print("prev")
                         changeTrack(prev: true)
                     }
                     if state.panPadding.trailing > (NotchView.maxHPanDrag) {
+                        print("next")
                         changeTrack(prev: false)
                     }
                 }

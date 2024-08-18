@@ -898,6 +898,7 @@
 			isa = PBXGroup;
 			children = (
 				3A1691FA2C2FBF690014C326 /* functions */,
+				EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */,
 				3A20F1762C2F8B01006A7E1F /* ShapeModifier.swift */,
 			);
 			path = ShapeModifier;
@@ -1674,7 +1675,6 @@
 				3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
-				EC2DD1E62C02D5A5001FD54E /* NotchGesturer.swift */,
 			);
 			path = notch;
 			sourceTree = "<group>";
