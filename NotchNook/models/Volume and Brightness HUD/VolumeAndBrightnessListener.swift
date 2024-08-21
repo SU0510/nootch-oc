@@ -28,10 +28,15 @@ class VolumeAndBrightnessListener {
     private var sideEffects = [String:((MediaKey) -> ())]()
     private var globalMonitor: Any?
     private var localMonitor: Any?
+    private var systemWakeUpMonitor: Any?
+    private var screenWakeUpMonitor: Any?
     
     private var lastEventTime: DispatchTime = DispatchTime.now()
     private var lastEventKey: MediaKey = .brightnessDown
     private let debounceInterval: TimeInterval = 0.3
+    
+    private var HUDCloseWorkItem: DispatchWorkItem?
+    private var HUDCloseTimer: Timer?
     
     private init() {}
     
@@ -55,11 +60,41 @@ class VolumeAndBrightnessListener {
             }
             return
         }
-        
         if globalMonitor == nil && localMonitor == nil {
+            ObserveSystemWake()
             HUDManager.disableSystemHUD()
             startMonitoringMediaKeys()
+            attemptHUD()
         }
+    }
+    
+    func stop() {
+        stopBackgroundCloseHUD()
+        HUDManager.enableSystemHUD()
+        stopObservingSystemWakeUp()
+        stopMonitoringMediaKeys()
+    }
+    
+    private func attemptHUD () {
+        HUDCloseWorkItem = DispatchWorkItem {
+            [weak self] in
+            guard self != nil else { return }
+            HUDManager.disableSystemHUD()}
+        
+        HUDCloseTimer = Timer.scheduledTimer(withTimeInterval: 2100, repeats: true){
+            [weak self] _ in
+            if let workItem = self?.HUDCloseWorkItem {
+                DispatchQueue.global().async(execute: workItem)
+            }
+        }
+    }
+    
+    
+    private func stopBackgroundCloseHUD() {
+        HUDCloseWorkItem?.cancel()
+        HUDCloseWorkItem = nil
+        HUDCloseTimer?.invalidate()
+        HUDCloseTimer = nil
     }
     
     func addSideEffect(_ sideEffect: @escaping (MediaKey) -> (), for id: String) {
@@ -78,9 +113,32 @@ class VolumeAndBrightnessListener {
         return AXIsProcessTrustedWithOptions(options)
     }
     
-    func stop() {
-        HUDManager.enableSystemHUD()
-        stopMonitoringMediaKeys()
+    private func ObserveSystemWake () {
+        systemWakeUpMonitor = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didWakeNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: {notification in
+                print(Date(), ": System wakes up")
+                HUDManager.disableSystemHUD()})
+        
+        screenWakeUpMonitor = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.screensDidWakeNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: {notification in
+                print(Date(), ": Screen wakes up")
+                HUDManager.disableSystemHUD()})
+    }
+    
+    
+    private func stopObservingSystemWakeUp () {
+        if let observer = systemWakeUpMonitor {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        if let observer = screenWakeUpMonitor {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     private func startMonitoringMediaKeys() {
