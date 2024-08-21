@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3623EA522C75312C0055C1BF /* ShowIndicatorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */; };
+		3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */; };
 		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
@@ -369,6 +371,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIndicatorKey.swift; sourceTree = "<group>"; };
+		3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceFocusableWindow.swift; sourceTree = "<group>"; };
 		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
@@ -860,6 +864,7 @@
 				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
 				363709552C572508004D20BB /* WindowManagerKey.swift */,
 				3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */,
+				3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -1571,6 +1576,7 @@
 				3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */,
 				3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */,
 				BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */,
+				3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1950,6 +1956,7 @@
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */,
 				3A1691D02C2FB1EE0014C326 /* TrialOverKey.swift in Sources */,
+				3623EA522C75312C0055C1BF /* ShowIndicatorKey.swift in Sources */,
 				EC8D5FCB2BFA6EC800E67ECC /* TrayFileDragPreviewView.swift in Sources */,
 				EC8D5FF82BFAE7FF00E67ECC /* TopBarTabsView.swift in Sources */,
 				3A459C1E2C2E710B0045995D /* LockedIndicatorView.swift in Sources */,
@@ -2121,6 +2128,7 @@
 				36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */,
 				EC0E31092C055A560060B47E /* TraySettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
+				3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */,
 				3A342B172C508903003C369C /* SystemAppMeta.swift in Sources */,
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
 				3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */,

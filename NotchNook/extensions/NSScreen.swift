@@ -28,3 +28,16 @@ public extension NSScreen {
         }
     }
 }
+
+// Extension to capture relevant screen configuration
+extension NSScreen {
+    struct Configuration {
+        let frame: CGRect
+        let backingScaleFactor: CGFloat
+        let colorSpace: NSColorSpace
+    }
+    
+    var configuration: Configuration {
+        return Configuration(frame: frame, backingScaleFactor: backingScaleFactor, colorSpace: colorSpace ?? .genericGray)
+    }
+}

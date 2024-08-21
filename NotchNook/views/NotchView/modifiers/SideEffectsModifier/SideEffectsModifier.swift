@@ -8,10 +8,10 @@
 import SwiftUI
 import Defaults
 
-
 extension NotchView {
     struct SideEffectsModifier: ViewModifier {
         var state: NotchViewModel
+        var showIndicator: (Indicator?) -> Void
         
         @Default(.intro) internal var intro
         @Default(.lastBuildNumber) internal var lastBuildNumber
@@ -111,7 +111,9 @@ extension NotchView {
                 
                 let newBrightness = try await BrightnessCoordinator.getDisplayBrightness()
                 withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    notchNook.indicator = .init(kind: .brightness, value: Double(newBrightness))
+                    let indicator = Indicator(kind: .brightness, value: Double(newBrightness))
+                    notchNook.indicator = indicator
+                    showIndicator(indicator)
                 }
             } catch {
                 print("Error fetching brightness: \(error)")
@@ -125,7 +127,9 @@ extension NotchView {
                 
                 let newVolume = try await SoundCoordinator.getSoundVolume()
                 withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    notchNook.indicator = .init(kind: .volume, value: Double(newVolume))
+                    let indicator = Indicator(kind: .volume, value: Double(newVolume))
+                    notchNook.indicator = indicator
+                    showIndicator(indicator)
                 }
             } catch {
                 print("Failed to get volume: \(error)")

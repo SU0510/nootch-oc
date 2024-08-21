@@ -19,13 +19,15 @@ struct NotchView: View {
     @Default(.intro) private var intro
     @Default(.license) private var license
     @Default(.trialInitialTime) private var trialInitialTime
-    private var disableNotchNook: Bool {
+    @Environment(\.showIndicator) var showIndicator
+
+    private var isNonNotchAndDisabled: Bool {
         notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
     }
     
     var body: some View {
         let nnMinWidth = notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune
-        let nnMinHeight = disableNotchNook ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
+        let nnMinHeight = isNonNotchAndDisabled ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             mainContent
@@ -38,21 +40,21 @@ struct NotchView: View {
         .modifier(ShapeModifier(state: state))
         .modifier(LockedIndicatorModifier(state: state))
         .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
-        .modifier(AnimationsModifier(disableNotchNook: disableNotchNook))
-        .modifier(GesturesModifier(state: state, disableNotchNook: disableNotchNook))
+        .modifier(AnimationsModifier(disableNotchNook: isNonNotchAndDisabled))
+        .modifier(GesturesModifier(state: state, disableNotchNook: isNonNotchAndDisabled))
         .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
-        .modifier(SideEffectsModifier(state: state))
         .modifier(EnvironmentsModifier(state: state))
+        .modifier(SideEffectsModifier(state: state, showIndicator: showIndicator))
     }
     
     @ViewBuilder
     private var mainContent: some View {
-        if let indicator = notchNook.indicator {
+        if let indicator = notchNook.indicator, !isNonNotchAndDisabled {
             IndicatorView(indicator: indicator)
                 .transition(NotchView.defaultTransition)
         } else {
             
-            if !disableNotchNook {
+            if !isNonNotchAndDisabled {
                 if (intro && state.showIntro) || state.showIntro {
                     IntroView()
                 } else if !intro {
@@ -90,7 +92,6 @@ struct NotchView: View {
     
     @ViewBuilder
     private var nonIntroContent: some View {
-        
         topBarContent
             .opacity(notchNook.indicator == nil ? 1 : 0)
         

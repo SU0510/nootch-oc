@@ -96,6 +96,8 @@ class WindowsManager {
         }
         displayKits = newDisplaysKits
         print("WindowsManager: Windows updated, new display kit count: \(newDisplaysKits.count)")
+        
+        displayKits.forEach { $0.windowController.window?.orderFrontRegardless() }
     }
     
     func openNoteWindow(_ note: Note, inDisplayKitId: UUID) {
@@ -203,7 +205,14 @@ class WindowsManager {
                 preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
                 isEditingText: false,
                 isKeyWindow: true,
-                expandedNoteManager: expandedNoteManager
+                expandedNoteManager: expandedNoteManager,
+                showIndicator: { [weak self] indicator in
+                    self?.displayKits.forEach { kit in
+                        if let hostingView = kit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
+                            hostingView.rootView.notchNook.indicator = indicator
+                        }
+                    }
+                }
             )
         )
 #else
@@ -222,7 +231,14 @@ class WindowsManager {
                 preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
                 isEditingText: false,
                 isKeyWindow: true,
-                expandedNoteManager: expandedNoteManager
+                expandedNoteManager: expandedNoteManager,
+                showIndicator: { [weak self] indicator in
+                    self?.displayKits.forEach { kit in
+                        if let hostingView = kit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
+                            hostingView.rootView.notchNook.indicator = indicator
+                        }
+                    }
+                }
             )
         )
 #endif
@@ -405,59 +421,8 @@ class WindowsManager {
     }
 }
 
-class ForceFocusableWindow: NSWindow, NSWindowDelegate {
-    var becomeKeyCb: (() -> ())?
-    var resignedKeyCb: (() -> ())?
-    var firstResponderCb: ((_ isTheWindow: Bool) -> ())?
-    var canThisWindowBecomeKeyWindow = false
-    
-    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
-        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
-        self.delegate = self
-    }
-    
-    func enableTextEditing() {
-        canThisWindowBecomeKeyWindow = true
-        makeKeyAndOrderFront(nil)
-    }
-    
-    override var canBecomeKey: Bool {
-        canThisWindowBecomeKeyWindow
-    }
-    
-    override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
-        let success = super.makeFirstResponder(responder)
-        
-        if success {
-            firstResponderCb?(responder is NSWindow || responder == nil)
-        }
-        return success
-    }
-    
-    func windowDidBecomeKey(_ notification: Notification) {
-        becomeKeyCb?()
-    }
-    
-    func windowDidResignKey(_ notification: Notification) {
-        resignedKeyCb?()
-    }
-}
-
 class AcceptingFirstClickHostingView<C: View>: NSHostingView<C> {
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
         return true
-    }
-}
-
-// Extension to capture relevant screen configuration
-extension NSScreen {
-    struct Configuration {
-        let frame: CGRect
-        let backingScaleFactor: CGFloat
-        let colorSpace: NSColorSpace
-    }
-    
-    var configuration: Configuration {
-        return Configuration(frame: frame, backingScaleFactor: backingScaleFactor, colorSpace: colorSpace ?? .genericGray)
     }
 }

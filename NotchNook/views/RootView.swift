@@ -10,6 +10,7 @@ import SwiftData
 import Defaults
 
 struct RootView: View {
+
     var displayKitId: UUID
     var enableTextEditingForWindowWith: (_ id: UUID) -> ()
     var updateEditingTextStateFor: (_ id: UUID, _ isEditing: Bool) -> ()
@@ -29,6 +30,8 @@ struct RootView: View {
     var isEditingText: Bool
     var isKeyWindow: Bool
     var expandedNoteManager: ExpandedNoteManager
+    var showIndicator: (Indicator?) -> Void
+
     @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow
     @Environment(\.canBecomeKey) private var defaultCanBecomeKey
     @Default(.generalSettings) private var generalSettings
@@ -91,6 +94,8 @@ struct RootView: View {
             .environment(\.preventNextFocusFrontmostWindow, preventNextFocusFrontmostWindow)
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)
+            .environment(\.showIndicator, showIndicator)
+
         // Defaults
             .environment(\.generalSettings, generalSettings)
             .environment(\.gestureControlSettings, gestureControlSettings)
@@ -107,5 +112,9 @@ struct RootView: View {
             .environment(\.notesWidgetSettings, notesWidgetSettings)
             .environment(\.todoListWidgetSettings, todoListWidgetSettings)
             .environment(\.quickAppsWidgetSettings, quickAppsWidgetSettings)
+    }
+    
+    func updateIndicator(_ indicator: Indicator?) {
+        notchNook.indicator = indicator
     }
 }
