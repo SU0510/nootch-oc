@@ -820,7 +820,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(vedi changelog)"
+            "value" : "(vedi il resoconto degli aggiornamenti)"
           }
         },
         "ja" : {
@@ -2845,7 +2845,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alcune delle nostre app"
+            "value" : "Molte delle nostre app"
           }
         },
         "ja" : {
@@ -3029,7 +3029,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un gruppo di amici talentuosi provenienti da 4 paesi diversi che sviluppano software sorprendenti insieme per passione."
+            "value" : "Un gruppo di amici talentuosi provenienti da quattro paesi diversi che sviluppano software sorprendenti insieme per nulla se non per passione."
           }
         },
         "ja" : {
@@ -4134,7 +4134,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permetti i gesti durante il passaggio nel notch"
+            "value" : "Permetti i gesti quando passi sopra al notch"
           }
         },
         "ja" : {
@@ -7092,8 +7092,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Click to open the Nook, where your widgets live."
+            "state" : "translated",
+            "value" : "위젯이 있는 그곳, 클릭하여 Nook을 여세요."
           }
         },
         "nl" : {
@@ -8609,7 +8609,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Управление медиа с помощью горизонтальных жестов"
+            "value" : "Управление медиа горизонтальными жестами"
           }
         },
         "sr" : {
@@ -8714,8 +8714,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "Copier"
           }
         },
         "he" : {
@@ -8744,14 +8744,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "コピーする"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "복사"
           }
         },
         "nl" : {
@@ -8792,8 +8792,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "Копировать"
           }
         },
         "sr" : {
@@ -8810,8 +8810,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "Kopyala"
           }
         },
         "uk" : {
@@ -8828,14 +8828,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "复制"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "拷貝"
           }
         }
       }
@@ -10591,8 +10591,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Drag and drop files to access multiple functions."
+            "state" : "translated",
+            "value" : "파일을 드래그 앤 드롭하여 여러 기능에 접근합니다."
           }
         },
         "nl" : {
@@ -15560,8 +15560,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, live activities that have been dismissed (by swiping up) will automatically return."
+            "state" : "translated",
+            "value" : "사용하도록 설정되면 위로 스와이프를 통해 가려진 라이브 액티비티들이 자동으로 다시 표시됩니다."
           }
         },
         "nl" : {
@@ -17587,8 +17587,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "License Key"
+            "state" : "translated",
+            "value" : "라이센스 키"
           }
         },
         "nl" : {
@@ -21905,7 +21905,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "今天沒有任何事情"
+            "value" : "今天沒有任何行程"
           }
         }
       }
@@ -23661,8 +23661,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please enter a valid email"
+            "state" : "translated",
+            "value" : "유효한 이메일을 입력하세요"
           }
         },
         "nl" : {
@@ -25651,8 +25651,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "Renommer"
           }
         },
         "he" : {
@@ -25681,14 +25681,14 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "名称を変更する"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "이름 변경"
           }
         },
         "nl" : {
@@ -25729,8 +25729,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "Переименовать"
           }
         },
         "sr" : {
@@ -25747,8 +25747,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "Yeniden adlandır"
           }
         },
         "uk" : {
@@ -25765,14 +25765,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "重命名"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "重命名"
           }
         }
       }
@@ -27343,8 +27343,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show song change"
+            "state" : "translated",
+            "value" : "음악 변경 보기"
           }
         },
         "nl" : {
@@ -27711,8 +27711,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show when a song changes while playing media via quick peek."
+            "state" : "translated",
+            "value" : "퀵픽을 통해 미디어 재생 중 음악이 변경되면 표시됩니다."
           }
         },
         "nl" : {
@@ -29551,8 +29551,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Swipe horizontally to change song tracks."
+            "state" : "translated",
+            "value" : "곡을 바꾸려면 좌우로 스와이프 하세요."
           }
         },
         "nl" : {
@@ -29723,8 +29723,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Swipe vertically to open, close or hide the notch."
+            "state" : "translated",
+            "value" : "Scorri verticalmente per aprire, chiudere o nascondere il notch."
           }
         },
         "ja" : {
@@ -29735,8 +29735,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Swipe vertically to open, close or hide the notch."
+            "state" : "translated",
+            "value" : "노치를 열고 닫고, 가리려면 위 아래로 스와이프 하세요."
           }
         },
         "nl" : {
@@ -30645,8 +30645,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This widget requires calendar permissions in order to show events, please enable access in settings."
+            "state" : "translated",
+            "value" : "Questo widget richiede l'autorizzazione del calendario per mostrare eventi, per favore abilitane l'accesso nelle impostazioni."
           }
         },
         "ja" : {
@@ -30657,8 +30657,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This widget requires calendar permissions in order to show events, please enable access in settings."
+            "state" : "translated",
+            "value" : "이 위젯은 이벤트를 보여주기 위해 캘린더 접근 권한이 필요합니다. 설정에서 접근을 허용해주세요."
           }
         },
         "nl" : {
@@ -33038,8 +33038,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Unhide Automatically"
+            "state" : "translated",
+            "value" : "Mostra automaticamente"
           }
         },
         "ja" : {
@@ -33050,8 +33050,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Unhide Automatically"
+            "state" : "translated",
+            "value" : "자동으로 다시 표시"
           }
         },
         "nl" : {
@@ -34607,7 +34607,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "要打開一個嗎？"
+            "value" : "要開啟一個嗎？"
           }
         }
       }
