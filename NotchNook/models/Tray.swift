@@ -14,11 +14,14 @@ class Tray {
     var editingFile: (file: TrayFile, newName: String)?
     
     private enum KeyCode: UInt16 {
+        case a = 0
         case c = 8
         case spaceBar = 49
         case returnKey = 36
         case esc = 53
         case delete = 51
+        case leftArrow = 123
+        case rightArrow = 124
     }
     
     private var tempDirectory: URL?
@@ -26,11 +29,11 @@ class Tray {
     
     let activitiesManager: ActiveLiveActivitiesManager
     
-    private(set) var files = Set<TrayFile>() {
+    private(set) var files = [TrayFile]() {
         willSet {
             doAfter { [weak self] in
                 guard let self else { return }
-                let newSelectedFiles = self.selectedFiles.intersection(newValue)
+                let newSelectedFiles = self.selectedFiles.filter { newValue.contains($0) }
                 if self.selectedFiles.count != newSelectedFiles.count {
                     self.selectedFiles = newSelectedFiles
                 }
@@ -47,14 +50,16 @@ class Tray {
             }
         }
     }
-    private(set) var selectedFiles = Set<TrayFile>()
+    private(set) var selectedFiles = [TrayFile]()
+    private var baseFileIndex: Int?
+    private var lastSelectedIndex: Int?
     private var pressedKeysEvent: NSEvent?
     
     private var isCommandPressed: Bool {
         NSEvent.modifierFlags.contains(.command)
     }
-    private var isCombiningKeyPressed: Bool {
-        NSEvent.modifierFlags.contains(.command) || NSEvent.modifierFlags.contains(.shift)
+    private var isShiftPressed: Bool {
+        NSEvent.modifierFlags.contains(.shift)
     }
     
     // MARK: - Initialization
@@ -117,6 +122,8 @@ class Tray {
         self.editingFile = nil
     }
     
+    // MARK: Keys handling
+    
     private func handleEditingKeys(event: NSEvent, key: KeyCode) -> NSEvent? {
         guard selectedFiles.count == 1 else { return event }
         
@@ -135,13 +142,16 @@ class Tray {
     
     private func handleNonEditingKeys(event: NSEvent, key: KeyCode) -> NSEvent? {
         switch key {
-            case .c:
-                guard self.isCommandPressed else { return event }
-                self.copySelectedFilesToClipboard()
+            case .a where isCommandPressed:
+                selectAllFiles()
+                return nil
+                
+            case .c where isCommandPressed:
+                copySelectedFilesToClipboard()
                 return nil
                 
             case .spaceBar:
-                self.toggleQuickLookState()
+                toggleQuickLookState()
                 return nil
                 
             case .returnKey:
@@ -154,37 +164,124 @@ class Tray {
                 removeSelectedFiles()
                 return nil
                 
+            case .leftArrow, .rightArrow:
+                let direction = key == .leftArrow ? -1 : 1
+                doAfter {
+                    if NSEvent.modifierFlags.contains(.shift) {
+                        self.handleShiftArrowSelection(direction: direction)
+                    } else {
+                        self.selectAdjacentFile(direction: direction)
+                    }
+                }
+                return nil
+                
             default: return event
+        }
+    }
+    
+    private func handleShiftArrowSelection(direction: Int) {
+        guard !files.isEmpty else { return }
+        
+        if selectedFiles.isEmpty {
+            lastSelectedIndex = 0
+            selectedFiles = [files[0]]
+        } else if lastSelectedIndex == nil {
+            lastSelectedIndex = files.firstIndex(of: selectedFiles.last ?? files[0])
+        }
+        
+        guard let currentIndex = lastSelectedIndex else { return }
+        
+        let newIndex = max(0, min(files.count - 1, currentIndex + direction))
+        lastSelectedIndex = newIndex
+        
+        if baseFileIndex == nil {
+            baseFileIndex = currentIndex
+        }
+        
+        if let baseIndex = baseFileIndex {
+            let rangeToSelect = min(baseIndex, newIndex)...max(baseIndex, newIndex)
+            selectedFiles = Array(files[rangeToSelect])
         }
     }
     
     // MARK: Handling files methods
     
-    func removeFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.remove(file) } }
-    func addFile(_ file: TrayFile) { _ = withAnimation(.smooth) { files.insert(file) } }
-    func addFiles(_ newFiles: [TrayFile]) { withAnimation(.smooth) { files = files.union(newFiles) } }
-    func openFile(_ file: TrayFile) { NSWorkspace.shared.open(file.url) }
+    func removeFile(_ file: TrayFile) {
+        withAnimation(.smooth) {
+            files.removeAll { $0 == file }
+            selectedFiles.removeAll { $0 == file }
+        }
+    }
     
-    func addFilesFromURLs(_ fileURLs: [URL]) {
-        let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
-        addFiles(newFiles)
+    func addFile(_ file: TrayFile) {
+        withAnimation(.smooth) {
+            if !files.contains(file) {
+                files.append(file)
+            }
+        }
+    }
+    
+    func addFiles(_ newFiles: [TrayFile]) {
+        for file in newFiles { addFile(file) }
     }
     
     func selectFile(_ file: TrayFile?) {
         guard let file else {
             selectedFiles.removeAll()
+            baseFileIndex = nil
+            lastSelectedIndex = nil
             return
         }
         
-        if isCombiningKeyPressed {
-            selectedFiles.toggle(file)
-        } else {
-            if !selectedFiles.contains(file) {
+        if isShiftPressed {
+            if let baseIndex = baseFileIndex, let currentIndex = files.firstIndex(of: file) {
+                let rangeToSelect = min(baseIndex, currentIndex)...max(baseIndex, currentIndex)
+                selectedFiles = Array(files[rangeToSelect])
+                lastSelectedIndex = currentIndex
+            } else {
                 selectedFiles = [file]
+                baseFileIndex = files.firstIndex(of: file)
+                lastSelectedIndex = baseFileIndex
             }
+        } else if isCommandPressed {
+            if let index = selectedFiles.firstIndex(of: file) {
+                selectedFiles.remove(at: index)
+            } else {
+                selectedFiles.append(file)
+            }
+            baseFileIndex = files.firstIndex(of: file)
+            lastSelectedIndex = baseFileIndex
+        } else {
+            selectedFiles = [file]
+            baseFileIndex = files.firstIndex(of: file)
+            lastSelectedIndex = baseFileIndex
         }
         
         editingFile = nil
+    }
+    
+    private func selectAdjacentFile(direction: Int) {
+        guard !files.isEmpty else { return }
+        
+        let currentIndex = selectedFiles.isEmpty ? 0 : (files.firstIndex(of: selectedFiles.last!) ?? 0)
+        let newIndex = max(0, min(files.count - 1, currentIndex + direction))
+        
+        selectFile(files[newIndex])
+    }
+    
+    private func selectAllFiles() {
+        selectedFiles = files
+        baseFileIndex = 0
+        lastSelectedIndex = files.count - 1
+    }
+    
+    func openFile(_ file: TrayFile) {
+        NSWorkspace.shared.open(file.url)
+    }
+    
+    func addFilesFromURLs(_ fileURLs: [URL]) {
+        let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
+        addFiles(newFiles)
     }
     
     private func copySelectedFilesToClipboard() {
@@ -207,22 +304,22 @@ class Tray {
     
     private func updateFiles() {
         let fileManager = FileManager.default
-        var updatedFiles = Set<TrayFile>()
-
+        var updatedFiles = [TrayFile]()
+        
         guard let directory = tempDirectory else { return }
         let existingFiles = try? fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-
+        
         for file in files {
             let fileExists = existingFiles?.contains(where: { $0.lastPathComponent == file.url.lastPathComponent }) ?? false
             if fileExists {
-                updatedFiles.insert(file)
+                updatedFiles.append(file)
             } else {
                 if let newURL = findExistingFile(for: file.url) {
-                    updatedFiles.insert(TrayFile(url: newURL))
+                    updatedFiles.append(TrayFile(url: newURL))
                 }
             }
         }
-
+        
         DispatchQueue.main.async {
             self.files = updatedFiles
         }
@@ -241,8 +338,9 @@ class Tray {
     
     private func removeSelectedFiles() {
         withAnimation(.smooth) {
-            files.subtract(selectedFiles)
+            files.removeAll { selectedFiles.contains($0) }
             selectedFiles.removeAll()
+            baseFileIndex = nil
         }
     }
     
