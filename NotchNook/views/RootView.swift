@@ -49,7 +49,7 @@ struct RootView: View {
     @Default(.notesWidgetSettings) private var notesWidgetSettings
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
-    
+
     mutating func updateForScreen(displayKitId: UUID, screenSize: CGSize, notchSize: CGSize, notchNook: NotchNookState) {
         self.displayKitId = displayKitId
         self.screenSize = screenSize
@@ -95,7 +95,6 @@ struct RootView: View {
             .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)
             .environment(\.showIndicator, showIndicator)
-
         // Defaults
             .environment(\.generalSettings, generalSettings)
             .environment(\.gestureControlSettings, gestureControlSettings)

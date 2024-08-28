@@ -15,8 +15,11 @@ import Sparkle
 import Observation
 
 class WindowsManager {
+    
     static let shared = WindowsManager()
     
+    @Environment(\.cameraManager) private var cameraManager
+
     var displayKits = [DisplayKit]()
     var settingsWindowController: SettingsWindowController?
     private var settingsPanes = [SettingsPane]()
@@ -145,9 +148,7 @@ class WindowsManager {
                 self.changelogViewWindow = nil
             }
         }
-        guard NSScreen.main != nil else {
-            return
-        }
+        guard NSScreen.main != nil else { return }
         
         let newWindow = SwiftUIWindow(
             styleMask: [.titled, .closable, .fullSizeContentView],
@@ -265,6 +266,9 @@ class WindowsManager {
         }
         newWindow.resignedKeyCb = {
             hostingView.rootView.isKeyWindow = false
+        }
+        newWindow.firstResponderCb = { isTheWindow in
+            hostingView.rootView.isEditingText = !isTheWindow
         }
         newWindow.isMovable = false
         newWindow.collectionBehavior = [

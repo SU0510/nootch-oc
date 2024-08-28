@@ -3,18 +3,28 @@ import AVFoundation
 import Defaults
 
 struct MirrorWidgetView: View {
-    var arrayPosition: ArrayPosition
+    
+    enum Mode {
+        case stopped, loading, mirrorring
+    }
     
     @State private var session: AVCaptureSession?
     @State private var mode = Mode.stopped
-    @Environment(\.nookSettings) private var nookSettings
-    enum Mode { case stopped, loading, mirrorring }
     
+    var arrayPosition: ArrayPosition
+    var isSettingsPreview: Bool
+    
+    @Environment(\.nookSettings) private var nookSettings
+    @Environment(\.cameraManager) private var cameraManager
+
     private let width: Double
     
-    init(arrayPosition: ArrayPosition) {
+    init(arrayPosition: ArrayPosition, isSettingsPreview: Bool = false, width: CGFloat? = nil) {
         self.arrayPosition = arrayPosition
-        if case .unique(let size) = NookWidget.mirror.gridSizeType {
+        self.isSettingsPreview = isSettingsPreview
+        if let width {
+            self.width = width
+        } else if case .unique(let size) = NookWidget.mirror.gridSizeType {
             self.width = size.width.screenPoints
         } else {
             self.width = Double(2 * NookGrid.point)
@@ -22,25 +32,46 @@ struct MirrorWidgetView: View {
     }
     
     var body: some View {
-        Button(action: toggleCamera) {
-            ZStack {
-                cameraView
-                overlayView
+        Group {
+            if isSettingsPreview {
+                previewContent
+            } else {
+                Button(action: toggleCamera) {
+                    previewContent
+                }
+                .buttonStyle(ShrinkOnClick(minSize: 0.925))
             }
-            .aspectRatio(1, contentMode: .fit)
-            .frame(maxHeight: .infinity)
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
         .frame(width: width)
-        .buttonStyle(ShrinkOnClick(minSize: 0.925))
-        .onAppear(perform: checkCameraPermission)
+        .onAppear(perform: isSettingsPreview ? setupPreviewCamera : checkCameraPermission)
         .onDisappear(perform: stopCamera)
+        .onChange(of: cameraManager.selectedDevice) {
+            if isSettingsPreview {
+                withAnimation(.bouncySmooth) {
+                    mode = .loading
+                }
+                doAfter() {
+                    self.setupPreviewCamera()
+                }
+            }
+        }
+    }
+
+    
+    @ViewBuilder
+    private var previewContent: some View {
+        ZStack {
+            cameraView
+            overlayView
+        }
+        .aspectRatio(1, contentMode: .fit)
     }
     
     @ViewBuilder
     private var cameraView: some View {
-        if mode == .mirrorring, let session = session {
-            CameraPreview(session: session)
+        if mode == .mirrorring {
+            CameraPreview(session: cameraManager.captureSession, mirrorVideo: cameraManager.mirrorVideo)
                 .scaledToFill()
                 .clipShape(Circle())
                 .transition(.scaleAndBlur)
@@ -107,28 +138,9 @@ struct MirrorWidgetView: View {
     
     private func setupCamera(_ completion: @escaping () -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
-            let session = AVCaptureSession()
-            guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
-                return
-            }
-            
-            do {
-                let input = try AVCaptureDeviceInput(device: device)
-                if session.canAddInput(input) {
-                    session.addInput(input)
-                }
-                let output = AVCaptureVideoDataOutput()
-                if session.canAddOutput(output) {
-                    session.addOutput(output)
-                }
-                
-                session.startRunning()
-                DispatchQueue.main.async {
-                    self.session = session
-                    completion()
-                }
-            } catch {
-                print("Error setting up camera: \(error)")
+            cameraManager.setupSession()
+            DispatchQueue.main.async {
+                completion()
             }
         }
     }
@@ -137,17 +149,26 @@ struct MirrorWidgetView: View {
         DispatchQueue.global(qos: .userInitiated).async {
             self.session?.stopRunning()
             
-            // Remove inputs and outputs from the session
-            self.session?.inputs.forEach { input in
-                self.session?.removeInput(input as! AVCaptureInput)
-            }
-            self.session?.outputs.forEach { output in
-                self.session?.removeOutput(output as! AVCaptureOutput)
-            }
-            
             DispatchQueue.main.async {
+                // Remove inputs and outputs from the session
+                self.session?.inputs.forEach { input in
+                    self.session?.removeInput(input as! AVCaptureInput)
+                }
+                self.session?.outputs.forEach { output in
+                    self.session?.removeOutput(output as! AVCaptureOutput)
+                }
+                
                 self.session = nil  // Set the session to nil to release memory
                 self.mode = .stopped
+            }
+        }
+    }
+    
+    private func setupPreviewCamera() {
+        checkCameraPermission()
+        setupCamera {
+            withAnimation(.bouncySmooth) {
+                mode = .mirrorring
             }
         }
     }
@@ -179,12 +200,31 @@ struct CameraPreview: NSViewRepresentable {
     }
     
     let session: AVCaptureSession
+    let mirrorVideo: Bool
     
     func makeNSView(context: Context) -> VideoPreviewView {
-        return VideoPreviewView(session: session)
+        let view = VideoPreviewView(session: session)
+        view.wantsLayer = true
+        doAfter {
+            view.videoPreviewLayer.videoGravity = .resizeAspectFill
+            self.updateMirroring(for: view)
+        }
+        return view
     }
     
     func updateNSView(_ nsView: VideoPreviewView, context: Context) {
-        nsView.videoPreviewLayer.session = session
+        doAfter {
+            nsView.videoPreviewLayer.session = self.session
+            self.updateMirroring(for: nsView)
+        }
+    }
+    
+    private func updateMirroring(for view: VideoPreviewView) {
+        doAfter {
+            if view.videoPreviewLayer.connection?.isVideoMirroringSupported == true {
+                view.videoPreviewLayer.connection?.automaticallyAdjustsVideoMirroring = false
+                view.videoPreviewLayer.connection?.isVideoMirrored = self.mirrorVideo
+            }
+        }
     }
 }

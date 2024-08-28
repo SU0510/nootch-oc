@@ -38,17 +38,17 @@ struct NookView: View {
                 let arrPos = ArrayPosition(total: widgets.count, i: i)
                 Group {
                     switch widget {
-                        case .media:
-                            MediaPlayerWidgetView(arrayPosition: arrPos)
-                        case .shortcuts:
-                            ShortcutsWidgetView(arrayPosition: ArrayPosition(total: widgets.count, i: i))
-                        case .mirror:
-                            MirrorWidgetView(arrayPosition: arrPos)
-                        case .calendar:
-                            CalendarWidgetView()
-                        case .notes: 
-                            NotesWidgetView(arrayPosition: arrPos, internalPadding: nookSettings.widgetsPadding)
-                        default: EmptyView()
+                    case .media:
+                        MediaPlayerWidgetView(arrayPosition: arrPos)
+                    case .shortcuts:
+                        ShortcutsWidgetView(arrayPosition: ArrayPosition(total: widgets.count, i: i))
+                    case .mirror:
+                        MirrorWidgetView(arrayPosition: arrPos)
+                    case .calendar:
+                        CalendarWidgetView()
+                    case .notes:
+                        NotesWidgetView(arrayPosition: arrPos, internalPadding: nookSettings.widgetsPadding)
+                    default: EmptyView()
                     }
                 }
                 .widgetDefaultProps(arrPos: arrPos, pref: getPref(for: widget), disableDivider: !nookSettings.showDividers)

@@ -11,14 +11,15 @@ import Cocoa
 import UniformTypeIdentifiers
 
 struct NotchView: View {
+    
     @State internal var state = NotchViewModel()
-    @Environment(\.notchSize) private var notchSize
-    @Environment(\.screenSize) private var screenSize
-    @Environment(\.notchNook) var notchNook
-    @Environment(\.generalSettings) var generalSettings
-    @Default(.intro) private var intro
-    @Default(.license) private var license
-    @Default(.trialInitialTime) private var trialInitialTime
+    @Environment(\.notchSize) internal var notchSize
+    @Environment(\.screenSize) internal var screenSize
+    @Environment(\.notchNook) internal var notchNook
+    @Environment(\.generalSettings) internal var generalSettings
+    @Default(.intro) internal var intro
+    @Default(.license) internal var license
+    @Default(.trialInitialTime) internal var trialInitialTime
     @Environment(\.showIndicator) var showIndicator
 
     private var isNonNotchAndDisabled: Bool {

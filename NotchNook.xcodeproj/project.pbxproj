@@ -15,6 +15,7 @@
 		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
+		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
@@ -198,6 +199,8 @@
 		BBF6EDB32C4AE07600F70035 /* BrightnessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */; };
 		BBF6EDB92C4AE75900F70035 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB82C4AE75500F70035 /* HUDManager.swift */; };
 		BBF6EDBB2C4AE8C400F70035 /* SoundCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */; };
+		C11F0A882C5816FF003F96DC /* getCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F0A872C5816FA003F96DC /* getCaptureDevice.swift */; };
+		C11F0A8A2C58C1A4003F96DC /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F0A892C58C1A0003F96DC /* CameraManager.swift */; };
 		EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */; };
 		EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */; };
 		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
@@ -379,6 +382,7 @@
 		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
+		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
@@ -555,6 +559,8 @@
 		BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessCoordinator.swift; sourceTree = "<group>"; };
 		BBF6EDB82C4AE75500F70035 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
 		BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCoordinator.swift; sourceTree = "<group>"; };
+		C11F0A872C5816FA003F96DC /* getCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getCaptureDevice.swift; sourceTree = "<group>"; };
+		C11F0A892C58C1A0003F96DC /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
 		EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveActivitySettings.swift; sourceTree = "<group>"; };
 		EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureControlSettings.swift; sourceTree = "<group>"; };
@@ -865,6 +871,7 @@
 				363709552C572508004D20BB /* WindowManagerKey.swift */,
 				3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */,
 				3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */,
+				36BFB9262C7F61C100241325 /* CameraManagerKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -1457,6 +1464,7 @@
 		EC758F892BF2F1A400B873B0 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				C11F0A872C5816FA003F96DC /* getCaptureDevice.swift */,
 				EC13C6E12C09199600B45C6E /* cancelableTimer.swift */,
 				EC758F852BF2F1A400B873B0 /* airDropFiles.swift */,
 				EC758F862BF2F1A400B873B0 /* getURLsFromDropInfo.swift */,
@@ -1548,6 +1556,7 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C11F0A892C58C1A0003F96DC /* CameraManager.swift */,
 				36C970242C51D73100956B57 /* errors */,
 				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
@@ -1922,6 +1931,7 @@
 				3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */,
 				EC47FC8B2C0ACB5600591811 /* isTrialOver.swift in Sources */,
 				EC758F9A2BF2F1A400B873B0 /* Pipeline.swift in Sources */,
+				C11F0A882C5816FF003F96DC /* getCaptureDevice.swift in Sources */,
 				3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */,
 				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
@@ -2088,6 +2098,7 @@
 				EC47FCB92C0BD5A000591811 /* LoCafeLogoView.swift in Sources */,
 				3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */,
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
+				C11F0A8A2C58C1A4003F96DC /* CameraManager.swift in Sources */,
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				3A1691F72C2FBA410014C326 /* InMemoryDefault.swift in Sources */,
 				36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */,
@@ -2148,6 +2159,7 @@
 				EC2DD1F02C03DB15001FD54E /* TrayFilesScrollView.swift in Sources */,
 				EC47FCA42C0BA15700591811 /* resetDefaults.swift in Sources */,
 				EC4173D42C02515A002889E7 /* Settings.swift in Sources */,
+				36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* TrayEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
@@ -2577,7 +2589,7 @@
 				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				DEVELOPMENT_TEAM = 8M7864P9XP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2617,7 +2629,7 @@
 				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				DEVELOPMENT_TEAM = 8M7864P9XP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;

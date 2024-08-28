@@ -17,28 +17,24 @@ struct WidgetsSettingsTabView: View {
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.nookSettings) private var nookSettings
-    
+
     var body: some View {
         MultipleSettingsPicker(
             elements: NookWidget.allCases,
             activeElements: $nookSettings.enabledWidgets,
             disableItem: { widget in
                 return false
-//                let otherEnabledWidgets = nookSettings.enabledWidgets.filter { $0 != widget }
-//                let remainingWidth = nookSettings.size.width - otherEnabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width }
-//                return widget.prefs.size.width > remainingWidth
             }) { _ in
                 ReorderWidgetsView(widgets: $nookSettings.enabledWidgets)
                     .padding(.horizontal, 19)
             } settings: { selectedElement in
                 switch selectedElement {
-                    //            case .media: MediaLiveAcitivitySettingsView()
-                case .shortcuts: ShortcutsWidgetSettingsView()
-                case .media: MediaWidgetSettingsView()
-                case .mirror: MirrorWidgetSettingsView()
-                case .calendar: CalendarWidgetSettingsView()
-                case .notes: NotesWidgetSettingsView()
-                default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                    case .shortcuts: ShortcutsWidgetSettingsView()
+                    case .media: MediaWidgetSettingsView()
+                    case .mirror: MirrorWidgetSettingsView()
+                    case .calendar: CalendarWidgetSettingsView()
+                    case .notes: NotesWidgetSettingsView()
+                    default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
     }
