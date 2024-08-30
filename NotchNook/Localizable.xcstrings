@@ -99,13 +99,13 @@
             "value" : ""
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : ""
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : ""
@@ -283,16 +283,16 @@
             "value" : " %@"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Identifikasjon (Nøkkel): %@\nIngen Kontekst"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : " %@"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " Identifikasjon (Nøkkel): %@\nIngen Kontekst"
           }
         },
         "pl" : {
@@ -467,16 +467,16 @@
             "value" : " 사용중"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " I bruk"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : " In gebruik"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " I bruk"
           }
         },
         "pl" : {
@@ -651,16 +651,16 @@
             "value" : " 단축어"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Snarveier"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : " Snelkoppelingen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " Snarveier"
           }
         },
         "pl" : {
@@ -835,16 +835,16 @@
             "value" : "(변경사항 보기)"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(se endringslogg)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "(zie logboek)"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(se endringslogg)"
           }
         },
         "pl" : {
@@ -1019,15 +1019,15 @@
             "value" : "%"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "%"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%"
           }
         },
@@ -1203,13 +1203,13 @@
             "value" : "%@ - %@"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ - %@"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ - %@"
@@ -1387,13 +1387,13 @@
             "value" : "%@%lld"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@%lld"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@%lld"
@@ -1571,13 +1571,13 @@
             "value" : "%lld"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
@@ -1755,16 +1755,16 @@
             "value" : "%lld개 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld synlig"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld zichtbaar"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld synlig"
           }
         },
         "pl" : {
@@ -1939,13 +1939,13 @@
             "value" : "%lld%@"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld%@"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld%@"
@@ -2123,15 +2123,15 @@
             "value" : "%lld%%"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "%lld%%"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%lld%%"
           }
         },
@@ -2307,13 +2307,13 @@
             "value" : "+%lld"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "+%lld"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "+%lld"
@@ -2491,16 +2491,16 @@
             "value" : "iOS를 위한 아름다운 네이티브 Reddit 클라이언트 앱."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En vakker og integrert Reddit klientapp for iOS."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een prachtige en native Reddit client app voor iOS."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En vakker og integrert Reddit klientapp for iOS."
           }
         },
         "pl" : {
@@ -2676,16 +2676,16 @@
             "value" : "많은 버그 수정과 멋진 새로운 기능들!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Massevis av feilrettinger og søte nye funksjoner!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een heleboel bugfixes en leuke nieuwe functies!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Massevis av feilrettinger og søte nye funksjoner!"
           }
         },
         "pl" : {
@@ -2860,16 +2860,16 @@
             "value" : "우리가 만든 다른 앱들"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noen av våre apper"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een paar van onze apps"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noen av våre apper"
           }
         },
         "pl" : {
@@ -3044,16 +3044,16 @@
             "value" : "오직 열정 만으로 놀라운 소프트웨어를 만드는, 4개 국가의 재능 넘치는 친구들이 모인 그룹입니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En gruppe med talentfulle venner fra 4 forskjellige land som utvikler fantastisk programvare sammen med stor lidenskap."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een groep getalenteerde vrienden uit 4 verschillende landen die samen, puur uit passie, geweldige software ontwikkelen."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En gruppe med talentfulle venner fra 4 forskjellige land som utvikler fantastisk programvare sammen med stor lidenskap."
           }
         },
         "pl" : {
@@ -3229,16 +3229,16 @@
             "value" : "미팅에 참여하고 알림을 받는 새롭고 세련된 방법입니다. "
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En ny elegant måte å få beskjed om og delta på et møte. "
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een nieuwe, elegante manier om op de hoogte te blijven van een vergadering en eraan deel te nemen. "
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En ny elegant måte å få beskjed om og delta på et møte. "
           }
         },
         "pl" : {
@@ -3413,16 +3413,16 @@
             "value" : "당신의 Mac을 다루는 새로운 방법"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En ny måte å samhandle med din mac"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Een nieuwe manier van interactie met uw mac"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En ny måte å samhandle med din mac"
           }
         },
         "pl" : {
@@ -3597,16 +3597,16 @@
             "value" : "정보"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Over"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Om"
           }
         },
         "pl" : {
@@ -3781,13 +3781,13 @@
             "value" : "AirDrop"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AirDrop"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AirDrop"
@@ -3965,16 +3965,16 @@
             "value" : "앨범아트 모서리 반경:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radius for albumhjørne:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hoekradius van album:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Radius for albumhjørne:"
           }
         },
         "pl" : {
@@ -4149,16 +4149,16 @@
             "value" : "노치 위 마우스 호버 시 제스처 허용"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat bevegelser når du hovrer på notchen"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sta gebaren toe wanneer je over de notch beweegt"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tillat bevegelser når du hovrer på notchen"
           }
         },
         "pl" : {
@@ -4333,16 +4333,16 @@
             "value" : "액티비티를 마우스 클릭으로 조작할 수 있도록 허용합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat enkelte aktiviteter å samhandle med museklikk."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sta interactie toe bij sommige activiteiten met een muisklik."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tillat enkelte aktiviteter å samhandle med museklikk."
           }
         },
         "pl" : {
@@ -4517,16 +4517,16 @@
             "value" : "호버 시 항상 열기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne alltid ved hovring"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Altijd openen bij zweven"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Åpne alltid ved hovring"
           }
         },
         "pl" : {
@@ -4701,16 +4701,16 @@
             "value" : "macOS를 위한 움직이는 배경화면과 오버레이 효과."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Animerte bakgrunnsbilder og overleggseffekter for macOS."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geanimeerde achtergronden en overlay-effecten voor macOS."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Animerte bakgrunnsbilder og overleggseffekter for macOS."
           }
         },
         "pl" : {
@@ -4885,16 +4885,16 @@
             "value" : "업데이트 자동 확인"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisk se etter oppdateringer"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatisch controleren voor updates"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisk se etter oppdateringer"
           }
         },
         "pl" : {
@@ -5069,16 +5069,16 @@
             "value" : "업데이트 자동 다운로드"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisk nedlasting av oppdateringer"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatisch updates downloaden"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisk nedlasting av oppdateringer"
           }
         },
         "pl" : {
@@ -5253,16 +5253,16 @@
             "value" : "밝기/볼륨 HUD 대치"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Brightness/Volume HUD Replacement"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Helderheid/Volume HUD Vervanging"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Brightness/Volume HUD Replacement"
           }
         },
         "pl" : {
@@ -5437,13 +5437,13 @@
             "value" : "캘린더"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalender"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalender"
@@ -5622,16 +5622,16 @@
             "value" : "캘린더 라이브 액티비티"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalender live aktivitet"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalender Live Acitiviteit"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kalender live aktivitet"
           }
         },
         "pl" : {
@@ -5806,16 +5806,16 @@
             "value" : "캘린더 설정"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalenderinnstillinger"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalender Instellingen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kalenderinnstillinger"
           }
         },
         "pl" : {
@@ -5991,16 +5991,16 @@
             "value" : "캘린더 위젯"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalender Widget"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalender widget"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kalender Widget"
           }
         },
         "pl" : {
@@ -6175,16 +6175,16 @@
             "value" : "취소"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cancel"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuleer"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
           }
         },
         "pl" : {
@@ -6359,16 +6359,16 @@
             "value" : "업데이트 확인..."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se etter oppdateringer…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Controleer voor updates…"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se etter oppdateringer…"
           }
         },
         "pl" : {
@@ -6544,16 +6544,16 @@
             "value" : "매력적인 인터페이스와 환상적인 햅틱 피드백으로 다가오는 이벤트를 확인하세요. 이벤트 편집 기능 등이 곧 공개될 예정입니다..."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sjekk de kommende hendelsene i et klikk-basert grensesnitt, med fantastiske haptics. Arrangement redigering og flere egenskaper kommer snart..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bekijk je aankomende evenementen in een gebruiksvriendelijke interface en fantastische voelbare signalen. Evenementen bewerken en meer komen binnenkort..."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sjekk de kommende hendelsene i et klikk-basert grensesnitt, med fantastiske haptics. Arrangement redigering og flere egenskaper kommer snart..."
           }
         },
         "pl" : {
@@ -6728,16 +6728,16 @@
             "value" : "단축어 선택"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg snarveier"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kies Snelkoppelingen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Velg snarveier"
           }
         },
         "pl" : {
@@ -6912,16 +6912,16 @@
             "value" : "설정에서 단축어를 선택하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg dine snarveier i innstillinger."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kies je snelkoppelingen in instellingen."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Velg dine snarveier i innstillinger."
           }
         },
         "pl" : {
@@ -7096,13 +7096,13 @@
             "value" : "위젯이 있는 그곳, 클릭하여 Nook을 여세요."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Click to open the Nook, where your widgets live."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Click to open the Nook, where your widgets live."
@@ -7280,16 +7280,16 @@
             "value" : "복원하려면 닫아야 합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Close it to restore."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sluit om te herstellen."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Close it to restore."
           }
         },
         "pl" : {
@@ -7464,16 +7464,16 @@
             "value" : "코딩 모드"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Code mode"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Codeer modus"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code mode"
           }
         },
         "pl" : {
@@ -7649,16 +7649,16 @@
             "value" : "색상 효과"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Colored effects"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gekleurde effecten"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Colored effects"
           }
         },
         "pl" : {
@@ -7834,16 +7834,16 @@
             "value" : "다채로운 스펙트로그래프"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farget Spektografi"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gekleurde Spectrograaf"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Farget Spektografi"
           }
         },
         "pl" : {
@@ -8018,16 +8018,16 @@
             "value" : "열:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolonner:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kolommen:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kolonner:"
           }
         },
         "pl" : {
@@ -8202,16 +8202,16 @@
             "value" : "출시 예정..."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kommer snart..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Komt binnenkort..."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kommer snart..."
           }
         },
         "pl" : {
@@ -8386,16 +8386,16 @@
             "value" : "컨텐츠 패딩:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Innholds polstring:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inhoud opvulling:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Innholds polstring:"
           }
         },
         "pl" : {
@@ -8570,16 +8570,16 @@
             "value" : "좌우 제스쳐로 미디어 조절"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Styr medier med horisontale bevegelser"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bedien media met horizontale gebaren"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Styr medier med horisontale bevegelser"
           }
         },
         "pl" : {
@@ -8754,13 +8754,13 @@
             "value" : "복사"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Copy"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Copy"
@@ -8938,16 +8938,16 @@
             "value" : "라이브 액티비티 사용자화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilpass aktiviteter"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activiteiten aanpassen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tilpass aktiviteter"
           }
         },
         "pl" : {
@@ -9122,16 +9122,16 @@
             "value" : "파이프라인 사용자화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilpass rørledninger"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pijplijnen aanpassen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tilpass rørledninger"
           }
         },
         "pl" : {
@@ -9306,16 +9306,16 @@
             "value" : "위젯 사용자화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilpass widgeter"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Widgets aanpassen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tilpass widgeter"
           }
         },
         "pl" : {
@@ -9491,16 +9491,16 @@
             "value" : "오, 그거 멋진데요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Damn, det er fantastisk!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verdomme, dat is geweldig!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Damn, det er fantastisk!"
           }
         },
         "pl" : {
@@ -9675,16 +9675,16 @@
             "value" : "데모 모드"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo-modus"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Demo modus"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Demo-modus"
           }
         },
         "pl" : {
@@ -9859,16 +9859,16 @@
             "value" : "감지됨"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppdaget"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gedetecteerd"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oppdaget"
           }
         },
         "pl" : {
@@ -10043,13 +10043,13 @@
             "value" : "음성 HUD에서 색상 비활성화"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Disable colors on audio HUD replacement"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Disable colors on audio HUD replacement"
@@ -10227,16 +10227,16 @@
             "value" : "햅틱 피드백 비활성화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deaktiver haptics"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zet voelbare signalen uit"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deaktiver haptics"
           }
         },
         "pl" : {
@@ -10411,13 +10411,13 @@
             "value" : "Discord 서버"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Discord server"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Discord server"
@@ -10595,13 +10595,13 @@
             "value" : "파일을 드래그 앤 드롭하여 여러 기능에 접근합니다."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Drag and drop files to access multiple functions."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Drag and drop files to access multiple functions."
@@ -10779,16 +10779,16 @@
             "value" : "드롭 영역"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drop Område"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Drop Gebied"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Drop Område"
           }
         },
         "pl" : {
@@ -10963,16 +10963,16 @@
             "value" : "각 열은 2개의 행(단축어 2개)을 포함합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver kolonne inneholder 2 rader (2 snarveier)."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elke kolom bevat 2 rijen (2 snelkoppelingen)."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hver kolonne inneholder 2 rader (2 snarveier)."
           }
         },
         "pl" : {
@@ -11147,15 +11147,15 @@
             "value" : "효과:"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Effect type:"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Effect type:"
           }
         },
@@ -11331,16 +11331,16 @@
             "value" : "이메일"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-post"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "E-mail"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "E-post"
           }
         },
         "pl" : {
@@ -11515,16 +11515,16 @@
             "value" : "이메일 주세요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send oss en e-post!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stuur ons een mail!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send oss en e-post!"
           }
         },
         "pl" : {
@@ -11699,16 +11699,16 @@
             "value" : "활성화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiver"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activeer"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiver"
           }
         },
         "pl" : {
@@ -11883,16 +11883,16 @@
             "value" : "인터랙티브 액티비티 활성화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiver interaktive aktiviteter"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interactieve activiteiten inschakelen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiver interaktive aktiviteter"
           }
         },
         "pl" : {
@@ -12067,16 +12067,16 @@
             "value" : "라이브 액티비티 활성화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiver live-aktiviteter"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schakel live activiteiten in"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiver live-aktiviteter"
           }
         },
         "pl" : {
@@ -12251,16 +12251,16 @@
             "value" : "Nook 활성화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiver nook"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schakel nook in"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiver nook"
           }
         },
         "pl" : {
@@ -12435,16 +12435,16 @@
             "value" : "퀵픽 활성화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiver hurtigvising"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snelle blik inschakelen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktiver hurtigvising"
           }
         },
         "pl" : {
@@ -12619,16 +12619,16 @@
             "value" : "파일 트레이"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filer skuff"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bestandenlade"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Filer skuff"
           }
         },
         "pl" : {
@@ -12803,16 +12803,16 @@
             "value" : "일반"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generelt"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Algemeen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Generelt"
           }
         },
         "pl" : {
@@ -12987,16 +12987,16 @@
             "value" : "제스처"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bevegelser"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gebaren"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bevegelser"
           }
         },
         "pl" : {
@@ -13171,16 +13171,16 @@
             "value" : "라이선스 받기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Få en lisens"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verkrijg een licentie"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Få en lisens"
           }
         },
         "pl" : {
@@ -13355,16 +13355,16 @@
             "value" : "GIF의 수직 오프셋:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "GIF vertical offset:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GIF verticale offset:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "GIF vertical offset:"
           }
         },
         "pl" : {
@@ -13540,13 +13540,13 @@
             "value" : "gjp1lh5dtzqp4yddn73uush9r4inv0"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "gjp1lh5dtzqp4yddn73uush9r4inv0"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "gjp1lh5dtzqp4yddn73uush9r4inv0"
@@ -13724,16 +13724,16 @@
             "value" : "전체 미디어 조절"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Global Media Controlling"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Globale Media Besturing"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Global Media Controlling"
           }
         },
         "pl" : {
@@ -13908,16 +13908,16 @@
             "value" : "핸들러 (노치 없는 화면):"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handler (ingen-notch-skjermer):"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Handler (geen notch schermen):"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Handler (ingen-notch-skjermer):"
           }
         },
         "pl" : {
@@ -14092,16 +14092,16 @@
             "value" : "높이"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Høyde"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hoogte"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Høyde"
           }
         },
         "pl" : {
@@ -14276,16 +14276,16 @@
             "value" : "Hello, World!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hello, World!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hallo, wereld!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Hello, World!"
           }
         },
         "pl" : {
@@ -14460,16 +14460,16 @@
             "value" : "가려짐, 크기가 맞지 않습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjul, det passer ikke."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verborgen, het past niet."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skjul, det passer ikke."
           }
         },
         "pl" : {
@@ -14644,13 +14644,13 @@
             "value" : "와, 대단한데요!"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Holy cow, amazing!"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Holy cow, amazing!"
@@ -14828,13 +14828,13 @@
             "value" : "HUD 대치:"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "HUD replacement:"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "HUD replacement:"
@@ -15012,16 +15012,16 @@
             "value" : "죄송합니다, 체험판이 종료되었습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beklager, din prøveperiode er over."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorry, uw proefperiode is voorbij."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beklager, din prøveperiode er over."
           }
         },
         "pl" : {
@@ -15196,16 +15196,16 @@
             "value" : "비활성화하면 노치를 클릭할 때 아무것도 나타나지 않습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis deaktivert, vil ikke klikking på notchen gjøre noe."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Als dit is uitgeschakeld, zal het klikken op de notch niets doen."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hvis deaktivert, vil ikke klikking på notchen gjøre noe."
           }
         },
         "pl" : {
@@ -15380,16 +15380,16 @@
             "value" : "활성화하면 현재 재생중인 앨범의 색상이 효과에 반영됩니다. 비활성화 된 경우 흰색으로 나타납니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indien ingeschakeld nemen effecten de kleuren over van het huidige afgespeelde album, anders is het wit."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, effects will take the color of the current playing album, otherwise, it'll be white."
           }
         },
         "pl" : {
@@ -15564,13 +15564,13 @@
             "value" : "사용하도록 설정되면 위로 스와이프를 통해 가려진 라이브 액티비티들이 자동으로 다시 표시됩니다."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "If enabled, live activities that have been dismissed (by swiping up) will automatically return."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "If enabled, live activities that have been dismissed (by swiping up) will automatically return."
@@ -15748,16 +15748,16 @@
             "value" : "활성화하면 몇 가지 실시간 액티비티에 마우스를 올릴 시 간략한 정보가 표시됩니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis aktivert, vil noen live-aktiviteter vise litt info når du hovrer over."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indien ingeschakeld, zullen sommige live activiteiten een korte informatie tonen bij muisaanwijzing."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hvis aktivert, vil noen live-aktiviteter vise litt info når du hovrer over."
           }
         },
         "pl" : {
@@ -15933,16 +15933,16 @@
             "value" : "활성화하면 오디오 스펙트로그래프가 현재 재생중인 앨범의 색상으로 나타납니다. 비활성화 된 경우 흰색으로 나타납니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis aktivert, vil lydspekteriet ta fargen på det spillende album, ellers vil det være hvit."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indien ingeschakeld neemt de audio spectograaf de kleuren over van het huidige afgespeelde album, anders is het wit."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hvis aktivert, vil lydspekteriet ta fargen på det spillende album, ellers vil det være hvit."
           }
         },
         "pl" : {
@@ -16117,16 +16117,16 @@
             "value" : "켜져 있으면 왼쪽으로 스와이프 시 다음 음악이 재생됩니다. 꺼져 있으면 이전 음악이 재생됩니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis på, vil en venstre sveip starte neste sang, hvis av, spole tilbake."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Als deze optie is ingeschakeld, start u met een veeg naar links het volgende nummer. Als deze optie is uitgeschakeld, start u het vorige nummer."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hvis på, vil en venstre sveip starte neste sang, hvis av, spole tilbake."
           }
         },
         "pl" : {
@@ -16301,16 +16301,16 @@
             "value" : "비활성화까지 시간:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidsavbrudd for inaktivitet:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Time-out bij inactiviteit:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tidsavbrudd for inaktivitet:"
           }
         },
         "pl" : {
@@ -16485,16 +16485,16 @@
             "value" : "상호작용:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interaktivitet:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interactiviteit:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Interaktivitet:"
           }
         },
         "pl" : {
@@ -16669,16 +16669,16 @@
             "value" : "미디어 제스처 동작 반전"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inverter media bevegelser"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Acties voor mediagebaren omkeren"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inverter media bevegelser"
           }
         },
         "pl" : {
@@ -16854,16 +16854,16 @@
             "value" : "홍길동@email.com"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ola.nordmann@eksempel.no"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "john.doe@email.com"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ola.nordmann@eksempel.no"
           }
         },
         "pl" : {
@@ -17039,16 +17039,16 @@
             "value" : "라이선스 키"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nøkkel"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Key"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nøkkel"
           }
         },
         "pl" : {
@@ -17223,16 +17223,16 @@
             "value" : "로그인 시 실행"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start ved innlogging"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opstarten bij inloggen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start ved innlogging"
           }
         },
         "pl" : {
@@ -17407,16 +17407,16 @@
             "value" : "라이선스"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisens"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licentie"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lisens"
           }
         },
         "pl" : {
@@ -17591,13 +17591,13 @@
             "value" : "라이센스 키"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "License Key"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "License Key"
@@ -17776,16 +17776,16 @@
             "value" : "라이선스 유형"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisenstype"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licentie Type"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lisenstype"
           }
         },
         "pl" : {
@@ -17960,16 +17960,16 @@
             "value" : "라이브 액티비티"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Aktiviteter"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Live activiteiten"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Live Aktiviteter"
           }
         },
         "pl" : {
@@ -18144,16 +18144,16 @@
             "value" : "lo.cafe 웹사이트"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lo.cafe nettsted"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "lo.cafe site"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "lo.cafe nettsted"
           }
         },
         "pl" : {
@@ -18328,16 +18328,16 @@
             "value" : "버튼 잠그기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Lock Button"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vergrendelknop"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock Button"
           }
         },
         "pl" : {
@@ -18512,16 +18512,16 @@
             "value" : "입력하는 동안 잠금"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Lock while typing"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vergrendel tijdens typen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Lock while typing"
           }
         },
         "pl" : {
@@ -18696,16 +18696,16 @@
             "value" : "결제 관리"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administrer fakturering"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Facturering Beheren"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Administrer fakturering"
           }
         },
         "pl" : {
@@ -18880,16 +18880,16 @@
             "value" : "다른 캘린더 설정 관리:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administrer andre kalenderinnstillinger:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beheer andere kalenderinstellingen:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Administrer andre kalenderinnstillinger:"
           }
         },
         "pl" : {
@@ -19064,16 +19064,16 @@
             "value" : "미디어"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medier"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Media"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Medier"
           }
         },
         "pl" : {
@@ -19248,16 +19248,16 @@
             "value" : "미디어 플레이어"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediespiller"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mediaspeler"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mediespiller"
           }
         },
         "pl" : {
@@ -19432,16 +19432,16 @@
             "value" : "남은 시간 표시 시작 시점 (분):"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minutter før visning:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Minuten vóór het verschijnen:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Minutter før visning:"
           }
         },
         "pl" : {
@@ -19616,16 +19616,16 @@
             "value" : "거울"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speil"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spiegel"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Speil"
           }
         },
         "pl" : {
@@ -19701,6 +19701,12 @@
           }
         }
       }
+    },
+    "Mirror source:" : {
+
+    },
+    "Mirror video" : {
+
     },
     "Natural animations and fresh new features!" : {
       "localizations" : {
@@ -19800,16 +19806,16 @@
             "value" : "자연스러운 애니메이션과 새로운 기능들!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Natural animations and fresh new features!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Natuurlijke animaties en nieuwe functies!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural animations and fresh new features!"
           }
         },
         "pl" : {
@@ -19984,16 +19990,16 @@
             "value" : "새 업데이트"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nye Oppdateringer"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nieuwe Update"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nye Oppdateringer"
           }
         },
         "pl" : {
@@ -20168,16 +20174,16 @@
             "value" : "실행중인 앱이 없습니다"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen app ser ut til å kjøre"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen enkele app lijkt actief te zijn"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ingen app ser ut til å kjøre"
           }
         },
         "pl" : {
@@ -20253,6 +20259,9 @@
           }
         }
       }
+    },
+    "No devices to preview from" : {
+
     },
     "Nook" : {
       "localizations" : {
@@ -20352,13 +20361,13 @@
             "value" : "Nook"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nook"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nook"
@@ -20536,16 +20545,16 @@
             "value" : "노치 너비 미세 조정:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finjustering av bredden på notch:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fijne afstelling van de notch breedte:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finjustering av bredden på notch:"
           }
         },
         "pl" : {
@@ -20720,13 +20729,13 @@
             "value" : "노치:"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notch:"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notch:"
@@ -20904,13 +20913,13 @@
             "value" : "NotchNook"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NotchNook"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NotchNook"
@@ -21088,13 +21097,13 @@
             "value" : "NotchNook "
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NotchNook "
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NotchNook "
@@ -21272,16 +21281,16 @@
             "value" : "NotchNook를 만든 개발사"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NotchNook er laget av"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NotchNook is gemaakt door"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NotchNook er laget av"
           }
         },
         "pl" : {
@@ -21456,16 +21465,16 @@
             "value" : "NotchNook은 노치의 너비를 추측하기 위해 최선을 다하지만 때때로 약간 틀어질 수 있습니다. 여기서 미세 조정이 가능합니다. 이 너비는 실제 노치의 크기와 정확히 일치해야 합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NotchNook prøver det er beste på å gjette din notch bredde, men noen ganger kan det være litt av. Her kan du finjustere den. Den må være nøyaktig like stor som din notch."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NotchNook probeert zo goed mogelijk de breedte van je notch te raden, maar soms kan het een beetje afwijken. Hier kun je het finetunen. Het moet precies dezelfde grootte hebben als je notch."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NotchNook prøver det er beste på å gjette din notch bredde, men noen ganger kan det være litt av. Her kan du finjustere den. Den må være nøyaktig like stor som din notch."
           }
         },
         "pl" : {
@@ -21640,16 +21649,16 @@
             "value" : "메모"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notater"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notities"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notater"
           }
         },
         "pl" : {
@@ -21824,16 +21833,16 @@
             "value" : "오늘 일정 없음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting for i dag"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Niets voor vandaag"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ingenting for i dag"
           }
         },
         "pl" : {
@@ -22008,16 +22017,16 @@
             "value" : "선택된 항목이 없음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting er valgt"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Niets geselecteerd"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ingenting er valgt"
           }
         },
         "pl" : {
@@ -22192,16 +22201,16 @@
             "value" : "이제 어떤 앱의 미디어든 다 조절할 수 있어요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Now you can control any media from any app!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Je kunt nu alle media beheren vanuit elke app!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can control any media from any app!"
           }
         },
         "pl" : {
@@ -22376,16 +22385,16 @@
             "value" : "이제 \"라이브 액티비티\" 설정에서 기본 볼륨 및 밝기 조절 표시기를 변경할 수 있어요!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "U kunt nu de standaard volume en helderheid Hud vervangen door aangepaste Hud in de \"Live Activiteiten\" instellingen!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"
           }
         },
         "pl" : {
@@ -22560,15 +22569,15 @@
             "value" : "확인"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "OK"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "OK"
           }
         },
@@ -22744,16 +22753,16 @@
             "value" : "설정 열기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne innstillinger"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Instellingen openen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Åpne innstillinger"
           }
         },
         "pl" : {
@@ -22928,16 +22937,16 @@
             "value" : "노치를 상하 제스쳐로 열고 닫기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne/lukke notchen med vertikale bevegelser"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open/sluit notch met verticale gebaren"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Åpne/lukke notchen med vertikale bevegelser"
           }
         },
         "pl" : {
@@ -23112,16 +23121,16 @@
             "value" : "기타 옵션:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Andre innstillinger:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Andere opties:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Andre innstillinger:"
           }
         },
         "pl" : {
@@ -23296,16 +23305,16 @@
             "value" : "기타:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annet:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Overige:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annet:"
           }
         },
         "pl" : {
@@ -23481,16 +23490,16 @@
             "value" : "위젯 주변 패딩:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fyll rundt widgeter:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vullen rondom widgets:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fyll rundt widgeter:"
           }
         },
         "pl" : {
@@ -23665,13 +23674,13 @@
             "value" : "유효한 이메일을 입력하세요"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Please enter a valid email"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Please enter a valid email"
@@ -23849,16 +23858,16 @@
             "value" : "마우스 커서가 영역 밖으로 나갔을 때에도 닫지 않기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prevent from closing on mouse leave"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voorkom sluiten bij muis verlaten"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent from closing on mouse leave"
           }
         },
         "pl" : {
@@ -24033,16 +24042,16 @@
             "value" : "새로운 잠금 버튼으로 NotchNook이 자동으로 닫히는 것을 방지할 수 있습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prevent NN from auto-closing with the new lock button."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voorkom dat NN automatisch sluit met de nieuwe vergrendelknop."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Prevent NN from auto-closing with the new lock button."
           }
         },
         "pl" : {
@@ -24217,16 +24226,16 @@
             "value" : "유휴 상태일 때 NotchNook이 숨겨지는 것을 방지합니다. 화면 녹화 시에 유용합니다. (노치가 없는 화면에서는 효과가 없습니다)"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hindrer NotchNook fra å skjule seg når den ikke er stille. Nyttig for skjermopptak (dette har ingen effekt på ikke-notched skjermer)."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voorkomt dat NotchNook zich verbergt wanneer het inactief is. Handig voor schermopnames (dit heeft geen effect op schermen zonder notch)."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hindrer NotchNook fra å skjule seg når den ikke er stille. Nyttig for skjermopptak (dette har ingen effekt på ikke-notched skjermer)."
           }
         },
         "pl" : {
@@ -24401,16 +24410,16 @@
             "value" : "개인정보 취급방침"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Privacybeleid"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
           }
         },
         "pl" : {
@@ -24585,16 +24594,16 @@
             "value" : "빠른 앱 접근"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hurtigapper"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snelle Apps"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hurtigapper"
           }
         },
         "pl" : {
@@ -24770,16 +24779,16 @@
             "value" : "퀵픽"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hurtig titt"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snelle Blik"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hurtig titt"
           }
         },
         "pl" : {
@@ -24954,16 +24963,16 @@
             "value" : "NotchNook 종료"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutt NotchNook"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sluit NotchNook"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avslutt NotchNook"
           }
         },
         "pl" : {
@@ -25138,16 +25147,16 @@
             "value" : "등록"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrer deg"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registreren"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registrer deg"
           }
         },
         "pl" : {
@@ -25322,16 +25331,16 @@
             "value" : "등록됨"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrert"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geregistreerd"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registrert"
           }
         },
         "pl" : {
@@ -25507,16 +25516,16 @@
             "value" : "남은 칸: %lld"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjenværende celler: %lld"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CELLEN RESTEREND: %lld"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gjenværende celler: %lld"
           }
         },
         "pl" : {
@@ -25592,6 +25601,9 @@
           }
         }
       }
+    },
+    "Remove from tray" : {
+
     },
     "Rename" : {
       "localizations" : {
@@ -25691,13 +25703,13 @@
             "value" : "이름 변경"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Rename"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Rename"
@@ -25875,16 +25887,16 @@
             "value" : "모든 설정 초기화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbakestill alle innstillinger"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reset alle instellingen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tilbakestill alle innstillinger"
           }
         },
         "pl" : {
@@ -26059,16 +26071,16 @@
             "value" : "기본값으로 초기화"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbakestill til standard"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standaardinstellingen herstellen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tilbakestill til standard"
           }
         },
         "pl" : {
@@ -26243,16 +26255,16 @@
             "value" : "튜토리얼 보기"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se veiledning"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bekijk uitleg"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se veiledning"
           }
         },
         "pl" : {
@@ -26427,16 +26439,16 @@
             "value" : "단축어를 선택하세요"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg noen snarveier"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer enkele snelkoppelingen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Velg noen snarveier"
           }
         },
         "pl" : {
@@ -26611,16 +26623,16 @@
             "value" : "문제가 해결되지 않은 경우 hi@lo.cafe로 이메일을 보내주세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send en e-post til hi@lo.cafe hvis dette ikke går bort."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Stuur een e-mail naar hi@lo.cafe als dit niet verdwijnt."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send en e-post til hi@lo.cafe hvis dette ikke går bort."
           }
         },
         "pl" : {
@@ -26696,6 +26708,9 @@
           }
         }
       }
+    },
+    "Send via AirDrop" : {
+
     },
     "Shortcuts" : {
       "localizations" : {
@@ -26795,16 +26810,16 @@
             "value" : "단축어"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snarveier"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Snelkoppelingen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Snarveier"
           }
         },
         "pl" : {
@@ -26979,16 +26994,16 @@
             "value" : "위젯 사이에 분할선 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis skiller mellom widgets"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scheidingen tussen widgets tonen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vis skiller mellom widgets"
           }
         },
         "pl" : {
@@ -27163,16 +27178,16 @@
             "value" : "스크롤바 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show scroll indicator"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verberg scroll indicator"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Show scroll indicator"
           }
         },
         "pl" : {
@@ -27347,13 +27362,13 @@
             "value" : "음악 변경 보기"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Show song change"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Show song change"
@@ -27531,16 +27546,16 @@
             "value" : "이벤트 진행 중 지난 시간 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis tid gått mens i hendelser"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon tijd verstreken tijdens evenementen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vis tid gått mens i hendelser"
           }
         },
         "pl" : {
@@ -27715,13 +27730,13 @@
             "value" : "퀵픽을 통해 미디어 재생 중 음악이 변경되면 표시됩니다."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Show when a song changes while playing media via quick peek."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Show when a song changes while playing media via quick peek."
@@ -27899,16 +27914,16 @@
             "value" : "이벤트 진행 중에 표시"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis i hendelser"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon tijdens evenementen"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vis i hendelser"
           }
         },
         "pl" : {
@@ -28083,16 +28098,16 @@
             "value" : "몇 가지 링크들:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noen lenker:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enkele links:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noen lenker:"
           }
         },
         "pl" : {
@@ -28267,16 +28282,16 @@
             "value" : "문제가 발생했습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noe gikk galt :("
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Er klopt iets niet."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noe gikk galt :("
           }
         },
         "pl" : {
@@ -28451,16 +28466,16 @@
             "value" : "곧 드래그 앤 드롭으로 이미지를 압축하거나, 파일을 압축/해제할 수 있게 될거에요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snart kan du komprimere bilder, zip/unzip filer og mye mer ved å dra og slippe filer."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Binnenkort kunt u afbeeldingen comprimeren, bestanden zippen/unzippen en nog veel meer door bestanden te slepen en neer te zetten."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Snart kan du komprimere bilder, zip/unzip filer og mye mer ved å dra og slippe filer."
           }
         },
         "pl" : {
@@ -28635,16 +28650,16 @@
             "value" : "죄송합니다, NotchNook을 사용하려면 라이선스를 등록해야합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beklager, du må registrere deg for å bruke NotchNook."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorry, u moet zich registreren om NotchNook te kunnen gebruiken."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beklager, du må registrere deg for å bruke NotchNook."
           }
         },
         "pl" : {
@@ -28819,13 +28834,13 @@
             "value" : "시작"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start"
@@ -29003,16 +29018,16 @@
             "value" : "%lld시간 체험판 시작"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start %lldh prøveversjon"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start proefperiode van %lld uur"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start %lldh prøveversjon"
           }
         },
         "pl" : {
@@ -29187,16 +29202,16 @@
             "value" : "체험판 시작"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start prøveversjonen"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start Proefperiode"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start prøveversjonen"
           }
         },
         "pl" : {
@@ -29371,13 +29386,13 @@
             "value" : "상태"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Status"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Status"
@@ -29555,13 +29570,13 @@
             "value" : "곡을 바꾸려면 좌우로 스와이프 하세요."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Swipe horizontally to change song tracks."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Swipe horizontally to change song tracks."
@@ -29739,13 +29754,13 @@
             "value" : "노치를 열고 닫고, 가리려면 위 아래로 스와이프 하세요."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Swipe vertically to open, close or hide the notch."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Swipe vertically to open, close or hide the notch."
@@ -29924,16 +29939,16 @@
             "value" : "라이브 액티비티에 마우스를 올려 유용한 정보를 빠르게 확인하세요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta en rask titt på nyttig informasjon ved å hovre noen av de aktive aktivitetene."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bekijk snel de nuttige informatie door met de muis over de live-activiteiten te bewegen."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ta en rask titt på nyttig informasjon ved å hovre noen av de aktive aktivitetene."
           }
         },
         "pl" : {
@@ -30108,16 +30123,16 @@
             "value" : "메모가 날아가버렸습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The note flew away."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "De notitie vloog weg."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The note flew away."
           }
         },
         "pl" : {
@@ -30293,16 +30308,16 @@
             "value" : "위젯 격자의 각 단위는 \"칸\"으로 측정됩니다. 칸 1개는 %lld 포인트/픽셀을 의미합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enheten måles i \"celler\" for widget-rutenettet. 1 celle betyr %lld poeng/px."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "De eenheid wordt gemeten in \"cellen\" voor het rooster van de widgets. 1 cel betekent %lld punten/px."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enheten måles i \"celler\" for widget-rutenettet. 1 celle betyr %lld poeng/px."
           }
         },
         "pl" : {
@@ -30477,13 +30492,13 @@
             "value" : "이 기능은 NotchNook에 접근성 권한을 필요로 합니다."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "This setting requires you to provide NotchNook with accessibility permissions."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "This setting requires you to provide NotchNook with accessibility permissions."
@@ -30661,13 +30676,13 @@
             "value" : "이 위젯은 이벤트를 보여주기 위해 캘린더 접근 권한이 필요합니다. 설정에서 접근을 허용해주세요."
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "This widget requires calendar permissions in order to show events, please enable access in settings."
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "This widget requires calendar permissions in order to show events, please enable access in settings."
@@ -30845,16 +30860,16 @@
             "value" : "이 설정은 NotchNook의 일부 제스처 기능을 비활성화합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This will disable some of NotchNook's gestures."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiermee worden enkele NotchNook's gebaren uitgeschakeld."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "This will disable some of NotchNook's gestures."
           }
         },
         "pl" : {
@@ -31029,16 +31044,16 @@
             "value" : "라이선스를 제외한 모든 것들이 초기화됩니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette tilbakestiller alt utenom lisensen."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dit zal alles resetten behalve je licentie."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dette tilbakestiller alt utenom lisensen."
           }
         },
         "pl" : {
@@ -31213,16 +31228,16 @@
             "value" : "남은 시간"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjenstående tid"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Resterende Tijd"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gjenstående tid"
           }
         },
         "pl" : {
@@ -31397,16 +31412,16 @@
             "value" : "할 일 목록"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huskeliste"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "To-dos"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Huskeliste"
           }
         },
         "pl" : {
@@ -31582,16 +31597,16 @@
             "value" : "전체 칸 수: %lld"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOTALE CELLER: %lld"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TOTALE CELLEN: %lld"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TOTALE CELLER: %lld"
           }
         },
         "pl" : {
@@ -31766,16 +31781,16 @@
             "value" : "메모를 구문 강조 기능(마크다운 지원)이 포함된 코드 편집기로 변환합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transformeert notities in een code editor, met syntax highlighting (ondersteunt Markdown)."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Transforms notes into a code editor, with syntax highlighting (supports Markdown)."
           }
         },
         "pl" : {
@@ -31950,16 +31965,16 @@
             "value" : "반투명한 노치 배경 (실험적 기능)"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjennomsiktig notch bakgrunn (eksperimentell)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transparante notch achtergrond (experimenteel)"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gjennomsiktig notch bakgrunn (eksperimentell)"
           }
         },
         "pl" : {
@@ -32134,16 +32149,16 @@
             "value" : "투명한 핸들러"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjennomsiktig handler"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transparante afhandeling"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gjennomsiktig handler"
           }
         },
         "pl" : {
@@ -32318,16 +32333,16 @@
             "value" : "트레이"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skuff"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tray"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skuff"
           }
         },
         "pl" : {
@@ -32502,16 +32517,16 @@
             "value" : "체험판"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prøveperiode"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proefperiode"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prøveperiode"
           }
         },
         "pl" : {
@@ -32686,16 +32701,16 @@
             "value" : "실시간 액티비티가 비활성 상태가 된 후 사라지기까지 걸리는 시간 _(초 단위)_ 을 조정하세요. (음악 일시정지 등)"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiden _(i sekunder)_ som publiserte aktiviteter tar å slutte når de blir inaktive (som når musikkpauser)."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pas de tijd _(in seconden)_ aan die live activiteiten nemen om weg te gaan nadat ze inactief zijn geworden (zoals wanneer muziek pauzeert)."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiden _(i sekunder)_ som publiserte aktiviteter tar å slutte når de blir inaktive (som når musikkpauser)."
           }
         },
         "pl" : {
@@ -32870,16 +32885,16 @@
             "value" : "입력 효과:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Typing effects:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Typ effecten:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Typing effects:"
           }
         },
         "pl" : {
@@ -33054,13 +33069,13 @@
             "value" : "자동으로 다시 표시"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Unhide Automatically"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Unhide Automatically"
@@ -33238,16 +33253,16 @@
             "value" : "알 수 없는 앨범"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukjent album"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Onbekend album"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ukjent album"
           }
         },
         "pl" : {
@@ -33422,16 +33437,16 @@
             "value" : "알 수 없는 아티스트"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukjent artist"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Onbekende Artiest"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ukjent artist"
           }
         },
         "pl" : {
@@ -33606,16 +33621,16 @@
             "value" : "알 수 없는 제목"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukjent tittel"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ongekende titel"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ukjent tittel"
           }
         },
         "pl" : {
@@ -33790,16 +33805,16 @@
             "value" : "등록 해제"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meld deg av"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uitschrijven"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meld deg av"
           }
         },
         "pl" : {
@@ -33974,16 +33989,16 @@
             "value" : "등록되지 않음"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uregistrert"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ongeregistreerd"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uregistrert"
           }
         },
         "pl" : {
@@ -34158,13 +34173,13 @@
             "value" : "v%@"
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "v%@"
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "v%@"
@@ -34342,13 +34357,13 @@
             "value" : "v%@ "
           }
         },
-        "nl" : {
+        "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "v%@ "
           }
         },
-        "no" : {
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "v%@ "
@@ -34526,16 +34541,16 @@
             "value" : "앱을 열어볼까요?"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil du åpne en?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wilt u er een openen?"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vil du åpne en?"
           }
         },
         "pl" : {
@@ -34710,16 +34725,16 @@
             "value" : "NotchNook 사용을 환영합니다!"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen til NotchNook!"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welkom bij NotchNook!"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Velkommen til NotchNook!"
           }
         },
         "pl" : {
@@ -34894,16 +34909,16 @@
             "value" : "너비"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bredde"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breedte"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bredde"
           }
         },
         "pl" : {
@@ -35079,16 +35094,16 @@
             "value" : "너비 (칸 단위):"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bredde (i celler):"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breedte (in cellen):"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bredde (i celler):"
           }
         },
         "pl" : {
@@ -35263,16 +35278,16 @@
             "value" : "너비:"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bredde:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breedte:"
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bredde:"
           }
         },
         "pl" : {
@@ -35447,16 +35462,16 @@
             "value" : "마우스를 올릴 때만 나타납니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vil kun vises når musepekeren hovrer over."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wordt alleen getoond bij muisaanwijzing."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vil kun vises når musepekeren hovrer over."
           }
         },
         "pl" : {
@@ -35631,16 +35646,16 @@
             "value" : "우클릭으로도 할 수 있습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You can also right click it."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Je kunt er ook met rechtermuisknop op klikken."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can also right click it."
           }
         },
         "pl" : {
@@ -35815,16 +35830,16 @@
             "value" : "이건 안 보는게 좋을거 같아요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du skulle ikke se dette."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Je zou dit niet moeten zien."
-          }
-        },
-        "no" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du skulle ikke se dette."
           }
         },
         "pl" : {
