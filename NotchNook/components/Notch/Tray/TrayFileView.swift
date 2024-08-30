@@ -65,16 +65,26 @@ struct TrayFileView: View {
         }
         .transition(.scaleAndBlur)
         .contextMenu {
-            Button("Copy") {
-                let pasteboard = NSPasteboard.general
-                pasteboard.clearContents()
-                pasteboard.writeObjects([file.url as NSPasteboardWriting])
-            }
-            .keyboardShortcut("c", modifiers: .command)
-            Button("Rename") {
+            Button(String(localized: "Copy")) {
+                doAfter {
+                    tray.copySelectedFilesToClipboard()
+                }
+            }.keyboardShortcut("c", modifiers: .command)
+            
+            Button(String(localized: "Rename")) {
                 doAfter {
                     tray.editingFile = (file, file.name)
                     enableTextEditing()
+                }
+            }
+            
+            Button(String(localized: "Remove from tray")) {
+                doAfter { tray.removeSelectedFiles(currentFile: file) }
+            }
+            
+            Button(String(localized: "Send via AirDrop")) {
+                doAfter {
+                    tray.airdropSelectedFiles()
                 }
             }
         }

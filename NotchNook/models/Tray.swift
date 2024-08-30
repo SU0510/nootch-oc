@@ -210,6 +210,7 @@ class Tray {
         withAnimation(.smooth) {
             files.removeAll { $0 == file }
             selectedFiles.removeAll { $0 == file }
+            baseFileIndex = nil
         }
     }
     
@@ -279,16 +280,32 @@ class Tray {
         NSWorkspace.shared.open(file.url)
     }
     
+    func removeSelectedFiles(currentFile: TrayFile? = nil) {
+        withAnimation(.smooth) {
+            guard let currentFile, !selectedFiles.contains(currentFile) else {
+                files.removeAll { selectedFiles.contains($0) }
+                selectedFiles.removeAll()
+                baseFileIndex = nil
+                return
+            }
+            removeFile(currentFile)
+        }
+    }
+    
     func addFilesFromURLs(_ fileURLs: [URL]) {
         let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
         addFiles(newFiles)
     }
     
-    private func copySelectedFilesToClipboard() {
+    func copySelectedFilesToClipboard() {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         let urls = selectedFiles.map { $0.url }
         pasteboard.writeObjects(urls as [NSPasteboardWriting])
+    }
+    
+    func airdropSelectedFiles() {
+        airDropFiles(urls: selectedFiles.map { $0.url })
     }
 
     private func toggleQuickLookState() {
@@ -334,14 +351,6 @@ class Tray {
             }
         }
         return nil
-    }
-    
-    private func removeSelectedFiles() {
-        withAnimation(.smooth) {
-            files.removeAll { selectedFiles.contains($0) }
-            selectedFiles.removeAll()
-            baseFileIndex = nil
-        }
     }
     
 }
