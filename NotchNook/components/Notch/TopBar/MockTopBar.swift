@@ -25,7 +25,7 @@ struct MockTopBar: View {
     }
     
     var body: some View {
-        let height = notchSize.height > ((TopBarView.minHeight / 3) * 2) ? notchSize.height : TopBarView.minHeight
+        let height = notchSize.height > ((TopBarView.maxHeight / 3) * 2) ? notchSize.height : TopBarView.maxHeight
         let mockedEvent = NookEvent(
             id: "mock-event",
             startDate: fakeNow,

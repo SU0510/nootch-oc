@@ -11,6 +11,7 @@ struct LiveActivitiesSettings: Preferences {
     var enabled = true
     var inactivityTimeoutInSecs: Double = 10
     var enabledLiveActivities: Set<LiveActivity> = [.tray, .media, .updateAvailable]
+    var height: CGFloat = 32
     var interactive = true
     var enableQuickPeek = true
     var enableHUDReplacement = false

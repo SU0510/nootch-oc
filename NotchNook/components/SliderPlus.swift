@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct SliderPlus: View {
+    
     @Binding var value: Double
+    
     var range: ClosedRange<Double>
     var rangeManual: ClosedRange<Double>?
     var step: Double = 1
     var maxWidth: Double = 200
-    
+    var useTickMarks: Bool = false
+
     init(value: Binding<Double>, range: ClosedRange<Double>, rangeManual: ClosedRange<Double>? = nil, step: Double = 1) {
         self._value = value
         self.range = range
@@ -21,7 +24,7 @@ struct SliderPlus: View {
         self.step = step
     }
     
-    init(value: Binding<CGFloat>, range: ClosedRange<Double>, rangeManual: ClosedRange<Double>? = nil, step: Double = 1) {
+    init(value: Binding<CGFloat>, range: ClosedRange<Double>, rangeManual: ClosedRange<Double>? = nil, step: Double = 1, useTickMarks: Bool = false) {
         self._value = Binding<Double>(
             get: { Double(value.wrappedValue) },
             set: { value.wrappedValue = CGFloat($0) }
@@ -29,6 +32,7 @@ struct SliderPlus: View {
         self.range = range
         self.rangeManual = rangeManual
         self.step = step
+        self.useTickMarks = useTickMarks
     }
     
     init(value: Binding<Int>, range: ClosedRange<Double>, rangeManual: ClosedRange<Double>? = nil, step: Double = 1) {
@@ -66,14 +70,21 @@ struct SliderPlus: View {
         
         HStack {
             Group {
-                if (rangeAmount / step) > 20 {
-                    Slider(value: Binding(get: { value }, set: { newValue in
-                        let base: Int = Int(newValue.rounded())
-                        let modulo: Int = base % Int(step)
-                        value = Double(base - modulo)
-                    }), in: safeRange)
-                } else {
+                if useTickMarks || (rangeAmount / step) <= 20 {
+                    // tick marks style
                     Slider(value: $value, in: safeRange, step: safeStep)
+                } else {
+                    Slider(
+                        value: Binding(
+                            get: { value },
+                            set: { newValue in
+                                let base: Int = Int(newValue.rounded())
+                                let modulo: Int = base % Int(step)
+                                value = Double(base - modulo)
+                            }
+                        ),
+                        in: safeRange
+                    )
                 }
             }
             .frame(maxWidth: maxWidth)

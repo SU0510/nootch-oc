@@ -22,13 +22,17 @@ struct NotchView: View {
     @Default(.trialInitialTime) internal var trialInitialTime
     @Environment(\.showIndicator) var showIndicator
 
+    private var isNonNotch: Bool {
+        notchSize.height == 0
+    }
+    
     private var isNonNotchAndDisabled: Bool {
-        notchSize.height == 0 && !generalSettings.enableOnNonNotchScreens
+        isNonNotch && !generalSettings.enableOnNonNotchScreens
     }
     
     var body: some View {
         let nnMinWidth = notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune
-        let nnMinHeight = isNonNotchAndDisabled ? 0 : notchSize.height == 0 ? generalSettings.handleSize.height : notchSize.height
+        let nnMinHeight = isNonNotchAndDisabled ? 0 : isNonNotch ? generalSettings.handleSize.height : notchSize.height
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             mainContent
@@ -70,20 +74,6 @@ struct NotchView: View {
     }
     
     @ViewBuilder
-    private var topBarContent: some View {
-        if license != nil || (!state.trialOver && trialInitialTime != nil) {
-            TopBarView(
-                panGestureCounter: state.panGestureCounter,
-                scaleX: actualScaleX,
-                scaleY: actualScaleY,
-                panPadding: state.panPadding,
-                hide: notchNook.hidden
-            )
-            .equatable()
-        }
-    }
-    
-    @ViewBuilder
     private var indicatorContent: some View {
         if let indicator = notchNook.indicator {
             IndicatorView(indicator: indicator)
@@ -105,6 +95,20 @@ struct NotchView: View {
         }
         .transition(NotchView.defaultTransition)
         .scaleEffect(x: actualScaleX, y: actualScaleY, anchor: .init(x: 0.5, y: -0.25))
+    }
+    
+    @ViewBuilder
+    private var topBarContent: some View {
+        if license != nil || (!state.trialOver && trialInitialTime != nil) {
+            TopBarView(
+                panGestureCounter: state.panGestureCounter,
+                scaleX: actualScaleX,
+                scaleY: actualScaleY,
+                panPadding: state.panPadding,
+                isHidden: notchNook.hidden
+            )
+            .equatable()
+        }
     }
     
     @ViewBuilder

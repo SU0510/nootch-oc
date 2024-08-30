@@ -58,15 +58,18 @@ struct GeneralSettingsView: View {
                 
                 CustomLabeled(title: String(localized: "Width")) {
                     SliderPlus(value: $generalSettings.handleSize.width, range: 30...250, step: 16)
+                        .disabled(!generalSettings.enableOnNonNotchScreens)
                 }
                 .resetToDefault($generalSettings.handleSize.width, defaultGeneral.handleSize.width)
                 
                 CustomLabeled(title: String(localized: "Height")) {
-                    SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.minHeight)
+                    SliderPlus(value: $generalSettings.handleSize.height, range: 1...TopBarView.maxHeight)
+                        .disabled(!generalSettings.enableOnNonNotchScreens)
                 }
                 .resetToDefault($generalSettings.handleSize.height, defaultGeneral.handleSize.height)
                 
                 Toggle("Transparent handler", isOn: $generalSettings.transparentHandle)
+                    .disabled(!generalSettings.enableOnNonNotchScreens)
                 
                 Text("Will only show up on mouse hover.")
                     .optionDescription(contentMaxW)
