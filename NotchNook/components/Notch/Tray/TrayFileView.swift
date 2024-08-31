@@ -23,6 +23,10 @@ struct TrayFileView: View {
     @Environment(\.displayKitId) private var displayKitId
     @Environment(\.makeKeyWindow) private var makeKeyWindow
     
+    var selectedFiles: [TrayFile] {
+        tray.selectedFiles.isEmpty ? [file] : tray.selectedFiles
+    }
+    
     init(file: TrayFile, isSelected: Bool, isPreview: Bool = false) {
         self.file = file
         self.fileName = file.name
@@ -49,14 +53,15 @@ struct TrayFileView: View {
                 onDropCompleted: { didMoveFile in
                     if !didMoveFile { return }
                     doAfter {
-                        tray.selectedFiles.forEach {
+                        selectedFiles.forEach {
                             tray.removeFile($0)
                         }
                     }
                 },
-                selectedURLs: tray.selectedFiles.map { $0.url }) {
-                    TrayFileDragPreviewView(draggedFile: file)
-                }
+                selectedURLs: selectedFiles.map { $0.url }
+            ) {
+                TrayFileDragPreviewView(draggedFile: file)
+            }
         }
         .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) {
