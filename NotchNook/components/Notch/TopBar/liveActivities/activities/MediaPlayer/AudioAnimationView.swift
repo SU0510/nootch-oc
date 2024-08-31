@@ -18,8 +18,8 @@ struct AudioAnimationView: View {
         let player = MediaControls.shared
         let isPlaying = altIsPlaying ?? player.isPlaying
         let volume = VolumeMonitor.shared.volume
-        let albumAverageColor = player.track.albumArtAverageColor.lighter(by: 0.25) ?? .white
-        let color: Color = userPrefs.isAutomaticallyColored ? Color(nsColor: albumAverageColor) : .white
+        let albumAverageColor = player.track.albumArtAverageColor.lighter(by: 0.25) ?? .nonShockingWhite
+        let color: Color = userPrefs.isAutomaticallyColored ? Color(nsColor: albumAverageColor) : .nonShockingWhite
 
         Button {
             player.togglePlayPause()

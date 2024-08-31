@@ -103,7 +103,7 @@ struct LottieViewWrapper: View {
     }
     
     var body: some View {
-        let actualColor = NSColor(color ?? .white)
+        let actualColor = NSColor(color ?? .nonShockingWhite)
         let rgb = actualColor.rgb
         let colorProvider = ColorValueProvider(.init(r: rgb.0, g: rgb.1, b: rgb.2, a: actualColor.alphaComponent))
         

@@ -31,13 +31,13 @@ struct QuickPeekView: View {
                     Image(systemName: icon)
                         .opacity(quickPeek.iconColor == nil ? 0.5 : 1)
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(quickPeek.iconColor ?? .white)
+                        .foregroundStyle(quickPeek.iconColor ?? .nonShockingWhite)
                 }
                 Text(quickPeek.text)
                     .font(.system(size: 12, weight: .medium))
             }
             .opacity(0.5)
-            .foregroundStyle(.white)
+            .foregroundStyle(.nonShockingWhite)
             .padding(EdgeInsets(top: 7, leading: 0, bottom: 3, trailing: 0))
     }
 }

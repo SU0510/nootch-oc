@@ -74,7 +74,7 @@ class AudioSpectrographNSView: NSView {
         }
     }
     
-    var color: NSColor = .white {
+    var color: NSColor = .nonShockingWhite {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }

@@ -11,7 +11,7 @@ struct TrayIconView: View {
     var body: some View {
         Image(systemName: LiveActivity.tray.icon)
             .font(.system(size: 13))
-            .foregroundStyle(.white)
+            .foregroundStyle(.nonShockingWhite)
             .frame(maxWidth: .infinity)
     }
 }

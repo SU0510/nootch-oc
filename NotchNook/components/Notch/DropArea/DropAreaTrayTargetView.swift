@@ -29,7 +29,7 @@ struct DropAreaTrayTargetView: View {
         .background {
             RoundedRectangle(cornerRadius: 28, style: .continuous)
                 .stroke(
-                    (hovered ? Color.blue : Color.white).opacity(hovered ? 0.5 : 0.1),
+                    (hovered ? Color.blue : Color.nonShockingWhite).opacity(hovered ? 0.5 : 0.1),
                     style: .init(lineWidth: 3, lineCap: .round, lineJoin: .round, dash: [6, 12])
                 )
         }

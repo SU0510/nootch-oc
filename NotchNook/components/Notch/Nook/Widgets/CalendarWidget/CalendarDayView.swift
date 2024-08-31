@@ -27,7 +27,7 @@ struct CalendarDayView: View, Equatable {
             VStack(spacing: 1.5) {
                 Text(String(format: "%02d", date.day))
                     .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(date.isToday ? .blue : date.isInWeekend ? .weekendPink : .white)
+                    .foregroundStyle(date.isToday ? .blue : date.isInWeekend ? .weekendPink : .nonShockingWhite)
                 
                 if eventsCount > 0 {
                     Circle()
@@ -60,6 +60,6 @@ struct CalendarDayView: View, Equatable {
         }
         .animation(.default, value: selected)
         .font(.system(size: 10, weight: .bold))
-        .foregroundStyle((date.isInWeekend ? Color.weekendPink : Color.white).opacity(0.35))
+        .foregroundStyle((date.isInWeekend ? Color.weekendPink : Color.nonShockingWhite).opacity(0.35))
     }
 }

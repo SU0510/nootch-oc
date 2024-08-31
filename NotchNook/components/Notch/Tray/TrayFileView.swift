@@ -40,7 +40,7 @@ struct TrayFileView: View {
             
             fileNameView
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
         .padding(6)
         .frame(maxHeight: .infinity, alignment: .top)
         .background {
@@ -63,7 +63,7 @@ struct TrayFileView: View {
                 TrayFileDragPreviewView(draggedFile: file)
             }
         }
-        .background(Color.white.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(Color.nonShockingWhite.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) {
             removeButton
                 .zIndex(1)

@@ -26,7 +26,7 @@ struct Track: Equatable, Hashable, Identifiable {
     
     @MainActor
     var albumArtAverageColor: NSColor {
-        return albumArt.averageColor() ?? .white
+        return albumArt.averageColor() ?? .nonShockingWhite
     }
     
     func isValidReplacement(_ track: Track) -> Bool {

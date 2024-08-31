@@ -37,7 +37,7 @@ struct WaveView: NSViewRepresentable {
 
 class WaveNSView: NSView {
     var volume: Double = 1
-    var color: NSColor = .white {
+    var color: NSColor = .nonShockingWhite {
         didSet {
             updateLayerColors()
         }

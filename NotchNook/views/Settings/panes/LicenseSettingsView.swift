@@ -114,7 +114,7 @@ struct LicenseSettingsView: View {
                     }
                     
                     HStack(spacing: 0) {
-                        Color.white.opacity(0.05)
+                        Color.nonShockingWhite.opacity(0.05)
                             .frame(maxWidth: .infinity, maxHeight: 1)
                         
                         Picker("", selection: $keyType) {

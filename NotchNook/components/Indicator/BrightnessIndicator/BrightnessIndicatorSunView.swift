@@ -30,7 +30,7 @@ struct BrightnessIndicatorSunView: View, Equatable {
         let opacityInterp = glowInterpolator([0.5, 1], false, .linear)
         SunShape(raysLength: raysLength)
             .stroke(
-                .white.opacity(opacityInterp)
+                .nonShockingWhite.opacity(opacityInterp)
                 .shadow(.drop(color: glowColor.opacity(o5), radius: 48))
                 .shadow(.drop(color: glowColor.opacity(one), radius: 32))
                 .shadow(.drop(color: glowColor.opacity(o5), radius: 24))

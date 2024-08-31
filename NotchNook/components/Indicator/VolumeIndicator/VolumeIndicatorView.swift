@@ -19,7 +19,7 @@ struct VolumeIndicatorView: View, Equatable {
     
     private var rippleInterpolator: InterpolatorBuilder { interpolatorBuilder([0.0, 1.0], value: overflowAmount) }
     
-    private var baseColor: Color { .white }
+    private var baseColor: Color { .nonShockingWhite }
     
     var body: some View {
         VStack(alignment: .leading, spacing: -2) {

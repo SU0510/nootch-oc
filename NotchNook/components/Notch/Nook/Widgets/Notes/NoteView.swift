@@ -68,7 +68,7 @@ struct NoteView: View {
             }
         }
         .allowsHitTesting(selected)
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
         .matchedGeometryEffect(id: "\(note.id)-note", in: ns)
         .frame(maxWidth: selected ? .infinity : Self.smallSize, maxHeight: selected ? .infinity : Self.smallSize, alignment: .topLeading)
         .modifier(

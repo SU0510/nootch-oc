@@ -27,7 +27,7 @@ struct VibratingCircleView: NSViewRepresentable {
 
 class VibratingCircleNSView: NSView {
     
-    var color: NSColor = .white {
+    var color: NSColor = .nonShockingWhite {
         didSet {
             updateLayersColor()
             needsDisplay = true

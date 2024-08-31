@@ -37,7 +37,7 @@ struct TrayFileDragPreviewView: View {
                 .frame(width: 56, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 4).fill(Color.blue))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
         .padding(6)
         .frame(maxHeight: .infinity)
     }

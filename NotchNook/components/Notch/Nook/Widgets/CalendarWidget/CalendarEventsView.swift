@@ -75,7 +75,7 @@ struct CalendarEventsView: View {
         VStack {
             Image(systemName: "calendar.badge.checkmark")
             Text(isAccessNotGranted ? "This widget requires calendar permissions in order to show events, please enable access in settings." : "Nothing for today")
-                .foregroundStyle(.white)
+                .foregroundStyle(.nonShockingWhite)
                 .multilineTextAlignment(.center)
         }
         .opacity(0.5)

@@ -89,13 +89,13 @@ private struct ReorderWidgetDragView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.selected, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
         .overlay {
             if hovering {
                 HStack {
-                    if let moveLeft { CircleButton(icon: "arrowshape.left.fill", bgColor: .white.opacity(0.1), action: moveLeft) }
+                    if let moveLeft { CircleButton(icon: "arrowshape.left.fill", bgColor: .nonShockingWhite.opacity(0.1), action: moveLeft) }
                     Spacer()
-                    if let moveRight { CircleButton(icon: "arrowshape.right.fill", bgColor: .white.opacity(0.1), action: moveRight) }
+                    if let moveRight { CircleButton(icon: "arrowshape.right.fill", bgColor: .nonShockingWhite.opacity(0.1), action: moveRight) }
                 }
                 .padding(.horizontal, 4)
             }

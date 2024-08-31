@@ -27,7 +27,7 @@ struct LockedIndicatorView: View {
     var lockedOrTyping: Bool { locked || typing }
     
     var body: some View {
-        let iconColor = (lockedOrTyping ? Color.blue : Color.white)
+        let iconColor = (lockedOrTyping ? Color.blue : Color.nonShockingWhite)
         let rgb = NSColor(iconColor).rgb
         let colorProvider = ColorValueProvider(.init(r: rgb.0, g: rgb.1, b: rgb.2, a: iconColor.alpha))
         let iconOpacity = lockedOrTyping ? 1 : pressing ? 0.75 : 0.5
@@ -79,8 +79,8 @@ struct LockedIndicatorView: View {
                             .fill(
                                 EllipticalGradient(
                                     gradient: .smooth(
-                                        from: .white.opacity(lockedOrTyping || hovering ? 1 : 0),
-                                        to: .white.opacity(lockedOrTyping ? 1 : 0), curve: .easeIn
+                                        from: .nonShockingWhite.opacity(lockedOrTyping || hovering ? 1 : 0),
+                                        to: .nonShockingWhite.opacity(lockedOrTyping ? 1 : 0), curve: .easeIn
                                     ),
                                     center: UnitPoint(x: 0.5, y: 0.5)
                                 )
@@ -88,7 +88,7 @@ struct LockedIndicatorView: View {
                     }
                     .overlay {
                         Circle()
-                            .stroke(Color.white.opacity(lockedOrTyping ? 0.1 : 0), lineWidth: 0.5)
+                            .stroke(Color.nonShockingWhite.opacity(lockedOrTyping ? 0.1 : 0), lineWidth: 0.5)
                             .padding(.all, 0.5)
                     }
                     .padding(lockedOrTyping ? (Self.blurSize - Self.iconCircleSize) / 2 : 0)
@@ -103,8 +103,8 @@ struct LockedIndicatorView: View {
                         .fill(
                             EllipticalGradient(
                                 gradient: .smooth(
-                                    from: .white.opacity(lockedOrTyping || hovering ? 1 : 0),
-                                    to: .white.opacity(lockedOrTyping ? 1 : 0), curve: .easeIn
+                                    from: .nonShockingWhite.opacity(lockedOrTyping || hovering ? 1 : 0),
+                                    to: .nonShockingWhite.opacity(lockedOrTyping ? 1 : 0), curve: .easeIn
                                 ),
                                 center: UnitPoint(x: 0.5, y: 0.5)
                             )

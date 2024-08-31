@@ -17,6 +17,6 @@ struct TrayFilesCountView: View {
         }
         .frame(maxWidth: .infinity)
         .font(.system(size: 13))
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
     }
 }

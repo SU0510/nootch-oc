@@ -27,17 +27,17 @@ struct VolumeIndicatorSpeakerView: View, Equatable {
                 let scale = 1.75
                 HStack(spacing: 1.5 * scale) {
                     VolumeIndicatorSpeakerWaveShape()
-                        .stroke(.white, style: .init(lineWidth: 1.25 * scale, lineCap: .round))
+                        .stroke(.nonShockingWhite, style: .init(lineWidth: 1.25 * scale, lineCap: .round))
                         .frame(width: 0.6 * scale, height: 3.5 * scale)
                         .padding(.trailing, 0.15)
                     if volumeValue > 0.33 {
                         VolumeIndicatorSpeakerWaveShape()
-                            .stroke(.white, style: .init(lineWidth: 1.25 * scale, lineCap: .round))
+                            .stroke(.nonShockingWhite, style: .init(lineWidth: 1.25 * scale, lineCap: .round))
                             .frame(width: 1 * scale, height: 6.5 * scale)
                     }
                     if volumeValue > 0.66 {
                         VolumeIndicatorSpeakerWaveShape()
-                            .stroke(.white, style: .init(lineWidth: 1.25 * scale, lineCap: .round))
+                            .stroke(.nonShockingWhite, style: .init(lineWidth: 1.25 * scale, lineCap: .round))
                             .frame(width: 1.3 * scale, height: 9 * scale)
                     }
                 }

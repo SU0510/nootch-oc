@@ -26,6 +26,6 @@ struct IntroView: View {
             }
         }
         .padding(.top, notchSize.height)
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
     }
 }

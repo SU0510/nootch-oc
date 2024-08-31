@@ -32,7 +32,7 @@ struct CalendarEventView: View {
             let endTime = event.endDate.formatted(date: .omitted, time: .shortened)
             timeView(start: startTime, end: endTime)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
         .onAppear {
             meeting = detectMeetings(in: event)
         }
@@ -68,9 +68,9 @@ struct CalendarEventView: View {
     
     var dividerView: some View {
         VStack(spacing: -1) {
-            Color.white.opacity(0.1).frame(width: 1, height: 6)
+            Color.nonShockingWhite.opacity(0.1).frame(width: 1, height: 6)
             Circle().fill(.blue).frame(Self.blueCircleSize)
-            Color.white.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
+            Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
         }
     }
     

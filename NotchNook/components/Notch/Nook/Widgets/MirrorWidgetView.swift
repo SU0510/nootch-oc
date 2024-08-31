@@ -96,7 +96,7 @@ struct MirrorWidgetView: View {
                             Text(NookWidget.mirror.name)
                                 .font(.system(size: 12, weight: .medium))
                         }
-                        .foregroundStyle(.white.opacity(0.5))
+                        .foregroundStyle(.nonShockingWhite.opacity(0.5))
                         .transition(.scaleAndBlur)
                     }
                 }

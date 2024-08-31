@@ -19,7 +19,7 @@ struct TrayEmptyView: View {
             Text(LiveActivity.tray.name).fontWeight(.medium)
         }
         .multilineTextAlignment(centered ? .center : .leading)
-        .foregroundStyle(hovered ? Color.blue : .white)
+        .foregroundStyle(hovered ? Color.blue : .nonShockingWhite)
         .frame(maxWidth: .infinity, alignment: centered ? .center : .leading)
         .opacity(hovered ? 0.75 : 0.5)
         .transition(.scaleAndBlur)

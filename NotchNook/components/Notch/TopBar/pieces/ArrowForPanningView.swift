@@ -22,7 +22,7 @@ struct ArrowForPanningView: View {
             .padding(.top, 10)
             .font(.system(size: 12))
             .opacity(activated ? 0.75 : min(0.25, interpolator([0, 1], false, .linear)))
-            .foregroundStyle(activated ? .blue : .white)
+            .foregroundStyle(activated ? .blue : .nonShockingWhite)
             .animation(nil, value: activated)
             .scaleEffect(activated ? 0.85 : interpolator([0.3, 0.85], false, .linear))
             .blur(radius: activated ? 0 : max(0, interpolator([14, -10], false, .linear)))

@@ -52,7 +52,7 @@ struct VolumeIndicatorBarView: View, Equatable {
     
     func getBarColor(index: Int) -> Color {
         if localVolumeLastBar < index {
-            return .white.opacity(0.25)
+            return .nonShockingWhite.opacity(0.25)
         } else {
             let barsDouble = Double(barsNumber)
             
@@ -66,7 +66,7 @@ struct VolumeIndicatorBarView: View, Equatable {
             if let foundColor = Array(colors).sorted(by: { $0.key < $1.key }).first(where: { $0.key > index }) {
                 return foundColor.value
             }
-            return .white
+            return .nonShockingWhite
         }
     }
     

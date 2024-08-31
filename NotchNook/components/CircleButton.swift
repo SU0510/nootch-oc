@@ -19,7 +19,7 @@ struct CircleButton: View {
             Image(systemName: icon)
                 .contentTransition(.symbolEffect)
                 .font(.system(size: iconSize, weight: .semibold))
-                .foregroundStyle(.white.opacity(fade && !hovering ? 0.75 : 1))
+                .foregroundStyle(.nonShockingWhite.opacity(fade && !hovering ? 0.75 : 1))
                 .frame(27)
                 .background(bgColor.opacity(hovering ? 1 : 0), in: Circle())
                 .contentShape(Circle())

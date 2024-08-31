@@ -17,7 +17,7 @@ extension Color {
 extension NSColor {
         convenience init(hex: String) {
                 let trimHex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-                let dropHash = String(trimHex.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
+            let dropHash = String(trimHex.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
                 let hexString = trimHex.starts(with: "#") ? dropHash : trimHex
                 let ui64 = UInt64(hexString, radix: 16)
                 let value = ui64 != nil ? Int(ui64!) : 0

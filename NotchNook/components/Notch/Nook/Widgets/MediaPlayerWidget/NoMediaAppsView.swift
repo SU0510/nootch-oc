@@ -48,7 +48,7 @@ struct NoMediaAppsView: View {
             .buttonStyle(ShrinkOnClick())
         }
         .frame(maxWidth: .infinity)
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
         .transition(.scaleAndBlur(anchor: .topTrailing))
         .onAppear {
             let spotubeBundleID = "com.spotube.SpotubeMacOS"

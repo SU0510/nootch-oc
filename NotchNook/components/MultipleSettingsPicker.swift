@@ -122,15 +122,15 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
                     Image(systemName: element.icon)
                         .font(.system(size: 15, weight: .semibold))
                         .frame(30)
-                        .foregroundStyle(selected ? .blue : .white)
-                        .background(selected ? .white : .blue, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                        .foregroundStyle(selected ? .blue : .nonShockingWhite)
+                        .background(selected ? .nonShockingWhite : .blue, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                     VStack(alignment: .leading, spacing: 0) {
                         Text(element.name).font(.system(size: 13, weight: .medium))
                         if let description = (element.isImplemented ? element.description : String(localized: "Coming soon...")) {
                             Text(description).font(.system(size: 11)).opacity(0.75)
                         }
                     }
-                    .foregroundStyle(selected ? .white : .primary)
+                    .foregroundStyle(selected ? .nonShockingWhite : .primary)
                 }
                 
                 Toggle("", isOn: $isOn)

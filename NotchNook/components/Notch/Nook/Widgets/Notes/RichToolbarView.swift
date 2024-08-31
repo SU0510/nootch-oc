@@ -66,9 +66,9 @@ struct RichToolbarButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         let cornerRadius: Double = 9
         let overColorAlpha: Double = hovering ? ((active ? 0.15 : 0.075) / (configuration.isPressed ? 2 : 1)) : 0
-        let overColor: Color = .white.opacity(overColorAlpha)
+        let overColor: Color = .nonShockingWhite.opacity(overColorAlpha)
         configuration.label
-            .foregroundStyle(active ? .lightYellow : .white.opacity(0.5))
+            .foregroundStyle(active ? .lightYellow : .nonShockingWhite.opacity(0.5))
             .font(.system(size: 15, weight: .semibold))
             .frame(24)
             .background(overColor, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))

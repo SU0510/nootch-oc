@@ -39,7 +39,7 @@ struct NoteRichEditor: View {
                 }
             }
             .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
-            .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .white, backgroundColor: .clear))
+            .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .nonShockingWhite, backgroundColor: .clear))
             .focusedValue(\.richTextContext, richTextContext)
             .fadeOnEdges(axis: .vertical, topLeadingFadeLength: 20, bottomTrailingFadeLength: 40, curve: .easeInOut, disable: !selected || !prefs.fadeScrollEdges)
             .overlay(alignment: .bottomTrailing) {

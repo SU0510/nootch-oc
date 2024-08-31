@@ -64,10 +64,10 @@ struct EventTimeView: View {
                         }
                     }
                     .font(.system(size: isEventStarted ? 12 : 13, weight: .medium).width(isEventStarted ? .condensed : .standard))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.nonShockingWhite)
                     .padding(.horizontal, isEventStarted ? 6 : 0)
                     .padding(.vertical, isEventStarted ? 3 : 0)
-                    .background(isEventStarted ? .white.opacity(0.25) : .clear, in: Capsule(style: .continuous))
+                    .background(isEventStarted ? .nonShockingWhite.opacity(0.25) : .clear, in: Capsule(style: .continuous))
                     .frame(maxWidth: .infinity)
                     .blur(radius: isHovering ? 1.25 : 0)
                     .opacity(isHovering ? 0.3 : isEventStarted ? 0.5 : 1)

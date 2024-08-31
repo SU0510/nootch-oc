@@ -41,7 +41,7 @@ struct ChangelogView: View {
             } label: {
                 Text("Holy cow, amazing!")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.nonShockingWhite)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                     .background(.blue, in: RoundedRectangle(cornerRadius: 12, style: .continuous))

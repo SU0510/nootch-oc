@@ -77,6 +77,6 @@ struct MediaPlayerView: View, Equatable {
             
         }
         .animation(.bouncySmooth, value: track.id)
-        .foregroundStyle(.white)
+        .foregroundStyle(.nonShockingWhite)
     }
 }

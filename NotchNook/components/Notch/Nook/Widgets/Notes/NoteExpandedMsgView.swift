@@ -17,6 +17,6 @@ struct NoteExpandedMsgView: View {
                 Text("Close it to restore.").font(.caption).opacity(0.75)
             }
         }
-        .foregroundStyle(.white.opacity(0.35))
+        .foregroundStyle(.nonShockingWhite.opacity(0.35))
     }
 }

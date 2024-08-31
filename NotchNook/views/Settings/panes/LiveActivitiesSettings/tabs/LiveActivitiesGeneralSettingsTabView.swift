@@ -41,7 +41,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
 
                 Text("Allow some activities to interact with mouse click.")
                     .settingDescription()
-                    .foregroundColor(liveActivitiesSettings.enabled ? .white : .gray)
+                    .foregroundColor(liveActivitiesSettings.enabled ? .nonShockingWhite : .gray)
                 
                 Toggle("Enable Quick Peek", isOn: $liveActivitiesSettings.enableQuickPeek)
                     .disabled(!liveActivitiesSettings.enabled)

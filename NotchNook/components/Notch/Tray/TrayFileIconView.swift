@@ -15,10 +15,10 @@ struct TrayFileIconView: View {
         file.image
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .background { if file.isImage { Color.white } }
+            .background { if file.isImage { Color.nonShockingWhite } }
             .overlay {
                 if file.isImage {
-                    Rectangle().stroke(.white, style: .init(lineWidth: 2)).shadow(color: .black.opacity(0.5), radius: 1)
+                    Rectangle().stroke(.nonShockingWhite, style: .init(lineWidth: 2)).shadow(color: .black.opacity(0.5), radius: 1)
                 }
             }
             .geometryGroup()

@@ -24,7 +24,7 @@ struct ScrollableDaysMonthOverlayView: View, Equatable {
             }
             .frame(maxHeight: .infinity, alignment: .topLeading)
             .contentShape(Rectangle())
-            .foregroundStyle(.white)
+            .foregroundStyle(.nonShockingWhite)
         }
         .buttonStyle(ShrinkOnClick(minSize: 0.9))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

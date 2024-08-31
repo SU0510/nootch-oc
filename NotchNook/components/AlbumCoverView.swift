@@ -33,7 +33,7 @@ struct AlbumCoverView: View, Identifiable, Equatable {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(geo.size * 0.55)
                                     .frame(width: geo.size.height, height: geo.size.height)
-                                    .foregroundStyle(.white.opacity(0.25))
+                                    .foregroundStyle(.nonShockingWhite.opacity(0.25))
                             }
                         }
                     }
