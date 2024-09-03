@@ -8,7 +8,6 @@ struct MirrorWidgetView: View {
         case stopped, loading, mirrorring
     }
     
-    @State private var session: AVCaptureSession?
     @State private var mode = Mode.stopped
     
     var arrayPosition: ArrayPosition
@@ -147,18 +146,9 @@ struct MirrorWidgetView: View {
     
     private func stopCamera() {
         DispatchQueue.global(qos: .userInitiated).async {
-            self.session?.stopRunning()
+            self.cameraManager.stopRunning()
             
             DispatchQueue.main.async {
-                // Remove inputs and outputs from the session
-                self.session?.inputs.forEach { input in
-                    self.session?.removeInput(input as! AVCaptureInput)
-                }
-                self.session?.outputs.forEach { output in
-                    self.session?.removeOutput(output as! AVCaptureOutput)
-                }
-                
-                self.session = nil  // Set the session to nil to release memory
                 self.mode = .stopped
             }
         }

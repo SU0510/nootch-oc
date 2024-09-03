@@ -15,7 +15,7 @@ class CameraManager {
     var selectedDevice: AVCaptureDevice?
     var captureSession = AVCaptureSession()
     var mirrorVideo: Bool = false
-    var isVideoMirroringSupported: Bool = false
+    var isVideoMirroringSupported: Bool = true
     
     private let videoOutput = AVCaptureVideoDataOutput()
     
@@ -92,10 +92,12 @@ class CameraManager {
         startSession()
     }
     
-    public func stopRunning () {
+    public func stopRunning() {
         if captureSession.isRunning {
             captureSession.stopRunning()
         }
+        captureSession.inputs.forEach { captureSession.removeInput($0) }
+        captureSession.outputs.forEach { captureSession.removeOutput($0) }
     }
     
     private func startSession(){

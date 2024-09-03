@@ -30,24 +30,21 @@ struct MirrorWidgetSettingsView: View {
             }
             .frame(width: 270)
             
-            MirrorWidgetView(arrayPosition: .first, isSettingsPreview: true, width: 170)
+            // this is currently causing the camera to never be turned off when first enabled because we don't have a way to know when the settings pane is closed, so it's commented out for now
+//            MirrorWidgetView(arrayPosition: .first, isSettingsPreview: true, width: 170)
         }
         .padding(.top, 20)
         .onAppear {
-            doAfter {
-                let deviceList = getCaptureDeviceList()
-                self.devices = deviceList
-                self.selectedDevice = self.cameraManager.selectedDevice
-                self.mirrorVideo = self.cameraManager.mirrorVideo
-            }
+            let deviceList = getCaptureDeviceList()
+            devices = deviceList
+            selectedDevice = cameraManager.selectedDevice
+            mirrorVideo = cameraManager.mirrorVideo
         }
         .onChange(of: mirrorVideo) {
-            doAfter() {
-                cameraManager.mirrorVideo = mirrorVideo
-                cameraManager.updateMirrorSettingsForVideoDevice()
-                doAfter(0.1) {
-                    cameraManager.captureSession = cameraManager.captureSession
-                }
+            cameraManager.mirrorVideo = mirrorVideo
+            cameraManager.updateMirrorSettingsForVideoDevice()
+            doAfter(0.1) {
+                cameraManager.captureSession = cameraManager.captureSession
             }
         }
     }
