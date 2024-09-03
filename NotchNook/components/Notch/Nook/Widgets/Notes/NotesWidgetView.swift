@@ -52,6 +52,7 @@ struct NotesWidgetView: View {
         }
         .animation(.spring, value: otherNotesIds)
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
+        .frame(prefs.size.screenPtsCGSize, .leading)
         .onChange(of: notes.count, initial: true) { _, _ in
             selectedNoteId = notes.first?.persistentModelID
         }

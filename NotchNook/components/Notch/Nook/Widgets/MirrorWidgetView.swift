@@ -15,6 +15,7 @@ struct MirrorWidgetView: View {
     
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.cameraManager) private var cameraManager
+    @Environment(\.generalSettings) private var generalSettings
 
     private let width: Double
     
@@ -42,7 +43,7 @@ struct MirrorWidgetView: View {
             }
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
-        .frame(width: width)
+//        .frame(width: width)
         .onAppear(perform: isSettingsPreview ? setupPreviewCamera : checkCameraPermission)
         .onDisappear(perform: stopCamera)
         .onChange(of: cameraManager.selectedDevice) {
@@ -72,7 +73,13 @@ struct MirrorWidgetView: View {
         if mode == .mirrorring {
             CameraPreview(session: cameraManager.captureSession, mirrorVideo: cameraManager.mirrorVideo)
                 .scaledToFill()
-                .clipShape(Circle())
+                .mask {
+                    if generalSettings.preferRoundButtons {
+                        Circle().fill(.black)
+                    } else {
+                        RoundedRectangle(cornerRadius: 28, style: .continuous).fill(.black)
+                    }
+                }
                 .transition(.scaleAndBlur)
         }
     }
@@ -99,7 +106,13 @@ struct MirrorWidgetView: View {
                         .transition(.scaleAndBlur)
                     }
                 }
-                .clipShape(Circle())
+                .mask {
+                    if generalSettings.preferRoundButtons {
+                        Circle().fill(.black)
+                    } else {
+                        RoundedRectangle(cornerRadius: 28, style: .continuous).fill(.black)
+                    }
+                }
                 .transition(.scaleAndBlur)
         }
     }

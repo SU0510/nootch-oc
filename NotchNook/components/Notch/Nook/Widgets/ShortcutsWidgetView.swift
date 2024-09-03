@@ -40,8 +40,18 @@ struct ShortcutsWidgetView: View {
                 .scaleEffect(1)
             } else {
                 Group {
-                    ShortcutsRowView(shortcuts: Array(shortcuts.prefix(howManyFits)), btnWidth: btnWidth.screenPoints)
-                    ShortcutsRowView(shortcuts: Array(shortcuts.dropFirst(howManyFits).prefix(howManyFits)),btnWidth: btnWidth.screenPoints)
+                    ShortcutsRowView(
+                        widgetArrayPosition: arrayPosition,
+                        arrayPosition: .first,
+                        shortcuts: Array(shortcuts.prefix(howManyFits)),
+                        btnWidth: btnWidth.screenPoints
+                    )
+                    ShortcutsRowView(
+                        widgetArrayPosition: arrayPosition,
+                        arrayPosition: .last,
+                        shortcuts: Array(shortcuts.dropFirst(howManyFits).prefix(howManyFits)),
+                        btnWidth: btnWidth.screenPoints
+                    )
                 }
                 .padding(EdgeInsets(
                     top: 0,
@@ -61,22 +71,37 @@ struct ShortcutsWidgetView: View {
 }
 
 struct ShortcutsRowView: View {
+    var widgetArrayPosition: ArrayPosition
+    var arrayPosition: ArrayPosition
     var shortcuts: [String]
     var btnWidth: Double
     var spacingBetweenBtns: Double = 8
+    
+    func getRoundCornerForArrayPosition(_ innerArrPos: ArrayPosition) -> ArrayPosition? {
+        if widgetArrayPosition != .middle && arrayPosition == .last {
+            if innerArrPos == .single {
+                return widgetArrayPosition
+            }
+            return innerArrPos
+        }
+        return nil
+    }
     
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             ForEach(Array(shortcuts.enumerated()), id: \.element.self) { i, shortcut in
                 let innerArrPos = ArrayPosition(total: shortcuts.count, i: i)
-                ShortcutView(shortcut: shortcut)
-                    .padding(EdgeInsets(
-                        top: 0,
-                        leading: innerArrPos == .single || innerArrPos == .first ? 0 : spacingBetweenBtns / 2,
-                        bottom: 0,
-                        trailing: innerArrPos == .single || innerArrPos == .last ? 0 : spacingBetweenBtns / 2
-                    ))
-//                    .frame(width: btnWidth)
+                ShortcutView(
+                    roundCornerForArrayPosition: getRoundCornerForArrayPosition(innerArrPos),
+                    shortcut: shortcut
+                )
+                .padding(EdgeInsets(
+                    top: 0,
+                    leading: innerArrPos == .single || innerArrPos == .first ? 0 : spacingBetweenBtns / 2,
+                    bottom: 0,
+                    trailing: innerArrPos == .single || innerArrPos == .last ? 0 : spacingBetweenBtns / 2
+                ))
+                //                    .frame(width: btnWidth)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -85,10 +110,14 @@ struct ShortcutsRowView: View {
 }
 
 struct ShortcutView: View {
-    //    var shortcut: Shortcut
+    var roundCornerForArrayPosition: ArrayPosition? = nil
     var shortcut: String
     @State private var bounce = 0
+    @Environment(\.generalSettings) private var generalSettings
     var body: some View {
+        let rounderPos = roundCornerForArrayPosition
+        let cornerRadius: Double = 18
+        let biggerCornerRadius = NotchShape.maxNotchRadius - generalSettings.contentPadding
         Button {
             bounce += 1
             //            ShortcutsManager.shared.runShortcut(named: shortcut.name)
@@ -109,7 +138,20 @@ struct ShortcutView: View {
             }
             .padding(.horizontal, 16)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .background(.selected, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+            .background {
+                if generalSettings.preferRoundButtons {
+                    Capsule(style: .continuous).fill(.selected)
+                } else {
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: cornerRadius,
+                        bottomLeadingRadius: rounderPos == .first || rounderPos == .single ? biggerCornerRadius : cornerRadius,
+                        bottomTrailingRadius: rounderPos == .last || rounderPos == .single ? biggerCornerRadius : cornerRadius,
+                        topTrailingRadius: cornerRadius,
+                        style: .continuous
+                    )
+                    .fill(.selected)
+                }
+            }
         }
         .buttonStyle(ShrinkOnClick(minSize: 0.925))
     }

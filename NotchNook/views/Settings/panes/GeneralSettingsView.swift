@@ -25,12 +25,18 @@ struct GeneralSettingsView: View {
             }
             
             Settings.Section(title: String(localized: "Notch:")) {
+                Toggle("Prefer round buttons", isOn: $generalSettings.preferRoundButtons)
+                Text("Use capsules instead of rounded rectangles for buttons.")
+                    .optionDescription(contentMaxW)
+                
                 Toggle("Transluscent notch background (experimental)", isOn: $generalSettings.transluscent)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: 340, alignment: .leading)
+                
                 Toggle("Always open on hover", isOn: $generalSettings.alwaysOpenNotchOnHover)
                 Text("This will disable some of NotchNook's gestures.")
                     .optionDescription(contentMaxW)
+                
                 Toggle("Disable haptics", isOn: $generalSettings.disableHaptics)
             }
             Settings.Section(title: String(localized: "Typing effects:")) {
@@ -77,14 +83,15 @@ struct GeneralSettingsView: View {
             }
             
             Settings.Section(title: String(localized: "Others:")) {
-                Button("Reset all settings") { resetDefaults() }
-                
-                Text("This will reset everything except your license.")
-                    .optionDescription(contentMaxW)
                 
                 Toggle("Demo mode", isOn: $generalSettings.demoMode)
                 Text("Prevents NotchNook from hiding when idle. Useful for screen recordings (this has no effect on non-notched screens).")
                     .optionDescription(contentMaxW)
+                
+                Button("Reset all settings") { resetDefaults() }
+                Text("This will reset everything except your license.")
+                    .optionDescription(contentMaxW)
+                
                 
                 Button("Quit NotchNook") { NSApp.terminate(nil) }
                 Text("You can also right click it.")

@@ -17,6 +17,8 @@ struct CalendarWidgetView: View {
     @State private var offset: Double = 0
     @State private var calendarManager = CalendarManager.shared
     
+    @Environment(\.calendarWidgetSettings) private var prefs
+    
     var selectedDate: Date {
         let baseDate: Date
         if selectedDateIndex < 0 {
@@ -45,6 +47,7 @@ struct CalendarWidgetView: View {
                     .id(selectedDate)
             }
         }
+        .frame(prefs.size.screenPtsCGSize, .leading)
         .task {
             let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
             let endDate = Calendar.current.date(byAdding: .day, value: 60, to: Date())!

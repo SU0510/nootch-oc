@@ -12,6 +12,7 @@ import Defaults
 struct MediaPlayerWidgetView: View {
     var arrayPosition: ArrayPosition
     @Environment(\.nookSettings) private var nookSettings
+    @Environment(\.mediaWidgetSettings) private var prefs
     
     var body: some View {
         VStack {
@@ -23,5 +24,6 @@ struct MediaPlayerWidgetView: View {
             }
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
+        .frame(prefs.size.screenPtsCGSize, .leading)
     }
 }

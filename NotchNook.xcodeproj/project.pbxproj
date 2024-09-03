@@ -959,15 +959,15 @@
 		3A3F59E42C2A568E00906FFA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */,
-				3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */,
-				3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */,
-				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
-				3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */,
-				3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */,
+				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
 				3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */,
 				3AE405442C2BD02600E8D927 /* NoteView.swift */,
-				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
+				3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */,
+				3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */,
+				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
+				3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */,
+				3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */,
+				3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -1275,9 +1275,9 @@
 		EC2DD1E82C02E86F001FD54E /* MediaPlayerWidget */ = {
 			isa = PBXGroup;
 			children = (
-				EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */,
-				EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */,
 				EC8D5FF12BFACA4600E67ECC /* MediaPlayerWidgetView.swift */,
+				EC2DD1E92C02E87E001FD54E /* MediaPlayerView.swift */,
+				EC2DD1EB2C02E8B0001FD54E /* NoMediaAppsView.swift */,
 			);
 			path = MediaPlayerWidget;
 			sourceTree = "<group>";
@@ -1596,11 +1596,11 @@
 		EC7A0FA62C0ECD730063E78E /* CalendarWidget */ = {
 			isa = PBXGroup;
 			children = (
-				3A801E072C154C0B0076560D /* CalendarEventView.swift */,
-				3A801E052C154BF80076560D /* CalendarEventsView.swift */,
-				3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */,
-				3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */,
 				3A801E002C151EAC0076560D /* CalendarWidgetView.swift */,
+				3AD5CAD42C13D2610090A9D1 /* ScrollableDaysView.swift */,
+				3A801E052C154BF80076560D /* CalendarEventsView.swift */,
+				3A801E072C154C0B0076560D /* CalendarEventView.swift */,
+				3AD5CAD62C13D9F90090A9D1 /* CalendarDayView.swift */,
 				3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */,
 				36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */,
 			);

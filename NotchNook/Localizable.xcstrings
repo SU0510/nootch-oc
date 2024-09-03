@@ -24303,6 +24303,9 @@
         }
       }
     },
+    "Prefer round buttons" : {
+
+    },
     "Prevent from closing on mouse leave" : {
       "localizations" : {
         "af" : {
@@ -34979,6 +34982,9 @@
           }
         }
       }
+    },
+    "Use capsules instead of rounded rectangles for buttons." : {
+
     },
     "v%@" : {
       "localizations" : {

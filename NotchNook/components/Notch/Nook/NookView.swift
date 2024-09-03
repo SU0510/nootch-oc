@@ -11,26 +11,6 @@ import Defaults
 struct NookView: View {
     @Environment(\.nookSettings) private var nookSettings
     
-    @Environment(\.mediaWidgetSettings) internal var mediaWidgetSettings
-    @Environment(\.notesWidgetSettings) internal var notesWidgetSettings
-    @Environment(\.mirrorWidgetSettings) internal var mirrorWidgetSettings
-    @Environment(\.calendarWidgetSettings) internal var calendarWidgetSettings
-    @Environment(\.shortcutsWidgetSettings) internal var shortcutsWidgetSettings
-    @Environment(\.todoListWidgetSettings) internal var todoListWidgetSettings
-    @Environment(\.quickAppsWidgetSettings) internal var quickAppsWidgetSettings
-    
-    func getPref(for widget: NookWidget) -> any WidgetPrefs {
-        return switch widget {
-            case .calendar: calendarWidgetSettings
-            case .media: mediaWidgetSettings
-            case .mirror: mirrorWidgetSettings
-            case .notes: notesWidgetSettings
-            case .quickApps: quickAppsWidgetSettings
-            case .shortcuts: shortcutsWidgetSettings
-            case .todoList: todoListWidgetSettings
-        }
-    }
-    
     var body: some View {
         let widgets = nookSettings.enabledWidgets
         HStack(alignment: .center, spacing: 0) {
@@ -51,7 +31,7 @@ struct NookView: View {
                     default: EmptyView()
                     }
                 }
-                .widgetDefaultProps(arrPos: arrPos, pref: getPref(for: widget), disableDivider: !nookSettings.showDividers)
+                .widgetDivider(arrPos: arrPos, disableDivider: !nookSettings.showDividers)
             }
         }
         .animation(.smooth, value: nookSettings.enabledWidgets)
@@ -72,9 +52,8 @@ struct VDivider: View {
 }
 
 private extension View {
-    func widgetDefaultProps(arrPos: ArrayPosition, pref: any WidgetPrefs, disableDivider: Bool = false) -> some View {
+    func widgetDivider(arrPos: ArrayPosition, disableDivider: Bool = false) -> some View {
         self
-            .frame(pref.size.screenPtsCGSize, .leading)
             .overlay(alignment: .trailing) { if arrPos != .last && arrPos != .single && !disableDivider { VDivider().opacity(0.75) } }
     }
 }
