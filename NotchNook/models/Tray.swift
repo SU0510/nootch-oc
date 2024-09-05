@@ -31,21 +31,18 @@ class Tray {
     
     private(set) var files = [TrayFile]() {
         willSet {
-            doAfter { [weak self] in
-                guard let self else { return }
-                let newSelectedFiles = self.selectedFiles.filter { newValue.contains($0) }
-                if self.selectedFiles.count != newSelectedFiles.count {
-                    self.selectedFiles = newSelectedFiles
+            let newSelectedFiles = selectedFiles.filter { newValue.contains($0) }
+            if selectedFiles.count != newSelectedFiles.count {
+                selectedFiles = newSelectedFiles
+            }
+            let isTrayActive = activitiesManager.activeLiveActivities.contains(.tray)
+            if newValue.isEmpty {
+                if isTrayActive {
+                    activitiesManager.activeLiveActivities.remove(.tray)
                 }
-                let isTrayActive = self.activitiesManager.activeLiveActivities.contains(.tray)
-                if newValue.isEmpty {
-                    if isTrayActive {
-                        self.activitiesManager.activeLiveActivities.remove(.tray)
-                    }
-                } else {
-                    if !isTrayActive {
-                        self.activitiesManager.activeLiveActivities.insert(.tray)
-                    }
+            } else {
+                if !isTrayActive {
+                    activitiesManager.activeLiveActivities.insert(.tray)
                 }
             }
         }
@@ -86,7 +83,7 @@ class Tray {
     private func setupFolderMonitor() {
         guard let tempDirectory else { return }
         folderMonitor = FolderMonitor(path: tempDirectory.path()) { [weak self] in
-            doAfter { self?.updateFiles() }
+            DispatchQueue.main.async { self?.updateFiles() }
         }
         folderMonitor?.start()
     }
@@ -166,12 +163,10 @@ class Tray {
                 
             case .leftArrow, .rightArrow:
                 let direction = key == .leftArrow ? -1 : 1
-                doAfter {
-                    if NSEvent.modifierFlags.contains(.shift) {
-                        self.handleShiftArrowSelection(direction: direction)
-                    } else {
-                        self.selectAdjacentFile(direction: direction)
-                    }
+                if NSEvent.modifierFlags.contains(.shift) {
+                    self.handleShiftArrowSelection(direction: direction)
+                } else {
+                    self.selectAdjacentFile(direction: direction)
                 }
                 return nil
                 
@@ -214,16 +209,12 @@ class Tray {
         }
     }
     
-    func addFile(_ file: TrayFile) {
+    private func addFile(_ file: TrayFile) {
         withAnimation(.smooth) {
             if !files.contains(file) {
                 files.append(file)
             }
         }
-    }
-    
-    func addFiles(_ newFiles: [TrayFile]) {
-        for file in newFiles { addFile(file) }
     }
     
     func selectFile(_ file: TrayFile?) {
@@ -294,7 +285,7 @@ class Tray {
     
     func addFilesFromURLs(_ fileURLs: [URL]) {
         let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
-        addFiles(newFiles)
+        for file in newFiles { self.addFile(file) }
     }
     
     func copySelectedFilesToClipboard() {
@@ -320,25 +311,27 @@ class Tray {
     }
     
     private func updateFiles() {
-        let fileManager = FileManager.default
-        var updatedFiles = [TrayFile]()
-        
-        guard let directory = tempDirectory else { return }
-        let existingFiles = try? fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        
-        for file in files {
-            let fileExists = existingFiles?.contains(where: { $0.lastPathComponent == file.url.lastPathComponent }) ?? false
-            if fileExists {
-                updatedFiles.append(file)
-            } else {
-                if let newURL = findExistingFile(for: file.url) {
-                    updatedFiles.append(TrayFile(url: newURL))
+        DispatchQueue.global().async {
+            let fileManager = FileManager.default
+            var updatedFiles = [TrayFile]()
+            
+            guard let directory = self.tempDirectory else { return }
+            let existingFiles = try? fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
+            
+            for file in self.files {
+                let fileExists = existingFiles?.contains(where: { $0.lastPathComponent == file.url.lastPathComponent }) ?? false
+                if fileExists {
+                    updatedFiles.append(file)
+                } else {
+                    if let newURL = self.findExistingFile(for: file.url) {
+                        updatedFiles.append(TrayFile(url: newURL))
+                    }
                 }
             }
-        }
-        
-        DispatchQueue.main.async {
-            self.files = updatedFiles
+            
+            DispatchQueue.main.async {
+                self.files = updatedFiles
+            }
         }
     }
     

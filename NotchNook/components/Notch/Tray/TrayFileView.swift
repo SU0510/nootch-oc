@@ -12,7 +12,7 @@ struct TrayFileView: View {
     
     let file: TrayFile
     let isSelected: Bool
-
+    
     @State private var isHovering = false
     @State private var fileName: String
     @FocusState private var isTextFieldFocused: Bool
@@ -52,10 +52,8 @@ struct TrayFileView: View {
                 },
                 onDropCompleted: { didMoveFile in
                     if !didMoveFile { return }
-                    doAfter {
-                        selectedFiles.forEach {
-                            tray.removeFile($0)
-                        }
+                    selectedFiles.forEach {
+                        tray.removeFile($0)
                     }
                 },
                 selectedURLs: selectedFiles.map { $0.url }
@@ -71,33 +69,27 @@ struct TrayFileView: View {
         .transition(.scaleAndBlur)
         .contextMenu {
             Button(String(localized: "Copy")) {
-                doAfter {
-                    tray.copySelectedFilesToClipboard()
-                }
+                tray.copySelectedFilesToClipboard()
             }.keyboardShortcut("c", modifiers: .command)
             
             Button(String(localized: "Rename")) {
-                doAfter {
-                    tray.editingFile = (file, file.name)
-                    enableTextEditing()
-                }
+                tray.editingFile = (file, file.name)
+                enableTextEditing()
             }
             
             Button(String(localized: "Remove from tray")) {
-                doAfter { tray.removeSelectedFiles(currentFile: file) }
+                doAfter(0.08) { tray.removeSelectedFiles(currentFile: file) }
             }
             
             Button(String(localized: "Send via AirDrop")) {
-                doAfter {
+                doAfter(0.08) {
                     tray.airdropSelectedFiles()
                 }
             }
         }
         .onTapGesture(count: 2) {
-            doAfter {
-                if let event = NSApp.currentEvent, event.type == .leftMouseUp, event.clickCount == 2 {
-                    tray.openFile(file)
-                }
+            if let event = NSApp.currentEvent, event.type == .leftMouseUp, event.clickCount == 2 {
+                tray.openFile(file)
             }
         }
     }
@@ -111,7 +103,7 @@ struct TrayFileView: View {
                 ))
                 .frame(width: 56)
                 .onAppear {
-                    doAfter { tray.editingFile?.newName = file.name }
+                    tray.editingFile?.newName = file.name
                     enableTextEditing()
                 }
                 .onDisappear {
@@ -124,11 +116,9 @@ struct TrayFileView: View {
                         RoundedRectangle(cornerRadius: 3).fill(isSelected ? Color.blue : Color.clear)
                     )
                     .onTapGesture {
-                        doAfter {
-                            if isSelected {
-                                tray.editingFile = (file, file.name)
-                                enableTextEditing()
-                            }
+                        if isSelected {
+                            tray.editingFile = (file, file.name)
+                            enableTextEditing()
                         }
                     }
                     .id(file.id)
@@ -141,7 +131,7 @@ struct TrayFileView: View {
         VStack {
             if isHovering {
                 Button {
-                    doAfter { tray.removeFile(file) }
+                    tray.removeFile(file)
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))

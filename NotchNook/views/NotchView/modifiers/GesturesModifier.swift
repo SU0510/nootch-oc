@@ -29,10 +29,6 @@ extension NotchView {
         @Environment(\.generalSettings) private var generalSettings
         @Default(.license) internal var license
         
-//        @State private var isHovering = false
-//        @State private var hoverCheckTimer: Timer?
-        @State private var appTransitionTimer: Timer?
-
         func body(content: Content) -> some View {
             content
                 .allowsHitTesting(!disableNotchNook)
@@ -42,24 +38,10 @@ extension NotchView {
                 }
                 .onLongPressGesture(minimumDuration: 0.3, maximumDistance: 30, perform: {}, onPressingChanged: onLongPress)
                 .onHover(perform: onHover)
-//                .onHover { hovering in
-//                    if hovering {
-//                        isHovering = true
-//                        onHover(true)
-//                    } else {
-//                        scheduleHoverCheck()
-//                    }
-//                }
                 .contextMenu {
                     Button("Open Settings") { openSettings(nil) }
                     Button("Quit NotchNook") { NSApp.terminate(nil) }
                 }
-//                .onReceive(NotificationCenter.default.publisher(for: NSApplication.willResignActiveNotification)) { _ in
-//                    scheduleAppTransition()
-//                }
-//                .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
-//                    appTransitionTimer?.invalidate()
-//                }
         }
         
         func onLongPress(_ pressing: Bool) {
@@ -94,33 +76,5 @@ extension NotchView {
                 closeNotch(false, true)
             }
         }
-        
-//        private func scheduleHoverCheck() {
-//            hoverCheckTimer?.invalidate()
-//            hoverCheckTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-//                if !isMouseInsideNotch() {
-//                    isHovering = false
-//                    onHover(false)
-//                }
-//            }
-//        }
-        
-//        private func scheduleAppTransition() {
-//            appTransitionTimer?.invalidate()
-//            appTransitionTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-//                closeNotch(false, true)
-//            }
-//        }
-        
-//        private func isMouseInsideNotch() -> Bool {
-//            guard let window = NSApp.windows.first(where: { $0.isVisible }),
-//                  let screen = window.screen else { return false }
-//            
-//            let mouseLocation = NSEvent.mouseLocation
-//            let y = screen.frame.height - NotchView.windowHeight
-//            let notchFrame = CGRect(x: 0, y: y, width: screen.frame.width, height: NotchView.windowHeight)
-//            
-//            return notchFrame.contains(mouseLocation)
-//        }
     }
 }
