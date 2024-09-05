@@ -12,51 +12,38 @@ import SwiftUI
 @Observable
 class CameraManager {
     
-    var selectedDevice: AVCaptureDevice?
+    var allDevices: [AVCaptureDevice] = []
+    var selectedDevice: AVCaptureDevice? {
+        didSet {
+            guard let uniqueID = selectedDevice?.uniqueID else {
+                Defaults[.defaultMirrorDevice] = ""
+                return
+            }
+            Defaults[.defaultMirrorDevice] = uniqueID
+        }
+    }
     var captureSession = AVCaptureSession()
-    var mirrorVideo: Bool = false
-    var isVideoMirroringSupported: Bool = true
+    var mirrorVideo: Bool {
+        didSet {
+            Defaults[.mirrorVideoForDevice] = mirrorVideo
+            if let connection = videoConnection, connection.isVideoMirroringSupported {
+                connection.isVideoMirrored = mirrorVideo
+            }
+        }
+    }
+    var isVideoMirroringSupported: Bool {
+        videoConnection?.isVideoMirroringSupported ?? false
+    }
     
     private let videoOutput = AVCaptureVideoDataOutput()
-    
     private var videoConnection: AVCaptureConnection?
     
     init() {
-        guard 
-            Defaults[.defaultMirrorDevice] != "",
-            let device = getDeviceFromDefaults(uniqueID: Defaults[.defaultMirrorDevice])
-        else {
-            initDevice()
-            return
-        }
-            
-        self.selectedDevice = device
+        let allDevices = getCaptureDeviceList()
+        self.allDevices = allDevices
+        let defaultDeviceID = Defaults[.defaultMirrorDevice]
+        self.selectedDevice = allDevices.first(where: { $0.uniqueID == defaultDeviceID }) ?? allDevices.first
         self.mirrorVideo = Defaults[.mirrorVideoForDevice]
-    }
-    
-    private func initDevice () {
-        let allDevicesAvailForCapture = getCaptureDeviceList()
-        if allDevicesAvailForCapture.isEmpty {
-            // No devices exist for capture
-            Defaults[.defaultMirrorDevice] = ""
-            selectedDevice = nil
-            mirrorVideo = false
-            isVideoMirroringSupported = false
-            return
-        } else {
-            // First time opening application
-            selectedDevice = allDevicesAvailForCapture.first
-            saveDeviceToDefaults(device: selectedDevice!)
-        }
-    }
-    
-    private func getDeviceFromDefaults(uniqueID: String) -> AVCaptureDevice? {
-        let devices = getCaptureDeviceList()
-        return devices.first { $0.uniqueID == uniqueID }
-    }
-    
-    func saveDeviceToDefaults(device: AVCaptureDevice) {
-        Defaults[.defaultMirrorDevice] = device.uniqueID
     }
     
     func setupSession() {
@@ -80,13 +67,7 @@ class CameraManager {
         
         captureSession.addOutput(videoOutput)
         
-        if let connection = videoOutput.connection(with: .video) {
-            videoConnection = connection
-            
-            doAfter {
-                self.isVideoMirroringSupported = self.videoConnection!.isVideoMirroringSupported
-            }
-        }
+        videoConnection = videoOutput.connection(with: .video)
         
         captureSession.commitConfiguration()
         startSession()
@@ -103,21 +84,6 @@ class CameraManager {
     private func startSession(){
         if !captureSession.isRunning {
             captureSession.startRunning()
-        }
-    }
-    
-    func updateMirrorSettingsForVideoDevice() {
-        doAfter {
-            Defaults[.mirrorVideoForDevice] = self.mirrorVideo
-            self.updateVideoConnection()
-        }
-    }
-    
-    private func updateVideoConnection() {
-        doAfter {
-            if let connection = self.videoConnection, connection.isVideoMirroringSupported {
-                connection.isVideoMirrored = self.mirrorVideo
-            }
         }
     }
 }

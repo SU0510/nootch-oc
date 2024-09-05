@@ -15,10 +15,7 @@ struct MirrorWidgetSettingsView: View {
         case stopped, loading, mirroring
     }
 
-    @State private var devices: [AVCaptureDevice] = []
-    @State private var selectedDevice: AVCaptureDevice?
     @State private var mode = Mode.stopped
-    @State private var mirrorVideo: Bool = false
 
     @Environment(\.cameraManager) var cameraManager
 
@@ -34,19 +31,6 @@ struct MirrorWidgetSettingsView: View {
 //            MirrorWidgetView(arrayPosition: .first, isSettingsPreview: true, width: 170)
         }
         .padding(.top, 20)
-        .onAppear {
-            let deviceList = getCaptureDeviceList()
-            devices = deviceList
-            selectedDevice = cameraManager.selectedDevice
-            mirrorVideo = cameraManager.mirrorVideo
-        }
-        .onChange(of: mirrorVideo) {
-            cameraManager.mirrorVideo = mirrorVideo
-            cameraManager.updateMirrorSettingsForVideoDevice()
-            doAfter(0.1) {
-                cameraManager.captureSession = cameraManager.captureSession
-            }
-        }
     }
     
     @ViewBuilder
@@ -57,7 +41,7 @@ struct MirrorWidgetSettingsView: View {
                 .frame(width: 100, alignment: .trailing)
                 .padding(5)
             
-            if devices.isEmpty {
+            if cameraManager.allDevices.isEmpty {
                 Text("No devices to preview from")
                     .frame(minWidth: 200, maxWidth: .infinity)
                     .background(Color.gray.opacity(0.2))
@@ -70,15 +54,13 @@ struct MirrorWidgetSettingsView: View {
     @ViewBuilder
     private var devicesListView: some View {
         VStack(alignment: .leading, spacing: 4) {
-            ForEach(devices, id: \.self) { device in
+            ForEach(cameraManager.allDevices, id: \.self) { device in
                 Text(device.localizedName)
                     .padding(10)
-                    .background(selectedDevice == device ? Color.gray.opacity(0.3) : Color.clear)
+                    .background(cameraManager.selectedDevice == device ? Color.gray.opacity(0.3) : Color.clear)
                     .cornerRadius(4)
                     .onTapGesture {
-                        selectedDevice = device
                         cameraManager.selectedDevice = device
-                        cameraManager.saveDeviceToDefaults(device: device)
                     }
                     .font(.system(size: 12))
                     .frame(height: 30)
@@ -90,7 +72,10 @@ struct MirrorWidgetSettingsView: View {
     private var mirrorVideoToggle: some View {
         VStack(alignment: .leading, spacing: 4) {
             if cameraManager.isVideoMirroringSupported {
-                Toggle(isOn: $mirrorVideo) {
+                Toggle(isOn: Binding(
+                    get: { cameraManager.mirrorVideo },
+                    set: { cameraManager.mirrorVideo = $0 }
+                )) {
                     Text("Mirror video")
                 }
                 .toggleStyle(.checkbox)
