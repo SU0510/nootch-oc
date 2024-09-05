@@ -39,11 +39,6 @@ class CalendarManager {
     /// An object that accesses the user's calendar and reminder events and supports the scheduling of new events.
     public private(set) var eventStore = EKEventStore()
     
-    /// Returns calendar object from event kit
-    public var defaultCalendar: EKCalendar? {
-        eventStore.calendarForApp()
-    }
-    
     private var dailyTimer: Timer?
     private var liveActivitiesTimers = [Timer]()
     private var defaultsTask: Task<Void, Never>?
@@ -136,7 +131,7 @@ class CalendarManager {
     /// Core functionality for fetching events within a range, ensuring events are cleared first
     @discardableResult
     public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
-        _ = try await accessCalendar()
+        try await accessCalendar()
         
         let calendars = self.eventStore.calendars(for: .event)
         
@@ -160,19 +155,12 @@ class CalendarManager {
     
     // MARK: - Private methods
     
-    @discardableResult
-    private func accessCalendar() async throws -> EKCalendar {
+    private func accessCalendar() async throws {
         let authorization = try await requestEventStoreAuthorization()
         
-        guard authorization == .fullAccess else {
+        if authorization != .fullAccess {
             throw CalendarManagerError.eventAuthorizationStatus(nil)
         }
-        
-        guard let calendar = eventStore.calendarForApp() else {
-            throw CalendarManagerError.unableToAccessCalendar
-        }
-        
-        return calendar
     }
     
     private func requestEventStoreAuthorization() async throws -> EKAuthorizationStatus {

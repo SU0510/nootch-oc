@@ -34,25 +34,6 @@ extension EKEventStore {
         
         try remove(event, span: span, commit: true)
     }
-        
-    public func calendarForApp() -> EKCalendar? {
-        guard let calendarTitle = CalendarManager.calendarTitle else {
-            print("App name is nil, please config with `CalendarManager.configureWithAppName` in AppDelegate")
-            return nil
-        }
-                
-        if let calendar = calendars(for: .event).first(where: { $0.title == calendarTitle }) {
-            return calendar
-        }
-        else {
-            let newCalendar = EKCalendar(for: .event, eventStore: self)
-            newCalendar.title = calendarTitle
-            newCalendar.source = defaultCalendarForNewEvents?.source
-            newCalendar.cgColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
-            try? saveCalendar(newCalendar, commit: true)
-            return newCalendar
-        }
-    }
     
     func fetchEvent(identifier: String) -> EKEvent? {
         event(withIdentifier: identifier)
