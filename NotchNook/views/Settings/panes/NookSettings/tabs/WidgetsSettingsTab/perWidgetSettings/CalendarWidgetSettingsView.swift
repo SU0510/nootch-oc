@@ -10,26 +10,30 @@ import Settings
 import Defaults
 
 struct CalendarWidgetSettingsView: View {
-    @Default(.calendarWidgetSettings) private var calendarWidgetSettings
-    @Default(.nookSettings) private var nookSettings
     
-//    var availableWidth: NookGrid.Point {
-//        let otherEnabledWidgets = nookSettings.enabledWidgets.filter { $0 != .calendar }
-//        let usedWidth: NookGrid.Point = otherEnabledWidgets.reduce(.zero) { $0 + $1.prefs.size.width }
-//        let freeWidth = nookSettings.size.width - usedWidth
-//        return freeWidth
-//    }
+    @Default(.calendarWidgetSettings) private var settings
     
     var body: some View {
-        let enabled = nookSettings.enabledWidgets.contains(.calendar)
-        Settings.Container(contentWidth: 520.0) {
-//            let min: Double = 3
-//            let max = !enabled ? 12 : availableWidth.double <= min ? min + 1 : availableWidth.double
-            Settings.Section(title: String(localized: "Width:"), bottomDivider: true) {
-//                SliderPlus(value: $calendarWidgetSettings.size.width.double, range: min...max)
-                SliderPlus(value: $calendarWidgetSettings.size.width.double, range: 3...12)
+        Settings.Container(contentWidth: 550.0, minimumLabelWidth: 200) {
+            Settings.Section(title: String(localized: "Width:")) {
+                SliderPlus(value: $settings.size.width.double, range: 3...12)
             }
-            Settings.Section(title: String(localized: "Manage other calendar settings:")) {
+            
+            Settings.Section(title: "") {
+                Toggle(String(localized: "Show today's past events"), isOn: $settings.shouldShowTodayPastEvents)
+                    .padding(.top)
+            }
+            
+            Settings.Section(title: String(localized: "Number of days behind:")) {
+                SliderPlus(value: $settings.numberOfDaysBehindToDisplay, range: 0...21, useTickMarks: false)
+                    .padding(.top)
+            }
+            
+            Settings.Section(title: String(localized: "Number of days ahead:"), bottomDivider: true) {
+                SliderPlus(value: $settings.numberOfDaysAheadToDisplay, range: 0...21, useTickMarks: false)
+            }
+            
+            Settings.Section(title: String(localized: "Other calendar settings:")) {
                 Button("Calendar Settings") {
                     openCalendarSettingsAccountsTab()
                 }

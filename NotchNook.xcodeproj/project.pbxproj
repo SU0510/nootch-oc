@@ -106,7 +106,6 @@
 		3A3F59E82C2A582600906FFA /* checkForUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59E72C2A582600906FFA /* checkForUpdates.swift */; };
 		3A3F59EA2C2A587700906FFA /* insertUpdateLAIfOldVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59E92C2A587700906FFA /* insertUpdateLAIfOldVersion.swift */; };
 		3A3F59EC2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59EB2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift */; };
-		3A3F59EE2C2A58CC00906FFA /* fetchEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59ED2C2A58CC00906FFA /* fetchEvents.swift */; };
 		3A3F59F42C2A5B4C00906FFA /* performDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F32C2A5B4C00906FFA /* performDrop.swift */; };
 		3A3F59F82C2A5BB900906FFA /* hideNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59F72C2A5BB900906FFA /* hideNotch.swift */; };
 		3A3F59FC2C2A5BEA00906FFA /* closeNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F59FB2C2A5BEA00906FFA /* closeNotch.swift */; };
@@ -473,7 +472,6 @@
 		3A3F59E72C2A582600906FFA /* checkForUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkForUpdates.swift; sourceTree = "<group>"; };
 		3A3F59E92C2A587700906FFA /* insertUpdateLAIfOldVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = insertUpdateLAIfOldVersion.swift; sourceTree = "<group>"; };
 		3A3F59EB2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetTrialAndHandleChangelog.swift; sourceTree = "<group>"; };
-		3A3F59ED2C2A58CC00906FFA /* fetchEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchEvents.swift; sourceTree = "<group>"; };
 		3A3F59F32C2A5B4C00906FFA /* performDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = performDrop.swift; sourceTree = "<group>"; };
 		3A3F59F72C2A5BB900906FFA /* hideNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hideNotch.swift; sourceTree = "<group>"; };
 		3A3F59FB2C2A5BEA00906FFA /* closeNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = closeNotch.swift; sourceTree = "<group>"; };
@@ -990,7 +988,6 @@
 				3A3F59E72C2A582600906FFA /* checkForUpdates.swift */,
 				3A3F59E92C2A587700906FFA /* insertUpdateLAIfOldVersion.swift */,
 				3A3F59EB2C2A58AF00906FFA /* resetTrialAndHandleChangelog.swift */,
-				3A3F59ED2C2A58CC00906FFA /* fetchEvents.swift */,
 				3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */,
 			);
 			path = onAppearTasks;
@@ -1998,7 +1995,6 @@
 				3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */,
 				3AD813BE2C28CB4300BB637C /* resetTrial.swift in Sources */,
 				3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */,
-				3A3F59EE2C2A58CC00906FFA /* fetchEvents.swift in Sources */,
 				3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */,
 				BBF6EDB92C4AE75900F70035 /* HUDManager.swift in Sources */,
 				3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */,

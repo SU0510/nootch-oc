@@ -19,12 +19,12 @@ struct ScrollableDaysView: View {
     @Binding var offset: Double
     
     var events: [Date:[EKEvent]]
-    
+            
     var scrollPos: Double {
-        let initialIndex = displayedDates.count / 2
-        let movedDates = initialIndex - selectedDateIndex
-        let newScrollPos = Double(movedDates) * CalendarDayView.width
-        return newScrollPos
+        let totalWidth = Double(displayedDates.count) * CalendarDayView.width
+        let centerPosition = totalWidth / 2
+        let selectedPosition = Double(selectedDateIndex) * CalendarDayView.width
+        return centerPosition - selectedPosition - CalendarDayView.width / 2
     }
     
     var body: some View {
@@ -53,11 +53,21 @@ struct ScrollableDaysView: View {
         .animation(.spring, value: offset == 0)
         .onChange(of: offset) { oldOffset, newOffset in
             if oldOffset == newOffset { return }
+            
             if abs(newOffset) > (CalendarDayView.width / 2) {
                 withAnimation(.snappy) {
                     vibrate()
-                    selectedDateIndex += newOffset < 0 ? 1 : -1
-                    offset = (CalendarDayView.width / 2) * (offset > 0 ? -1 : 1)
+                    let direction = newOffset < 0 ? 1 : -1
+                    let newIndex = selectedDateIndex + direction
+                    
+                    // Only update if within bounds
+                    if newIndex >= 0 && newIndex < displayedDates.count {
+                        selectedDateIndex = newIndex
+                        offset = 0
+                    } else {
+                        // If we're at the edge, bounce back
+                        offset = 0
+                    }
                 }
             }
         }

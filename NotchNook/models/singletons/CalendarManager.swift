@@ -19,7 +19,6 @@ class CalendarManager {
     
     // MARK: - Properties
         
-    static let numberOfDaysToDisplay = 90
     static let shared = CalendarManager()
     
     /// Streams of EKEvent instances
@@ -68,13 +67,13 @@ class CalendarManager {
     
     @objc private func storeChanged(_ notification: Notification) {
         Task {
-            try? await fetchEventsForDaysOffset(Self.numberOfDaysToDisplay)
+            try? await fetchEvents()
         }
     }
     
     @objc private func dailyTask() {
         Task {
-            try? await fetchEventsForDaysOffset(Self.numberOfDaysToDisplay)
+            try? await fetchEvents()
         }
     }
     
@@ -119,18 +118,9 @@ class CalendarManager {
     
     // MARK: - Events fetching
     
-    public func fetchEventsForDaysOffset(_ days: Int, calendar: Calendar = .autoupdatingCurrent) async throws {
-        let offset = days / 2
-        let today = Date()
-        try await fetchEvents(
-            startDate: today - offset.days,
-            endDate: today + offset.days
-        )
-    }
-    
     /// Core functionality for fetching events within a range, ensuring events are cleared first
     @discardableResult
-    public func fetchEvents(startDate: Date, endDate: Date, filterCalendarIDs: [String] = []) async throws -> [EKEvent] {
+    public func fetchEvents() async throws -> [EKEvent] {
         try await accessCalendar()
         
         let calendars = self.eventStore.calendars(for: .event)
@@ -140,6 +130,14 @@ class CalendarManager {
             return store.events(matching: pred)
         }
         
+        let settings = Defaults[.calendarWidgetSettings]
+        let daysAhead = settings.numberOfDaysAheadToDisplay + 1
+        let daysBehind = settings.numberOfDaysBehindToDisplay
+        let now = Date()
+        
+        let startDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -daysBehind, to: now)!)
+        let endDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: daysAhead, to: now)!)
+        
         // Perform the fetch on a background queue
         let fetchedEvents = await Task.detached {
             fetchClosure(self.eventStore, startDate, endDate, calendars)
@@ -147,6 +145,15 @@ class CalendarManager {
         
         await MainActor.run {
             self.events = fetchedEvents
+            
+            if !settings.shouldShowTodayPastEvents {
+                self.events = fetchedEvents.filter { event in
+                    if Calendar.current.isDateInToday(event.startDate) {
+                        return event.endDate > now
+                    }
+                    return true
+                }
+            }
         }
         
         print("Fetched \(fetchedEvents.count) events")

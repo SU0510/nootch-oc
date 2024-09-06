@@ -12,32 +12,30 @@ import SwiftDate
 
 struct CalendarWidgetView: View {
     
-    @State private var selectedDateIndex = CalendarManager.numberOfDaysToDisplay / 2
-    @State private var displayedDates: [Date] = getRangeOfDays(count: CalendarManager.numberOfDaysToDisplay)
+    @State private var selectedDateIndex: Int = 0
     @State private var offset: Double = 0
     @State private var calendarManager = CalendarManager.shared
+    @State private var displayedDates: [Date] = []
+    @State private var dragDirection: CGFloat = 0
     
-    @Environment(\.calendarWidgetSettings) private var prefs
+    @Environment(\.calendarWidgetSettings) private var settings
+    
+    var daysBehindCount: Int {
+        settings.numberOfDaysBehindToDisplay
+    }
     
     var selectedDate: Date {
-        let baseDate: Date
-        if selectedDateIndex < 0 {
-            baseDate = displayedDates[0]
-        } else if selectedDateIndex >= displayedDates.count {
-            baseDate = displayedDates[displayedDates.count - 1]
-        } else {
-            baseDate = displayedDates[selectedDateIndex]
-        }
+        let safeIndex = max(0, min(selectedDateIndex, displayedDates.count - 1))
+        let baseDate = displayedDates.isEmpty ? Date() : displayedDates[safeIndex]
         
-        let calendar = Calendar.current
-        let date = calendar.startOfDay(for: baseDate)
+        let date = Calendar.current.startOfDay(for: baseDate)
         
         return date
     }
     
     var body: some View {
         @State var events = calendarManager.eventsDatesDict
-        
+
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
                 ScrollableDaysView(displayedDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
@@ -47,11 +45,13 @@ struct CalendarWidgetView: View {
                     .id(selectedDate)
             }
         }
-        .frame(prefs.size.screenPtsCGSize, .leading)
+        .frame(settings.size.screenPtsCGSize, .leading)
         .task {
-            let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date())!
-            let endDate = Calendar.current.date(byAdding: .day, value: 60, to: Date())!
-            try? await calendarManager.fetchEvents(startDate: startDate, endDate: endDate)
+            try? await calendarManager.fetchEvents()
+        }
+        .onAppear {
+            displayedDates = getRangeOfDays(beforeCount: daysBehindCount, afterCount: settings.numberOfDaysAheadToDisplay)
+            selectedDateIndex = daysBehindCount
         }
     }
     
@@ -59,7 +59,7 @@ struct CalendarWidgetView: View {
         ZStack {
             ScrollableDaysMonthOverlayView(monthName: selectedDate.monthName(.standaloneShort)) {
                 withAnimation(.spring) {
-                    selectedDateIndex = displayedDates.count / 2
+                    selectedDateIndex = daysBehindCount
                 }
             }
             .id(selectedDate.monthName(.standaloneShort))
@@ -70,15 +70,43 @@ struct CalendarWidgetView: View {
     }
     
     // MARK: - Functions
-    
+        
     func onDragChanged(_ translation: CGSize, _ scrollingPoint: CGPoint, _ velocity: CGSize, cancelGesture: () -> ()) {
-        offset += scrollingPoint.x * 0.25
+        let newOffset = offset + scrollingPoint.x * 0.25
+        
+        if abs(scrollingPoint.x) > 1 {
+            dragDirection = scrollingPoint.x
+        }
+        
+        offset = newOffset
     }
     
     func onDragEnded(_ translation: CGSize, _ scrollingPoint: CGPoint, _ velocity: CGSize) {
         withAnimation(.spring) {
-            selectedDateIndex += abs(velocity.width) > 10 ? velocity.width > 0 ? 1 : -1 : 0
+            let velocityThreshold: CGFloat = 50
+            let offsetThreshold = CalendarDayView.width / 3
+            
+            var proposedChange = 0
+            
+            if abs(velocity.width) > velocityThreshold {
+                proposedChange = velocity.width > 0 ? -1 : 1
+            } else if abs(offset) > offsetThreshold {
+                proposedChange = offset > 0 ? -1 : 1
+            }
+            
+            if (dragDirection > 0 && proposedChange > 0) || (dragDirection < 0 && proposedChange < 0) {
+                proposedChange = 0
+            }
+            
+            let newIndex = selectedDateIndex + proposedChange
+            
+            if newIndex >= 0 && newIndex < displayedDates.count {
+                selectedDateIndex = newIndex
+            }
+            
             offset = 0
+            dragDirection = 0
         }
     }
+
 }

@@ -39,7 +39,6 @@ extension NotchView {
                     checkTrialOver()
 #endif
                     insertUpdateLAIfOldVersion()
-                    fetchEvents()
                     startBriVolKeyListener()
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) {
@@ -48,7 +47,7 @@ extension NotchView {
                 .onChange(of: liveActivitiesSettings.enabledLiveActivities, initial: true) { old, new in
                     if !old.contains(.calendar) && new.contains(.calendar) {
                         Task {
-                            try? await CalendarManager.shared.fetchEventsForDaysOffset(CalendarManager.numberOfDaysToDisplay)
+                            try? await CalendarManager.shared.fetchEvents()
                         }
                     }
                 }
