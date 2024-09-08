@@ -2530,7 +2530,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Красивое и родное приложение Reddit для iOS."
+            "value" : "Красивое и нативное приложение Reddit для iOS."
           }
         },
         "sr" : {
@@ -2715,7 +2715,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Несколько исправлений ошибок и новые функции!"
+            "value" : "Исправления ошибок и новые функции!"
           }
         },
         "sr" : {
@@ -2899,7 +2899,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Также наших приложения"
+            "value" : "Несколько наших приложений"
           }
         },
         "sr" : {
@@ -3083,7 +3083,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Группа талантливых друзей из 4 разных стран, которые вместе разрабатывают потрясающее программы со страстью."
+            "value" : "Группа талантливых друзей из 4 разных стран, которые разрабатывают удивительное программное обеспечение вместе."
           }
         },
         "sr" : {
@@ -3268,7 +3268,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новый и элегантный способ получать уведомления о встрече и присоединяться к ней. "
+            "value" : "Новый элегантный способ получать уведомления о встрече и присоединяться к ней. "
           }
         },
         "sr" : {
@@ -3404,7 +3404,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Macと対話する新しい方法"
+            "value" : "Macと操作する新しい方法"
           }
         },
         "ko" : {
@@ -3452,7 +3452,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новый способ взаимодействия с маком"
+            "value" : "Новый способ взаимодействия с вашим Mac"
           }
         },
         "sr" : {
@@ -4004,7 +4004,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Радиус угла альбома:"
+            "value" : "Радиус скругления обложки:"
           }
         },
         "sr" : {
@@ -5292,7 +5292,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Смена в HUD Яркости/Громкости"
+            "value" : "Изменение интерфейса настройки яркости и громкости"
           }
         },
         "sr" : {
@@ -5661,7 +5661,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Активность в календаре"
+            "value" : "Активность календаря"
           }
         },
         "sr" : {
@@ -7110,8 +7110,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Click to open the Nook, where your widgets live."
+            "state" : "translated",
+            "value" : "Kliknij, aby otworzyć Nook, w którym znajdują się widżety."
           }
         },
         "pt-BR" : {
@@ -7135,7 +7135,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Нажмите, чтобы открыть Nook, где живут ваши виджеты."
+            "value" : "Нажмите, чтобы открыть Nook, где расположены ваши виджеты."
           }
         },
         "sr" : {
@@ -8768,8 +8768,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "Kopiuj"
           }
         },
         "pt-BR" : {
@@ -8822,8 +8822,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Copy"
+            "state" : "translated",
+            "value" : "Sao chép"
           }
         },
         "zh-Hans" : {
@@ -10082,7 +10082,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отключить цвета при замене HUD аудио"
+            "value" : "Отключить цвета в интерфейсе изменения громкости"
           }
         },
         "sr" : {
@@ -10609,8 +10609,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Drag and drop files to access multiple functions."
+            "state" : "translated",
+            "value" : "Przeciągnij i upuść pliki, aby uzyskać dostęp do wielu funkcji."
           }
         },
         "pt-BR" : {
@@ -11186,7 +11186,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Эффект:"
+            "value" : "Тип эффекта:"
           }
         },
         "sr" : {
@@ -11506,7 +11506,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "メールしてね！"
+            "value" : "メールして！"
           }
         },
         "ko" : {
@@ -12474,7 +12474,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Включить опцию \"Подглянуть\""
+            "value" : "Включить опцию быстрого просмотра"
           }
         },
         "sr" : {
@@ -13394,7 +13394,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикальный отступ:"
+            "value" : "Вертикальный отступ GIF:"
           }
         },
         "sr" : {
@@ -13763,7 +13763,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Глобальная настройка медиа"
+            "value" : "Глобальное управление мультимедиа"
           }
         },
         "sr" : {
@@ -15235,7 +15235,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Если отключено, то нажатие на вырез ничего не сделает."
+            "value" : "Если отключено, то нажатие при нажатии на вырез ничего не произойдет."
           }
         },
         "sr" : {
@@ -15419,7 +15419,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Если включено, эффект будет принимать цвет текущего проигрываемого альбома, иначе он будет белым."
+            "value" : "Если включено, эффект будет соответствовать цвету текущей обложки альбома (иначе он будет белым)."
           }
         },
         "sr" : {
@@ -15578,8 +15578,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If enabled, live activities that have been dismissed (by swiping up) will automatically return."
+            "state" : "translated",
+            "value" : "Jeśli opcja ta jest włączona, aktywności na żywo, które zostały przerwane (przez przesunięcie palcem w górę), zostaną automatycznie przywrócone."
           }
         },
         "pt-BR" : {
@@ -15972,7 +15972,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Если этот параметр включен, аудио спектрограф будет иметь цвет воспроизводимого альбома, в противном случае он будет белым."
+            "value" : "Если включено, аудио спектрограф будет соответствовать цвету текущей обложки альбома, иначе он будет белым."
           }
         },
         "sr" : {
@@ -16156,7 +16156,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Если этот параметр включен, свайп влево начнёт следующую песню, если выключен, то предыдущую."
+            "value" : "Если этот параметр включен, свайп влево переключит на следующий трек, если выключен, то на предыдущий."
           }
         },
         "sr" : {
@@ -17605,8 +17605,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "License Key"
+            "state" : "translated",
+            "value" : "Licencja"
           }
         },
         "pt-BR" : {
@@ -19287,7 +19287,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Медиа плеер"
+            "value" : "Медиаплеер"
           }
         },
         "sr" : {
@@ -19471,7 +19471,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Минуты до показа:"
+            "value" : "Минут до появления:"
           }
         },
         "sr" : {
@@ -19790,8 +19790,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror source:"
+            "state" : "translated",
+            "value" : "ミラーのソース:"
           }
         },
         "ko" : {
@@ -19814,8 +19814,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror source:"
+            "state" : "translated",
+            "value" : "Źródło lustra:"
           }
         },
         "pt-BR" : {
@@ -19838,8 +19838,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror source:"
+            "state" : "translated",
+            "value" : "Источник:"
           }
         },
         "sr" : {
@@ -19856,8 +19856,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror source:"
+            "state" : "translated",
+            "value" : "Ayna kaynağı:"
           }
         },
         "uk" : {
@@ -19868,8 +19868,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror source:"
+            "state" : "translated",
+            "value" : "Nguồn gương:"
           }
         },
         "zh-Hans" : {
@@ -19974,8 +19974,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror video"
+            "state" : "translated",
+            "value" : "ミラービデオ"
           }
         },
         "ko" : {
@@ -19998,8 +19998,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror video"
+            "state" : "translated",
+            "value" : "Lustrzane odbicie wideo"
           }
         },
         "pt-BR" : {
@@ -20022,8 +20022,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror video"
+            "state" : "translated",
+            "value" : "Режим зеркала"
           }
         },
         "sr" : {
@@ -20040,8 +20040,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror video"
+            "state" : "translated",
+            "value" : "Ayna videosu"
           }
         },
         "uk" : {
@@ -20052,8 +20052,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror video"
+            "state" : "translated",
+            "value" : "Phản chiếu video"
           }
         },
         "zh-Hans" : {
@@ -20680,8 +20680,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "Pas d'appareils pour la prévisualisation"
           }
         },
         "he" : {
@@ -20710,8 +20710,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "プレビューするデバイスがありません"
           }
         },
         "ko" : {
@@ -20734,8 +20734,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "Brak urządzeń do podglądu"
           }
         },
         "pt-BR" : {
@@ -20758,8 +20758,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "Нет устройств для предпросмотра"
           }
         },
         "sr" : {
@@ -20776,8 +20776,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "Önizleme yapılabilecek cihaz yok"
           }
         },
         "uk" : {
@@ -20788,8 +20788,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "Không có thiết bị nào để xem trước"
           }
         },
         "zh-Hans" : {
@@ -22047,7 +22047,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NotchNook пытается угадать ширину Вашего выреза, но иногда это у него не получается. Здесь Вы можете с легкостью настроить ее. Она должна быть такой же ширины, как Ваш вырез."
+            "value" : "NotchNook пытается автоматически угадать ширину Вашего выреза, но иногда это у него не получается. Здесь Вы можете точно ее настроить. Она должна быть такой же ширины, что и Ваш вырез."
           }
         },
         "sr" : {
@@ -22415,7 +22415,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ничего на сегодня"
+            "value" : "На сегодня ничего нет"
           }
         },
         "sr" : {
@@ -24231,8 +24231,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please enter a valid email"
+            "state" : "translated",
+            "value" : "Wprowadź prawidłowy adres e-mail"
           }
         },
         "pt-BR" : {
@@ -24304,7 +24304,188 @@
       }
     },
     "Prefer round buttons" : {
-
+      "localizations" : {
+        "af" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "no" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer round buttons"
+          }
+        }
+      }
     },
     "Prevent from closing on mouse leave" : {
       "localizations" : {
@@ -24627,7 +24808,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Предотвратить автоматическое закрытие NN с помощью новой блокировки кнопки."
+            "value" : "Предотвратить автоматическое закрытие NotchNook с помощью новой кнопки блокировки."
           }
         },
         "sr" : {
@@ -24811,7 +24992,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Предотвращает скрытие NotchNook в бездействии. Полезно для записи экрана (это не влияет на экраны без NotchNook)."
+            "value" : "Предотвращает скрытие NotchNook в бездействии. Полезно при записи экрана (никак не влияет на экраны без выреза)."
           }
         },
         "sr" : {
@@ -24995,7 +25176,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Политика приватности"
+            "value" : "Политика конфиденциальности"
           }
         },
         "sr" : {
@@ -25364,7 +25545,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Подглянуть"
+            "value" : "Быстрый просмотр"
           }
         },
         "sr" : {
@@ -26236,8 +26417,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Remove from tray"
+            "state" : "translated",
+            "value" : "トレイから削除"
           }
         },
         "ko" : {
@@ -26260,8 +26441,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Remove from tray"
+            "state" : "translated",
+            "value" : "Usuń zawartość"
           }
         },
         "pt-BR" : {
@@ -26284,8 +26465,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Remove from tray"
+            "state" : "translated",
+            "value" : "Убрать из трея"
           }
         },
         "sr" : {
@@ -26302,8 +26483,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Remove from tray"
+            "state" : "translated",
+            "value" : "Tepsiden kaldır"
           }
         },
         "uk" : {
@@ -26314,8 +26495,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Remove from tray"
+            "state" : "translated",
+            "value" : "Xoá khỏi khay"
           }
         },
         "zh-Hans" : {
@@ -26444,8 +26625,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "Zmień nazwę"
           }
         },
         "pt-BR" : {
@@ -26498,8 +26679,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Rename"
+            "state" : "translated",
+            "value" : "Đổi tên"
           }
         },
         "zh-Hans" : {
@@ -26653,7 +26834,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сбросить все настройки"
+            "value" : "Сброс всех настроек"
           }
         },
         "sr" : {
@@ -27524,8 +27705,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send via AirDrop"
+            "state" : "translated",
+            "value" : "AirDropで送信"
           }
         },
         "ko" : {
@@ -27548,8 +27729,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send via AirDrop"
+            "state" : "translated",
+            "value" : "Wyślij przez AirDrop"
           }
         },
         "pt-BR" : {
@@ -27572,8 +27753,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send via AirDrop"
+            "state" : "translated",
+            "value" : "Отправить через AirDrop"
           }
         },
         "sr" : {
@@ -27590,8 +27771,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send via AirDrop"
+            "state" : "translated",
+            "value" : "AirDrop ile gönder"
           }
         },
         "uk" : {
@@ -27602,8 +27783,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send via AirDrop"
+            "state" : "translated",
+            "value" : "Gửi qua AirDrop"
           }
         },
         "zh-Hans" : {
@@ -27941,7 +28122,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать разделители между виджетами"
+            "value" : "Показывать разделители между виджетами"
           }
         },
         "sr" : {
@@ -28125,7 +28306,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать индикатор прокрутки"
+            "value" : "Показывать индикатор прокрутки"
           }
         },
         "sr" : {
@@ -28284,8 +28465,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show song change"
+            "state" : "translated",
+            "value" : "Pokaż zmianę utworu"
           }
         },
         "pt-BR" : {
@@ -28309,7 +28490,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать смену песни"
+            "value" : "Показывать смену трека"
           }
         },
         "sr" : {
@@ -28652,8 +28833,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Show when a song changes while playing media via quick peek."
+            "state" : "translated",
+            "value" : "Pokaż zmianę utworu podczas odtwarzania multimediów za pomocą szybkiego podglądu."
           }
         },
         "pt-BR" : {
@@ -28677,7 +28858,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показывать, когда песня меняется во время воспроизведения мультимедиа, с помощью быстрого просмотра."
+            "value" : "Отобразить быстрый просмотр при смене трека."
           }
         },
         "sr" : {
@@ -30492,8 +30673,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Swipe horizontally to change song tracks."
+            "state" : "translated",
+            "value" : "Przesuń poziomo, aby zmienić ścieżkę utworu."
           }
         },
         "pt-BR" : {
@@ -30517,7 +30698,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Проведите по горизонтали для смены треков."
+            "value" : "Проведите по горизонтали для смены трека."
           }
         },
         "sr" : {
@@ -30676,8 +30857,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Swipe vertically to open, close or hide the notch."
+            "state" : "translated",
+            "value" : "Przesuń palcem w pionie, aby otworzyć, zamknąć lub ukryć Notch'a."
           }
         },
         "pt-BR" : {
@@ -30886,7 +31067,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Взгляните на полезную информацию при помощи наведения курсора на эфир активности."
+            "value" : "Отобразить быстрый просмотр при наведении курсора на эфир активности."
           }
         },
         "sr" : {
@@ -31255,7 +31436,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сетка виджетов измеряется в \"ячейках\". Одна ячейка эквивалентна %lld точек/пикселей."
+            "value" : "Сетка виджетов измеряется в \"ячейках\". Одна ячейка эквивалентна %lld точек/пиксель."
           }
         },
         "sr" : {
@@ -31439,7 +31620,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Этот параметр требует предоставления NotchNook прав доступа."
+            "value" : "Этот параметр требует предоставления NotchNook дополнительных прав универсального доступа."
           }
         },
         "sr" : {
@@ -31598,8 +31779,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "This widget requires calendar permissions in order to show events, please enable access in settings."
+            "state" : "translated",
+            "value" : "Ten widżet wymaga uprawnień kalendarza, aby wyświetlać wydarzenia, należy włączyć dostęp w ustawieniach."
           }
         },
         "pt-BR" : {
@@ -31623,7 +31804,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Этот виджет требует разрешения календаря для отображения событий, пожалуйста, включите доступ в настройках."
+            "value" : "Этот виджет требует доступ к календарю для отображения событий. Пожалуйста, включите доступ в настройках."
           }
         },
         "sr" : {
@@ -31807,7 +31988,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Это отключит некоторые из жестов NotchNooks."
+            "value" : "Этот параметр отключит некоторые из жестов NotchNook."
           }
         },
         "sr" : {
@@ -31991,7 +32172,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Это сбросит все настройки, кроме вашей лицензии."
+            "value" : "Этот параметр сбросит все настройки, за исключением вашей лицензии."
           }
         },
         "sr" : {
@@ -32728,7 +32909,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Преобразует заметки в редактируемый код, с подсветкой синтаксиса (поддерживает Markdown)."
+            "value" : "Преобразует заметки в редактируемый код с подсветкой синтаксиса (поддерживает Markdown)."
           }
         },
         "sr" : {
@@ -33280,7 +33461,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tray"
+            "value" : "Трей"
           }
         },
         "sr" : {
@@ -33648,7 +33829,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Настройте время (в секундах) до скрытия эфира активности после того, как он станет не активным (к примеру, после паузы музыкального трека)."
+            "value" : "Настройте время до скрытия эфира активности в секундах (к примеру, после паузы музыкального трека)."
           }
         },
         "sr" : {
@@ -33991,8 +34172,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Unhide Automatically"
+            "state" : "translated",
+            "value" : "Pokaż automatycznie"
           }
         },
         "pt-BR" : {
@@ -34984,7 +35165,188 @@
       }
     },
     "Use capsules instead of rounded rectangles for buttons." : {
-
+      "localizations" : {
+        "af" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "no" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use capsules instead of rounded rectangles for buttons."
+          }
+        }
+      }
     },
     "v%@" : {
       "localizations" : {
