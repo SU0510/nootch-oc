@@ -34,16 +34,16 @@ struct TrayFileView: View {
     }
     
     var body: some View {
-        VStack {
-            TrayFileIconView(file: file)
-                .frame(width: 40, height: 40)
+        ZStack {
+            VStack {
+                TrayFileIconView(file: file)
+                    .frame(width: 40, height: 40)
+                
+                fileNameView
+            }
+            .padding(6)
+            .frame(maxHeight: .infinity, alignment: .top)
             
-            fileNameView
-        }
-        .foregroundStyle(.nonShockingWhite)
-        .padding(6)
-        .frame(maxHeight: .infinity, alignment: .top)
-        .background {
             FileDraggableView(
                 onSelect: {
                     doAfter(0.04) {
@@ -61,6 +61,8 @@ struct TrayFileView: View {
                 TrayFileDragPreviewView(draggedFile: file)
             }
         }
+        .foregroundStyle(.nonShockingWhite)
+        .frame(width: 60)
         .background(Color.nonShockingWhite.opacity(isSelected ? 0.1 : 0), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay(alignment: .topTrailing) {
             removeButton
