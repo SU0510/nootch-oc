@@ -16,19 +16,10 @@ struct MirrorWidgetView: View {
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.cameraManager) private var cameraManager
     @Environment(\.generalSettings) private var generalSettings
-
-    private let width: Double
     
-    init(arrayPosition: ArrayPosition, isSettingsPreview: Bool = false, width: CGFloat? = nil) {
+    init(arrayPosition: ArrayPosition, isSettingsPreview: Bool = false) {
         self.arrayPosition = arrayPosition
         self.isSettingsPreview = isSettingsPreview
-        if let width {
-            self.width = width
-        } else if case .unique(let size) = NookWidget.mirror.gridSizeType {
-            self.width = size.width.screenPoints
-        } else {
-            self.width = Double(2 * NookGrid.point)
-        }
     }
     
     var body: some View {
@@ -43,7 +34,6 @@ struct MirrorWidgetView: View {
             }
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
-//        .frame(width: width)
         .onAppear(perform: isSettingsPreview ? setupPreviewCamera : checkCameraPermission)
         .onDisappear(perform: stopCamera)
         .onChange(of: cameraManager.selectedDevice) {

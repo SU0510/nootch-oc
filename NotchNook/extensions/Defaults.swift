@@ -26,7 +26,7 @@ extension Defaults.Keys {
     static let traySettings = Key<TraySettings>("traySettings", default: .init())
     static let dropAreaSettings = Key<DropAreaSettings>("dropAreaSettings", default: .init())
     static let defaultMirrorDevice = Key<String>("defaultMirrorDevice", default: "")
-    static let mirrorVideoForDevice = Key<Bool>("mirrorVideoForDevice", default: false)
+    static let mirrorVideoForDevice = Key<Bool>("mirrorVideoForDevice", default: true)
     // Live activities settings
     static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
     static let calendarLiveActivitySettings = Key<CalendarLiveActivitySettings>("calendarLiveActivitySettings", default: .init())

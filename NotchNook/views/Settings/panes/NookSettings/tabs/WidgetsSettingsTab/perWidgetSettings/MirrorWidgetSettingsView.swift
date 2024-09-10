@@ -14,32 +14,34 @@ struct MirrorWidgetSettingsView: View {
     enum Mode {
         case stopped, loading, mirroring
     }
-
+    
     @State private var mode = Mode.stopped
-
+    
     @Environment(\.cameraManager) var cameraManager
-
+    
     var body: some View {
-        HStack(spacing: 10) {
-            VStack(spacing: 30) {
+        HStack(alignment: .top, spacing: 10) {
+            VStack(alignment: .leading, spacing: 10) {
                 mirrorSourceSection
+                    .padding(.top, 16)
                 mirrorVideoToggle
             }
-            .frame(width: 270)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             // this is currently causing the camera to never be turned off when first enabled because we don't have a way to know when the settings pane is closed, so it's commented out for now
-//            MirrorWidgetView(arrayPosition: .first, isSettingsPreview: true, width: 170)
+            MirrorWidgetView(arrayPosition: .first, isSettingsPreview: true)
+                .frame(150)
         }
         .padding(.top, 20)
+        .frame(width: 450)
     }
     
     @ViewBuilder
     private var mirrorSourceSection: some View {
-        HStack(alignment: .top, spacing: 10) {
+        VStack(alignment: .leading, spacing: 10) {
             Text("Mirror source:")
-                .font(.headline)
-                .frame(width: 100, alignment: .trailing)
-                .padding(5)
+                .fontWeight(.medium)
+                .padding(.leading, 6)
             
             if cameraManager.allDevices.isEmpty {
                 Text("No devices to preview from")
@@ -55,15 +57,18 @@ struct MirrorWidgetSettingsView: View {
     private var devicesListView: some View {
         VStack(alignment: .leading, spacing: 4) {
             ForEach(cameraManager.allDevices, id: \.self) { device in
-                Text(device.localizedName)
-                    .padding(10)
-                    .background(cameraManager.selectedDevice == device ? Color.gray.opacity(0.3) : Color.clear)
-                    .cornerRadius(4)
+                Label(device.localizedName, systemImage: "web.camera.fill")
+                    .padding(EdgeInsets(top: 8, leading: 11, bottom: 8, trailing: 11))
+                    .background(
+                        Capsule(style: .continuous).fill(
+                            cameraManager.selectedDevice == device ? Color.gray.opacity(0.3) : Color.clear
+                        )
+                    )
+                    .opacity(cameraManager.selectedDevice == device ? 0.9 : 0.75)
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         cameraManager.selectedDevice = device
                     }
-                    .font(.system(size: 12))
-                    .frame(height: 30)
             }
         }
     }
@@ -79,7 +84,7 @@ struct MirrorWidgetSettingsView: View {
                     Text("Mirror video")
                 }
                 .toggleStyle(.checkbox)
-                .padding(.vertical, 4)
+                .padding(.leading, 6)
             }
         }
     }
