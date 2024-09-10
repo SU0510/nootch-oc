@@ -726,7 +726,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 快捷方式"
+            "value" : " 快捷指令"
           }
         },
         "zh-Hant" : {
@@ -2566,7 +2566,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "个美观且原生的Reddit客户端应用程序，适用于iOS"
+            "value" : "一款为 iOS 原生打造的 Reddit 客户端，界面美观。"
           }
         },
         "zh-Hant" : {
@@ -2751,7 +2751,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一堆错误修复和甜美的新功能！"
+            "value" : "修复了一堆 bug，加了超棒的新功能！"
           }
         },
         "zh-Hant" : {
@@ -3488,7 +3488,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "与Mac互动的新方式"
+            "value" : "与 Mac 互动的新方式"
           }
         },
         "zh-Hant" : {
@@ -4040,7 +4040,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "专辑角半径："
+            "value" : "专辑封面圆角半径："
           }
         },
         "zh-Hant" : {
@@ -4224,7 +4224,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当悬停在凹槽上时允许手势"
+            "value" : "允许在刘海上悬停时使用手势"
           }
         },
         "zh-Hant" : {
@@ -4408,7 +4408,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "允许某些活动与鼠标点击互动。"
+            "value" : "允许部分活动通过鼠标点击交互"
           }
         },
         "zh-Hant" : {
@@ -4592,7 +4592,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "悬停时始终打开"
+            "value" : "始终在悬停时打开"
           }
         },
         "zh-Hant" : {
@@ -4776,7 +4776,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 的动画壁纸和叠加效果。"
+            "value" : "macOS 动画墙纸、悬浮特效。"
           }
         },
         "zh-Hant" : {
@@ -5328,7 +5328,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "更换HUD的亮度/体积"
+            "value" : "替换亮度/音量调整界面"
           }
         },
         "zh-Hant" : {
@@ -6066,7 +6066,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "日历小部件"
+            "value" : "日历小组件"
           }
         },
         "zh-Hant" : {
@@ -6803,7 +6803,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择快捷方式"
+            "value" : "选择快捷指令"
           }
         },
         "zh-Hant" : {
@@ -6987,7 +6987,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在设置中选择你的快捷方式。"
+            "value" : "在设置中选择你的快捷指令。"
           }
         },
         "zh-Hant" : {
@@ -8461,7 +8461,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内容填充："
+            "value" : "内容边距："
           }
         },
         "zh-Hant" : {
@@ -8645,7 +8645,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用水平手势控制媒体"
+            "value" : "使用横向手势控制媒体播放"
           }
         },
         "zh-Hant" : {
@@ -8829,7 +8829,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "复制"
+            "value" : "拷贝"
           }
         },
         "zh-Hant" : {
@@ -9197,7 +9197,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自定义管道"
+            "value" : "自定义流水线"
           }
         },
         "zh-Hant" : {
@@ -9381,7 +9381,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自定义小部件"
+            "value" : "自定义小组件"
           }
         },
         "zh-Hant" : {
@@ -10118,7 +10118,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "禁用音频HUD替换颜色"
+            "value" : "在替代的音频界面中禁用颜色"
           }
         },
         "zh-Hant" : {
@@ -10302,7 +10302,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "禁用触觉反馈"
+            "value" : "禁用触感反馈"
           }
         },
         "zh-Hant" : {
@@ -10670,7 +10670,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拖放文件以访问多种功能"
+            "value" : "拖放文件，访问多种功能"
           }
         },
         "zh-Hant" : {
@@ -11038,7 +11038,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每列包含 2 行（2 个快捷方式）。"
+            "value" : "每列包含 2 行（2 个快捷指令）。"
           }
         },
         "zh-Hant" : {
@@ -11958,7 +11958,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启用互动活动"
+            "value" : "启用可交互活动"
           }
         },
         "zh-Hant" : {
@@ -12878,7 +12878,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "一般"
+            "value" : "通用"
           }
         },
         "zh-Hant" : {
@@ -13799,7 +13799,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全部媒体控制"
+            "value" : "全局媒体控制"
           }
         },
         "zh-Hant" : {
@@ -13983,7 +13983,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "处理程序（无凹槽屏幕）："
+            "value" : "把手（无刘海屏幕）："
           }
         },
         "zh-Hant" : {
@@ -14903,7 +14903,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HUD切换:"
+            "value" : "界面替换："
           }
         },
         "zh-Hant" : {
@@ -15087,7 +15087,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "对不起，你的试用期已结束。"
+            "value" : "对不起，你的试用期结束了。"
           }
         },
         "zh-Hant" : {
@@ -15271,7 +15271,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果禁用，点击凹槽将无法执行任何操作。"
+            "value" : "如果禁用，点击刘海不会执行任何操作。"
           }
         },
         "zh-Hant" : {
@@ -15455,7 +15455,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果启用，将会以当前播放专辑的颜色作为效果，否则将显示为白色"
+            "value" : "如果启用，特效将会采用当前专辑封面的颜色，否则将显示为白色。"
           }
         },
         "zh-Hant" : {
@@ -15823,7 +15823,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果启用，某些实时活动将在鼠标悬停时显示简短信息。"
+            "value" : "如果启用，部分实时活动将在鼠标悬停时显示简短信息。"
           }
         },
         "zh-Hant" : {
@@ -16008,7 +16008,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果启用，音频光谱图将采用当前播放专辑的颜色，否则将为白色。"
+            "value" : "如果启用，音频光谱图将会采用当前专辑封面的颜色，否则将为白色。"
           }
         },
         "zh-Hant" : {
@@ -16376,7 +16376,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非活动超时："
+            "value" : "无活动超时："
           }
         },
         "zh-Hant" : {
@@ -16560,7 +16560,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互动性："
+            "value" : "可交互性："
           }
         },
         "zh-Hant" : {
@@ -19874,8 +19874,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror source:"
+            "state" : "translated",
+            "value" : "镜子视频源："
           }
         },
         "zh-Hant" : {
@@ -20058,8 +20058,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Mirror video"
+            "state" : "translated",
+            "value" : "镜子视频"
           }
         },
         "zh-Hant" : {
@@ -20243,7 +20243,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自然动画和新鲜的新功能！"
+            "value" : "自然动画、新鲜出炉的新功能！"
           }
         },
         "zh-Hant" : {
@@ -20611,7 +20611,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "似乎没有应用程序在运行"
+            "value" : "似乎没有 app 在运行"
           }
         },
         "zh-Hant" : {
@@ -20794,8 +20794,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No devices to preview from"
+            "state" : "translated",
+            "value" : "没有设备可以预览"
           }
         },
         "zh-Hant" : {
@@ -21163,7 +21163,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "凹槽宽度微调："
+            "value" : "刘海宽度微调："
           }
         },
         "zh-Hant" : {
@@ -21347,7 +21347,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "凹槽："
+            "value" : "刘海："
           }
         },
         "zh-Hant" : {
@@ -21899,7 +21899,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NotchNook 由...制作"
+            "value" : "NotchNook 的制作者是"
           }
         },
         "zh-Hant" : {
@@ -22083,7 +22083,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NotchNook 会尽力猜测你的凹槽宽度，但有时可能会有些偏差。你可以在这里进行微调。它必须与你的凹槽大小完全一致。"
+            "value" : "NotchNook 会尽力猜测你的刘海宽度，不过有的时候可能会出现偏差。你可以在这里进行微调。必须设置得和你的刘海大小完全一致。"
           }
         },
         "zh-Hant" : {
@@ -22451,7 +22451,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "今天没有任何事情"
+            "value" : "今天没有任何事项"
           }
         },
         "zh-Hant" : {
@@ -22819,7 +22819,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "现在，您可以从任何应用程序控制任何媒体！"
+            "value" : "现在，你可以从任何 app 控制任何媒体了！"
           }
         },
         "zh-Hant" : {
@@ -23555,7 +23555,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用垂直手势打开/关闭凹槽"
+            "value" : "使用纵向手势打开/关闭刘海"
           }
         },
         "zh-Hant" : {
@@ -24108,7 +24108,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "小工具周围的填充："
+            "value" : "小组件周边间距："
           }
         },
         "zh-Hant" : {
@@ -24391,8 +24391,8 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prefer round buttons"
+            "state" : "translated",
+            "value" : "丸いボタンを好む"
           }
         },
         "ko" : {
@@ -24439,8 +24439,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prefer round buttons"
+            "state" : "translated",
+            "value" : "Отдавать предпочтение круглым кнопкам"
           }
         },
         "sr" : {
@@ -24475,8 +24475,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Prefer round buttons"
+            "state" : "translated",
+            "value" : "偏好圆形按钮"
           }
         },
         "zh-Hant" : {
@@ -24660,7 +24660,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "避免鼠标移开时关闭"
+            "value" : "不让 NN 在鼠标移开时关闭"
           }
         },
         "zh-Hant" : {
@@ -24844,7 +24844,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用新的锁定按钮来防止NN自动关闭。"
+            "value" : "使用新的锁定按钮来防止 NN 自动关闭。"
           }
         },
         "zh-Hant" : {
@@ -25028,7 +25028,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止 NotchNook 在闲置时隐藏。对于屏幕录像很有用（对于没有凹槽的屏幕没有影响）。"
+            "value" : "不让 NotchNook 在闲置时隐藏。对于屏幕录像很有用（对于没有刘海的屏幕没有影响）。"
           }
         },
         "zh-Hant" : {
@@ -26501,8 +26501,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Remove from tray"
+            "state" : "translated",
+            "value" : "从托盘移除"
           }
         },
         "zh-Hant" : {
@@ -27422,7 +27422,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择一些快捷方式"
+            "value" : "选择一些快捷指令"
           }
         },
         "zh-Hant" : {
@@ -27789,8 +27789,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Send via AirDrop"
+            "state" : "translated",
+            "value" : "使用隔空投送发送"
           }
         },
         "zh-Hant" : {
@@ -27974,7 +27974,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "快捷方式"
+            "value" : "快捷指令"
           }
         },
         "zh-Hant" : {
@@ -28158,7 +28158,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "显示小工具之间的分隔线"
+            "value" : "显示小组件之间的分隔线"
           }
         },
         "zh-Hant" : {
@@ -29814,7 +29814,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抱歉，您需要注册才能使用 NotchNook。"
+            "value" : "抱歉，你需要注册才能使用 NotchNook。"
           }
         },
         "zh-Hant" : {
@@ -30734,7 +30734,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "水平滑动以切换歌曲"
+            "value" : "横向滑动，切换歌曲。"
           }
         },
         "zh-Hant" : {
@@ -30918,7 +30918,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "垂直滑动以打开、关闭或隐藏notch"
+            "value" : "垂直滑动，打开、关闭或隐藏刘海。"
           }
         },
         "zh-Hant" : {
@@ -31103,7 +31103,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通过悬停在一些实时活动上快速查看有用的信息。"
+            "value" : "悬停在一些实时活动上，快速查看有用的信息。"
           }
         },
         "zh-Hant" : {
@@ -31472,7 +31472,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "小工具网格的单位以“单元格”为单位。1个单元格意味着%lld点/像素。"
+            "value" : "小组件网格的单位是“单元格”。1 个单元格代表 %lld 点/像素。"
           }
         },
         "zh-Hant" : {
@@ -31656,7 +31656,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此设置要求您为 NotchNook 提供访问权限。"
+            "value" : "此设置需要您为 NotchNook 提供辅助功能权限。"
           }
         },
         "zh-Hant" : {
@@ -32024,7 +32024,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "这会导致Notch Nook的部分手势功能失效。"
+            "value" : "这将导致 NotchNook 的部分手势功能失效。"
           }
         },
         "zh-Hant" : {
@@ -32945,7 +32945,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "将笔记转换为代码编辑器，并带语法高亮(支持Markdown)。"
+            "value" : "将笔记转换为代码编辑器，并带语法高亮（支持 Markdown）。"
           }
         },
         "zh-Hant" : {
@@ -33129,7 +33129,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "半透明凹槽背景（实验性）"
+            "value" : "半透明刘海背景（实验性）"
           }
         },
         "zh-Hant" : {
@@ -33313,7 +33313,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "透明处理器"
+            "value" : "透明把手"
           }
         },
         "zh-Hant" : {
@@ -34233,7 +34233,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "始终显示实时活动"
+            "value" : "自动展示"
           }
         },
         "zh-Hant" : {
@@ -35300,8 +35300,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Use capsules instead of rounded rectangles for buttons."
+            "state" : "translated",
+            "value" : "Использовать капсулы вместо закругленных прямоугольников для кнопок."
           }
         },
         "sr" : {
@@ -35336,8 +35336,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Use capsules instead of rounded rectangles for buttons."
+            "state" : "translated",
+            "value" : "将按钮的形状从圆角矩形改为胶囊形"
           }
         },
         "zh-Hant" : {
@@ -36994,7 +36994,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您也可以右键点击它"
+            "value" : "你也可以右键点击它"
           }
         },
         "zh-Hant" : {
