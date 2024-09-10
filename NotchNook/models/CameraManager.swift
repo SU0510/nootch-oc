@@ -11,7 +11,6 @@ import SwiftUI
 
 @Observable
 class CameraManager {
-    
     var allDevices: [AVCaptureDevice] = []
     var selectedDevice: AVCaptureDevice? {
         didSet {
@@ -22,68 +21,76 @@ class CameraManager {
             Defaults[.defaultMirrorDevice] = uniqueID
         }
     }
-    var captureSession = AVCaptureSession()
-    var mirrorVideo: Bool {
-        didSet {
-            Defaults[.mirrorVideoForDevice] = mirrorVideo
-            if let connection = videoConnection, connection.isVideoMirroringSupported {
-                connection.isVideoMirrored = mirrorVideo
-            }
-        }
-    }
-    var isVideoMirroringSupported: Bool {
-        videoConnection?.isVideoMirroringSupported ?? false
-    }
     
-    private let videoOutput = AVCaptureVideoDataOutput()
-    private var videoConnection: AVCaptureConnection?
+    private var sessions: [String: (session: AVCaptureSession, output: AVCaptureVideoDataOutput)] = [:]
     
     init() {
         let allDevices = getCaptureDeviceList()
         self.allDevices = allDevices
         let defaultDeviceID = Defaults[.defaultMirrorDevice]
         self.selectedDevice = allDevices.first(where: { $0.uniqueID == defaultDeviceID }) ?? allDevices.first
-        self.mirrorVideo = Defaults[.mirrorVideoForDevice]
     }
     
-    func setupSession() {
-        guard let selectedDevice = selectedDevice else { return }
+    func captureSession(for widgetID: String) -> AVCaptureSession {
+        if let existingSession = sessions[widgetID]?.session {
+            return existingSession
+        }
+        
+        let newSession = AVCaptureSession()
+        let videoOutput = AVCaptureVideoDataOutput()
+        sessions[widgetID] = (newSession, videoOutput)
+        return newSession
+    }
+    
+    func setupSession(for widgetID: String, deviceID: String) {
+        guard let device = allDevices.first(where: { $0.uniqueID == deviceID }) else { return }
+        
+        let (captureSession, videoOutput) = sessions[widgetID] ?? (AVCaptureSession(), AVCaptureVideoDataOutput())
         
         captureSession.beginConfiguration()
+        
         captureSession.inputs.forEach { captureSession.removeInput($0) }
+        captureSession.outputs.forEach { captureSession.removeOutput($0) }
         
         do {
-            let input = try AVCaptureDeviceInput(device: selectedDevice)
+            let input = try AVCaptureDeviceInput(device: device)
             if captureSession.canAddInput(input) {
                 captureSession.addInput(input)
             }
         } catch {
-            print("Error setting up input: \(error)")
+            print("Error setting up input for widget \(widgetID): \(error)")
         }
         
-        if captureSession.outputs.contains(videoOutput){
-            captureSession.removeOutput(videoOutput)
+        if captureSession.canAddOutput(videoOutput) {
+            captureSession.addOutput(videoOutput)
         }
         
-        captureSession.addOutput(videoOutput)
-        
-        videoConnection = videoOutput.connection(with: .video)
+        let videoConnection = videoOutput.connection(with: .video)
+        videoConnection?.isVideoMirrored = Defaults[.mirrorCameraInputWhenAvail]
         
         captureSession.commitConfiguration()
-        startSession()
+        
+        sessions[widgetID] = (captureSession, videoOutput)
+        
+        startSession(for: widgetID)
     }
     
-    public func stopRunning() {
+    func stopRunning(for widgetID: String) {
+        guard let (captureSession, _) = sessions[widgetID] else { return }
+        
         if captureSession.isRunning {
             captureSession.stopRunning()
         }
-        captureSession.inputs.forEach { captureSession.removeInput($0) }
-        captureSession.outputs.forEach { captureSession.removeOutput($0) }
+        
+        sessions.removeValue(forKey: widgetID)
     }
     
-    private func startSession(){
-        if !captureSession.isRunning {
-            captureSession.startRunning()
-        }
+    private func startSession(for widgetID: String) {
+        guard let (captureSession, _) = sessions[widgetID], !captureSession.isRunning else { return }
+        captureSession.startRunning()
+    }
+    
+    func isVideoMirroringSupported(for widgetID: String) -> Bool {
+        return sessions[widgetID]?.output.connection(with: .video)?.isVideoMirroringSupported ?? false
     }
 }

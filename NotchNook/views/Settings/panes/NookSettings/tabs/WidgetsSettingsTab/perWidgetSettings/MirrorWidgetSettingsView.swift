@@ -8,6 +8,7 @@
 import SwiftUI
 import Settings
 import AVFoundation
+import Defaults
 
 struct MirrorWidgetSettingsView: View {
     
@@ -19,6 +20,8 @@ struct MirrorWidgetSettingsView: View {
     
     @Environment(\.cameraManager) var cameraManager
     
+    @Default(.mirrorCameraInputWhenAvail) var mirrorCameraInputWhenAvail
+    
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
             VStack(alignment: .leading, spacing: 10) {
@@ -28,7 +31,6 @@ struct MirrorWidgetSettingsView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            // this is currently causing the camera to never be turned off when first enabled because we don't have a way to know when the settings pane is closed, so it's commented out for now
             MirrorWidgetView(arrayPosition: .first, isSettingsPreview: true)
                 .frame(150)
         }
@@ -76,16 +78,11 @@ struct MirrorWidgetSettingsView: View {
     @ViewBuilder
     private var mirrorVideoToggle: some View {
         VStack(alignment: .leading, spacing: 4) {
-            if cameraManager.isVideoMirroringSupported {
-                Toggle(isOn: Binding(
-                    get: { cameraManager.mirrorVideo },
-                    set: { cameraManager.mirrorVideo = $0 }
-                )) {
-                    Text("Mirror video")
-                }
-                .toggleStyle(.checkbox)
-                .padding(.leading, 6)
+            Toggle(isOn: $mirrorCameraInputWhenAvail) {
+                Text("Mirror video when available")
             }
+            .toggleStyle(.checkbox)
+            .padding(.leading, 6)
         }
     }
 }

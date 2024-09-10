@@ -3,12 +3,12 @@ import AVFoundation
 import Defaults
 
 struct MirrorWidgetView: View {
-    
     enum Mode {
-        case stopped, loading, mirrorring
+        case stopped, loading, mirroring
     }
     
     @State private var mode = Mode.stopped
+    @State private var widgetID = UUID().uuidString
     
     var arrayPosition: ArrayPosition
     var isSettingsPreview: Bool
@@ -16,6 +16,12 @@ struct MirrorWidgetView: View {
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.cameraManager) private var cameraManager
     @Environment(\.generalSettings) private var generalSettings
+    
+    @Default(.mirrorCameraInputWhenAvail) var mirrorCameraInputWhenAvail
+    
+    private var deviceID: String {
+        cameraManager.selectedDevice?.uniqueID ?? ""
+    }
     
     init(arrayPosition: ArrayPosition, isSettingsPreview: Bool = false) {
         self.arrayPosition = arrayPosition
@@ -47,7 +53,6 @@ struct MirrorWidgetView: View {
             }
         }
     }
-
     
     @ViewBuilder
     private var previewContent: some View {
@@ -60,8 +65,8 @@ struct MirrorWidgetView: View {
     
     @ViewBuilder
     private var cameraView: some View {
-        if mode == .mirrorring {
-            CameraPreview(session: cameraManager.captureSession, mirrorVideo: cameraManager.mirrorVideo)
+        if mode == .mirroring {
+            CameraPreview(session: cameraManager.captureSession(for: widgetID), mirrorVideo: mirrorCameraInputWhenAvail)
                 .scaledToFill()
                 .mask {
                     if generalSettings.preferRoundButtons {
@@ -76,7 +81,7 @@ struct MirrorWidgetView: View {
     
     @ViewBuilder
     private var overlayView: some View {
-        if mode != .mirrorring {
+        if mode != .mirroring {
             Color.selected
                 .overlay {
                     if mode == .loading {
@@ -118,7 +123,7 @@ struct MirrorWidgetView: View {
             if prevMode == .stopped {
                 setupCamera {
                     withAnimation(.bouncySmooth) {
-                        mode = .mirrorring
+                        mode = .mirroring
                     }
                 }
             } else {
@@ -140,7 +145,7 @@ struct MirrorWidgetView: View {
     
     private func setupCamera(_ completion: @escaping () -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
-            cameraManager.setupSession()
+            self.cameraManager.setupSession(for: self.widgetID, deviceID: self.deviceID)
             DispatchQueue.main.async {
                 completion()
             }
@@ -149,7 +154,7 @@ struct MirrorWidgetView: View {
     
     private func stopCamera() {
         DispatchQueue.global(qos: .userInitiated).async {
-            self.cameraManager.stopRunning()
+            self.cameraManager.stopRunning(for: self.widgetID)
             
             DispatchQueue.main.async {
                 self.mode = .stopped
@@ -161,11 +166,10 @@ struct MirrorWidgetView: View {
         checkCameraPermission()
         setupCamera {
             withAnimation(.bouncySmooth) {
-                mode = .mirrorring
+                mode = .mirroring
             }
         }
     }
-
 }
 
 struct CameraPreview: NSViewRepresentable {

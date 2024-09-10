@@ -19887,6 +19887,7 @@
       }
     },
     "Mirror video" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -20069,6 +20070,9 @@
           }
         }
       }
+    },
+    "Mirror video when available" : {
+
     },
     "Natural animations and fresh new features!" : {
       "localizations" : {
