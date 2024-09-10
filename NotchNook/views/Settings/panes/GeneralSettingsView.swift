@@ -54,7 +54,7 @@ struct GeneralSettingsView: View {
                     let num = generalSettings.notchWidthFineTune
                     Text("\(num > 0 ? "+" : "")\(Int(num))")
                 }
-                Text("NotchNook tries it's best to guess you notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch.")
+                Text(String(localized: "NotchNook tries it's best to guess your notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch."))
                 //                    .settingDescription()
                     .optionDescription(contentMaxW)
             }
