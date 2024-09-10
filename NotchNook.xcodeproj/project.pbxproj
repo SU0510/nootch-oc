@@ -21,6 +21,8 @@
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
 		36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */; };
 		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
+		3A00275B2C901173002A089D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 3A00275A2C901173002A089D /* Settings */; };
+		3A00275E2C90263C002A089D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 3A00275D2C90263C002A089D /* Settings */; };
 		3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B72C23AAC8008092F0 /* FileDropView.swift */; };
 		3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */; };
 		3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816BC2C24C02F008092F0 /* UpdateAppIconView.swift */; };
@@ -254,7 +256,6 @@
 		EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FA2C040E22001FD54E /* LiveActivitiesSettingsView.swift */; };
 		EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2DD1FC2C040E2E001FD54E /* NookSettingsView.swift */; };
 		EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173C82C0181B8002889E7 /* WindowsManager.swift */; };
-		EC4173D22C025136002889E7 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EC4173D12C025136002889E7 /* Settings */; };
 		EC4173D42C02515A002889E7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173D32C02515A002889E7 /* Settings.swift */; };
 		EC4173DA2C025597002889E7 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173D92C025597002889E7 /* GeneralSettingsView.swift */; };
 		EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4173DB2C025AF8002889E7 /* LicenseSettingsView.swift */; };
@@ -740,11 +741,12 @@
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
+				3A00275E2C90263C002A089D /* Settings in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
+				3A00275B2C901173002A089D /* Settings in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
 				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
-				EC4173D22C025136002889E7 /* Settings in Frameworks */,
 				3A1DC6172C6DAE6500D97B5E /* CodeEditor in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
 				3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */,
@@ -1804,7 +1806,6 @@
 			name = NotchNook;
 			packageProductDependencies = (
 				BB2A5E542C006B63008F3081 /* Defaults */,
-				EC4173D12C025136002889E7 /* Settings */,
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
 				EC47FC8D2C0B801A00591811 /* Lottie */,
@@ -1817,6 +1818,8 @@
 				ECCEFE6E2C64453600F3385C /* FluidGradient */,
 				3A1DC6162C6DAE6500D97B5E /* CodeEditor */,
 				3A9FEA162C6DCBF500AE6515 /* Setapp */,
+				3A00275A2C901173002A089D /* Settings */,
+				3A00275D2C90263C002A089D /* Settings */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -1853,7 +1856,6 @@
 			mainGroup = EC758F5F2BF2F18700B873B0;
 			packageReferences = (
 				BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */,
-				EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */,
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
@@ -1866,6 +1868,7 @@
 				ECCEFE6D2C64453600F3385C /* XCRemoteSwiftPackageReference "FluidGradient" */,
 				3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
+				3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -2684,6 +2687,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lo-cafe/Settings.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lo-cafe/CodeEditor.git";
@@ -2748,14 +2759,6 @@
 				kind = branch;
 			};
 		};
-		EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Settings";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.1;
-			};
-		};
 		EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
@@ -2799,6 +2802,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3A00275A2C901173002A089D /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Settings;
+		};
+		3A00275D2C90263C002A089D /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */;
+			productName = Settings;
+		};
 		3A1DC6162C6DAE6500D97B5E /* CodeEditor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */;
@@ -2838,11 +2850,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
 			productName = LaunchAtLogin;
-		};
-		EC4173D12C025136002889E7 /* Settings */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC4173D02C025136002889E7 /* XCRemoteSwiftPackageReference "Settings" */;
-			productName = Settings;
 		};
 		EC47FC842C0AB86A00591811 /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
