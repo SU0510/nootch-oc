@@ -15,7 +15,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
     @State private var disableHUDToggle = false
     
     var body: some View {
-        let contentMaxW: Double = 375
+        let contentMaxWidth: Double = 340
         
         Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: "", bottomDivider: true) {
@@ -32,7 +32,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .padding(.top, 10)
 
                 Text("Tweak the time _(in seconds)_ that live activities take to go away after they become inactive (like when music pauses).")
-                    .settingDescription()
+                    .optionDescription(contentMaxWidth)
             }
             
             Settings.Section(title: String(localized: "Interactivity:"), bottomDivider: true) {
@@ -40,26 +40,26 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .disabled(!liveActivitiesSettings.enabled)
 
                 Text("Allow some activities to interact with mouse click.")
-                    .settingDescription()
+                    .optionDescription(contentMaxWidth)
                     .foregroundColor(liveActivitiesSettings.enabled ? .nonShockingWhite : .gray)
                 
                 Toggle("Enable Quick Peek", isOn: $liveActivitiesSettings.enableQuickPeek)
                     .disabled(!liveActivitiesSettings.enabled)
 
                 Text("If enabled, some live activities will show a short info on mouse hover.")
-                    .settingDescription()
-                                
+                    .optionDescription(contentMaxWidth)
+                
                 Toggle("Unhide Automatically", isOn: $liveActivitiesSettings.unhideAutomatically)
                     .disabled(!liveActivitiesSettings.enabled)
 
                 Text("If enabled, live activities that have been dismissed (by swiping up) will automatically return.")
-                    .settingDescription()
+                    .optionDescription(contentMaxWidth)
                 
                 Toggle("Show song change", isOn: $liveActivitiesSettings.quickPeekEvent)
                     .disabled(!liveActivitiesSettings.enabled)
 
                 Text("Show when a song changes while playing media via quick peek.")
-                    .settingDescription()
+                    .optionDescription(contentMaxWidth)
             }
             
             Settings.Section(title: String(localized: "HUD replacement:"), bottomDivider: true) {
@@ -79,10 +79,11 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     doAfter(2) { disableHUDToggle = false }
                 }
                 Text("This setting requires you to provide NotchNook with accessibility permissions.")
-                    .optionDescription(contentMaxW)
+                    .optionDescription(contentMaxWidth)
                 
                 Toggle("Disable colors on audio HUD replacement", isOn: $liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
-                    .fixedSize()
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(width: contentMaxWidth, alignment: .leading)
                     .disabled(!liveActivitiesSettings.enableHUDReplacement)
                     .disabled(!liveActivitiesSettings.enabled)
             }
