@@ -14,8 +14,13 @@ struct NoteRichEditor: View {
     var showControls: Bool
 
     @Environment(\.notesWidgetSettings) private var prefs
+    @Environment(\.enableTextEditingForWindowWith) private var enableTextEditingForWindowWith
+    @Environment(\.displayKitId) private var displayKitId
+    @Environment(\.makeKeyWindow) private var makeKeyWindow
+
     @State private var localRichText: NSAttributedString
     @State private var initialRichText: AttributedString
+    
     @StateObject private var richTextContext = RichTextContext()
     
     init(note: Note, selected: Bool, showControls: Bool) {
@@ -55,8 +60,18 @@ struct NoteRichEditor: View {
                 note.richText = localRichText
                 note.updatedAt = Date()
             }
+            .onAppear {
+                enableTextEditing()
+            }
         } else {
             FakeRichEditor(str: initialRichText)
+        }
+    }
+    
+    private func enableTextEditing() {
+        doAfter (0.1) {
+            enableTextEditingForWindowWith(displayKitId)
+            makeKeyWindow()
         }
     }
 }
