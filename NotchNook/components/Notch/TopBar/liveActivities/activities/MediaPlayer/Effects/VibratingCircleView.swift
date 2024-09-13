@@ -92,7 +92,9 @@ class VibratingCircleNSView: NSView {
     
     private func setupDisplayLink() {
         CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
-        CVDisplayLinkSetOutputHandler(displayLink!) { [weak self] (_, _, _, _, _) -> CVReturn in
+        
+        guard let displayLink else { return }
+        CVDisplayLinkSetOutputHandler(displayLink) { [weak self] (_, _, _, _, _) -> CVReturn in
             DispatchQueue.main.async {
                 self?.updateLayers()
             }
@@ -118,7 +120,8 @@ class VibratingCircleNSView: NSView {
         if displayLink == nil {
             setupDisplayLink()
         }
-        CVDisplayLinkStart(displayLink!)
+        guard let displayLink else { return }
+        CVDisplayLinkStart(displayLink)
     }
     
     func stopAnimating() {

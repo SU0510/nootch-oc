@@ -22,7 +22,9 @@ class ActiveLiveActivitiesManager {
             return isCacheEnabled ? liveActivitiesFromCache : []
         }
         set {
-            withAnimation(TopBarView.animation) { _activeLiveActivities = newValue }
+            Task { @MainActor in
+                withAnimation(TopBarView.animation) { _activeLiveActivities = newValue }
+            }
         }
     }
     private var _activeLiveActivities = Set<LiveActivity>()
