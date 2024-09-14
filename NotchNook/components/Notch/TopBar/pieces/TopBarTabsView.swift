@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct TopBarTabsView: View {
-    var totalWidth: NookGrid.Point
+    var collapsed: Bool
     @Environment(\.notchNook) private var notchNook
     @Environment(\.generalSettings) private var generalSettings
     
     
     var body: some View {
-        let collapsed = totalWidth < .init(9)
         HStack(spacing: 2) {
             
             TopBarTabView(
