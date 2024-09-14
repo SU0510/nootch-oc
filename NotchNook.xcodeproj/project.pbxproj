@@ -1558,7 +1558,6 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				C11F0A892C58C1A0003F96DC /* CameraManager.swift */,
 				36C970242C51D73100956B57 /* errors */,
 				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
@@ -1567,6 +1566,7 @@
 				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
+				C11F0A892C58C1A0003F96DC /* CameraManager.swift */,
 				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
 				3A85076E2C4B2F290092B135 /* Indicator.swift */,
 				EC758F902BF2F1A400B873B0 /* Pipeline.swift */,
