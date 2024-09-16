@@ -20,6 +20,7 @@ struct TopBarView: View, Equatable {
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxHeight: CGFloat = 32
     static let liveActionWidth: CGFloat = 35
+    static let collapsedTopBarHalfWidth: CGFloat = 88
     
     var panGestureCounter: Int
     var scaleX: Double = 1
@@ -39,6 +40,11 @@ struct TopBarView: View, Equatable {
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.traySettings) private var traySettings
     @Environment(\.nookWidgetsWidth) private var nookWidgetsWidth
+    
+    var collapsed: Bool {
+        let width = notchNook.mode == .nook ? nookWidgetsWidth : traySettings.size.width
+        return width < .init(9)
+    }
 
     var body: some View {
         let height = getHeight(notchSize.height)
@@ -86,16 +92,17 @@ struct TopBarView: View, Equatable {
                     EmptyView()
                 case .nook, .tray:
                     if isLeft {
-                        TopBarTabsView(totalWidth: notchNook.mode == .nook ? nookWidgetsWidth : traySettings.size.width)
+                        TopBarTabsView(collapsed: collapsed)
+                            .frame(width: collapsed ? Self.collapsedTopBarHalfWidth : nil, alignment: .leading)
                     } else {
                         HStack(spacing: 2) {
-                            if !nookSettings.enabledWidgets.contains(.media) { MiniPlayerView() }
+                            if !nookSettings.enabledWidgets.contains(.media) && !collapsed { MiniPlayerView() }
                             
                             CircleButton(icon: "gearshape.fill", iconSize: 13) {
                                 openSettings(nil)
                             }
                         }
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(minWidth: collapsed ? Self.collapsedTopBarHalfWidth : nil, maxWidth: .infinity, alignment: .trailing)
                     }
             }
         }
