@@ -69,10 +69,8 @@ struct NoteRichEditor: View {
     }
     
     private func enableTextEditing() {
-        doAfter (0.1) {
-            enableTextEditingForWindowWith(displayKitId)
-            makeKeyWindow()
-        }
+        enableTextEditingForWindowWith(displayKitId)
+        makeKeyWindow()
     }
 }
 
