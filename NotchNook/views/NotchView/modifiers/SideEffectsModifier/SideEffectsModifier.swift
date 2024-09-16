@@ -99,6 +99,8 @@ extension NotchView {
                     await handleBrightnessChange()
                 case .volumeUp, .volumeDown, .mute:
                     await handleVolumeChange()
+                default:
+                    break
                 }
             }
         }

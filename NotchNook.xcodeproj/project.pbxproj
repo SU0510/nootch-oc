@@ -196,6 +196,9 @@
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
 		BB50026F2C4AC8FD0028FCB5 /* VolumeAndBrightnessListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */; };
+		BB91B3192C90EDC400083484 /* MediaKeyTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91B3182C90EDBA00083484 /* MediaKeyTap.swift */; };
+		BB91B31B2C90EDD800083484 /* MediaKeyTapInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91B31A2C90EDD300083484 /* MediaKeyTapInternals.swift */; };
+		BB91B31D2C90EDE400083484 /* NSEventExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91B31C2C90EDDD00083484 /* NSEventExtensions.swift */; };
 		BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */; };
 		BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */; };
 		BBF6EDB32C4AE07600F70035 /* BrightnessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */; };
@@ -555,6 +558,9 @@
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorView.swift; sourceTree = "<group>"; };
 		BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAndBrightnessListener.swift; sourceTree = "<group>"; };
+		BB91B3182C90EDBA00083484 /* MediaKeyTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTap.swift; sourceTree = "<group>"; };
+		BB91B31A2C90EDD300083484 /* MediaKeyTapInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTapInternals.swift; sourceTree = "<group>"; };
+		BB91B31C2C90EDDD00083484 /* NSEventExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExtensions.swift; sourceTree = "<group>"; };
 		BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemIntegrationHelper.swift; sourceTree = "<group>"; };
 		BBF6EDA72C4AD76400F70035 /* MessageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtil.swift; sourceTree = "<group>"; };
 		BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessCoordinator.swift; sourceTree = "<group>"; };
@@ -1111,9 +1117,20 @@
 			path = VolumeIndicator;
 			sourceTree = "<group>";
 		};
+		BB91B3142C90ED5B00083484 /* MediaKeyTap */ = {
+			isa = PBXGroup;
+			children = (
+				BB91B31C2C90EDDD00083484 /* NSEventExtensions.swift */,
+				BB91B31A2C90EDD300083484 /* MediaKeyTapInternals.swift */,
+				BB91B3182C90EDBA00083484 /* MediaKeyTap.swift */,
+			);
+			path = MediaKeyTap;
+			sourceTree = "<group>";
+		};
 		BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */ = {
 			isa = PBXGroup;
 			children = (
+				BB91B3142C90ED5B00083484 /* MediaKeyTap */,
 				BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */,
 				BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */,
 				BBF6EDB82C4AE75500F70035 /* HUDManager.swift */,
@@ -2015,6 +2032,7 @@
 				3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */,
 				3A9E6BF52C39908B009948F5 /* WaveView.swift in Sources */,
 				3A3ABCEC2C2B712500132228 /* QuickAppsWidgetSettings.swift in Sources */,
+				BB91B31D2C90EDE400083484 /* NSEventExtensions.swift in Sources */,
 				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,
 				EC0E30F12C0434640060B47E /* BlankView.swift in Sources */,
 				3A1691F32C2FB5180014C326 /* CheckTrialOverKey.swift in Sources */,
@@ -2112,6 +2130,7 @@
 				3A0C50202C534A7A0003867F /* IndicatorValueView.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
+				BB91B3192C90EDC400083484 /* MediaKeyTap.swift in Sources */,
 				EC2DD1F22C03DBC9001FD54E /* TrayFilesGridPreviewView.swift in Sources */,
 				3A3F5A002C2A5C4400906FFA /* checkTrialOver.swift in Sources */,
 				3A0D90AF2C27DA24004A41F4 /* getShortVersion.swift in Sources */,
@@ -2169,6 +2188,7 @@
 				3A3F59F42C2A5B4C00906FFA /* performDrop.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				3A3ABCE82C2B6CED00132228 /* TodoListWidgetSettings.swift in Sources */,
+				BB91B31B2C90EDD800083484 /* MediaKeyTapInternals.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
 				3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */,
 				EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */,

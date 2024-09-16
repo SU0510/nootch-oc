@@ -148,8 +148,10 @@ class AudioSpectrographNSView: NSView {
     
     private func resetBars() {
         for i in 0..<barsCount {
-            targetHeights[i] = minHeight
-            currentHeights[i] = minHeight
+            if i < targetHeights.count, i < currentHeights.count {
+                targetHeights[i] = minHeight
+                currentHeights[i] = minHeight
+            }
         }
         DispatchQueue.main.async { [weak self] in
             self?.updateBarHeights()
