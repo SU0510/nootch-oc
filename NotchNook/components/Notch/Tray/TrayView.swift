@@ -40,6 +40,12 @@ struct TrayView: View {
         }
         .geometryGroup()
         .animation(.easeOut(duration: 0.2), value: hovered)
+        .onAppear {
+            tray.setupEventMonitors()
+        }
+        .onDisappear {
+            tray.stopMonitoringEvents()
+        }
     }
 }
 
