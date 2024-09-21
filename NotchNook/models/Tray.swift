@@ -26,7 +26,9 @@ class Tray {
     
     private var tempDirectory: URL?
     private var folderMonitor: FolderMonitor?
-    
+    private var flagsChangedMonitor: Any?
+    private var keyDownMonitor: Any?
+
     let activitiesManager: ActiveLiveActivitiesManager
     
     private(set) var files = [TrayFile]() {
@@ -35,6 +37,11 @@ class Tray {
             if selectedFiles.count != newSelectedFiles.count {
                 selectedFiles = newSelectedFiles
             }
+            
+            if newValue.isEmpty {
+                stopMonitoringEvents()
+            }
+            
             let isTrayActive = activitiesManager.activeLiveActivities.contains(.tray)
             if newValue.isEmpty {
                 if isTrayActive {
@@ -64,8 +71,6 @@ class Tray {
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
         self.activitiesManager = activitiesManager
         setupTempDirectory()
-        setupFolderMonitor()
-        setupEvents()
     }
     
     // MARK: - Setup methods
@@ -80,27 +85,27 @@ class Tray {
         }
     }
     
-    private func setupFolderMonitor() {
-        guard let tempDirectory else { return }
-        folderMonitor = FolderMonitor(path: tempDirectory.path()) { [weak self] in
-            DispatchQueue.main.async { self?.updateFiles() }
-        }
-        folderMonitor?.start()
+    func setupEventMonitors() {
+        setupFlagsChangedMonitor()
+        setupKeyDownMonitor()
+        setupFolderMonitor()
     }
     
-    private func setupEvents() {
-        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
+    func setupFlagsChangedMonitor() {
+        flagsChangedMonitor = NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
             self?.pressedKeysEvent = event
             return event
         }
-        
+    }
+    
+    private func setupKeyDownMonitor() {
         let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true]
         let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
         
         guard accessEnabled else { return }
         
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            guard 
+        keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard
                 let self = self,
                 let keyCode = KeyCode(rawValue: event.keyCode)
             else { return event }
@@ -111,6 +116,29 @@ class Tray {
                 return handleNonEditingKeys(event: event, key: keyCode)
             }
         }
+    }
+    
+    private func setupFolderMonitor() {
+        guard let tempDirectory else { return }
+        folderMonitor = FolderMonitor(path: tempDirectory.path()) { [weak self] in
+            DispatchQueue.main.async { self?.updateFiles() }
+        }
+        folderMonitor?.start()
+    }
+    
+    func stopMonitoringEvents() {
+        if let flagsChangedMonitor = flagsChangedMonitor {
+            NSEvent.removeMonitor(flagsChangedMonitor)
+            self.flagsChangedMonitor = nil
+        }
+        
+        if let keyDownMonitor = keyDownMonitor {
+            NSEvent.removeMonitor(keyDownMonitor)
+            self.keyDownMonitor = nil
+        }
+        
+        folderMonitor?.stop()
+        folderMonitor = nil
     }
     
     func rename() {

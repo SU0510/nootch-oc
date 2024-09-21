@@ -83,7 +83,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                 
                 Text("Includes code from MediaKeyTap (MIT License) © 2016 Nicholas Hurden")
                     .italic()
-                    .optionDescription(contentMaxW)
+                    .optionDescription(contentMaxWidth)
                 
                 Toggle("Disable colors on audio HUD replacement", isOn: $liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
                     .fixedSize(horizontal: false, vertical: true)
