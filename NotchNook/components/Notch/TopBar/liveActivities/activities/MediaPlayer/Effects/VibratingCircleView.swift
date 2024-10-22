@@ -30,42 +30,41 @@ class VibratingCircleNSView: NSView {
     var color: NSColor = .nonShockingWhite {
         didSet {
             updateLayersColor()
-            needsDisplay = true
         }
     }
     var isPlaying: Bool = false {
         didSet {
-            if isPlaying {
-                startAnimating()
-            } else {
-                stopAnimating()
-            }
+            isPlaying ? startAnimating() : stopAnimating()
         }
     }
     
     private var displayLink: CVDisplayLink?
     private var startTime: TimeInterval = 0
+    private let updateInterval: TimeInterval = 1.0 / 22.0 // 22 FPS
+    private var lastUpdateTime: TimeInterval = 0
     private let amplitude: CGFloat = 3.0
     private let frequency: CGFloat = 2.0
     private let blur: CGFloat = 0.15
     private let velocity: CGFloat = 0.7
-    private let smoothness: Int = 400
+    private let smoothness: Int = 300
     private let lineWidth: CGFloat = 0.8
     private let noiseGenerator = PerlinNoiseGenerator()
-    private let layerCount = 5
+    private let layerCount = 4
     private var layers: [CAShapeLayer] = []
     
     // MARK: - Initialization
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        wantsLayer = true
-        setupLayers()
-        setupDisplayLink()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit() {
         wantsLayer = true
         setupLayers()
         setupDisplayLink()
@@ -95,8 +94,14 @@ class VibratingCircleNSView: NSView {
         
         guard let displayLink else { return }
         CVDisplayLinkSetOutputHandler(displayLink) { [weak self] (_, _, _, _, _) -> CVReturn in
+            let currentTime = CACurrentMediaTime()
+            guard let self = self, currentTime - self.lastUpdateTime >= self.updateInterval else {
+                return kCVReturnSuccess
+            }
+            
+            self.lastUpdateTime = currentTime
             DispatchQueue.main.async {
-                self?.updateLayers()
+                self.updateLayers()
             }
             return kCVReturnSuccess
         }

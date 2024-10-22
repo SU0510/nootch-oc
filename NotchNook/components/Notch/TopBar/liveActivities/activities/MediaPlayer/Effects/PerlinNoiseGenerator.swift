@@ -13,16 +13,23 @@ import Foundation
 /// gradual, continuous changes in values, making it ideal for creating natural-looking
 /// randomness in various applications, including movement algorithms.
 class PerlinNoiseGenerator {
-    private var permutation: [Int]
+    
+    private let permutation: [Int]
+    private let gradients: [(Double, Double, Double)]
     
     init() {
-        permutation = Array(0...255)
-        permutation.shuffle()
-        permutation += permutation
+        var perm = Array(0...255)
+        perm.shuffle()
+        permutation = perm + perm
+        
+        gradients = [
+            (1,1,0),(-1,1,0),(1,-1,0),(-1,-1,0),
+            (1,0,1),(-1,0,1),(1,0,-1),(-1,0,-1),
+            (0,1,1),(0,-1,1),(0,1,-1),(0,-1,-1),
+            (1,1,0),(-1,1,0),(0,-1,1),(0,-1,-1)
+        ]
     }
     
-    /// Generates a Perlin noise value for the given 3D coordinates.
-    ///
     /// This method produces a pseudo-random value that smoothly transitions between
     /// neighboring coordinates. When used for movement, it creates a more organic,
     /// less predictable pattern compared to simple random number generation.
@@ -68,8 +75,7 @@ class PerlinNoiseGenerator {
     
     private func grad(_ hash: Int, _ x: Double, _ y: Double, _ z: Double) -> Double {
         let h = hash & 15
-        let u = h < 8 ? x : y
-        let v = h < 4 ? y : (h == 12 || h == 14 ? x : z)
-        return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v)
+        let (gx, gy, gz) = gradients[h]
+        return gx * x + gy * y + gz * z
     }
 }
