@@ -1,5 +1,5 @@
 //
-//  NotchNook.swift
+//  NotchNookState.swift
 //  Notchway
 //
 //  Created by Igor Marcossi on 13/05/24.

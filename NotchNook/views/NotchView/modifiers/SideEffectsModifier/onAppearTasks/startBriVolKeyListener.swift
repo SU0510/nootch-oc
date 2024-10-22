@@ -12,6 +12,8 @@ extension NotchView.SideEffectsModifier {
         if liveActivitiesSettings.enableHUDReplacement {
             VolumeAndBrightnessListener.shared.start()
             VolumeAndBrightnessListener.shared.addSideEffect(handleBriVolKeyPress, for: "default")
+        } else {
+            VolumeAndBrightnessListener.shared.stop()
         }
     }
 }

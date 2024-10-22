@@ -82,58 +82,54 @@ extension NotchView {
             withAnimation(animation) {
                 body()
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
                 isAnimating = false
             }
         }
         
         internal func handleBriVolKeyPress(_ mediaKey: MediaKey) {
-            guard liveActivitiesSettings.enableHUDReplacement else {
-                VolumeAndBrightnessListener.shared.stop()
-                return
-            }
-            
             Task { @MainActor in
                 switch mediaKey {
                 case .brightnessUp, .brightnessDown:
-                    await handleBrightnessChange()
+                    await handleChange(for: .brightness)
                 case .volumeUp, .volumeDown, .mute:
-                    await handleVolumeChange()
+                    await handleChange(for: .volume)
                 default:
                     break
                 }
             }
         }
         
-        private func handleBrightnessChange() async {
+        private func handleChange(for kind: Indicator.Kind) async {
             do {
-                // Delay to ensure the brightness has changed
-                try await Task.sleep(nanoseconds: 50_000_000) // 0.05 seconds
+                // Respond immediately
+                let initialValue = try await getValue(for: kind)
+                updateIndicator(kind: kind, value: Double(initialValue))
                 
-                let newBrightness = try await BrightnessCoordinator.getDisplayBrightness()
-                withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    let indicator = Indicator(kind: .brightness, value: Double(newBrightness))
-                    notchNook.indicator = indicator
-                    showIndicator(indicator)
+                try await Task.sleep(nanoseconds: 50_000_000)
+                let newValue = try await getValue(for: kind)
+                if abs(newValue - initialValue) > 0.001 {
+                    updateIndicator(kind: kind, value: Double(newValue))
                 }
             } catch {
-                print("Error fetching brightness: \(error)")
+                print("Error handling \(kind) change: \(error)")
             }
         }
-
-        private func handleVolumeChange() async {
-            do {
-                // Delay to ensure the volume has changed
-                try await Task.sleep(nanoseconds: 50_000_000) // 0.05 seconds
-                
-                let newVolume = try await SoundCoordinator.getSoundVolume()
-                withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    let indicator = Indicator(kind: .volume, value: Double(newVolume))
-                    notchNook.indicator = indicator
-                    showIndicator(indicator)
-                }
-            } catch {
-                print("Failed to get volume: \(error)")
+        
+        private func getValue(for kind: Indicator.Kind) async throws -> Float {
+            switch kind {
+                case .brightness:
+                    return try await BrightnessCoordinator.getDisplayBrightness()
+                case .volume:
+                    return try await SoundCoordinator.getSoundVolume()
+            }
+        }
+        
+        private func updateIndicator(kind: Indicator.Kind, value: Double) {
+            withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                let indicator = Indicator(kind: kind, value: value)
+                notchNook.indicator = indicator
+                showIndicator(indicator)
             }
         }
     }

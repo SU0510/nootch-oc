@@ -304,7 +304,7 @@
 		EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */; };
 		EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */; };
 		EC758F9A2BF2F1A400B873B0 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F902BF2F1A400B873B0 /* Pipeline.swift */; };
-		EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F912BF2F1A400B873B0 /* NotchNook.swift */; };
+		EC758F9B2BF2F1A400B873B0 /* NotchNookState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758F912BF2F1A400B873B0 /* NotchNookState.swift */; };
 		EC758FA32BF2F1C600B873B0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA22BF2F1C500B873B0 /* main.swift */; };
 		EC758FA52BF2F20100B873B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC758FA42BF2F20100B873B0 /* AppDelegate.swift */; };
 		EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */; };
@@ -667,7 +667,7 @@
 		EC758F8C2BF2F1A400B873B0 /* bindDropAreaCoords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindDropAreaCoords.swift; sourceTree = "<group>"; };
 		EC758F8E2BF2F1A400B873B0 /* NSScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSScreen.swift; sourceTree = "<group>"; };
 		EC758F902BF2F1A400B873B0 /* Pipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipeline.swift; sourceTree = "<group>"; };
-		EC758F912BF2F1A400B873B0 /* NotchNook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchNook.swift; sourceTree = "<group>"; };
+		EC758F912BF2F1A400B873B0 /* NotchNookState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotchNookState.swift; sourceTree = "<group>"; };
 		EC758FA22BF2F1C500B873B0 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		EC758FA42BF2F20100B873B0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC7A0FA42C0EC99D0063E78E /* CalendarWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetSettings.swift; sourceTree = "<group>"; };
@@ -1587,7 +1587,7 @@
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
 				C11F0A892C58C1A0003F96DC /* CameraManager.swift */,
-				EC758F912BF2F1A400B873B0 /* NotchNook.swift */,
+				EC758F912BF2F1A400B873B0 /* NotchNookState.swift */,
 				3A85076E2C4B2F290092B135 /* Indicator.swift */,
 				EC758F902BF2F1A400B873B0 /* Pipeline.swift */,
 				BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */,
@@ -2095,7 +2095,7 @@
 				3A9E6C1B2C3D5D75009948F5 /* PerWidgetSettingsKeys.swift in Sources */,
 				3A1691D22C2FB1F50014C326 /* GetNowKey.swift in Sources */,
 				EC47FCA72C0BA64A00591811 /* HelloView.swift in Sources */,
-				EC758F9B2BF2F1A400B873B0 /* NotchNook.swift in Sources */,
+				EC758F9B2BF2F1A400B873B0 /* NotchNookState.swift in Sources */,
 				3A0816BF2C24C040008092F0 /* UpdateButtonIconView.swift in Sources */,
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
 				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
