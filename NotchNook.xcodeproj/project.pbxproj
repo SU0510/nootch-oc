@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3616A5D82C921731005C6381 /* cleanupTemporaryDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */; };
 		3623EA522C75312C0055C1BF /* ShowIndicatorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */; };
 		3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */; };
 		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
@@ -378,6 +379,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanupTemporaryDirectory.swift; sourceTree = "<group>"; };
 		3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIndicatorKey.swift; sourceTree = "<group>"; };
 		3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceFocusableWindow.swift; sourceTree = "<group>"; };
 		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
@@ -1482,6 +1484,7 @@
 		EC758F892BF2F1A400B873B0 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */,
 				C11F0A872C5816FA003F96DC /* getCaptureDevice.swift */,
 				EC13C6E12C09199600B45C6E /* cancelableTimer.swift */,
 				EC758F852BF2F1A400B873B0 /* airDropFiles.swift */,
@@ -2034,6 +2037,7 @@
 				3A3ABCEC2C2B712500132228 /* QuickAppsWidgetSettings.swift in Sources */,
 				BB91B31D2C90EDE400083484 /* NSEventExtensions.swift in Sources */,
 				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,
+				3616A5D82C921731005C6381 /* cleanupTemporaryDirectory.swift in Sources */,
 				EC0E30F12C0434640060B47E /* BlankView.swift in Sources */,
 				3A1691F32C2FB5180014C326 /* CheckTrialOverKey.swift in Sources */,
 				3A3F59F82C2A5BB900906FFA /* hideNotch.swift in Sources */,

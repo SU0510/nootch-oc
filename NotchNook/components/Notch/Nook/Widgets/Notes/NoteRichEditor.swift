@@ -15,6 +15,7 @@ struct NoteRichEditor: View {
 
     @Environment(\.notesWidgetSettings) private var prefs
     @Environment(\.enableTextEditingForWindowWith) private var enableTextEditingForWindowWith
+    @Environment(\.updateEditingTextStateFor) private var updateEditingTextStateFor
     @Environment(\.displayKitId) private var displayKitId
     @Environment(\.makeKeyWindow) private var makeKeyWindow
 
@@ -62,6 +63,9 @@ struct NoteRichEditor: View {
             }
             .onAppear {
                 enableTextEditing()
+            }
+            .onDisappear {
+                updateEditingTextStateFor(displayKitId, false)
             }
         } else {
             FakeRichEditor(str: initialRichText)

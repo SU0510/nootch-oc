@@ -35,15 +35,6 @@ struct TrayFileView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                TrayFileIconView(file: file)
-                    .frame(width: 40, height: 40)
-                
-                fileNameView
-            }
-            .padding(6)
-            .frame(maxHeight: .infinity, alignment: .top)
-            
             FileDraggableView(
                 onSelect: {
                     doAfter(0.04) {
@@ -60,6 +51,16 @@ struct TrayFileView: View {
             ) {
                 TrayFileDragPreviewView(draggedFile: file)
             }
+            
+            VStack {
+                TrayFileIconView(file: file)
+                    .frame(width: 40, height: 40)
+                    .allowsHitTesting(false)
+                
+                fileNameView
+            }
+            .padding(6)
+            .frame(maxHeight: .infinity, alignment: .top)
         }
         .foregroundStyle(.nonShockingWhite)
         .frame(width: 60)

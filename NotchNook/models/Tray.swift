@@ -28,7 +28,7 @@ class Tray {
     private var folderMonitor: FolderMonitor?
     private var flagsChangedMonitor: Any?
     private var keyDownMonitor: Any?
-
+    
     let activitiesManager: ActiveLiveActivitiesManager
     
     private(set) var files = [TrayFile]() {
@@ -71,6 +71,7 @@ class Tray {
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
         self.activitiesManager = activitiesManager
         setupTempDirectory()
+        setupEventMonitors()
     }
     
     // MARK: - Setup methods
@@ -235,6 +236,10 @@ class Tray {
             selectedFiles.removeAll { $0 == file }
             baseFileIndex = nil
         }
+        
+        if files.isEmpty {
+            cleanupTemporaryDirectory()
+        }
     }
     
     private func addFile(_ file: TrayFile) {
@@ -326,7 +331,7 @@ class Tray {
     func airdropSelectedFiles() {
         airDropFiles(urls: selectedFiles.map { $0.url })
     }
-
+    
     private func toggleQuickLookState() {
         guard let panel = QLPreviewPanel.shared() else { return }
         
@@ -382,7 +387,7 @@ extension Tray: QLPreviewPanelDataSource {
     func numberOfPreviewItems(in panel: QLPreviewPanel!) -> Int {
         selectedFiles.count
     }
-
+    
     func previewPanel(_ panel: QLPreviewPanel!, previewItemAt index: Int) -> QLPreviewItem! {
         selectedFiles[selectedFiles.index(selectedFiles.startIndex, offsetBy: index)].url as QLPreviewItem
     }
