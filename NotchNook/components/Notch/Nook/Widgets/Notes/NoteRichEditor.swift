@@ -9,74 +9,54 @@ import SwiftUI
 import RichTextKit
 
 struct NoteRichEditor: View {
+    
     var note: Note
-    var selected: Bool
-    var showControls: Bool
-
+    
     @Environment(\.notesWidgetSettings) private var prefs
-    @Environment(\.enableTextEditingForWindowWith) private var enableTextEditingForWindowWith
-    @Environment(\.updateEditingTextStateFor) private var updateEditingTextStateFor
-    @Environment(\.displayKitId) private var displayKitId
-    @Environment(\.makeKeyWindow) private var makeKeyWindow
-
+    @Environment(\.expandedNoteManager) private var expandedNoteManager
+    
     @State private var localRichText: NSAttributedString
-    @State private var initialRichText: AttributedString
-    
-    @StateObject private var richTextContext = RichTextContext()
-    
-    init(note: Note, selected: Bool, showControls: Bool) {
+    @State private var updateTrigger = UUID()
+        
+    init(note: Note) {
         self.note = note
-        self.selected = selected
-        self.showControls = showControls
-        self.initialRichText = AttributedString(note.richText)
         self._localRichText = .init(initialValue: note.richText)
     }
     
     var body: some View {
-        if selected {
-            CRichTextEditor(text: $localRichText, context: richTextContext) { config in
-                if let textView = config as? NSTextView {
-                    textView.backgroundColor = .clear
-                    let paragraphStyle = NSMutableParagraphStyle()
-                    paragraphStyle.lineBreakStrategy = .pushOut
-                    textView.defaultParagraphStyle = paragraphStyle
-                    textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
-                    textView.enclosingScrollView?.additionalSafeAreaInsets = NSEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        CRichTextEditor(
+            text: Binding(
+                get: { localRichText },
+                set: { newValue in
+                    localRichText = newValue
+                    note.richText = newValue
                 }
+            ),
+            context: expandedNoteManager.richTextContext
+        ) { config in
+            if let textView = config as? NSTextView {
+                textView.backgroundColor = .clear
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineBreakStrategy = .pushOut
+                textView.defaultParagraphStyle = paragraphStyle
+                textView.enclosingScrollView?.hasVerticalScroller = prefs.showScrollIndicator
+                textView.enclosingScrollView?.additionalSafeAreaInsets = NSEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
             }
-            .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
-            .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .nonShockingWhite, backgroundColor: .clear))
-            .focusedValue(\.richTextContext, richTextContext)
-            .fadeOnEdges(axis: .vertical, topLeadingFadeLength: 20, bottomTrailingFadeLength: 40, curve: .easeInOut, disable: !selected || !prefs.fadeScrollEdges)
-            .overlay(alignment: .bottomTrailing) {
-                if selected {
-                    RichToolbarView(note: note, context: richTextContext)
-                        .padding(4)
-                        .scaleEffect(showControls ? 1 : 0.75, anchor: .bottomTrailing)
-                        .opacity(showControls ? 1 : 0)
-                        .blur(radius: showControls ? 0 : 24)
-                }
-            }
-            .onReceive(richTextContext.objectWillChange) { _ in
-                note.richText = localRichText
-                note.updatedAt = Date()
-            }
-            .onAppear {
-                enableTextEditing()
-            }
-            .onDisappear {
-                updateEditingTextStateFor(displayKitId, false)
-            }
-        } else {
-            FakeRichEditor(str: initialRichText)
         }
-    }
-    
-    private func enableTextEditing() {
-        enableTextEditingForWindowWith(displayKitId)
-        makeKeyWindow()
+        .richTextEditorConfig(.init(isScrollingEnabled: true, isContinuousSpellCheckingEnabled: false))
+        .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .nonShockingWhite, backgroundColor: .clear))
+        .fadeOnEdges(axis: .vertical, topLeadingFadeLength: 20, bottomTrailingFadeLength: 40, curve: .easeInOut, disable: !prefs.fadeScrollEdges)
+        .onReceive(expandedNoteManager.richTextContext.objectWillChange) {
+            note.richText = localRichText
+        }
+        .onChange(of: expandedNoteManager.isExpanded) { wasExpanded, willBeExpanded in
+            if wasExpanded, !willBeExpanded, let richText = expandedNoteManager.activeNote?.richText {
+                localRichText = richText
+                note.richText = localRichText
+                updateTrigger = UUID()
+            }
+        }
+        .id(updateTrigger)
+        .background(Color.noteBG)
     }
 }
-
-
-

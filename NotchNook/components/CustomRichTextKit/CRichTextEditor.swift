@@ -47,12 +47,6 @@ public struct CRichTextEditor: NSViewRepresentable {
             object: scrollView.contentView
         )
         
-//        if let initialScrollPos = initialScrollPos {
-//            doAfter {
-//                scrollView.contentView.scroll(to: .init(x: scrollView.contentView.bounds.origin.x, y: -10))
-//            }
-//        }
-        
         return scrollView
     }
     
@@ -60,27 +54,8 @@ public struct CRichTextEditor: NSViewRepresentable {
         context.coordinator.onScrollChange = onScrollChange
         guard let textView = scrollView.documentView as? RichTextView else { return }
         textView.scrollViewDidResize(scrollView)
-//        let currentScrollPosition = view.contentView.bounds.origin
-//          
-//          // Update the document view if needed
-//          
-//        doAfter(0.5) {
-//            // Restore scroll position
-//            view.contentView.scroll(to: currentScrollPosition)
-////            view.reflectScrolledClipView(view.contentView)
-//        }
     }
 }
-
-// MARK: RichTextPresenter
-
-//public extension CRichTextEditor {
-//    
-//    /// Get the currently selected range.
-//    var selectedRange: NSRange {
-//        textView.selectedRange
-//    }
-//}
 
 // MARK: RichTextReader
 
@@ -93,15 +68,6 @@ public extension CRichTextEditor {
 }
 
 // MARK: RichTextWriter
-
-//public extension CRichTextEditor {
-//    
-//    /// Get the mutable string that is managed by the editor.
-//    var mutableAttributedString: NSMutableAttributedString? {
-//        textView.mutableAttributedString
-//    }
-//}
-
 
 public class CRichTextCoordinator: RichTextCoordinator {
     var onScrollChange: ((Double) -> ())?
@@ -116,6 +82,16 @@ public class CRichTextCoordinator: RichTextCoordinator {
             let newScrollPosition = Double(scrollView.documentVisibleRect.origin.y)
             onScrollChange?(newScrollPosition)
         }
+    }
+    
+    func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
+        guard let replacementString = replacementString else { return true }
+        
+        let mutableAttrString = NSMutableAttributedString(string: replacementString)
+        mutableAttrString.addAttribute(.foregroundColor, value: NSColor.nonShockingWhite, range: NSRange(location: 0, length: mutableAttrString.length))
+        
+        textView.textStorage?.replaceCharacters(in: affectedCharRange, with: mutableAttrString)
+        return false
     }
 }
 

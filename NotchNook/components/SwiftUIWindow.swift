@@ -78,16 +78,19 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
         let minY = visibleFrame.origin.y + ((visibleFrame.height - finalSize.height) / 2)
         self.setFrameOrigin(CGPoint(x: minX, y: minY))
         
+        self.setIsVisible(true)
+        
         guard let blurFilter = CIFilter(name: "CIGaussianBlur") else { return }
         blurFilter.name = "blur"
         
         let blurAnimation = getSpringAnimation("filters.blur.inputRadius", from: 120, to: 0)
-        let scaleX1Animation = getSpringAnimation("transform.scale.x", from: 0.01, to: 0.35, m: 0.25)
-        let scaleX2Animation = getSpringAnimation("transform.scale.x", from: nil, to: 1, m: 0.25)
+        let scaleX1Animation = getSpringAnimation("transform.scale.x", from: 0.01, to: 0.35, mass: 0.25)
+        let scaleX2Animation = getSpringAnimation("transform.scale.x", from: nil, to: 1, mass: 0.25)
         let scaleYAnimation = getSpringAnimation("transform.scale.y", from: 0.2, to: 1)
         let rotationAnimation = getSpringAnimation("transform.rotation.z", from: 5.radians, to: 0.radians)
         let positionYAnimation = getSpringAnimation("position.y")
         scaleX2Animation.beginTime = CACurrentMediaTime() + (scaleX1Animation.duration / 5 )
+        let alphaAnimation = getSpringAnimation("opacity", from: 0.0, to: 1.0, mass: 0.25, stiffness: 80, damping: 20)
         
         var x = 0.0
         var y = 0.0
@@ -110,6 +113,9 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
                 positionYAnimation.fromValue = self.openingOrigin.y + 32
                 positionYAnimation.toValue = y
                 layer.position = CGPoint(x: x, y: self.openingOrigin.y + 32)
+                
+                layer.opacity = 0.0
+                self.alphaValue = 0.0
             } animations: { layer in
                 layer.add(blurAnimation, forKey: "blur")
                 layer.add(positionYAnimation, forKey: "positionY")
@@ -117,6 +123,7 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
                 layer.add(scaleX2Animation, forKey: "scaleX2")
                 layer.add(scaleYAnimation, forKey: "scaleY")
                 layer.add(rotationAnimation, forKey: "rotation")
+                layer.add(alphaAnimation, forKey: "opacity")
             }
         }
     }
@@ -146,8 +153,8 @@ class SwiftUIAnimatedWindow<Content>: BetterWindow where Content: View {
             
             let blurAnimation = getSpringAnimation("filters.blur.inputRadius", from: 0, to: 120)
             let scaleXAnimation = getSpringAnimation("transform.scale.x", from: 1, to: 0.01)
-            let scaleY1Animation = getSpringAnimation("transform.scale.y", from: 1, to: 0.65, m: 0.25)
-            let scaleY2Animation = getSpringAnimation("transform.scale.y", from: nil, to: 0.01, m: 0.25)
+            let scaleY1Animation = getSpringAnimation("transform.scale.y", from: 1, to: 0.65, mass: 0.25)
+            let scaleY2Animation = getSpringAnimation("transform.scale.y", from: nil, to: 0.01, mass: 0.25)
             let rotationAnimation = getSpringAnimation("transform.rotation.z", from: 0.radians, to: rotation.radians)
             let positionYAnimation = getSpringAnimation("position.y", from: nil, to: y + 350)
             let positionXAnimation = getSpringAnimation("position.x", from: nil, to: x + xOffset)

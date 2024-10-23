@@ -12,13 +12,18 @@ import CodeEditor
 
 @Model
 final class Note {
-    @Attribute(.transformable(by: NSAttributedStringTransformer.name.rawValue)) var richText = NSAttributedString()
+    @Attribute(.transformable(by: NSAttributedStringTransformer.name.rawValue)) var richText = NSAttributedString() {
+        willSet {
+            self.updatedAt = Date()
+        }
+    }
     var codeText = ""
     var codeLanguage = CodeEditor.Language.markdown.rawValue
     var createdAt: Date
     var updatedAt: Date
     var icon: String = "circle"
     var scrollPos: Double = 0
+    var isCodeMode: Bool = false
     
     init(icon: String, richText: NSAttributedString = NSAttributedString(string: ""), codeText: String = "", createdAt: Date = Date(), updatedAt: Date = Date()) {
         self.icon = icon
@@ -26,6 +31,10 @@ final class Note {
         self.codeText = codeText
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+    }
+    
+    func exportToTXT() -> Data? {
+        return self.richText.string.data(using: .utf8)
     }
 }
 

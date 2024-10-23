@@ -36,14 +36,14 @@ struct NotesWidgetView: View {
         
         HStack(alignment: .top, spacing: Self.spacing) {
             if let selectedNote {
-                NoteView(note: selectedNote, selected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, codeMode: prefs.codeMode, ns: ns)
+                NoteView(note: selectedNote, isSelected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, isCodeModeEnabled: prefs.codeMode, ns: ns)
                     .id(selectedNote.persistentModelID)
                 VStack(alignment: .leading, spacing: Self.spacing) {
                     ForEach(Array(otherNotes.enumerated()), id: \.element) { i, note in
                         Button {
                             withAnimation(NotesWidgetView.switchAnimation) { selectedNoteId = note.persistentModelID }
                         } label: {
-                            NoteView(note: note, selected: false, width: mainNoteWidth, widgetArrPosition: i == (otherNotes.count - 1) ? arrayPosition : .middle, codeMode: prefs.codeMode, ns: ns)
+                            NoteView(note: note, isSelected: false, width: mainNoteWidth, widgetArrPosition: i == (otherNotes.count - 1) ? arrayPosition : .middle, isCodeModeEnabled: prefs.codeMode, ns: ns)
                         }
                         .buttonStyle(ShrinkOnClick(minSize: 0.925))
                     }

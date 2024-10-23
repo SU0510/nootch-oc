@@ -1,0 +1,30 @@
+//
+//  LanguageData.swift
+//  NotchNook
+//
+//  Created by Lori Montenegro on 16/10/24.
+//
+
+import Foundation
+import CodeEditor
+
+enum LanguageData {
+    static let keywordMap: [CodeEditor.Language: Set<String>] = [
+        .swift: Set(["func", "let", "var", "guard", "defer", "if", "else", "switch", "case", "enum", "struct", "class", "protocol", "extension", "import", "typealias", "associatedtype", "init", "deinit", "self", "super", "subscript", "convenience", "override", "mutating", "final", "open", "public", "internal", "fileprivate", "private", "static", "throws", "rethrows", "try", "catch", "as", "is", "nil", "true", "false", "where", "Int", "Double", "CGFloat"]),
+        .python: Set(["def", "import", "class", "elif", "lambda", "and", "as", "assert", "async", "await", "break", "continue", "del", "else", "except", "finally", "for", "from", "global", "if", "in", "is", "nonlocal", "not", "or", "pass", "raise", "return", "try", "while", "with", "yield"]),
+        .javascript: Set(["const", "let", "function", "async", "await", "break", "case", "catch", "class", "continue", "debugger", "default", "delete", "do", "else", "export", "extends", "finally", "for", "if", "import", "in", "instanceof", "new", "return", "super", "switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "yield"]),
+        .java: Set(["abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally", "float", "for", "if", "implements", "import", "instanceof", "int", "interface", "long", "native", "new", "package", "private", "protected", "public", "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try", "void", "volatile", "while"]),
+        .cpp: Set(["asm", "auto", "bool", "break", "case", "catch", "char", "class", "const", "continue", "default", "delete", "do", "double", "else", "enum", "explicit", "export", "extern", "float", "for", "friend", "goto", "if", "inline", "int", "long", "mutable", "namespace", "new", "operator", "private", "protected", "public", "register", "return", "short", "signed", "sizeof", "static", "struct", "switch", "template", "this", "throw", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while"]),
+        .c: Set(["auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum", "extern", "float", "for", "goto", "if", "int", "long", "register", "return", "short", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"]),
+        .objectivec: Set(["@interface", "@implementation", "@protocol", "@end", "@property", "@synthesize", "@dynamic", "@class", "@public", "@protected", "@private", "@try", "@catch", "@finally", "@throw", "@synchronized", "self", "super", "id", "nil", "YES", "NO", "NSString", "NSArray", "NSDictionary", "NSNumber", "NSObject", "UIView", "UIViewController"]),
+        .ruby: Set(["alias", "and", "begin", "break", "case", "class", "def", "defined?", "do", "else", "elsif", "end", "ensure", "false", "for", "if", "in", "module", "next", "nil", "not", "or", "redo", "rescue", "retry", "return", "self", "super", "then", "true", "undef", "unless", "until", "when", "while", "yield"]),
+        .php: Set(["abstract", "and", "array", "as", "break", "callable", "case", "catch", "class", "clone", "const", "continue", "declare", "default", "die", "do", "echo", "else", "elseif", "empty", "enddeclare", "endfor", "endforeach", "endif", "endswitch", "endwhile", "eval", "exit", "extends", "final", "finally", "fn", "for", "foreach", "function", "global", "goto", "if", "implements", "include", "include_once", "instanceof", "insteadof", "interface", "isset", "list", "namespace", "new", "or", "print", "private", "protected", "public", "require", "require_once", "return", "static", "switch", "throw", "trait", "try", "unset", "use", "var", "while", "xor", "yield"]),
+        .sql: Set(["SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "TABLE", "INDEX", "VIEW", "TRIGGER", "PROCEDURE", "FUNCTION", "DATABASE", "SCHEMA", "GRANT", "REVOKE", "COMMIT", "ROLLBACK", "TRANSACTION", "JOIN", "UNION", "GROUP BY", "HAVING", "ORDER BY", "LIMIT", "OFFSET", "DISTINCT", "AS", "IN", "BETWEEN", "LIKE", "IS NULL", "IS NOT NULL", "AND", "OR", "NOT"]),
+        .css: Set(["@import", "@media", "@font-face", "@keyframes", "animation", "background", "border", "bottom", "color", "content", "cursor", "display", "flex", "font", "grid", "height", "left", "margin", "padding", "position", "right", "top", "transform", "transition", "width", "z-index", "body", "font-family", "background-color"]),
+        .json: Set(["{", "}", "[", "]", ":", ","]),
+        .markdown: Set(["#", "##", "###", "####", "#####", "######", "-", "*", ">", "```", "---", "===", "1.", "2.", "3."]),
+        .bash: Set(["if", "then", "else", "elif", "fi", "case", "esac", "for", "while", "until", "do", "done", "in", "function", "time", "coproc", "select"]),
+        .makefile: Set(["ifeq", "ifneq", "ifdef", "ifndef", "else", "endif", "include", "define", "endef", "override", "export", "unexport", "vpath", "ifdef", "ifndef", "ifeq", "ifneq", "else", "endif", "sinclude", "-include", "PHONY", "SUFFIXES", "DEFAULT", "PRECIOUS", "INTERMEDIATE", "SECONDARY", "SECONDEXPANSION", "DELETE_ON_ERROR", "IGNORE", "LOW_RESOLUTION_TIME", "SILENT", "EXPORT_ALL_VARIABLES", "NOTPARALLEL", "ONESHELL", "POSIX"]),
+        .http: Set(["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS", "TRACE", "CONNECT", "HTTP/1.0", "HTTP/1.1", "HTTP/2", "Host:", "User-Agent:", "Accept:", "Accept-Language:", "Accept-Encoding:", "Content-Type:", "Content-Length:", "Authorization:", "Cookie:", "Cache-Control:", "If-Modified-Since:", "If-None-Match:", "Origin:", "Referer:", "X-Requested-With:", "X-Forwarded-For:"])
+    ]
+}

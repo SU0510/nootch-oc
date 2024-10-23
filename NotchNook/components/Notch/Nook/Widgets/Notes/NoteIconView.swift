@@ -12,8 +12,10 @@ struct NoteIconView: View {
     let icon: String
     let downScaled: Bool
     let ns: Namespace.ID
+    let color: Color
     var body: some View {
         Image(systemName: icon)
+            .foregroundStyle(color)
             .font(.system(size: 14, weight: .semibold))
             .frame(24)
             .padding(downScaled ? 2 : 4)

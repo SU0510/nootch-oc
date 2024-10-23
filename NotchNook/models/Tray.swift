@@ -28,6 +28,8 @@ class Tray {
     private var folderMonitor: FolderMonitor?
     private var flagsChangedMonitor: Any?
     private var keyDownMonitor: Any?
+    private var keyDownMonitorID: UUID?
+    private var isMonitoring: Bool = false
     
     let activitiesManager: ActiveLiveActivitiesManager
     
@@ -53,6 +55,13 @@ class Tray {
                 }
             }
         }
+        didSet {
+            if !files.isEmpty && !isMonitoring {
+                startMonitoringEvents()
+            } else if files.isEmpty && isMonitoring {
+                stopMonitoringEvents()
+            }
+        }
     }
     private(set) var selectedFiles = [TrayFile]()
     private var baseFileIndex: Int?
@@ -70,8 +79,15 @@ class Tray {
     
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
         self.activitiesManager = activitiesManager
+    }
+    
+    // MARK: - Setup methods
+    
+    private func startMonitoringEvents() {
         setupTempDirectory()
         setupEventMonitors()
+
+        isMonitoring = true
     }
     
     // MARK: - Setup methods
@@ -105,12 +121,17 @@ class Tray {
         
         guard accessEnabled else { return }
         
+        // prevents monitoring events of any other monitor
+        let monitorID = UUID()
+        keyDownMonitorID = monitorID
+            
         keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             guard
                 let self = self,
-                let keyCode = KeyCode(rawValue: event.keyCode)
+                let keyCode = KeyCode(rawValue: event.keyCode),
+                self.keyDownMonitorID == monitorID
             else { return event }
-            
+                        
             if editingFile != nil {
                 return handleEditingKeys(event: event, key: keyCode)
             } else {
@@ -136,10 +157,13 @@ class Tray {
         if let keyDownMonitor = keyDownMonitor {
             NSEvent.removeMonitor(keyDownMonitor)
             self.keyDownMonitor = nil
+            self.keyDownMonitorID = nil
         }
         
         folderMonitor?.stop()
         folderMonitor = nil
+        
+        isMonitoring = false
     }
     
     func rename() {

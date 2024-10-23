@@ -103,17 +103,17 @@ class WindowsManager {
         displayKits.forEach { $0.windowController.window?.orderFrontRegardless() }
     }
     
-    func openNoteWindow(_ note: Note, inDisplayKitId: UUID) {
+    func openNoteWindow(_ note: Note, inDisplayKitId: UUID, isCodeMode: Bool) {
         print("WindowsManager: Opening note window for display kit ID: \(inDisplayKitId)")
         
         let screen = displayKits.first { $0.id == inDisplayKitId }?.windowController.window?.screen
         
         let newWindow = SwiftUIAnimatedWindow(styleMask: [.titled, .closable, .fullSizeContentView], screen: screen, origin: self.expandedNoteManager.windowOrigin ?? .zero) {
-            ExpandedNoteView()
+            ExpandedNoteView(note: note, isCodeMode: isCodeMode)
         }
         
         newWindow.whileClosing = {
-            doAfter { self.expandedNoteManager.openNote(nil) }
+            doAfter { self.expandedNoteManager.closeNote() }
         }
         
         let customToolbar = NSToolbar()

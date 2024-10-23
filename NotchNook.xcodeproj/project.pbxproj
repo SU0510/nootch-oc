@@ -14,7 +14,13 @@
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
 		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
+		3652AA882CB9A17300F217E7 /* NoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652AA872CB9A17100F217E7 /* NoteDocument.swift */; };
+		3652AA8A2CBEE7EE00F217E7 /* LanguageDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */; };
+		365B15B32CB871D100032BD0 /* RichToolbarButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */; };
+		365B15B62CB8721300032BD0 /* RichToolbarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */; };
+		365B15B82CB8723300032BD0 /* ToolbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
+		36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A172CC0623800DD1E16 /* LanguageData.swift */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
@@ -130,7 +136,7 @@
 		3A6BF52D2C33FFD800D3BFC9 /* NoteCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */; };
 		3A6BF52F2C33FFEA00D3BFC9 /* NoteRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */; };
 		3A6BF5322C34148E00D3BFC9 /* NoteShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */; };
-		3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */; };
+		3A6BF5362C34BF0400D3BFC9 /* NoteMiniatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BF5352C34BF0400D3BFC9 /* NoteMiniatureView.swift */; };
 		3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3A7404992C416B090049081C /* Localizable.xcstrings */; };
 		3A74049C2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */; };
 		3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */; };
@@ -386,7 +392,13 @@
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
 		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
+		3652AA872CB9A17100F217E7 /* NoteDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDocument.swift; sourceTree = "<group>"; };
+		3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDetector.swift; sourceTree = "<group>"; };
+		365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonConfiguration.swift; sourceTree = "<group>"; };
+		365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonView.swift; sourceTree = "<group>"; };
+		365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtonStyle.swift; sourceTree = "<group>"; };
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
+		36796A172CC0623800DD1E16 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
@@ -499,7 +511,7 @@
 		3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCodeEditor.swift; sourceTree = "<group>"; };
 		3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRichEditor.swift; sourceTree = "<group>"; };
 		3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteShapeModifier.swift; sourceTree = "<group>"; };
-		3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRichEditor.swift; sourceTree = "<group>"; };
+		3A6BF5352C34BF0400D3BFC9 /* NoteMiniatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMiniatureView.swift; sourceTree = "<group>"; };
 		3A7404992C416B090049081C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3A74049B2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOriginWithExpandedNoteManger.swift; sourceTree = "<group>"; };
 		3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayKitIdKey.swift; sourceTree = "<group>"; };
@@ -764,6 +776,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		365B15B42CB871F100032BD0 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */,
+				365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */,
+				365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */,
+				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
 		367982D72C6155BD00BEB1F2 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,12 +990,14 @@
 		3A3F59E42C2A568E00906FFA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
+				36796A172CC0623800DD1E16 /* LanguageData.swift */,
+				3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */,
+				365B15B42CB871F100032BD0 /* Toolbar */,
 				3AE4053F2C2BCC0F00E8D927 /* NotesWidgetView.swift */,
 				3A6BF52E2C33FFEA00D3BFC9 /* NoteRichEditor.swift */,
 				3AE405442C2BD02600E8D927 /* NoteView.swift */,
 				3A6BF52C2C33FFD800D3BFC9 /* NoteCodeEditor.swift */,
-				3A6BF5352C34BF0400D3BFC9 /* FakeRichEditor.swift */,
-				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
+				3A6BF5352C34BF0400D3BFC9 /* NoteMiniatureView.swift */,
 				3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */,
 				3A6BF5312C34148E00D3BFC9 /* NoteShapeModifier.swift */,
 				3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */,
@@ -1578,6 +1603,7 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				3652AA872CB9A17100F217E7 /* NoteDocument.swift */,
 				36C970242C51D73100956B57 /* errors */,
 				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
@@ -1960,6 +1986,7 @@
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
 				3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
+				365B15B32CB871D100032BD0 /* RichToolbarButtonConfiguration.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
 				3A1691DC2C2FB2160014C326 /* TrayKey.swift in Sources */,
@@ -2012,6 +2039,7 @@
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				3A7C05E72C5AFDDE00435D99 /* ChangelogBubblesView.swift in Sources */,
 				3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */,
+				3652AA8A2CBEE7EE00F217E7 /* LanguageDetector.swift in Sources */,
 				3A85076F2C4B2F2D0092B135 /* Indicator.swift in Sources */,
 				3A8507742C4B4E5A0092B135 /* BrightnessIndicatorView.swift in Sources */,
 				EC47FCB72C0BC79900591811 /* AboutSettingsView.swift in Sources */,
@@ -2050,6 +2078,7 @@
 				3A0C501A2C532A4F0003867F /* VolumeIndicatorValueView.swift in Sources */,
 				EC2DD1FB2C040E22001FD54E /* LiveActivitiesSettingsView.swift in Sources */,
 				EC8D5FEE2BFAB12200E67ECC /* interpolatorBuilder.swift in Sources */,
+				365B15B82CB8723300032BD0 /* ToolbarButtonStyle.swift in Sources */,
 				BB50026F2C4AC8FD0028FCB5 /* VolumeAndBrightnessListener.swift in Sources */,
 				3A342B092C4D965A003C369C /* UnitCurve.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
@@ -2075,6 +2104,7 @@
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
 				BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */,
+				3652AA882CB9A17300F217E7 /* NoteDocument.swift in Sources */,
 				3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */,
 				3A3F59EA2C2A587700906FFA /* insertUpdateLAIfOldVersion.swift in Sources */,
 				EC0E30E82C041E730060B47E /* CustomLabeled.swift in Sources */,
@@ -2226,6 +2256,7 @@
 				EC0E30EE2C0433960060B47E /* TrayLiveActivitySettingsView.swift in Sources */,
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
+				36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */,
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
 				3A801E0D2C1555790076560D /* groupAndSortEventsByDate.swift in Sources */,
 				3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */,
@@ -2241,6 +2272,7 @@
 				363709562C572508004D20BB /* WindowManagerKey.swift in Sources */,
 				3A0C501E2C53478B0003867F /* VolumeIndicatorBarWrapperView.swift in Sources */,
 				EC81E2692C06A6C500790517 /* MediaWidgetSettingsView.swift in Sources */,
+				365B15B62CB8721300032BD0 /* RichToolbarButtonView.swift in Sources */,
 				EC47FC7D2C0A81AC00591811 /* getDeviceSerialNumber.swift in Sources */,
 				EC2DD1EA2C02E87E001FD54E /* MediaPlayerView.swift in Sources */,
 				3AC36D7E2C251E450000F995 /* VideoFeatureView.swift in Sources */,
@@ -2249,7 +2281,7 @@
 				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				3A1691D62C2FB2040014C326 /* ShowChangelogKey.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
-				3A6BF5362C34BF0400D3BFC9 /* FakeRichEditor.swift in Sources */,
+				3A6BF5362C34BF0400D3BFC9 /* NoteMiniatureView.swift in Sources */,
 				EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */,
 				EC8D60362BFE667300E67ECC /* CircleButton.swift in Sources */,
 				EC8D60062BFAE91800E67ECC /* TrayIconView.swift in Sources */,

@@ -32,7 +32,7 @@ struct NotesWidgetSettingsView: View {
                 SliderPlus(value: $notesWidgetSettings.size.width.double, range: 4...16)
                 Toggle("Show scroll indicator", isOn: $notesWidgetSettings.showScrollIndicator)
                 Toggle("Code mode", isOn: $notesWidgetSettings.codeMode)
-                Text("Transforms notes into a code editor, with syntax highlighting (supports Markdown).")
+                Text("Enables transforming the notes widget into a code editor, with automatic language detection and syntax highlighting.")
                     .optionDescription(contentMaxW)
             }
         }

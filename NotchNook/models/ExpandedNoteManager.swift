@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import RichTextKit
 
 @Observable
 class ExpandedNoteManager {
-    typealias OpenWindowFn = (_ activeNote: Note, _ displayKitId: UUID) -> ()
+    typealias OpenWindowFn = (_ activeNote: Note, _ displayKitId: UUID, _ isCodeMode: Bool) -> ()
     private(set) var activeNote: Note?
+    private(set) var isExpanded: Bool = false
     private(set) var windowOrigin: CGPoint? = .zero
+    var richTextContext = RichTextContext()
     private var buttonsOrigins = [String:CGPoint]()
     
     private var openWindow: OpenWindowFn?
     
-    func openNote(_ note: Note?, buttonId: String? = nil, displayKitId: UUID? = nil) {
+    func openNote(_ note: Note?, buttonId: String? = nil, displayKitId: UUID? = nil, isCodeMode: Bool = false) {
         if let buttonId {
             windowOrigin = buttonsOrigins[buttonId]
         } else {
@@ -24,8 +27,13 @@ class ExpandedNoteManager {
         }
         activeNote = note
         if let note, let displayKitId {
-            openWindow?(note, displayKitId)
+            openWindow?(note, displayKitId, isCodeMode)
         }
+        isExpanded = true
+    }
+    
+    func closeNote() {
+        isExpanded = false
     }
     
     func setButtonOrigin(of button: String, to origin: CGPoint) {
