@@ -10,13 +10,14 @@ import SwiftData
 import Defaults
 
 struct RootView: View {
-
+    
     var displayKitId: UUID
     var enableTextEditingForWindowWith: (_ id: UUID) -> ()
     var updateEditingTextStateFor: (_ id: UUID, _ isEditing: Bool) -> ()
     var canBecomeKey: Binding<Bool>?
     var showSettings: (SettingsLib.PaneIdentifier?) -> ()
     var screenSize: CGSize
+    var screen: NSScreen
 #if !SETAPP_BUILD
     var sparkleManager: SparkleManager
 #endif
@@ -31,9 +32,10 @@ struct RootView: View {
     var isKeyWindow: Bool
     var expandedNoteManager: ExpandedNoteManager
     var showIndicator: (Indicator?) -> Void
-
+        
     @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow
     @Environment(\.canBecomeKey) private var defaultCanBecomeKey
+    
     @Default(.generalSettings) private var generalSettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
@@ -49,7 +51,11 @@ struct RootView: View {
     @Default(.notesWidgetSettings) private var notesWidgetSettings
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
-
+    
+    private var isNotchedScreen: Bool {
+        notchSize.height > 0
+    }
+    
     mutating func updateForScreen(displayKitId: UUID, screenSize: CGSize, notchSize: CGSize, notchNook: NotchNookState) {
         self.displayKitId = displayKitId
         self.screenSize = screenSize
@@ -73,7 +79,7 @@ struct RootView: View {
     }()
     
     var body: some View {
-        NotchView()
+        NotchView(screen: screen)
             .environment(\.openSettings, showSettings)
             .environment(\.enableTextEditingForWindowWith, enableTextEditingForWindowWith)
             .environment(\.updateEditingTextStateFor, updateEditingTextStateFor)
@@ -111,9 +117,5 @@ struct RootView: View {
             .environment(\.notesWidgetSettings, notesWidgetSettings)
             .environment(\.todoListWidgetSettings, todoListWidgetSettings)
             .environment(\.quickAppsWidgetSettings, quickAppsWidgetSettings)
-    }
-    
-    func updateIndicator(_ indicator: Indicator?) {
-        notchNook.indicator = indicator
     }
 }

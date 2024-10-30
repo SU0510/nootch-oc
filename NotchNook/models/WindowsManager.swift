@@ -34,7 +34,6 @@ class WindowsManager {
     private var lastKnownScreenConfigurations: [String: NSScreen.Configuration] = [:]
     
     private init() {
-        print("WindowsManager: Initializing")
 #if !SETAPP_BUILD
         self.sparkleManager = SparkleManager(updaterController: SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil))
 #endif
@@ -85,7 +84,6 @@ class WindowsManager {
     }
     
     private func updateWindows() {
-        print("WindowsManager: Updating windows")
         displayKits.forEach { kit in
             kit.windowController.close()
         }
@@ -98,14 +96,11 @@ class WindowsManager {
             newDisplaysKits.append(displayKit)
         }
         displayKits = newDisplaysKits
-        print("WindowsManager: Windows updated, new display kit count: \(newDisplaysKits.count)")
         
         displayKits.forEach { $0.windowController.window?.orderFrontRegardless() }
     }
     
     func openNoteWindow(_ note: Note, inDisplayKitId: UUID, isCodeMode: Bool) {
-        print("WindowsManager: Opening note window for display kit ID: \(inDisplayKitId)")
-        
         let screen = displayKits.first { $0.id == inDisplayKitId }?.windowController.window?.screen
         
         let newWindow = SwiftUIAnimatedWindow(styleMask: [.titled, .closable, .fullSizeContentView], screen: screen, origin: self.expandedNoteManager.windowOrigin ?? .zero) {
@@ -135,8 +130,6 @@ class WindowsManager {
         if let windowOrigin = expandedNoteManager.windowOrigin {
             newWindow.show(origin: windowOrigin)
         }
-        
-        print("WindowsManager: Note window opened")
     }
     
     func showChangelogViewWindow() {
@@ -179,9 +172,8 @@ class WindowsManager {
     }
     
     private func setupDisplayKitForScreen(_ screen: NSScreen) -> DisplayKit {
-        print("WindowsManager: Setting up display kit for screen: \(screen)")
         let displayKitId = UUID()
-        let screenF = screen.frame
+        let screenFrame = screen.frame
         let showSettings = settingsWindowController?.show ?? { _ in }
         let notchHeight = screen.safeAreaInsets.top
         let notchWidth = notchHeight == 0 ? 0 : NotchShape.notchWidthInInches * screen.pointsPerInch.width
@@ -196,7 +188,8 @@ class WindowsManager {
                 enableTextEditingForWindowWith: self.enableTextEditingForWindow,
                 updateEditingTextStateFor: self.updateEditingTextState,
                 showSettings: showSettings,
-                screenSize: screenF.size,
+                screenSize: screenFrame.size,
+                screen: screen,
                 sparkleManager: sparkleManager,
                 showChangelog: showChangelogViewWindow,
                 notchSize: notchSize,
@@ -208,8 +201,9 @@ class WindowsManager {
                 isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
                 showIndicator: { [weak self] indicator in
-                    self?.displayKits.forEach { kit in
-                        if let hostingView = kit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
+                    guard let self = self else { return }
+                    if let mainDisplayKit = self.displayKits.first(where: { $0.screen == NSScreen.main }) {
+                        if let hostingView = mainDisplayKit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
                             hostingView.rootView.notchNook.indicator = indicator
                         }
                     }
@@ -234,8 +228,9 @@ class WindowsManager {
                 isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
                 showIndicator: { [weak self] indicator in
-                    self?.displayKits.forEach { kit in
-                        if let hostingView = kit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
+                    guard let self = self else { return }
+                    if let mainDisplayKit = self.displayKits.first(where: { $0.screen == NSScreen.main }) {
+                        if let hostingView = mainDisplayKit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
                             hostingView.rootView.notchNook.indicator = indicator
                         }
                     }
@@ -249,8 +244,8 @@ class WindowsManager {
         let newWindow = ForceFocusableWindow(
             contentRect: .init(
                 origin: .init(
-                    x: (screenF.width - size.width) / 2,
-                    y: screenF.height - size.height + 1
+                    x: (screenFrame.width - size.width) / 2,
+                    y: screenFrame.height - size.height + 1
                 ),
                 size: size),
             styleMask: [.borderless],
@@ -296,7 +291,6 @@ class WindowsManager {
         
         newWindow.orderFrontRegardless()
         
-        print("WindowsManager: Display kit setup complete for screen: \(screen)")
         return DisplayKit(
             id: displayKitId,
             windowController: newWindowController,

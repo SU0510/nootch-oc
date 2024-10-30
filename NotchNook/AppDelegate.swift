@@ -42,8 +42,10 @@ import Defaults
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
         _ = LicenseManager.shared
+        _ = FullscreenMonitor.shared
+
         windowsManager = WindowsManager.shared
-        
+
 //        ValueTransformer.setValueTransformer(NSAttributedStringTransformer(), forName: .nsAttributedString)
         
         #if SETAPP_BUILD

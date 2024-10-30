@@ -10,6 +10,7 @@
 		3616A5D82C921731005C6381 /* cleanupTemporaryDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */; };
 		3623EA522C75312C0055C1BF /* ShowIndicatorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */; };
 		3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */; };
+		3629059A2CC948F100407662 /* FullscreenMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362905992CC948EB00407662 /* FullscreenMonitor.swift */; };
 		3637094E2C544926004D20BB /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094D2C544926004D20BB /* Set+Extensions.swift */; };
 		363709502C559CFD004D20BB /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637094F2C559CFD004D20BB /* MultilineTextField.swift */; };
 		363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709532C56B8C0004D20BB /* NonHyphenatingText.swift */; };
@@ -27,6 +28,7 @@
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
 		36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */; };
+		36D6D54F2CD2B23600EB07C3 /* FullscreenOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D6D54E2CD2B23300EB07C3 /* FullscreenOption.swift */; };
 		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A00275B2C901173002A089D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 3A00275A2C901173002A089D /* Settings */; };
 		3A00275E2C90263C002A089D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 3A00275D2C90263C002A089D /* Settings */; };
@@ -388,6 +390,7 @@
 		3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanupTemporaryDirectory.swift; sourceTree = "<group>"; };
 		3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIndicatorKey.swift; sourceTree = "<group>"; };
 		3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceFocusableWindow.swift; sourceTree = "<group>"; };
+		362905992CC948EB00407662 /* FullscreenMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenMonitor.swift; sourceTree = "<group>"; };
 		3637094D2C544926004D20BB /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
 		3637094F2C559CFD004D20BB /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		363709532C56B8C0004D20BB /* NonHyphenatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonHyphenatingText.swift; sourceTree = "<group>"; };
@@ -405,6 +408,7 @@
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
 		36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarEventsViewShadows.swift; path = NotchNook/components/Notch/Nook/Widgets/CalendarWidget/CalendarEventsViewShadows.swift; sourceTree = SOURCE_ROOT; };
+		36D6D54E2CD2B23300EB07C3 /* FullscreenOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenOption.swift; sourceTree = "<group>"; };
 		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
@@ -1190,6 +1194,7 @@
 		EC0E30D02C0415DA0060B47E /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				36D6D54E2CD2B23300EB07C3 /* FullscreenOption.swift */,
 				EC0E310A2C05651A0060B47E /* LiveActivities */,
 				EC0E310C2C0565400060B47E /* Nook */,
 				EC0E31082C055A560060B47E /* TraySettings.swift */,
@@ -1358,6 +1363,7 @@
 		EC47FC7B2C0A80E200591811 /* singletons */ = {
 			isa = PBXGroup;
 			children = (
+				362905992CC948EB00407662 /* FullscreenMonitor.swift */,
 				EC47FC792C0A80E000591811 /* LicenseManager.swift */,
 				EC0E30F72C043AF60060B47E /* CurrentWallpaperManager.swift */,
 				EC8D60332BFD6BFA00E67ECC /* ShortcutsManager.swift */,
@@ -1995,6 +2001,7 @@
 				EC0E31072C0559680060B47E /* NookSettings.swift in Sources */,
 				EC8D60382BFE688D00E67ECC /* NSImage.swift in Sources */,
 				3A9E6C192C3D5CB9009948F5 /* PerLiveActivitiesSettingsKeys.swift in Sources */,
+				3629059A2CC948F100407662 /* FullscreenMonitor.swift in Sources */,
 				3A1691ED2C2FB4FB0014C326 /* HideNotchKey.swift in Sources */,
 				3A342B132C50754B003C369C /* fit&Fill.swift in Sources */,
 				EC8D602C2BFCFCAB00E67ECC /* AudioSpectrographView.swift in Sources */,
@@ -2262,6 +2269,7 @@
 				3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */,
 				EC8D5FFE2BFAE8B000E67ECC /* AudioAnimationView.swift in Sources */,
 				EC8D5FBD2BF9743200E67ECC /* Tray.swift in Sources */,
+				36D6D54F2CD2B23600EB07C3 /* FullscreenOption.swift in Sources */,
 				ECB9D6A92C0CD22D009C8CE4 /* SettingsInnerTab.swift in Sources */,
 				BBF6EDA82C4AD76400F70035 /* MessageUtil.swift in Sources */,
 				3A3F5A022C2A5C5C00906FFA /* notchShapeView.swift in Sources */,

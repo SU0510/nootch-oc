@@ -13,8 +13,11 @@ import UniformTypeIdentifiers
 struct NotchView: View {
     
     @State internal var state = NotchViewModel()
+    @State private var isFullScreen = false
+
     @Environment(\.notchSize) internal var notchSize
     @Environment(\.screenSize) internal var screenSize
+    var screen: NSScreen
     @Environment(\.notchNook) internal var notchNook
     @Environment(\.generalSettings) internal var generalSettings
     @Default(.intro) internal var intro
@@ -26,13 +29,36 @@ struct NotchView: View {
         notchSize.height == 0
     }
     
+    private var isNotchedScreen: Bool {
+        notchSize.height > 0
+    }
+    
+    private var isDisabled: Bool {
+        (isNonNotchAndDisabled || isDisabledDueToFullScreen) && (!shouldShowIndicator)
+    }
+    
+    private var shouldShowIndicator: Bool {
+        notchNook.indicator != nil && NSScreen.main == screen
+    }
+    
     private var isNonNotchAndDisabled: Bool {
         isNonNotch && !generalSettings.enableOnNonNotchScreens
     }
     
+    private var isDisabledDueToFullScreen: Bool {
+        switch generalSettings.showInFullscreen {
+            case .allMonitors:
+                return false
+            case .notchedScreens:
+                return isNonNotch && isFullScreen
+            case .never:
+                return isFullScreen
+        }
+    }
+    
     var body: some View {
         let nnMinWidth = notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune
-        let nnMinHeight = isNonNotchAndDisabled ? 0 : isNonNotch ? generalSettings.handleSize.height : notchSize.height
+        let nnMinHeight = isDisabled ? 0 : isNonNotch ? generalSettings.handleSize.height : notchSize.height
         
         VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
             mainContent
@@ -45,21 +71,28 @@ struct NotchView: View {
         .modifier(ShapeModifier(state: state))
         .modifier(LockedIndicatorModifier(state: state))
         .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
-        .modifier(AnimationsModifier(disableNotchNook: isNonNotchAndDisabled))
-        .modifier(GesturesModifier(state: state, disableNotchNook: isNonNotchAndDisabled))
+        .modifier(AnimationsModifier(disableNotchNook: isDisabled))
+        .modifier(GesturesModifier(state: state, disableNotchNook: isDisabled))
         .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
         .modifier(EnvironmentsModifier(state: state))
         .modifier(SideEffectsModifier(state: state, showIndicator: showIndicator))
+        .onChange(of: FullscreenMonitor.shared.fullScreenStateDict) { _, updatedFullscreenDict in
+            withAnimation(.easeInOut(duration: 0.1)) {
+                isFullScreen = updatedFullscreenDict[screen] ?? false
+            }
+        }
+        .onAppear {
+            isFullScreen = FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
+        }
     }
     
     @ViewBuilder
     private var mainContent: some View {
-        if let indicator = notchNook.indicator, !isNonNotchAndDisabled {
+        if let indicator = notchNook.indicator, shouldShowIndicator {
             IndicatorView(indicator: indicator)
                 .transition(NotchView.defaultTransition)
         } else {
-            
-            if !isNonNotchAndDisabled {
+            if !isDisabled {
                 if (intro && state.showIntro) || state.showIntro {
                     IntroView()
                 } else if !intro {
