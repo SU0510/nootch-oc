@@ -27,7 +27,7 @@ struct ShadowedNotchShapeView: View, Equatable {
         let notchSize = notchSize.height == 0 ? generalSettings.handleSize : notchSize
         let color: Color = fineTuning ? .purple : .black.opacity(transparentHandle && !isShadowed && notchSize.height == 0 ? 0 : 1)
         if !generalSettings.transluscent {
-            NotchShape(notchSize: notchSize)
+            NotchShape(notchSize: notchSize, isWidthFineTuning: fineTuning)
                 .fill(
                     color.shadow(
                         .drop(
@@ -41,7 +41,7 @@ struct ShadowedNotchShapeView: View, Equatable {
         } else {
             VisualEffectViews()
                 .padding(.horizontal, -24)
-                .clipShape(NotchShape(notchSize: notchSize))
+                .clipShape(NotchShape(notchSize: notchSize, isWidthFineTuning: fineTuning))
                 .shadow(color: .black.opacity(isShadowed ? 0.75 : 0), radius: isShadowed ? 20 : 0, y: isShadowed ? 8 : 0)
         }
     }

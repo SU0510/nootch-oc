@@ -45,7 +45,7 @@ extension NotchView {
             content
                 .mask(alignment: .top) { notchShapeView(shadow: false, transparentHandle: false) }
                 .background { NotchGesturer(state: state) }
-                .contentShape(NotchShape(notchSize: notchSize))
+                .contentShape(NotchShape(notchSize: notchSize, isWidthFineTuning: state.notchState == .fineTuningWidth))
                 .background(alignment: .top) {
                     ZStack {
                         Color.hitBox

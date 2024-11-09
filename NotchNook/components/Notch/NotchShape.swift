@@ -13,11 +13,12 @@ struct NotchShape: Shape {
     static var maxNotchRadius: Double = 40
     static var maxDecorationRadius: Double = 24
     var notchSize: CGSize
+    var isWidthFineTuning: Bool = false
     
     func path(in rect: CGRect) -> Path {
         var notchRadius: CGFloat {
             let heightInterpolator = interpolatorBuilder([notchSize.height, notchSize.height + 100], value: rect.height)
-            return heightInterpolator([notchSize.height < 14 ? notchSize.height * 0.65 : 11, Self.maxNotchRadius * 0.5], true, .linear)
+            return heightInterpolator([notchSize.height < 14 ? notchSize.height * 0.65 : 11, Self.maxNotchRadius * (isWidthFineTuning ? 0.5 : 1)], true, .linear)
         }
         
         var decorationsRadius: CGFloat {
