@@ -1,5 +1,5 @@
 //
-//  FineTuningView.swift
+//  WidthFineTuningView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 24/06/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FineTuningView: View {
+struct WidthFineTuningView: View {
     var fineTuningValue: Double
     @Environment(\.notchSize) private var notchSize
     var body: some View {

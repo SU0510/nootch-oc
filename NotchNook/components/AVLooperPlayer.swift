@@ -18,7 +18,13 @@ class AVLooperPlayer: AVQueuePlayer {
         let playerItem = AVPlayerItem(url: url)
         self.init(playerItem: playerItem)
         looper = AVPlayerLooper(player: self, templateItem: playerItem)
+
+        if #available(macOS 12.0, *) {
+            self.preventsDisplaySleepDuringVideoPlayback = false
+        }
+        self.appliesMediaSelectionCriteriaAutomatically = false
     }
+
 }
 
 extension AVPlayer {

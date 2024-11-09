@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+enum NotchState {
+    case fineTuningWidth
+    case fineTuningHeight
+    case showingHUDIndicator
+    case disabled
+    case showingIntro
+    case standardContent
+}
+
 @Observable
 class NotchViewModel {
     // MARK: - File dropping info
@@ -28,11 +37,11 @@ class NotchViewModel {
     var panGestureCounter = 0
     
     // MARK: - General info
+    var notchState: NotchState = .standardContent
     var scaleDown: Double = 0
     var animatingBack = false
     var trialOver = false
     var showIntro = false
-    var fineTuningNotchWidth = false
     
     // MARK: - Computed properties
     var hoveredDropTargetID: String? {
@@ -58,5 +67,25 @@ class NotchViewModel {
             bottom: ((((leading + trailing) / 2) * 0.25) + bottom) - decrease,
             trailing: ((bottom * 0.5) + trailing) - decrease
         )
+    }
+    
+    func update(settings: GeneralSettings, isNonNotch: Bool, isFullScreen: Bool) {
+        let isNonNotchAndDisabled = isNonNotch && !settings.enableOnNonNotchScreens
+        let isDisabledDueToFullScreen = {
+            switch settings.showInFullscreen {
+                case .allMonitors:
+                    return false
+                case .notchedScreens:
+                    return isNonNotch && isFullScreen
+                case .never:
+                    return isFullScreen
+            }
+        }()
+        
+        if isNonNotchAndDisabled || isDisabledDueToFullScreen {
+            notchState = .disabled
+        } else {
+            notchState = .standardContent
+        }
     }
 }

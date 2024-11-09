@@ -30,11 +30,12 @@ extension NotchView {
             return (
                 notchNook.indicator != nil ||
                 notchNook.mode != .closed ||
-                state.fineTuningNotchWidth ||
+                state.notchState == .fineTuningWidth ||
+                state.notchState == .fineTuningHeight ||
                 (intro && state.showIntro) ||
                 !showingLiveActvs.isEmpty ||
                 generalSettings.demoMode ||
-                notchSize.height == 0 ||
+                notchSize.height == 0 && !generalSettings.transparentHandle ||
                 state.hovering ||
                 state.animatingBack
             )
@@ -47,8 +48,6 @@ extension NotchView {
                 .contentShape(NotchShape(notchSize: notchSize))
                 .background(alignment: .top) {
                     ZStack {
-                        
-                        
                         Color.hitBox
                         
                         let showFileDropView = notchNook.mode == .closed || notchNook.mode == .dragging
@@ -57,8 +56,6 @@ extension NotchView {
                         }
                         
                         notchShapeView()
-                        
-                        
                     }
                     .animation(.bouncySmooth, value: liveActivitiesSettings)
                     .animation(.bouncySmooth, value: ActiveLiveActivitiesManager.shared.activeLiveActivities)

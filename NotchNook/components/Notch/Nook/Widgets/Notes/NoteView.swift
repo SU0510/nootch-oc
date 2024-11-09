@@ -24,7 +24,6 @@ struct NoteView: View {
     var isSelected: Bool
     var width: Double
     var widgetArrPosition: ArrayPosition
-    var isCodeModeEnabled: Bool
     var ns: Namespace.ID
     
     @State private var showControls = false
@@ -37,20 +36,20 @@ struct NoteView: View {
     @Environment(\.updateEditingTextStateFor) private var updateEditingTextStateFor
     @Environment(\.displayKitId) private var displayKitId
     @Environment(\.makeKeyWindow) private var makeKeyWindow
+    @Environment(\.notesWidgetSettings) private var settings
     
-    init(note: Note, isSelected: Bool, width: Double, widgetArrPosition: ArrayPosition, isCodeModeEnabled: Bool, ns: Namespace.ID) {
+    init(note: Note, isSelected: Bool, width: Double, widgetArrPosition: ArrayPosition, ns: Namespace.ID) {
         self.note = note
         self.isSelected = isSelected
         self.width = width
         self.widgetArrPosition = widgetArrPosition
-        self.isCodeModeEnabled = isCodeModeEnabled
         self.ns = ns
         self._downScaled = .init(initialValue: isSelected)
     }
     
     var body: some View {
         let isExpanded = expandedNoteManager.isExpanded && isSelected
-        let codeMode = note.isCodeMode
+        let codeMode = note.isCodeMode && settings.codeMode
         ZStack(alignment: .bottomTrailing) {
             Group {
                 if isSelected {
@@ -113,7 +112,7 @@ struct NoteView: View {
 //                    )
 //                    .syncOriginWithExpandedNoteManger(id: expandedNoteId)
                     
-                    if isCodeModeEnabled {
+                    if settings.codeMode {
                         RichToolbarButtonView(
                             icon: codeMode ? "square.and.pencil" : "curlybraces",
                             tooltip: "Expand",

@@ -10,8 +10,9 @@ import Defaults
 
 extension NotchView {
     struct SideEffectsModifier: ViewModifier {
-        var state: NotchViewModel
+        var viewModel: NotchViewModel
         var showIndicator: (Indicator?) -> Void
+        var screen: NSScreen
         
         @Default(.intro) internal var intro
         @Default(.lastBuildNumber) internal var lastBuildNumber
@@ -40,6 +41,8 @@ extension NotchView {
 #endif
                     insertUpdateLAIfOldVersion()
                     startBriVolKeyListener()
+                    
+//                    showChangelog()
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) {
                     startBriVolKeyListener()
@@ -51,23 +54,57 @@ extension NotchView {
                         }
                     }
                 }
-                .onChange(of: state.hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
-                .onChange(of: intro, initial: true) { _, new in
-                    doAfter(new ? 0.3 : 0) { withAnimation(new ? NotchView.intenseAnimation : .smooth) { state.showIntro = new } }
+                .onChange(of: viewModel.hoveredDropTargetID) { if $0 != $1 && $1 != nil { vibrate() } }
+                .onChange(of: intro, initial: true) { _, isIntro in
+                    doAfter(isIntro ? 0.3 : 0) {
+                        withAnimation(isIntro ? NotchView.intenseAnimation : .smooth) {
+                            if isIntro {
+                                viewModel.notchState = .showingIntro
+                            } else {
+                                viewModel.update(
+                                    settings: generalSettings,
+                                    isNonNotch: notchSize.height == 0,
+                                    isFullScreen: FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
+                                )
+                            }
+                            viewModel.showIntro = isIntro
+                        }
+                    }
                 }
                 .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
-                    if !state.fineTuningNotchWidth {
-                        withAnimation(NotchView.intenseAnimation) { state.fineTuningNotchWidth = true }
+                    if viewModel.notchState != .fineTuningWidth {
+                        withAnimation(NotchView.intenseAnimation) { viewModel.notchState = .fineTuningWidth }
+                    }
+                }
+                .onChange(of: generalSettings.notchHeightFineTune) { _, _ in
+                    if viewModel.notchState != .fineTuningHeight {
+                        withAnimation(NotchView.intenseAnimation) { viewModel.notchState = .fineTuningHeight }
                     }
                 }
                 .onChangeDebounced(of: generalSettings.notchWidthFineTune, delay: 2) { _ in
-                    withAnimation(NotchView.intenseAnimation) { state.fineTuningNotchWidth = false }
+                    withAnimation(NotchView.intenseAnimation) {
+                        
+                        viewModel.update(
+                            settings: generalSettings,
+                            isNonNotch: notchSize.height == 0,
+                            isFullScreen: FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
+                        )
+                    }
                 }
-                .onChangeDebounced(of: state.panRawPadding, delay: 0.05) { _ in
-                    withAnimation(.smooth) { state.panRawPadding = .zero }
+                .onChangeDebounced(of: generalSettings.notchHeightFineTune, delay: 2) { _ in
+                    withAnimation(NotchView.intenseAnimation) {
+                        viewModel.update(
+                            settings: generalSettings,
+                            isNonNotch: notchSize.height == 0,
+                            isFullScreen: FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
+                        )
+                    }
                 }
-                .onChangeDebounced(of: state.scaleDown, delay: 0.05) { _ in
-                    withAnimation(.smooth) { state.scaleDown = 0 }
+                .onChangeDebounced(of: viewModel.panRawPadding, delay: 0.05) { _ in
+                    withAnimation(.smooth) { viewModel.panRawPadding = .zero }
+                }
+                .onChangeDebounced(of: viewModel.scaleDown, delay: 0.05) { _ in
+                    withAnimation(.smooth) { viewModel.scaleDown = 0 }
                 }
                 .onChange(of: isKeyWindow) { _, newVal in
                     if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {

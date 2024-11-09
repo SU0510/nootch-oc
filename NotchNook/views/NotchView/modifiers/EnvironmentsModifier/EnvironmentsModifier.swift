@@ -58,6 +58,7 @@ extension NotchView {
                 .environment(\.namespace, ns)
                 .environment(\.trialOver, state.trialOver)
                 .transformEnvironment(\.notchSize) { if $0.width != 0 { $0.width += generalSettings.notchWidthFineTune } }
+                .transformEnvironment(\.notchSize) { if $0.height != 0 { $0.height += generalSettings.notchHeightFineTune } }
                 .preferredColorScheme(.dark)
         }
     }

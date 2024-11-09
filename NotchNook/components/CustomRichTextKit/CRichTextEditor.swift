@@ -34,7 +34,6 @@ public struct CRichTextEditor: NSViewRepresentable {
         context.coordinator.textView = textView
         textView.textContainer?.lineFragmentPadding = 16
         textView.isRichText = true
-        textView.bottomOverscroll = 32
         textView.setup(with: text, format: format)
         textView.configuration = context.environment.richTextEditorConfig
         textView.theme = context.environment.richTextEditorStyle
@@ -87,10 +86,35 @@ public class CRichTextCoordinator: RichTextCoordinator {
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         guard let replacementString = replacementString else { return true }
         
+        // For single character input (typing), allow default behavior
+        if replacementString.count == 1 {
+            return true
+        }
+        
+        // For pasting or larger text insertions
         let mutableAttrString = NSMutableAttributedString(string: replacementString)
+        
+        // Safely get existing attributes
+        let existingAttributes: [NSAttributedString.Key: Any] = {
+            guard affectedCharRange.location < textView.textStorage?.length ?? 0 else {
+                return [:]
+            }
+            return textView.textStorage?.attributes(at: affectedCharRange.location, effectiveRange: nil) ?? [:]
+        }()
+        
+        // Apply existing attributes
+        mutableAttrString.addAttributes(existingAttributes, range: NSRange(location: 0, length: mutableAttrString.length))
+        
+        // Ensure text color is always white
         mutableAttrString.addAttribute(.foregroundColor, value: NSColor.nonShockingWhite, range: NSRange(location: 0, length: mutableAttrString.length))
         
-        textView.textStorage?.replaceCharacters(in: affectedCharRange, with: mutableAttrString)
+        // Safely replace characters
+        if affectedCharRange.location <= textView.textStorage?.length ?? 0 {
+            textView.textStorage?.replaceCharacters(in: affectedCharRange, with: mutableAttrString)
+        } else {
+            textView.textStorage?.append(mutableAttrString)
+        }
+        
         return false
     }
 }

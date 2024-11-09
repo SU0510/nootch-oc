@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct NotchShape: Shape {
+    
     static var notchWidthInInches: Double = 1.44313723
     static var maxNotchRadius: Double = 40
     static var maxDecorationRadius: Double = 24
     var notchSize: CGSize
-
+    
     func path(in rect: CGRect) -> Path {
         var notchRadius: CGFloat {
             let heightInterpolator = interpolatorBuilder([notchSize.height, notchSize.height + 100], value: rect.height)
-            return heightInterpolator([notchSize.height < 14 ? notchSize.height * 0.65 : 11, Self.maxNotchRadius], true, .linear)
+            return heightInterpolator([notchSize.height < 14 ? notchSize.height * 0.65 : 11, Self.maxNotchRadius * 0.5], true, .linear)
         }
         
         var decorationsRadius: CGFloat {

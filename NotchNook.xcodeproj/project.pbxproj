@@ -20,6 +20,10 @@
 		365B15B32CB871D100032BD0 /* RichToolbarButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */; };
 		365B15B62CB8721300032BD0 /* RichToolbarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */; };
 		365B15B82CB8723300032BD0 /* ToolbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */; };
+		365D84F92CDBD64F00B7E566 /* fullscreen.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84F72CDBD64F00B7E566 /* fullscreen.mov */; };
+		365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84FD2CDBD89000B7E566 /* notes-widget.mov */; };
+		365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */; };
+		3663DD952CDEA51A008E17E5 /* fine-tuning-height.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
 		36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A172CC0623800DD1E16 /* LanguageData.swift */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
@@ -104,7 +108,7 @@
 		3A342B0F2C4DF691003C369C /* BrightnessIndicatorCometView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B0E2C4DF691003C369C /* BrightnessIndicatorCometView.swift */; };
 		3A342B132C50754B003C369C /* fit&Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B122C50754A003C369C /* fit&Fill.swift */; };
 		3A342B172C508903003C369C /* SystemAppMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A342B162C508900003C369C /* SystemAppMeta.swift */; };
-		3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* FineTuningView.swift */; };
+		3A357F122C294FD20076DB37 /* WidthFineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A357F112C294FD20076DB37 /* WidthFineTuningView.swift */; };
 		3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */; };
 		3A3ABCDE2C2A9CCD00132228 /* dropEntered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */; };
 		3A3ABCE02C2A9CE200132228 /* finishDragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */; };
@@ -149,9 +153,6 @@
 		3A7C05E32C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */; };
 		3A7C05E72C5AFDDE00435D99 /* ChangelogBubblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */; };
 		3A7C05E92C5B035A00435D99 /* ChangelogBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */; };
-		3A7C05ED2C5B2D3400435D99 /* indicators.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C05EB2C5B2D3400435D99 /* indicators.mov */; };
-		3A7C05EE2C5B2D3400435D99 /* global-media.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C05EA2C5B2D3400435D99 /* global-media.mov */; };
-		3A7C05EF2C5B2D3400435D99 /* lock.mov in Resources */ = {isa = PBXBuildFile; fileRef = 3A7C05EC2C5B2D3400435D99 /* lock.mov */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -400,6 +401,10 @@
 		365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonConfiguration.swift; sourceTree = "<group>"; };
 		365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonView.swift; sourceTree = "<group>"; };
 		365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtonStyle.swift; sourceTree = "<group>"; };
+		365D84F72CDBD64F00B7E566 /* fullscreen.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = fullscreen.mov; sourceTree = "<group>"; };
+		365D84FD2CDBD89000B7E566 /* notes-widget.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "notes-widget.mov"; sourceTree = "<group>"; };
+		365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightFineTuningView.swift; sourceTree = "<group>"; };
+		3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fine-tuning-height.mp4"; sourceTree = "<group>"; };
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
 		36796A172CC0623800DD1E16 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
@@ -481,7 +486,7 @@
 		3A342B0E2C4DF691003C369C /* BrightnessIndicatorCometView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorCometView.swift; sourceTree = "<group>"; };
 		3A342B122C50754A003C369C /* fit&Fill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "fit&Fill.swift"; sourceTree = "<group>"; };
 		3A342B162C508900003C369C /* SystemAppMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAppMeta.swift; sourceTree = "<group>"; };
-		3A357F112C294FD20076DB37 /* FineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineTuningView.swift; sourceTree = "<group>"; };
+		3A357F112C294FD20076DB37 /* WidthFineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthFineTuningView.swift; sourceTree = "<group>"; };
 		3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveLiveActivitiesManager.swift; sourceTree = "<group>"; };
 		3A3ABCDD2C2A9CCD00132228 /* dropEntered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropEntered.swift; sourceTree = "<group>"; };
 		3A3ABCDF2C2A9CE200132228 /* finishDragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finishDragging.swift; sourceTree = "<group>"; };
@@ -525,9 +530,6 @@
 		3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableDaysMonthOverlayView.swift; sourceTree = "<group>"; };
 		3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogBubblesView.swift; sourceTree = "<group>"; };
 		3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogBubbleView.swift; sourceTree = "<group>"; };
-		3A7C05EA2C5B2D3400435D99 /* global-media.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "global-media.mov"; sourceTree = "<group>"; };
-		3A7C05EB2C5B2D3400435D99 /* indicators.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = indicators.mov; sourceTree = "<group>"; };
-		3A7C05EC2C5B2D3400435D99 /* lock.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = lock.mov; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -1127,9 +1129,9 @@
 		3AC36D742C2512510000F995 /* videos */ = {
 			isa = PBXGroup;
 			children = (
-				3A7C05EA2C5B2D3400435D99 /* global-media.mov */,
-				3A7C05EB2C5B2D3400435D99 /* indicators.mov */,
-				3A7C05EC2C5B2D3400435D99 /* lock.mov */,
+				365D84F72CDBD64F00B7E566 /* fullscreen.mov */,
+				365D84FD2CDBD89000B7E566 /* notes-widget.mov */,
+				3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */,
 			);
 			path = videos;
 			sourceTree = "<group>";
@@ -1740,7 +1742,8 @@
 				EC8D5FC52BF97ADA00E67ECC /* Tray */,
 				EC14B5C92C07A570000FC6B6 /* DropArea */,
 				3A459C1D2C2E710B0045995D /* LockedIndicatorView.swift */,
-				3A357F112C294FD20076DB37 /* FineTuningView.swift */,
+				3A357F112C294FD20076DB37 /* WidthFineTuningView.swift */,
+				365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */,
 				3A105FE92C1EAA660015EC66 /* QuickPeeksView.swift */,
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
@@ -1941,15 +1944,15 @@
 				ECB9D6AD2C0CDE88009C8CE4 /* tray.lottie in Resources */,
 				3A74049A2C416B090049081C /* Localizable.xcstrings in Resources */,
 				3A9E6C142C3ABA4D009948F5 /* michael.gif in Resources */,
+				3663DD952CDEA51A008E17E5 /* fine-tuning-height.mp4 in Resources */,
 				3A0816C32C24C201008092F0 /* update.lottie in Resources */,
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
-				3A7C05ED2C5B2D3400435D99 /* indicators.mov in Resources */,
-				3A7C05EE2C5B2D3400435D99 /* global-media.mov in Resources */,
-				3A7C05EF2C5B2D3400435D99 /* lock.mov in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
 				3A459C272C2E955D0045995D /* lock.lottie in Resources */,
 				3A59A4252C6FC93C004D9273 /* InfoSetapp.plist in Resources */,
+				365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */,
+				365D84F92CDBD64F00B7E566 /* fullscreen.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2042,7 +2045,7 @@
 				EC0E30E22C041C8F0060B47E /* LiveActivitiesGeneralSettingsTabView.swift in Sources */,
 				3A1691F12C2FB50B0014C326 /* OpenNotchKey.swift in Sources */,
 				EC0E31172C0568080060B47E /* MirrorWidgetSettings.swift in Sources */,
-				3A357F122C294FD20076DB37 /* FineTuningView.swift in Sources */,
+				3A357F122C294FD20076DB37 /* WidthFineTuningView.swift in Sources */,
 				3AD5CAD92C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift in Sources */,
 				3A7C05E72C5AFDDE00435D99 /* ChangelogBubblesView.swift in Sources */,
 				3A74049E2C4424B70049081C /* DisplayKitIdKey.swift in Sources */,
@@ -2160,6 +2163,7 @@
 				3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */,
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
 				C11F0A8A2C58C1A4003F96DC /* CameraManager.swift in Sources */,
+				365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */,
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				3A1691F72C2FBA410014C326 /* InMemoryDefault.swift in Sources */,
 				36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */,

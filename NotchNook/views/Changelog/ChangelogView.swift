@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ChangelogView: View {
-    @State private var globalMediaPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "global-media", withExtension: "mov")!)
-    @State private var indicatorsPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "indicators", withExtension: "mov")!)
-    @State private var lockPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "lock", withExtension: "mov")!)
+    
+    @State private var notesPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "notes-widget", withExtension: "mov")!)
+    @State private var fullscreenPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "fullscreen", withExtension: "mov")!)
+    @State private var fineTuningPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "fine-tuning-height", withExtension: "mp4")!)
+
     @Environment(\.closeWindow) private var closeWindow
+    
     var body: some View {
         VStack(spacing: 32) {
+            
             VStack(spacing: 0) {
                 Image(.internalAppIcon).resizable()
                     .scaledToFit()
@@ -27,13 +31,28 @@ struct ChangelogView: View {
                             Text("NotchNook ").font(.largeTitle).fontWeight(.bold)
                         }
                     }
-                    Text("Natural animations and fresh new features!").font(.system(size: 16)).fontWeight(.regular)
+                    Text("Fresh new features and a bunch of fixes!").font(.system(size: 16)).fontWeight(.regular)
                 }
             }
+            
             VStack(spacing: 16) {
-                VideoFeatureView(player: globalMediaPlayer, title: String(localized: "Global Media Controlling"), description: String(localized: "Now you can control any media from any app!"))
-                VideoFeatureView(player: indicatorsPlayer, title: String(localized: "Brightness/Volume HUD Replacement"), description: String(localized: "Now you can replace the default volume and brightness indicators by custom ones in \"Live Activities\" settings!"))
-                VideoFeatureView(player: lockPlayer, title: String(localized: "Lock Button"), description: String(localized: "Prevent NN from auto-closing with the new lock button."))
+                VideoFeatureView(
+                    player: notesPlayer,
+                    title: String(localized: "Notes widget"),
+                    description: String(localized: "Now you can write down quick thoughts and even code in NotchNook!")
+                )
+                
+                VideoFeatureView(
+                    player: fullscreenPlayer,
+                    title: String(localized: "Show in fullscreen option"),
+                    description: String(localized: "Now you decide whether to show NotchNook in fullscreen mode or not!")
+                )
+                
+                VideoFeatureView(
+                    player: fineTuningPlayer,
+                    title: String(localized: "Notch height fine tune"),
+                    description: String(localized: "If the height is a bit off of your built-in notch, you can adjust it now!")
+                )
             }
             
             Button {
@@ -47,6 +66,7 @@ struct ChangelogView: View {
                     .background(.blue, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
             }
             .buttonStyle(ShrinkOnClick(minSize: 0.95))
+            
         }
         .padding(.bottom, 32)
         .padding(.horizontal, 64)
@@ -58,12 +78,23 @@ struct ChangelogView: View {
                 .opacity(0.5)
         }
         .overlay(alignment: .topTrailing) {
-            Image(.rightDecoration).resizable().scaledToFit()
-                .frame(width: 111, height: 72)
-                .padding(.top, 4)
-                .padding(.trailing, 25)
-                .blendMode(.overlay)
-                .opacity(0.5)
+            VStack(spacing: 25) {
+                Image(.rightDecoration).resizable().scaledToFit()
+                    .frame(width: 111, height: 72)
+                    .padding(.top, 4)
+                    .padding(.trailing, 25)
+                    .blendMode(.overlay)
+                    .opacity(0.5)
+                
+                Image(.loriSignature)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 111, height: 72)
+                    .padding(.trailing, 25)
+                    .blendMode(.overlay)
+                    .opacity(0.5)
+                    .rotationEffect(.degrees(22))
+            }
         }
         .background {
             Image(.changelogGradient).resizable()

@@ -62,16 +62,25 @@ struct GeneralSettingsView: View {
                 SliderPlus(value: $generalSettings.contentPadding, range: 0...32)
             }
             
-            Settings.Section(title: String(localized: "Notch width fine tune:"), bottomDivider: true) {
-                HStack {
-                    Slider(value: $generalSettings.notchWidthFineTune, in: -8...8, step: 1)
-                        .frame(maxWidth: 200)
-                    let num = generalSettings.notchWidthFineTune
-                    Text("\(num > 0 ? "+" : "")\(Int(num))")
-                }
-                Text(String(localized: "NotchNook tries it's best to guess your notch width, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same size of your notch."))
-                //                    .settingDescription()
+            Settings.Section(title: String(localized: "Notch fine tune:"), bottomDivider: true) {
+                Text(String(localized: "NotchNook tries its best to guess your notch size, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same of your notch."))
                     .optionDescription(contentMaxWidth)
+
+                    HStack {
+                        Text("Width:")
+                        Slider(value: $generalSettings.notchWidthFineTune, in: -8...8, step: 1)
+                            .frame(maxWidth: 200)
+                        let num = generalSettings.notchWidthFineTune
+                        Text("\(num > 0 ? "+" : "")\(Int(num))")
+                    }
+                    
+                    HStack {
+                        Text("Height:")
+                        Slider(value: $generalSettings.notchHeightFineTune, in: -8...8, step: 1)
+                            .frame(maxWidth: 200)
+                        let num = generalSettings.notchHeightFineTune
+                        Text("\(num > 0 ? "+" : "")\(Int(num))")
+                    }
             }
             
             Settings.Section(title: String(localized: "Handler (no-notch screens):"), bottomDivider: true) {

@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 
 struct NotchView: View {
     
-    @State internal var state = NotchViewModel()
+    @State internal var viewModel = NotchViewModel()
     @State private var isFullScreen = false
 
     @Environment(\.notchSize) internal var notchSize
@@ -56,61 +56,77 @@ struct NotchView: View {
         }
     }
     
-    var body: some View {
-        let nnMinWidth = notchSize.height == 0 ? generalSettings.handleSize.width : notchSize.width + generalSettings.notchWidthFineTune
-        let nnMinHeight = isDisabled ? 0 : isNonNotch ? generalSettings.handleSize.height : notchSize.height
-        
-        VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
-            mainContent
-        }
-        .blur(radius: state.scaleDown * 150)
-        .fixedSize(horizontal: true, vertical: false)
-        .frame(minWidth: nnMinWidth, minHeight: nnMinHeight)
-        .padding((notchNook.mode == .closed ? state.panPadding : .zero) + standardPadding)
-        .coordinateSpace(name: "drop-zone")
-        .modifier(ShapeModifier(state: state))
-        .modifier(LockedIndicatorModifier(state: state))
-        .offset(x: (-state.panPadding.leading + state.panPadding.trailing) / 3)
-        .modifier(AnimationsModifier(disableNotchNook: isDisabled))
-        .modifier(GesturesModifier(state: state, disableNotchNook: isDisabled))
-        .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
-        .modifier(EnvironmentsModifier(state: state))
-        .modifier(SideEffectsModifier(state: state, showIndicator: showIndicator))
-        .onChange(of: FullscreenMonitor.shared.fullScreenStateDict) { _, updatedFullscreenDict in
-            withAnimation(.easeInOut(duration: 0.1)) {
-                isFullScreen = updatedFullscreenDict[screen] ?? false
-            }
-        }
-        .onAppear {
-            isFullScreen = FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
-        }
+    private var isHeightFineTuning: Bool {
+        viewModel.notchState == .fineTuningHeight
     }
     
-    @ViewBuilder
-    private var mainContent: some View {
-        if let indicator = notchNook.indicator, shouldShowIndicator {
-            IndicatorView(indicator: indicator)
-                .transition(NotchView.defaultTransition)
-        } else {
-            if !isDisabled {
-                if (intro && state.showIntro) || state.showIntro {
-                    IntroView()
-                } else if !intro {
-                    nonIntroContent
+    var body: some View {
+        let nonNotchWidth = generalSettings.handleSize.width
+        let nnMinWidth = isNonNotch ? nonNotchWidth : notchSize.width + generalSettings.notchWidthFineTune
+        let nonNotchHeight = generalSettings.transparentHandle ? 0 : generalSettings.handleSize.height
+        let nnMinHeight = isDisabled || isHeightFineTuning ? 0 : isNonNotch ? nonNotchHeight : notchSize.height
+        
+        mainContent
+            .blur(radius: viewModel.scaleDown * 150)
+            .fixedSize(horizontal: true, vertical: false)
+            .frame(minWidth: isHeightFineTuning ? nnMinWidth + 40 : nnMinWidth, minHeight: nnMinHeight)
+            .padding((notchNook.mode == .closed ? viewModel.panPadding : .zero) + standardPadding)
+            .coordinateSpace(name: "drop-zone")
+            .modifier(ShapeModifier(state: viewModel))
+            .modifier(LockedIndicatorModifier(state: viewModel))
+            .offset(x: (-viewModel.panPadding.leading + viewModel.panPadding.trailing) / 3)
+            .modifier(AnimationsModifier(disableNotchNook: isDisabled))
+            .modifier(GesturesModifier(state: viewModel, disableNotchNook: isDisabled))
+            .frame(width: screenSize.width, height: NotchView.windowHeight, alignment: .top)
+            .modifier(EnvironmentsModifier(state: viewModel))
+            .modifier(SideEffectsModifier(viewModel: viewModel, showIndicator: showIndicator, screen: screen))
+            .onChange(of: FullscreenMonitor.shared.fullScreenStateDict) { _, updatedFullscreenDict in
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    isFullScreen = updatedFullscreenDict[screen] ?? false
+                    viewModel.update(settings: generalSettings, isNonNotch: isNonNotch, isFullScreen: isFullScreen)
                 }
             }
-            
-            if state.fineTuningNotchWidth {
-                FineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
+            .onAppear {
+                isFullScreen = FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
+                viewModel.update(settings: generalSettings, isNonNotch: isNonNotch, isFullScreen: isFullScreen)
             }
-        }
+            .onChange(of: notchNook.indicator) {
+                if shouldShowIndicator {
+                    viewModel.notchState = .showingHUDIndicator
+                }
+            }
     }
     
-    @ViewBuilder
-    private var indicatorContent: some View {
-        if let indicator = notchNook.indicator {
-            IndicatorView(indicator: indicator)
-                .transition(NotchView.defaultTransition)
+    private var mainContent: some View {
+        Group {
+            switch viewModel.notchState {
+                case .showingHUDIndicator:
+                    if let indicator = notchNook.indicator {
+                        IndicatorView(indicator: indicator)
+                            .transition(NotchView.defaultTransition)
+                    }
+                case .disabled:
+                    EmptyView()
+                case .showingIntro:
+                    IntroView()
+                case .fineTuningWidth:
+                    VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
+                        TopBarSpacerView(height: notchSize.height)
+                        
+                        if isNotchedScreen {
+                            WidthFineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
+                        }
+                    }
+                case .standardContent:
+                    nonIntroContent
+                    
+                case .fineTuningHeight:
+                    if isNotchedScreen {
+                        HeightFineTuningView(fineTuningValue: generalSettings.notchHeightFineTune)
+                            .frame(width: 40, alignment: .leading)
+                            .offset(x: -100)
+                    }
+            }
         }
     }
     
@@ -120,7 +136,7 @@ struct NotchView: View {
             .opacity(notchNook.indicator == nil ? 1 : 0)
         
         Group {
-            if license == nil && (trialInitialTime == nil || state.trialOver) && notchNook.mode != .closed {
+            if license == nil && (trialInitialTime == nil || viewModel.trialOver) && notchNook.mode != .closed {
                 LicenseStateView()
             } else {
                 nookModeContent
@@ -132,12 +148,12 @@ struct NotchView: View {
     
     @ViewBuilder
     private var topBarContent: some View {
-        if license != nil || (!state.trialOver && trialInitialTime != nil) {
+        if license != nil || (!viewModel.trialOver && trialInitialTime != nil) {
             TopBarView(
-                panGestureCounter: state.panGestureCounter,
+                panGestureCounter: viewModel.panGestureCounter,
                 scaleX: actualScaleX,
                 scaleY: actualScaleY,
-                panPadding: state.panPadding,
+                panPadding: viewModel.panPadding,
                 isHidden: notchNook.hidden
             )
             .equatable()
@@ -150,7 +166,7 @@ struct NotchView: View {
         case .closed:
             EmptyView()
         case .dragging:
-            DropArea(targetsCoords: $state.targetsCoords, availableActions: state.availableActions, hoveredDropTargetID: state.hoveredDropTargetID)
+            DropArea(targetsCoords: $viewModel.targetsCoords, availableActions: viewModel.availableActions, hoveredDropTargetID: viewModel.hoveredDropTargetID)
         case .nook:
             NookView()
         case .tray:

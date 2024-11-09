@@ -12,6 +12,7 @@ struct GeneralSettings: Preferences {
     var showInFullscreen: FullscreenOption = .notchedScreens
     var preferRoundButtons = true
     var notchWidthFineTune: Double = 0
+    var notchHeightFineTune: Double = 0
     var alwaysOpenNotchOnHover = false
     var transluscent = false
     var handleSize = CGSize(width: 184, height: 8)

@@ -123,13 +123,25 @@ class MediaControls {
                     self.MRMediaRemoteGetNowPlayingApplicationPID(DispatchQueue.main) { pid in
                         let systemAppMeta = SystemAppMeta(pid: pid)
                         if systemAppMeta.name == "NotchNook" { return }
-                        newTrack.mediaApp = systemAppMeta
-                        if self.track.isValidReplacement(newTrack) {
-                            TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
-                                if self.track.isValidReplacement(newTrack) {
-                                    DispatchQueue.main.async {
-                                        self.track = newTrack
-                                        self.updatePlaybackState()
+                        
+                        // Check if the application is actually playing
+                        self.MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.main) { isActuallyPlaying in
+                            if !isActuallyPlaying {
+                                DispatchQueue.main.async {
+                                    self.track = .empty
+                                    self.isPlaying = false
+                                    return
+                                }
+                            }
+                            
+                            newTrack.mediaApp = systemAppMeta
+                            if self.track.isValidReplacement(newTrack) {
+                                TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
+                                    if self.track.isValidReplacement(newTrack) {
+                                        DispatchQueue.main.async {
+                                            self.track = newTrack
+                                            self.updatePlaybackState()
+                                        }
                                     }
                                 }
                             }

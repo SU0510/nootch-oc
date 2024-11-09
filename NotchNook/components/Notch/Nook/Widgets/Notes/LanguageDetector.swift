@@ -12,10 +12,10 @@ class LanguageDetector {
     
     private let supportedLanguages: [CodeEditor.Language]
     private let regexWeight: Double = 3.0
-    private let analysisWindowSize = 1000
+    private let analysisWindowSize = 100 // Number of words to analyze
     
     private var cache: [String: CodeEditor.Language] = [:]
-    private var lastAnalyzedText: String = ""
+    private var lastAnalyzedWords: [String] = []
     
     init() {
         self.supportedLanguages = [.bash, .c, .cpp, .css, .http, .java, .javascript, .json, .markdown, .makefile, .objectivec, .python, .php, .ruby, .sql, .swift]
@@ -26,24 +26,24 @@ class LanguageDetector {
             return cachedLanguage
         }
         
-        let newText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let words = text.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
         
         // Check if only whitespace or newlines were added
-        if newText == lastAnalyzedText.trimmingCharacters(in: .whitespacesAndNewlines) {
-            return cache[lastAnalyzedText] ?? .markdown
+        if words == lastAnalyzedWords {
+            return cache[text] ?? .markdown
         }
         
         let detectedLanguage: CodeEditor.Language
         
-        if lastAnalyzedText.isEmpty || !newText.hasPrefix(lastAnalyzedText) {
-            detectedLanguage = analyzeText(newText)
+        if lastAnalyzedWords.isEmpty || !words.starts(with: lastAnalyzedWords) {
+            detectedLanguage = analyzeWords(words)
         } else {
-            let additionalText = String(newText.dropFirst(lastAnalyzedText.count))
-            detectedLanguage = analyzeText(additionalText)
+            let additionalWords = Array(words.dropFirst(lastAnalyzedWords.count))
+            detectedLanguage = analyzeWords(additionalWords)
         }
         
-        lastAnalyzedText = newText.trimmingCharacters(in: .whitespacesAndNewlines)
-        cache[newText.trimmingCharacters(in: .whitespacesAndNewlines)] = detectedLanguage
+        lastAnalyzedWords = words
+        cache[text] = detectedLanguage
         return detectedLanguage
     }
     
@@ -51,26 +51,24 @@ class LanguageDetector {
         language == .json ? 0.1 : 1.5
     }
     
-    private func analyzeText(_ text: String) -> CodeEditor.Language {
-        let windowedText = String(text.suffix(analysisWindowSize))
+    private func analyzeWords(_ words: [String]) -> CodeEditor.Language {
+        let windowedWords = Array(words.suffix(analysisWindowSize))
         
         var scores: [CodeEditor.Language: Double] = [:]
         for language in supportedLanguages {
             scores[language] = 0
         }
         
-        let words = windowedText.components(separatedBy: .whitespacesAndNewlines)
-        
         // Keyword matching
         for (language, keywords) in LanguageData.keywordMap {
-            let keywordMatches = Set(words).intersection(keywords)
+            let keywordMatches = Set(windowedWords).intersection(keywords)
             scores[language, default: 0] += Double(keywordMatches.count) * (keywordWeight(for: language))
         }
         
         // Normalize scores based on input length
-        let textLength = Double(windowedText.count)
+        let wordCount = Double(windowedWords.count)
         for language in supportedLanguages {
-            scores[language] = (scores[language] ?? 0) / textLength
+            scores[language] = (scores[language] ?? 0) / wordCount
         }
         
         return scores.max(by: { $0.value < $1.value })?.key ?? .markdown
