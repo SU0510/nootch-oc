@@ -18,6 +18,7 @@ import Defaults
     var windowController: NSWindowController? = nil
     var windowsManager: WindowsManager?
     var nsMenu: NSMenu?
+    var appInitialized = false
 #if !SETAPP_BUILD
     let updaterDelegate = UpdaterDelegate()
     let updaterController: SPUStandardUpdaterController
@@ -54,6 +55,8 @@ import Defaults
 
         NSApp.setActivationPolicy(.accessory)
         setupMenu()
+        
+        appInitialized = true
     }
     
     func applicationWillTerminate(_ notification: Notification) {
@@ -61,7 +64,9 @@ import Defaults
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        windowsManager?.settingsWindowController?.show()
+        if !appInitialized {
+            windowsManager?.settingsWindowController?.show()
+        }
         return true
     }
     
