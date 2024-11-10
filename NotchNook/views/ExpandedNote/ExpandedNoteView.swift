@@ -20,10 +20,10 @@ struct ExpandedNoteView: View {
         Group {
             if isCodeMode {
                 NoteCodeEditor(note: note)
-                    .cornerRadius(10)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             } else {
                 NoteRichEditor(note: note)
-                    .cornerRadius(10)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             }
         }
         .frame(width: 840, height: 560)

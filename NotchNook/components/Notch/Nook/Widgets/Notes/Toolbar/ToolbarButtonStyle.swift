@@ -21,17 +21,13 @@ struct ToolbarButtonStyle: ButtonStyle {
             .font(config.font)
             .frame(width: config.size, height: config.size)
             .background(config.backgroundColor(hovering, active))
-            .backgroundMaterial(config.backgroundMaterial)
-            .cornerRadius(config.cornerRadius)
+            .background {
+                if let bgMaterial = config.backgroundMaterial {
+                    Rectangle().fill(bgMaterial)
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: config.cornerRadius, style: .continuous))
             .contentShape(config.contentShape)
             .animation(.easeInOut(duration: 0.1), value: hovering)
-    }
-}
-
-extension View {
-    @ViewBuilder
-    func backgroundMaterial(_ material: Material?) -> some View {
-        guard let material else { return self }
-        return self.background(material)
     }
 }

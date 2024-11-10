@@ -37,7 +37,7 @@ struct MultilineTextField: View {
                 }
             }
             .border(Color(red: 0.23, green: 0.61, blue: 0.9, opacity: 0.6), width: 2.5)
-            .cornerRadius(3.0)
+            .clipShape(RoundedRectangle(cornerRadius: 3.0, style: .continuous))
             .multilineTextAlignment(.center)
     }
     
