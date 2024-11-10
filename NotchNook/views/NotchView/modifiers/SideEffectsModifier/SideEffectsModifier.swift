@@ -36,13 +36,11 @@ extension NotchView {
                 .onAppear {
 #if !SETAPP_BUILD
                     checkForUpdates()
-                    resetTrialAndHandleChangelog()
                     checkTrialOver()
 #endif
+                    resetTrialAndHandleChangelog()
                     insertUpdateLAIfOldVersion()
                     startBriVolKeyListener()
-                    
-//                    showChangelog()
                 }
                 .onChange(of: liveActivitiesSettings.enableHUDReplacement) {
                     startBriVolKeyListener()

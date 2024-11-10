@@ -12,10 +12,10 @@ extension NotchView.SideEffectsModifier {
     func resetTrialAndHandleChangelog() {
         let currentBuildNumber = getBuildNumber()
         if lastBuildNumber != currentBuildNumber {
+#if !SETAPP_BUILD
             resetTrial()
-            if let lastBuildNumberInt = Int(lastBuildNumber), lastBuildNumberInt < 4 {
-                showChangelog()
-            }
+#endif
+            showChangelog()
             lastBuildNumber = currentBuildNumber
         }
     }
