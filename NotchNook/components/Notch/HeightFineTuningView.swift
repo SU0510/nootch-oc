@@ -20,7 +20,7 @@ struct HeightFineTuningView: View {
             .foregroundStyle(.fineTuningBG)
             .fontWeight(.semibold)
 //            .padding(12)
-            .frame(width: 40, height: notchSize.height + fineTuningValue, alignment: .leading)
+            .frame(width: 40, height: notchSize.height, alignment: .leading)
             .animation(.spring, value: fineTuningValue)
     }
 }

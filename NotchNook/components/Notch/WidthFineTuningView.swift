@@ -36,7 +36,7 @@ struct WidthFineTuningView: View {
             .opacity(0.25)
         }
         .padding(12)
-        .frame(width: notchSize.width + fineTuningValue)
+        .frame(width: notchSize.width)
         .animation(.spring, value: fineTuningValue)
         .frame(maxWidth: .infinity)
         .transition(NotchView.defaultTransition)

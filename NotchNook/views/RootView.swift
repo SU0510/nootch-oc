@@ -52,10 +52,6 @@ struct RootView: View {
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
     
-    private var isNotchedScreen: Bool {
-        notchSize.height > 0
-    }
-    
     mutating func updateForScreen(displayKitId: UUID, screenSize: CGSize, notchSize: CGSize, notchNook: NotchNookState) {
         self.displayKitId = displayKitId
         self.screenSize = screenSize

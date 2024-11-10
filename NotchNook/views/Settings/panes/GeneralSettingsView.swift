@@ -68,18 +68,20 @@ struct GeneralSettingsView: View {
 
                     HStack {
                         Text("Width:")
-                        Slider(value: $generalSettings.notchWidthFineTune, in: -8...8, step: 1)
+                        Slider(value: $generalSettings.notchWidthFineTune, in: -12...12, step: 1)
                             .frame(maxWidth: 200)
                         let num = generalSettings.notchWidthFineTune
                         Text("\(num > 0 ? "+" : "")\(Int(num))")
+                            .frame(width: 24, alignment: .trailing)
                     }
                     
                     HStack {
                         Text("Height:")
-                        Slider(value: $generalSettings.notchHeightFineTune, in: -8...8, step: 1)
+                        Slider(value: $generalSettings.notchHeightFineTune, in: -12...12, step: 1)
                             .frame(maxWidth: 200)
                         let num = generalSettings.notchHeightFineTune
                         Text("\(num > 0 ? "+" : "")\(Int(num))")
+                            .frame(width: 24, alignment: .trailing)
                     }
             }
             

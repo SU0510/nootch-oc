@@ -93,7 +93,7 @@ struct NoteView: View {
             )
         )
         .overlay(alignment: !isSelected ? .bottomTrailing : .bottomLeading) {
-            NoteIconView(noteId: "\(note.id)", icon: note.icon, downScaled: downScaled, ns: ns, color: codeMode ? .yellow : .blue)
+            NoteIconView(noteId: "\(note.id)", icon: note.icon, downScaled: downScaled, ns: ns, color: codeMode ? Color.cyan : .blue)
                     .padding(.trailing, isSelected ? 4 : 0)
         }
         .overlay(alignment: .bottomTrailing) {
@@ -135,6 +135,7 @@ struct NoteView: View {
                 .scaleEffect(showControls ? 1 : 0.75, anchor: .bottomTrailing)
                 .opacity(showControls ? 1 : 0)
                 .blur(radius: showControls ? 0 : 24)
+                .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             }
         }
         .contentShape(Rectangle())
@@ -152,7 +153,7 @@ struct NoteView: View {
         .onHover { x in if !isSelected { withAnimation(.easeOut) { hovering = x } } }
         .zIndex(isSelected ? 1 : 0)
         .animation(.spring, value: widgetArrPosition)
-        .clipped()
+//        .clipped()
         .onAppear {
             if isSelected {
                 note.updatedAt = Date()

@@ -15,7 +15,7 @@ struct NotchView: View {
     @State internal var viewModel = NotchViewModel()
     @State private var isFullScreen = false
 
-    @Environment(\.notchSize) internal var notchSize
+    @Environment(\.notchSize) internal var rawNotchSize
     @Environment(\.screenSize) internal var screenSize
     var screen: NSScreen
     @Environment(\.notchNook) internal var notchNook
@@ -24,13 +24,20 @@ struct NotchView: View {
     @Default(.license) internal var license
     @Default(.trialInitialTime) internal var trialInitialTime
     @Environment(\.showIndicator) var showIndicator
-
+    
     private var isNonNotch: Bool {
-        notchSize.height == 0
+        rawNotchSize.height == 0
     }
     
-    private var isNotchedScreen: Bool {
-        notchSize.height > 0
+    private var notchSize: CGSize {
+        if isNonNotch {
+            return rawNotchSize
+        } else {
+            var newNotchSize = rawNotchSize
+            newNotchSize.width += generalSettings.notchWidthFineTune * 0.5
+            newNotchSize.height += generalSettings.notchHeightFineTune * 0.5
+            return newNotchSize
+        }
     }
     
     private var isDisabled: Bool {
@@ -62,7 +69,7 @@ struct NotchView: View {
     
     var body: some View {
         let nonNotchWidth = generalSettings.handleSize.width
-        let nnMinWidth = isNonNotch ? nonNotchWidth : notchSize.width + generalSettings.notchWidthFineTune
+        let nnMinWidth = isNonNotch ? nonNotchWidth : notchSize.width
         let nonNotchHeight = generalSettings.transparentHandle ? 0 : generalSettings.handleSize.height
         let nnMinHeight = isDisabled || isHeightFineTuning ? 0 : isNonNotch ? nonNotchHeight : notchSize.height
         
@@ -113,7 +120,7 @@ struct NotchView: View {
                     VStack(alignment: .center, spacing: NotchView.mainVSpacing) {
                         TopBarSpacerView(height: notchSize.height)
                         
-                        if isNotchedScreen {
+                        if !isNonNotch {
                             WidthFineTuningView(fineTuningValue: generalSettings.notchWidthFineTune)
                         }
                     }
@@ -121,7 +128,7 @@ struct NotchView: View {
                     nonIntroContent
                     
                 case .fineTuningHeight:
-                    if isNotchedScreen {
+                    if !isNonNotch {
                         HeightFineTuningView(fineTuningValue: generalSettings.notchHeightFineTune)
                             .frame(width: 40, alignment: .leading)
                             .offset(x: -100)

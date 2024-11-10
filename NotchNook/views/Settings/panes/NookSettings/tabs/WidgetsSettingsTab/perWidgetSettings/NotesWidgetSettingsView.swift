@@ -21,18 +21,18 @@ struct NotesWidgetSettingsView: View {
 //    }
     
     var body: some View {
-        let enabled = nookSettings.enabledWidgets.contains(.notes)
+//        let enabled = nookSettings.enabledWidgets.contains(.notes)
         let contentMaxW: Double = 300
         Settings.Container(contentWidth: 520.0) {
 //            let min: Double = 4
 //            let max = !enabled ? nookSettings.size.width.double : availableWidth.double <= min ? min + 1 : availableWidth.double
             Settings.Section {
-                Text("Width:").frame(minWidth: 200, alignment: .trailing)
+                Text("Width:").frame(minWidth: 160, alignment: .trailing)
             } content: {
                 SliderPlus(value: $notesWidgetSettings.size.width.double, range: 4...16)
                 Toggle("Show scroll indicator", isOn: $notesWidgetSettings.showScrollIndicator)
                 Toggle("Code mode", isOn: $notesWidgetSettings.codeMode)
-                Text("Enables transforming the notes widget into a code editor, with automatic language detection and syntax highlighting.")
+                Text("Enables a per note \"Code Mode\" toggle. It has automatic syntax detection and highlighting.")
                     .optionDescription(contentMaxW)
             }
         }
