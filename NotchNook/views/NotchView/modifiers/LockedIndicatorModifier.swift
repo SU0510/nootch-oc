@@ -23,7 +23,7 @@ extension NotchView {
                         )
                         .scaleEffect(1 - state.scaleDown, anchor: .topLeading)
                         .blur(radius: state.scaleDown * 100)
-                        .offset(x: 20, y: 20)
+                        .offset(x: LockedIndicatorView.blurSize / 3, y: LockedIndicatorView.blurSize / 2)
                         .transition(.scaleAndBlur(anchor: .topLeading))
                     }
                 }

@@ -10,9 +10,8 @@ import Lottie
 import SmoothGradient
 
 struct LockedIndicatorView: View {
-    static let lanternSize: Double = 72
     static let iconCircleSize: Double = 32
-    static let blurSize: Double = 64
+    static let blurSize: Double = 48
     var locked: Bool
     var toggleLock: (() -> ())?
     var typing: Bool = false
