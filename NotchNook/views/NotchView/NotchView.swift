@@ -97,21 +97,15 @@ struct NotchView: View {
                 isFullScreen = FullscreenMonitor.shared.fullScreenStateDict[screen] ?? false
                 viewModel.update(settings: generalSettings, isNonNotch: isNonNotch, isFullScreen: isFullScreen)
             }
-            .onChange(of: notchNook.indicator) {
-                if shouldShowIndicator {
-                    viewModel.notchState = .showingHUDIndicator
-                }
-            }
     }
     
     private var mainContent: some View {
         Group {
-            switch viewModel.notchState {
-                case .showingHUDIndicator:
-                    if let indicator = notchNook.indicator {
-                        IndicatorView(indicator: indicator)
-                            .transition(NotchView.defaultTransition)
-                    }
+            if let indicator = notchNook.indicator {
+                IndicatorView(indicator: indicator)
+                    .transition(NotchView.defaultTransition)
+            } else {
+                switch viewModel.notchState {
                 case .disabled:
                     EmptyView()
                 case .showingIntro:
@@ -133,6 +127,7 @@ struct NotchView: View {
                             .frame(width: 40, alignment: .leading)
                             .offset(x: -100)
                     }
+                }
             }
         }
     }

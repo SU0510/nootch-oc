@@ -10,7 +10,6 @@ import SwiftUI
 enum NotchState {
     case fineTuningWidth
     case fineTuningHeight
-    case showingHUDIndicator
     case disabled
     case showingIntro
     case standardContent
