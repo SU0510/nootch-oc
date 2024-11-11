@@ -66,22 +66,20 @@ struct GeneralSettingsView: View {
                 Text(String(localized: "NotchNook tries its best to guess your notch size, but sometimes it can be a bit off. Here you can fine tune it. It has to be exactly the same of your notch."))
                     .optionDescription(contentMaxWidth)
 
-                    HStack {
-                        Text("Width:")
-                        Slider(value: $generalSettings.notchWidthFineTune, in: -12...12, step: 1)
-                            .frame(maxWidth: 200)
+                HStack(spacing: 8) {
+                        Text("Width:").frame(width: 45, alignment: .leading)
+                        SliderPlusNegative(value: $generalSettings.notchWidthFineTune, range: -24...24, step: 1)
                         let num = generalSettings.notchWidthFineTune
                         Text("\(num > 0 ? "+" : "")\(Int(num))")
-                            .frame(width: 24, alignment: .trailing)
+                        .frame(width: 24, alignment: .leading)
                     }
                     
-                    HStack {
-                        Text("Height:")
-                        Slider(value: $generalSettings.notchHeightFineTune, in: -12...12, step: 1)
-                            .frame(maxWidth: 200)
+                    HStack(spacing: 8) {
+                        Text("Height:").frame(width: 45, alignment: .leading)
+                        SliderPlusNegative(value: $generalSettings.notchHeightFineTune, range: -24...24, step: 1)
                         let num = generalSettings.notchHeightFineTune
                         Text("\(num > 0 ? "+" : "")\(Int(num))")
-                            .frame(width: 24, alignment: .trailing)
+                            .frame(width: 24, alignment: .leading)
                     }
             }
             
