@@ -37,7 +37,7 @@ import Defaults
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Initialize (in memory ig) all singletons
-        CalendarManager.configureWithAppName("NotchNook")
+        _ = CalendarManager.shared
         _ = ShortcutsManager.shared
         _ = MediaControls.shared
         _ = VolumeMonitor.shared

@@ -11,7 +11,6 @@ import Algorithms
 import SwiftDate
 import Defaults
 
-
 @Observable
 class CalendarManager {
     
@@ -33,7 +32,10 @@ class CalendarManager {
     }
     var authorizationStatus: EKAuthorizationStatus = .notDetermined
     
-    public static var calendarTitle: String?
+    public var availableCalendars: [EKCalendar] {
+        eventStore.calendars(for: .event)
+    }
+    private var selectedCalendars: [EKCalendar] = []
     
     /// An object that accesses the user's calendar and reminder events and supports the scheduling of new events.
     public private(set) var eventStore = EKEventStore()
@@ -52,6 +54,8 @@ class CalendarManager {
                 self?.scheduleLiveActivities()
             }
         }
+        
+        loadSelectedCalendars()
     }
 
     deinit {
@@ -59,10 +63,11 @@ class CalendarManager {
         dailyTimer?.invalidate()
     }
     
-    /// Configuration point
-    /// - Parameter appName: the calendar's title
-    public static func configureWithAppName(_ appName: String) {
-        self.calendarTitle = appName
+    private func loadSelectedCalendars() {
+        let settings = Defaults[.calendarWidgetSettings]
+        selectedCalendars = eventStore.calendars(for: .event).filter {
+            settings.selectedCalendars.contains($0.calendarIdentifier)
+        }
     }
     
     @objc private func storeChanged(_ notification: Notification) {
@@ -72,6 +77,16 @@ class CalendarManager {
     }
     
     @objc private func dailyTask() {
+        Task {
+            try? await fetchEvents()
+        }
+    }
+    
+    public func updateSelectedCalendars(_ calendars: [EKCalendar]) {
+        selectedCalendars = calendars
+        var settings = Defaults[.calendarWidgetSettings]
+        settings.selectedCalendars = calendars.map { $0.calendarIdentifier }
+        Defaults[.calendarWidgetSettings] = settings
         Task {
             try? await fetchEvents()
         }
@@ -123,7 +138,14 @@ class CalendarManager {
     public func fetchEvents() async throws -> [EKEvent] {
         try await accessCalendar()
         
-        let calendars = self.eventStore.calendars(for: .event)
+        guard !selectedCalendars.isEmpty else {
+            print("No calendars selected")
+            await MainActor.run {
+                self.events = []
+                self.eventsDatesDict = [:]
+            }
+            return []
+        }
         
         let fetchClosure: @Sendable (EKEventStore, Date, Date, [EKCalendar]) -> [EKEvent] = { store, start, end, cals in
             let pred = store.predicateForEvents(withStart: start, end: end, calendars: cals)
@@ -140,7 +162,7 @@ class CalendarManager {
         
         // Perform the fetch on a background queue
         let fetchedEvents = await Task.detached {
-            fetchClosure(self.eventStore, startDate, endDate, calendars)
+            fetchClosure(self.eventStore, startDate, endDate, self.selectedCalendars)
         }.value
         
         await MainActor.run {

@@ -69,7 +69,7 @@ struct CalendarEventView: View {
     var dividerView: some View {
         VStack(spacing: -1) {
             Color.nonShockingWhite.opacity(0.1).frame(width: 1, height: 6)
-            Circle().fill(.blue).frame(Self.blueCircleSize)
+            Circle().fill(Color(event.calendar.cgColor)).frame(Self.blueCircleSize)
             Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
         }
     }

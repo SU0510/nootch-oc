@@ -12,6 +12,7 @@ struct CalendarWidgetSettings: WidgetPrefs {
     var shouldShowTodayPastEvents: Bool = false
     var numberOfDaysBehindToDisplay: Int = 7
     var numberOfDaysAheadToDisplay: Int = 7
+    var selectedCalendars: [String] = []
 }
 
  

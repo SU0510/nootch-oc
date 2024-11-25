@@ -25,6 +25,7 @@
 		365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */; };
 		3663DD952CDEA51A008E17E5 /* fine-tuning-height.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
+		3676B04D2CF10CF9007449EE /* ColoredToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */; };
 		36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A172CC0623800DD1E16 /* LanguageData.swift */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
@@ -406,6 +407,7 @@
 		365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightFineTuningView.swift; sourceTree = "<group>"; };
 		3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fine-tuning-height.mp4"; sourceTree = "<group>"; };
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
+		3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredToggleStyle.swift; sourceTree = "<group>"; };
 		36796A172CC0623800DD1E16 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
@@ -1476,6 +1478,7 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */,
 				3A8507702C4B3E2E0092B135 /* Indicator */,
 				3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */,
 				EC47FCA52C0BA33900591811 /* intro */,
@@ -2266,6 +2269,7 @@
 				3A1691E62C2FB2430014C326 /* ResignFirstResponderKey.swift in Sources */,
 				EC0E30EE2C0433960060B47E /* TrayLiveActivitySettingsView.swift in Sources */,
 				EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */,
+				3676B04D2CF10CF9007449EE /* ColoredToggleStyle.swift in Sources */,
 				EC8D5FF62BFAE7AB00E67ECC /* TopBarView.swift in Sources */,
 				36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */,
 				EC0E31192C0575D30060B47E /* ArrayPositionEnum.swift in Sources */,
