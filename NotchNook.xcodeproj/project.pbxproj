@@ -1759,7 +1759,6 @@
 			children = (
 				3A105FD12C1BADC40015EC66 /* liveActivities */,
 				EC8D60072BFAE91D00E67ECC /* pieces */,
-				EC2DD1DF2C028690001FD54E /* TopBarSpacerView.swift */,
 				EC0E30F22C0438660060B47E /* MockTopBar.swift */,
 				EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */,
 			);
@@ -1772,6 +1771,7 @@
 				EC8D5FFB2BFAE89400E67ECC /* MiniPlayerView.swift */,
 				EC8D5FF72BFAE7FF00E67ECC /* TopBarTabsView.swift */,
 				EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */,
+				EC2DD1DF2C028690001FD54E /* TopBarSpacerView.swift */,
 			);
 			path = pieces;
 			sourceTree = "<group>";

@@ -40,10 +40,15 @@ struct TopBarView: View, Equatable {
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.traySettings) private var traySettings
     @Environment(\.nookWidgetsWidth) private var nookWidgetsWidth
+    @Environment(\.generalSettings) private var generalSettings
     
     var collapsed: Bool {
         let width = notchNook.mode == .nook ? nookWidgetsWidth : traySettings.size.width
         return width < .init(9)
+    }
+    
+    var shouldHide: Bool {
+        (notchSize.height == 0 && notchNook.mode == .closed && (liveActivities.isEmpty || generalSettings.transparentHandle)) || isHidden
     }
 
     var body: some View {
@@ -51,30 +56,40 @@ struct TopBarView: View, Equatable {
         let mode = notchNook.mode
         let liveActivities = ActiveLiveActivitiesManager.shared.activeLiveActivities
         let shouldShowContent = !isHidden && !trialOver
-        let shouldHide = (notchSize.height == 0 && mode == .closed && liveActivities.isEmpty) || isHidden
         
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                if shouldShowContent {
-                    contentView(isLeft: true)
+        if !shouldHide {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    if shouldShowContent {
+                        contentView(isLeft: true)
+                    }
+                    
+                    if (mode != .closed && !isHidden) || !liveActivities.isEmpty {
+                        TopBarSpacerView(height: height)
+                    }
+                    
+                    if shouldShowContent {
+                        contentView(isLeft: false)
+                    }
                 }
-                
-                if (mode != .closed && !isHidden) || !liveActivities.isEmpty {
-                    TopBarSpacerView(height: height)
+                .animation(.smooth(extraBounce: 0.25), value: liveActivities)
+                .animation(.smooth(extraBounce: 0.25), value: shouldHide)
+                .background {
+                    HStack(spacing: 0) {
+                        let shouldShowArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
+                        backgroundContentView(isLeft: true, shouldShowArrows: shouldShowArrows)
+                        
+                        TopBarSpacerView(height: height)
+                        
+                        backgroundContentView(isLeft: false, shouldShowArrows: shouldShowArrows)
+                    }
                 }
-                
-                if shouldShowContent {
-                    contentView(isLeft: false)
-                }
+                .frame(height: getHeight(notchSize.height))
+                .fixedSize(horizontal: false, vertical: true)
+                .zIndex(1)
             }
-            .animation(.smooth(extraBounce: 0.25), value: liveActivities)
-            .background {
-                backgroundView(height: height)
-            }
-            .frame(height: shouldHide ? nil : height)
-            .fixedSize(horizontal: false, vertical: true)
-            .zIndex(1)
         }
+
         if let quickPeeks = notchNook.quickPeeks {
             QuickPeeksView(quickPeeks: quickPeeks)
                 .id(quickPeeks)
@@ -86,10 +101,14 @@ struct TopBarView: View, Equatable {
         Group {
             switch notchNook.mode {
                 case .closed:
-                    LiveActivityView(side: isLeft ? .left : .right, activeActivities: liveActivities)
-                        .frame(width: Self.liveActionWidth)
+                    if !shouldHide {
+                        LiveActivityView(side: isLeft ? .left : .right, activeActivities: liveActivities)
+                            .frame(width: Self.liveActionWidth)
+                    }
+                    
                 case .dragging:
                     EmptyView()
+                    
                 case .nook, .tray:
                     if isLeft {
                         TopBarTabsView(collapsed: collapsed)
@@ -102,7 +121,7 @@ struct TopBarView: View, Equatable {
                                 openSettings(nil)
                             }
                         }
-                        .frame(minWidth: collapsed ? Self.collapsedTopBarHalfWidth : nil, maxWidth: .infinity, alignment: .trailing)
+                        .frame(minWidth: collapsed ? TopBarView.collapsedTopBarHalfWidth : nil, maxWidth: .infinity, alignment: .trailing)
                     }
             }
         }
@@ -110,17 +129,6 @@ struct TopBarView: View, Equatable {
         .scaleEffect(x: scaleX, y: scaleY, anchor: isLeft ? .topTrailing : .topLeading)
         .transition(NotchView.defaultTransition(anchor: isLeft ? .trailing : .leading, delay: 0.075))
         .allowsHitTesting(liveActivitiesSettings.interactive || notchNook.mode == .nook || notchNook.mode == .tray)
-    }
-    
-    private func backgroundView(height: CGFloat) -> some View {
-        HStack(spacing: 0) {
-            let shouldShowArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
-            backgroundContentView(isLeft: true, shouldShowArrows: shouldShowArrows)
-            
-            TopBarSpacerView(height: height)
-            
-            backgroundContentView(isLeft: false, shouldShowArrows: shouldShowArrows)
-        }
     }
     
     private func backgroundContentView(isLeft: Bool, shouldShowArrows: Bool) -> some View {

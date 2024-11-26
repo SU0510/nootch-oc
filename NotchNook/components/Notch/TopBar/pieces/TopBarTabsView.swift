@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct TopBarTabsView: View {
+    
     var collapsed: Bool
     @Environment(\.notchNook) private var notchNook
     @Environment(\.generalSettings) private var generalSettings
     
-    
     var body: some View {
         HStack(spacing: 2) {
-            
             TopBarTabView(
                 icon: "lamp.desk.fill",
                 label: collapsed ? nil : String(localized: "Nook"),
