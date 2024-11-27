@@ -15,13 +15,18 @@ struct VibratingCircleView: NSViewRepresentable {
     func makeNSView(context: Context) -> VibratingCircleNSView {
         let view = VibratingCircleNSView(frame: .zero)
         view.color = NSColor(color)
-        view.startAnimating()
         return view
     }
     
     func updateNSView(_ nsView: VibratingCircleNSView, context: Context) {
         nsView.color = NSColor(color)
         nsView.isPlaying = isPlaying
+    }
+    
+    static func dismantleNSView(_ nsView: VibratingCircleNSView, coordinator: ()) {
+        nsView.isPlaying = false
+        nsView.cleanup()
+        nsView.removeFromSuperview()
     }
 }
 
@@ -40,13 +45,12 @@ class VibratingCircleNSView: NSView {
     
     private var displayLink: CVDisplayLink?
     private var startTime: TimeInterval = 0
-    private let updateInterval: TimeInterval = 1.0 / 22.0 // 22 FPS
+    private let updateInterval: TimeInterval = 1.0 / 10.0 // 10 FPS is enough for this effect
     private var lastUpdateTime: TimeInterval = 0
     private let amplitude: CGFloat = 3.0
     private let frequency: CGFloat = 2.0
     private let blur: CGFloat = 0.15
     private let velocity: CGFloat = 0.7
-    private let smoothness: Int = 300
     private let lineWidth: CGFloat = 0.8
     private let noiseGenerator = PerlinNoiseGenerator()
     private let layerCount = 4
@@ -90,27 +94,38 @@ class VibratingCircleNSView: NSView {
     }
     
     private func setupDisplayLink() {
-        CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
+        if let existingLink = displayLink {
+            CVDisplayLinkStop(existingLink)
+            displayLink = nil
+        }
         
+        CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
         guard let displayLink else { return }
-        CVDisplayLinkSetOutputHandler(displayLink) { [weak self] (_, _, _, _, _) -> CVReturn in
+        
+        let handler: CVDisplayLinkOutputHandler = { [weak self] (_, _, _, _, _) -> CVReturn in
+            guard let self = self, self.isPlaying else { return kCVReturnSuccess }
+            
             let currentTime = CACurrentMediaTime()
-            guard let self = self, currentTime - self.lastUpdateTime >= self.updateInterval else {
+            if currentTime - self.lastUpdateTime < self.updateInterval {
                 return kCVReturnSuccess
             }
             
             self.lastUpdateTime = currentTime
-            DispatchQueue.main.async {
-                self.updateLayers()
+            DispatchQueue.main.async { [weak self] in
+                self?.updateLayers()
             }
             return kCVReturnSuccess
         }
+        
+        CVDisplayLinkSetOutputHandler(displayLink, handler)
     }
     
     // MARK: - Lifecycle
     
     deinit {
         stopAnimating()
+        layers.forEach { $0.removeFromSuperlayer() }
+        layers.removeAll()
     }
     
     override func layout() {
@@ -122,32 +137,53 @@ class VibratingCircleNSView: NSView {
 
     func startAnimating() {
         guard isPlaying else { return }
-        if displayLink == nil {
-            setupDisplayLink()
-        }
+        setupDisplayLink()
         guard let displayLink else { return }
         CVDisplayLinkStart(displayLink)
     }
     
     func stopAnimating() {
-        if displayLink != nil {
-            CVDisplayLinkStop(displayLink!)
-            displayLink = nil
+        if let displayLink = displayLink {
+            CVDisplayLinkStop(displayLink)
         }
+        displayLink = nil
+        lastUpdateTime = 0
+        startTime = 0
+        
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        layers.forEach { $0.removeAllAnimations() }
+        CATransaction.commit()
+    }
+    
+    func cleanup() {
+        stopAnimating()
+        displayLink = nil
+        layers.forEach { $0.removeFromSuperlayer() }
+        layers.removeAll()
+        layer?.sublayers?.removeAll()
     }
     
     // MARK: - Private Methods
     
     private func updateLayers() {
+        guard !layers.isEmpty else { return }
+        
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        
         let rect = calculateDrawingRect()
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = min(rect.width, rect.height) / 2
         
         for (index, layer) in layers.enumerated() {
-            let path = createVibratingCirclePath(center: center, radius: radius, layerIndex: index)
-            layer.path = path
-            layer.shadowRadius = blur
+            if layer.superlayer == nil {
+                self.layer?.addSublayer(layer)
+            }
+            layer.path = createVibratingCirclePath(center: center, radius: radius, layerIndex: index)
         }
+        
+        CATransaction.commit()
     }
     
     private func updateLayersColor() {
@@ -159,20 +195,26 @@ class VibratingCircleNSView: NSView {
     
     private func createVibratingCirclePath(center: CGPoint, radius: CGFloat, layerIndex: Int) -> CGPath {
         let path = CGMutablePath()
-        let numPoints = smoothness
+        let numPoints = 50
         let angleIncrement = 2 * .pi / CGFloat(numPoints)
         let elapsedTime = getElapsedTime()
+        
+        var points = [CGPoint]()
+        points.reserveCapacity(numPoints + 1)
         
         for i in 0...numPoints {
             let angle = CGFloat(i) * angleIncrement
             let dynamicRadius = calculateDynamicRadius(angle: angle, elapsedTime: elapsedTime, baseRadius: radius, layerIndex: layerIndex)
-            if dynamicRadius.isNaN || dynamicRadius.isInfinite {
-                continue
-            }
-            let point = calculatePoint(center: center, radius: dynamicRadius, angle: angle)
-            addPointToPath(path: path, point: point, isFirstPoint: i == 0)
+            if dynamicRadius.isNaN || dynamicRadius.isInfinite { continue }
+            points.append(calculatePoint(center: center, radius: dynamicRadius, angle: angle))
         }
-        path.closeSubpath()
+        
+        if let first = points.first {
+            path.move(to: first)
+            points.forEach { path.addLine(to: $0) }
+            path.closeSubpath()
+        }
+        
         return path
     }
     
@@ -193,33 +235,10 @@ class VibratingCircleNSView: NSView {
         return bounds.insetBy(dx: insetAmount, dy: insetAmount)
     }
 
-    private func createVibratingCirclePath(center: CGPoint, radius: CGFloat) -> CGPath {
-        let path = CGMutablePath()
-        let numPoints = 100
-        let angleIncrement = 2 * .pi / CGFloat(numPoints)
-        let elapsedTime = getElapsedTime()
-
-        for i in 0...numPoints {
-            let angle = CGFloat(i) * angleIncrement
-            let dynamicRadius = calculateDynamicRadius(angle: angle, elapsedTime: elapsedTime, baseRadius: radius)
-            if dynamicRadius.isNaN || dynamicRadius.isInfinite {
-                continue
-            }
-            let point = calculatePoint(center: center, radius: dynamicRadius, angle: angle)
-            addPointToPath(path: path, point: point, isFirstPoint: i == 0)
-        }
-        path.closeSubpath()
-        return path
-    }
-
     private func getElapsedTime() -> CGFloat {
         let currentTime = CACurrentMediaTime()
         if startTime == 0 { startTime = currentTime }
         return CGFloat(currentTime - startTime)
-    }
-
-    private func calculateDynamicRadius(angle: CGFloat, elapsedTime: CGFloat, baseRadius: CGFloat) -> CGFloat {
-        return baseRadius + sin(elapsedTime * frequency + angle * CGFloat(100 / 5)) * amplitude
     }
 
     private func calculatePoint(center: CGPoint, radius: CGFloat, angle: CGFloat) -> CGPoint {

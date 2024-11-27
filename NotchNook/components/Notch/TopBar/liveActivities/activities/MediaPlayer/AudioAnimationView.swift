@@ -42,7 +42,7 @@ struct AudioAnimationView: View {
                             
                         case .vibratingCircle:
                             VibratingCircleView(color: color, isPlaying: isPlaying)
-                                .frame(width: 24, height: 24)
+                                .padding(2)
                     }
 
                 }
