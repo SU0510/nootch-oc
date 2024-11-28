@@ -19,7 +19,6 @@ struct DropArea: View {
         HStack(spacing: 8) {
             
             Group {
-                
                 DropAreaTrayTargetView(hovered: hoveredDropTargetID == TrayView.id)
                         .bindDropAreaCoords(
                             coordinatedSpace: .named("drop-zone"),

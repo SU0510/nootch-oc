@@ -72,7 +72,7 @@ struct NotchView: View {
     }
     
     private var nonNotchHeight: CGFloat {
-        generalSettings.transparentHandle ? 0 : generalSettings.handleSize.height
+        generalSettings.transparentHandle ? 0.5 : generalSettings.handleSize.height
     }
     
     var body: some View {
