@@ -43,7 +43,8 @@ class VibratingCircleNSView: NSView {
         }
     }
     
-    private var displayLink: CVDisplayLink?
+    private var displayLinkHandler: DisplayLinkHandler?
+
     private var startTime: TimeInterval = 0
     private let updateInterval: TimeInterval = 1.0 / 10.0 // 10 FPS is enough for this effect
     private var lastUpdateTime: TimeInterval = 0
@@ -94,43 +95,20 @@ class VibratingCircleNSView: NSView {
     }
     
     private func setupDisplayLink() {
-        if let existingLink = displayLink {
-            CVDisplayLinkStop(existingLink)
-            displayLink = nil
+        displayLinkHandler = DisplayLinkHandler(target: self, fps: 10) { [weak self] in
+            self?.updateLayers()
         }
-        
-        CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
-        guard let displayLink else { return }
-        
-        let handler: CVDisplayLinkOutputHandler = { [weak self] (_, _, _, _, _) -> CVReturn in
-            guard let self = self, self.isPlaying else { return kCVReturnSuccess }
-            
-            let currentTime = CACurrentMediaTime()
-            if currentTime - self.lastUpdateTime < self.updateInterval {
-                return kCVReturnSuccess
-            }
-            
-            self.lastUpdateTime = currentTime
-            DispatchQueue.main.async { [weak self] in
-                self?.updateLayers()
-            }
-            return kCVReturnSuccess
-        }
-        
-        CVDisplayLinkSetOutputHandler(displayLink, handler)
     }
     
     // MARK: - Lifecycle
     
-    deinit {
-        stopAnimating()
-        layers.forEach { $0.removeFromSuperlayer() }
-        layers.removeAll()
-    }
-    
     override func layout() {
         super.layout()
         updateLayers()
+    }
+    
+    deinit {
+        cleanup()
     }
     
     // MARK: - Public Methods
@@ -138,15 +116,11 @@ class VibratingCircleNSView: NSView {
     func startAnimating() {
         guard isPlaying else { return }
         setupDisplayLink()
-        guard let displayLink else { return }
-        CVDisplayLinkStart(displayLink)
+        displayLinkHandler?.start()
     }
     
     func stopAnimating() {
-        if let displayLink = displayLink {
-            CVDisplayLinkStop(displayLink)
-        }
-        displayLink = nil
+        displayLinkHandler?.stop()
         lastUpdateTime = 0
         startTime = 0
         
@@ -158,7 +132,7 @@ class VibratingCircleNSView: NSView {
     
     func cleanup() {
         stopAnimating()
-        displayLink = nil
+        displayLinkHandler = nil
         layers.forEach { $0.removeFromSuperlayer() }
         layers.removeAll()
         layer?.sublayers?.removeAll()

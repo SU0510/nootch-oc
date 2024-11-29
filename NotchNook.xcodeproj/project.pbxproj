@@ -17,6 +17,7 @@
 		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
 		3652AA882CB9A17300F217E7 /* NoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652AA872CB9A17100F217E7 /* NoteDocument.swift */; };
 		3652AA8A2CBEE7EE00F217E7 /* LanguageDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */; };
+		3658E6942CFA3DC500EBEE93 /* DisplayLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */; };
 		365B15B32CB871D100032BD0 /* RichToolbarButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */; };
 		365B15B62CB8721300032BD0 /* RichToolbarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */; };
 		365B15B82CB8723300032BD0 /* ToolbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */; };
@@ -399,6 +400,7 @@
 		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
 		3652AA872CB9A17100F217E7 /* NoteDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDocument.swift; sourceTree = "<group>"; };
 		3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDetector.swift; sourceTree = "<group>"; };
+		3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkHandler.swift; sourceTree = "<group>"; };
 		365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonConfiguration.swift; sourceTree = "<group>"; };
 		365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonView.swift; sourceTree = "<group>"; };
 		365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtonStyle.swift; sourceTree = "<group>"; };
@@ -798,6 +800,7 @@
 		367982D72C6155BD00BEB1F2 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */,
 				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
 				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
@@ -2115,6 +2118,7 @@
 				EC0E31132C0566B80060B47E /* MediaWidgetSettings.swift in Sources */,
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
+				3658E6942CFA3DC500EBEE93 /* DisplayLinkHandler.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
 				BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */,
 				3652AA882CB9A17300F217E7 /* NoteDocument.swift in Sources */,
