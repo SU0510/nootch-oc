@@ -44,23 +44,25 @@ class AudioSpectrographNSView: NSView {
     private let barsThickness: CGFloat = 2
     
     private var barLayers: [CAShapeLayer] = []
-    private var displayLink: CVDisplayLink?
+    private var displayLinkHandler: DisplayLinkHandler?
     private var targetHeights: [CGFloat] = []
     private var currentHeights: [CGFloat] = []
     private var boundsWidth: CGFloat = 0
     private var animating = false
-    private var isAnimatingBackTimer: Timer?
-    
     private var isBeingDeallocated = false
+    private var stopAnimationTimer: Timer?
     
     var isPlaying: Bool = false {
         didSet {
             if isPlaying {
-                TimersManager.shared.removeTimer(id)
+                stopAnimationTimer?.invalidate()
+                stopAnimationTimer = nil
                 startAnimation()
             } else {
-                TimersManager.shared.addTimer(id, delay: 0.5) { _ in
-                    self.stopAnimation()
+                stopAnimationTimer?.invalidate()
+                stopAnimationTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+                    self?.stopAnimation()
+                    self?.stopAnimationTimer = nil
                 }
             }
         }
@@ -118,31 +120,19 @@ class AudioSpectrographNSView: NSView {
     }
     
     private func setupDisplayLink() {
-        CVDisplayLinkCreateWithActiveCGDisplays(&displayLink)
-        guard let displayLink = displayLink else { return }
-        
-        let displayLinkOutputCallback: CVDisplayLinkOutputCallback = { (displayLink, _, _, _, _, displayLinkContext) -> CVReturn in
-            let audioSpectrographView = Unmanaged<AudioSpectrographNSView>.fromOpaque(displayLinkContext!).takeUnretainedValue()
-            DispatchQueue.main.async { [weak audioSpectrographView] in
-                audioSpectrographView?.updateAnimation()
-            }
-            return kCVReturnSuccess
+        displayLinkHandler = DisplayLinkHandler(target: self, fps: 60) { [weak self] in
+            self?.updateAnimation()
         }
-        
-        let userInfo = Unmanaged.passUnretained(self).toOpaque()
-        CVDisplayLinkSetOutputCallback(displayLink, displayLinkOutputCallback, userInfo)
     }
     
     private func startAnimation() {
-        guard let displayLink = displayLink, !CVDisplayLinkIsRunning(displayLink) else { return }
+        displayLinkHandler?.start()
         self.animating = true
-        CVDisplayLinkStart(displayLink)
     }
     
     private func stopAnimation() {
-        guard let displayLink = displayLink, CVDisplayLinkIsRunning(displayLink) else { return }
+        displayLinkHandler?.stop()
         animating = false
-        CVDisplayLinkStop(displayLink)
         resetBars()
     }
     
@@ -158,7 +148,7 @@ class AudioSpectrographNSView: NSView {
         }
     }
     
-    private func updateAnimation() {
+    func updateAnimation() {
         self.updateTargetHeights()
         self.interpolateHeights()
         self.updateBarHeights()
@@ -234,11 +224,6 @@ class AudioSpectrographNSView: NSView {
         guard !isBeingDeallocated else { return }
         
         stopAnimation()
-        if let displayLink = displayLink {
-            CVDisplayLinkStop(displayLink)
-            CVDisplayLinkSetOutputCallback(displayLink, nil, nil)
-        }
-        displayLink = nil
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self, !self.isBeingDeallocated else { return }
@@ -257,6 +242,8 @@ class AudioSpectrographNSView: NSView {
     
     deinit {
         isBeingDeallocated = true
+        stopAnimationTimer?.invalidate()
+        displayLinkHandler = nil
         
         // Perform synchronous cleanup on the main thread
         if Thread.isMainThread {
@@ -267,4 +254,5 @@ class AudioSpectrographNSView: NSView {
             }
         }
     }
+
 }

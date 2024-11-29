@@ -17,6 +17,7 @@
 		363709562C572508004D20BB /* WindowManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363709552C572508004D20BB /* WindowManagerKey.swift */; };
 		3652AA882CB9A17300F217E7 /* NoteDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652AA872CB9A17100F217E7 /* NoteDocument.swift */; };
 		3652AA8A2CBEE7EE00F217E7 /* LanguageDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */; };
+		3658E6942CFA3DC500EBEE93 /* DisplayLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */; };
 		365B15B32CB871D100032BD0 /* RichToolbarButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */; };
 		365B15B62CB8721300032BD0 /* RichToolbarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */; };
 		365B15B82CB8723300032BD0 /* ToolbarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */; };
@@ -55,7 +56,6 @@
 		3A0C50222C534B930003867F /* BrightnessIndicatorBarWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50212C534B930003867F /* BrightnessIndicatorBarWrapperView.swift */; };
 		3A0C50242C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50232C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift */; };
 		3A0C50262C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50252C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift */; };
-		3A0C502A2C5480700003867F /* TimersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50292C5480700003867F /* TimersManager.swift */; };
 		3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */; };
 		3A0D90AF2C27DA24004A41F4 /* getShortVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */; };
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
@@ -372,8 +372,6 @@
 		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
 		EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */; };
 		EC8D60592BFFEEF500E67ECC /* MediaControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60582BFFEEF500E67ECC /* MediaControls.swift */; };
-		EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */; };
-		EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605C2C00035300E67ECC /* AppMonitor.swift */; };
 		EC8D60632C001BB500E67ECC /* wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60622C001BB500E67ECC /* wait.swift */; };
 		EC8D60652C001D2D00E67ECC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60642C001D2D00E67ECC /* Track.swift */; };
 		EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60662C01697100E67ECC /* iconForApp.swift */; };
@@ -399,6 +397,7 @@
 		363709552C572508004D20BB /* WindowManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManagerKey.swift; sourceTree = "<group>"; };
 		3652AA872CB9A17100F217E7 /* NoteDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDocument.swift; sourceTree = "<group>"; };
 		3652AA892CBEE7E700F217E7 /* LanguageDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDetector.swift; sourceTree = "<group>"; };
+		3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkHandler.swift; sourceTree = "<group>"; };
 		365B15B22CB871CE00032BD0 /* RichToolbarButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonConfiguration.swift; sourceTree = "<group>"; };
 		365B15B52CB8721100032BD0 /* RichToolbarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarButtonView.swift; sourceTree = "<group>"; };
 		365B15B72CB8723100032BD0 /* ToolbarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtonStyle.swift; sourceTree = "<group>"; };
@@ -435,7 +434,6 @@
 		3A0C50212C534B930003867F /* BrightnessIndicatorBarWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorBarWrapperView.swift; sourceTree = "<group>"; };
 		3A0C50232C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorBarCapsuleView.swift; sourceTree = "<group>"; };
 		3A0C50252C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorSpeakerWaveShape.swift; sourceTree = "<group>"; };
-		3A0C50292C5480700003867F /* TimersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersManager.swift; sourceTree = "<group>"; };
 		3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HScrollAllowingScrollWheelView.swift; sourceTree = "<group>"; };
 		3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getShortVersion.swift; sourceTree = "<group>"; };
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
@@ -743,8 +741,6 @@
 		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
 		EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isAppInstalled.swift; sourceTree = "<group>"; };
 		EC8D60582BFFEEF500E67ECC /* MediaControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControls.swift; sourceTree = "<group>"; };
-		EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObserverHelper.swift; sourceTree = "<group>"; };
-		EC8D605C2C00035300E67ECC /* AppMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMonitor.swift; sourceTree = "<group>"; };
 		EC8D60622C001BB500E67ECC /* wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wait.swift; sourceTree = "<group>"; };
 		EC8D60642C001D2D00E67ECC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		EC8D60662C01697100E67ECC /* iconForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconForApp.swift; sourceTree = "<group>"; };
@@ -798,6 +794,7 @@
 		367982D72C6155BD00BEB1F2 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */,
 				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
 				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
@@ -1375,7 +1372,6 @@
 				ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */,
 				EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */,
 				3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */,
-				3A0C50292C5480700003867F /* TimersManager.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -1631,8 +1627,6 @@
 				EC8D5FBC2BF9743200E67ECC /* Tray.swift */,
 				EC8D5FBE2BF9744800E67ECC /* TrayFile.swift */,
 				3A342B162C508900003C369C /* SystemAppMeta.swift */,
-				EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */,
-				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 				EC0E31022C0548A10060B47E /* NookGrid.swift */,
@@ -2115,6 +2109,7 @@
 				EC0E31132C0566B80060B47E /* MediaWidgetSettings.swift in Sources */,
 				EC0E30D82C0419760060B47E /* LiveActivitiesSettings.swift in Sources */,
 				EC758F802BF2F19B00B873B0 /* DropAreaTargetView.swift in Sources */,
+				3658E6942CFA3DC500EBEE93 /* DisplayLinkHandler.swift in Sources */,
 				EC8D5FF22BFACA4600E67ECC /* MediaPlayerWidgetView.swift in Sources */,
 				BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */,
 				3652AA882CB9A17300F217E7 /* NoteDocument.swift in Sources */,
@@ -2213,11 +2208,9 @@
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
 				3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */,
 				EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */,
-				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				3A3ABCEA2C2B70FD00132228 /* NotesWidgetSettings.swift in Sources */,
 				3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
-				3A0C502A2C5480700003867F /* TimersManager.swift in Sources */,
 				3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */,
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
 				EC47FCC92C0C067600591811 /* DropAreaGeneralSettingsTabView.swift in Sources */,
@@ -2252,7 +2245,6 @@
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */,
 				3A1691EF2C2FB5040014C326 /* CloseNotchKey.swift in Sources */,
-				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
 				EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */,
 				EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */,

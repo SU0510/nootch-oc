@@ -13,20 +13,25 @@ import Defaults
 class MediaControls {
     static let shared = MediaControls()
     
+    private var pauseActivityTimer: Timer?
+    
     var isPlaying: Bool = false {
         willSet {
-            let timerId = "pauseLiveActivityDismiss"
             if isPlaying != newValue {
                 if newValue {
-                    TimersManager.shared.removeTimer(timerId)
+                    pauseActivityTimer?.invalidate()
+                    pauseActivityTimer = nil
                 } else {
-                    TimersManager.shared.addTimer(timerId, delay: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs) { _ in
+                    pauseActivityTimer?.invalidate()
+                    pauseActivityTimer = Timer.scheduledTimer(withTimeInterval: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs, repeats: false) { [weak self] _ in
                         ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+                        self?.pauseActivityTimer = nil
                     }
                 }
             }
         }
     }
+    
     var track: Track = .empty
     
     private let bundle: CFBundle
@@ -36,6 +41,8 @@ class MediaControls {
     private let MRMediaRemoteGetNowPlayingApplicationIsPlaying: MRMediaRemoteGetNowPlayingApplicationIsPlayingFunction
     private let MRMediaRemoteGetNowPlayingApplicationPlaybackState: MRMediaRemoteGetNowPlayingApplicationPlaybackStateFunction
     private let MRMediaRemoteGetNowPlayingApplicationPID: MRMediaRemoteGetNowPlayingApplicationPIDFunction
+    
+    private var updateTrackTimer: Timer?
     
     private init() {
         guard let bundle = CFBundleCreate(kCFAllocatorDefault, NSURL(fileURLWithPath: "/System/Library/PrivateFrameworks/MediaRemote.framework")) else {
@@ -61,6 +68,10 @@ class MediaControls {
         
         self.monitorMediaRemoteNotifications()
         self.updateMediaInfo()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func monitorMediaRemoteNotifications() {
@@ -136,13 +147,18 @@ class MediaControls {
                             
                             newTrack.mediaApp = systemAppMeta
                             if self.track.isValidReplacement(newTrack) {
-                                TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
-                                    if self.track.isValidReplacement(newTrack) {
+                                // Debounce
+                                if let existingTimer = self.updateTrackTimer {
+                                    existingTimer.invalidate()
+                                }
+                                self.updateTrackTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+                                    if self?.track.isValidReplacement(newTrack) == true {
                                         DispatchQueue.main.async {
-                                            self.track = newTrack
-                                            self.updatePlaybackState()
+                                            self?.track = newTrack
+                                            self?.updatePlaybackState()
                                         }
                                     }
+                                    self?.updateTrackTimer = nil
                                 }
                             }
                         }
