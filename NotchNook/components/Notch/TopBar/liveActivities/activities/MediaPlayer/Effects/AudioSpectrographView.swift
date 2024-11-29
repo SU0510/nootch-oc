@@ -49,18 +49,20 @@ class AudioSpectrographNSView: NSView {
     private var currentHeights: [CGFloat] = []
     private var boundsWidth: CGFloat = 0
     private var animating = false
-    private var isAnimatingBackTimer: Timer?
-    
     private var isBeingDeallocated = false
+    private var stopAnimationTimer: Timer?
     
     var isPlaying: Bool = false {
         didSet {
             if isPlaying {
-                TimersManager.shared.removeTimer(id)
+                stopAnimationTimer?.invalidate()
+                stopAnimationTimer = nil
                 startAnimation()
             } else {
-                TimersManager.shared.addTimer(id, delay: 0.5) { _ in
-                    self.stopAnimation()
+                stopAnimationTimer?.invalidate()
+                stopAnimationTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+                    self?.stopAnimation()
+                    self?.stopAnimationTimer = nil
                 }
             }
         }
@@ -240,7 +242,7 @@ class AudioSpectrographNSView: NSView {
     
     deinit {
         isBeingDeallocated = true
-        TimersManager.shared.removeTimer(id)
+        stopAnimationTimer?.invalidate()
         displayLinkHandler = nil
         
         // Perform synchronous cleanup on the main thread

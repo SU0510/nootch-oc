@@ -13,20 +13,25 @@ import Defaults
 class MediaControls {
     static let shared = MediaControls()
     
+    private var pauseActivityTimer: Timer?
+    
     var isPlaying: Bool = false {
         willSet {
-            let timerId = "pauseLiveActivityDismiss"
             if isPlaying != newValue {
                 if newValue {
-                    TimersManager.shared.removeTimer(timerId)
+                    pauseActivityTimer?.invalidate()
+                    pauseActivityTimer = nil
                 } else {
-                    TimersManager.shared.addTimer(timerId, delay: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs) { _ in
+                    pauseActivityTimer?.invalidate()
+                    pauseActivityTimer = Timer.scheduledTimer(withTimeInterval: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs, repeats: false) { [weak self] _ in
                         ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+                        self?.pauseActivityTimer = nil
                     }
                 }
             }
         }
     }
+    
     var track: Track = .empty
     
     private let bundle: CFBundle
