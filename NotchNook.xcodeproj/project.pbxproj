@@ -373,8 +373,6 @@
 		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
 		EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */; };
 		EC8D60592BFFEEF500E67ECC /* MediaControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60582BFFEEF500E67ECC /* MediaControls.swift */; };
-		EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */; };
-		EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D605C2C00035300E67ECC /* AppMonitor.swift */; };
 		EC8D60632C001BB500E67ECC /* wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60622C001BB500E67ECC /* wait.swift */; };
 		EC8D60652C001D2D00E67ECC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60642C001D2D00E67ECC /* Track.swift */; };
 		EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60662C01697100E67ECC /* iconForApp.swift */; };
@@ -745,8 +743,6 @@
 		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
 		EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isAppInstalled.swift; sourceTree = "<group>"; };
 		EC8D60582BFFEEF500E67ECC /* MediaControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControls.swift; sourceTree = "<group>"; };
-		EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObserverHelper.swift; sourceTree = "<group>"; };
-		EC8D605C2C00035300E67ECC /* AppMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMonitor.swift; sourceTree = "<group>"; };
 		EC8D60622C001BB500E67ECC /* wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wait.swift; sourceTree = "<group>"; };
 		EC8D60642C001D2D00E67ECC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		EC8D60662C01697100E67ECC /* iconForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconForApp.swift; sourceTree = "<group>"; };
@@ -1634,8 +1630,6 @@
 				EC8D5FBC2BF9743200E67ECC /* Tray.swift */,
 				EC8D5FBE2BF9744800E67ECC /* TrayFile.swift */,
 				3A342B162C508900003C369C /* SystemAppMeta.swift */,
-				EC8D605A2C00011E00E67ECC /* NotificationObserverHelper.swift */,
-				EC8D605C2C00035300E67ECC /* AppMonitor.swift */,
 				EC8D60642C001D2D00E67ECC /* Track.swift */,
 				EC4173C82C0181B8002889E7 /* WindowsManager.swift */,
 				EC0E31022C0548A10060B47E /* NookGrid.swift */,
@@ -2217,7 +2211,6 @@
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
 				3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */,
 				EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */,
-				EC8D605B2C00011E00E67ECC /* NotificationObserverHelper.swift in Sources */,
 				3A3ABCEA2C2B70FD00132228 /* NotesWidgetSettings.swift in Sources */,
 				3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
@@ -2256,7 +2249,6 @@
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */,
 				3A1691EF2C2FB5040014C326 /* CloseNotchKey.swift in Sources */,
-				EC8D605D2C00035300E67ECC /* AppMonitor.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
 				EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */,
 				EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */,
