@@ -37,6 +37,8 @@ class MediaControls {
     private let MRMediaRemoteGetNowPlayingApplicationPlaybackState: MRMediaRemoteGetNowPlayingApplicationPlaybackStateFunction
     private let MRMediaRemoteGetNowPlayingApplicationPID: MRMediaRemoteGetNowPlayingApplicationPIDFunction
     
+    private var updateTrackTimer: Timer?
+    
     private init() {
         guard let bundle = CFBundleCreate(kCFAllocatorDefault, NSURL(fileURLWithPath: "/System/Library/PrivateFrameworks/MediaRemote.framework")) else {
             fatalError("Failed to load MediaRemote.framework")
@@ -61,6 +63,10 @@ class MediaControls {
         
         self.monitorMediaRemoteNotifications()
         self.updateMediaInfo()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func monitorMediaRemoteNotifications() {
@@ -136,13 +142,18 @@ class MediaControls {
                             
                             newTrack.mediaApp = systemAppMeta
                             if self.track.isValidReplacement(newTrack) {
-                                TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
-                                    if self.track.isValidReplacement(newTrack) {
+                                // Debounce
+                                if let existingTimer = self.updateTrackTimer {
+                                    existingTimer.invalidate()
+                                }
+                                self.updateTrackTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+                                    if self?.track.isValidReplacement(newTrack) == true {
                                         DispatchQueue.main.async {
-                                            self.track = newTrack
-                                            self.updatePlaybackState()
+                                            self?.track = newTrack
+                                            self?.updatePlaybackState()
                                         }
                                     }
+                                    self?.updateTrackTimer = nil
                                 }
                             }
                         }
