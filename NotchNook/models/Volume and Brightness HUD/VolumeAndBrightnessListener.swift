@@ -32,27 +32,33 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
         mediaKeyTap?.start()
         print("Media key monitoring started")
         
-        ObserveSystemWake()
+        startObservingSystemWakeUp()
         HUDManager.disableSystemHUD()
         attemptHUD()
+    }
+    
+    deinit {
+        cleanup()
+    }
+    
+    private func cleanup() {
+        stopBackgroundCloseHUD()
+        stopObservingSystemWakeUp()
+        
+        if mediaKeyTap != nil {
+            mediaKeyTap?.stop()
+            mediaKeyTap = nil
+        }
+        
+        sideEffects.removeAll()
     }
     
     func stop() {
         lock.lock()
         defer { lock.unlock() }
-        
-        guard mediaKeyTap != nil else {
-            print("VolumeAndBrightnessListener is not running")
-            return
-        }
-        
-        mediaKeyTap?.stop()
-        mediaKeyTap = nil
-        print("Media key monitoring stopped")
-        
-        stopBackgroundCloseHUD()
+
+        cleanup()
         HUDManager.enableSystemHUD()
-        stopObservingSystemWakeUp()
     }
     
     func addSideEffect(_ sideEffect: @escaping (MediaKey) -> Void, for id: String) {
@@ -98,13 +104,12 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
     private var systemWakeUpMonitor: Any?
     private var screenWakeUpMonitor: Any?
     
-    private func ObserveSystemWake() {
+    private func startObservingSystemWakeUp() {
         systemWakeUpMonitor = NSWorkspace.shared.notificationCenter.addObserver(
             forName: NSWorkspace.didWakeNotification,
             object: nil,
             queue: .main
-        ) { [weak self] _ in
-            print(Date(), ": System wakes up")
+        ) { _ in
             HUDManager.disableSystemHUD()
         }
         
@@ -112,8 +117,7 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
             forName: NSWorkspace.screensDidWakeNotification,
             object: nil,
             queue: .main
-        ) { [weak self] _ in
-            print(Date(), ": Screen wakes up")
+        ) { _ in
             HUDManager.disableSystemHUD()
         }
     }
