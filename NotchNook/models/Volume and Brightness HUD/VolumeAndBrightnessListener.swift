@@ -26,10 +26,7 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
         lock.lock()
         defer { lock.unlock() }
         
-        guard mediaKeyTap == nil else {
-            print("VolumeAndBrightnessListener is already running")
-            return
-        }
+        guard mediaKeyTap == nil else { return }
         
         mediaKeyTap = MediaKeyTap(delegate: self)
         mediaKeyTap?.start()

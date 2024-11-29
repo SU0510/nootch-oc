@@ -63,5 +63,26 @@ class NotchNookState {
         var iconColor: Color? = nil
         var anchor: UnitPoint = .topLeading
     }
+    
+    func cleanup() {
+        // Invalidate all timers
+        hiddenTimer?.invalidate()
+        hiddenTimer = nil
+        
+        indicatorTimer?.invalidate()
+        indicatorTimer = nil
+        
+        // Clear all state
+        hidden = false
+        indicator = nil
+        locked = false
+        _quickPeek = nil
+        mode = .closed
+    }
+    
+    deinit {
+        cleanup()
+    }
+    
 }
 

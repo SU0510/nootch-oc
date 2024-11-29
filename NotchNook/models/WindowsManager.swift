@@ -72,30 +72,33 @@ class WindowsManager {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @objc private func debouncedUpdateWindows() {
+    private func debouncedUpdateWindows() {
         updateWindowsWorkItem?.cancel()
         
         let workItem = DispatchWorkItem { [weak self] in
-            self?.updateWindows()
+            guard let self = self else { return }
+            if self.hasSignificantScreenChanges() {
+                self.updateWindows()
+            }
         }
         
         updateWindowsWorkItem = workItem
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: workItem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: workItem)
     }
     
     private func updateWindows() {
+        // Properly cleanup old display kits
         displayKits.forEach { kit in
-            kit.windowController.close()
+            kit.cleanup()
         }
+        displayKits.removeAll()
         
-        let screens = NSScreen.screens
-        
-        var newDisplaysKits = [DisplayKit]()
-        screens.forEach { screen in
-            let displayKit = self.setupDisplayKitForScreen(screen)
-            newDisplaysKits.append(displayKit)
+        autoreleasepool {
+            let newDisplaysKits = NSScreen.screens.map { screen in
+                setupDisplayKitForScreen(screen)
+            }
+            displayKits = newDisplaysKits
         }
-        displayKits = newDisplaysKits
         
         displayKits.forEach { $0.windowController.window?.orderFrontRegardless() }
     }
@@ -417,6 +420,22 @@ class WindowsManager {
         var screen: NSScreen
         var notchSize: CGSize
         var notchNook: NotchNookState
+        
+        func cleanup() {
+            if let window = windowController.window {
+                NotificationCenter.default.removeObserver(window)
+                
+                if let hostingView = window.contentView as? AcceptingFirstClickHostingView<RootView> {
+                    hostingView.rootView.resignFirstResponder = {}
+                    hostingView.rootView.makeKeyWindow = {}
+                }
+                window.contentView = nil
+            }
+            
+            windowController.close()
+            
+            notchNook.cleanup()
+        }
     }
 }
 
