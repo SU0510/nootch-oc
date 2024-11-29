@@ -16,10 +16,14 @@ class TimersManager {
     func addTimer(_ id: String, delay: Double, cb: @escaping (Timer) -> ()) {
         dispatchQueue.sync {
             if let foundTimer = timersDict[id] { foundTimer.invalidate() }
-            timersDict[id] = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { timer in
+            let timer = Timer(timeInterval: delay, repeats: false) { [weak self] timer in
                 cb(timer)
-                self.timersDict.removeValue(forKey: id)
+                self?.dispatchQueue.sync {
+                    self?.timersDict.removeValue(forKey: id)
+                }
             }
+            RunLoop.main.add(timer, forMode: .common)
+            timersDict[id] = timer
         }
     }
     
