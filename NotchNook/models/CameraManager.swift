@@ -31,6 +31,13 @@ class CameraManager {
         self.selectedDevice = allDevices.first(where: { $0.uniqueID == defaultDeviceID }) ?? allDevices.first
     }
     
+    deinit {
+        for widgetID in sessions.keys {
+            stopRunning(for: widgetID)
+        }
+        sessions.removeAll()
+    }
+    
     func captureSession(for widgetID: String) -> AVCaptureSession {
         if let existingSession = sessions[widgetID]?.session {
             return existingSession
@@ -76,12 +83,17 @@ class CameraManager {
     }
     
     func stopRunning(for widgetID: String) {
-        guard let (captureSession, _) = sessions[widgetID] else { return }
+        guard let (captureSession, videoOutput) = sessions[widgetID] else { return }
         
         if captureSession.isRunning {
+            captureSession.beginConfiguration()
+            captureSession.inputs.forEach { captureSession.removeInput($0) }
+            captureSession.outputs.forEach { captureSession.removeOutput($0) }
+            captureSession.commitConfiguration()
             captureSession.stopRunning()
         }
         
+        videoOutput.setSampleBufferDelegate(nil, queue: nil)
         sessions.removeValue(forKey: widgetID)
     }
     

@@ -17,8 +17,6 @@ import Observation
 class WindowsManager {
     
     static let shared = WindowsManager()
-    
-    @Environment(\.cameraManager) private var cameraManager
 
     var displayKits = [DisplayKit]()
     var settingsWindowController: SettingsWindowController?
@@ -76,10 +74,7 @@ class WindowsManager {
         updateWindowsWorkItem?.cancel()
         
         let workItem = DispatchWorkItem { [weak self] in
-            guard let self = self else { return }
-            if self.hasSignificantScreenChanges() {
-                self.updateWindows()
-            }
+            self?.updateWindows()
         }
         
         updateWindowsWorkItem = workItem
@@ -203,14 +198,7 @@ class WindowsManager {
                 isEditingText: false,
                 isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
-                showIndicator: { [weak self] indicator in
-                    guard let self = self else { return }
-                    if let mainDisplayKit = self.displayKits.first(where: { $0.screen == NSScreen.main }) {
-                        if let hostingView = mainDisplayKit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
-                            hostingView.rootView.notchNook.indicator = indicator
-                        }
-                    }
-                }
+                showIndicator: { [weak self] indicator, onAllScreens in self?.showIndicator(indicator, onAllScreens) }
             )
         )
 #else
@@ -231,14 +219,7 @@ class WindowsManager {
                 isEditingText: false,
                 isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
-                showIndicator: { [weak self] indicator in
-                    guard let self = self else { return }
-                    if let mainDisplayKit = self.displayKits.first(where: { $0.screen == NSScreen.main }) {
-                        if let hostingView = mainDisplayKit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> {
-                            hostingView.rootView.notchNook.indicator = indicator
-                        }
-                    }
-                }
+                showIndicator: { [weak self] indicator, onAllScreens in self?.showIndicator(indicator, onAllScreens) }
             )
         )
 #endif
@@ -302,6 +283,19 @@ class WindowsManager {
             notchSize: notchSize,
             notchNook: notchNook
         )
+    }
+    
+    private func showIndicator(_ indicator: Indicator?, _ onAllScreens: Bool) {
+        if onAllScreens {
+            displayKits.forEach { kit in
+                guard let hostingView = kit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> else { return }
+                hostingView.rootView.notchNook.indicator = indicator
+            }
+        } else {
+            guard let mainDisplayKit = displayKits.first(where: { $0.screen == NSScreen.main }) else { return }
+            guard let hostingView = mainDisplayKit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> else { return }
+            hostingView.rootView.notchNook.indicator = indicator
+        }
     }
     
     func getMostUpfrontWindowID() -> CGWindowID? {

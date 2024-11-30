@@ -11,7 +11,7 @@ import Defaults
 extension NotchView {
     struct SideEffectsModifier: ViewModifier {
         var viewModel: NotchViewModel
-        var showIndicator: (Indicator?) -> Void
+        var showIndicator: (Indicator?, Bool) -> Void
         var screen: NSScreen
         
         @Default(.intro) internal var intro
@@ -164,7 +164,7 @@ extension NotchView {
             withOptimizedAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 let indicator = Indicator(kind: kind, value: value)
                 notchNook.indicator = indicator
-                showIndicator(indicator)
+                showIndicator(indicator, liveActivitiesSettings.HUDReplacementShouldShowInAllScreens)
             }
         }
     }

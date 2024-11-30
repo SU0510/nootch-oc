@@ -15,6 +15,7 @@ struct LiveActivitiesSettings: Preferences {
     var interactive = true
     var enableQuickPeek = true
     var enableHUDReplacement = false
+    var HUDReplacementShouldShowInAllScreens = false
     var disableColorsOnAudioHUDReplacement = false
     var unhideAutomatically = true
     var quickPeekEvent = false

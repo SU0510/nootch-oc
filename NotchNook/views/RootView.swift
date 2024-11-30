@@ -31,7 +31,7 @@ struct RootView: View {
     var isEditingText: Bool
     var isKeyWindow: Bool
     var expandedNoteManager: ExpandedNoteManager
-    var showIndicator: (Indicator?) -> Void
+    var showIndicator: (Indicator?, _ onAllScreens: Bool) -> Void
         
     @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow
     @Environment(\.canBecomeKey) private var defaultCanBecomeKey

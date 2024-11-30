@@ -57,59 +57,48 @@ struct MirrorWidgetView: View {
     @ViewBuilder
     private var previewContent: some View {
         ZStack {
-            cameraView
-            overlayView
+            if mode == .mirroring {
+                CameraPreview(session: cameraManager.captureSession(for: widgetID), mirrorVideo: mirrorCameraInputWhenAvail)
+                    .scaledToFill()
+                    .mask {
+                        if generalSettings.preferRoundButtons {
+                            Circle().fill(.black)
+                        } else {
+                            RoundedRectangle(cornerRadius: 28, style: .continuous).fill(.black)
+                        }
+                    }
+                    .transition(.scaleAndBlur)
+            } else {
+                Color.selected
+                    .overlay {
+                        if mode == .loading {
+                            ProgressView()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+                                .opacity(0.5)
+                                .transition(.scaleAndBlur)
+                        } else {
+                            VStack(spacing: 0) {
+                                Image(systemName: NookWidget.mirror.icon)
+                                    .font(.system(size: 24, weight: .medium))
+                                Text(NookWidget.mirror.name)
+                                    .font(.system(size: 12, weight: .medium))
+                            }
+                            .foregroundStyle(.nonShockingWhite.opacity(0.5))
+                            .transition(.scaleAndBlur)
+                        }
+                    }
+                    .mask {
+                        if generalSettings.preferRoundButtons {
+                            Circle().fill(.black)
+                        } else {
+                            RoundedRectangle(cornerRadius: 28, style: .continuous).fill(.black)
+                        }
+                    }
+                    .transition(.scaleAndBlur)
+            }
         }
         .aspectRatio(1, contentMode: .fit)
-    }
-    
-    @ViewBuilder
-    private var cameraView: some View {
-        if mode == .mirroring {
-            CameraPreview(session: cameraManager.captureSession(for: widgetID), mirrorVideo: mirrorCameraInputWhenAvail)
-                .scaledToFill()
-                .mask {
-                    if generalSettings.preferRoundButtons {
-                        Circle().fill(.black)
-                    } else {
-                        RoundedRectangle(cornerRadius: 28, style: .continuous).fill(.black)
-                    }
-                }
-                .transition(.scaleAndBlur)
-        }
-    }
-    
-    @ViewBuilder
-    private var overlayView: some View {
-        if mode != .mirroring {
-            Color.selected
-                .overlay {
-                    if mode == .loading {
-                        ProgressView()
-                            .scaledToFit()
-                            .frame(width: 16, height: 16)
-                            .opacity(0.5)
-                            .transition(.scaleAndBlur)
-                    } else {
-                        VStack(spacing: 0) {
-                            Image(systemName: NookWidget.mirror.icon)
-                                .font(.system(size: 24, weight: .medium))
-                            Text(NookWidget.mirror.name)
-                                .font(.system(size: 12, weight: .medium))
-                        }
-                        .foregroundStyle(.nonShockingWhite.opacity(0.5))
-                        .transition(.scaleAndBlur)
-                    }
-                }
-                .mask {
-                    if generalSettings.preferRoundButtons {
-                        Circle().fill(.black)
-                    } else {
-                        RoundedRectangle(cornerRadius: 28, style: .continuous).fill(.black)
-                    }
-                }
-                .transition(.scaleAndBlur)
-        }
     }
     
     private func toggleCamera() {
@@ -179,6 +168,12 @@ struct CameraPreview: NSViewRepresentable {
         init(session: AVCaptureSession) {
             super.init(frame: .zero)
             setupLayer(session: session)
+        }
+        
+        deinit {
+            videoPreviewLayer.session = nil
+            videoPreviewLayer.removeFromSuperlayer()
+            videoPreviewLayer = nil
         }
         
         required init?(coder: NSCoder) {

@@ -62,7 +62,9 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .optionDescription(contentMaxWidth)
             }
             
+            // MARK: - section - HUD replacement
             Settings.Section(title: String(localized: "HUD replacement:"), bottomDivider: true) {
+                // MARK: toggle
                 HStack(spacing: 8) {
                     Toggle("Enable", isOn: $liveActivitiesSettings.enableHUDReplacement)
                         .disabled(disableHUDToggle)
@@ -78,20 +80,32 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     }
                     doAfter(2) { disableHUDToggle = false }
                 }
+                
+                // MARK: description
                 Text("This setting requires you to provide NotchNook with accessibility permissions.")
                     .optionDescription(contentMaxWidth)
                 
+                // MARK: license information
                 Text("Includes code from MediaKeyTap (MIT License) © 2016 Nicholas Hurden")
                     .italic()
                     .optionDescription(contentMaxWidth)
                 
+                // MARK: toggle - disable colors
                 Toggle("Disable colors on audio HUD replacement", isOn: $liveActivitiesSettings.disableColorsOnAudioHUDReplacement)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(width: contentMaxWidth, alignment: .leading)
+                    .disabled(!liveActivitiesSettings.enableHUDReplacement)
+                    .disabled(!liveActivitiesSettings.enabled)
+                
+                // MARK: toggle - show in all screens
+                Toggle("Show in all screens", isOn: $liveActivitiesSettings.HUDReplacementShouldShowInAllScreens)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(width: contentMaxWidth, alignment: .leading)
                     .disabled(!liveActivitiesSettings.enableHUDReplacement)
                     .disabled(!liveActivitiesSettings.enabled)
             }
             
+            // MARK: - section - handler (no-notch screens)
             Settings.Section(title: String(localized: "Handler (no-notch screens):")) {
                 CustomLabeled(title: String(localized: "Height")) {
                     SliderPlus(

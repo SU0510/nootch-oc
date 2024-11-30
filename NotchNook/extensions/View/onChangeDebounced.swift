@@ -24,9 +24,10 @@ struct DebouncedOnChangeModifier<Value: Equatable>: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onChange(of: value) { _, newValue in
-                workItem?.cancel() // Cancel the existing work item if it exists
-                let newWorkItem = DispatchWorkItem { [self] in
-                    self.action(newValue)
+                workItem?.cancel()
+                workItem = nil
+                let newWorkItem = DispatchWorkItem { [action] in
+                    action(newValue)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: newWorkItem)
                 workItem = newWorkItem // Store the new work item
