@@ -4943,11 +4943,7 @@
         }
       }
     },
-    "Authenticated with Setapp!" : {
-
-    },
     "Auto check for updates" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -5138,7 +5134,6 @@
       }
     },
     "Auto download updates" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -6281,6 +6276,9 @@
         }
       }
     },
+    "Calendars to show:" : {
+
+    },
     "Cancel" : {
       "localizations" : {
         "af" : {
@@ -6472,7 +6470,6 @@
       }
     },
     "Check for Updates…" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -11607,7 +11604,6 @@
       }
     },
     "Email" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -12940,9 +12936,6 @@
     "Enables a per note \"Code Mode\" toggle. It has automatic syntax detection and highlighting." : {
 
     },
-    "Enjoy NotchNook ❤️" : {
-
-    },
     "Export Note" : {
 
     },
@@ -13520,7 +13513,6 @@
       }
     },
     "Get a License" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -18096,7 +18088,6 @@
       }
     },
     "License Key" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -19239,7 +19230,6 @@
       }
     },
     "Manage Billing" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -25925,7 +25915,6 @@
       }
     },
     "Please enter a valid email" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -27638,7 +27627,6 @@
       }
     },
     "Register" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -30108,6 +30096,9 @@
           }
         }
       }
+    },
+    "Show in all screens" : {
+
     },
     "Show in fullscreen option" : {
 
@@ -35820,7 +35811,6 @@
       }
     },
     "Trial" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -37151,7 +37141,6 @@
       }
     },
     "Unregister" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
