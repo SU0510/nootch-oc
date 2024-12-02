@@ -32,33 +32,27 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
         mediaKeyTap?.start()
         print("Media key monitoring started")
         
-        startObservingSystemWakeUp()
+        startObservingSystemWake()
         HUDManager.disableSystemHUD()
         attemptHUD()
-    }
-    
-    deinit {
-        cleanup()
-    }
-    
-    private func cleanup() {
-        stopBackgroundCloseHUD()
-        stopObservingSystemWakeUp()
-        
-        if mediaKeyTap != nil {
-            mediaKeyTap?.stop()
-            mediaKeyTap = nil
-        }
-        
-        sideEffects.removeAll()
     }
     
     func stop() {
         lock.lock()
         defer { lock.unlock() }
-
-        cleanup()
+        
+        guard mediaKeyTap != nil else {
+            print("VolumeAndBrightnessListener is not running")
+            return
+        }
+        
+        mediaKeyTap?.stop()
+        mediaKeyTap = nil
+        print("Media key monitoring stopped")
+        
+        stopBackgroundCloseHUD()
         HUDManager.enableSystemHUD()
+        stopObservingSystemWakeUp()
     }
     
     func addSideEffect(_ sideEffect: @escaping (MediaKey) -> Void, for id: String) {
@@ -104,12 +98,13 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
     private var systemWakeUpMonitor: Any?
     private var screenWakeUpMonitor: Any?
     
-    private func startObservingSystemWakeUp() {
+    private func startObservingSystemWake() {
         systemWakeUpMonitor = NSWorkspace.shared.notificationCenter.addObserver(
             forName: NSWorkspace.didWakeNotification,
             object: nil,
             queue: .main
         ) { _ in
+            print(Date(), ": System wakes up")
             HUDManager.disableSystemHUD()
         }
         
@@ -118,6 +113,7 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
             object: nil,
             queue: .main
         ) { _ in
+            print(Date(), ": Screen wakes up")
             HUDManager.disableSystemHUD()
         }
     }

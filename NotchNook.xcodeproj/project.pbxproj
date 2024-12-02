@@ -56,6 +56,7 @@
 		3A0C50222C534B930003867F /* BrightnessIndicatorBarWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50212C534B930003867F /* BrightnessIndicatorBarWrapperView.swift */; };
 		3A0C50242C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50232C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift */; };
 		3A0C50262C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50252C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift */; };
+		3A0C502A2C5480700003867F /* TimersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50292C5480700003867F /* TimersManager.swift */; };
 		3A0D90AD2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */; };
 		3A0D90AF2C27DA24004A41F4 /* getShortVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */; };
 		3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */; };
@@ -434,6 +435,7 @@
 		3A0C50212C534B930003867F /* BrightnessIndicatorBarWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorBarWrapperView.swift; sourceTree = "<group>"; };
 		3A0C50232C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorBarCapsuleView.swift; sourceTree = "<group>"; };
 		3A0C50252C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorSpeakerWaveShape.swift; sourceTree = "<group>"; };
+		3A0C50292C5480700003867F /* TimersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersManager.swift; sourceTree = "<group>"; };
 		3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HScrollAllowingScrollWheelView.swift; sourceTree = "<group>"; };
 		3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getShortVersion.swift; sourceTree = "<group>"; };
 		3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLiveActivitySettings.swift; sourceTree = "<group>"; };
@@ -1372,6 +1374,7 @@
 				ECB9D6A82C0CD22D009C8CE4 /* SettingsInnerTab.swift */,
 				EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */,
 				3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */,
+				3A0C50292C5480700003867F /* TimersManager.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -2211,6 +2214,7 @@
 				3A3ABCEA2C2B70FD00132228 /* NotesWidgetSettings.swift in Sources */,
 				3A7C05E12C59E76600435D99 /* subToAllWidgetsSettingsChanges.swift in Sources */,
 				EC8D60342BFD6BFA00E67ECC /* ShortcutsManager.swift in Sources */,
+				3A0C502A2C5480700003867F /* TimersManager.swift in Sources */,
 				3A105FEA2C1EAA660015EC66 /* QuickPeeksView.swift in Sources */,
 				EC0E31012C0541A20060B47E /* LiveActivityEnum.swift in Sources */,
 				EC47FCC92C0C067600591811 /* DropAreaGeneralSettingsTabView.swift in Sources */,
