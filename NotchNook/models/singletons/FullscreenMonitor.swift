@@ -20,22 +20,36 @@ class FullscreenMonitor: NSObject {
     override init() {
         super.init()
         setupObservers()
-        fullScreenStateDict = getFullscreenStates()
+        updateAccessibilityStatus()
     }
     
+    private func updateAccessibilityStatus() {
+        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: false]
+        let isAccessibilityEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary)
+        
+        if isAccessibilityEnabled {
+            fullScreenStateDict = getFullscreenStates()
+        } else {
+            fullScreenStateDict = [:]
+        }
+    }
+
     private func setupObservers() {
         workspaceNotificationCenter.addObserver(self, selector: #selector(somethingChanged), name: NSWorkspace.activeSpaceDidChangeNotification, object: nil)
         workspaceNotificationCenter.addObserver(self, selector: #selector(somethingChanged), name: NSWorkspace.didActivateApplicationNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(somethingChanged), name: NSApplication.didChangeScreenParametersNotification, object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(somethingChanged), name: NSNotification.Name("com.apple.accessibility.api"), object: nil)
     }
     
     @objc private func somethingChanged() {
         DispatchQueue.main.async {
-            self.fullScreenStateDict = self.getFullscreenStates()
+            self.updateAccessibilityStatus()
         }
     }
     
     func getFullscreenStates() -> [NSScreen: Bool] {
+        guard AXIsProcessTrusted() else { return [:] }
+        
         var fullscreenStates: [NSScreen: Bool] = [:]
         
         for screen in NSScreen.screens {
@@ -48,17 +62,20 @@ class FullscreenMonitor: NSObject {
     }
     
     private func isFullScreenForScreen(_ screen: NSScreen) -> Bool {
+        guard AXIsProcessTrusted() else { return false }
+
         let runningApps = NSWorkspace.shared.runningApplications
-                
+        
         for app in runningApps {
             guard app.activationPolicy == .regular else { continue }
             
             let appRef = AXUIElementCreateApplication(app.processIdentifier)
             var windowList: CFTypeRef?
             
-            AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &windowList)
+            let result = AXUIElementCopyAttributeValue(appRef, kAXWindowsAttribute as CFString, &windowList)
             
-            guard let windows = windowList as? [AXUIElement] else { continue }
+            guard result == .success,
+                  let windows = windowList as? [AXUIElement] else { continue }
             
             for window in windows {
                 guard let positionAndSize = getPositionAndSizeRefs(window: window) else { continue }
