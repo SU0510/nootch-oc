@@ -41,7 +41,7 @@ struct NotchView: View {
     }
     
     private var isDisabled: Bool {
-        (isNonNotchAndDisabled || isDisabledDueToFullScreen) && (!shouldShowIndicator)
+        isNonNotchAndDisabled && (!shouldShowIndicator)
     }
     
     private var shouldShowIndicator: Bool {
@@ -49,7 +49,7 @@ struct NotchView: View {
     }
     
     private var shouldShowTopBar: Bool {
-        license != nil || (!viewModel.trialOver && trialInitialTime != nil)
+        (license != nil || (!viewModel.trialOver && trialInitialTime != nil)) && !(isDisabledDueToFullScreen)
     }
     
     private var isNonNotchAndDisabled: Bool {
@@ -72,7 +72,7 @@ struct NotchView: View {
     }
     
     private var nonNotchHeight: CGFloat {
-        generalSettings.transparentHandle ? 0.5 : generalSettings.handleSize.height
+        generalSettings.transparentHandle || isDisabledDueToFullScreen ? 0.5 : generalSettings.handleSize.height
     }
     
     var body: some View {

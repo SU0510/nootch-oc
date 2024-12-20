@@ -48,7 +48,7 @@ struct TopBarView: View, Equatable {
     }
     
     var shouldHide: Bool {
-        (notchSize.height == 0 && notchNook.mode == .closed && (liveActivities.isEmpty || generalSettings.transparentHandle)) || isHidden
+        (notchSize.height == 0 && notchNook.mode == .closed && (liveActivities.isEmpty)) || isHidden
     }
 
     var body: some View {

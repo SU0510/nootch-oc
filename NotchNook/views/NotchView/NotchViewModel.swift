@@ -69,19 +69,7 @@ class NotchViewModel {
     }
     
     func update(settings: GeneralSettings, isNonNotch: Bool, isFullScreen: Bool) {
-        let isNonNotchAndDisabled = isNonNotch && !settings.enableOnNonNotchScreens
-        let isDisabledDueToFullScreen = {
-            switch settings.showInFullscreen {
-                case .allMonitors:
-                    return false
-                case .notchedScreens:
-                    return isNonNotch && isFullScreen
-                case .never:
-                    return isFullScreen
-            }
-        }()
-        
-        if isNonNotchAndDisabled || isDisabledDueToFullScreen {
+        if isNonNotch && !settings.enableOnNonNotchScreens {
             notchState = .disabled
         } else {
             notchState = .standardContent
