@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct GIFView: View {
-    @State private var url: URL = Bundle.main.url(forResource: "michael", withExtension: "gif")!
+    
+    @Environment(\.mediaLiveActivitySettings) private var settings
+    
+    let isPlaying: Bool
+    
+    var currentURL: URL? {
+        if let customURL = settings.customGifURL, FileManager.default.fileExists(atPath: customURL.path) {
+            return customURL
+        }
+        return Bundle.main.url(forResource: settings.selectedGIF.rawValue, withExtension: "gif")
+    }
+    
     var body: some View {
-        QLImage(url: url)
-            .scaledToFit()
-            .frame(40, .bottomTrailing)
-            .padding(.trailing, 2)
+        if let url = currentURL {
+            GeometryReader { geometry in
+                GIFImageView(url: url, isPlaying: isPlaying)
+                    .frame(40)
+                    .position(
+                        x: geometry.size.width + settings.gifHorizontalOffset,
+                        y: geometry.size.height/2 + settings.gifVerticalOffset
+                    )
+                    .animation(.bouncySmooth, value: settings.gifHorizontalOffset)
+                    .animation(.spring(response: 0.2), value: settings.gifVerticalOffset)
+            }
+        } else {
+            EmptyView()
+        }
     }
 }

@@ -11,5 +11,10 @@ struct MediaLiveActivitySettings: Preferences {
     var isAutomaticallyColored = true
     var albumCornerRadius: Double = 5
     var effect: MediaLiveActivityEffectEnum = .audioSpectrograph
-    var gifOffset: Double = 0
+    var gifVerticalOffset: Double = 0
+    var gifHorizontalOffset: Double = 0
+    var customGifURL: URL? = nil
+    var gifScale: Double = 1.0
+    var gifScalingQuality: GIFScalingQuality = .pixelPerfect
+    var selectedGIF: PredefinedGIF = .michael
 }

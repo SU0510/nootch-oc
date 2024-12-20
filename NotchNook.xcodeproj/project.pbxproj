@@ -28,6 +28,12 @@
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
 		3676B04D2CF10CF9007449EE /* ColoredToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */; };
 		36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A172CC0623800DD1E16 /* LanguageData.swift */; };
+		3688ADB42D10BB4F00D761CD /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688ADB32D10BB4300D761CD /* FileManager+Extensions.swift */; };
+		3688ADBE2D14806400D761CD /* PredefinedGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688ADBD2D14805D00D761CD /* PredefinedGIF.swift */; };
+		3688ADC02D14807F00D761CD /* GIFScalingQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */; };
+		3688ADC42D14871B00D761CD /* snoopy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC32D14871B00D761CD /* snoopy.gif */; };
+		3688ADC52D14871B00D761CD /* gunter.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC12D14871B00D761CD /* gunter.gif */; };
+		3688ADC62D14871B00D761CD /* lisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC22D14871B00D761CD /* lisa.gif */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
@@ -179,7 +185,7 @@
 		3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */ = {isa = PBXBuildFile; productRef = 3A9E6BF72C3A9C3F009948F5 /* DynamicColor */; };
 		3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6BF92C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift */; };
 		3A9E6BFC2C3AA7B7009948F5 /* MathCGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6BFB2C3AA7B3009948F5 /* MathCGPoint.swift */; };
-		3A9E6C032C3AABAC009948F5 /* GIFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */; };
+		3A9E6C032C3AABAC009948F5 /* GIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C022C3AABAC009948F5 /* GIFImageView.swift */; };
 		3A9E6C082C3AAD41009948F5 /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C072C3AAD41009948F5 /* GIFView.swift */; };
 		3A9E6C142C3ABA4D009948F5 /* michael.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A9E6C132C3ABA4D009948F5 /* michael.gif */; };
 		3A9E6C172C3D5A95009948F5 /* GeneralSettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */; };
@@ -408,6 +414,12 @@
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
 		3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredToggleStyle.swift; sourceTree = "<group>"; };
 		36796A172CC0623800DD1E16 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
+		3688ADB32D10BB4300D761CD /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
+		3688ADBD2D14805D00D761CD /* PredefinedGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredefinedGIF.swift; sourceTree = "<group>"; };
+		3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFScalingQuality.swift; sourceTree = "<group>"; };
+		3688ADC12D14871B00D761CD /* gunter.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gunter.gif; sourceTree = "<group>"; };
+		3688ADC22D14871B00D761CD /* lisa.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lisa.gif; sourceTree = "<group>"; };
+		3688ADC32D14871B00D761CD /* snoopy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snoopy.gif; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
@@ -552,7 +564,7 @@
 		3A9E6BF42C39908B009948F5 /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		3A9E6BF92C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveActivityEffectEnum.swift; sourceTree = "<group>"; };
 		3A9E6BFB2C3AA7B3009948F5 /* MathCGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathCGPoint.swift; sourceTree = "<group>"; };
-		3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFViewer.swift; sourceTree = "<group>"; };
+		3A9E6C022C3AABAC009948F5 /* GIFImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImageView.swift; sourceTree = "<group>"; };
 		3A9E6C072C3AAD41009948F5 /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		3A9E6C132C3ABA4D009948F5 /* michael.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = michael.gif; sourceTree = "<group>"; };
 		3A9E6C162C3D5A95009948F5 /* GeneralSettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsKeys.swift; sourceTree = "<group>"; };
@@ -797,6 +809,7 @@
 				3658E6932CFA3DC300EBEE93 /* DisplayLinkHandler.swift */,
 				EC8D602B2BFCFCAB00E67ECC /* AudioSpectrographView.swift */,
 				3A9E6C072C3AAD41009948F5 /* GIFView.swift */,
+				3A9E6C022C3AABAC009948F5 /* GIFImageView.swift */,
 				3A9E6BF42C39908B009948F5 /* WaveView.swift */,
 				36A356D92C4968FE001902E4 /* VibratingCircleView.swift */,
 				3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */,
@@ -1098,6 +1111,9 @@
 			isa = PBXGroup;
 			children = (
 				3A9E6C132C3ABA4D009948F5 /* michael.gif */,
+				3688ADC12D14871B00D761CD /* gunter.gif */,
+				3688ADC22D14871B00D761CD /* lisa.gif */,
+				3688ADC32D14871B00D761CD /* snoopy.gif */,
 			);
 			path = gifs;
 			sourceTree = "<group>";
@@ -1506,7 +1522,6 @@
 				3AC36D892C2619730000F995 /* SwiftUIWindow.swift */,
 				3A0D90AC2C27D02A004A41F4 /* HScrollAllowingScrollWheelView.swift */,
 				3A7A51CB2C364C60009F9B50 /* BetterWindow.swift */,
-				3A9E6C022C3AABAC009948F5 /* GIFViewer.swift */,
 				3637094F2C559CFD004D20BB /* MultilineTextField.swift */,
 				363709532C56B8C0004D20BB /* NonHyphenatingText.swift */,
 				EC8D603F2BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift */,
@@ -1604,6 +1619,7 @@
 				36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */,
 				36C970222C51D57600956B57 /* Date+Extensions.swift */,
 				3A342B082C4D965A003C369C /* UnitCurve.swift */,
+				3688ADB32D10BB4300D761CD /* FileManager+Extensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1660,6 +1676,8 @@
 		EC81E2622C069D1600790517 /* enums */ = {
 			isa = PBXGroup;
 			children = (
+				3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */,
+				3688ADBD2D14805D00D761CD /* PredefinedGIF.swift */,
 				EC0E31182C0575D30060B47E /* ArrayPositionEnum.swift */,
 				EC0E31002C0541A20060B47E /* LiveActivityEnum.swift */,
 				EC0E30FC2C053F970060B47E /* NookWidgetEnum.swift */,
@@ -1946,6 +1964,9 @@
 				EC47FCB12C0BAE2500591811 /* drag.lottie in Resources */,
 				EC47FCA02C0B8FC800591811 /* hello.lottie in Resources */,
 				EC758F702BF2F18900B873B0 /* Assets.xcassets in Resources */,
+				3688ADC42D14871B00D761CD /* snoopy.gif in Resources */,
+				3688ADC52D14871B00D761CD /* gunter.gif in Resources */,
+				3688ADC62D14871B00D761CD /* lisa.gif in Resources */,
 				3A459C272C2E955D0045995D /* lock.lottie in Resources */,
 				3A59A4252C6FC93C004D9273 /* InfoSetapp.plist in Resources */,
 				365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */,
@@ -1979,7 +2000,7 @@
 				3AC36D8C2C2648CF0000F995 /* openCalendarApp.swift in Sources */,
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */,
-				3A9E6C032C3AABAC009948F5 /* GIFViewer.swift in Sources */,
+				3A9E6C032C3AABAC009948F5 /* GIFImageView.swift in Sources */,
 				3A1691E42C2FB23E0014C326 /* MakeKeyWindowKey.swift in Sources */,
 				3A8AA1872C2FEFE100D727DA /* shareToAppleNotes.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
@@ -2227,12 +2248,14 @@
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */,
+				3688ADB42D10BB4F00D761CD /* FileManager+Extensions.swift in Sources */,
 				3A3F59F42C2A5B4C00906FFA /* performDrop.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				3A3ABCE82C2B6CED00132228 /* TodoListWidgetSettings.swift in Sources */,
 				BB91B31B2C90EDD800083484 /* MediaKeyTapInternals.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
 				3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */,
+				3688ADC02D14807F00D761CD /* GIFScalingQuality.swift in Sources */,
 				EC7A0FA52C0EC99D0063E78E /* CalendarWidgetSettings.swift in Sources */,
 				3A20F1712C2F8937006A7E1F /* SideEffectsModifier.swift in Sources */,
 				3A1691DA2C2FB2110014C326 /* NotchSizeKey.swift in Sources */,
@@ -2304,6 +2327,7 @@
 				EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */,
 				EC47FCBB2C0BDCB500591811 /* getAppVersion.swift in Sources */,
 				EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */,
+				3688ADBE2D14806400D761CD /* PredefinedGIF.swift in Sources */,
 				EC14B5CB2C07A658000FC6B6 /* DropZoneSettings.swift in Sources */,
 				3A20F17D2C2FAB0B006A7E1F /* Animation.swift in Sources */,
 				EC7A0FAA2C0FE4970063E78E /* CalendarManager.swift in Sources */,
@@ -2386,7 +2410,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2407,7 +2431,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"\"$(BUILT_PRODUCTS_DIR)/libSetapp.a\"",
@@ -2494,7 +2518,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2515,7 +2539,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "lo.cafe.NotchNook-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2654,7 +2678,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2675,7 +2699,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2694,7 +2718,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2715,7 +2739,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -37,8 +37,7 @@ struct AudioAnimationView: View {
                                 .fadeOnEdges(axis: .horizontal, topLeadingFadeLength: 8, bottomTrailingFadeLength: 12, curve: .easeIn)
                             
                         case .gif:
-                            GIFView()
-                                .offset(y: userPrefs.gifOffset)
+                            GIFView(isPlaying: isPlaying)
                             
                         case .vibratingCircle:
                             VibratingCircleView(color: color, isPlaying: isPlaying)

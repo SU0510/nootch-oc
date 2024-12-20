@@ -13,15 +13,15 @@ enum MediaLiveActivityEffectEnum: String, Codable, Defaults.Serializable, Identi
     
     case audioSpectrograph
     case waves
-    case gif
     case vibratingCircle
+    case gif
     
     var name: String {
         switch self {
             case .audioSpectrograph: "Audio Spectrograph"
             case .waves: "Waves"
-            case .gif: "GIF"
             case .vibratingCircle: "Vibrating Circle"
+            case .gif: "GIF"
         }
     }
 }
