@@ -52,7 +52,7 @@ struct AlbumCoverView: View, Identifiable, Equatable {
         .animation(.bouncySmooth, value: artwork)
         .aspectRatio(1, contentMode: .fit)
         .transition(.scaleAndBlur)
-        .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0), perspective: 0.3)
+        .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0), perspective: 0.1)
         .onChange(of: track.album) { oldAlbum, newAlbum in
             if !newAlbum.isEmpty && oldAlbum != newAlbum && !oldAlbum.isEmpty && oldAlbum != "Unknown Album" {
                 withAnimation(.spring(duration: 0.6, bounce: 0.2)) {
