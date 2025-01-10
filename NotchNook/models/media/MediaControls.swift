@@ -65,26 +65,22 @@ class MediaControls {
     
     private func monitorMediaRemoteNotifications() {
         MRMediaRemoteRegisterForNowPlayingNotifications(DispatchQueue.main)
-        NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: "kMRMediaRemoteNowPlayingInfoDidChangeNotification"),
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.updateMediaInfo()
-        }
-        NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: "kMRMediaRemoteNowPlayingApplicationIsPlayingDidChangeNotification"),
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.updatePlaybackState()
-        }
-        NotificationCenter.default.addObserver(
-            forName: NSNotification.Name(rawValue: "kMRMediaRemoteNowPlayingApplicationDidChangeNotification"),
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.updateMediaInfo()
+        
+        let notificationNames = [
+            "kMRMediaRemoteNowPlayingInfoDidChangeNotification",
+            "kMRMediaRemoteNowPlayingApplicationDidChangeNotification",
+            "kMRMediaRemoteNowPlayingApplicationIsPlayingDidChangeNotification",
+            "kMRMediaRemoteNowPlayingApplicationPlaybackStateDidChangeNotification"
+        ]
+        
+        notificationNames.forEach { name in
+            NotificationCenter.default.addObserver(
+                forName: NSNotification.Name(rawValue: name),
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                self?.updateMediaInfo()
+            }
         }
     }
     
@@ -100,58 +96,125 @@ class MediaControls {
         MRMediaRemoteGetNowPlayingInfo(DispatchQueue.main) { [weak self] info in
             guard let self = self else { return }
             
-            self.isMediaActuallyPlaying { isActiveOrPaused in
-                if let info = info as? [String: Any], !info.isEmpty, isActiveOrPaused {
-                    let title = info["kMRMediaRemoteNowPlayingInfoTitle"] as? String ?? ""
-                    let artist = info["kMRMediaRemoteNowPlayingInfoArtist"] as? String ?? ""
-                    let album = info["kMRMediaRemoteNowPlayingInfoAlbum"] as? String ?? ""
-                    
-                    var newTrack = Track()
-                    newTrack.title = title
-                    newTrack.artist = artist
-                    newTrack.album = album
-                    
-                    if let artworkData = info["kMRMediaRemoteNowPlayingInfoArtworkData"] as? Data {
-                        newTrack.albumArt = NSImage(data: artworkData) ?? NSImage()
-                    } else if let artwork = info["kMRMediaRemoteNowPlayingInfoArtwork"] as? NSImage {
-                        newTrack.albumArt = artwork
-                    } else if let artwork = info["MPMediaItemPropertyArtwork"] as? NSImage {
-                        newTrack.albumArt = artwork
-                    }
-                    
-                    // Get the PID of the currently playing application
-                    self.MRMediaRemoteGetNowPlayingApplicationPID(DispatchQueue.main) { pid in
-                        let systemAppMeta = SystemAppMeta(pid: pid)
-                        if systemAppMeta.name == "NotchNook" { return }
-                        
-                        // Check if the application is actually playing
-                        self.MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.main) { isActuallyPlaying in
-                            if !isActuallyPlaying {
-                                DispatchQueue.main.async {
-                                    self.track = .empty
-                                    self.isPlaying = false
-                                    return
-                                }
-                            }
-                            
-                            newTrack.mediaApp = systemAppMeta
-                            if self.track.isValidReplacement(newTrack) {
-                                TimersManager.shared.addTimer("set-new-track", delay: 0.5) { _ in
-                                    if self.track.isValidReplacement(newTrack) {
-                                        DispatchQueue.main.async {
-                                            self.track = newTrack
-                                            self.updatePlaybackState()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else if !isActiveOrPaused {
-                    self.track = .empty
+            // If no info, reset state
+            guard let info = info as? [String: Any], !info.isEmpty else {
+                self.resetTrackState()
+                return
+            }
+            
+            // Force check actual playback state
+            self.MRMediaRemoteGetNowPlayingApplicationPlaybackState(DispatchQueue.main) { playbackState in
+                if playbackState == MRPlaybackState.stopped.rawValue {
+                    self.resetTrackState()
+                    return
+                }
+                
+                let newTrackInfo = self.extractTrackInfo(from: info)
+                
+                // Check if only playback state changed
+                if self.isCurrentTrack(newTrackInfo) {
+                    self.updatePlaybackState()
+                } else {
+                    // Full update for track change
+                    self.handleTrackChange(info: info, trackInfo: newTrackInfo)
+                }
+            }
+        }
+    }
+    
+    private func extractTrackInfo(from info: [String: Any]) -> (title: String, artist: String, album: String) {
+        let title = info["kMRMediaRemoteNowPlayingInfoTitle"] as? String ?? ""
+        let artist = info["kMRMediaRemoteNowPlayingInfoArtist"] as? String ?? ""
+        let album = info["kMRMediaRemoteNowPlayingInfoAlbum"] as? String ?? ""
+        return (title, artist, album)
+    }
+    
+    private func isCurrentTrack(_ trackInfo: (title: String, artist: String, album: String)) -> Bool {
+        track.title == trackInfo.title &&
+        track.artist == trackInfo.artist &&
+        track.album == trackInfo.album
+    }
+    
+    private func handleTrackChange(info: [String: Any], trackInfo: (title: String, artist: String, album: String)) {
+        isMediaActuallyPlaying { [weak self] isActiveOrPaused in
+            guard let self = self, isActiveOrPaused else {
+                self?.resetTrackState()
+                return
+            }
+            
+            let newTrack = self.createTrack(from: trackInfo, info: info)
+            self.updateTrackWithAppInfo(newTrack)
+        }
+    }
+    
+    private func createTrack(from trackInfo: (title: String, artist: String, album: String), info: [String: Any]) -> Track {
+        var newTrack = Track()
+        newTrack.title = trackInfo.title
+        newTrack.artist = trackInfo.artist
+        newTrack.album = trackInfo.album
+        newTrack.albumArt = extractAlbumArt(from: info)
+        return newTrack
+    }
+    
+    private func extractAlbumArt(from info: [String: Any]) -> NSImage {
+        if let artworkData = info["kMRMediaRemoteNowPlayingInfoArtworkData"] as? Data {
+            return NSImage(data: artworkData) ?? NSImage()
+        }
+        if let artwork = info["kMRMediaRemoteNowPlayingInfoArtwork"] as? NSImage {
+            return artwork
+        }
+        if let artwork = info["MPMediaItemPropertyArtwork"] as? NSImage {
+            return artwork
+        }
+        return NSImage()
+    }
+    
+    private func updateTrackWithAppInfo(_ newTrack: Track) {
+        MRMediaRemoteGetNowPlayingApplicationPID(DispatchQueue.main) { [weak self] pid in
+            guard let self = self else { return }
+            
+            let systemAppMeta = SystemAppMeta(pid: pid)
+            if systemAppMeta.name == "NotchNook" { return }
+            
+            self.validateAndUpdateTrack(newTrack, systemAppMeta)
+        }
+    }
+    
+    private func validateAndUpdateTrack(_ newTrack: Track, _ systemAppMeta: SystemAppMeta) {
+        MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.main) { [weak self] isActuallyPlaying in
+            guard let self = self else { return }
+            
+            if !isActuallyPlaying {
+                self.resetTrackState()
+                return
+            }
+            
+            var updatedTrack = newTrack
+            updatedTrack.mediaApp = systemAppMeta
+            
+            if self.track.isValidReplacement(updatedTrack) {
+                self.setNewTrackWithDelay(updatedTrack)
+            }
+        }
+    }
+    
+    private func setNewTrackWithDelay(_ newTrack: Track) {
+        TimersManager.shared.addTimer("set-new-track", delay: 0.05) { [weak self] _ in
+            guard let self = self else { return }
+            
+            if self.track.isValidReplacement(newTrack) {
+                DispatchQueue.main.async {
+                    self.track = newTrack
                     self.updatePlaybackState()
                 }
             }
+        }
+    }
+    
+    private func resetTrackState() {
+        DispatchQueue.main.async { [weak self] in
+            self?.track = .empty
+            self?.isPlaying = false
         }
     }
     
@@ -169,15 +232,18 @@ class MediaControls {
     }
     
     func togglePlayPause() {
-        MRMediaRemoteSendCommand(MRCommand.togglePlayPause.rawValue, nil)
+        let success = MRMediaRemoteSendCommand(MRCommand.togglePlayPause.rawValue, nil)
+        if !success { print("Media control failed: Toggle play/pause") }
     }
     
-    func previousTrack() {
-        MRMediaRemoteSendCommand(MRCommand.previousTrack.rawValue, nil)
+    func goToPreviousTrack() {
+        let success = MRMediaRemoteSendCommand(MRCommand.previousTrack.rawValue, nil)
+        if !success { print("Media control failed: Previous track") }
     }
     
-    func nextTrack() {
-        MRMediaRemoteSendCommand(MRCommand.nextTrack.rawValue, nil)
+    func goToNextTrack() {
+        let success = MRMediaRemoteSendCommand(MRCommand.nextTrack.rawValue, nil)
+        if !success { print("Media control failed: Next track") }
     }
     
     private func updateLiveActivities() {

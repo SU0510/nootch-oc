@@ -12,9 +12,9 @@ struct MediaControlsView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            CircleButton(icon: "backward.end.fill", iconSize: 10, action: mediaControls.previousTrack)
+            CircleButton(icon: "backward.end.fill", iconSize: 10, action: mediaControls.goToPreviousTrack)
             CircleButton(icon: mediaControls.isPlaying ? "pause.fill" : "play.fill", iconSize: 13, fade: false, action: mediaControls.togglePlayPause)
-            CircleButton(icon: "forward.end.fill", iconSize: 10, action: mediaControls.nextTrack)
+            CircleButton(icon: "forward.end.fill", iconSize: 10, action: mediaControls.goToNextTrack)
         }
     }
 }
