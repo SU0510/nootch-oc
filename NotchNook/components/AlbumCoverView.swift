@@ -58,6 +58,10 @@ struct AlbumCoverView: View, Identifiable, Equatable {
                 withAnimation(.spring(duration: 0.6, bounce: 0.2)) {
                     rotation += 180
                 }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    rotation = 0
+                }
             }
         }
     }
