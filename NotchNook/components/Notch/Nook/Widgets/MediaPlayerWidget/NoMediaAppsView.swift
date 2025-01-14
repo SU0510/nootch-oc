@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct NoMediaAppsView: View {
+    
     @State private var installedApps = [SystemAppMeta]()
     @State private var spotifyIsInstalled = false
+    
     @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
     @Environment(\.openURL) private var openURL
+    
     var body: some View {
         VStack {
             Text("No app seems to be running")
@@ -21,7 +24,7 @@ struct NoMediaAppsView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             HStack(spacing: 8) {
-                ForEach(installedApps.randomSample(count: 4)) { mediaAppMeta in
+                ForEach(installedApps.sorted().prefix(4)) { mediaAppMeta in
                     Button {
                         preventNextFocusFrontmostWindow()
                         mediaAppMeta.openApp()

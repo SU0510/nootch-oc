@@ -96,27 +96,40 @@ class MediaControls {
         MRMediaRemoteGetNowPlayingInfo(DispatchQueue.main) { [weak self] info in
             guard let self = self else { return }
             
-            // If no info, reset state
-            guard let info = info as? [String: Any], !info.isEmpty else {
-                self.resetTrackState()
-                return
-            }
-            
-            // Force check actual playback state
-            self.MRMediaRemoteGetNowPlayingApplicationPlaybackState(DispatchQueue.main) { playbackState in
-                if playbackState == MRPlaybackState.stopped.rawValue {
+            // Add delay before any state checks
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                guard let info = info as? [String: Any], !info.isEmpty else {
                     self.resetTrackState()
                     return
                 }
                 
                 let newTrackInfo = self.extractTrackInfo(from: info)
                 
-                // Check if only playback state changed
-                if self.isCurrentTrack(newTrackInfo) {
-                    self.updatePlaybackState()
-                } else {
-                    // Full update for track change
-                    self.handleTrackChange(info: info, trackInfo: newTrackInfo)
+                self.MRMediaRemoteGetNowPlayingApplicationPlaybackState(DispatchQueue.main) { playbackState in
+                    if playbackState == MRPlaybackState.stopped.rawValue {
+                        // Double-check playback state after another brief delay
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.MRMediaRemoteGetNowPlayingApplicationPlaybackState(DispatchQueue.main) { finalPlaybackState in
+                                if finalPlaybackState == MRPlaybackState.stopped.rawValue {
+                                    self.resetTrackState()
+                                    return
+                                }
+                                
+                                if self.isCurrentTrack(newTrackInfo) {
+                                    self.updatePlaybackState()
+                                } else {
+                                    self.handleTrackChange(info: info, trackInfo: newTrackInfo)
+                                }
+                            }
+                        }
+                        return
+                    }
+                    
+                    if self.isCurrentTrack(newTrackInfo) {
+                        self.updatePlaybackState()
+                    } else {
+                        self.handleTrackChange(info: info, trackInfo: newTrackInfo)
+                    }
                 }
             }
         }

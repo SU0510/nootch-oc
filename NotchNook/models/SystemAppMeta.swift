@@ -7,7 +7,12 @@
 
 import Cocoa
 
-struct SystemAppMeta: Equatable, Identifiable {
+struct SystemAppMeta: Equatable, Identifiable, Comparable {
+    
+    static func < (lhs: SystemAppMeta, rhs: SystemAppMeta) -> Bool {
+        lhs.name < rhs.name
+    }
+    
     static func == (lhs: SystemAppMeta, rhs: SystemAppMeta) -> Bool {
         lhs.bundleId == rhs.bundleId
     }

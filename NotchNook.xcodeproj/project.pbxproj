@@ -28,6 +28,8 @@
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
 		3676B04D2CF10CF9007449EE /* ColoredToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */; };
 		36796A182CC0623C00DD1E16 /* LanguageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A172CC0623800DD1E16 /* LanguageData.swift */; };
+		36810C2A2D35B07500E3135B /* TrackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36810C292D35B06200E3135B /* TrackButtonView.swift */; };
+		36810C2E2D35B93200E3135B /* RoundedTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36810C2D2D35B92B00E3135B /* RoundedTriangle.swift */; };
 		3688ADB42D10BB4F00D761CD /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688ADB32D10BB4300D761CD /* FileManager+Extensions.swift */; };
 		3688ADBE2D14806400D761CD /* PredefinedGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688ADBD2D14805D00D761CD /* PredefinedGIF.swift */; };
 		3688ADC02D14807F00D761CD /* GIFScalingQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */; };
@@ -414,6 +416,8 @@
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
 		3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredToggleStyle.swift; sourceTree = "<group>"; };
 		36796A172CC0623800DD1E16 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
+		36810C292D35B06200E3135B /* TrackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackButtonView.swift; sourceTree = "<group>"; };
+		36810C2D2D35B92B00E3135B /* RoundedTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTriangle.swift; sourceTree = "<group>"; };
 		3688ADB32D10BB4300D761CD /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		3688ADBD2D14805D00D761CD /* PredefinedGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredefinedGIF.swift; sourceTree = "<group>"; };
 		3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFScalingQuality.swift; sourceTree = "<group>"; };
@@ -1491,6 +1495,8 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				36810C2D2D35B92B00E3135B /* RoundedTriangle.swift */,
+				36810C292D35B06200E3135B /* TrackButtonView.swift */,
 				3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */,
 				3A8507702C4B3E2E0092B135 /* Indicator */,
 				3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */,
@@ -1986,6 +1992,7 @@
 				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* TrayFileView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
+				36810C2E2D35B93200E3135B /* RoundedTriangle.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
 				3A342B0D2C4DF5FA003C369C /* BrightnessIndicatorValueView.swift in Sources */,
 				EC758F992BF2F1A400B873B0 /* NSScreen.swift in Sources */,
@@ -2266,6 +2273,7 @@
 				3A3ABCE22C2A9CF700132228 /* dropUpdated.swift in Sources */,
 				36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */,
 				EC0E30F82C043AF60060B47E /* CurrentWallpaperManager.swift in Sources */,
+				36810C2A2D35B07500E3135B /* TrackButtonView.swift in Sources */,
 				EC0E31152C0567190060B47E /* ShortcutsWidgetSettings.swift in Sources */,
 				3A9E6BFA2C3AA660009948F5 /* MediaLiveActivityEffectEnum.swift in Sources */,
 				3A1691EF2C2FB5040014C326 /* CloseNotchKey.swift in Sources */,
