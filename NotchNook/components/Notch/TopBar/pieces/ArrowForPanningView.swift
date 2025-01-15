@@ -12,35 +12,38 @@ struct ArrowForPanningView: View {
     var right: Bool
     var inverted = false
     var counter: Int
-    @State private var activated = false
-
+    
+    @State private var isAnimating = false
+    
     var body: some View {
         let actionRight = inverted ? !right : right
         let maxPanDrag = NotchView.maxHPanDrag
         let interpolator = interpolatorBuilder([0, maxPanDrag], value: abs(x))
-        Image(systemName: !actionRight ? "backward.end.fill" : "forward.end.fill")
-            .padding(.top, 10)
-            .font(.system(size: 12))
-            .opacity(activated ? 0.75 : min(0.25, interpolator([0, 1], false, .linear)))
-            .foregroundStyle(activated ? .blue : .nonShockingWhite)
-            .animation(nil, value: activated)
-            .scaleEffect(activated ? 0.85 : interpolator([0.3, 0.85], false, .linear))
-            .blur(radius: activated ? 0 : max(0, interpolator([14, -10], false, .linear)))
-            .offset(x: activated ? 32 * (right ? 1 : -1) : x * 0.5)
-            .animation(.interactiveSpring, value: x)
-            .onChange(of: counter) { old, new in
-                if (right && new > old) || (!right && old > new) {
-                    withAnimation(.bouncy) {
-                        activated = true
-                    } completion: {
-                        activated = false
-                        if actionRight {
-                            MediaControls.shared.goToNextTrack()
-                        } else {
-                            MediaControls.shared.goToPreviousTrack()
-                        }
+        // Center triangles
+        HStack(spacing: -6) {
+            RoundedTriangle().fill(.nonShockingWhite)
+            RoundedTriangle().fill(.nonShockingWhite)
+        }
+        .frame(width: 24, height: 12)
+        .scaleEffect(x: actionRight ? 1 : -1)
+        .opacity(isAnimating ? 0.75 : min(0.25, interpolator([0, 1], false, .linear)))
+        .animation(nil, value: isAnimating)
+        .scaleEffect(isAnimating ? 0.85 : interpolator([0.3, 0.85], false, .linear))
+        .offset(x: isAnimating ? 32 * (right ? 1 : -1) : x * 0.5)
+        .animation(.interactiveSpring, value: x)
+        .onChange(of: counter) { old, new in
+            if (right && new > old) || (!right && old > new) {
+                withAnimation(.spring(duration: 0.4, bounce: 0.4)) {
+                    isAnimating = true
+                } completion: {
+                    isAnimating = false
+                    if actionRight {
+                        MediaControls.shared.goToNextTrack()
+                    } else {
+                        MediaControls.shared.goToPreviousTrack()
                     }
                 }
             }
+        }
     }
 }
