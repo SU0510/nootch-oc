@@ -56,6 +56,9 @@ struct MockTopBar: View {
                         TrayIconView()
                     case .updateAvailable: 
                         UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                case .batteryVisualizer:
+                    BatteryIconView()
+                    .padding(.all, 6)
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
@@ -70,6 +73,7 @@ struct MockTopBar: View {
                     case .media: AudioAnimationView()
                     case .tray: TrayFilesCountView()
                     case .updateAvailable: UpdateButtonIconView()
+                    case .batteryVisualizer: TimeLeftView()
                 }
             }
             .frame(width: TopBarView.liveActionWidth)

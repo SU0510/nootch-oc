@@ -42,7 +42,11 @@
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
 		36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */; };
+		36D108242D38660C008A3AD3 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D108232D38660C008A3AD3 /* CameraManager.swift */; };
 		36D6D54F2CD2B23600EB07C3 /* FullscreenOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D6D54E2CD2B23300EB07C3 /* FullscreenOption.swift */; };
+		36E80AC72D386BA100B663B8 /* NSEventExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E80AC52D386BA100B663B8 /* NSEventExtensions.swift */; };
+		36E80AC82D386BA100B663B8 /* MediaKeyTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E80AC32D386BA100B663B8 /* MediaKeyTap.swift */; };
+		36E80AC92D386BA100B663B8 /* MediaKeyTapInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E80AC42D386BA100B663B8 /* MediaKeyTapInternals.swift */; };
 		36FBC2662C3F191D004FDE42 /* TrayFileIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */; };
 		3A00275B2C901173002A089D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 3A00275A2C901173002A089D /* Settings */; };
 		3A00275E2C90263C002A089D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 3A00275D2C90263C002A089D /* Settings */; };
@@ -216,15 +220,18 @@
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
 		BB50026F2C4AC8FD0028FCB5 /* VolumeAndBrightnessListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */; };
-		BB91B3192C90EDC400083484 /* MediaKeyTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91B3182C90EDBA00083484 /* MediaKeyTap.swift */; };
-		BB91B31B2C90EDD800083484 /* MediaKeyTapInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91B31A2C90EDD300083484 /* MediaKeyTapInternals.swift */; };
-		BB91B31D2C90EDE400083484 /* NSEventExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB91B31C2C90EDDD00083484 /* NSEventExtensions.swift */; };
 		BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */; };
 		BBF6EDB32C4AE07600F70035 /* BrightnessCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */; };
 		BBF6EDB92C4AE75900F70035 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDB82C4AE75500F70035 /* HUDManager.swift */; };
 		BBF6EDBB2C4AE8C400F70035 /* SoundCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */; };
 		C11F0A882C5816FF003F96DC /* getCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F0A872C5816FA003F96DC /* getCaptureDevice.swift */; };
-		C11F0A8A2C58C1A4003F96DC /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F0A892C58C1A0003F96DC /* CameraManager.swift */; };
+		C16CD3E72C84B76900144C90 /* TimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16CD3E62C84B76600144C90 /* TimeLeftView.swift */; };
+		C194313B2C7286400088F905 /* BatteryIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C194313A2C72863C0088F905 /* BatteryIconView.swift */; };
+		C194313D2C7287910088F905 /* BatteryVisualizerLiveActivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C194313C2C72877F0088F905 /* BatteryVisualizerLiveActivitySettingsView.swift */; };
+		C194313F2C728CE10088F905 /* BatteryLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C194313E2C728CDC0088F905 /* BatteryLiveActivitySettings.swift */; };
+		C196F0EF2C6B5D9E00F6A21B /* PowerInfoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196F0EE2C6B5D8500F6A21B /* PowerInfoStruct.swift */; };
+		C196F0F12C6B5FE700F6A21B /* PowerSourceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196F0F02C6B5FE400F6A21B /* PowerSourceMonitor.swift */; };
+		C196F0F32C6B71BF00F6A21B /* PowerSourceNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196F0F22C6B71BB00F6A21B /* PowerSourceNotifications.swift */; };
 		EC0E30CF2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */; };
 		EC0E30D22C0415F00060B47E /* MediaLiveActivitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */; };
 		EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */; };
@@ -430,7 +437,11 @@
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
 		36C970272C51DE9000956B57 /* CalendarEventsViewShadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarEventsViewShadows.swift; path = NotchNook/components/Notch/Nook/Widgets/CalendarWidget/CalendarEventsViewShadows.swift; sourceTree = SOURCE_ROOT; };
+		36D108232D38660C008A3AD3 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		36D6D54E2CD2B23300EB07C3 /* FullscreenOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenOption.swift; sourceTree = "<group>"; };
+		36E80AC32D386BA100B663B8 /* MediaKeyTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTap.swift; sourceTree = "<group>"; };
+		36E80AC42D386BA100B663B8 /* MediaKeyTapInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTapInternals.swift; sourceTree = "<group>"; };
+		36E80AC52D386BA100B663B8 /* NSEventExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExtensions.swift; sourceTree = "<group>"; };
 		36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrayFileIconView.swift; path = NotchNook/components/Notch/Tray/TrayFileIconView.swift; sourceTree = SOURCE_ROOT; };
 		3A0816B72C23AAC8008092F0 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		3A0816B92C24A5B0008092F0 /* UpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdaterDelegate.swift; sourceTree = "<group>"; };
@@ -595,15 +606,18 @@
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorView.swift; sourceTree = "<group>"; };
 		BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAndBrightnessListener.swift; sourceTree = "<group>"; };
-		BB91B3182C90EDBA00083484 /* MediaKeyTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTap.swift; sourceTree = "<group>"; };
-		BB91B31A2C90EDD300083484 /* MediaKeyTapInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyTapInternals.swift; sourceTree = "<group>"; };
-		BB91B31C2C90EDDD00083484 /* NSEventExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExtensions.swift; sourceTree = "<group>"; };
 		BBF6EDA52C4AD68D00F70035 /* SystemIntegrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemIntegrationHelper.swift; sourceTree = "<group>"; };
 		BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessCoordinator.swift; sourceTree = "<group>"; };
 		BBF6EDB82C4AE75500F70035 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
 		BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCoordinator.swift; sourceTree = "<group>"; };
 		C11F0A872C5816FA003F96DC /* getCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getCaptureDevice.swift; sourceTree = "<group>"; };
-		C11F0A892C58C1A0003F96DC /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		C16CD3E62C84B76600144C90 /* TimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLeftView.swift; sourceTree = "<group>"; };
+		C194313A2C72863C0088F905 /* BatteryIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryIconView.swift; sourceTree = "<group>"; };
+		C194313C2C72877F0088F905 /* BatteryVisualizerLiveActivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryVisualizerLiveActivitySettingsView.swift; sourceTree = "<group>"; };
+		C194313E2C728CDC0088F905 /* BatteryLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryLiveActivitySettings.swift; sourceTree = "<group>"; };
+		C196F0EE2C6B5D8500F6A21B /* PowerInfoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerInfoStruct.swift; sourceTree = "<group>"; };
+		C196F0F02C6B5FE400F6A21B /* PowerSourceMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSourceMonitor.swift; sourceTree = "<group>"; };
+		C196F0F22C6B71BB00F6A21B /* PowerSourceNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSourceNotifications.swift; sourceTree = "<group>"; };
 		EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveAcitivitySettingsView.swift; sourceTree = "<group>"; };
 		EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLiveActivitySettings.swift; sourceTree = "<group>"; };
 		EC0E30D32C04172F0060B47E /* GestureControlSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureControlSettings.swift; sourceTree = "<group>"; };
@@ -827,6 +841,16 @@
 				36C970252C51D74500956B57 /* CalendarManagerError.swift */,
 			);
 			path = errors;
+			sourceTree = "<group>";
+		};
+		36E80AC62D386BA100B663B8 /* MediaKeyTap */ = {
+			isa = PBXGroup;
+			children = (
+				36E80AC32D386BA100B663B8 /* MediaKeyTap.swift */,
+				36E80AC42D386BA100B663B8 /* MediaKeyTapInternals.swift */,
+				36E80AC52D386BA100B663B8 /* NSEventExtensions.swift */,
+			);
+			path = MediaKeyTap;
 			sourceTree = "<group>";
 		};
 		3A0816BB2C24C016008092F0 /* UpdateAvailable */ = {
@@ -1169,26 +1193,35 @@
 			path = VolumeIndicator;
 			sourceTree = "<group>";
 		};
-		BB91B3142C90ED5B00083484 /* MediaKeyTap */ = {
-			isa = PBXGroup;
-			children = (
-				BB91B31C2C90EDDD00083484 /* NSEventExtensions.swift */,
-				BB91B31A2C90EDD300083484 /* MediaKeyTapInternals.swift */,
-				BB91B3182C90EDBA00083484 /* MediaKeyTap.swift */,
-			);
-			path = MediaKeyTap;
-			sourceTree = "<group>";
-		};
 		BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */ = {
 			isa = PBXGroup;
 			children = (
-				BB91B3142C90ED5B00083484 /* MediaKeyTap */,
+				36E80AC62D386BA100B663B8 /* MediaKeyTap */,
 				BBF6EDB22C4AE07400F70035 /* BrightnessCoordinator.swift */,
 				BBF6EDBA2C4AE8C100F70035 /* SoundCoordinator.swift */,
 				BBF6EDB82C4AE75500F70035 /* HUDManager.swift */,
 				BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */,
 			);
 			path = "Volume and Brightness HUD";
+			sourceTree = "<group>";
+		};
+		C196F0EC2C6B5D6500F6A21B /* MonitorsAndListeners */ = {
+			isa = PBXGroup;
+			children = (
+				C196F0ED2C6B5D7D00F6A21B /* PowerSourceMonitor */,
+				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
+			);
+			path = MonitorsAndListeners;
+			sourceTree = "<group>";
+		};
+		C196F0ED2C6B5D7D00F6A21B /* PowerSourceMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				C196F0F22C6B71BB00F6A21B /* PowerSourceNotifications.swift */,
+				C196F0F02C6B5FE400F6A21B /* PowerSourceMonitor.swift */,
+				C196F0EE2C6B5D8500F6A21B /* PowerInfoStruct.swift */,
+			);
+			path = PowerSourceMonitor;
 			sourceTree = "<group>";
 		};
 		EC0E30CC2C0414510060B47E /* NookSettings */ = {
@@ -1238,6 +1271,7 @@
 		EC0E30DE2C041C690060B47E /* perActivitySettings */ = {
 			isa = PBXGroup;
 			children = (
+				C194313C2C72877F0088F905 /* BatteryVisualizerLiveActivitySettingsView.swift */,
 				EC0E30CE2C0415730060B47E /* MediaLiveAcitivitySettingsView.swift */,
 				EC0E30ED2C0433960060B47E /* TrayLiveActivitySettingsView.swift */,
 				3A105FCD2C1BA9A80015EC66 /* CalendarLiveActivitySettingsView.swift */,
@@ -1282,6 +1316,7 @@
 		EC0E310B2C0565350060B47E /* activities */ = {
 			isa = PBXGroup;
 			children = (
+				C194313E2C728CDC0088F905 /* BatteryLiveActivitySettings.swift */,
 				EC0E30D12C0415F00060B47E /* MediaLiveActivitySettings.swift */,
 				3A105FCB2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift */,
 			);
@@ -1495,6 +1530,8 @@
 		EC758F7F2BF2F19B00B873B0 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				C16CD3E62C84B76600144C90 /* TimeLeftView.swift */,
+				C194313A2C72863C0088F905 /* BatteryIconView.swift */,
 				36810C2D2D35B92B00E3135B /* RoundedTriangle.swift */,
 				36810C292D35B06200E3135B /* TrackButtonView.swift */,
 				3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */,
@@ -1633,16 +1670,16 @@
 		EC758F922BF2F1A400B873B0 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C196F0EC2C6B5D6500F6A21B /* MonitorsAndListeners */,
 				3652AA872CB9A17100F217E7 /* NoteDocument.swift */,
 				36C970242C51D73100956B57 /* errors */,
-				BBF6EDBC2C4AE8CB00F70035 /* Volume and Brightness HUD */,
 				EC47FC7B2C0A80E200591811 /* singletons */,
 				3A3ABCED2C2B9BB600132228 /* SwiftData */,
 				EC81E2632C069D9100790517 /* protocols */,
 				EC81E2622C069D1600790517 /* enums */,
 				EC0E30D02C0415DA0060B47E /* settings */,
 				EC4173CC2C0191A8002889E7 /* media */,
-				C11F0A892C58C1A0003F96DC /* CameraManager.swift */,
+				36D108232D38660C008A3AD3 /* CameraManager.swift */,
 				EC758F912BF2F1A400B873B0 /* NotchNookState.swift */,
 				3A85076E2C4B2F290092B135 /* Indicator.swift */,
 				EC758F902BF2F1A400B873B0 /* Pipeline.swift */,
@@ -2037,6 +2074,9 @@
 				EC8D5FE02BFA703300E67ECC /* calculateDistance.swift in Sources */,
 				EC758F932BF2F1A400B873B0 /* airDropFiles.swift in Sources */,
 				3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */,
+				36E80AC72D386BA100B663B8 /* NSEventExtensions.swift in Sources */,
+				36E80AC82D386BA100B663B8 /* MediaKeyTap.swift in Sources */,
+				36E80AC92D386BA100B663B8 /* MediaKeyTapInternals.swift in Sources */,
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
 				3A74049C2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift in Sources */,
 				3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */,
@@ -2045,6 +2085,8 @@
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
+				C196F0EF2C6B5D9E00F6A21B /* PowerInfoStruct.swift in Sources */,
+				C194313F2C728CE10088F905 /* BatteryLiveActivitySettings.swift in Sources */,
 				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */,
@@ -2098,7 +2140,6 @@
 				3A105FD02C1BADB60015EC66 /* EventIconView.swift in Sources */,
 				3A9E6BF52C39908B009948F5 /* WaveView.swift in Sources */,
 				3A3ABCEC2C2B712500132228 /* QuickAppsWidgetSettings.swift in Sources */,
-				BB91B31D2C90EDE400083484 /* NSEventExtensions.swift in Sources */,
 				EC2DD1EE2C03D6F4001FD54E /* loadImgFromURL.swift in Sources */,
 				3616A5D82C921731005C6381 /* cleanupTemporaryDirectory.swift in Sources */,
 				EC0E30F12C0434640060B47E /* BlankView.swift in Sources */,
@@ -2129,6 +2170,7 @@
 				3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */,
 				3A1691E02C2FB2220014C326 /* CanBecomeKeyBindingKey.swift in Sources */,
 				EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */,
+				C194313D2C7287910088F905 /* BatteryVisualizerLiveActivitySettingsView.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,
 				EC0E30DA2C041BF30060B47E /* NookGeneralSettingsTabView.swift in Sources */,
 				EC47FC872C0AC05D00591811 /* LicenseStateView.swift in Sources */,
@@ -2166,6 +2208,7 @@
 				EC8D5FDD2BFA703300E67ECC /* HashableCGSize.swift in Sources */,
 				EC2DD1FD2C040E2E001FD54E /* NookSettingsView.swift in Sources */,
 				EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */,
+				C196F0F32C6B71BF00F6A21B /* PowerSourceNotifications.swift in Sources */,
 				BBF6EDBB2C4AE8C400F70035 /* SoundCoordinator.swift in Sources */,
 				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
@@ -2176,11 +2219,13 @@
 				3A1691CE2C2FB1E90014C326 /* ScreenSizeKey.swift in Sources */,
 				3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */,
 				3A1691D82C2FB20B0014C326 /* CloseWindowKey.swift in Sources */,
+				C196F0F12C6B5FE700F6A21B /* PowerSourceMonitor.swift in Sources */,
 				ECC22A3B2C07F3320000139C /* resetToDefault.swift in Sources */,
 				3A342B0F2C4DF691003C369C /* BrightnessIndicatorCometView.swift in Sources */,
 				EC8D60042BFAE90D00E67ECC /* TrayFilesCountView.swift in Sources */,
 				EC8D5FC92BFA625700E67ECC /* FileDraggableView.swift in Sources */,
 				EC0E310F2C05655D0060B47E /* WidgetPrefsProtocol.swift in Sources */,
+				C16CD3E72C84B76900144C90 /* TimeLeftView.swift in Sources */,
 				3A459C1C2C2E57FC0045995D /* NSEdgeInsets.swift in Sources */,
 				3A3F5A052C2A5C9500906FFA /* NotchViewComputedVars.swift in Sources */,
 				EC4173C92C0181B8002889E7 /* WindowsManager.swift in Sources */,
@@ -2188,7 +2233,6 @@
 				EC47FCB92C0BD5A000591811 /* LoCafeLogoView.swift in Sources */,
 				3A0816BA2C24A5B0008092F0 /* UpdaterDelegate.swift in Sources */,
 				EC81E25F2C06998600790517 /* ShortcutsWidgetSettingsView.swift in Sources */,
-				C11F0A8A2C58C1A4003F96DC /* CameraManager.swift in Sources */,
 				365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */,
 				EC13C6E22C09199600B45C6E /* cancelableTimer.swift in Sources */,
 				3A1691F72C2FBA410014C326 /* InMemoryDefault.swift in Sources */,
@@ -2201,7 +2245,6 @@
 				3A0C50202C534A7A0003867F /* IndicatorValueView.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
-				BB91B3192C90EDC400083484 /* MediaKeyTap.swift in Sources */,
 				EC2DD1F22C03DBC9001FD54E /* TrayFilesGridPreviewView.swift in Sources */,
 				3A3F5A002C2A5C4400906FFA /* checkTrialOver.swift in Sources */,
 				3A0D90AF2C27DA24004A41F4 /* getShortVersion.swift in Sources */,
@@ -2253,13 +2296,13 @@
 				36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* TrayEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
+				36D108242D38660C008A3AD3 /* CameraManager.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */,
 				3688ADB42D10BB4F00D761CD /* FileManager+Extensions.swift in Sources */,
 				3A3F59F42C2A5B4C00906FFA /* performDrop.swift in Sources */,
 				EC0E30F62C0439D80060B47E /* MockLiveAcitivitiesView.swift in Sources */,
 				3A3ABCE82C2B6CED00132228 /* TodoListWidgetSettings.swift in Sources */,
-				BB91B31B2C90EDD800083484 /* MediaKeyTapInternals.swift in Sources */,
 				BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */,
 				3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */,
 				3688ADC02D14807F00D761CD /* GIFScalingQuality.swift in Sources */,
@@ -2319,6 +2362,7 @@
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
 				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				3A1691D62C2FB2040014C326 /* ShowChangelogKey.swift in Sources */,
+				C194313B2C7286400088F905 /* BatteryIconView.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
 				3A6BF5362C34BF0400D3BFC9 /* NoteMiniatureView.swift in Sources */,
 				EC0E30D62C0417BB0060B47E /* GeneralSettings.swift in Sources */,

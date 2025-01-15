@@ -30,6 +30,7 @@ extension Defaults.Keys {
     // Live activities settings
     static let mediaLiveActivitySettings = Key<MediaLiveActivitySettings>("mediaLiveActivitySettings", default: .init())
     static let calendarLiveActivitySettings = Key<CalendarLiveActivitySettings>("calendarLiveActivitySettings", default: .init())
+    static let batteryLiveActivitySettings = Key<BatteryLiveActivitySettings>("batteryLiveActivitySettings", default: .init())
     
     // Widgets settings
     static let mediaWidgetSettings = Key<MediaWidgetSettings>("mediaWidgetSettings", default: .init())

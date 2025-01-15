@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 import EventKit
 
-private var activitiesByPriority: [LiveActivity] = [.tray, .calendar, .updateAvailable, .media]
+private var activitiesByPriority: [LiveActivity] = [.batteryVisualizer, .tray, .calendar, .updateAvailable, .media]
 
 struct LiveActivityView: View {
     
@@ -22,6 +22,7 @@ struct LiveActivityView: View {
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
+    
     
     var activitiesManager = ActiveLiveActivitiesManager.shared
     
@@ -38,9 +39,9 @@ struct LiveActivityView: View {
         let timeUntilEventStart = event.startDate.timeIntervalSince(now)
         let timeUntilEventEnd = event.endDate.timeIntervalSince(now)
         let isEventInProgress = timeUntilEventStart <= 0 && timeUntilEventEnd > 0
-
+        
         let isWithinPreEventWindow = !isEventInProgress && timeUntilEventStart <= Double(calendarLiveActivitySettings.preEventWindow * 60)
-
+        
         let shouldShowDuringEvent = isEventInProgress && calendarLiveActivitySettings.showWhileInEvent
         
         return isWithinPreEventWindow || shouldShowDuringEvent
@@ -67,7 +68,7 @@ struct LiveActivityView: View {
     private var shouldEnableQuickPeekForTime: Bool {
         !isFirstActivityCalendar && liveActivitiesSettings.enableQuickPeek
     }
-        
+    
     var activityToShow: LiveActivity? {
         if activeActivities.isEmpty { return nil }
         
@@ -82,10 +83,10 @@ struct LiveActivityView: View {
         }
         
         switch side {
-            case .left:
-                return orderedActivities.count > 1 ? orderedActivities[1] : orderedActivities.first
-            case .right:
-                return orderedActivities.first
+        case .left:
+            return /*orderedActivities.count > 1 ? orderedActivities[1] :*/ orderedActivities.first
+        case .right:
+            return orderedActivities.first
         }
     }
     
@@ -95,46 +96,53 @@ struct LiveActivityView: View {
         Group {
             if let activityToShow {
                 switch activityToShow {
-                    case .calendar:
-                        if let event = closestEvent() {
-                            switch side {
-                                case .left:
-                                    EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
-                                case .right:
-                                    if shouldShowEventTimeView {
-                                        EventTimeView(event: event, startDate: event.startDate, endDate: event.endDate)
-                                            .environment(\.enableQuickPeek, shouldEnableQuickPeekForTime)
-                                    } else {
-                                        Spacer()
-                                    }
+                case .calendar:
+                    if let event = closestEvent() {
+                        switch side {
+                        case .left:
+                            EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                        case .right:
+                            if shouldShowEventTimeView {
+                                EventTimeView(event: event, startDate: event.startDate, endDate: event.endDate)
+                                    .environment(\.enableQuickPeek, shouldEnableQuickPeekForTime)
+                            } else {
+                                Spacer()
                             }
                         }
-                        
-                    case .media:
-                        switch side {
-                            case .left:
-                            MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek,
-                                               quickPeekEvent: liveActivitiesSettings.quickPeekEvent,
-                                               albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
-                            case .right:
-                                AudioAnimationView()
-                        }
-                        
-                    case .tray:
-                        switch side {
-                            case .left: 
-                                TrayIconView()
-                            case .right:
-                                TrayFilesCountView()
-                        }
-                        
-                    case .updateAvailable:
-                        switch side {
-                            case .left: 
-                                UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
-                            case .right: 
-                                UpdateButtonIconView()
-                        }
+                    }
+                    
+                case .media:
+                    switch side {
+                    case .left:
+                        MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek,
+                                           quickPeekEvent: liveActivitiesSettings.quickPeekEvent,
+                                           albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
+                    case .right:
+                        AudioAnimationView()
+                    }
+                case .batteryVisualizer:
+                    switch side {
+                    case .left:
+                        BatteryIconView()
+                    case .right:
+                        TimeLeftView()
+                    }
+                    
+                case .tray:
+                    switch side {
+                    case .left:
+                        TrayIconView()
+                    case .right:
+                        TrayFilesCountView()
+                    }
+                    
+                case .updateAvailable:
+                    switch side {
+                    case .left:
+                        UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                    case .right:
+                        UpdateButtonIconView()
+                    }
                 }
             }
         }

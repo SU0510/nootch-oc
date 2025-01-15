@@ -23,6 +23,7 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
             case .media: MediaLiveAcitivitySettingsView()
             case .tray: TrayLiveActivitySettingsView()
             case .calendar: CalendarLiveActivitySettingsView()
+            case .batteryVisualizer: BatteryLiveActivitySettingsView()
             default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }

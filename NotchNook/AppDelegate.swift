@@ -40,6 +40,7 @@ import Defaults
         _ = CalendarManager.shared
         _ = ShortcutsManager.shared
         _ = MediaControls.shared
+        _ = PowerSourceMonitor.shared
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared
         _ = LicenseManager.shared

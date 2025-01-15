@@ -7,6 +7,7 @@
 
 import Cocoa
 import CoreGraphics
+import Foundation
 
 class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
     static let shared = VolumeAndBrightnessListener()
