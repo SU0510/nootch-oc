@@ -9,7 +9,7 @@ import SwiftUI
 import Defaults
 import EventKit
 
-private var activitiesByPriority: [LiveActivity] = [.batteryVisualizer, .tray, .calendar, .updateAvailable, .media]
+private var activitiesByPriority: [LiveActivity] = [.bluetoothDevice, .batteryVisualizer, .tray, .calendar, .updateAvailable, .media]
 
 struct LiveActivityView: View {
     
@@ -23,6 +23,7 @@ struct LiveActivityView: View {
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     
+    @State private var batteryStatus: PowerMonitor.BatteryStatus?
     
     var activitiesManager = ActiveLiveActivitiesManager.shared
     
@@ -71,23 +72,18 @@ struct LiveActivityView: View {
     
     var activityToShow: LiveActivity? {
         if activeActivities.isEmpty { return nil }
-        
-        if activeActivities.count == 1, let firstActivity = activeActivities.first {
-            return firstActivity == .calendar ? (shouldShowCalendarActivity ? .calendar : nil) : firstActivity
-        }
-        
+
         if orderedActivities.first == .calendar {
             if !shouldShowCalendarActivity {
                 return orderedActivities.count > 1 ? orderedActivities[1] : nil
             }
+        } else if orderedActivities.first == .batteryVisualizer {
+            if batteryStatus == nil {
+                return orderedActivities.count > 1 ? orderedActivities[1] : nil
+            }
         }
         
-        switch side {
-        case .left:
-            return /*orderedActivities.count > 1 ? orderedActivities[1] :*/ orderedActivities.first
-        case .right:
-            return orderedActivities.first
-        }
+        return orderedActivities.first
     }
     
     // MARK: - Body
@@ -96,57 +92,69 @@ struct LiveActivityView: View {
         Group {
             if let activityToShow {
                 switch activityToShow {
-                case .calendar:
-                    if let event = closestEvent() {
-                        switch side {
-                        case .left:
-                            EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
-                        case .right:
-                            if shouldShowEventTimeView {
-                                EventTimeView(event: event, startDate: event.startDate, endDate: event.endDate)
-                                    .environment(\.enableQuickPeek, shouldEnableQuickPeekForTime)
-                            } else {
-                                Spacer()
+                    case .calendar:
+                        if let event = closestEvent() {
+                            switch side {
+                                case .left:
+                                    EventIconView(eventTitle: event.title, startDate: event.startDate, endDate: event.endDate, enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                                case .right:
+                                    if shouldShowEventTimeView {
+                                        EventTimeView(event: event, startDate: event.startDate, endDate: event.endDate)
+                                            .environment(\.enableQuickPeek, shouldEnableQuickPeekForTime)
+                                    } else {
+                                        Spacer()
+                                    }
                             }
                         }
-                    }
-                    
-                case .media:
-                    switch side {
-                    case .left:
-                        MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek,
-                                           quickPeekEvent: liveActivitiesSettings.quickPeekEvent,
-                                           albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
-                    case .right:
-                        AudioAnimationView()
-                    }
-                case .batteryVisualizer:
-                    switch side {
-                    case .left:
-                        BatteryIconView()
-                    case .right:
-                        TimeLeftView()
-                    }
-                    
-                case .tray:
-                    switch side {
-                    case .left:
-                        TrayIconView()
-                    case .right:
-                        TrayFilesCountView()
-                    }
-                    
-                case .updateAvailable:
-                    switch side {
-                    case .left:
-                        UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
-                    case .right:
-                        UpdateButtonIconView()
-                    }
+                        
+                    case .media:
+                        switch side {
+                            case .left:
+                                MiniAlbumCoverView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek,
+                                                   quickPeekEvent: liveActivitiesSettings.quickPeekEvent,
+                                                   albumCornerRadius: mediaLiveActivitySettings.albumCornerRadius)
+                            case .right:
+                                AudioAnimationView()
+                        }
+                        
+                    case .tray:
+                        switch side {
+                            case .left:
+                                LiveActivityIconView(liveActivity: .tray)
+                            case .right:
+                                TrayFilesCountView()
+                        }
+                        
+                    case .updateAvailable:
+                        switch side {
+                            case .left:
+                                UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
+                            case .right:
+                                UpdateButtonIconView()
+                        }
+                        
+                    case .bluetoothDevice:
+                        switch side {
+                            case .left:
+                                BluetoothDeviceIconView()
+                            case .right:
+                                BluetoothConnectDisconnectView()
+                        }
+                        
+                    case .batteryVisualizer:
+                        switch side {
+                            case .left:
+                                BatteryIconView(batteryStatus: batteryStatus)
+                            case .right:
+                                TimeLeftView(batteryStatus: batteryStatus)
+                        }
                 }
             }
         }
         .transition(.scaleAndBlur)
+        .onChange(of: PowerMonitor.shared.status) { _, status in
+            batteryStatus = status
+        }
     }
     
     private func closestEvent() -> EKEvent? {
@@ -176,4 +184,5 @@ struct LiveActivityView: View {
         
         return filteredEvents.min(by: { abs($0.startDate.timeIntervalSince(now)) < abs($1.startDate.timeIntervalSince(now)) })
     }
+
 }

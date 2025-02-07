@@ -10,7 +10,9 @@ import Defaults
 import SwiftDate
 
 struct MockTopBar: View {
+    
     var activity: LiveActivity
+    
     @Environment(\.notchSize) private var notchSize
     @Environment(\.mediaLiveActivitySettings) private var mediaLiveActivitySettings
     @Environment(\.gestureControlSettings) private var gestureControlSettings
@@ -18,6 +20,7 @@ struct MockTopBar: View {
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     @Environment(\.nookSettings) private var nookSettings
     @Environment(\.traySettings) private var traySettings
+    
     @SilentState private var fakeNow = Date()
     
     func staticNow() -> Date {
@@ -53,12 +56,15 @@ struct MockTopBar: View {
                         )
                         .padding(.all, 6)
                     case .tray: 
-                        TrayIconView()
-                    case .updateAvailable: 
+                        LiveActivityIconView(liveActivity: .tray)
+                    case .updateAvailable:
                         UpdateAppIconView(enableQuickPeek: liveActivitiesSettings.enableQuickPeek)
-                case .batteryVisualizer:
-                    BatteryIconView()
-                    .padding(.all, 6)
+                    case .bluetoothDevice:
+                        LiveActivityIconView(liveActivity: .bluetoothDevice)
+                    case .batteryVisualizer:
+                        LiveActivityIconView(liveActivity: .batteryVisualizer)
+                            .padding(.all, 6)
+                            .foregroundStyle(.yellow)
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
@@ -69,17 +75,28 @@ struct MockTopBar: View {
             
             Group {
                 switch activity {
-                    case .calendar: EventTimeView(startDate: mockedEvent.startDate, endDate: mockedEvent.endDate).environment(\.getNow, staticNow)
-                    case .media: AudioAnimationView()
-                    case .tray: TrayFilesCountView()
-                    case .updateAvailable: UpdateButtonIconView()
-                    case .batteryVisualizer: TimeLeftView()
+                    case .calendar:
+                        EventTimeView(
+                            startDate: mockedEvent.startDate,
+                            endDate: mockedEvent.endDate
+                        )
+                        .environment(\.getNow, staticNow)
+                    case .media:
+                        AudioAnimationView()
+                    case .tray:
+                        TrayFilesCountView()
+                    case .updateAvailable:
+                        UpdateButtonIconView()
+                    case .bluetoothDevice:
+                        BluetoothConnectDisconnectView()
+                            .padding(.top, 6)
+                    case .batteryVisualizer:
+                        TimeLeftView(batteryStatus: PowerMonitor.shared.status)
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
             .transition(NotchView.defaultTransition(anchor: .leading, delay: 0.075))
             .allowsHitTesting(liveActivitiesSettings.interactive)
-            
         }
         .animation(.smooth(extraBounce: 0.25), value: activity)
         .frame(height: height)

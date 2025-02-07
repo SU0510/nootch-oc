@@ -8,15 +8,24 @@
 import SwiftUI
 
 enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
-    case media, tray, calendar, updateAvailable, batteryVisualizer
+    
+    case media
+    case tray
+    case calendar
+    case updateAvailable
+    case bluetoothDevice
+    case batteryVisualizer
     
     var id: String { self.rawValue }
     
     var description: String? { nil }
     
     var isImplemented: Bool {
-        return switch self {
-            default: true
+        switch self {
+            case .bluetoothDevice, .batteryVisualizer:
+                false
+            default:
+                true
         }
     }
     
@@ -26,7 +35,8 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
             case .tray: "tray.fill"
             case .calendar: "calendar.badge.clock.rtl"
             case .updateAvailable: "arrow.down.circle"
-            case .batteryVisualizer: "battery.100percent.circle"
+            case .bluetoothDevice: "airpods"
+            case .batteryVisualizer: "bolt.fill"
         }
     }
     
@@ -36,6 +46,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
             case .tray: String(localized: "Files Tray")
             case .calendar: String(localized: "Calendar")
             case .updateAvailable: String(localized: "New Update")
+            case .bluetoothDevice: String(localized: "Bluetooth")
             case .batteryVisualizer: String(localized: "Battery")
         }
     }

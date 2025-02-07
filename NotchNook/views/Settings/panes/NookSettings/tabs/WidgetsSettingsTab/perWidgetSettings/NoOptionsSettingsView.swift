@@ -1,5 +1,5 @@
 //
-//  MediaWidgetSettingsView.swift
+//  NoOptionsSettingsView.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 28/05/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Settings
 
-struct MediaWidgetSettingsView: View {
+struct NoOptionsSettingsView: View {
     var body: some View {
         Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: "") {

@@ -14,12 +14,8 @@ struct BatteryLiveActivitySettingsView: View {
     
     var body: some View {
         let contentMaxW: Double = 400
-        // Section for battery logo and style
-        // Section for battery information to be polled?
-        // Time to charge
-        // Time left on battery
-        // How often to be notified about the percentage change
-        
+        // TODO: arrumar
+        // TODO: essas opções tem que ser habilitáveis
         Settings.Container(contentWidth: 520.0, minimumLabelWidth: 200) {
             Settings.Section(title: String(localized: "Notify Charge Increase on:"), bottomDivider: true) {
                 HStack {

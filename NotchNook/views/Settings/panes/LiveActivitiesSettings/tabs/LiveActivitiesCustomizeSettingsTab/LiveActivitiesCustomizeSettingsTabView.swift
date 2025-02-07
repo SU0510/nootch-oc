@@ -20,11 +20,17 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
                 .padding(.horizontal, 19)
         } settings: { selectedElement in
             switch selectedElement {
-            case .media: MediaLiveAcitivitySettingsView()
-            case .tray: TrayLiveActivitySettingsView()
-            case .calendar: CalendarLiveActivitySettingsView()
-            case .batteryVisualizer: BatteryLiveActivitySettingsView()
-            default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .media:
+                    MediaLiveAcitivitySettingsView()
+                case .tray:
+                    TrayLiveActivitySettingsView()
+                case .calendar:
+                    CalendarLiveActivitySettingsView()
+                    // TODO: uncomment when layout is sorted out
+//                case .batteryVisualizer:
+//                    BatteryLiveActivitySettingsView()
+                case .bluetoothDevice, .updateAvailable, .batteryVisualizer:
+                    NoOptionsSettingsView()
             }
         }
     }

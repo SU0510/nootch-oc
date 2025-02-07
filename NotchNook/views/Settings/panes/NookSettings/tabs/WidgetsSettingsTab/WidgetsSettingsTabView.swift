@@ -30,7 +30,7 @@ struct WidgetsSettingsTabView: View {
             } settings: { selectedElement in
                 switch selectedElement {
                     case .shortcuts: ShortcutsWidgetSettingsView()
-                    case .media: MediaWidgetSettingsView()
+                    case .media: NoOptionsSettingsView()
                     case .mirror: MirrorWidgetSettingsView()
                     case .calendar: CalendarWidgetSettingsView()
                     case .notes: NotesWidgetSettingsView()

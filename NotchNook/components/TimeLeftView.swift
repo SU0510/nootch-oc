@@ -9,57 +9,53 @@ import SwiftUI
 
 struct TimeLeftView: View {
     
-    @State private var timeLeftToChargeto100: Int = 0
-    @State private var timeToEmpty: Int = 0
-    let powerSourceInfo = PowerSourceMonitor.shared
+    let batteryStatus: PowerMonitor.BatteryStatus?
+    
+    // TODO: MUDAR PRO COMPORTAMENTO DO iOS, TESTAR E REMOVER TEST CASES
+    
+//        let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+//            percentage: 15,
+//            isCharging: true,
+//            minutesUntilEmpty: nil,
+//            minutesUntilFull: 120
+//        )
+    
+    //     let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+    //         percentage: 85,
+    //         isCharging: false,
+    //         minutesUntilEmpty: 180,
+    //         minutesUntilFull: nil
+    //     )
+    
+//         let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+//             percentage: 100,
+//             isCharging: true,
+//             minutesUntilEmpty: nil,
+//             minutesUntilFull: 0
+//         )
+    
+//    let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+//        percentage: 5,
+//        isCharging: false,
+//        minutesUntilEmpty: 10,
+//        minutesUntilFull: nil
+//    )
+    
+    // let batteryStatus: PowerMonitor.BatteryStatus? = nil
     
     var body: some View {
         ZStack {
             Color.clear
                 .overlay {
-                    Group {
-                        if timeToEmpty != 0 {
-                            if timeToEmpty < 60 {
-                                Text(String(timeToEmpty) + "m")
-                                    .font(.system(size: 8))
-                            }
-                            else {
-                                Text(String(timeToEmpty / 60) + "h")
-                                    .font(.system(size: 8))
-                            }
-                        } else {
-                            // Match this with the defaults notification
-                            if timeLeftToChargeto100 > 60 {
-                                Text(String(timeLeftToChargeto100 / 60) + "h")
-                                    .font(.system(size: 8))
-                            }else {
-                                Text(String(timeLeftToChargeto100) + "m")
-                                    .font(.system(size: 8))
-                            }
-                        }
-                    }
-                    .frame(maxHeight: .infinity)
-                    .aspectRatio(1, contentMode: .fit)
+                    Text(batteryStatus?.formattedTimeRemaining ?? "")
+                        .font(.system(size: 8))
+                        .frame(maxHeight: .infinity)
+                        .aspectRatio(1, contentMode: .fit)
                 }
                 .transition(.scaleAndBlur)
                 .aspectRatio(1, contentMode: .fit)
         }
         .aspectRatio(1, contentMode: .fit)
         .transition(.scaleAndBlur)
-        .onAppear {
-            setStateOfChargeORtimeLeftToCharge()
-       }
-    }
-    private func setStateOfChargeORtimeLeftToCharge() {
-        (powerSourceInfo.powerInfoStruct.BatteryPower != nil) ? setForTimeToEmpty(): setForTimeRemainingToCompleteCharge()
-    }
-    private func setForTimeToEmpty() {
-        timeLeftToChargeto100 = 0
-        timeToEmpty = (powerSourceInfo.powerInfoStruct.BatteryPower?.timeToEmpty)!
-    }
-    private func setForTimeRemainingToCompleteCharge() {
-        timeToEmpty = 0
-        timeLeftToChargeto100 = (powerSourceInfo.powerInfoStruct.ACPower?.timeLeftTo100)!
     }
 }
-

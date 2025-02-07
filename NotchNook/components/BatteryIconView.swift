@@ -8,49 +8,105 @@
 import SwiftUI
 
 struct BatteryIconView: View {
-    @State private var BatteryOrACPower: Bool = false // Battery Power = true
+    
     @State private var isCircleJiggling: Bool = false
     @State private var angle: Double = 0
     
-    let powerSourceInfo = PowerSourceMonitor.shared
+    // TODO: MUDAR PRO COMPORTAMENTO DO iOS, TESTAR E REMOVER TEST CASES
+    
+    // HARDCODED TEST CASES - DELETE LATER
+    // Uncomment one at a time to test
+    
+    let batteryStatus: PowerMonitor.BatteryStatus?
+//    = .init(
+//        percentage: 15,
+//        isCharging: true,
+//        minutesUntilEmpty: nil,
+//        minutesUntilFull: 120
+//    )
+    
+    //     let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+    //         percentage: 85,
+    //         isCharging: false,
+    //         minutesUntilEmpty: 180,
+    //         minutesUntilFull: nil
+    //     )
+    
+    //     let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+    //         percentage: 100,
+    //         isCharging: true,
+    //         minutesUntilEmpty: nil,
+    //         minutesUntilFull: 0
+    //     )
+    
+    //     let batteryStatus: PowerMonitor.BatteryStatus? = .init(
+    //         percentage: 5,
+    //         isCharging: false,
+    //         minutesUntilEmpty: 10,
+    //         minutesUntilFull: nil
+    //     )
+    
+    // let batteryStatus: PowerMonitor.BatteryStatus? = nil
+    
+    var color: Color {
+        guard let batteryStatus else { return .green }
+        return batteryStatus.percentage < 20 && !batteryStatus.isCharging ? .red : .green
+    }
     
     var body: some View {
         ZStack {
             Color.clear
                 .overlay {
-                    if BatteryOrACPower {
-                        Circle()
-                            .trim(from: 0, to: normalizedBatteryCharge())
-                            .stroke((powerSourceInfo.powerInfoStruct.BatteryPower?.currentStateOfCharge ?? 0) <= 20 ? Color.red : Color.green, lineWidth: 2)
-                            .rotationEffect(.degrees(angle))
-                            .onAppear {
-                                startJiggleAnimation()
-                            }
-                            .padding(4)
-                        Text(String(powerSourceInfo.powerInfoStruct.BatteryPower?.currentStateOfCharge ?? 0))
-                            .foregroundColor(powerSourceInfo.powerInfoStruct.BatteryPower?.currentStateOfCharge ?? 0 <= 20 ? Color.red : Color.green)
-                            .font(.system(size: 8))
-                            .rotationEffect(.degrees(-angle))
-                        
-                    } else {
-                        Group {
-                            GeometryReader { geo in
-                                Image(systemName: "bolt.fill")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(geo.size * 0.60)
-                                    .frame(width: geo.size.height, height: geo.size.height)
-                                    .foregroundStyle(.yellow)
-                                    .mask(
-                                        Rectangle()
-                                            .fill(Color.white)
-                                            .scaleEffect(y: CGFloat(powerSourceInfo.powerInfoStruct.ACPower?.currentStateOfCharge ?? 0), anchor: .bottom)
-                                            .animation(.easeInOut(duration: 0.5), value: CGFloat(powerSourceInfo.powerInfoStruct.ACPower?.currentStateOfCharge ?? 0))
-                                    )
-                            }
+                    let percentage = batteryStatus?.percentage ?? 0
+                    
+                    if percentage == 100 {
+                        // MARK: Green bolt inside circle
+                        GeometryReader { geo in
+                            Image(systemName: "bolt.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(geo.size * 0.60)
+                                .frame(width: geo.size.height, height: geo.size.height)
+                                .foregroundStyle(.green)
                         }
                         .frame(maxHeight: .infinity)
                         .aspectRatio(1, contentMode: .fit)
+                    } else {
+                        // MARK: Battery circle
+                        ZStack {
+                            // Background circle (full, transparent)
+                            Circle()
+                                .stroke(color.opacity(0.3), lineWidth: 2)
+                                .padding(4)
+                            
+                            // Foreground percentage circle
+                            Circle()
+                                .trim(from: 0, to: normalizedBatteryCharge)
+                                .stroke(color, lineWidth: 2)
+                                .rotationEffect(.degrees(-90))
+                                .rotationEffect(.degrees(angle))
+                                .onAppear { startJiggleAnimation() }
+                                .padding(4)
+                                .background(
+                                    Group {
+                                        if batteryStatus?.isCharging ?? false {
+                                            // Charging bolt
+                                            Image(systemName: "bolt.fill")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: 10, height: 10)
+                                                .foregroundStyle(.green)
+                                                .padding(2)
+                                        } else {
+                                            // Percentage text
+                                            Text("\(percentage)%")
+                                                .font(.system(size: 6))
+                                                .rotationEffect(.degrees(-angle))
+                                                .padding(1)
+                                        }
+                                    }
+                                )
+                        }
                     }
                 }
                 .transition(.scaleAndBlur)
@@ -58,31 +114,13 @@ struct BatteryIconView: View {
         }
         .aspectRatio(0.8, contentMode: .fit)
         .transition(.scaleAndBlur)
-        .onAppear {
-            setDefaultPowerSource()
-        }
-    }
-    private func setDefaultPowerSource() {
-        if powerSourceInfo.powerInfoStruct.ACPower == nil {
-            setForBatteryIcon()
-        }
-        else {
-            setForACIcon()
-        }
     }
     
-    private func setForBatteryIcon() {
-        BatteryOrACPower = true
+    private var normalizedBatteryCharge: CGFloat {
+        guard let percentage = batteryStatus?.percentage else { return 0 }
+        return CGFloat(percentage) / 100
     }
-    private func setForACIcon() {
-        BatteryOrACPower = false
-    }
-    private func normalizedBatteryCharge() -> CGFloat {
-        guard let charge = powerSourceInfo.powerInfoStruct.BatteryPower?.currentStateOfCharge else {
-            return 0
-        }
-        return min(max(CGFloat(charge), 0), 1)
-    }
+    
     private func startJiggleAnimation() {
         guard !isCircleJiggling else { return }
         isCircleJiggling = true
@@ -97,9 +135,7 @@ struct BatteryIconView: View {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + totalJiggles * animationDuration * 2) {
-            withAnimation(
-                Animation.easeInOut(duration: animationDuration)
-            ) {
+            withAnimation(.easeInOut(duration: animationDuration)) {
                 angle = 0
             }
         }
@@ -109,6 +145,3 @@ struct BatteryIconView: View {
         }
     }
 }
-
-
-
