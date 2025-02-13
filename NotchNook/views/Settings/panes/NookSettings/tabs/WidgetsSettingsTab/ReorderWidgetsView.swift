@@ -9,8 +9,11 @@ import SwiftUI
 import Defaults
 
 struct ReorderWidgetsView: View {
+    
     @Binding var widgets: [NookWidget]
+    
     @State private var dragSize: CGSize = .zero
+    
     @Default(.mediaWidgetSettings) private var mediaWidgetSettings
     @Default(.mirrorWidgetSettings) private var mirrorWidgetSettings
     @Default(.shortcutsWidgetSettings) private var shortcutsWidgetSettings
@@ -19,25 +22,13 @@ struct ReorderWidgetsView: View {
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.nookSettings) private var nookSettings
+    
     private let spacing: CGFloat = 8
     
     func moveLeft(_ widget: NookWidget) {  }
     
     var body: some View {
         VStack {
-//            let usedCells = nookSettings.enabledWidgets.reduce(NookGrid.Point.zero) { $0 + $1.prefs.size.width }
-//            let totalCells = nookSettings.size.width
-//            let available = totalCells - usedCells
-//            
-//            HStack {
-//                Text("REMAINING CELLS: \(available.value)")
-//                Spacer()
-//                Text("TOTAL CELLS: \(totalCells.value)")
-//            }
-//            .padding(.horizontal, 24)
-//            .font(.system(size: 11, weight: .semibold))
-//            .opacity(0.5)
-            
             ZStack(alignment: .top) {
                 HStack(spacing: spacing) {
                     let availableWidth = dragSize.width - (CGFloat(widgets.count - 1) * spacing)

@@ -9,6 +9,7 @@ import SwiftUI
 import Defaults
 
 struct LiveActivitiesCustomizeSettingsTabView: View {
+    
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
     
     var body: some View {

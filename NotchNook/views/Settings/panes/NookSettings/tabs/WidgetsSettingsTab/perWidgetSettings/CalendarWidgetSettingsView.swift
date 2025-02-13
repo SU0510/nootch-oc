@@ -46,10 +46,11 @@ struct CalendarWidgetSettingsView: View {
                 .padding(.leading, 8)
             }
             .padding(32)
+            .frame(width: 260)
             
             Divider()
             
-            Settings.Container(contentWidth: 200) {
+            Settings.Container(contentWidth: 260) {
                 Settings.Section(title: "", bottomDivider: true) {
                     Text("Width:")
                     SliderPlus(value: $settings.size.width.double, range: 3...12)

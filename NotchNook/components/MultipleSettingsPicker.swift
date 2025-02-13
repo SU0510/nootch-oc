@@ -9,11 +9,16 @@ import SwiftUI
 import Combine
 
 struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: View {
+    
     var elements: [El]
+    
     @Binding var activeElements: [El]
+    
     @State private var selectedElement: El
     @State private var contentSize: CGSize = .zero
+    
     var disableItem: ((El) -> Bool)?
+    
     @ViewBuilder var preview: (_ selectedElement: El) -> Preview
     @ViewBuilder var settings: (_ selectedElement: El) -> PrefsView
     
@@ -62,68 +67,87 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
     }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
-            preview(selectedElement)
-            VStack(alignment: .center, spacing: 0) {
-                
-                if contentSize != .zero {
-                    HScrollAllowingScrollWheelView {
-                        HStack(alignment: .center, spacing: 4) {
-                            ForEach(Array(elements.enumerated()), id: \.element) { i, element in
-                                MultipleSettingsPickerItemView(
-                                    element: element,
-                                    selected: selectedElement == element,
-                                    select: selectElement,
-                                    isOn: Binding.setMembershipArr(of: element, in: $activeElements),
-                                    disabled: disableItem?(element) ?? false
-                                )
-                                
-                                if i < (elements.count - 1) {
-                                    VDivider(color: .primary.opacity(0.1))
-                                }
-                            }
-                        }
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(6)
-                        .padding(.trailing, 128)
-                    }
-                    .fadeOnEnd(axis: .horizontal, fadeLength: 128)
-                    .frame(width: contentSize.width - 38, alignment: .top)
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                    .background {
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .fill(.black.opacity(0.03))
-                            .blendMode(.plusDarker)
-                    }
-                    .padding(.horizontal, 19)
-                }
-                
+        HStack(spacing: 16) {
+            // Left side - Vertical List
+            ElementsListView(
+                elements: elements,
+                selectElement: selectElement,
+                disableItem: disableItem,
+                selectedElement: $selectedElement,
+                activeElements: $activeElements
+            )
+            .frame(width: 300)
+            
+            // Right side - Preview and Settings
+            VStack(spacing: 16) {
+                preview(selectedElement)
                 settings(selectedElement)
                     .frame(maxHeight: .infinity, alignment: .top)
             }
-            .measure($contentSize)
         }
+        .padding()
+    }
+}
+
+private struct ElementsListView<El: MetaInfo>: View {
+    
+    let elements: [El]
+    let selectElement: (El) -> Void
+    let disableItem: ((El) -> Bool)?
+    
+    @Binding var selectedElement: El
+    @Binding var activeElements: [El]
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 8) {
+                ForEach(Array(elements.enumerated()), id: \.element) { i, element in
+                    MultipleSettingsPickerItemView(
+                        element: element,
+                        selected: selectedElement == element,
+                        select: selectElement,
+                        disabled: disableItem?(element) ?? false,
+                        isOn: Binding.setMembershipArr(of: element, in: $activeElements)
+                    )
+                    
+                    if i < (elements.count - 1) {
+                        HDivider(color: .primary.opacity(0.1))
+                    }
+                }
+            }
+            .padding(12)
+        }
+        .background {
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(.black.opacity(0.03))
+                .blendMode(.plusDarker)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
     }
 }
 
 
 private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
+    
     var element: El
     var selected: Bool
     var select: (_ element: El) -> ()
-    @Binding var isOn: Bool
     var disabled = false
+    
+    @Binding var isOn: Bool
+    
     var body: some View {
         Button {
             select(element)
         } label: {
-            HStack(spacing: 16) {
-                HStack {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 16) {
                     Image(systemName: element.icon)
                         .font(.system(size: 15, weight: .semibold))
                         .frame(30)
                         .foregroundStyle(selected ? .blue : .nonShockingWhite)
                         .background(selected ? .nonShockingWhite : .blue, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    
                     VStack(alignment: .leading, spacing: 0) {
                         Text(element.name).font(.system(size: 13, weight: .medium))
                         if let description = (element.isImplemented ? element.description : String(localized: "Coming soon...")) {
@@ -131,14 +155,17 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
                         }
                     }
                     .foregroundStyle(selected ? .nonShockingWhite : .primary)
+                    
+                    Spacer()
+                    
+                    Toggle("", isOn: $isOn)
+                        .toggleStyle(.switch)
+                        .controlSize(.small)
+                        .disabled(disabled)
                 }
-                
-                Toggle("", isOn: $isOn)
-                    .toggleStyle(.switch)
-                    .controlSize(.small)
-                    .disabled(disabled)
             }
-            .padding(8)
+            .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(.blue.opacity(selected ? 0.5 : 0), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
             .contentShape(Rectangle())
         }
@@ -146,5 +173,15 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
         .compositingGroup()
         .opacity(element.isImplemented ? 1 : 0.5)
         .disabled(!element.isImplemented)
+    }
+}
+
+struct HDivider: View {
+    let color: Color
+    
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(height: 1)
     }
 }

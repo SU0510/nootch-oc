@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct MockLiveAcitivitiesView: View {
+    
     var activity: LiveActivity
+    
     @Environment(\.notchSize) private var notchSize
+    
     var body: some View {
         ZStack(alignment: .top) {
             MockTopBar(activity: activity)

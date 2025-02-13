@@ -10,7 +10,9 @@ import Settings
 import Defaults
 
 struct CalendarLiveActivitySettingsView: View {
+    
     @Default(.calendarLiveActivitySettings) private var calendarLiveActivitySettings
+    
     var body: some View {
         Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: String(localized: "Minutes before showing up:")) {
