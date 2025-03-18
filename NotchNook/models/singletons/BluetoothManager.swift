@@ -10,7 +10,7 @@ import Defaults
 import CoreBluetooth
 
 @Observable
-final class BluetoothManager {
+final class BluetoothManager: NSObject {
     
     static let shared = BluetoothManager()
     
@@ -38,6 +38,7 @@ final class BluetoothManager {
         case permissionDenied
         case deviceNotFound
         case connectionFailed
+        case bluetoothUnavailable
     }
     
     private static let APPLE_DEVICE_PATTERN = #"(Magic Mouse|AirPods|Magic Keyboard|Magic Trackpad).*"#
@@ -48,6 +49,10 @@ final class BluetoothManager {
     
     @MainActor private var currentDevice: IOBluetoothDevice?
     
+    private var centralManager: CBCentralManager?
+    private var authorizationStatus: CBManagerAuthorization = .notDetermined
+    private(set) var isInitialized = false
+    
     private let appleDeviceIconMap: [String: String] = Dictionary(
         uniqueKeysWithValues: AppleDeviceType.allCases.map { ($0.rawValue, $0.iconName) }
     )
@@ -56,41 +61,64 @@ final class BluetoothManager {
     @MainActor private var appleDevices: [IOBluetoothDevice]?
     @MainActor private var appleDevicesActivelyConnected: [IOBluetoothDevice]?
     
-    private init() {
-        setupManager()
+    override private init() {
+        super.init()
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
-    private func setupManager() {
-        requestBluetoothPermissions()
-        IOBluetoothDevice.register(forConnectNotifications: self, selector: #selector(deviceConnected(_:withDevice:)))
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(deviceDisconnected(_:)),
-            name: NSNotification.Name(rawValue: kIOBluetoothDeviceNotificationNameDisconnected),
-            object: nil
-        )
-    }
-    
-    private func requestBluetoothPermissions() {
-        switch CBCentralManager.authorization {
-            case .denied, .restricted, .notDetermined:
-                MessageUtil.showMessage(
-                    title: "Bluetooth Access Required",
-                    message: "This functionality needs Bluetooth access to detect your Apple devices. Open Settings to grant permission?"
-                ) { action in
-                    switch action {
-                        case .ok:
-                            SystemIntegrationHelper.openBluetoothPreferences()
-                            SystemIntegrationHelper.quitApp()
-                        case .cancel:
-                            self.log("User denied Bluetooth access. App functionality limited.")
-                    }
+    func initialize() {
+        Task {
+            do {
+                try await startBluetoothOperations()
+                await MainActor.run {
+                    isInitialized = true
                 }
-            case .allowedAlways:
-                break
-            @unknown default:
-                log("Unknown Bluetooth authorization status")
+                IOBluetoothDevice.register(forConnectNotifications: self, selector: #selector(deviceConnected(_:withDevice:)))
+                NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(deviceDisconnected(_:)),
+                    name: NSNotification.Name(rawValue: kIOBluetoothDeviceNotificationNameDisconnected),
+                    object: nil
+                )
+            } catch {
+                log("Failed to initialize Bluetooth: \(error)")
+            }
         }
+    }
+    
+    private func requestBluetoothAccess() async throws -> Bool {
+        return try await withCheckedThrowingContinuation { continuation in
+            switch CBCentralManager.authorization {
+                case .allowedAlways:
+                    continuation.resume(returning: true)
+                case .notDetermined:
+                    if let manager = centralManager {
+                        if manager.state == .poweredOn {
+                            continuation.resume(returning: true)
+                        } else if manager.state == .unauthorized {
+                            continuation.resume(throwing: BluetoothError.permissionDenied)
+                        } else {
+                            continuation.resume(throwing: BluetoothError.bluetoothUnavailable)
+                        }
+                    }
+                case .denied, .restricted:
+                    continuation.resume(throwing: BluetoothError.permissionDenied)
+                @unknown default:
+                    continuation.resume(throwing: BluetoothError.bluetoothUnavailable)
+            }
+        }
+    }
+    
+    private func accessBluetooth() async throws {
+        let granted = try await requestBluetoothAccess()
+        if !granted {
+            throw BluetoothError.permissionDenied
+        }
+    }
+    
+    func startBluetoothOperations() async throws {
+        try await accessBluetooth()
+        // Continue with your existing Bluetooth operations
     }
     
     @MainActor
@@ -246,5 +274,18 @@ final class BluetoothManager {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension BluetoothManager: CBCentralManagerDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+            case .poweredOn:
+                authorizationStatus = .allowedAlways
+            case .unauthorized:
+                authorizationStatus = .denied
+            default:
+                break
+        }
     }
 }

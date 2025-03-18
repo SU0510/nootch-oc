@@ -135,6 +135,7 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
     var disabled = false
     
     @Binding var isOn: Bool
+    @State private var showingPermissionAlert = false
     
     var body: some View {
         Button {
@@ -158,7 +159,17 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
                     
                     Spacer()
                     
-                    Toggle("", isOn: $isOn)
+                    Toggle("", isOn: Binding(
+                        get: { isOn },
+                        set: { newValue in
+                            if let liveActivity = element as? LiveActivity,
+                               liveActivity == .bluetoothDevice && newValue {
+                                handleBluetoothToggle()
+                            } else {
+                                isOn = newValue
+                            }
+                        }
+                    ))
                         .toggleStyle(.switch)
                         .controlSize(.small)
                         .disabled(disabled)
@@ -173,6 +184,35 @@ private struct MultipleSettingsPickerItemView<El: MetaInfo>: View {
         .compositingGroup()
         .opacity(element.isImplemented ? 1 : 0.5)
         .disabled(!element.isImplemented)
+        .alert("Bluetooth Permission Required", isPresented: $showingPermissionAlert) {
+            Button("System Settings") {
+                NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Bluetooth")!)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Please enable Bluetooth permission in System Settings to use this feature.")
+        }
+    }
+    
+    private func handleBluetoothToggle() {
+        Task {
+            do {
+                try await BluetoothManager.shared.startBluetoothOperations()
+                BluetoothManager.shared.initialize()
+                await MainActor.run {
+                    isOn = true
+                }
+            } catch BluetoothManager.BluetoothError.permissionDenied {
+                await MainActor.run {
+                    showingPermissionAlert = true
+                    isOn = false
+                }
+            } catch {
+                await MainActor.run {
+                    isOn = false
+                }
+            }
+        }
     }
 }
 
