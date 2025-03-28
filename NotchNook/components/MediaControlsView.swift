@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MediaControlsView: View {
-    private var mediaControls = MediaControls.shared
+    private var mediaControls = MediaManager.shared
     
     var body: some View {
         HStack(spacing: 0) {

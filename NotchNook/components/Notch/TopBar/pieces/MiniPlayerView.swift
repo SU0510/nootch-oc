@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MiniPlayerView: View {    
     var body: some View {
-        let track = MediaControls.shared.track
+        let track = MediaManager.shared.track
         HStack(spacing: 2) {
             AlbumCoverView(id: track.albumId, artwork: track.albumArt, cornerRadius: 8).padding(.all, 3)
             MediaControlsView()

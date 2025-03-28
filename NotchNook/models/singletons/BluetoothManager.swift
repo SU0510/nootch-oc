@@ -63,10 +63,15 @@ final class BluetoothManager: NSObject {
     
     override private init() {
         super.init()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     func initialize() {
+        guard !isInitialized else { return }
+        
+        if centralManager == nil && CBCentralManager.authorization != .denied && CBCentralManager.authorization != .restricted {
+            centralManager = CBCentralManager(delegate: self, queue: nil)
+        }
+        
         Task {
             do {
                 try await startBluetoothOperations()

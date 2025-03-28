@@ -39,7 +39,7 @@ import Defaults
         // Initialize (in memory ig) all singletons
         _ = CalendarManager.shared
         _ = ShortcutsManager.shared
-        _ = MediaControls.shared
+        _ = MediaManager.shared
         _ = PowerMonitor.shared
         _ = VolumeMonitor.shared
         _ = CurrentWallpaperManager.shared

@@ -27,13 +27,13 @@ struct MiniAlbumCoverView: View, Equatable {
     
     var quickPeeks: [NotchNookState.QuickPeek]? {
         [
-            .init(icon: "music.note", text: MediaControls.shared.track.title),
-            .init(icon: "music.mic", text: MediaControls.shared.track.artist)
+            .init(icon: "music.note", text: MediaManager.shared.track.title),
+            .init(icon: "music.mic", text: MediaManager.shared.track.artist)
         ]
     }
     
     var body: some View {
-        let track = MediaControls.shared.track
+        let track = MediaManager.shared.track
         VStack {
             Button {
                 preventNextFocusFrontmostWindow()

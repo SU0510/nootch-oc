@@ -71,6 +71,14 @@
 		</dict>
 	</array>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string></string>
+	<string>NotchNook needs Bluetooth access to show your connected devices</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>NotchNook needs Bluetooth access to show your connected devices</string>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>This app needs access to Apple Events to control media playback.</string>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>This app needs access to Apple Music to display your currently playing track.</string>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>This app needs access to Apple Music to display your currently playing track.</string>
 </dict>
 </plist>

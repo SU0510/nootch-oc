@@ -22,7 +22,7 @@ struct TrackButtonView: View {
     var body: some View {
         Button(action: {
             animationCount += 1
-            direction == .next ? MediaControls.shared.goToNextTrack() : MediaControls.shared.goToPreviousTrack()
+            direction == .next ? MediaManager.shared.goToNextTrack() : MediaManager.shared.goToPreviousTrack()
         }) {
             HStack(spacing: -6) {
                 // Left triangle (appears growing during animation)

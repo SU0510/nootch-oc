@@ -19,7 +19,7 @@ struct AlbumCoverView: View, Identifiable, Equatable {
     @State private var rotation: Double = 0
     
     var body: some View {
-        let track = MediaControls.shared.track
+        let track = MediaManager.shared.track
         
         ZStack {
             Color.clear

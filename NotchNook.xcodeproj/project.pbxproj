@@ -38,6 +38,7 @@
 		3688ADC62D14871B00D761CD /* lisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC22D14871B00D761CD /* lisa.gif */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
+		36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManager.swift */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
@@ -437,6 +438,7 @@
 		3688ADC32D14871B00D761CD /* snoopy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snoopy.gif; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
+		36C1868A2D973D8B00043F99 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
@@ -1407,6 +1409,7 @@
 		EC4173CC2C0191A8002889E7 /* media */ = {
 			isa = PBXGroup;
 			children = (
+				36C1868A2D973D8B00043F99 /* MediaManager.swift */,
 				EC8D60582BFFEEF500E67ECC /* MediaControls.swift */,
 			);
 			path = media;
@@ -2291,6 +2294,7 @@
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
 				36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */,
+				36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */,
 				EC0E31092C055A560060B47E /* TraySettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */,

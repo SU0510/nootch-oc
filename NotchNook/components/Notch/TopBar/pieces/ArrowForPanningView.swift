@@ -38,9 +38,9 @@ struct ArrowForPanningView: View {
                 } completion: {
                     isAnimating = false
                     if actionRight {
-                        MediaControls.shared.goToNextTrack()
+                        MediaManager.shared.goToNextTrack()
                     } else {
-                        MediaControls.shared.goToPreviousTrack()
+                        MediaManager.shared.goToPreviousTrack()
                     }
                 }
             }

@@ -16,7 +16,7 @@ struct MediaPlayerWidgetView: View {
     
     var body: some View {
         VStack {
-            let player = MediaControls.shared
+            let player = MediaManager.shared
             if player.track != .empty {
                 MediaPlayerView(track: player.track)
             } else {

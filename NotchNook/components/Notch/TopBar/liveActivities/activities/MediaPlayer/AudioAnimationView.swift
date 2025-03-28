@@ -15,7 +15,7 @@ struct AudioAnimationView: View {
     @Environment(\.mediaLiveActivitySettings) private var userPrefs
     
     var body: some View {
-        let player = MediaControls.shared
+        let player = MediaManager.shared
         let isPlaying = altIsPlaying ?? player.isPlaying
         let volume = VolumeMonitor.shared.volume
         let albumAverageColor = player.track.albumArtAverageColor.lighter(by: 0.25) ?? .nonShockingWhite
