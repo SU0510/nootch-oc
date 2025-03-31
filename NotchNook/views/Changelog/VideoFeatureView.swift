@@ -16,7 +16,7 @@ struct VideoFeatureView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 24) {
             VPlayer(player: player)
-                .frame(width: 241, height: 82)
+                .frame(width: 250, height: 120)
                 .contentShape(Rectangle())
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .allowsHitTesting(false)

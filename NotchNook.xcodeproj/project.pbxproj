@@ -39,6 +39,7 @@
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManager.swift */; };
+		36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36C186922D9B1F9900043F99 /* gifs2.mp4 */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
 		36C970262C51D74500956B57 /* CalendarManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970252C51D74500956B57 /* CalendarManagerError.swift */; };
@@ -439,6 +440,7 @@
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C1868A2D973D8B00043F99 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
+		36C186922D9B1F9900043F99 /* gifs2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gifs2.mp4; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		36C970252C51D74500956B57 /* CalendarManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerError.swift; sourceTree = "<group>"; };
@@ -1186,6 +1188,7 @@
 				365D84F72CDBD64F00B7E566 /* fullscreen.mov */,
 				365D84FD2CDBD89000B7E566 /* notes-widget.mov */,
 				3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */,
+				36C186922D9B1F9900043F99 /* gifs2.mp4 */,
 			);
 			path = videos;
 			sourceTree = "<group>";
@@ -2035,6 +2038,7 @@
 				3A459C272C2E955D0045995D /* lock.lottie in Resources */,
 				3A59A4252C6FC93C004D9273 /* InfoSetapp.plist in Resources */,
 				365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */,
+				36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */,
 				365D84F92CDBD64F00B7E566 /* fullscreen.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
