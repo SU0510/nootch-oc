@@ -76,24 +76,8 @@ class MediaManager {
     
     private func setupApps() {
         musicApp = SBApplication(bundleIdentifier: MUSIC_BUNDLE_ID)
-        
-        if let music = musicApp {
-            let _ = music.isRunning
-            
-            DispatchQueue.main.async {
-                if !music.isRunning {
-                    let alert = NSAlert()
-                    alert.messageText = "Music Control Permission Required"
-                    alert.informativeText = "Please enable Automation permission for this app in System Settings > Privacy & Security > Automation to control Music app."
-                    alert.alertStyle = .warning
-                    alert.addButton(withTitle: "Open System Settings")
-                    alert.addButton(withTitle: "OK")
-                    
-                    if alert.runModal() == .alertFirstButtonReturn {
-                        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Automation")!)
-                    }
-                }
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            _ = self.musicApp?.playerState
         }
         
         isSpotifyRunning = NSWorkspace.shared.runningApplications.contains {
