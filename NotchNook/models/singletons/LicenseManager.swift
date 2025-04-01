@@ -84,13 +84,7 @@ class LicenseManager {
             return .noDeviceID
         }
         
-        var payload: [String: Any] = ["email": license.email, "deviceId": deviceIdentifier]
-        
-        if license.type == .license {
-            payload["licenseKey"] = license.key
-        } else {
-            payload["subKey"] = license.key
-        }
+        let payload: [String: Any] = ["email": license.email, "deviceId": deviceIdentifier, "key": license.key]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
         
@@ -150,13 +144,6 @@ extension LicenseManager {
 struct License: Equatable, Codable, Hashable, Defaults.Serializable {
     var email: String
     var key: String
-    var type: KeyType
-    
-    enum KeyType: String, Equatable, Hashable, Codable, CaseIterable, Identifiable {
-        case license = "Lifetime License"
-        case subscription = "Subscription Key"
-        var id: String { self.rawValue }
-    }
 }
 
 struct NNJWTPayload: JWTPayload {

@@ -13,7 +13,6 @@ import Defaults
 struct LicenseSettingsView: View {
     @State private var email = ""
     @State private var key = ""
-    @State private var keyType: License.KeyType = .subscription
     @State private var loading = false
     @State private var error: LicenseManager.CheckLicenseResult? = nil
     @State private var errorStr: String?
@@ -113,21 +112,6 @@ struct LicenseSettingsView: View {
                             .disabled(isLicenseValid)
                     }
                     
-                    HStack(spacing: 0) {
-                        Color.nonShockingWhite.opacity(0.05)
-                            .frame(maxWidth: .infinity, maxHeight: 1)
-                        
-                        Picker("", selection: $keyType) {
-                            ForEach(License.KeyType.allCases) { type in
-                                Text(type.rawValue).tag(type)
-                            }
-                        }
-                        .padding(.top, -18)
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 250, height: 23)
-                    }
-                    .padding(EdgeInsets(top: 5, leading: 0, bottom: 8, trailing: 0))
-                    .disabled(isLicenseValid)
                     
                     HStack {
                         VStack(alignment: .leading) {
@@ -164,7 +148,7 @@ struct LicenseSettingsView: View {
                         .disabled(loading || !isEmailValid || email.isEmpty || key.isEmpty)
                         .buttonStyle(BorderedProminentButtonStyle())
                         
-                        if isLicenseValid && keyType == .subscription {
+                        if isLicenseValid {
                             Button("Manage Billing") {
                                 if let url = URL(string: "https://pay.lo.cafe/p/login/aEU8xOfsWfSo3nO144?prefilled_email=\(email)") {
                                     openURL(url)
@@ -184,7 +168,6 @@ struct LicenseSettingsView: View {
             if let license {
                 email = license.email
                 key = license.key
-                keyType = license.type
             }
 #endif
         }
@@ -213,7 +196,7 @@ struct LicenseSettingsView: View {
         error = nil
         successMessage = nil
         
-        let newLicense = License(email: email, key: key, type: keyType)
+        let newLicense = License(email: email, key: key)
         Task {
             let result = await LicenseManager.shared.checkLicense(newLicense)
             DispatchQueue.main.async {
