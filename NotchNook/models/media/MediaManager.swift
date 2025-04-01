@@ -242,42 +242,30 @@ class MediaManager {
     // MARK: - Media Info Management
     
     private func updateMediaInfo() {
-        // Try Spotify first if it's running
+        guard musicApp?.isRunning ?? false || isSpotifyRunning else {
+            resetTrackState()
+            return
+        }
+        
         if isSpotifyRunning, let spotify = safeSpotifyInstance() {
-            // Safely try to access properties without forcing launch
-            if let currentTrack = spotify.currentTrack,
-               let playerState = spotify.playerState {
-                let isPlaying = playerState == .playing
-                updateTrackInfo(
-                    title: currentTrack.name ?? "",
-                    artist: currentTrack.artist ?? "",
-                    album: currentTrack.album ?? "",
-                    isPlaying: isPlaying,
-                    artworkURL: currentTrack.artworkUrl,
-                    app: SystemAppMeta(bundleId: SPOTIFY_BUNDLE_ID)
-                )
-                return
+            if let track = spotify.currentTrack, let playerState = spotify.playerState {
+                if playerState == .playing {
+                    updateTrackInfo(title: track.name, artist: track.artist, album: track.album, isPlaying: true, artworkURL: track.artworkUrl, app: SystemAppMeta(bundleId: SPOTIFY_BUNDLE_ID))
+                    return
+                }
             }
         }
         
-        // Then try Music app
         if let music = musicApp, music.isRunning {
-            // Force a state refresh for Music app
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
-                if let currentTrack = music.currentTrack,
-                   let playerState = music.playerState {
+                if let track = music.currentTrack, let playerState = music.playerState {
                     let isPlaying = playerState == .playing
+                    let artwork = track.artworks?().firstObject as? MusicArtwork
+                    let appMeta = SystemAppMeta(bundleId: self.MUSIC_BUNDLE_ID)
                     
-                    self.updateTrackInfo(
-                        title: currentTrack.name ?? "",
-                        artist: currentTrack.artist ?? "",
-                        album: currentTrack.album ?? "",
-                        isPlaying: isPlaying,
-                        artwork: currentTrack.artworks?().firstObject as? MusicArtwork,
-                        app: SystemAppMeta(bundleId: self.MUSIC_BUNDLE_ID)
-                    )
+                    self.updateTrackInfo(title: track.name, artist: track.artist, album: track.album, isPlaying: isPlaying, artwork: artwork, app: appMeta)
                 } else {
                     self.resetTrackState()
                 }
@@ -285,23 +273,14 @@ class MediaManager {
             return
         }
         
-        // If nothing is playing, reset
         resetTrackState()
     }
     
-    private func updateTrackInfo(
-        title: String,
-        artist: String,
-        album: String,
-        isPlaying: Bool,
-        artworkURL: String? = nil,
-        artwork: MusicArtwork? = nil,
-        app: SystemAppMeta
-    ) {
+    private func updateTrackInfo(title: String?, artist: String?, album: String?, isPlaying: Bool, artworkURL: String? = nil, artwork: MusicArtwork? = nil, app: SystemAppMeta) {
         var newTrack = Track()
-        newTrack.title = title
-        newTrack.artist = artist
-        newTrack.album = album
+        newTrack.title = title ?? ""
+        newTrack.artist = artist ?? ""
+        newTrack.album = album ?? ""
         newTrack.mediaApp = app
         
         let playingStateChanged = self.isPlaying != isPlaying
