@@ -105,24 +105,24 @@ struct AboutSettingsView: View {
                 }
                 .multilineTextAlignment(.center)
                 
-                VStack(spacing: 16) {
-                    Text("A few of our apps")
-                        .fontWeight(.semibold)
-                        .font(.title2)
-                        .multilineTextAlignment(.center)
-                    
-                    VStack(spacing: 8) {
-                        ForEach(Array(rowlify(elements: globalAppsRecommentations).enumerated()), id: \.offset) { _, row in
-                            HStack(spacing: 8) {
-                                ForEach(row) { app in
-                                    AppRecommendationView(app: app)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                }
+//                VStack(spacing: 16) {
+//                    Text("A few of our apps")
+//                        .fontWeight(.semibold)
+//                        .font(.title2)
+//                        .multilineTextAlignment(.center)
+//                    
+//                    VStack(spacing: 8) {
+//                        ForEach(Array(rowlify(elements: globalAppsRecommentations).enumerated()), id: \.offset) { _, row in
+//                            HStack(spacing: 8) {
+//                                ForEach(row) { app in
+//                                    AppRecommendationView(app: app)
+//                                        .frame(maxWidth: .infinity, alignment: .leading)
+//                                }
+//                            }
+//                        }
+//                    }
+//                    .frame(maxWidth: .infinity)
+//                }
             }
         }
         .padding(16)

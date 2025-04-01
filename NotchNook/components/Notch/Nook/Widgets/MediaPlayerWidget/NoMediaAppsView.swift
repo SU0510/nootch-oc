@@ -36,17 +36,17 @@ struct NoMediaAppsView: View {
                     }
                 }
                 
-                Button {
-                    guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
-                    preventNextFocusFrontmostWindow()
-                    openURL(youtubeURL)
-                } label: {
-                    Image(.youtubeLogo)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(31)
-                        .frame(38)
-                }
+//                Button {
+//                    guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
+//                    preventNextFocusFrontmostWindow()
+//                    openURL(youtubeURL)
+//                } label: {
+//                    Image(.youtubeLogo)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(31)
+//                        .frame(38)
+//                }
             }
             .buttonStyle(ShrinkOnClick())
         }
@@ -61,7 +61,7 @@ struct NoMediaAppsView: View {
             let tidalBundleID = "com.tidal.desktop"
             let voxBundleID = "com.coppertino.Vox"
             
-            let appsBundleIds = [spotubeBundleID, spotifyBundleID, ciderBundleID, appleBundleID, tidalBundleID, voxBundleID]
+            let appsBundleIds = [spotifyBundleID, appleBundleID]
             installedApps = appsBundleIds.compactMap { isAppInstalled($0) ? SystemAppMeta(bundleId: $0) : nil }
         }
     }
