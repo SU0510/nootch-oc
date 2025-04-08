@@ -43,7 +43,6 @@ class MediaManager {
     private var spotifyApp: SpotifyApplication?
     private var currentApp: SystemAppMeta?
     private var notificationObservers: [NSObjectProtocol] = []
-    private var isSpotifyRunning: Bool = false
     
     // MARK: - Polling Properties
     
@@ -75,13 +74,17 @@ class MediaManager {
     // MARK: - Setup Methods
     
     private func setupApps() {
-        musicApp = SBApplication(bundleIdentifier: MUSIC_BUNDLE_ID)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            _ = self.musicApp?.playerState
+        if let running = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == SPOTIFY_BUNDLE_ID }) {
+            let spotify = SBApplication(processIdentifier: running.processIdentifier)
+            spotify?.launchFlags = LSLaunchFlags()
+            spotifyApp = spotify
         }
         
-        isSpotifyRunning = NSWorkspace.shared.runningApplications.contains {
-            $0.bundleIdentifier == SPOTIFY_BUNDLE_ID
+        if NSWorkspace.shared.runningApplications.contains(where: { $0.bundleIdentifier == MUSIC_BUNDLE_ID }) {
+            musicApp = SBApplication(bundleIdentifier: MUSIC_BUNDLE_ID)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                _ = self.musicApp?.playerState
+            }
         }
     }
     
@@ -124,56 +127,28 @@ class MediaManager {
     }
     
     // MARK: - App Management
-    
-    private func safeSpotifyInstance() -> SpotifyApplication? {
-        guard isSpotifyRunning else {
-            spotifyApp = nil
-            return nil
-        }
-        
-        // Check if Spotify is actually running
-        let isActuallyRunning = NSWorkspace.shared.runningApplications.contains {
-            $0.bundleIdentifier == SPOTIFY_BUNDLE_ID
-        }
-        
-        if !isActuallyRunning {
-            isSpotifyRunning = false
-            spotifyApp = nil
-            return nil
-        }
-        
-        // Create new instance if needed
-        if spotifyApp == nil {
-            createSpotifyInstance()
-        }
-        
-        return spotifyApp
-    }
-    
-    private func createSpotifyInstance() {
-        if let running = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == SPOTIFY_BUNDLE_ID }) {
-            let spotify = SBApplication(processIdentifier: running.processIdentifier)
-            spotify?.launchFlags = LSLaunchFlags()
-            spotifyApp = spotify
-        }
-    }
-    
+
     private func handleAppLaunch(_ bundleId: String) {
         if bundleId == SPOTIFY_BUNDLE_ID {
-            isSpotifyRunning = true
             // Create instance only after app is fully launched
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                self?.createSpotifyInstance()
+                if let running = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == self?.SPOTIFY_BUNDLE_ID }) {
+                    let spotify = SBApplication(processIdentifier: running.processIdentifier)
+                    spotify?.launchFlags = LSLaunchFlags()
+                    self?.spotifyApp = spotify
+                }
                 self?.updateMediaInfo()
             }
         } else if bundleId == MUSIC_BUNDLE_ID {
-            startMusicPollingIfNeeded()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.musicApp = SBApplication(bundleIdentifier: bundleId)
+                self?.startMusicPollingIfNeeded()
+            }
         }
     }
     
     private func handleAppTermination(_ bundleId: String) {
         if bundleId == SPOTIFY_BUNDLE_ID {
-            isSpotifyRunning = false
             spotifyApp = nil
             if currentApp?.bundleId == SPOTIFY_BUNDLE_ID {
                 DispatchQueue.main.async { [weak self] in
@@ -196,7 +171,7 @@ class MediaManager {
     private func startMusicPollingIfNeeded() {
         stopMusicPolling()
         
-        guard let music = musicApp, music.isRunning else { return }
+        guard musicApp != nil else { return }
         
         musicPollingTimer = Timer.scheduledTimer(withTimeInterval: musicPollingInterval, repeats: true) { [weak self] _ in
             guard let self = self,
@@ -242,21 +217,29 @@ class MediaManager {
     // MARK: - Media Info Management
     
     private func updateMediaInfo() {
-        guard musicApp?.isRunning ?? false || isSpotifyRunning else {
+        let isMusicRunning = NSWorkspace.shared.runningApplications.contains {
+            $0.bundleIdentifier == MUSIC_BUNDLE_ID
+        }
+        
+        let isSpotifyRunning = NSWorkspace.shared.runningApplications.contains {
+            $0.bundleIdentifier == SPOTIFY_BUNDLE_ID
+        }
+        
+        guard isMusicRunning || isSpotifyRunning else {
             resetTrackState()
             return
         }
         
-        if isSpotifyRunning, let spotify = safeSpotifyInstance() {
+        if isSpotifyRunning, let spotify = spotifyApp {
             if let track = spotify.currentTrack, let playerState = spotify.playerState {
-                if playerState == .playing {
-                    updateTrackInfo(title: track.name, artist: track.artist, album: track.album, isPlaying: true, artworkURL: track.artworkUrl, app: SystemAppMeta(bundleId: SPOTIFY_BUNDLE_ID))
-                    return
-                }
+                let isPlaying = playerState == .playing
+                let appMeta = SystemAppMeta(bundleId: SPOTIFY_BUNDLE_ID)
+                updateTrackInfo(title: track.name, artist: track.artist, album: track.album, isPlaying: isPlaying, artworkURL: track.artworkUrl, app: appMeta)
+                return
             }
         }
         
-        if let music = musicApp, music.isRunning {
+        if isMusicRunning, let music = musicApp, music.isRunning {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
@@ -360,12 +343,10 @@ class MediaManager {
     func togglePlayPause() {
         switch currentApp?.bundleId {
             case SPOTIFY_BUNDLE_ID:
-                guard isSpotifyRunning,
-                      let spotify = safeSpotifyInstance() else { return }
+                guard let spotify = spotifyApp, spotify.isRunning else { return }
                 spotify.playpause?()
             case MUSIC_BUNDLE_ID:
-                guard let music = musicApp,
-                      music.isRunning else { return }
+                guard let music = musicApp, music.isRunning else { return }
                 music.playpause?()
             default:
                 break
@@ -375,12 +356,10 @@ class MediaManager {
     func goToPreviousTrack() {
         switch currentApp?.bundleId {
             case SPOTIFY_BUNDLE_ID:
-                guard isSpotifyRunning,
-                      let spotify = safeSpotifyInstance() else { return }
+                guard let spotify = spotifyApp, spotify.isRunning else { return }
                 spotify.previousTrack?()
             case MUSIC_BUNDLE_ID:
-                guard let music = musicApp,
-                      music.isRunning else { return }
+                guard let music = musicApp, music.isRunning else { return }
                 music.previousTrack?()
             default:
                 break
@@ -390,12 +369,10 @@ class MediaManager {
     func goToNextTrack() {
         switch currentApp?.bundleId {
             case SPOTIFY_BUNDLE_ID:
-                guard isSpotifyRunning,
-                      let spotify = safeSpotifyInstance() else { return }
+                guard let spotify = spotifyApp, spotify.isRunning else { return }
                 spotify.nextTrack?()
             case MUSIC_BUNDLE_ID:
-                guard let music = musicApp,
-                      music.isRunning else { return }
+                guard let music = musicApp, music.isRunning else { return }
                 music.nextTrack?()
             default:
                 break
