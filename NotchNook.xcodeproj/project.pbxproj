@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		365D84F92CDBD64F00B7E566 /* fullscreen.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84F72CDBD64F00B7E566 /* fullscreen.mov */; };
 		365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84FD2CDBD89000B7E566 /* notes-widget.mov */; };
 		365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */; };
+		365E68ED2DAECB08006BDF7D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365E68EC2DAECB08006BDF7D /* XCTest.framework */; };
 		3663DD952CDEA51A008E17E5 /* fine-tuning-height.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
 		3676B04D2CF10CF9007449EE /* ColoredToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */; };
@@ -407,6 +408,16 @@
 		ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF429262C07B0FB0086B07A /* SliderPlus.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		365E68E22DAEC990006BDF7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC758F602BF2F18700B873B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC758F672BF2F18700B873B0;
+			remoteInfo = NotchNook;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanupTemporaryDirectory.swift; sourceTree = "<group>"; };
 		3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIndicatorKey.swift; sourceTree = "<group>"; };
@@ -425,6 +436,8 @@
 		365D84F72CDBD64F00B7E566 /* fullscreen.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = fullscreen.mov; sourceTree = "<group>"; };
 		365D84FD2CDBD89000B7E566 /* notes-widget.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "notes-widget.mov"; sourceTree = "<group>"; };
 		365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightFineTuningView.swift; sourceTree = "<group>"; };
+		365E68DE2DAEC990006BDF7D /* NotchNookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotchNookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		365E68EC2DAECB08006BDF7D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fine-tuning-height.mp4"; sourceTree = "<group>"; };
 		3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerlinNoiseGenerator.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/PerlinNoiseGenerator.swift; sourceTree = SOURCE_ROOT; };
 		3676B04C2CF10CF5007449EE /* ColoredToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredToggleStyle.swift; sourceTree = "<group>"; };
@@ -797,11 +810,24 @@
 		ECF429262C07B0FB0086B07A /* SliderPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPlus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		365E68DF2DAEC990006BDF7D /* NotchNookTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = NotchNookTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		365E68DB2DAEC990006BDF7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				365E68ED2DAECB08006BDF7D /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC758F652BF2F18700B873B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365E68EE2DAECB33006BDF7D /* XCTest.framework in Frameworks */,
 				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				ECCEFE6F2C64453600F3385C /* FluidGradient in Frameworks */,
@@ -831,6 +857,14 @@
 				3AE405502C2D499300E8D927 /* RichToolbarView.swift */,
 			);
 			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		365E68EB2DAECB07006BDF7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				365E68EC2DAECB08006BDF7D /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		367982D72C6155BD00BEB1F2 /* Effects */ = {
@@ -1517,6 +1551,8 @@
 			isa = PBXGroup;
 			children = (
 				EC758F6A2BF2F18700B873B0 /* NotchNook */,
+				365E68DF2DAEC990006BDF7D /* NotchNookTests */,
+				365E68EB2DAECB07006BDF7D /* Frameworks */,
 				EC758F692BF2F18700B873B0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1525,6 +1561,7 @@
 			isa = PBXGroup;
 			children = (
 				EC758F682BF2F18700B873B0 /* NotchNook.app */,
+				365E68DE2DAEC990006BDF7D /* NotchNookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1931,6 +1968,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		365E68DD2DAEC990006BDF7D /* NotchNookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 365E68E42DAEC990006BDF7D /* Build configuration list for PBXNativeTarget "NotchNookTests" */;
+			buildPhases = (
+				365E68DA2DAEC990006BDF7D /* Sources */,
+				365E68DB2DAEC990006BDF7D /* Frameworks */,
+				365E68DC2DAEC990006BDF7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				365E68E32DAEC990006BDF7D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				365E68DF2DAEC990006BDF7D /* NotchNookTests */,
+			);
+			name = NotchNookTests;
+			packageProductDependencies = (
+			);
+			productName = NotchNookTests;
+			productReference = 365E68DE2DAEC990006BDF7D /* NotchNookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EC758F672BF2F18700B873B0 /* NotchNook */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC758F772BF2F18900B873B0 /* Build configuration list for PBXNativeTarget "NotchNook" */;
@@ -1970,9 +2030,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					365E68DD2DAEC990006BDF7D = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = EC758F672BF2F18700B873B0;
+					};
 					EC758F672BF2F18700B873B0 = {
 						CreatedOnToolsVersion = 15.3;
 						LastSwiftMigration = 1540;
@@ -2013,11 +2077,19 @@
 			projectRoot = "";
 			targets = (
 				EC758F672BF2F18700B873B0 /* NotchNook */,
+				365E68DD2DAEC990006BDF7D /* NotchNookTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		365E68DC2DAEC990006BDF7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC758F662BF2F18700B873B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2046,6 +2118,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		365E68DA2DAEC990006BDF7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC758F642BF2F18700B873B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2422,7 +2501,87 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		365E68E32DAEC990006BDF7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC758F672BF2F18700B873B0 /* NotchNook */;
+			targetProxy = 365E68E22DAEC990006BDF7D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		365E68E52DAEC990006BDF7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NotchNook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NotchNook";
+			};
+			name = Debug;
+		};
+		365E68E62DAEC990006BDF7D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NotchNook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NotchNook";
+			};
+			name = Development;
+		};
+		365E68E72DAEC990006BDF7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NotchNook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NotchNook";
+			};
+			name = Release;
+		};
+		365E68E82DAEC990006BDF7D /* Release Setapp */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2NNLU4F7U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lo.cafe.NotchNookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NotchNook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NotchNook";
+			};
+			name = "Release Setapp";
+		};
 		3A7C05C92C59B26100435D99 /* Release Setapp */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
