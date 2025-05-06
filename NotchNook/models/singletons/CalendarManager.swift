@@ -176,6 +176,12 @@ class CalendarManager {
                     return true
                 }
             }
+            
+            if !settings.shouldShowAllDayEvents {
+                self.events = self.events.filter { event in
+                    return !event.isAllDay
+                }
+            }
         }
         
         print("Fetched \(fetchedEvents.count) events")
