@@ -19,6 +19,7 @@ struct CalendarWidgetView: View {
     @State private var dragDirection: CGFloat = 0
     
     @Environment(\.calendarWidgetSettings) private var settings
+    @Environment(\.openURL) private var openURL
     
     var daysBehindCount: Int {
         settings.numberOfDaysBehindToDisplay
@@ -38,9 +39,30 @@ struct CalendarWidgetView: View {
 
         ScrollWheelViewRepresentable(onDragChanged: onDragChanged, onDragEnded: onDragEnded) {
             VStack(spacing: -1) {
+                // MARK: Days carrousel
                 ScrollableDaysView(displayedDates: displayedDates, selectedDateIndex: $selectedDateIndex, offset: $offset, events: events)
-                    .overlay { monthNameOverlayView }
+                    .overlay {
+                        // MARK: Month view
+                        ZStack {
+                            ScrollableDaysMonthOverlayView(monthName: selectedDate.monthName(.standaloneShort)) {
+                                if selectedDateIndex != daysBehindCount {
+                                    withAnimation(.spring) {
+                                        selectedDateIndex = daysBehindCount
+                                    }
+                                } else {
+                                    guard let url = URL(string: "ical://") else { return }
+                                    openURL(url)
+                                }
+                            }
+                            .id(selectedDate.monthName(.standaloneShort))
+                            .transition(.scaleAndBlur(anchor: .leading, blur: 0))
+                        }
+                        .transition(.scaleAndBlur(anchor: .leading, blur: 0))
+                        .animation(.snappy, value: selectedDate.monthName(.standaloneShort))
+                    }
                     .zIndex(1)
+                
+                // MARK: Events vertical scroll
                 CalendarEventsView(events: events[selectedDate], selectedDate: selectedDate)
                     .id(selectedDate)
             }
@@ -54,21 +76,7 @@ struct CalendarWidgetView: View {
             selectedDateIndex = daysBehindCount
         }
     }
-    
-    var monthNameOverlayView: some View {
-        ZStack {
-            ScrollableDaysMonthOverlayView(monthName: selectedDate.monthName(.standaloneShort)) {
-                withAnimation(.spring) {
-                    selectedDateIndex = daysBehindCount
-                }
-            }
-            .id(selectedDate.monthName(.standaloneShort))
-            .transition(.scaleAndBlur(anchor: .leading, blur: 0))
-        }
-        .transition(.scaleAndBlur(anchor: .leading, blur: 0))
-        .animation(.snappy, value: selectedDate.monthName(.standaloneShort))
-    }
-    
+
     // MARK: - Functions
         
     func onDragChanged(_ translation: CGSize, _ scrollingPoint: CGPoint, _ velocity: CGSize, cancelGesture: () -> ()) {

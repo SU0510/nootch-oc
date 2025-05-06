@@ -77,17 +77,16 @@ struct CalendarEventView: View {
     }
     
     private func openCalendarEvent() {
+        guard let calendarURL = URL(string: "ical://") else { return }
         guard let eventIdentifier = event.eventIdentifier else {
-            openURL(URL(string: "ical://")!)
+            openURL(calendarURL)
             return
         }
         
-        let eventURL = URL(string: "ical://ekevent/\(eventIdentifier)")
-        
-        if let url = eventURL {
-            openURL(url)
+        if let eventURL = URL(string: "ical://ekevent/\(eventIdentifier)") {
+            openURL(eventURL)
         } else {
-            openURL(URL(string: "ical://")!)
+            openURL(calendarURL)
         }
     }
     
