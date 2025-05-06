@@ -10,6 +10,5 @@ import Foundation
 struct CalendarLiveActivitySettings: Preferences {
     var preEventWindow: Int = 15
     var onlyEventsWithMeetings = false
-    var showEventTimeLapsed = true
-    var showWhileInEvent = true
+    var showEventTimeLapsed = false
 }

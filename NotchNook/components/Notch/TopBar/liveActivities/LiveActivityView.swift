@@ -43,7 +43,7 @@ struct LiveActivityView: View {
         
         let isWithinPreEventWindow = !isEventInProgress && timeUntilEventStart <= Double(calendarLiveActivitySettings.preEventWindow * 60)
         
-        let shouldShowDuringEvent = isEventInProgress && calendarLiveActivitySettings.showWhileInEvent
+        let shouldShowDuringEvent = isEventInProgress && calendarLiveActivitySettings.showEventTimeLapsed
         
         return isWithinPreEventWindow || shouldShowDuringEvent
     }
