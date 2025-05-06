@@ -24,13 +24,50 @@ struct CalendarEventView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 6) {
-            titleView
+            // MARK: Title
+            Group {
+                if meeting != nil {
+                    Text(Image(systemName: "video.fill"))
+                        .font(.system(size: 10))
+                        .foregroundStyle(.blue)
+                    +
+                    Text(" \(event.title)")
+                } else {
+                    Text(event.title)
+                }
+            }
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(width: width / 2, alignment: .trailing)
+            .opacity(hovering ? 0.35 : 1)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                openCalendarEvent()
+            }
+            .overlay(alignment: .trailing) {
+                if let meeting, hovering {
+                    meetingButton(for: meeting)
+                }
+            }
+            .onHover { x in withAnimation(.smooth(duration: 0.2, extraBounce: 0.15)) { hovering = x } }
+            .font(.system(size: 13))
+            .padding(.bottom, 12)
+            .multilineTextAlignment(.trailing)
             
-            dividerView
+            // MARK: Divider
+            VStack(spacing: -1) {
+                Color.nonShockingWhite.opacity(0.1).frame(width: 1, height: 6)
+                Circle().fill(Color(event.calendar.cgColor)).frame(Self.blueCircleSize)
+                Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
+            }
             
+            // MARK: Time range text
             let startTime = event.startDate.formatted(date: .omitted, time: .shortened)
             let endTime = event.endDate.formatted(date: .omitted, time: .shortened)
-            timeView(start: startTime, end: endTime)
+            Text("\(startTime) - \(endTime)")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 12)
+                .font(.system(size: 12, weight: .semibold))
+                .opacity(0.5)
         }
         .foregroundStyle(.nonShockingWhite)
         .onAppear {
@@ -39,47 +76,19 @@ struct CalendarEventView: View {
         .offset(x: 3.5)
     }
     
-    var titleView: some View {
-        Group {
-            if meeting != nil {
-                Text(Image(systemName: "video.fill"))
-                    .font(.system(size: 10))
-                    .foregroundStyle(.blue)
-                +
-                Text(" \(event.title)")
-            } else {
-                Text(event.title)
-            }
+    private func openCalendarEvent() {
+        guard let eventIdentifier = event.eventIdentifier else {
+            openURL(URL(string: "ical://")!)
+            return
         }
-        .fixedSize(horizontal: false, vertical: true)
-        .frame(width: width / 2, alignment: .trailing)
-        .opacity(hovering ? 0.35 : 1)
-        .contentShape(Rectangle())
-        .overlay(alignment: .trailing) {
-            if let meeting, hovering {
-                meetingButton(for: meeting)
-            }
+        
+        let eventURL = URL(string: "ical://ekevent/\(eventIdentifier)")
+        
+        if let url = eventURL {
+            openURL(url)
+        } else {
+            openURL(URL(string: "ical://")!)
         }
-        .onHover { x in withAnimation(.smooth(duration: 0.2, extraBounce: 0.15)) { hovering = x } }
-        .font(.system(size: 13))
-        .padding(.bottom, 12)
-        .multilineTextAlignment(.trailing)
-    }
-    
-    var dividerView: some View {
-        VStack(spacing: -1) {
-            Color.nonShockingWhite.opacity(0.1).frame(width: 1, height: 6)
-            Circle().fill(Color(event.calendar.cgColor)).frame(Self.blueCircleSize)
-            Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
-        }
-    }
-    
-    func timeView(start: String, end: String) -> some View {
-        Text("\(start) - \(end)")
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.bottom, 12)
-            .font(.system(size: 12, weight: .semibold))
-            .opacity(0.5)
     }
     
     func meetingButton(for meeting: Meeting) -> some View {
