@@ -58,10 +58,10 @@ struct CalendarWidgetSettingsView: View {
                 
                 Settings.Section(title: "", bottomDivider: true) {
                     Toggle(String(localized: "Show today's past events"), isOn: $settings.shouldShowTodayPastEvents)
-                        .padding(.vertical, 8)
+                        .padding(.top, 8)
                     
                     Toggle(String(localized: "Show all-day events"), isOn: $settings.shouldShowAllDayEvents)
-                        .padding(.vertical, 8)
+                        .padding(.bottom, 8)
                 }
                 
                 Settings.Section(title: "", bottomDivider: true) {
