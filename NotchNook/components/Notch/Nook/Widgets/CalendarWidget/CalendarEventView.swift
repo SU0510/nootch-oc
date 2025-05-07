@@ -17,6 +17,7 @@ struct CalendarEventView: View {
     var event: EKEvent
     var width: Double
     var selectedDate: Date
+    var isLastEvent: Bool = false
     
     @State private var meeting: Meeting?
     @State private var hovering = false
@@ -91,7 +92,7 @@ struct CalendarEventView: View {
             .overlay(alignment: .trailing) {
                 if let meeting, hovering {
                     meetingButton(for: meeting)
-                }
+                } 
             }
             .onHover { x in withAnimation(.smooth(duration: 0.2, extraBounce: 0.15)) { hovering = x } }
             .font(.system(size: 13))
@@ -102,7 +103,9 @@ struct CalendarEventView: View {
             VStack(spacing: -1) {
                 Color.nonShockingWhite.opacity(0.1).frame(width: 1, height: 6)
                 Circle().fill(Color(event.calendar.cgColor)).frame(Self.blueCircleSize)
-                Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
+                if !isLastEvent {
+                    Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
+                }
             }
             
             // MARK: Right-side text

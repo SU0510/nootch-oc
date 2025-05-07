@@ -30,8 +30,8 @@ struct CalendarEventsView: View {
                     // MARK: Scroll view
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack(spacing: 0) {
-                            ForEach(events ?? [], id: \.self) { event in
-                                CalendarEventView(event: event, width: geo.size.width, selectedDate: selectedDate)
+                            ForEach(Array(events.enumerated()), id: \.element) { (index, event) in
+                                CalendarEventView(event: event, width: geo.size.width, selectedDate: selectedDate, isLastEvent: index == events.count - 1)
                             }
                         }
                         .padding(EdgeInsets(top: Self.fadeHeight, leading: 8, bottom: Self.fadeHeight + 8, trailing: 8))
