@@ -60,14 +60,21 @@ struct CalendarEventView: View {
                 Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
             }
             
-            // MARK: Time range text
-            let startTime = event.startDate.formatted(date: .omitted, time: .shortened)
-            let endTime = event.endDate.formatted(date: .omitted, time: .shortened)
-            Text("\(startTime) - \(endTime)")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 12)
-                .font(.system(size: 12, weight: .semibold))
-                .opacity(0.5)
+            // MARK: Right side text
+            Group {
+                if event.isAllDay {
+                    Text("All day")
+                } else {
+                    // MARK: Time range text
+                    let startTime = event.startDate.formatted(date: .omitted, time: .shortened)
+                    let endTime = event.endDate.formatted(date: .omitted, time: .shortened)
+                    Text("\(startTime) - \(endTime)")
+                }
+            }
+            .font(.system(size: 12, weight: .semibold))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 12)
+            .opacity(0.5)
         }
         .foregroundStyle(.nonShockingWhite)
         .onAppear {
