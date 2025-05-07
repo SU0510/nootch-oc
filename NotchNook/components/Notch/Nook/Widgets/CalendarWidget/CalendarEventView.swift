@@ -36,7 +36,27 @@ struct CalendarEventView: View {
             if event.isMultiDay {
                 return date.formatted(.dateTime.day().month(.abbreviated))
             } else {
-                return date.formatted(.dateTime.day().month(.abbreviated).hour().minute())
+                let timeFormatter = DateFormatter()
+                timeFormatter.dateStyle = .none
+                timeFormatter.timeStyle = .short
+                
+                let formattedTime = timeFormatter.string(from: date)
+                
+                // Check if the locale uses 12-hour format
+                let is12HourFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: .current)?.contains("a") ?? false
+                
+                // Check if time is exactly on the hour (e.g., 6:00 PM) and using 12-hour format
+                if is12HourFormat && formattedTime.contains(":00") {
+                    timeFormatter.dateFormat = "h a"
+                    return timeFormatter.string(from: date).lowercased()
+                }
+                
+                // For times with minutes, remove space between time and AM/PM
+                if is12HourFormat {
+                    return formattedTime.replacingOccurrences(of: " ", with: "").lowercased()
+                }
+                
+                return formattedTime
             }
         }
         
