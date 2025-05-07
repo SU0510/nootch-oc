@@ -18,4 +18,9 @@ extension Date {
         components.second = -1
         return calendar.date(byAdding: components, to: startOfDay(calendar: calendar))!
     }
+    
+    func isSameDay(as date: Date) -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDate(self, inSameDayAs: date)
+    }
 }

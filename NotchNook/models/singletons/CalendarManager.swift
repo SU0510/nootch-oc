@@ -180,7 +180,13 @@ class CalendarManager {
             
             if !settings.shouldShowAllDayEvents {
                 self.events = self.events.filter { event in
-                    return !event.isAllDay
+                    return !event.isAllDay || event.isMultiDay
+                }
+            }
+            
+            if !settings.shouldShowMultiDayEvents {
+                self.events = self.events.filter { event in
+                    return !event.isMultiDay
                 }
             }
         }

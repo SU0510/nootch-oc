@@ -75,6 +75,8 @@ struct CalendarWidgetSettingsView: View {
                         .padding(.top, 8)
                     
                     Toggle(String(localized: "Show all-day events"), isOn: $settings.shouldShowAllDayEvents)
+                    
+                    Toggle(String(localized: "Show multi-day events"), isOn: $settings.shouldShowMultiDayEvents)
                         .padding(.bottom, 8)
                 }
                 

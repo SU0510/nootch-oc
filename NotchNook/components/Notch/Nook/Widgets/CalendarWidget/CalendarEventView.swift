@@ -16,15 +16,40 @@ struct CalendarEventView: View {
     
     var event: EKEvent
     var width: Double
+    var selectedDate: Date
     
     @State private var meeting: Meeting?
     @State private var hovering = false
     
     @Environment(\.openURL) private var openURL
     
+    private var timeDisplay: Text {
+        guard event.isMultiDay || !event.isAllDay else {
+            return Text("All day")
+        }
+        
+        let calendar = Calendar.current
+        let startDate = event.startDate ?? Date()
+        let endDate = event.endDate ?? Date()
+        
+        let formatter: (Date) -> String = { date in
+            if event.isMultiDay {
+                return date.formatted(.dateTime.day().month(.abbreviated))
+            } else {
+                return date.formatted(.dateTime.day().month(.abbreviated).hour().minute())
+            }
+        }
+        
+        let startTimeDisplay = formatter(startDate)
+        let endTimeDisplay = formatter(endDate)
+        
+        return Text("\(startTimeDisplay) – \(endTimeDisplay)")
+
+    }
+    
     var body: some View {
         HStack(alignment: .top, spacing: 6) {
-            // MARK: Title
+            // MARK: Event title
             Group {
                 if meeting != nil {
                     Text(Image(systemName: "video.fill"))
@@ -60,21 +85,12 @@ struct CalendarEventView: View {
                 Color.nonShockingWhite.opacity(0.1).frame(maxWidth: 1, maxHeight: .infinity)
             }
             
-            // MARK: Right side text
-            Group {
-                if event.isAllDay {
-                    Text("All day")
-                } else {
-                    // MARK: Time range text
-                    let startTime = event.startDate.formatted(date: .omitted, time: .shortened)
-                    let endTime = event.endDate.formatted(date: .omitted, time: .shortened)
-                    Text("\(startTime) - \(endTime)")
-                }
-            }
-            .font(.system(size: 12, weight: .semibold))
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.bottom, 12)
-            .opacity(0.5)
+            // MARK: Right-side text
+            timeDisplay
+                .font(.system(size: 12, weight: .semibold))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 12)
+                .opacity(0.5)
         }
         .foregroundStyle(.nonShockingWhite)
         .onAppear {
