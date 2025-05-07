@@ -103,12 +103,7 @@ struct CalendarWidgetSettingsView: View {
         .frame(maxHeight: .infinity, alignment: .topLeading)
         .onAppear {
             availableCalendars = CalendarManager.shared.availableCalendars
-            guard let previouslySelectedCalendars = settings.selectedCalendars else {
-                selectedCalendars = Set(availableCalendars.map { $0.calendarIdentifier })
-                updateSelectedCalendars()
-                return
-            }
-            selectedCalendars = Set(previouslySelectedCalendars)
+            selectedCalendars = Set(settings.selectedCalendars ?? [])
         }
     }
     
