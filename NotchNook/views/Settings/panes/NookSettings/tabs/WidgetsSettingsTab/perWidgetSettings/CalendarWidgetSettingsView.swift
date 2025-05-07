@@ -60,7 +60,7 @@ struct CalendarWidgetSettingsView: View {
                     Toggle(String(localized: "Show today's past events"), isOn: $settings.shouldShowTodayPastEvents)
                         .padding(.vertical, 8)
                     
-                    Toggle(String(localized: "Show all day events"), isOn: $settings.shouldShowAllDayEvents)
+                    Toggle(String(localized: "Show all-day events"), isOn: $settings.shouldShowAllDayEvents)
                         .padding(.vertical, 8)
                 }
                 
