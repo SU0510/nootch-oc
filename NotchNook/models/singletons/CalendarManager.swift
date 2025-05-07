@@ -65,8 +65,9 @@ class CalendarManager {
     
     private func loadSelectedCalendars() {
         let settings = Defaults[.calendarWidgetSettings]
+        guard let previouslySelectedCalendars = settings.selectedCalendars else { return }
         selectedCalendars = eventStore.calendars(for: .event).filter {
-            settings.selectedCalendars.contains($0.calendarIdentifier)
+            previouslySelectedCalendars.contains($0.calendarIdentifier)
         }
     }
     

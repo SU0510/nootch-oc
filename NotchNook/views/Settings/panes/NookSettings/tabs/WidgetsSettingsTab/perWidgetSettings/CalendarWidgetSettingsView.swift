@@ -20,7 +20,21 @@ struct CalendarWidgetSettingsView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Calendars to show:")
+                VStack {
+                    Text("Calendars to show:")
+                        .font(.system(size: 14, weight: .semibold))
+                    
+                    HStack(spacing: 8) {
+                        Button("Select All") {
+                            selectAllCalendars()
+                        }
+                        
+                        Button("Clear") {
+                            clearAllCalendars()
+                        }
+                    }
+                    .padding(.leading, 8)
+                }
                 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -87,13 +101,28 @@ struct CalendarWidgetSettingsView: View {
         .frame(maxHeight: .infinity, alignment: .topLeading)
         .onAppear {
             availableCalendars = CalendarManager.shared.availableCalendars
-            selectedCalendars = Set(Defaults[.calendarWidgetSettings].selectedCalendars)
+            guard let previouslySelectedCalendars = settings.selectedCalendars else {
+                selectedCalendars = Set(availableCalendars.map { $0.calendarIdentifier })
+                updateSelectedCalendars()
+                return
+            }
+            selectedCalendars = Set(previouslySelectedCalendars)
         }
     }
     
     private func updateSelectedCalendars() {
         let selected = availableCalendars.filter { selectedCalendars.contains($0.calendarIdentifier) }
         CalendarManager.shared.updateSelectedCalendars(selected)
+    }
+    
+    private func selectAllCalendars() {
+        selectedCalendars = Set(availableCalendars.map { $0.calendarIdentifier })
+        updateSelectedCalendars()
+    }
+    
+    private func clearAllCalendars() {
+        selectedCalendars.removeAll()
+        updateSelectedCalendars()
     }
 }
 
