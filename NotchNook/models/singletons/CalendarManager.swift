@@ -137,22 +137,36 @@ class CalendarManager {
     /// Core functionality for fetching events within a range, ensuring events are cleared first
     @discardableResult
     public func fetchEvents() async throws -> [EKEvent] {
-        try await accessCalendar()
-        
-        guard !selectedCalendars.isEmpty else {
-            print("No calendars selected")
-            await MainActor.run {
-                self.events = []
-                self.eventsDatesDict = [:]
-            }
+        do {
+            try await accessCalendar()
+        } catch {
+            print("Calendar access failed: \(error)")
             return []
         }
         
-        let fetchClosure: @Sendable (EKEventStore, Date, Date, [EKCalendar]) -> [EKEvent] = { store, start, end, cals in
-            let pred = store.predicateForEvents(withStart: start, end: end, calendars: cals)
-            return store.events(matching: pred)
+        guard !selectedCalendars.isEmpty else {
+            await clearEvents()
+            return []
         }
         
+        let fetchedEvents = try await fetchEventsInBackground()
+        
+        await MainActor.run {
+            self.events = applyEventFilters(fetchedEvents)
+        }
+        
+        print("Fetched \(fetchedEvents.count) events")
+        return fetchedEvents
+    }
+    
+    private func clearEvents() async {
+        await MainActor.run {
+            self.events = []
+            self.eventsDatesDict = [:]
+        }
+    }
+    
+    private func fetchEventsInBackground() async throws -> [EKEvent] {
         let settings = Defaults[.calendarWidgetSettings]
         let daysAhead = settings.numberOfDaysAheadToDisplay + 1
         let daysBehind = settings.numberOfDaysBehindToDisplay
@@ -161,38 +175,37 @@ class CalendarManager {
         let startDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -daysBehind, to: now)!)
         let endDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: daysAhead, to: now)!)
         
-        // Perform the fetch on a background queue
-        let fetchedEvents = await Task.detached {
-            fetchClosure(self.eventStore, startDate, endDate, self.selectedCalendars)
+        return await Task.detached {
+            let pred = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: self.selectedCalendars)
+            return self.eventStore.events(matching: pred)
         }.value
+    }
+    
+    private func applyEventFilters(_ events: [EKEvent]) -> [EKEvent] {
+        let settings = Defaults[.calendarWidgetSettings]
+        let now = Date()
         
-        await MainActor.run {
-            self.events = fetchedEvents
-            
-            if !settings.shouldShowTodayPastEvents {
-                self.events = fetchedEvents.filter { event in
+        return events
+            .filter { event -> Bool in
+                if !settings.shouldShowTodayPastEvents {
                     if Calendar.current.isDateInToday(event.startDate) {
                         return event.endDate > now
                     }
-                    return true
                 }
+                return true
             }
-            
-            if !settings.shouldShowAllDayEvents {
-                self.events = self.events.filter { event in
+            .filter { event -> Bool in
+                if !settings.shouldShowAllDayEvents {
                     return !event.isAllDay || event.isMultiDay
                 }
+                return true
             }
-            
-            if !settings.shouldShowMultiDayEvents {
-                self.events = self.events.filter { event in
+            .filter { event -> Bool in
+                if !settings.shouldShowMultiDayEvents {
                     return !event.isMultiDay
                 }
+                return true
             }
-        }
-        
-        print("Fetched \(fetchedEvents.count) events")
-        return fetchedEvents
     }
     
     // MARK: - Private methods
