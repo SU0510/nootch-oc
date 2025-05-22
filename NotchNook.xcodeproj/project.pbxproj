@@ -24,6 +24,8 @@
 		365D84F92CDBD64F00B7E566 /* fullscreen.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84F72CDBD64F00B7E566 /* fullscreen.mov */; };
 		365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84FD2CDBD89000B7E566 /* notes-widget.mov */; };
 		365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */; };
+		365E68D42DA5A2C5006BDF7D /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 365E68D32DA5A2C5006BDF7D /* Defaults */; };
+		365E68D62DA5A2C5006BDF7D /* DefaultsMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 365E68D52DA5A2C5006BDF7D /* DefaultsMacros */; };
 		365E68ED2DAECB08006BDF7D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365E68EC2DAECB08006BDF7D /* XCTest.framework */; };
 		3663DD952CDEA51A008E17E5 /* fine-tuning-height.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
@@ -219,7 +221,6 @@
 		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
 		BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */; };
-		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
 		BB50026F2C4AC8FD0028FCB5 /* VolumeAndBrightnessListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */; };
@@ -834,12 +835,13 @@
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
+				365E68D42DA5A2C5006BDF7D /* Defaults in Frameworks */,
 				3A00275E2C90263C002A089D /* Settings in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
-				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				3A1DC6172C6DAE6500D97B5E /* CodeEditor in Frameworks */,
+				365E68D62DA5A2C5006BDF7D /* DefaultsMacros in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
 				3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */,
 			);
@@ -2005,7 +2007,6 @@
 			);
 			name = NotchNook;
 			packageProductDependencies = (
-				BB2A5E542C006B63008F3081 /* Defaults */,
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
 				EC47FC8D2C0B801A00591811 /* Lottie */,
@@ -2018,6 +2019,8 @@
 				ECCEFE6E2C64453600F3385C /* FluidGradient */,
 				3A1DC6162C6DAE6500D97B5E /* CodeEditor */,
 				3A9FEA162C6DCBF500AE6515 /* Setapp */,
+				365E68D32DA5A2C5006BDF7D /* Defaults */,
+				365E68D52DA5A2C5006BDF7D /* DefaultsMacros */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -2057,7 +2060,6 @@
 			);
 			mainGroup = EC758F5F2BF2F18700B873B0;
 			packageReferences = (
-				BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */,
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
@@ -2071,6 +2073,7 @@
 				3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
 				3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */,
+				365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -3018,6 +3021,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.3;
+			};
+		};
 		3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lo-cafe/Settings.git";
@@ -3074,14 +3085,6 @@
 				minimumVersion = 4.2.1;
 			};
 		};
-		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Defaults";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
@@ -3133,6 +3136,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		365E68D32DA5A2C5006BDF7D /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		365E68D52DA5A2C5006BDF7D /* DefaultsMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = DefaultsMacros;
+		};
 		3A00275D2C90263C002A089D /* Settings */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */;
@@ -3167,11 +3180,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */;
 			productName = Setapp;
-		};
-		BB2A5E542C006B63008F3081 /* Defaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */;
-			productName = Defaults;
 		};
 		EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
