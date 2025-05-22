@@ -2996,6 +2996,17 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		365E68E42DAEC990006BDF7D /* Build configuration list for PBXNativeTarget "NotchNookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				365E68E52DAEC990006BDF7D /* Debug */,
+				365E68E62DAEC990006BDF7D /* Development */,
+				365E68E72DAEC990006BDF7D /* Release */,
+				365E68E82DAEC990006BDF7D /* Release Setapp */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EC758F632BF2F18700B873B0 /* Build configuration list for PBXProject "NotchNook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
