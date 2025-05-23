@@ -23,11 +23,19 @@ struct Pipeline: Identifiable, Equatable {
 
 let allPipelines: [Pipeline] = [
     Pipeline(
-        id: "airdrop", label: String(localized: "AirDrop"),
+        id: "airdrop",
+        label: String(localized: "AirDrop"),
         icon: Image(nsImage: NSWorkspace.shared.icon(for: .init("com.apple.airdrop")!)),
-        allowedFileTypes: [.fileURL],
+        allowedFileTypes: [
+            .fileURL,
+            .init("public.url"),
+            .init("CorePasteboardFlavorType 0x75726C20"),
+            .init("Apple URL pasteboard type"),
+            .init("public.utf8-plain-text"),
+            .init("NSStringPboardType")
+        ],
         action: { fileURLs, dropAreaCoords in
-            airDropFiles(urls: fileURLs)
+            airDropItems(items: fileURLs)
         }
     )
 //    Pipeline(

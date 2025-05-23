@@ -8,7 +8,11 @@
 import Foundation
 import AppKit
 
-func airDropFiles(urls: [URL]) {
+func airDropItems(items: [URL]) {
+    let itemsToShare = items.map { url -> Any in
+        url.isFileURL ? url : url.absoluteString
+    }
+    
     let sharingService = NSSharingService(named: NSSharingService.Name.sendViaAirDrop)!
-    sharingService.perform(withItems: urls)
+    sharingService.perform(withItems: itemsToShare)
 }
