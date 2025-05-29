@@ -40,6 +40,7 @@
 		3688ADC52D14871B00D761CD /* gunter.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC12D14871B00D761CD /* gunter.gif */; };
 		3688ADC62D14871B00D761CD /* lisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC22D14871B00D761CD /* lisa.gif */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
+		36AAC6BD2DE8E644002FA66D /* LiveActivitySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManager.swift */; };
 		36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36C186922D9B1F9900043F99 /* gifs2.mp4 */; };
@@ -452,6 +453,7 @@
 		3688ADC22D14871B00D761CD /* lisa.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lisa.gif; sourceTree = "<group>"; };
 		3688ADC32D14871B00D761CD /* snoopy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snoopy.gif; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
+		36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitySelectionManager.swift; sourceTree = "<group>"; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C1868A2D973D8B00043F99 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		36C186922D9B1F9900043F99 /* gifs2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gifs2.mp4; sourceTree = "<group>"; };
@@ -1479,6 +1481,7 @@
 		EC47FC7B2C0A80E200591811 /* singletons */ = {
 			isa = PBXGroup;
 			children = (
+				36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */,
 				C16CD3EA2C864A1800144C90 /* BluetoothManager.swift */,
 				362905992CC948EB00407662 /* FullscreenMonitor.swift */,
 				EC47FC792C0A80E000591811 /* LicenseManager.swift */,
@@ -2214,6 +2217,7 @@
 				EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */,
 				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
+				36AAC6BD2DE8E644002FA66D /* LiveActivitySelectionManager.swift in Sources */,
 				EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */,
 				EC4173E02C0271ED002889E7 /* SettingsLib.swift in Sources */,
 				BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */,

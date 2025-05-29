@@ -110,16 +110,19 @@ class CalendarManager {
         var addedLiveActivity = false
         
         func addLiveActivity(event: EKEvent) {
-            addedLiveActivity = true
-            Task { await MainActor.run {
-                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
-            } }
+            if shouldShowCalendarActivity(event: event, settings: prefs) {
+                addedLiveActivity = true
+                Task {
+                    await MainActor.run {
+                        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
+                    }
+                }
+            }
         }
         
         events.forEach { event in
             let now = Date()
             if event.endDate < now { return }
-            if prefs.onlyEventsWithMeetings, detectMeetings(in: event) == nil { return }
             
             let fireAt = event.startDate - prefs.preEventWindow.minutes
             let willHappen = fireAt > now
@@ -134,9 +137,62 @@ class CalendarManager {
                 })
             }
         }
-        if !addedLiveActivity {
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+        
+        Task { @MainActor in
+            if !addedLiveActivity {
+                ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+            }
         }
+    }
+    
+    func shouldShowCalendarActivity(event: EKEvent, settings: CalendarLiveActivitySettings) -> Bool {
+        guard !event.isAllDay else { return false }
+        
+        if settings.onlyEventsWithMeetings, detectMeetings(in: event) == nil { return false }
+        
+        let now = Date()
+        let timeUntilEventStart = event.startDate.timeIntervalSince(now)
+        let timeUntilEventEnd = event.endDate.timeIntervalSince(now)
+        
+        let isEventInProgress = timeUntilEventStart <= 0 && timeUntilEventEnd > 0
+        let isWithinPreEventWindow = !isEventInProgress &&
+        timeUntilEventStart <= Double(settings.preEventWindow * 60)
+        
+        let shouldShowDuringEvent = isEventInProgress && settings.showEventTimeLapsed
+        
+        return isWithinPreEventWindow || shouldShowDuringEvent
+    }
+    
+    func shouldShowEventTimeView(event: EKEvent, settings: CalendarLiveActivitySettings) -> Bool {
+        guard let closestEvent = closestEvent(settings: settings) else { return true }
+        return closestEvent.startDate < Date() ? settings.showEventTimeLapsed : true
+    }
+    
+    func closestEvent(settings: CalendarLiveActivitySettings) -> EKEvent? {
+        let now = Date()
+        let calendar = Calendar.current
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: now)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
+        
+        let filteredEvents = events.filter { event in
+            !event.isAllDay &&
+            event.startDate >= yesterday &&
+            event.startDate <= tomorrow &&
+            event.endDate > now
+        }
+        
+        // Check for events within pre-event window
+        let preEventWindowEvents = filteredEvents.filter { event in
+            let timeUntilEventStart = event.startDate.timeIntervalSince(now)
+            return timeUntilEventStart > 0 && timeUntilEventStart <= Double(settings.preEventWindow * 60)
+        }
+        
+        // If there are events within pre-event window, return the closest one
+        if let closestPreEventWindowEvent = preEventWindowEvents.min(by: { $0.startDate < $1.startDate }) {
+            return closestPreEventWindowEvent
+        }
+        
+        return filteredEvents.min(by: { abs($0.startDate.timeIntervalSince(now)) < abs($1.startDate.timeIntervalSince(now)) })
     }
     
     // MARK: - Events fetching
