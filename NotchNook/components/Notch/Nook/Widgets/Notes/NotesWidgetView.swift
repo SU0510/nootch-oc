@@ -39,7 +39,7 @@ struct NotesWidgetView: View {
                 NoteView(note: selectedNote, isSelected: true, width: mainNoteWidth, widgetArrPosition: arrayPosition, ns: ns)
                     .id(selectedNote.persistentModelID)
                 VStack(alignment: .leading, spacing: Self.spacing) {
-                    ForEach(Array(otherNotes.enumerated()), id: \.element) { i, note in
+                    ForEach(Array(otherNotes.enumerated()), id: \.element.persistentModelID) { i, note in
                         Button {
                             withAnimation(NotesWidgetView.switchAnimation) { selectedNoteId = note.persistentModelID }
                         } label: {
@@ -57,19 +57,14 @@ struct NotesWidgetView: View {
             selectedNoteId = notes.first?.persistentModelID
         }
         .onAppear {
-//            try? modelContext.delete(model: Note.self)
-            if notes.count < 4 {
-                let icons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
-                let notesToCreate = 4 - notes.count
-                Array(Array(repeating: 0, count: notesToCreate).enumerated()).forEach { i, _ in
-                    let newNote = Note(icon: icons[i])
-                    modelContext.insert(newNote)
-                }
+            let existingIcons = Set(notes.map { $0.icon })
+            let icons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
+            let neededIcons = icons.filter { !existingIcons.contains($0) }
+            
+            for icon in neededIcons.prefix(4 - notes.count) {
+                let newNote = Note(icon: icon)
+                modelContext.insert(newNote)
             }
         }
     }
 }
-
-//#Preview {
-//    NotesWidgetView()
-//}
