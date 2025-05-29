@@ -13,9 +13,13 @@ extension NotchView.ShapeModifier {
         withAnimation(NotchView.intenseAnimation) {
             notchNook.mode = .dragging
         }
+        
         let actionsToShow = allPipelines.filter { action in
-            return info.draggingPasteboard.types?.contains(action.allowedFileTypes) ?? false
+            guard let pasteboardTypes = info.draggingPasteboard.types else { return false }
+            
+            return action.allowedFileTypes.contains { pasteboardTypes.contains($0) }
         }
+                
         DispatchQueue.main.async {
             withAnimation(NotchView.intenseAnimation) {
                 state.availableActions = actionsToShow

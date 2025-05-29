@@ -58,7 +58,7 @@ struct FileDropView: NSViewRepresentable {
         override init(frame frameRect: NSRect) {
             super.init(frame: frameRect)
             let promiseTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
-            registerForDraggedTypes([.fileURL] + promiseTypes)
+            registerForDraggedTypes([.fileURL, .string] + promiseTypes)
         }
 
         required init?(coder: NSCoder) {

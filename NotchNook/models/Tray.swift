@@ -353,7 +353,7 @@ class Tray {
     }
     
     func airdropSelectedFiles() {
-        airDropFiles(urls: selectedFiles.map { $0.url })
+        airDropItems(items: selectedFiles.map { $0.url })
     }
     
     private func toggleQuickLookState() {
