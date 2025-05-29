@@ -68,9 +68,6 @@ struct CalendarWidgetView: View {
             }
         }
         .frame(settings.size.screenPtsCGSize, .leading)
-        .task {
-            try? await calendarManager.fetchEvents()
-        }
         .onAppear {
             displayedDates = getRangeOfDays(beforeCount: daysBehindCount, afterCount: settings.numberOfDaysAheadToDisplay)
             selectedDateIndex = daysBehindCount
