@@ -17,7 +17,7 @@ class CalendarManager {
     typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
     
     // MARK: - Properties
-        
+    
     static let shared = CalendarManager()
     
     /// Streams of EKEvent instances
@@ -57,7 +57,7 @@ class CalendarManager {
         
         loadSelectedCalendars()
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .EKEventStoreChanged, object: eventStore)
         dailyTimer?.invalidate()
@@ -65,7 +65,7 @@ class CalendarManager {
     
     private func loadSelectedCalendars() {
         let settings = Defaults[.calendarWidgetSettings]
-
+        
         if settings.selectedCalendars == nil {
             selectedCalendars = eventStore.calendars(for: .event)
             var updatedSettings = settings
@@ -102,6 +102,8 @@ class CalendarManager {
     
     func scheduleLiveActivities() {
         let prefs = Defaults[.calendarLiveActivitySettings]
+        
+        // Clear existing timers
         liveActivitiesTimers.forEach { timer in
             timer.invalidate()
         }
@@ -109,14 +111,44 @@ class CalendarManager {
         
         var addedLiveActivity = false
         
-        func addLiveActivity(event: EKEvent) {
-            if shouldShowCalendarActivity(event: event, settings: prefs) {
-                addedLiveActivity = true
-                Task {
-                    await MainActor.run {
-                        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
-                    }
+        func manageLiveActivity(event: EKEvent) {
+            guard shouldShowCalendarActivity(event: event, settings: prefs) else { return }
+            
+            addedLiveActivity = true
+            
+            // Add live activity
+            Task {
+                await MainActor.run {
+                    ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
                 }
+            }
+            
+            // Handle periodic appearance
+            switch prefs.appearanceMode {
+                case .constant:
+                    // Keep live activity constantly visible
+                    return
+                    
+                case .periodic(let interval):
+                    func triggerActivity() {
+                        Task { @MainActor in
+                            if shouldShowCalendarActivity(event: event, settings: prefs) {
+                                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
+                                
+                                // Synchronous hide after 3 seconds
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                    ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                                }
+                            }
+                        }
+                    }
+                    
+                    triggerActivity()
+                    
+                    let periodicTimer = Timer.scheduledTimer(withTimeInterval: interval + 3.0, repeats: true) { _ in
+                        triggerActivity()
+                    }
+                    liveActivitiesTimers.append(periodicTimer)
             }
         }
         
@@ -129,12 +161,13 @@ class CalendarManager {
             let isHappening = !willHappen && event.endDate > now
             
             if isHappening {
-                addLiveActivity(event: event)
+                manageLiveActivity(event: event)
             } else if willHappen {
                 let fireIn = fireAt.timeIntervalSince1970 - now.timeIntervalSince1970
-                liveActivitiesTimers.append(Timer.scheduledTimer(withTimeInterval: fireIn, repeats: false) { _ in
-                    addLiveActivity(event: event)
-                })
+                let timer = Timer.scheduledTimer(withTimeInterval: fireIn, repeats: false) { _ in
+                    manageLiveActivity(event: event)
+                }
+                liveActivitiesTimers.append(timer)
             }
         }
         
