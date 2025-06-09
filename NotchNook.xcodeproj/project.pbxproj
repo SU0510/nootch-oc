@@ -24,6 +24,8 @@
 		365D84F92CDBD64F00B7E566 /* fullscreen.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84F72CDBD64F00B7E566 /* fullscreen.mov */; };
 		365D84FE2CDBD89000B7E566 /* notes-widget.mov in Resources */ = {isa = PBXBuildFile; fileRef = 365D84FD2CDBD89000B7E566 /* notes-widget.mov */; };
 		365D85002CDD4B8200B7E566 /* HeightFineTuningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365D84FF2CDD4B7A00B7E566 /* HeightFineTuningView.swift */; };
+		365E68D42DA5A2C5006BDF7D /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 365E68D32DA5A2C5006BDF7D /* Defaults */; };
+		365E68D62DA5A2C5006BDF7D /* DefaultsMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 365E68D52DA5A2C5006BDF7D /* DefaultsMacros */; };
 		365E68ED2DAECB08006BDF7D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 365E68EC2DAECB08006BDF7D /* XCTest.framework */; };
 		3663DD952CDEA51A008E17E5 /* fine-tuning-height.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3663DD942CDEA51A008E17E5 /* fine-tuning-height.mp4 */; };
 		3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3675C7EA2C6D0176009B105E /* PerlinNoiseGenerator.swift */; };
@@ -38,6 +40,7 @@
 		3688ADC52D14871B00D761CD /* gunter.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC12D14871B00D761CD /* gunter.gif */; };
 		3688ADC62D14871B00D761CD /* lisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC22D14871B00D761CD /* lisa.gif */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
+		36AAC6BD2DE8E644002FA66D /* LiveActivitySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManager.swift */; };
 		36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36C186922D9B1F9900043F99 /* gifs2.mp4 */; };
@@ -83,7 +86,7 @@
 		3A105FEC2C1FB7420015EC66 /* TheMarquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */; };
 		3A105FEE2C1FDC3B0015EC66 /* fadeOnEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */; };
 		3A105FF02C1FF3C20015EC66 /* NookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */; };
-		3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FF12C1FF4160015EC66 /* EKEvent.swift */; };
+		3A105FF22C1FF4160015EC66 /* EKEvent+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A105FF12C1FF4160015EC66 /* EKEvent+Extensions.swift */; };
 		3A1691CA2C2FB1C90014C326 /* OpenSettingsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691C92C2FB1C90014C326 /* OpenSettingsKey.swift */; };
 		3A1691CC2C2FB1E20014C326 /* NamespaceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691CB2C2FB1E20014C326 /* NamespaceKey.swift */; };
 		3A1691CE2C2FB1E90014C326 /* ScreenSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691CD2C2FB1E90014C326 /* ScreenSizeKey.swift */; };
@@ -219,7 +222,6 @@
 		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
 		BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */; };
-		BB2A5E552C006B63008F3081 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = BB2A5E542C006B63008F3081 /* Defaults */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
 		BB50026F2C4AC8FD0028FCB5 /* VolumeAndBrightnessListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50026E2C4AC8FA0028FCB5 /* VolumeAndBrightnessListener.swift */; };
@@ -451,6 +453,7 @@
 		3688ADC22D14871B00D761CD /* lisa.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lisa.gif; sourceTree = "<group>"; };
 		3688ADC32D14871B00D761CD /* snoopy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snoopy.gif; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
+		36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitySelectionManager.swift; sourceTree = "<group>"; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C1868A2D973D8B00043F99 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		36C186922D9B1F9900043F99 /* gifs2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gifs2.mp4; sourceTree = "<group>"; };
@@ -495,7 +498,7 @@
 		3A105FEB2C1FB7420015EC66 /* TheMarquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMarquee.swift; sourceTree = "<group>"; };
 		3A105FED2C1FDC3B0015EC66 /* fadeOnEdges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeOnEdges.swift; sourceTree = "<group>"; };
 		3A105FEF2C1FF3C20015EC66 /* NookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookEvent.swift; sourceTree = "<group>"; };
-		3A105FF12C1FF4160015EC66 /* EKEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEvent.swift; sourceTree = "<group>"; };
+		3A105FF12C1FF4160015EC66 /* EKEvent+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Extensions.swift"; sourceTree = "<group>"; };
 		3A1691C92C2FB1C90014C326 /* OpenSettingsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSettingsKey.swift; sourceTree = "<group>"; };
 		3A1691CB2C2FB1E20014C326 /* NamespaceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespaceKey.swift; sourceTree = "<group>"; };
 		3A1691CD2C2FB1E90014C326 /* ScreenSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeKey.swift; sourceTree = "<group>"; };
@@ -834,12 +837,13 @@
 				EC47FC8E2C0B801A00591811 /* Lottie in Frameworks */,
 				3A7C05DB2C59C65900435D99 /* JWTKit in Frameworks */,
 				EC2DD1F72C03F10F001FD54E /* LaunchAtLogin in Frameworks */,
+				365E68D42DA5A2C5006BDF7D /* Defaults in Frameworks */,
 				3A00275E2C90263C002A089D /* Settings in Frameworks */,
 				EC47FC852C0AB86A00591811 /* Sparkle in Frameworks */,
 				EC7A0FB02C0FE8F10063E78E /* SwiftDate in Frameworks */,
-				BB2A5E552C006B63008F3081 /* Defaults in Frameworks */,
 				3A801E0B2C154EA30076560D /* SmoothGradient in Frameworks */,
 				3A1DC6172C6DAE6500D97B5E /* CodeEditor in Frameworks */,
+				365E68D62DA5A2C5006BDF7D /* DefaultsMacros in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
 				3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */,
 			);
@@ -1477,6 +1481,7 @@
 		EC47FC7B2C0A80E200591811 /* singletons */ = {
 			isa = PBXGroup;
 			children = (
+				36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */,
 				C16CD3EA2C864A1800144C90 /* BluetoothManager.swift */,
 				362905992CC948EB00407662 /* FullscreenMonitor.swift */,
 				EC47FC792C0A80E000591811 /* LicenseManager.swift */,
@@ -1717,7 +1722,7 @@
 				EC2DD1F32C03DE9C001FD54E /* URL.swift */,
 				EC0E30EB2C042FC80060B47E /* Binding.swift */,
 				EC13C6DF2C0918B800B45C6E /* Color.swift */,
-				3A105FF12C1FF4160015EC66 /* EKEvent.swift */,
+				3A105FF12C1FF4160015EC66 /* EKEvent+Extensions.swift */,
 				3A459C1B2C2E57FC0045995D /* NSEdgeInsets.swift */,
 				3A20F17C2C2FAB0B006A7E1F /* Animation.swift */,
 				3A5104D72C37B8430045F7E6 /* Numbers.swift */,
@@ -2005,7 +2010,6 @@
 			);
 			name = NotchNook;
 			packageProductDependencies = (
-				BB2A5E542C006B63008F3081 /* Defaults */,
 				EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */,
 				EC47FC842C0AB86A00591811 /* Sparkle */,
 				EC47FC8D2C0B801A00591811 /* Lottie */,
@@ -2018,6 +2022,8 @@
 				ECCEFE6E2C64453600F3385C /* FluidGradient */,
 				3A1DC6162C6DAE6500D97B5E /* CodeEditor */,
 				3A9FEA162C6DCBF500AE6515 /* Setapp */,
+				365E68D32DA5A2C5006BDF7D /* Defaults */,
+				365E68D52DA5A2C5006BDF7D /* DefaultsMacros */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -2057,7 +2063,6 @@
 			);
 			mainGroup = EC758F5F2BF2F18700B873B0;
 			packageReferences = (
-				BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */,
 				EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 				EC47FC832C0AB86A00591811 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				EC47FC8C2C0B801A00591811 /* XCRemoteSwiftPackageReference "lottie-spm" */,
@@ -2071,6 +2076,7 @@
 				3A1DC6152C6DAE6500D97B5E /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
 				3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */,
+				365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -2158,7 +2164,7 @@
 				EC758F9A2BF2F1A400B873B0 /* Pipeline.swift in Sources */,
 				C11F0A882C5816FF003F96DC /* getCaptureDevice.swift in Sources */,
 				3A0816BD2C24C02F008092F0 /* UpdateAppIconView.swift in Sources */,
-				3A105FF22C1FF4160015EC66 /* EKEvent.swift in Sources */,
+				3A105FF22C1FF4160015EC66 /* EKEvent+Extensions.swift in Sources */,
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
 				3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
@@ -2211,6 +2217,7 @@
 				EC8D602E2BFD22E200E67ECC /* MirrorWidgetView.swift in Sources */,
 				EC8D60672C01697100E67ECC /* iconForApp.swift in Sources */,
 				EC758F952BF2F1A400B873B0 /* iconForFile.swift in Sources */,
+				36AAC6BD2DE8E644002FA66D /* LiveActivitySelectionManager.swift in Sources */,
 				EC81E2652C069DCD00790517 /* IconLabeledProtocol.swift in Sources */,
 				EC4173E02C0271ED002889E7 /* SettingsLib.swift in Sources */,
 				BBF6EDA62C4AD69100F70035 /* SystemIntegrationHelper.swift in Sources */,
@@ -2993,6 +3000,17 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		365E68E42DAEC990006BDF7D /* Build configuration list for PBXNativeTarget "NotchNookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				365E68E52DAEC990006BDF7D /* Debug */,
+				365E68E62DAEC990006BDF7D /* Development */,
+				365E68E72DAEC990006BDF7D /* Release */,
+				365E68E82DAEC990006BDF7D /* Release Setapp */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EC758F632BF2F18700B873B0 /* Build configuration list for PBXProject "NotchNook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3018,6 +3036,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.3;
+			};
+		};
 		3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lo-cafe/Settings.git";
@@ -3074,14 +3100,6 @@
 				minimumVersion = 4.2.1;
 			};
 		};
-		BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Defaults";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		EC2DD1F52C03F10E001FD54E /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
@@ -3133,6 +3151,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		365E68D32DA5A2C5006BDF7D /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		365E68D52DA5A2C5006BDF7D /* DefaultsMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = DefaultsMacros;
+		};
 		3A00275D2C90263C002A089D /* Settings */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */;
@@ -3167,11 +3195,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */;
 			productName = Setapp;
-		};
-		BB2A5E542C006B63008F3081 /* Defaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BB2A5E532C006B63008F3081 /* XCRemoteSwiftPackageReference "Defaults" */;
-			productName = Defaults;
 		};
 		EC2DD1F62C03F10F001FD54E /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;

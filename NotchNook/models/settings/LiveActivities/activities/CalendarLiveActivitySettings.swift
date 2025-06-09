@@ -10,6 +10,11 @@ import Foundation
 struct CalendarLiveActivitySettings: Preferences {
     var preEventWindow: Int = 15
     var onlyEventsWithMeetings = false
-    var showEventTimeLapsed = true
-    var showWhileInEvent = true
+    var showEventTimeLapsed = false
+    
+    enum AppearanceMode: Equatable, Hashable, Codable {
+        case constant
+        case periodic(interval: TimeInterval)
+    }
+    var appearanceMode: AppearanceMode = .constant
 }

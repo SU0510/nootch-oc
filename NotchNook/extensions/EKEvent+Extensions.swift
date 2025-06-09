@@ -1,5 +1,5 @@
 //
-//  EKEvent.swift
+//  EKEvent+Extensions.swift
 //  NotchNook
 //
 //  Created by Igor Marcossi on 17/06/24.
@@ -17,5 +17,10 @@ extension EKEvent {
             title: self.title,
             notes: self.notes
         )
+    }
+    
+    var isMultiDay: Bool {
+        guard let startDate = startDate, let endDate = endDate else { return false }
+        return !Calendar.current.isDate(startDate, inSameDayAs: endDate)
     }
 }

@@ -10,9 +10,11 @@ import SwiftUI
 struct CalendarWidgetSettings: WidgetPrefs {
     var size: NookGrid.Size = .init(width: 5, height: 2)
     var shouldShowTodayPastEvents: Bool = false
+    var shouldShowAllDayEvents: Bool = false
+    var shouldShowMultiDayEvents: Bool = false
     var numberOfDaysBehindToDisplay: Int = 7
     var numberOfDaysAheadToDisplay: Int = 7
-    var selectedCalendars: [String] = []
+    var selectedCalendars: [String]? = nil
 }
 
  

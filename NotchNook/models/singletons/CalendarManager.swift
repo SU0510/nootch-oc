@@ -17,7 +17,7 @@ class CalendarManager {
     typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
     
     // MARK: - Properties
-        
+    
     static let shared = CalendarManager()
     
     /// Streams of EKEvent instances
@@ -48,7 +48,9 @@ class CalendarManager {
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(_:)), name: .EKEventStoreChanged, object: eventStore)
-        dailyTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(dailyTask), userInfo: nil, repeats: true)
+        dailyTimer = Timer.scheduledTimer(withTimeInterval: 86400, repeats: true) { [weak self] _ in
+            self?.dailyTask()
+        }
         defaultsTask = Task { [weak self] in
             for await _ in Defaults.updates(.calendarLiveActivitySettings) {
                 self?.scheduleLiveActivities()
@@ -57,16 +59,29 @@ class CalendarManager {
         
         loadSelectedCalendars()
     }
-
+    
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .EKEventStoreChanged, object: eventStore)
         dailyTimer?.invalidate()
+        liveActivitiesTimers.forEach { $0.invalidate() }
+        liveActivitiesTimers.removeAll()
+        
+        defaultsTask?.cancel()
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func loadSelectedCalendars() {
         let settings = Defaults[.calendarWidgetSettings]
-        selectedCalendars = eventStore.calendars(for: .event).filter {
-            settings.selectedCalendars.contains($0.calendarIdentifier)
+        
+        if settings.selectedCalendars == nil {
+            selectedCalendars = eventStore.calendars(for: .event)
+            var updatedSettings = settings
+            updatedSettings.selectedCalendars = selectedCalendars.map { $0.calendarIdentifier }
+            Defaults[.calendarWidgetSettings] = updatedSettings
+        } else {
+            selectedCalendars = eventStore.calendars(for: .event).filter {
+                settings.selectedCalendars?.contains($0.calendarIdentifier) ?? false
+            }
         }
     }
     
@@ -76,7 +91,7 @@ class CalendarManager {
         }
     }
     
-    @objc private func dailyTask() {
+    private func dailyTask() {
         Task {
             try? await fetchEvents()
         }
@@ -93,42 +108,128 @@ class CalendarManager {
     }
     
     func scheduleLiveActivities() {
+        liveActivitiesTimers.forEach { $0.invalidate() }
+        liveActivitiesTimers.removeAll()
+        
         let prefs = Defaults[.calendarLiveActivitySettings]
-        liveActivitiesTimers.forEach { timer in
-            timer.invalidate()
-        }
-        liveActivitiesTimers = []
         
         var addedLiveActivity = false
         
-        func addLiveActivity(event: EKEvent) {
+        func manageLiveActivity(event: EKEvent) {
+            guard shouldShowCalendarActivity(event: event, settings: prefs) else { return }
+            
             addedLiveActivity = true
-            Task { await MainActor.run {
-                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
-            } }
+            
+            // Add live activity
+            Task {
+                await MainActor.run {
+                    ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
+                }
+            }
+            
+            // Handle periodic appearance
+            switch prefs.appearanceMode {
+                case .constant:
+                    // Keep live activity constantly visible
+                    return
+                    
+                case .periodic(let interval):
+                    func triggerActivity() {
+                        Task { @MainActor in
+                            if shouldShowCalendarActivity(event: event, settings: prefs) {
+                                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
+                                
+                                // Synchronous hide after 3 seconds
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                    ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                                }
+                            }
+                        }
+                    }
+                    
+                    triggerActivity()
+                    
+                    let periodicTimer = Timer.scheduledTimer(withTimeInterval: interval + 3.0, repeats: true) { _ in
+                        triggerActivity()
+                    }
+                    liveActivitiesTimers.append(periodicTimer)
+            }
         }
         
         events.forEach { event in
             let now = Date()
             if event.endDate < now { return }
-            if prefs.onlyEventsWithMeetings, detectMeetings(in: event) == nil { return }
             
             let fireAt = event.startDate - prefs.preEventWindow.minutes
             let willHappen = fireAt > now
             let isHappening = !willHappen && event.endDate > now
             
             if isHappening {
-                addLiveActivity(event: event)
+                manageLiveActivity(event: event)
             } else if willHappen {
                 let fireIn = fireAt.timeIntervalSince1970 - now.timeIntervalSince1970
-                liveActivitiesTimers.append(Timer.scheduledTimer(withTimeInterval: fireIn, repeats: false) { _ in
-                    addLiveActivity(event: event)
-                })
+                let timer = Timer.scheduledTimer(withTimeInterval: fireIn, repeats: false) { _ in
+                    manageLiveActivity(event: event)
+                }
+                liveActivitiesTimers.append(timer)
             }
         }
-        if !addedLiveActivity {
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+        
+        Task { @MainActor in
+            if !addedLiveActivity {
+                ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+            }
         }
+    }
+    
+    func shouldShowCalendarActivity(event: EKEvent, settings: CalendarLiveActivitySettings) -> Bool {
+        guard !event.isAllDay else { return false }
+        
+        if settings.onlyEventsWithMeetings, detectMeetings(in: event) == nil { return false }
+        
+        let now = Date()
+        let timeUntilEventStart = event.startDate.timeIntervalSince(now)
+        let timeUntilEventEnd = event.endDate.timeIntervalSince(now)
+        
+        let isEventInProgress = timeUntilEventStart <= 0 && timeUntilEventEnd > 0
+        let isWithinPreEventWindow = !isEventInProgress &&
+        timeUntilEventStart <= Double(settings.preEventWindow * 60)
+        
+        let shouldShowDuringEvent = isEventInProgress && settings.showEventTimeLapsed
+        
+        return isWithinPreEventWindow || shouldShowDuringEvent
+    }
+    
+    func shouldShowEventTimeView(event: EKEvent, settings: CalendarLiveActivitySettings) -> Bool {
+        guard let closestEvent = closestEvent(settings: settings) else { return true }
+        return closestEvent.startDate < Date() ? settings.showEventTimeLapsed : true
+    }
+    
+    func closestEvent(settings: CalendarLiveActivitySettings) -> EKEvent? {
+        let now = Date()
+        let calendar = Calendar.current
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: now)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
+        
+        let filteredEvents = events.filter { event in
+            !event.isAllDay &&
+            event.startDate >= yesterday &&
+            event.startDate <= tomorrow &&
+            event.endDate > now
+        }
+        
+        // Check for events within pre-event window
+        let preEventWindowEvents = filteredEvents.filter { event in
+            let timeUntilEventStart = event.startDate.timeIntervalSince(now)
+            return timeUntilEventStart > 0 && timeUntilEventStart <= Double(settings.preEventWindow * 60)
+        }
+        
+        // If there are events within pre-event window, return the closest one
+        if let closestPreEventWindowEvent = preEventWindowEvents.min(by: { $0.startDate < $1.startDate }) {
+            return closestPreEventWindowEvent
+        }
+        
+        return filteredEvents.min(by: { abs($0.startDate.timeIntervalSince(now)) < abs($1.startDate.timeIntervalSince(now)) })
     }
     
     // MARK: - Events fetching
@@ -136,22 +237,36 @@ class CalendarManager {
     /// Core functionality for fetching events within a range, ensuring events are cleared first
     @discardableResult
     public func fetchEvents() async throws -> [EKEvent] {
-        try await accessCalendar()
-        
-        guard !selectedCalendars.isEmpty else {
-            print("No calendars selected")
-            await MainActor.run {
-                self.events = []
-                self.eventsDatesDict = [:]
-            }
+        do {
+            try await accessCalendar()
+        } catch {
+            print("Calendar access failed: \(error)")
             return []
         }
         
-        let fetchClosure: @Sendable (EKEventStore, Date, Date, [EKCalendar]) -> [EKEvent] = { store, start, end, cals in
-            let pred = store.predicateForEvents(withStart: start, end: end, calendars: cals)
-            return store.events(matching: pred)
+        guard !selectedCalendars.isEmpty else {
+            await clearEvents()
+            return []
         }
         
+        let fetchedEvents = try await fetchEventsInBackground()
+        
+        await MainActor.run {
+            self.events = applyEventFilters(fetchedEvents)
+        }
+        
+        print("Fetched \(fetchedEvents.count) events")
+        return fetchedEvents
+    }
+    
+    private func clearEvents() async {
+        await MainActor.run {
+            self.events = []
+            self.eventsDatesDict = [:]
+        }
+    }
+    
+    private func fetchEventsInBackground() async throws -> [EKEvent] {
         let settings = Defaults[.calendarWidgetSettings]
         let daysAhead = settings.numberOfDaysAheadToDisplay + 1
         let daysBehind = settings.numberOfDaysBehindToDisplay
@@ -160,26 +275,37 @@ class CalendarManager {
         let startDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -daysBehind, to: now)!)
         let endDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: daysAhead, to: now)!)
         
-        // Perform the fetch on a background queue
-        let fetchedEvents = await Task.detached {
-            fetchClosure(self.eventStore, startDate, endDate, self.selectedCalendars)
+        return await Task.detached {
+            let pred = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: self.selectedCalendars)
+            return self.eventStore.events(matching: pred)
         }.value
+    }
+    
+    private func applyEventFilters(_ events: [EKEvent]) -> [EKEvent] {
+        let settings = Defaults[.calendarWidgetSettings]
+        let now = Date()
         
-        await MainActor.run {
-            self.events = fetchedEvents
-            
-            if !settings.shouldShowTodayPastEvents {
-                self.events = fetchedEvents.filter { event in
+        return events
+            .filter { event -> Bool in
+                if !settings.shouldShowTodayPastEvents {
                     if Calendar.current.isDateInToday(event.startDate) {
                         return event.endDate > now
                     }
-                    return true
                 }
+                return true
             }
-        }
-        
-        print("Fetched \(fetchedEvents.count) events")
-        return fetchedEvents
+            .filter { event -> Bool in
+                if !settings.shouldShowAllDayEvents {
+                    return !event.isAllDay || event.isMultiDay
+                }
+                return true
+            }
+            .filter { event -> Bool in
+                if !settings.shouldShowMultiDayEvents {
+                    return !event.isMultiDay
+                }
+                return true
+            }
     }
     
     // MARK: - Private methods

@@ -20,7 +20,21 @@ struct CalendarWidgetSettingsView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Calendars to show:")
+                VStack {
+                    Text("Calendars to show:")
+                        .font(.system(size: 14, weight: .semibold))
+                    
+                    HStack(spacing: 8) {
+                        Button("Select All") {
+                            selectAllCalendars()
+                        }
+                        
+                        Button("Clear") {
+                            clearAllCalendars()
+                        }
+                    }
+                    .padding(.leading, 8)
+                }
                 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -58,7 +72,12 @@ struct CalendarWidgetSettingsView: View {
                 
                 Settings.Section(title: "", bottomDivider: true) {
                     Toggle(String(localized: "Show today's past events"), isOn: $settings.shouldShowTodayPastEvents)
-                        .padding(.vertical, 8)
+                        .padding(.top, 8)
+                    
+                    Toggle(String(localized: "Show all-day events"), isOn: $settings.shouldShowAllDayEvents)
+                    
+                    Toggle(String(localized: "Show multi-day events"), isOn: $settings.shouldShowMultiDayEvents)
+                        .padding(.bottom, 8)
                 }
                 
                 Settings.Section(title: "", bottomDivider: true) {
@@ -84,13 +103,23 @@ struct CalendarWidgetSettingsView: View {
         .frame(maxHeight: .infinity, alignment: .topLeading)
         .onAppear {
             availableCalendars = CalendarManager.shared.availableCalendars
-            selectedCalendars = Set(Defaults[.calendarWidgetSettings].selectedCalendars)
+            selectedCalendars = Set(settings.selectedCalendars ?? [])
         }
     }
     
     private func updateSelectedCalendars() {
         let selected = availableCalendars.filter { selectedCalendars.contains($0.calendarIdentifier) }
         CalendarManager.shared.updateSelectedCalendars(selected)
+    }
+    
+    private func selectAllCalendars() {
+        selectedCalendars = Set(availableCalendars.map { $0.calendarIdentifier })
+        updateSelectedCalendars()
+    }
+    
+    private func clearAllCalendars() {
+        selectedCalendars.removeAll()
+        updateSelectedCalendars()
     }
 }
 

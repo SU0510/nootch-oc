@@ -18,12 +18,8 @@ struct CalendarLiveActivitySettingsView: View {
             Settings.Section(title: String(localized: "Minutes before showing up:")) {
                 SliderPlus(value: $calendarLiveActivitySettings.preEventWindow, range: 1...60)
             }
-            Settings.Section(title: String(localized: "Other options:"), bottomDivider: true) {
-                Toggle("Show while in events", isOn: $calendarLiveActivitySettings.showWhileInEvent)
-                
-                if calendarLiveActivitySettings.showWhileInEvent {
-                    Toggle("Show time lapsed while in events", isOn: $calendarLiveActivitySettings.showEventTimeLapsed)
-                }
+            Settings.Section(title: "", bottomDivider: true) {
+                Toggle("Show time lapsed while in events", isOn: $calendarLiveActivitySettings.showEventTimeLapsed)
             }
             Settings.Section(title: String(localized: "Manage other calendar settings:")) {
                 Button("Calendar Settings") {
@@ -32,6 +28,5 @@ struct CalendarLiveActivitySettingsView: View {
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
-        .animation(.default, value: calendarLiveActivitySettings.showWhileInEvent)
     }
 }
