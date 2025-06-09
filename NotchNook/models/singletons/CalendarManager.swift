@@ -48,7 +48,9 @@ class CalendarManager {
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(storeChanged(_:)), name: .EKEventStoreChanged, object: eventStore)
-        dailyTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(dailyTask), userInfo: nil, repeats: true)
+        dailyTimer = Timer.scheduledTimer(withTimeInterval: 86400, repeats: true) { [weak self] _ in
+            self?.dailyTask()
+        }
         defaultsTask = Task { [weak self] in
             for await _ in Defaults.updates(.calendarLiveActivitySettings) {
                 self?.scheduleLiveActivities()
@@ -59,8 +61,13 @@ class CalendarManager {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .EKEventStoreChanged, object: eventStore)
         dailyTimer?.invalidate()
+        liveActivitiesTimers.forEach { $0.invalidate() }
+        liveActivitiesTimers.removeAll()
+        
+        defaultsTask?.cancel()
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func loadSelectedCalendars() {
@@ -84,7 +91,7 @@ class CalendarManager {
         }
     }
     
-    @objc private func dailyTask() {
+    private func dailyTask() {
         Task {
             try? await fetchEvents()
         }
@@ -101,13 +108,10 @@ class CalendarManager {
     }
     
     func scheduleLiveActivities() {
-        let prefs = Defaults[.calendarLiveActivitySettings]
+        liveActivitiesTimers.forEach { $0.invalidate() }
+        liveActivitiesTimers.removeAll()
         
-        // Clear existing timers
-        liveActivitiesTimers.forEach { timer in
-            timer.invalidate()
-        }
-        liveActivitiesTimers = []
+        let prefs = Defaults[.calendarLiveActivitySettings]
         
         var addedLiveActivity = false
         
