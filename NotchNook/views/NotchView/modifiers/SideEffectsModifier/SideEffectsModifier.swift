@@ -69,6 +69,9 @@ extension NotchView {
                         }
                     }
                 }
+                .onChange(of: generalSettings.preferredMediaSource) { _, mediaSource in
+                    MediaManager.shared.preferredMediaSource = mediaSource
+                }
                 .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
                     if viewModel.notchState != .fineTuningWidth {
                         withAnimation(NotchView.intenseAnimation) { viewModel.notchState = .fineTuningWidth }
