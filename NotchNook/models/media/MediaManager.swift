@@ -30,11 +30,7 @@ class MediaManager {
     
     var track: Track = .empty
     
-    var preferredMediaSource: MediaSource = .systemWide {
-        didSet {
-            reconfigureMediaController()
-        }
-    }
+    var preferredMediaSource: MediaSource = Defaults[.generalSettings].preferredMediaSource
     
     private var mediaController: MediaController
     
@@ -58,7 +54,7 @@ class MediaManager {
         }
     }
     
-    private func reconfigureMediaController() {
+    func reconfigureMediaController() {
         resetTrackState()
         mediaController.stopListening()
         
@@ -71,6 +67,27 @@ class MediaManager {
         
         setupMediaControllerListeners()
         mediaController.startListening()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let self = self else { return }
+            
+            if self.track == .empty {
+                self.forceMediaControllerRestart()
+            }
+        }
+    }
+    
+    private func forceMediaControllerRestart() {
+        mediaController.stopListening()
+        
+        mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
+        setupMediaControllerListeners()
+        mediaController.startListening()
+        
+        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
+        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
+        
+        updateLiveActivities()
     }
     
     private func runAppleScript(script: String) {
@@ -93,19 +110,20 @@ class MediaManager {
             let track = trackInfo.payload
 
             if let isPlaying = track.isPlaying {
-                updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, albumArtId: track.artworkDataBase64)
+                updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, appName: track.applicationName)
             } else {
                 resetTrackState()
             }
         }
     }
     
-    private func updateTrackInfo(title: String?, artist: String?, album: String?, isPlaying: Bool, albumArtImage: NSImage?, albumArtId: String?) {
+    private func updateTrackInfo(title: String?, artist: String?, album: String?, isPlaying: Bool, albumArtImage: NSImage?, appName: String?) {
         var newTrack = Track()
         newTrack.title = title ?? ""
         newTrack.artist = artist ?? ""
         newTrack.album = album ?? ""
         newTrack.albumArt = albumArtImage ?? NSImage()
+        newTrack.appName = appName ?? ""
         
         let playingStateChanged = self.isPlaying != isPlaying
         let trackChanged = self.track.isValidReplacement(newTrack)
@@ -170,5 +188,9 @@ class MediaManager {
             case .appleMusic, .spotify:
                 runAppleScript(script: "tell application \(preferredMediaSource.name) to next track")
         }
+    }
+    
+    func openApp() {
+        runAppleScript(script: "tell application \"\(track.appName)\" to activate reopen")
     }
 }

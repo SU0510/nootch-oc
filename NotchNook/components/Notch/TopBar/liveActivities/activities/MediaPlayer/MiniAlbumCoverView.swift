@@ -36,8 +36,7 @@ struct MiniAlbumCoverView: View, Equatable {
         let track = MediaManager.shared.track
         VStack {
             Button {
-                preventNextFocusFrontmostWindow()
-                track.mediaApp.openApp()
+                MediaManager.shared.openApp()
             } label: {
                 AlbumCoverView(id: track.albumId, artwork: track.albumArt, cornerRadius: albumCornerRadius)
                     .padding(6)

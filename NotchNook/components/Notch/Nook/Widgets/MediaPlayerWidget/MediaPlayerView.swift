@@ -17,15 +17,15 @@ struct MediaPlayerView: View, Equatable {
     @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
     
     var body: some View {
+
         HStack(spacing: 12) {
-            AlbumCoverView(id: track.albumId, artwork: track.albumArt, cornerRadius: 28)
-                .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
-                .overlay(alignment: .bottomTrailing) {
-                    if track.mediaApp.icon.isValid {
-                        Button {
-                            preventNextFocusFrontmostWindow()
-                            track.mediaApp.openApp()
-                        } label: {
+            Button {
+                MediaManager.shared.openApp()
+            } label: {
+                AlbumCoverView(id: track.albumId, artwork: track.albumArt, cornerRadius: 28)
+                    .matchedGeometryEffect(id: MiniAlbumCoverView.transitionID, in: ns)
+                    .overlay(alignment: .bottomTrailing) {
+                        if track.mediaApp.icon.isValid {
                             Image(nsImage: track.mediaApp.icon)
                                 .resizable()
                                 .scaledToFit()
@@ -34,9 +34,9 @@ struct MediaPlayerView: View, Equatable {
                                 .frame(32)
                                 .offset(x: 6, y: 6)
                         }
-                        .buttonStyle(ShrinkOnClick(minSize: 0.9))
                     }
-                }
+            }
+            .buttonStyle(ShrinkOnClick())
             
             VStack(alignment: .leading, spacing: 2) {
                 VStack(alignment: .leading, spacing: 2) {

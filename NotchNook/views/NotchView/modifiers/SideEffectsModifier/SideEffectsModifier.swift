@@ -71,6 +71,7 @@ extension NotchView {
                 }
                 .onChange(of: generalSettings.preferredMediaSource) { _, mediaSource in
                     MediaManager.shared.preferredMediaSource = mediaSource
+                    MediaManager.shared.reconfigureMediaController()
                 }
                 .onChange(of: generalSettings.notchWidthFineTune) { _, _ in
                     if viewModel.notchState != .fineTuningWidth {
