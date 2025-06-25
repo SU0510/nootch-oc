@@ -8,7 +8,6 @@
 import SwiftUI
 import Defaults
 import ScriptingBridge
-import MediaRemoteAdapter
 
 
 /// This is currently unused. It's here just in case Apple keeps restricting access to MediaRemote.framework further.
@@ -16,9 +15,7 @@ import MediaRemoteAdapter
 class MediaManagerPerApp {
     
     static let shared = MediaManagerPerApp()
-    
-    let mediaController = MediaController()
-    
+        
     // MARK: - Constants
     
     private let SPOTIFY_BUNDLE_ID = "com.spotify.client"
@@ -59,16 +56,6 @@ class MediaManagerPerApp {
     private init() {
         setupApps()
         setupNotificationObservers()
-        
-        mediaController.startListening()
-        
-        mediaController.onTrackInfoReceived = { trackInfo in
-            print("Now Playing: \(trackInfo.payload.title ?? "N/A")")
-            
-            if let artworkImage = trackInfo.payload.artwork {
-                // Use your image here...
-            }
-        }
     }
     
     deinit {

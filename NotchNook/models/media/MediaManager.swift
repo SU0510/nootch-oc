@@ -59,6 +59,7 @@ class MediaManager {
     }
     
     private func reconfigureMediaController() {
+        resetTrackState()
         mediaController.stopListening()
         
         switch preferredMediaSource {
@@ -89,22 +90,46 @@ class MediaManager {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
-            if let isPlaying = trackInfo.payload.isPlaying {
+            let track = trackInfo.payload
+
+            if let isPlaying = track.isPlaying {
+                updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, albumArtId: track.artworkDataBase64)
+            } else {
+                resetTrackState()
+            }
+        }
+    }
+    
+    private func updateTrackInfo(title: String?, artist: String?, album: String?, isPlaying: Bool, albumArtImage: NSImage?, albumArtId: String?) {
+        var newTrack = Track()
+        newTrack.title = title ?? ""
+        newTrack.artist = artist ?? ""
+        newTrack.album = album ?? ""
+        newTrack.albumArt = albumArtImage ?? NSImage()
+        
+        let playingStateChanged = self.isPlaying != isPlaying
+        let trackChanged = self.track.isValidReplacement(newTrack)
+        
+        guard playingStateChanged || trackChanged else { return }
+        
+        // Update UI only if necessary
+        DispatchQueue.main.async {
+            if trackChanged {
+                self.track = newTrack
+            }
+            if playingStateChanged {
                 self.isPlaying = isPlaying
             }
-            
-            if !(trackInfo.payload.title ?? "").isEmpty {
-                var newTrack = Track()
-                newTrack.title = trackInfo.payload.title ?? ""
-                newTrack.artist = trackInfo.payload.artist ?? ""
-                newTrack.album = trackInfo.payload.album ?? ""
-                newTrack.albumArt = trackInfo.payload.artwork ?? NSImage()
-                
-                if newTrack != self.track {
-                    self.track = newTrack
-                }
+            if trackChanged || playingStateChanged {
+                self.updateLiveActivities()
             }
-            
+        }
+    }
+    
+    private func resetTrackState() {
+        DispatchQueue.main.async {
+            self.track = .empty
+            self.isPlaying = false
             self.updateLiveActivities()
         }
     }
