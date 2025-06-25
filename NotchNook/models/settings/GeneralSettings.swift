@@ -22,4 +22,5 @@ struct GeneralSettings: Preferences {
     var enableOnNonNotchScreens = true
     var preventUnhoverCloseWhenTyping = true
     var lockNNWhenTyping = false
+    var preferredMediaSource: MediaSource = .systemWide
 }

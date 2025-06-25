@@ -25,5 +25,8 @@ struct MediaPlayerWidgetView: View {
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: nookSettings.widgetsPadding)
         .frame(prefs.size.screenPtsCGSize, .leading)
+        .onTapGesture {
+            MediaManager.shared.openApp()
+        }
     }
 }

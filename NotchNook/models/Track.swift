@@ -20,6 +20,7 @@ struct Track: Equatable, Hashable, Identifiable {
     var title = ""
     var artist = ""
     var album = ""
+    var appName = ""
     var loved: Bool?
     var mediaApp = SystemAppMeta()
     var albumArt = NSImage()

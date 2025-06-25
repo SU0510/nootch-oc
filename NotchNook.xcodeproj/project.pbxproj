@@ -41,8 +41,12 @@
 		3688ADC62D14871B00D761CD /* lisa.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3688ADC22D14871B00D761CD /* lisa.gif */; };
 		36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A356D92C4968FE001902E4 /* VibratingCircleView.swift */; };
 		36AAC6BD2DE8E644002FA66D /* LiveActivitySelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */; };
+		36ACEEFB2E0B2BDD003EC274 /* MediaRemoteAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 36ACEEFA2E0B2BDD003EC274 /* MediaRemoteAdapter */; };
+		36ACEEFC2E0B2BDD003EC274 /* MediaRemoteAdapter in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 36ACEEFA2E0B2BDD003EC274 /* MediaRemoteAdapter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		36ACEEFF2E0C4AF2003EC274 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */; };
+		36ACEF012E0C4B3F003EC274 /* MediaSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF002E0C4B39003EC274 /* MediaSource.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
-		36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManager.swift */; };
+		36C1868B2D973D9000043F99 /* MediaManagerPerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */; };
 		36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36C186922D9B1F9900043F99 /* gifs2.mp4 */; };
 		36C970212C51D51F00956B57 /* EKEventStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */; };
 		36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C970222C51D57600956B57 /* Date+Extensions.swift */; };
@@ -420,6 +424,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		36ACEEFD2E0B2BDE003EC274 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				36ACEEFC2E0B2BDD003EC274 /* MediaRemoteAdapter in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3616A5D72C92172E005C6381 /* cleanupTemporaryDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanupTemporaryDirectory.swift; sourceTree = "<group>"; };
 		3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIndicatorKey.swift; sourceTree = "<group>"; };
@@ -454,8 +472,10 @@
 		3688ADC32D14871B00D761CD /* snoopy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snoopy.gif; sourceTree = "<group>"; };
 		36A356D92C4968FE001902E4 /* VibratingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VibratingCircleView.swift; path = NotchNook/components/Notch/TopBar/liveActivities/activities/MediaPlayer/Effects/VibratingCircleView.swift; sourceTree = SOURCE_ROOT; };
 		36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitySelectionManager.swift; sourceTree = "<group>"; };
+		36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
+		36ACEF002E0C4B39003EC274 /* MediaSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSource.swift; sourceTree = "<group>"; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
-		36C1868A2D973D8B00043F99 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
+		36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManagerPerApp.swift; sourceTree = "<group>"; };
 		36C186922D9B1F9900043F99 /* gifs2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gifs2.mp4; sourceTree = "<group>"; };
 		36C970202C51D51F00956B57 /* EKEventStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Extensions.swift"; sourceTree = "<group>"; };
 		36C970222C51D57600956B57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -830,7 +850,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				365E68EE2DAECB33006BDF7D /* XCTest.framework in Frameworks */,
 				3A9E6BF82C3A9C3F009948F5 /* DynamicColor in Frameworks */,
 				EC7A0FAD2C0FE7800063E78E /* Algorithms in Frameworks */,
 				ECCEFE6F2C64453600F3385C /* FluidGradient in Frameworks */,
@@ -846,6 +865,7 @@
 				365E68D62DA5A2C5006BDF7D /* DefaultsMacros in Frameworks */,
 				3A8AA2CF2C313B6300D727DA /* RichTextKit in Frameworks */,
 				3A9FEA172C6DCBF500AE6515 /* Setapp in Frameworks */,
+				36ACEEFB2E0B2BDD003EC274 /* MediaRemoteAdapter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1450,7 +1470,8 @@
 		EC4173CC2C0191A8002889E7 /* media */ = {
 			isa = PBXGroup;
 			children = (
-				36C1868A2D973D8B00043F99 /* MediaManager.swift */,
+				36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */,
+				36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */,
 				EC8D60582BFFEEF500E67ECC /* MediaControls.swift */,
 			);
 			path = media;
@@ -1787,6 +1808,7 @@
 		EC81E2622C069D1600790517 /* enums */ = {
 			isa = PBXGroup;
 			children = (
+				36ACEF002E0C4B39003EC274 /* MediaSource.swift */,
 				C16CD3F12C874FF300144C90 /* bluetoothConnectDisconnectStruct.swift */,
 				3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */,
 				3688ADBD2D14805D00D761CD /* PredefinedGIF.swift */,
@@ -2003,6 +2025,7 @@
 				EC758F642BF2F18700B873B0 /* Sources */,
 				EC758F652BF2F18700B873B0 /* Frameworks */,
 				EC758F662BF2F18700B873B0 /* Resources */,
+				36ACEEFD2E0B2BDE003EC274 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2024,6 +2047,7 @@
 				3A9FEA162C6DCBF500AE6515 /* Setapp */,
 				365E68D32DA5A2C5006BDF7D /* Defaults */,
 				365E68D52DA5A2C5006BDF7D /* DefaultsMacros */,
+				36ACEEFA2E0B2BDD003EC274 /* MediaRemoteAdapter */,
 			);
 			productName = NotchNook;
 			productReference = EC758F682BF2F18700B873B0 /* NotchNook.app */;
@@ -2077,6 +2101,7 @@
 				3A9FEA152C6DCBF500AE6515 /* XCRemoteSwiftPackageReference "Setapp-framework" */,
 				3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */,
 				365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */,
+				36ACEEF92E0B2B54003EC274 /* XCRemoteSwiftPackageReference "mediaremote-adapter" */,
 			);
 			productRefGroup = EC758F692BF2F18700B873B0 /* Products */;
 			projectDirPath = "";
@@ -2211,6 +2236,7 @@
 				EC758F982BF2F1A400B873B0 /* bindDropAreaCoords.swift in Sources */,
 				3A0816B82C23AAC8008092F0 /* FileDropView.swift in Sources */,
 				EC8D60282BFCEE9500E67ECC /* MediaControlsView.swift in Sources */,
+				36ACEEFF2E0C4AF2003EC274 /* MediaManager.swift in Sources */,
 				3A3F59E82C2A582600906FFA /* checkForUpdates.swift in Sources */,
 				3A342B0B2C4DEC2B003C369C /* BrightnessIndicatorSunView.swift in Sources */,
 				EC758F962BF2F1A400B873B0 /* truncateFileName.swift in Sources */,
@@ -2355,6 +2381,7 @@
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
 				3A3ABCE42C2A9CFE00132228 /* dropExited.swift in Sources */,
 				3A0C50202C534A7A0003867F /* IndicatorValueView.swift in Sources */,
+				36ACEF012E0C4B3F003EC274 /* MediaSource.swift in Sources */,
 				EC8D60302BFD699700E67ECC /* ShortcutsWidgetView.swift in Sources */,
 				EC0E31112C05663C0060B47E /* PreferencesProtocol.swift in Sources */,
 				EC2DD1F22C03DBC9001FD54E /* TrayFilesGridPreviewView.swift in Sources */,
@@ -2384,7 +2411,7 @@
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
 				36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */,
-				36C1868B2D973D9000043F99 /* MediaManager.swift in Sources */,
+				36C1868B2D973D9000043F99 /* MediaManagerPerApp.swift in Sources */,
 				EC0E31092C055A560060B47E /* TraySettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
 				3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */,
@@ -3044,6 +3071,14 @@
 				minimumVersion = 9.0.3;
 			};
 		};
+		36ACEEF92E0B2B54003EC274 /* XCRemoteSwiftPackageReference "mediaremote-adapter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ejbills/mediaremote-adapter.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		3A00275C2C90263C002A089D /* XCRemoteSwiftPackageReference "Settings" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lo-cafe/Settings.git";
@@ -3160,6 +3195,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 365E68D22DA5A2C5006BDF7D /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = DefaultsMacros;
+		};
+		36ACEEFA2E0B2BDD003EC274 /* MediaRemoteAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36ACEEF92E0B2B54003EC274 /* XCRemoteSwiftPackageReference "mediaremote-adapter" */;
+			productName = MediaRemoteAdapter;
 		};
 		3A00275D2C90263C002A089D /* Settings */ = {
 			isa = XCSwiftPackageProductDependency;

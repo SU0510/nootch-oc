@@ -36,6 +36,16 @@ struct GeneralSettingsView: View {
                 .padding(.leading, -8)
             }
             
+            Settings.Section(title: String(localized: "Media source:")) {
+                Picker("", selection: $generalSettings.preferredMediaSource) {
+                    Text("System").tag(MediaSource.systemWide)
+                    Text("Spotify").tag(MediaSource.spotify)
+                    Text("Apple Music").tag(MediaSource.appleMusic)
+                }
+                .frame(width: 170)
+                .padding(.leading, -8)
+            }
+            
             Settings.Section(title: String(localized: "Notch:")) {
                 Toggle("Prefer round buttons", isOn: $generalSettings.preferRoundButtons)
                 Text("Use capsules instead of rounded rectangles for buttons.")
