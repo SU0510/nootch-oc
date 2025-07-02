@@ -24,7 +24,7 @@ struct NoMediaAppsView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             HStack(spacing: 8) {
-                ForEach(installedApps.sorted().prefix(4)) { mediaAppMeta in
+                ForEach(installedApps.sorted().prefix(3)) { mediaAppMeta in
                     Button {
                         preventNextFocusFrontmostWindow()
                         mediaAppMeta.openApp()
@@ -36,17 +36,17 @@ struct NoMediaAppsView: View {
                     }
                 }
                 
-//                Button {
-//                    guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
-//                    preventNextFocusFrontmostWindow()
-//                    openURL(youtubeURL)
-//                } label: {
-//                    Image(.youtubeLogo)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(31)
-//                        .frame(38)
-//                }
+                Button {
+                    guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
+                    preventNextFocusFrontmostWindow()
+                    openURL(youtubeURL)
+                } label: {
+                    Image(.youtubeLogo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(31)
+                        .frame(38)
+                }
             }
             .buttonStyle(ShrinkOnClick())
         }
@@ -54,14 +54,17 @@ struct NoMediaAppsView: View {
         .foregroundStyle(.nonShockingWhite)
         .transition(.scaleAndBlur(anchor: .topTrailing))
         .onAppear {
-            let spotubeBundleID = "com.spotube.SpotubeMacOS"
             let spotifyBundleID = "com.spotify.client"
-            let ciderBundleID = "sh.cider.Cider"
             let appleBundleID = "com.apple.Music"
+            let spotubeBundleID = "com.spotube.SpotubeMacOS"
+            let ciderBundleID = "sh.cider.Cider"
             let tidalBundleID = "com.tidal.desktop"
             let voxBundleID = "com.coppertino.Vox"
+            let qqMusicBundleID = "com.tencent.QQMusicMac"
+            let netEaseCloudMusicBundleID = "com.netease.163music"
+            let kuGouMusicBundleID = "com.kugou.player"
             
-            let appsBundleIds = [spotifyBundleID, appleBundleID]
+            let appsBundleIds = [spotifyBundleID, appleBundleID, spotubeBundleID, ciderBundleID, tidalBundleID, voxBundleID]
             installedApps = appsBundleIds.compactMap { isAppInstalled($0) ? SystemAppMeta(bundleId: $0) : nil }
         }
     }
