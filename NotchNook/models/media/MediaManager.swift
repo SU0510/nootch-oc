@@ -16,11 +16,12 @@ class MediaManager {
     var isPlaying: Bool = false {
         willSet {
             let timerId = "pauseLiveActivityDismiss"
+            let inactivityTimeout = Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs
             if isPlaying != newValue {
                 if newValue {
                     TimersManager.shared.removeTimer(timerId)
                 } else {
-                    TimersManager.shared.addTimer(timerId, delay: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs) { _ in
+                    TimersManager.shared.addTimer(timerId, delay: inactivityTimeout) { _ in
                         ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
                     }
                 }
@@ -34,6 +35,9 @@ class MediaManager {
     
     private var mediaController: MediaController
     
+    private var mediaWatchdogTimer: Timer?
+    private var lastTrackInfoTimestamp: TimeInterval = Date().timeIntervalSince1970
+    
     // MARK: Lifecycle
     
     private init() {
@@ -46,67 +50,53 @@ class MediaManager {
         mediaController.stopListening()
     }
     
-    // MARK: Private Methods
+    // MARK: Listeners and timers
     
     private func setupMediaControllerListeners() {
         mediaController.onTrackInfoReceived = { [weak self] trackInfo in
             self?.handleTrackInfoUpdate(trackInfo)
         }
-    }
-    
-    func reconfigureMediaController() {
-        resetTrackState()
-        mediaController.stopListening()
         
-        switch preferredMediaSource {
-            case .systemWide:
-                mediaController = MediaController(bundleIdentifier: nil)
-            case .appleMusic, .spotify:
-                mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
-        }
-        
-        setupMediaControllerListeners()
-        mediaController.startListening()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let self = self else { return }
-            
-            if self.track == .empty {
-                self.forceMediaControllerRestart()
+        mediaController.onListenerTerminated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.resetTrackState()
             }
         }
     }
     
-    private func forceMediaControllerRestart() {
-        mediaController.stopListening()
-        
-        mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
-        setupMediaControllerListeners()
-        mediaController.startListening()
-        
-        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
-        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
-        
-        updateLiveActivities()
-    }
-    
-    private func runAppleScript(script: String) {
-        let task = Process()
-        task.launchPath = "/usr/bin/osascript"
-        task.arguments = ["-e", script]
-        
-        do {
-            try task.run()
-            task.waitUntilExit()
-        } catch {
-            print("Error running AppleScript: \(error)")
+    private func startWatchdog() {
+        mediaWatchdogTimer?.invalidate()
+        mediaWatchdogTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
+            self?.checkMediaHealth()
         }
     }
+    
+    private func stopWatchdog() {
+        mediaWatchdogTimer?.invalidate()
+        mediaWatchdogTimer = nil
+    }
+    
+    private func checkMediaHealth() {
+        let elapsed = Date().timeIntervalSince1970 - lastTrackInfoTimestamp
+        let timeout = 5.0
+        
+        if elapsed > timeout {
+            resetTrackState()
+            stopWatchdog()
+        }
+    }
+    
+    // MARK: Update methods
     
     private func handleTrackInfoUpdate(_ trackInfo: TrackInfo) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.lastTrackInfoTimestamp = Date().timeIntervalSince1970
             
+            if mediaWatchdogTimer == nil {
+                startWatchdog()
+            }
+
             let track = trackInfo.payload
 
             if let isPlaying = track.isPlaying {
@@ -161,7 +151,58 @@ class MediaManager {
         }
     }
     
+    // MARK: Private helpers
+    
+    private func forceMediaControllerRestart() {
+        mediaController.stopListening()
+        
+        mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
+        setupMediaControllerListeners()
+        mediaController.startListening()
+        
+        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
+        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
+        
+        updateLiveActivities()
+    }
+    
+    private func runAppleScript(script: String) {
+        let task = Process()
+        task.launchPath = "/usr/bin/osascript"
+        task.arguments = ["-e", script]
+        
+        do {
+            try task.run()
+            task.waitUntilExit()
+        } catch {
+            print("Error running AppleScript: \(error)")
+        }
+    }
+    
     // MARK: Media Controls
+    
+    func reconfigureMediaController() {
+        resetTrackState()
+        mediaController.stopListening()
+        
+        switch preferredMediaSource {
+            case .systemWide:
+                mediaController = MediaController(bundleIdentifier: nil)
+            case .appleMusic, .spotify:
+                mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
+        }
+        
+        setupMediaControllerListeners()
+        mediaController.startListening()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let self = self else { return }
+            
+            if self.track == .empty {
+                self.forceMediaControllerRestart()
+            }
+        }
+    }
     
     func togglePlayPause() {
         switch preferredMediaSource {
