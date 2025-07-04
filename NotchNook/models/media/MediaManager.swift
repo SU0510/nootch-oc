@@ -34,10 +34,8 @@ class MediaManager {
     var preferredMediaSource: MediaSource = Defaults[.generalSettings].preferredMediaSource
     
     private var mediaController: MediaController
-    
-    private var mediaWatchdogTimer: Timer?
-    private var lastTrackInfoTimestamp: TimeInterval = Date().timeIntervalSince1970
-    
+    private var appRunningCheckTimer: Timer?
+
     // MARK: Lifecycle
     
     private init() {
@@ -63,26 +61,17 @@ class MediaManager {
             }
         }
     }
-    
-    private func startWatchdog() {
-        mediaWatchdogTimer?.invalidate()
-        mediaWatchdogTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
-            self?.checkMediaHealth()
-        }
-    }
-    
-    private func stopWatchdog() {
-        mediaWatchdogTimer?.invalidate()
-        mediaWatchdogTimer = nil
-    }
-    
-    private func checkMediaHealth() {
-        let elapsed = Date().timeIntervalSince1970 - lastTrackInfoTimestamp
-        let timeout = 5.0
         
-        if elapsed > timeout {
-            resetTrackState()
-            stopWatchdog()
+    /// Workaround for when not detecting app closure
+    private func startAppRunningMonitor() {
+        appRunningCheckTimer?.invalidate()
+        appRunningCheckTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            if self.resetIfNeeded() {
+                appRunningCheckTimer?.invalidate()
+                appRunningCheckTimer = nil
+            }
         }
     }
     
@@ -91,11 +80,6 @@ class MediaManager {
     private func handleTrackInfoUpdate(_ trackInfo: TrackInfo) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.lastTrackInfoTimestamp = Date().timeIntervalSince1970
-            
-            if mediaWatchdogTimer == nil {
-                startWatchdog()
-            }
 
             let track = trackInfo.payload
 
@@ -124,6 +108,7 @@ class MediaManager {
         DispatchQueue.main.async {
             if trackChanged {
                 self.track = newTrack
+                self.startAppRunningMonitor()
             }
             if playingStateChanged {
                 self.isPlaying = isPlaying
@@ -154,6 +139,7 @@ class MediaManager {
     // MARK: Private helpers
     
     private func forceMediaControllerRestart() {
+        guard isAppRunning(preferredMediaSource.name) else { return }
         mediaController.stopListening()
         
         mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
@@ -177,6 +163,30 @@ class MediaManager {
         } catch {
             print("Error running AppleScript: \(error)")
         }
+    }
+    
+    private func resetIfNeeded() -> Bool {
+        let appName = track.appName
+        if appName.isEmpty { return false }
+        
+        let isRunning = isAppRunning(appName)
+        if !isRunning {
+            resetTrackState()
+            mediaController.stopListening()
+            return true
+        }
+        
+        return false
+    }
+    
+    private func isAppRunning(_ appName: String) -> Bool {
+        let runningApps = NSWorkspace.shared.runningApplications
+        let isRunning = runningApps.contains { app in
+            guard let name = app.localizedName else { return false }
+            return name.contains(appName)
+        }
+        
+        return isRunning
     }
     
     // MARK: Media Controls
