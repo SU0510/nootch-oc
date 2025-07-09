@@ -24,6 +24,8 @@ struct Track: Equatable, Hashable, Identifiable {
     var loved: Bool?
     var mediaApp = SystemAppMeta()
     var albumArt = NSImage()
+    var browserBundleId: String?
+    var appBundleId = ""
     
     @MainActor
     var albumArtAverageColor: NSColor {

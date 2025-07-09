@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct CircleButton: View {
+    
     var icon: String
     var iconSize: Double = 10
     var fade: Bool = true
     var bgColor: Color = .selected
     var action: () -> ()
     @State private var hovering = false
+    
     var body: some View {
         Button(action: action) {
             Image(systemName: icon)

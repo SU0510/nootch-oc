@@ -26,6 +26,7 @@ struct NoMediaAppsView: View {
             HStack(spacing: 8) {
                 ForEach(installedApps.sorted().prefix(3)) { mediaAppMeta in
                     Button {
+                        MediaManager.shared.forceMediaControllerRestart(appName: mediaAppMeta.name)
                         preventNextFocusFrontmostWindow()
                         mediaAppMeta.openApp()
                     } label: {
@@ -37,6 +38,8 @@ struct NoMediaAppsView: View {
                 }
                 
                 Button {
+                    MediaManager.shared.reconfigureMediaController()
+
                     guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
                     preventNextFocusFrontmostWindow()
                     openURL(youtubeURL)

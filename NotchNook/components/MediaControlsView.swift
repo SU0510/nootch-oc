@@ -12,9 +12,19 @@ struct MediaControlsView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            TrackButtonView(direction: .previous, iconSize: 10)
-            CircleButton(icon: mediaControls.isPlaying ? "pause.fill" : "play.fill", iconSize: 15, fade: false, action: mediaControls.togglePlayPause)
-            TrackButtonView(direction: .next, iconSize: 10)
+            if mediaControls.isLikelyBrowserApp() {
+                CircleButton(icon: mediaControls.isPlaying ? "pause.fill" : "play.fill", iconSize: 15, fade: false) {
+                    mediaControls.togglePlayPause()
+                }
+                
+                CircleButton(icon: "x.circle", iconSize: 15, fade: false) {
+                    mediaControls.reset()
+                }
+            } else {
+                TrackButtonView(direction: .previous, iconSize: 10)
+                CircleButton(icon: mediaControls.isPlaying ? "pause.fill" : "play.fill", iconSize: 15, fade: false, action: mediaControls.togglePlayPause)
+                TrackButtonView(direction: .next, iconSize: 10)
+            }
         }
     }
 }

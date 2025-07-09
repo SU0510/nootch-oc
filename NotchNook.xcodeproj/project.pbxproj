@@ -45,6 +45,7 @@
 		36ACEEFC2E0B2BDD003EC274 /* MediaRemoteAdapter in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 36ACEEFA2E0B2BDD003EC274 /* MediaRemoteAdapter */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		36ACEEFF2E0C4AF2003EC274 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */; };
 		36ACEF012E0C4B3F003EC274 /* MediaSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF002E0C4B39003EC274 /* MediaSource.swift */; };
+		36ACEF072E1DEEA1003EC274 /* BrowserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF062E1DEE9B003EC274 /* BrowserType.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C1868B2D973D9000043F99 /* MediaManagerPerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */; };
 		36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36C186922D9B1F9900043F99 /* gifs2.mp4 */; };
@@ -474,6 +475,7 @@
 		36AAC6BC2DE8E642002FA66D /* LiveActivitySelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitySelectionManager.swift; sourceTree = "<group>"; };
 		36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		36ACEF002E0C4B39003EC274 /* MediaSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSource.swift; sourceTree = "<group>"; };
+		36ACEF062E1DEE9B003EC274 /* BrowserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserType.swift; sourceTree = "<group>"; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManagerPerApp.swift; sourceTree = "<group>"; };
 		36C186922D9B1F9900043F99 /* gifs2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gifs2.mp4; sourceTree = "<group>"; };
@@ -1808,6 +1810,7 @@
 		EC81E2622C069D1600790517 /* enums */ = {
 			isa = PBXGroup;
 			children = (
+				36ACEF062E1DEE9B003EC274 /* BrowserType.swift */,
 				36ACEF002E0C4B39003EC274 /* MediaSource.swift */,
 				C16CD3F12C874FF300144C90 /* bluetoothConnectDisconnectStruct.swift */,
 				3688ADBF2D14807D00D761CD /* GIFScalingQuality.swift */,
@@ -2348,6 +2351,7 @@
 				EC47FC892C0AC63E00591811 /* TimeCounter.swift in Sources */,
 				C196F0F32C6B71BF00F6A21B /* PowerSourceNotifications.swift in Sources */,
 				BBF6EDBB2C4AE8C400F70035 /* SoundCoordinator.swift in Sources */,
+				36ACEF072E1DEEA1003EC274 /* BrowserType.swift in Sources */,
 				EC81E26B2C06A6D400790517 /* MirrorWidgetSettingsView.swift in Sources */,
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* TrayFile.swift in Sources */,

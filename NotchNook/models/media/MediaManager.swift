@@ -57,7 +57,7 @@ class MediaManager {
         
         mediaController.onListenerTerminated = { [weak self] in
             DispatchQueue.main.async {
-                self?.resetTrackState()
+                self?.reset()
             }
         }
     }
@@ -84,20 +84,22 @@ class MediaManager {
             let track = trackInfo.payload
 
             if let isPlaying = track.isPlaying {
-                updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, appName: track.applicationName)
+                updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, appName: track.applicationName, bundleIdentifier: track.bundleIdentifier)
             } else {
-                resetTrackState()
+                reset()
             }
         }
     }
     
-    private func updateTrackInfo(title: String?, artist: String?, album: String?, isPlaying: Bool, albumArtImage: NSImage?, appName: String?) {
+    private func updateTrackInfo(title: String?, artist: String?, album: String?, isPlaying: Bool, albumArtImage: NSImage?, appName: String?, bundleIdentifier: String?) {
         var newTrack = Track()
         newTrack.title = title ?? ""
         newTrack.artist = artist ?? ""
         newTrack.album = album ?? ""
         newTrack.albumArt = albumArtImage ?? NSImage()
         newTrack.appName = appName ?? ""
+        newTrack.appBundleId = bundleIdentifier ?? ""
+        newTrack.browserBundleId = BrowserType.getBrowserBundleId(for: appName ?? "")
         
         let playingStateChanged = self.isPlaying != isPlaying
         let trackChanged = self.track.isValidReplacement(newTrack)
@@ -119,14 +121,6 @@ class MediaManager {
         }
     }
     
-    private func resetTrackState() {
-        DispatchQueue.main.async {
-            self.track = .empty
-            self.isPlaying = false
-            self.updateLiveActivities()
-        }
-    }
-    
     private func updateLiveActivities() {
         if track != .empty {
             if !isPlaying { return }
@@ -138,16 +132,17 @@ class MediaManager {
     
     // MARK: Private helpers
     
-    private func forceMediaControllerRestart() {
-        guard isAppRunning(preferredMediaSource.name) else { return }
+    func forceMediaControllerRestart(appName: String? = nil) {
         mediaController.stopListening()
+        
+        let appName = appName != nil ? "\"\(appName!)\"" : preferredMediaSource.name
+        runAppleScript(script: "tell application \(appName) to playpause")
         
         mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
         setupMediaControllerListeners()
         mediaController.startListening()
         
-        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
-        runAppleScript(script: "tell application \(preferredMediaSource.name) to playpause")
+        runAppleScript(script: "tell application \(appName) to playpause")
         
         updateLiveActivities()
     }
@@ -171,8 +166,7 @@ class MediaManager {
         
         let isRunning = isAppRunning(appName)
         if !isRunning {
-            resetTrackState()
-            mediaController.stopListening()
+            reset()
             return true
         }
         
@@ -189,11 +183,23 @@ class MediaManager {
         return isRunning
     }
     
-    // MARK: Media Controls
+    // MARK: Public methods
+    
+    func reset() {
+        DispatchQueue.main.async {
+            self.track = .empty
+            self.isPlaying = false
+            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+            self.mediaController.stopListening()
+        }
+    }
+    
+    func isLikelyBrowserApp() -> Bool {
+        preferredMediaSource == .systemWide && track.browserBundleId != nil
+    }
     
     func reconfigureMediaController() {
-        resetTrackState()
-        mediaController.stopListening()
+        reset()
         
         switch preferredMediaSource {
             case .systemWide:
@@ -209,6 +215,15 @@ class MediaManager {
             guard let self = self else { return }
             
             if self.track == .empty {
+                if preferredMediaSource != .systemWide {
+                    // prevent from force opening the media app
+                    guard isAppRunning(preferredMediaSource.name) else {
+                        setupMediaControllerListeners()
+                        mediaController.startListening()
+                        updateLiveActivities()
+                        return
+                    }
+                }
                 self.forceMediaControllerRestart()
             }
         }
@@ -242,6 +257,10 @@ class MediaManager {
     }
     
     func openApp() {
-        runAppleScript(script: "tell application \"\(track.appName)\" to activate reopen")
+        guard let browserBundleId = track.browserBundleId else {
+            SystemAppMeta(bundleId: track.appBundleId).openApp()
+            return
+        }
+        SystemAppMeta(bundleId: browserBundleId).openApp()
     }
 }
