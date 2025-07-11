@@ -46,6 +46,8 @@
 		36ACEEFF2E0C4AF2003EC274 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */; };
 		36ACEF012E0C4B3F003EC274 /* MediaSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF002E0C4B39003EC274 /* MediaSource.swift */; };
 		36ACEF072E1DEEA1003EC274 /* BrowserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF062E1DEE9B003EC274 /* BrowserType.swift */; };
+		36ACEF092E21814A003EC274 /* TopBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF082E218143003EC274 /* TopBarContentView.swift */; };
+		36ACEF0B2E218264003EC274 /* TopBarBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACEF0A2E218263003EC274 /* TopBarBackgroundView.swift */; };
 		36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BFB9262C7F61C100241325 /* CameraManagerKey.swift */; };
 		36C1868B2D973D9000043F99 /* MediaManagerPerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */; };
 		36C186932D9B1F9900043F99 /* gifs2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36C186922D9B1F9900043F99 /* gifs2.mp4 */; };
@@ -476,6 +478,8 @@
 		36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		36ACEF002E0C4B39003EC274 /* MediaSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSource.swift; sourceTree = "<group>"; };
 		36ACEF062E1DEE9B003EC274 /* BrowserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserType.swift; sourceTree = "<group>"; };
+		36ACEF082E218143003EC274 /* TopBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarContentView.swift; sourceTree = "<group>"; };
+		36ACEF0A2E218263003EC274 /* TopBarBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarBackgroundView.swift; sourceTree = "<group>"; };
 		36BFB9262C7F61C100241325 /* CameraManagerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerKey.swift; sourceTree = "<group>"; };
 		36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManagerPerApp.swift; sourceTree = "<group>"; };
 		36C186922D9B1F9900043F99 /* gifs2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gifs2.mp4; sourceTree = "<group>"; };
@@ -1382,6 +1386,7 @@
 			children = (
 				EC0E30DE2C041C690060B47E /* perActivitySettings */,
 				EC0E30F52C0439D80060B47E /* MockLiveAcitivitiesView.swift */,
+				EC0E30F22C0438660060B47E /* MockTopBar.swift */,
 				EC0E30E32C041CAD0060B47E /* LiveActivitiesCustomizeSettingsTabView.swift */,
 			);
 			path = LiveActivitiesCustomizeSettingsTab;
@@ -1908,8 +1913,9 @@
 			children = (
 				3A105FD12C1BADC40015EC66 /* liveActivities */,
 				EC8D60072BFAE91D00E67ECC /* pieces */,
-				EC0E30F22C0438660060B47E /* MockTopBar.swift */,
 				EC8D5FF52BFAE7AB00E67ECC /* TopBarView.swift */,
+				36ACEF082E218143003EC274 /* TopBarContentView.swift */,
+				36ACEF0A2E218263003EC274 /* TopBarBackgroundView.swift */,
 			);
 			path = TopBar;
 			sourceTree = "<group>";
@@ -2467,6 +2473,7 @@
 				3A1691EF2C2FB5040014C326 /* CloseNotchKey.swift in Sources */,
 				C16CD3EE2C86C26400144C90 /* BluetoothDeviceIconView.swift in Sources */,
 				EC8D5FDE2BFA703300E67ECC /* MathCGSize.swift in Sources */,
+				36ACEF092E21814A003EC274 /* TopBarContentView.swift in Sources */,
 				EC47FCBF2C0BF30100591811 /* SettingsLinkBtn.swift in Sources */,
 				EC47FC7A2C0A80E000591811 /* LicenseManager.swift in Sources */,
 				C16CD3F02C86C27600144C90 /* BluetoothConnectDisconnectView.swift in Sources */,
@@ -2511,6 +2518,7 @@
 				EC8D5FE12BFA703300E67ECC /* CGPointHashable.swift in Sources */,
 				EC0E30EC2C042FC80060B47E /* Binding.swift in Sources */,
 				3A1691D62C2FB2040014C326 /* ShowChangelogKey.swift in Sources */,
+				36ACEF0B2E218264003EC274 /* TopBarBackgroundView.swift in Sources */,
 				C194313B2C7286400088F905 /* BatteryIconView.swift in Sources */,
 				EC8D5FDF2BFA703300E67ECC /* SimpleInit.swift in Sources */,
 				3A6BF5362C34BF0400D3BFC9 /* NoteMiniatureView.swift in Sources */,

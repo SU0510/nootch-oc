@@ -33,20 +33,9 @@ struct TopBarView: View, Equatable {
     }
     @Environment(\.notchSize) private var notchSize
     @Environment(\.trialOver) private var trialOver
-    @Environment(\.openSettings) private var openSettings
     @Environment(\.notchNook) private var notchNook
-    @Environment(\.gestureControlSettings) private var gestureControlSettings
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
-    @Environment(\.nookSettings) private var nookSettings
-    @Environment(\.traySettings) private var traySettings
-    @Environment(\.nookWidgetsWidth) private var nookWidgetsWidth
-    @Environment(\.generalSettings) private var generalSettings
-    
-    var collapsed: Bool {
-        let width = notchNook.mode == .nook ? nookWidgetsWidth : traySettings.size.width
-        return width < .init(9)
-    }
-    
+
     var shouldHide: Bool {
         (notchSize.height == 0 && notchNook.mode == .closed && (liveActivities.isEmpty)) || isHidden
     }
@@ -54,14 +43,13 @@ struct TopBarView: View, Equatable {
     var body: some View {
         let height = getHeight(notchSize.height)
         let mode = notchNook.mode
-        let liveActivities = ActiveLiveActivitiesManager.shared.activeLiveActivities
         let shouldShowContent = !isHidden && !trialOver
         
         if !shouldHide {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     if shouldShowContent {
-                        contentView(isLeft: true)
+                        TopBarContentView(isLeft: true, scaleX: scaleX, scaleY: scaleY, isHidden: isHidden)
                     }
                     
                     if (mode != .closed && !isHidden) || !liveActivities.isEmpty {
@@ -69,19 +57,18 @@ struct TopBarView: View, Equatable {
                     }
                     
                     if shouldShowContent {
-                        contentView(isLeft: false)
+                        TopBarContentView(isLeft: false, scaleX: scaleX, scaleY: scaleY, isHidden: isHidden)
                     }
                 }
                 .animation(.smooth(extraBounce: 0.25), value: liveActivities)
                 .animation(.smooth(extraBounce: 0.25), value: shouldHide)
                 .background {
                     HStack(spacing: 0) {
-                        let shouldShowArrows = panPadding.bottom < (NotchView.maxHPanDrag / 3) && gestureControlSettings.controlMedia
-                        backgroundContentView(isLeft: true, shouldShowArrows: shouldShowArrows)
+                        TopBarBackgroundView(isLeft: true, panGestureCounter: panGestureCounter, scaleX: scaleX, scaleY: scaleY, panPadding: panPadding)
                         
                         TopBarSpacerView(height: height)
                         
-                        backgroundContentView(isLeft: false, shouldShowArrows: shouldShowArrows)
+                        TopBarBackgroundView(isLeft: false, panGestureCounter: panGestureCounter, scaleX: scaleX, scaleY: scaleY, panPadding: panPadding)
                     }
                 }
                 .frame(height: getHeight(notchSize.height))
@@ -97,60 +84,6 @@ struct TopBarView: View, Equatable {
         }
     }
     
-    private func contentView(isLeft: Bool) -> some View {
-        Group {
-            switch notchNook.mode {
-                case .closed:
-                    if !shouldHide {
-                        LiveActivityView(side: isLeft ? .left : .right, activeActivities: liveActivities)
-                            .frame(width: Self.liveActionWidth)
-                    }
-                    
-                case .dragging:
-                    EmptyView()
-                    
-                case .nook, .tray:
-                    if isLeft {
-                        TopBarTabsView(collapsed: collapsed)
-                            .frame(width: collapsed ? Self.collapsedTopBarHalfWidth : nil, alignment: .leading)
-                    } else {
-                        HStack(spacing: 2) {
-                            if !nookSettings.enabledWidgets.contains(.media) && !collapsed { MiniPlayerView() }
-                            
-                            CircleButton(icon: "gearshape.fill", iconSize: 13) {
-                                openSettings(nil)
-                            }
-                        }
-                        .frame(minWidth: collapsed ? TopBarView.collapsedTopBarHalfWidth : nil, maxWidth: .infinity, alignment: .trailing)
-                    }
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .scaleEffect(x: scaleX, y: scaleY, anchor: isLeft ? .topTrailing : .topLeading)
-        .transition(NotchView.defaultTransition(anchor: isLeft ? .trailing : .leading, delay: 0.075))
-        .allowsHitTesting(liveActivitiesSettings.interactive || notchNook.mode == .nook || notchNook.mode == .tray)
-    }
-    
-    private func backgroundContentView(isLeft: Bool, shouldShowArrows: Bool) -> some View {
-        Group {
-            switch notchNook.mode {
-                case .closed:
-                    ArrowForPanningView(
-                        x: shouldShowArrows ? (isLeft ? -panPadding.leading : panPadding.trailing) : 0,
-                        right: !isLeft,
-                        inverted: gestureControlSettings.invertMediaGestures,
-                        counter: panGestureCounter
-                    )
-                    .frame(maxWidth: Self.liveActionWidth, maxHeight: .infinity, alignment: isLeft ? .leading : .trailing)
-                case .dragging, .nook, .tray:
-                    EmptyView()
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .scaleEffect(x: scaleX, y: scaleY, anchor: isLeft ? .trailing : .leading)
-        .transition(.scaleAndBlur(anchor: isLeft ? .trailing : .leading))
-    }
-    
     /// If notch height is bigger than 2/3 of minHeight, use it
     private func getHeight(_ notchHeight: CGFloat) -> CGFloat {
         if notchHeight == 0 {
@@ -160,3 +93,4 @@ struct TopBarView: View, Equatable {
         }
     }
 }
+
