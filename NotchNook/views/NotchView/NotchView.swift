@@ -49,7 +49,7 @@ struct NotchView: View {
     }
     
     private var shouldShowTopBar: Bool {
-        (license != nil || (!viewModel.trialOver && trialInitialTime != nil)) && !(isDisabledDueToFullScreen)
+        (license != nil || (!viewModel.trialOver && trialInitialTime != nil))
     }
     
     private var isNonNotchAndDisabled: Bool {
