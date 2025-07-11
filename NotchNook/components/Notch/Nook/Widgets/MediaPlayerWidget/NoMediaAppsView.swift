@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct NoMediaAppsView: View {
-    
     @State private var installedApps = [SystemAppMeta]()
-    @State private var spotifyIsInstalled = false
     
     @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
     @Environment(\.openURL) private var openURL
@@ -39,7 +37,7 @@ struct NoMediaAppsView: View {
                 
                 Button {
                     MediaManager.shared.reconfigureMediaController()
-
+                    
                     guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
                     preventNextFocusFrontmostWindow()
                     openURL(youtubeURL)
@@ -57,19 +55,31 @@ struct NoMediaAppsView: View {
         .foregroundStyle(.nonShockingWhite)
         .transition(.scaleAndBlur(anchor: .topTrailing))
         .onAppear {
-            let spotifyBundleID = "com.spotify.client"
-            let appleBundleID = "com.apple.Music"
-            let spotubeBundleID = "com.spotube.SpotubeMacOS"
-            let ciderBundleID = "sh.cider.Cider"
-            let tidalBundleID = "com.tidal.desktop"
-            let voxBundleID = "com.coppertino.Vox"
-            let qqMusicBundleID = "com.tencent.QQMusicMac"
-            let netEaseCloudMusicBundleID = "com.netease.163music"
-            let kuGouMusicBundleID = "com.kugou.player"
-            
-            let appsBundleIds = [spotifyBundleID, appleBundleID, spotubeBundleID, ciderBundleID, tidalBundleID, voxBundleID]
-            installedApps = appsBundleIds.compactMap { isAppInstalled($0) ? SystemAppMeta(bundleId: $0) : nil }
+            installedApps = getInstalledMediaApps()
         }
     }
-}
+    
+    func getInstalledMediaApps() -> [SystemAppMeta] {
+        let mediaBundleIDs = [
+            "com.spotify.client",
+            "com.apple.Music",
+            "com.spotube.SpotubeMacOS",
+            "sh.cider.Cider",
+            "com.tidal.desktop",
+            "com.coppertino.Vox",
+            "com.tencent.QQMusicMac",
+            "com.netease.163music",
+            "com.kugou.player"
+        ]
+        
+        func isAppInstalled(_ bundleID: String) -> Bool {
+            let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID)
+            return appURL != nil
+        }
+        
+        return mediaBundleIDs.compactMap {
+            isAppInstalled($0) ? SystemAppMeta(bundleId: $0) : nil
+        }
+    }
 
+}

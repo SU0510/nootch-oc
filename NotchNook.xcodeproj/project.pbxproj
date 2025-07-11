@@ -401,7 +401,6 @@
 		EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */; };
 		EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */; };
 		EC8D60462BFFB0D700E67ECC /* doThisAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */; };
-		EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */; };
 		EC8D60592BFFEEF500E67ECC /* MediaControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60582BFFEEF500E67ECC /* MediaControls.swift */; };
 		EC8D60632C001BB500E67ECC /* wait.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60622C001BB500E67ECC /* wait.swift */; };
 		EC8D60652C001D2D00E67ECC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D60642C001D2D00E67ECC /* Track.swift */; };
@@ -824,7 +823,6 @@
 		EC8D60412BFEDAEC00E67ECC /* onChangeDebounced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onChangeDebounced.swift; sourceTree = "<group>"; };
 		EC8D60432BFEFB6500E67ECC /* ArrowForPanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowForPanningView.swift; sourceTree = "<group>"; };
 		EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doThisAfter.swift; sourceTree = "<group>"; };
-		EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isAppInstalled.swift; sourceTree = "<group>"; };
 		EC8D60582BFFEEF500E67ECC /* MediaControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaControls.swift; sourceTree = "<group>"; };
 		EC8D60622C001BB500E67ECC /* wait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wait.swift; sourceTree = "<group>"; };
 		EC8D60642C001D2D00E67ECC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -1680,7 +1678,6 @@
 				EC758F882BF2F1A400B873B0 /* truncateFileName.swift */,
 				EC8D5FED2BFAB12200E67ECC /* interpolatorBuilder.swift */,
 				EC8D60452BFFB0D700E67ECC /* doThisAfter.swift */,
-				EC8D604B2BFFE5F200E67ECC /* isAppInstalled.swift */,
 				EC8D60622C001BB500E67ECC /* wait.swift */,
 				EC8D60662C01697100E67ECC /* iconForApp.swift */,
 				EC2DD1ED2C03D6F4001FD54E /* loadImgFromURL.swift */,
@@ -2402,7 +2399,6 @@
 				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
 				EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */,
 				EC758F942BF2F1A400B873B0 /* getURLsFromDropInfo.swift in Sources */,
-				EC8D604C2BFFE5F200E67ECC /* isAppInstalled.swift in Sources */,
 				3A20F17B2C2F8E33006A7E1F /* NotchViewModel.swift in Sources */,
 				EC13C6DC2C09180600B45C6E /* TextInput.swift in Sources */,
 				EC0E31032C0548A10060B47E /* NookGrid.swift in Sources */,
