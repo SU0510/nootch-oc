@@ -36,8 +36,12 @@ struct TopBarView: View, Equatable {
     @Environment(\.notchNook) private var notchNook
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
 
-    var shouldHide: Bool {
-        (notchSize.height == 0 && notchNook.mode == .closed && (liveActivities.isEmpty)) || isHidden
+    private var shouldHide: Bool {
+        if isHidden { return true }
+        // notched screen
+        if notchSize.height != 0 { return false }
+        
+        return notchNook.mode == .closed && (liveActivities.isEmpty || liveActivitiesSettings.hiddenInNonNotchedScreens)
     }
 
     var body: some View {
@@ -49,7 +53,7 @@ struct TopBarView: View, Equatable {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     if shouldShowContent {
-                        TopBarContentView(isLeft: true, scaleX: scaleX, scaleY: scaleY, isHidden: isHidden)
+                        TopBarContentView(isLeft: true, scaleX: scaleX, scaleY: scaleY)
                     }
                     
                     if (mode != .closed && !isHidden) || !liveActivities.isEmpty {
@@ -57,7 +61,7 @@ struct TopBarView: View, Equatable {
                     }
                     
                     if shouldShowContent {
-                        TopBarContentView(isLeft: false, scaleX: scaleX, scaleY: scaleY, isHidden: isHidden)
+                        TopBarContentView(isLeft: false, scaleX: scaleX, scaleY: scaleY)
                     }
                 }
                 .animation(.smooth(extraBounce: 0.25), value: liveActivities)

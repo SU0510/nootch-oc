@@ -12,7 +12,6 @@ struct TopBarContentView: View {
     var isLeft: Bool
     var scaleX: Double
     var scaleY: Double
-    var isHidden: Bool
     
     @Environment(\.notchNook) private var notchNook
     @Environment(\.notchSize) private var notchSize
@@ -26,10 +25,6 @@ struct TopBarContentView: View {
         ActiveLiveActivitiesManager.shared.activeLiveActivities
     }
     
-    private var shouldHide: Bool {
-        (notchSize.height == 0 && notchNook.mode == .closed && (liveActivities.isEmpty)) || isHidden
-    }
-    
     private var collapsed: Bool {
         let width = notchNook.mode == .nook ? nookWidgetsWidth : traySettings.size.width
         return width < .init(9)
@@ -39,10 +34,8 @@ struct TopBarContentView: View {
         Group {
             switch notchNook.mode {
                 case .closed:
-                    if !shouldHide {
-                        LiveActivityView(side: isLeft ? .left : .right, activeActivities: liveActivities)
-                            .frame(width: TopBarView.liveActionWidth)
-                    }
+                    LiveActivityView(side: isLeft ? .left : .right, activeActivities: liveActivities)
+                        .frame(width: TopBarView.liveActionWidth)
                     
                 case .dragging:
                     EmptyView()

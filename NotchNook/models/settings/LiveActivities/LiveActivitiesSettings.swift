@@ -9,6 +9,7 @@ import Foundation
 
 struct LiveActivitiesSettings: Preferences {
     var enabled = true
+    var hiddenInNonNotchedScreens = false
     var inactivityTimeoutInSecs: Double = 10
     var enabledLiveActivities: Set<LiveActivity> = [.tray, .media, .updateAvailable]
     var height: CGFloat = 32

@@ -49,7 +49,7 @@ struct LiveActivityView: View {
     // MARK: - Body
     
     var body: some View {
-        Group {
+        ZStack {
             if let activityToShow {
                 switch activityToShow {
                     case .calendar:

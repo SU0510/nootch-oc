@@ -21,6 +21,10 @@ struct LiveActivitiesGeneralSettingsTabView: View {
             Settings.Section(title: "", bottomDivider: true) {
                 Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
                     .padding(.bottom, 10)
+                
+                Toggle("Hide in non notched screens", isOn: $liveActivitiesSettings.hiddenInNonNotchedScreens)
+                    .disabled(!liveActivitiesSettings.enabled)
+                    .padding(.bottom, 10)
             }
             
             Settings.Section {
@@ -111,7 +115,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     SliderPlus(
                         value: $liveActivitiesSettings.height,
                         range: generalSettings.handleSize.height...TopBarView.maxHeight,
-                        useTickMarks: true
+                        useTickMarks: false
                     )
                         .disabled(!liveActivitiesSettings.enabled)
                 }
