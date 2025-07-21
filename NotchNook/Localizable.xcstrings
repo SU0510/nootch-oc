@@ -2491,9 +2491,6 @@
         }
       }
     },
-    "✨ Universal media is back!" : {
-
-    },
     "A beautiful and native Reddit client app for iOS." : {
       "localizations" : {
         "af" : {
@@ -36654,6 +36651,9 @@
           }
         }
       }
+    },
+    "Universal media is back!" : {
+
     },
     "Unknown Album" : {
       "localizations" : {
