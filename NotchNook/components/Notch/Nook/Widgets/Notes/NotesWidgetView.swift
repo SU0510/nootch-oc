@@ -57,13 +57,19 @@ struct NotesWidgetView: View {
             selectedNoteId = notes.first?.persistentModelID
         }
         .onAppear {
-            let existingIcons = Set(notes.map { $0.icon })
-            let icons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
-            let neededIcons = icons.filter { !existingIcons.contains($0) }
-            
-            for icon in neededIcons.prefix(4 - notes.count) {
-                let newNote = Note(icon: icon)
-                modelContext.insert(newNote)
+            do {
+                let existingIcons = Set(notes.map { $0.icon })
+                let icons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
+                let neededIcons = icons.filter { !existingIcons.contains($0) }
+                
+                for icon in neededIcons.prefix(4 - notes.count) {
+                    let newNote = Note(icon: icon)
+                    modelContext.insert(newNote)
+                }
+                
+                try modelContext.save()
+            } catch {
+                print("Error creating default notes: \(error)")
             }
         }
     }
