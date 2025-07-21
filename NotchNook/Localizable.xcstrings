@@ -1141,7 +1141,11 @@
         }
       }
     },
+    "%.1fx" : {
+
+    },
     "%@ - %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -1327,6 +1331,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
+    "%@ – %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ – %2$@"
           }
         }
       }
@@ -1710,6 +1724,9 @@
           }
         }
       }
+    },
+    "%lld minutes" : {
+
     },
     "%lld visible" : {
       "localizations" : {
@@ -2280,6 +2297,9 @@
           }
         }
       }
+    },
+    "%llu%%" : {
+
     },
     "+%lld" : {
       "localizations" : {
@@ -2852,7 +2872,11 @@
         }
       }
     },
+    "A bunch of improvements and fixes!" : {
+
+    },
     "A few of our apps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -4183,6 +4207,9 @@
         }
       }
     },
+    "All day" : {
+
+    },
     "Allow gestures when hovering the notch" : {
       "localizations" : {
         "af" : {
@@ -4943,6 +4970,9 @@
         }
       }
     },
+    "Apple Music" : {
+
+    },
     "Auto check for updates" : {
       "localizations" : {
         "af" : {
@@ -5322,6 +5352,15 @@
           }
         }
       }
+    },
+    "Battery" : {
+
+    },
+    "Bluetooth" : {
+
+    },
+    "Bluetooth Permission Required" : {
+
     },
     "Brightness/Volume HUD Replacement" : {
       "extractionState" : "stale",
@@ -6850,6 +6889,9 @@
         }
       }
     },
+    "Choose File..." : {
+
+    },
     "Choose Shortcuts" : {
       "localizations" : {
         "af" : {
@@ -7229,6 +7271,12 @@
           }
         }
       }
+    },
+    "Clear" : {
+
+    },
+    "Clear Custom" : {
+
     },
     "Click to open the Nook, where your widgets live." : {
       "localizations" : {
@@ -8941,6 +8989,9 @@
           }
         }
       }
+    },
+    "Cool!" : {
+
     },
     "Copy" : {
       "localizations" : {
@@ -13129,9 +13180,6 @@
         }
       }
     },
-    "Fresh new features and a bunch of fixes!" : {
-
-    },
     "General" : {
       "localizations" : {
         "af" : {
@@ -13702,7 +13750,17 @@
         }
       }
     },
+    "GIF Quality:" : {
+
+    },
+    "GIF Scale:" : {
+
+    },
+    "GIF Selection:" : {
+
+    },
     "GIF vertical offset:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -15038,7 +15096,11 @@
         }
       }
     },
+    "Hide in non notched screens" : {
+
+    },
     "Holy cow, amazing!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -15227,6 +15289,9 @@
           }
         }
       }
+    },
+    "Horizontal offset:" : {
+
     },
     "HUD replacement:" : {
       "localizations" : {
@@ -16748,9 +16813,6 @@
           }
         }
       }
-    },
-    "If the height is a bit off of your built-in notch, you can adjust it now!" : {
-
     },
     "Inactivity timeout:" : {
       "localizations" : {
@@ -19989,6 +20051,9 @@
         }
       }
     },
+    "Media source:" : {
+
+    },
     "Minutes before showing up:" : {
       "localizations" : {
         "af" : {
@@ -21897,9 +21962,6 @@
     "Notch fine tune:" : {
 
     },
-    "Notch height fine tune" : {
-
-    },
     "Notch width fine tune:" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -23426,9 +23488,6 @@
         }
       }
     },
-    "Notes widget" : {
-
-    },
     "Nothing for today" : {
       "localizations" : {
         "af" : {
@@ -23808,6 +23867,9 @@
           }
         }
       }
+    },
+    "Notify Charge Increase on:" : {
+
     },
     "Now you can control any media from any app!" : {
       "extractionState" : "stale",
@@ -24190,12 +24252,6 @@
           }
         }
       }
-    },
-    "Now you can write down quick thoughts and even code in NotchNook!" : {
-
-    },
-    "Now you decide whether to show NotchNook in fullscreen mode or not!" : {
-
     },
     "Number of days ahead:" : {
       "localizations" : {
@@ -25344,6 +25400,7 @@
       }
     },
     "Other options:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -25532,6 +25589,9 @@
           }
         }
       }
+    },
+    "Other stuff:" : {
+
     },
     "Others:" : {
       "localizations" : {
@@ -25913,6 +25973,9 @@
           }
         }
       }
+    },
+    "Please enable Bluetooth permission in System Settings to use this feature." : {
+
     },
     "Please enter a valid email" : {
       "localizations" : {
@@ -29147,6 +29210,9 @@
         }
       }
     },
+    "Select All" : {
+
+    },
     "Select some shortcuts" : {
       "localizations" : {
         "af" : {
@@ -29907,6 +29973,9 @@
         }
       }
     },
+    "Show all-day events" : {
+
+    },
     "Show dividers between widgets" : {
       "localizations" : {
         "af" : {
@@ -30100,10 +30169,10 @@
     "Show in all screens" : {
 
     },
-    "Show in fullscreen option" : {
+    "Show in fullscreen:" : {
 
     },
-    "Show in fullscreen:" : {
+    "Show multi-day events" : {
 
     },
     "Show scroll indicator" : {
@@ -31057,6 +31126,7 @@
       }
     },
     "Show while in events" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -32005,6 +32075,9 @@
           }
         }
       }
+    },
+    "Spotify" : {
+
     },
     "Start" : {
       "localizations" : {
@@ -33145,6 +33218,12 @@
           }
         }
       }
+    },
+    "System" : {
+
+    },
+    "System Settings" : {
+
     },
     "Take a quick peek at useful info by hovering some of the live activities." : {
       "extractionState" : "stale",
@@ -34477,6 +34556,9 @@
           }
         }
       }
+    },
+    "Time Left Notification every:" : {
+
     },
     "Time Remaining" : {
       "localizations" : {
@@ -36570,6 +36652,9 @@
         }
       }
     },
+    "Universal media is back!" : {
+
+    },
     "Unknown Album" : {
       "localizations" : {
         "af" : {
@@ -38090,6 +38175,9 @@
         }
       }
     },
+    "Vertical offset:" : {
+
+    },
     "Wanna open one?" : {
       "localizations" : {
         "af" : {
@@ -39420,6 +39508,9 @@
           }
         }
       }
+    },
+    "You can now see and control media from any app again. But now you can choose to show/control media from just Music or Spotify if you prefer." : {
+
     },
     "You shouldn't be seeing this." : {
       "localizations" : {

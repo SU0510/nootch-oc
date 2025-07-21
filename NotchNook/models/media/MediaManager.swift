@@ -166,7 +166,7 @@ class MediaManager {
         
         let isRunning = isAppRunning(appName)
         if !isRunning {
-            reset()
+            reconfigureMediaController()
             return true
         }
         
@@ -212,20 +212,18 @@ class MediaManager {
         mediaController.startListening()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let self = self else { return }
+            guard let self = self, self.track == .empty else { return }
             
-            if self.track == .empty {
-                if preferredMediaSource != .systemWide {
-                    // prevent from force opening the media app
-                    guard isAppRunning(preferredMediaSource.name) else {
-                        setupMediaControllerListeners()
-                        mediaController.startListening()
-                        updateLiveActivities()
-                        return
-                    }
+            if preferredMediaSource != .systemWide {
+                // prevent from force opening the media app
+                guard isAppRunning(preferredMediaSource.name) else {
+                    setupMediaControllerListeners()
+                    mediaController.startListening()
+                    updateLiveActivities()
+                    return
                 }
-                self.forceMediaControllerRestart()
             }
+            self.forceMediaControllerRestart()
         }
     }
     
