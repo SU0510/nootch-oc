@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ChangelogView: View {
     
-    @State private var gifPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "gifs2", withExtension: "mp4")!)
-    
+    @State private var airdropPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "airdrop", withExtension: "mp4")!)
+    @State private var mediaPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "media", withExtension: "mp4")!)
+
     @Environment(\.closeWindow) private var closeWindow
     
     var body: some View {
@@ -42,7 +43,7 @@ struct ChangelogView: View {
                             .fontWeight(.bold)
                     }
                     
-                    Text("A cool new feature and a bunch of fixes!")
+                    Text("A bunch of improvements and fixes!")
                         .font(.system(size: 16))
                         .fontWeight(.regular)
                 }
@@ -50,9 +51,17 @@ struct ChangelogView: View {
             
             VStack(spacing: 25) {
                 VideoFeatureView(
-                    player: gifPlayer,
-                    title: String(localized: "Custom GIFs"),
-                    description: String(localized: "Now you can choose your own GIFs for the notch or choose among some cool new options!")
+                    player: mediaPlayer,
+                    title: String(localized: "Universal media is back!"),
+                    description: String(localized: "You can now see and control media from any app again. But now you can choose to show/control media from just Music or Spotify if you prefer."),
+                    videoHeight: 90
+                )
+                
+                VideoFeatureView(
+                    player: airdropPlayer,
+                    title: "Airdrop text and URL’s",
+                    description: "",
+                    videoHeight: 90
                 )
                 
                 VStack(alignment: .leading, spacing: 16) {
@@ -60,19 +69,10 @@ struct ChangelogView: View {
                         .font(.headline)
                     
                     VStack(alignment: .leading, spacing: 12) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            ChangelogItem(icon: "🛠️", text: "Fix media widget and activity for macOS 15.4")
-                            Text("Unfortunately we had to reduce the scope for now and it only works for Spotify and Apple Music. Hopefully, we can fix that soon!")
-                                .font(.system(size: 12))
-                                .fontWeight(.ultraLight)
-                                .italic()
-                                .foregroundStyle(.primary.opacity(0.75))
-                                .padding(.leading, 28)
-                        }
+                        ChangelogItem(icon: "✨", text: "Airdrop text and URL’s")
+                        ChangelogItem(icon: "✨", text: "A lot of improvements for the calendar widget, including option to exclude all-day and multi-day events, open event/calendar on click, scroll behavior, and more.")
                         
-                        ChangelogItem(icon: "🛠️", text: "The notch now shows and can be used on hover, even when hidden in fullscreen.")
-                        ChangelogItem(icon: "🛠️", text: "Live activities now show even when using the transparent handler functionality.")
-                        ChangelogItem(icon: "✨", text: "Improve settings layout for customizing activities and widgets.")
+                        ChangelogItem(icon: "🛠️", text: "Fix fullscreen behavior for non-notched screens and potentital issues with notes")
                     }
                 }
                 .frame(width: 600, alignment: .leading)

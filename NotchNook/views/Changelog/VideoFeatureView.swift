@@ -12,11 +12,12 @@ struct VideoFeatureView: View {
     var player: AVPlayer
     var title: String
     var description: String
+    var videoHeight: CGFloat = 120
 
     var body: some View {
         HStack(alignment: .center, spacing: 24) {
             VPlayer(player: player)
-                .frame(width: 250, height: 120)
+                .frame(width: 250, height: videoHeight)
                 .contentShape(Rectangle())
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .allowsHitTesting(false)
