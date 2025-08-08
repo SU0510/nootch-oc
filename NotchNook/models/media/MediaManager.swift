@@ -30,12 +30,21 @@ class MediaManager {
     }
     
     var track: Track = .empty
-    
     var preferredMediaSource: MediaSource = Defaults[.generalSettings].preferredMediaSource
     
     private var mediaController: MediaController
     private var appRunningCheckTimer: Timer?
-
+    
+    private var lastTrackUpdate: TimeInterval = 0
+    private var lastAppCheck: TimeInterval = 0
+    private var scriptCooldowns: [String: TimeInterval] = [:]
+    private var throttledTrackUpdate: (() -> Void)?
+    private var lastReceivedTrackInfo: TrackInfo?
+    
+    private let trackUpdateInterval: TimeInterval = 1.0
+    private let appCheckInterval: TimeInterval = 10.0
+    private let scriptCooldownInterval: TimeInterval = 2.0
+    
     // MARK: Lifecycle
     
     private init() {
@@ -51,8 +60,16 @@ class MediaManager {
     // MARK: Listeners and timers
     
     private func setupMediaControllerListeners() {
+        throttledTrackUpdate = throttleWithTrailing(interval: 1.0) { [weak self] in
+            guard let self = self else { return }
+            if let trackInfo = self.lastReceivedTrackInfo {
+                self.handleTrackInfoUpdate(trackInfo)
+            }
+        }
+        
         mediaController.onTrackInfoReceived = { [weak self] trackInfo in
-            self?.handleTrackInfoUpdate(trackInfo)
+            self?.lastReceivedTrackInfo = trackInfo
+            self?.throttledTrackUpdate?()
         }
         
         mediaController.onListenerTerminated = { [weak self] in
@@ -61,16 +78,43 @@ class MediaManager {
             }
         }
     }
+    
+    func throttleWithTrailing(interval: TimeInterval, queue: DispatchQueue = .main, action: @escaping () -> Void) -> () -> Void {
+        var lastExecutionTime: TimeInterval = 0
+        var workItem: DispatchWorkItem?
         
+        return {
+            let now = Date().timeIntervalSince1970
+            let timeSinceLast = now - lastExecutionTime
+            
+            workItem?.cancel()
+            
+            if timeSinceLast >= interval {
+                lastExecutionTime = now
+                action()
+            } else {
+                let delay = interval - timeSinceLast
+                workItem = DispatchWorkItem {
+                    lastExecutionTime = Date().timeIntervalSince1970
+                    action()
+                }
+                queue.asyncAfter(deadline: .now() + delay, execute: workItem!)
+            }
+        }
+    }
+    
     /// Workaround for when not detecting app closure
     private func startAppRunningMonitor() {
         appRunningCheckTimer?.invalidate()
-        appRunningCheckTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        appRunningCheckTimer = Timer.scheduledTimer(withTimeInterval: appCheckInterval, repeats: true) { [weak self] _ in
             guard let self = self else { return }
+            let now = Date().timeIntervalSince1970
+            guard now - self.lastAppCheck >= self.appCheckInterval else { return }
+            self.lastAppCheck = now
             
             if self.resetIfNeeded() {
-                appRunningCheckTimer?.invalidate()
-                appRunningCheckTimer = nil
+                self.appRunningCheckTimer?.invalidate()
+                self.appRunningCheckTimer = nil
             }
         }
     }
@@ -80,9 +124,9 @@ class MediaManager {
     private func handleTrackInfoUpdate(_ trackInfo: TrackInfo) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-
+            
             let track = trackInfo.payload
-
+            
             if let isPlaying = track.isPlaying {
                 updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, appName: track.applicationName, bundleIdentifier: track.bundleIdentifier)
             } else {
@@ -132,22 +176,14 @@ class MediaManager {
     
     // MARK: Private helpers
     
-    func forceMediaControllerRestart(appName: String? = nil) {
-        mediaController.stopListening()
-        
-        let appName = appName != nil ? "\"\(appName!)\"" : preferredMediaSource.name
-        runAppleScript(script: "tell application \(appName) to playpause")
-        
-        mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
-        setupMediaControllerListeners()
-        mediaController.startListening()
-        
-        runAppleScript(script: "tell application \(appName) to playpause")
-        
-        updateLiveActivities()
-    }
-    
     private func runAppleScript(script: String) {
+        // Caching mechanism for script executions: prevents duplicate/rapid script executions
+        let now = Date().timeIntervalSince1970
+        if let lastExec = scriptCooldowns[script], now - lastExec < scriptCooldownInterval {
+            return
+        }
+        scriptCooldowns[script] = now
+        
         let task = Process()
         task.launchPath = "/usr/bin/osascript"
         task.arguments = ["-e", script]
@@ -162,7 +198,7 @@ class MediaManager {
     
     private func resetIfNeeded() -> Bool {
         let appName = track.appName
-        if appName.isEmpty { return false }
+        if appName.isEmpty { return true }
         
         let isRunning = isAppRunning(appName)
         if !isRunning {
@@ -174,13 +210,9 @@ class MediaManager {
     }
     
     private func isAppRunning(_ appName: String) -> Bool {
-        let runningApps = NSWorkspace.shared.runningApplications
-        let isRunning = runningApps.contains { app in
-            guard let name = app.localizedName else { return false }
-            return name.contains(appName)
+        NSWorkspace.shared.runningApplications.contains {
+            $0.localizedName?.contains(appName) == true
         }
-        
-        return isRunning
     }
     
     // MARK: Public methods
@@ -225,6 +257,21 @@ class MediaManager {
             }
             self.forceMediaControllerRestart()
         }
+    }
+    
+    func forceMediaControllerRestart(appName: String? = nil) {
+        mediaController.stopListening()
+        
+        let appName = appName != nil ? "\"\(appName!)\"" : preferredMediaSource.name
+        runAppleScript(script: "tell application \(appName) to playpause")
+        
+        mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
+        setupMediaControllerListeners()
+        mediaController.startListening()
+        
+        runAppleScript(script: "tell application \(appName) to playpause")
+        
+        updateLiveActivities()
     }
     
     func togglePlayPause() {
