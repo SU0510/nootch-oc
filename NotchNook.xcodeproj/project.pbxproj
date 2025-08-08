@@ -68,7 +68,6 @@
 		3A0816C32C24C201008092F0 /* update.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A0816C22C24C201008092F0 /* update.lottie */; };
 		3A0816C52C24CA60008092F0 /* SparkleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C42C24CA60008092F0 /* SparkleManager.swift */; };
 		3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */; };
-		3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816C82C24E45D008092F0 /* getBuildNumber.swift */; };
 		3A0816CC2C24E7CA008092F0 /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */; };
 		3A0C50142C531CA70003867F /* startBriVolKeyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */; };
 		3A0C50182C532A390003867F /* VolumeIndicatorSpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */; };
@@ -496,7 +495,6 @@
 		3A0816C22C24C201008092F0 /* update.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = update.lottie; sourceTree = "<group>"; };
 		3A0816C42C24CA60008092F0 /* SparkleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleManager.swift; sourceTree = "<group>"; };
 		3A0816C62C24DB86008092F0 /* quickPeekScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quickPeekScaling.swift; sourceTree = "<group>"; };
-		3A0816C82C24E45D008092F0 /* getBuildNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getBuildNumber.swift; sourceTree = "<group>"; };
 		3A0816CB2C24E7CA008092F0 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
 		3A0C50132C531CA70003867F /* startBriVolKeyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startBriVolKeyListener.swift; sourceTree = "<group>"; };
 		3A0C50172C532A390003867F /* VolumeIndicatorSpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorSpeakerView.swift; sourceTree = "<group>"; };
@@ -1686,7 +1684,6 @@
 				3A801E0E2C1556E70076560D /* getRangeOfDays.swift */,
 				3A801E152C1579F40076560D /* getMacBookModel.swift */,
 				3A801E1B2C163B540076560D /* detectMeetings.swift */,
-				3A0816C82C24E45D008092F0 /* getBuildNumber.swift */,
 				3AC36D8B2C2648CF0000F995 /* openCalendarApp.swift */,
 				3A0D90AE2C27DA24004A41F4 /* getShortVersion.swift */,
 				3AD813BD2C28CB4300BB637C /* resetTrial.swift */,
@@ -2405,7 +2402,6 @@
 				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
 				3A8AA1892C30AA9900D727DA /* onScrollChange.swift in Sources */,
 				3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */,
-				3A0816C92C24E45D008092F0 /* getBuildNumber.swift in Sources */,
 				EC8D60632C001BB500E67ECC /* wait.swift in Sources */,
 				EC2DD1E52C02C685001FD54E /* defaultSettingsPaneSize.swift in Sources */,
 				36C970282C51DE9000956B57 /* CalendarEventsViewShadows.swift in Sources */,
@@ -2687,7 +2683,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 37;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2795,7 +2791,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 37;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2955,7 +2951,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 37;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;
@@ -2995,7 +2991,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 37;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = Z2NNLU4F7U;

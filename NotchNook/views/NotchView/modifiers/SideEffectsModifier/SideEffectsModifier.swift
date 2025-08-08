@@ -15,7 +15,7 @@ extension NotchView {
         var screen: NSScreen
         
         @Default(.intro) internal var intro
-        @Default(.lastBuildNumber) internal var lastBuildNumber
+        @Default(.lastVersionNumber) internal var lastVersionNumber
         @Default(.liveActivitiesSettings) internal var liveActivitiesSettings
         @Environment(\.generalSettings) internal var generalSettings
         @Environment(\.notchNook) internal var notchNook

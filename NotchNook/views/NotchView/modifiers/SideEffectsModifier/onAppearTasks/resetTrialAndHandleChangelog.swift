@@ -10,24 +10,24 @@ import SwiftUI
 
 extension NotchView.SideEffectsModifier {
     func resetTrialAndHandleChangelog() {
-        let currentBuildNumber = getBuildNumber()
+        let currentVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
         
-        if shouldShowChangelog(lastBuildNumber: lastBuildNumber, currentBuildNumber: currentBuildNumber) {
+        if shouldShowChangelog(lastVersionNumber: lastVersionNumber, currentVersionNumber: currentVersionNumber) {
 #if !SETAPP_BUILD
             resetTrial()
 #endif
             showChangelog()
-            lastBuildNumber = currentBuildNumber
+            lastVersionNumber = currentVersionNumber
         }
     }
     
     /// Compare major and minor version components
-    func shouldShowChangelog(lastBuildNumber: String, currentBuildNumber: String) -> Bool {
-        let lastComponents = lastBuildNumber.split(separator: ".")
-        let currentComponents = currentBuildNumber.split(separator: ".")
+    func shouldShowChangelog(lastVersionNumber: String, currentVersionNumber: String) -> Bool {
+        let lastComponents = lastVersionNumber.split(separator: ".")
+        let currentComponents = currentVersionNumber.split(separator: ".")
         
         guard lastComponents.count >= 2 && currentComponents.count >= 2 else {
-            return lastBuildNumber != currentBuildNumber
+            return lastVersionNumber != currentVersionNumber
         }
         
         if lastComponents[1] != currentComponents[1] { return true }

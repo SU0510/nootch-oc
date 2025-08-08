@@ -33,7 +33,7 @@ final class SideEffectsModifierTests: XCTestCase {
         // Test changelog should be shown cases
         for (lastVersion, currentVersion) in showChangelogCases {
             XCTAssertTrue(
-                modifier.shouldShowChangelog(lastBuildNumber: lastVersion, currentBuildNumber: currentVersion),
+                modifier.shouldShowChangelog(lastVersionNumber: lastVersion, currentVersionNumber: currentVersion),
                 "Changelog should be shown when changing from \(lastVersion) to \(currentVersion)"
             )
         }
@@ -41,7 +41,7 @@ final class SideEffectsModifierTests: XCTestCase {
         // Test changelog should NOT be shown cases
         for (lastVersion, currentVersion) in hideChangelogCases {
             XCTAssertFalse(
-                modifier.shouldShowChangelog(lastBuildNumber: lastVersion, currentBuildNumber: currentVersion),
+                modifier.shouldShowChangelog(lastVersionNumber: lastVersion, currentVersionNumber: currentVersion),
                 "Changelog should NOT be shown when changing from \(lastVersion) to \(currentVersion)"
             )
         }
@@ -62,7 +62,7 @@ final class SideEffectsModifierTests: XCTestCase {
         ]
         
         for (lastVersion, currentVersion) in edgeCases {
-            let result = modifier.shouldShowChangelog(lastBuildNumber: lastVersion, currentBuildNumber: currentVersion)
+            let result = modifier.shouldShowChangelog(lastVersionNumber: lastVersion, currentVersionNumber: currentVersion)
             XCTAssertTrue(result, "Should handle edge case of \(lastVersion) to \(currentVersion)")
         }
     }
