@@ -32,8 +32,8 @@ extension NotchView.ShapeModifier {
         let pasteboard = info.draggingPasteboard
         let fileURLs = pasteboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL]
         
-        // MARK: Handle files
         if let fileURLs, !fileURLs.isEmpty {
+            // MARK: Handle files
             hasFiles = true
             DispatchQueue.main.async {
                 let processedURLs = fileURLs.compactMap { url in
@@ -41,10 +41,8 @@ extension NotchView.ShapeModifier {
                 }
                 callBack(processedURLs)
             }
-        }
-        
-        // MARK: Handle text or URL
-        if let text = extractTextOrURL(from: pasteboard) {
+        } else if let text = extractTextOrURL(from: pasteboard) {
+            // MARK: Handle text or URL ONLY if no real files
             hasFiles = true
             handleDroppedText(text, callBack)
         }
