@@ -9,23 +9,32 @@ import SwiftUI
 
 struct AlbumCoverView: View, Identifiable, Equatable {
     static func == (lhs: AlbumCoverView, rhs: AlbumCoverView) -> Bool {
-        lhs.id == rhs.id && lhs.cornerRadius == rhs.cornerRadius && lhs.artwork?.isValid == rhs.artwork?.isValid
+        lhs.id == rhs.id && lhs.cornerRadius == rhs.cornerRadius
     }
     
     var id: String
     var artwork: NSImage?
     var cornerRadius: Double
+    @State private var displayedArtwork: NSImage?
     
     @State private var rotation: Double = 0
     
+    init(id: String, artwork: NSImage?, cornerRadius: Double) {
+        self.id = id
+        self.artwork = artwork
+        self.cornerRadius = cornerRadius
+        _displayedArtwork = State(initialValue: artwork?.isValid == true ? artwork : nil)
+    }
+    
     var body: some View {
         let track = MediaManager.shared.track
+        let artworkToShow = artwork?.isValid == true ? artwork : displayedArtwork
         
         ZStack {
             Color.clear
                 .overlay {
                     Group {
-                        if let artwork, artwork.isValid {
+                        if let artwork = artworkToShow {
                             Image(nsImage: artwork)
                                 .interpolation(.high)
                                 .resizable()
@@ -45,7 +54,6 @@ struct AlbumCoverView: View, Identifiable, Equatable {
                     .aspectRatio(1, contentMode: .fit)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .id(id)
                 .transition(.scaleAndBlur)
                 .aspectRatio(1, contentMode: .fit)
         }
@@ -62,6 +70,11 @@ struct AlbumCoverView: View, Identifiable, Equatable {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     rotation = 0
                 }
+            }
+        }
+        .onChange(of: artwork) { _, new in
+            if new?.isValid == true {
+                displayedArtwork = new
             }
         }
     }
