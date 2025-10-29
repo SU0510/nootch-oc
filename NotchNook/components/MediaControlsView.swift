@@ -18,7 +18,7 @@ struct MediaControlsView: View {
                 }
                 
                 CircleButton(icon: "x.circle", iconSize: 15, fade: false) {
-                    mediaControls.reset()
+                    mediaControls.resetData()
                 }
             } else {
                 TrackButtonView(direction: .previous, iconSize: 10)

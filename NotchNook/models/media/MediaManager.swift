@@ -73,9 +73,8 @@ class MediaManager {
         }
         
         mediaController.onListenerTerminated = { [weak self] in
-            DispatchQueue.main.async {
-                self?.reset()
-            }
+            self?.resetData()
+            self?.stopListeningAndKillProcesses()
         }
     }
     
@@ -115,6 +114,7 @@ class MediaManager {
             if self.resetIfNeeded() {
                 self.appRunningCheckTimer?.invalidate()
                 self.appRunningCheckTimer = nil
+                self.stopListeningAndKillProcesses()
             }
         }
     }
@@ -130,7 +130,7 @@ class MediaManager {
             if let isPlaying = track.isPlaying {
                 updateTrackInfo(title: track.title, artist: track.artist, album: track.album, isPlaying: isPlaying, albumArtImage: track.artwork, appName: track.applicationName, bundleIdentifier: track.bundleIdentifier)
             } else {
-                reset()
+                resetData()
             }
         }
     }
@@ -202,7 +202,7 @@ class MediaManager {
         
         let isRunning = isAppRunning(appName)
         if !isRunning {
-            reconfigureMediaController()
+            resetData()
             return true
         }
         
@@ -217,61 +217,86 @@ class MediaManager {
     
     // MARK: Public methods
     
-    func reset() {
+    func isLikelyBrowserApp() -> Bool {
+        preferredMediaSource == .systemWide && track.browserBundleId != nil
+    }
+    
+    func reconfigureMediaController() {
+        resetData()
+        
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            
+            self.mediaController.stopListening()
+            killLibProcesses()
+                        
+            // Update status on main thread
+            DispatchQueue.main.async {
+                self.mediaController = MediaController(bundleIdentifier: self.preferredMediaSource == .systemWide ? nil : self.preferredMediaSource.bundleIdentifier)
+                self.setupMediaControllerListeners()
+                self.mediaController.startListening()
+                
+                guard self.track == .empty else {
+                    self.updateLiveActivities()
+                    return
+                }
+                if self.preferredMediaSource != .systemWide {
+                    if self.isAppRunning(self.preferredMediaSource.name) {
+                        self.forceMediaControllerRestart()
+                    }
+                }
+            }
+        }
+    }
+
+    
+    func forceMediaControllerRestart(appName: String? = nil) {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            mediaController.stopListening()
+            killLibProcesses()
+
+            let appName = appName != nil ? "\"\(appName!)\"" : preferredMediaSource.name
+            runAppleScript(script: "tell application \(appName) to playpause")
+            
+            mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
+            setupMediaControllerListeners()
+            mediaController.startListening()
+            
+            runAppleScript(script: "tell application \(appName) to playpause")
+            
+            DispatchQueue.main.async {
+                self.updateLiveActivities()
+            }
+        }
+    }
+    
+    func stopListeningAndKillProcesses() {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            mediaController.stopListening()
+            killLibProcesses()
+        }
+    }
+    
+    /// Workaround for CPU usage bug inside lib
+    func killLibProcesses() {
+        let task = Process()
+        task.launchPath = "/bin/zsh"
+        task.arguments = ["-c", "pkill -f MediaRemoteAdapter; pkill -f 'MediaRemoteAdapter.*perl'"]
+        try? task.run()
+        task.waitUntilExit()
+    }
+    
+    // MARK: User actions
+    
+    func resetData() {
         DispatchQueue.main.async {
             self.track = .empty
             self.isPlaying = false
             ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
             self.mediaController.stopListening()
         }
-    }
-    
-    func isLikelyBrowserApp() -> Bool {
-        preferredMediaSource == .systemWide && track.browserBundleId != nil
-    }
-    
-    func reconfigureMediaController() {
-        reset()
-        
-        switch preferredMediaSource {
-            case .systemWide:
-                mediaController = MediaController(bundleIdentifier: nil)
-            case .appleMusic, .spotify:
-                mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
-        }
-        
-        setupMediaControllerListeners()
-        mediaController.startListening()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let self = self, self.track == .empty else { return }
-            
-            if preferredMediaSource != .systemWide {
-                // prevent from force opening the media app
-                guard isAppRunning(preferredMediaSource.name) else {
-                    setupMediaControllerListeners()
-                    mediaController.startListening()
-                    updateLiveActivities()
-                    return
-                }
-            }
-            self.forceMediaControllerRestart()
-        }
-    }
-    
-    func forceMediaControllerRestart(appName: String? = nil) {
-        mediaController.stopListening()
-        
-        let appName = appName != nil ? "\"\(appName!)\"" : preferredMediaSource.name
-        runAppleScript(script: "tell application \(appName) to playpause")
-        
-        mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
-        setupMediaControllerListeners()
-        mediaController.startListening()
-        
-        runAppleScript(script: "tell application \(appName) to playpause")
-        
-        updateLiveActivities()
     }
     
     func togglePlayPause() {
