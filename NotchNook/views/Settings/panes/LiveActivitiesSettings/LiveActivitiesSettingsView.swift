@@ -24,7 +24,7 @@ struct LiveActivitiesSettingsView: View {
                 .tag(1)
         }
         .padding(12)
-        .frame(height: 625, alignment: .topLeading)
+        .frame(height: 642, alignment: .topLeading)
         .onAppear {
             if let tab = SettingsInnerPath.shared.tabIndex {
                 selectedTab = tab
