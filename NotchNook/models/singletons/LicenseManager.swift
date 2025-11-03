@@ -29,7 +29,7 @@ class LicenseManager {
     }
     
     func scheduleCheck() {
-        timer = Timer.scheduledTimer(withTimeInterval: 60*60*4, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 60*60*6, repeats: true) { [weak self] _ in
             Task { [weak self] in
                 await self?.checkLicense()
             }
