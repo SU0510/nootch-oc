@@ -11,13 +11,14 @@ import Settings
 
 struct TraySettingsView: View {
     @Default(.traySettings) private var traySettings
+    @Default(.nookSettings) private var nookSettings
     var body: some View {
         let defaultValues = TraySettings()
         Settings.Container(contentWidth: 550.0) {
             Settings.Section {
                 Text("Width:").frame(minWidth: 150, alignment: .trailing)
             } content: {
-                SliderPlus(value: $traySettings.size.width.double, range: 8...24)
+                SliderPlus(value: $traySettings.size.width.double, range: nookSettings.widgetsWidth.double...24)
                     .resetToDefault($traySettings.size.width, defaultValues.size.width)
                 
                 //                CustomLabeled(title: "height", icon: "arrow.up.and.down") {
