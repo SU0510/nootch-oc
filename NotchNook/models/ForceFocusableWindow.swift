@@ -29,8 +29,13 @@ class ForceFocusableWindow: NSWindow, NSWindowDelegate {
     
     override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
         let success = super.makeFirstResponder(responder)
-        
+
         if success {
+            // Only trigger callback if not during IME composition
+            if let textView = responder as? NSTextView, textView.hasMarkedText() {
+                // Don't change state during IME composition
+                return success
+            }
             firstResponderCb?(responder is NSWindow || responder == nil)
         }
         return success

@@ -258,7 +258,7 @@ class WindowsManager {
         newWindow.hasShadow = false
         newWindow.titleVisibility = .hidden
         newWindow.titlebarAppearsTransparent = true
-        newWindow.level = .mainMenu + 2
+        newWindow.level = .statusBar
         newWindow.isOpaque = false
         
         newWindow.contentView = hostingView

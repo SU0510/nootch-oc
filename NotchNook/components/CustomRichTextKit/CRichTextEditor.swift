@@ -34,6 +34,13 @@ public struct CRichTextEditor: NSViewRepresentable {
         context.coordinator.textView = textView
         textView.textContainer?.lineFragmentPadding = 16
         textView.isRichText = true
+
+        // Configure IME-friendly settings
+        textView.usesFindBar = false  // Avoid conflicts with IME
+        textView.isAutomaticQuoteSubstitutionEnabled = false
+        textView.isAutomaticDashSubstitutionEnabled = false
+        textView.isAutomaticTextReplacementEnabled = false
+
         textView.setup(with: text, format: format)
         textView.configuration = context.environment.richTextEditorConfig
         textView.theme = context.environment.richTextEditorStyle
@@ -85,7 +92,12 @@ public class CRichTextCoordinator: RichTextCoordinator {
     
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         guard let replacementString = replacementString else { return true }
-        
+
+        // Check if we're in the middle of IME composition, to allow it to complete
+        if textView.hasMarkedText() {
+            return true
+        }
+
         // For single character input (typing), allow default behavior
         if replacementString.count == 1 {
             return true
