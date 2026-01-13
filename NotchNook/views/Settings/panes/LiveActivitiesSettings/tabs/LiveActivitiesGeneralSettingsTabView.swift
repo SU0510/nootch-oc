@@ -108,18 +108,6 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .disabled(!liveActivitiesSettings.enableHUDReplacement)
                     .disabled(!liveActivitiesSettings.enabled)
             }
-            
-            // MARK: - section - handler (no-notch screens)
-            Settings.Section(title: String(localized: "Handler (no-notch screens):")) {
-                CustomLabeled(title: String(localized: "Height")) {
-                    SliderPlus(
-                        value: $liveActivitiesSettings.height,
-                        range: generalSettings.handleSize.height...TopBarView.maxHeight,
-                        useTickMarks: false
-                    )
-                        .disabled(!liveActivitiesSettings.enabled)
-                }
-            }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
     }

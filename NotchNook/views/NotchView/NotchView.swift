@@ -105,9 +105,9 @@ struct NotchView: View {
                                 scaleX: actualScaleX,
                                 scaleY: actualScaleY,
                                 panPadding: viewModel.panPadding,
-                                isHidden: notchNook.hidden
+                                isHidden: notchNook.hidden,
+                                isDisabledDueToFullscreen: isDisabledDueToFullScreen
                             )
-                            .equatable()
                             .opacity(notchNook.indicator == nil ? 1 : 0)
                         }
                         
