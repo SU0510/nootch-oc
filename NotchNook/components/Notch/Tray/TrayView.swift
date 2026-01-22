@@ -29,7 +29,7 @@ struct TrayView: View {
             }
             .transition(.scaleAndBlur(anchor: .top))
         }
-        .frame(traySettings.size.screenPtsCGSize, .leading)
+        .frame(traySettings.resolvedSize.screenPtsCGSize, .leading)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .background {
             RoundedRectangle(cornerRadius: 28, style: .continuous)

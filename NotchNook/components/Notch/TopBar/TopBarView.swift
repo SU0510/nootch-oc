@@ -8,14 +8,7 @@
 import SwiftUI
 import Defaults
 
-struct TopBarView: View, Equatable {
-    static func == (lhs: TopBarView, rhs: TopBarView) -> Bool {
-        lhs.panGestureCounter == rhs.panGestureCounter &&
-        lhs.scaleX == rhs.scaleX &&
-        lhs.scaleY == rhs.scaleY &&
-        lhs.panPadding == rhs.panPadding &&
-        lhs.isHidden == rhs.isHidden
-    }
+struct TopBarView: View {
     
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxHeight: CGFloat = 32
@@ -27,6 +20,7 @@ struct TopBarView: View, Equatable {
     var scaleY: Double = 1
     var panPadding: EdgeInsets
     var isHidden: Bool
+    var isDisabledDueToFullscreen: Bool
     
     private var liveActivities: Set<LiveActivity> {
         ActiveLiveActivitiesManager.shared.activeLiveActivities
@@ -35,19 +29,23 @@ struct TopBarView: View, Equatable {
     @Environment(\.trialOver) private var trialOver
     @Environment(\.notchNook) private var notchNook
     @Environment(\.liveActivitiesSettings) private var liveActivitiesSettings
+    @Environment(\.generalSettings) private var generalSettings
 
     private var shouldHide: Bool {
         if isHidden { return true }
-        // notched screen
-        if notchSize.height != 0 { return false }
-        
-        return notchNook.mode == .closed && (liveActivities.isEmpty || liveActivitiesSettings.hiddenInNonNotchedScreens)
+        if notchSize.height != 0 {
+            // for notched screen
+            return false
+        } else {
+            // for non notched screen
+            return notchNook.mode == .closed && (liveActivities.isEmpty || liveActivitiesSettings.hiddenInNonNotchedScreens)
+        }
     }
 
     var body: some View {
         let height = getHeight(notchSize.height)
         let mode = notchNook.mode
-        let shouldShowContent = !isHidden && !trialOver
+        let shouldShowContent = !isHidden && !trialOver && (mode != .closed || !isDisabledDueToFullscreen)
         
         if !shouldHide {
             VStack(spacing: 0) {
@@ -91,7 +89,7 @@ struct TopBarView: View, Equatable {
     /// If notch height is bigger than 2/3 of minHeight, use it
     private func getHeight(_ notchHeight: CGFloat) -> CGFloat {
         if notchHeight == 0 {
-            return liveActivitiesSettings.height
+            return isDisabledDueToFullscreen && notchNook.mode == .closed ? 0.5 : generalSettings.handleSize.height
         } else {
             return notchHeight > (TopBarView.maxHeight * 0.66) ? notchHeight : TopBarView.maxHeight
         }

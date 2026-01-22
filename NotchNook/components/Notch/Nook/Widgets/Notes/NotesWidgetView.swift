@@ -72,5 +72,8 @@ struct NotesWidgetView: View {
                 print("Error creating default notes: \(error)")
             }
         }
+        .onExitCommand {
+            NSApp.keyWindow?.makeFirstResponder(nil)
+        }
     }
 }

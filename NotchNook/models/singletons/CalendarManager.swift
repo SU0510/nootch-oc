@@ -127,6 +127,19 @@ class CalendarManager {
                 }
             }
             
+            // Schedule removal for when the event starts
+            let now = Date()
+            let removeIn = event.startDate.timeIntervalSince(now)
+            
+            if removeIn > 0 {
+                let removeTimer = Timer.scheduledTimer(withTimeInterval: removeIn, repeats: false) { _ in
+                    Task { @MainActor in
+                        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                    }
+                }
+                liveActivitiesTimers.append(removeTimer)
+            }
+            
             // Handle periodic appearance
             switch prefs.appearanceMode {
                 case .constant:
