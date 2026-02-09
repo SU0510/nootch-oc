@@ -9,6 +9,7 @@
 import SwiftUI
 import Defaults
 
+// MARK: DEPRECATED
 /// This uses a private API (MediaRemote.framework) to get better, low-level controls of all playing media on the device.
 /// However, it no longer works on MacOS 15.4 so at least for now, MediaManager, which uses a per-app implementation, is in use instead.
 @Observable
