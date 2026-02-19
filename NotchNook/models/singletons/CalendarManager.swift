@@ -72,21 +72,43 @@ class CalendarManager {
     
     private func loadSelectedCalendars() {
         let settings = Defaults[.calendarWidgetSettings]
+        let availableCalendars = eventStore.calendars(for: .event)
         
         if settings.selectedCalendars == nil {
-            selectedCalendars = eventStore.calendars(for: .event)
+            selectedCalendars = availableCalendars
             var updatedSettings = settings
-            updatedSettings.selectedCalendars = selectedCalendars.map { $0.calendarIdentifier }
+            updatedSettings.selectedCalendars = availableCalendars.map { $0.calendarIdentifier }
             Defaults[.calendarWidgetSettings] = updatedSettings
-        } else {
-            selectedCalendars = eventStore.calendars(for: .event).filter {
-                settings.selectedCalendars?.contains($0.calendarIdentifier) ?? false
-            }
+            return
+        }
+        
+        let savedIdentifiers = settings.selectedCalendars ?? []
+        let matchedCalendars = availableCalendars.filter { savedIdentifiers.contains($0.calendarIdentifier) }
+        
+        // If calendars were merged/removed and no saved identifiers match anymore,
+        // fall back to showing all available calendars to avoid empty results.
+        if matchedCalendars.isEmpty && !savedIdentifiers.isEmpty {
+            selectedCalendars = availableCalendars
+            var updatedSettings = settings
+            updatedSettings.selectedCalendars = availableCalendars.map { $0.calendarIdentifier }
+            Defaults[.calendarWidgetSettings] = updatedSettings
+            return
+        }
+        
+        selectedCalendars = matchedCalendars
+        
+        // Clean up any stale identifiers to keep settings in sync with the store.
+        if matchedCalendars.count != savedIdentifiers.count {
+            var updatedSettings = settings
+            updatedSettings.selectedCalendars = matchedCalendars.map { $0.calendarIdentifier }
+            Defaults[.calendarWidgetSettings] = updatedSettings
         }
     }
     
     @objc private func storeChanged(_ notification: Notification) {
-        Task {
+        Task { @MainActor in
+            eventStore.reset()
+            loadSelectedCalendars()
             try? await fetchEvents()
         }
     }
@@ -96,6 +118,7 @@ class CalendarManager {
             try? await fetchEvents()
         }
     }
+    
     
     public func updateSelectedCalendars(_ calendars: [EKCalendar]) {
         selectedCalendars = calendars
@@ -262,10 +285,14 @@ class CalendarManager {
             return []
         }
         
-        let fetchedEvents = try await fetchEventsInBackground()
+        let now = Date()
+        let settings = Defaults[.calendarWidgetSettings]
+        let range = makeFetchRange(settings: settings, now: now)
+        let fetchedEvents = try await fetchEventsInBackground(range: range)
         
         await MainActor.run {
-            self.events = applyEventFilters(fetchedEvents)
+            let filtered = applyEventFilters(fetchedEvents)
+            self.events = filtered
         }
         
         print("Fetched \(fetchedEvents.count) events")
@@ -279,19 +306,11 @@ class CalendarManager {
         }
     }
     
-    private func fetchEventsInBackground() async throws -> [EKEvent] {
-        let settings = Defaults[.calendarWidgetSettings]
-        let daysAhead = settings.numberOfDaysAheadToDisplay + 1
-        let daysBehind = settings.numberOfDaysBehindToDisplay
-        let now = Date()
-        
-        let startDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -daysBehind, to: now)!)
-        let endDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: daysAhead, to: now)!)
-        
-        return await Task.detached {
-            let pred = self.eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: self.selectedCalendars)
+    private func fetchEventsInBackground(range: (start: Date, end: Date)) async throws -> [EKEvent] {
+        return await MainActor.run {
+            let pred = self.eventStore.predicateForEvents(withStart: range.start, end: range.end, calendars: self.selectedCalendars)
             return self.eventStore.events(matching: pred)
-        }.value
+        }
     }
     
     private func applyEventFilters(_ events: [EKEvent]) -> [EKEvent] {
@@ -364,5 +383,13 @@ class CalendarManager {
             
             self.eventStore.requestFullAccessToEvents(completion: completion)
         }
+    }
+    
+    private func makeFetchRange(settings: CalendarWidgetSettings, now: Date) -> (start: Date, end: Date) {
+        let daysAhead = settings.numberOfDaysAheadToDisplay + 1
+        let daysBehind = settings.numberOfDaysBehindToDisplay
+        let startDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -daysBehind, to: now)!)
+        let endDate = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: daysAhead, to: now)!)
+        return (startDate, endDate)
     }
 }

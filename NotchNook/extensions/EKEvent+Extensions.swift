@@ -21,6 +21,12 @@ extension EKEvent {
     
     var isMultiDay: Bool {
         guard let startDate = startDate, let endDate = endDate else { return false }
-        return !Calendar.current.isDate(startDate, inSameDayAs: endDate)
+        
+        if isAllDay {
+            return !Calendar.current.isDate(startDate, inSameDayAs: endDate)
+        }
+        
+        // Treat short overnight events as single-day; only consider multi-day if 24h+ duration.
+        return endDate.timeIntervalSince(startDate) >= 60 * 60 * 24
     }
 }

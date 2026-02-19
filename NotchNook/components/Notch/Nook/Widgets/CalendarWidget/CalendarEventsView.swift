@@ -27,11 +27,16 @@ struct CalendarEventsView: View {
         GeometryReader { geo in
             Group {
                 if let events = events, !events.isEmpty {
+                    let items = events.map { event in
+                        let startInterval = event.startDate.timeIntervalSince1970
+                        let stableId = event.eventIdentifier ?? "\(event.calendarItemIdentifier)-\(startInterval)"
+                        return (id: stableId, event: event)
+                    }
                     // MARK: Scroll view
                     ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack(spacing: 0) {
-                            ForEach(Array(events.enumerated()), id: \.element) { (index, event) in
-                                CalendarEventView(event: event, width: geo.size.width, selectedDate: selectedDate, isLastEvent: index == events.count - 1)
+                            ForEach(Array(items.enumerated()), id: \.element.id) { (index, item) in
+                                CalendarEventView(event: item.event, width: geo.size.width, selectedDate: selectedDate, isLastEvent: index == items.count - 1)
                             }
                         }
                         .padding(EdgeInsets(top: Self.fadeHeight, leading: 8, bottom: Self.fadeHeight + 8, trailing: 8))

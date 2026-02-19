@@ -14,7 +14,7 @@ func groupAndSortEventsByDateAndTime(_ events: [EKEvent]) -> [Date: [EKEvent]] {
     
     for event in events {
         let startDate = calendar.startOfDay(for: event.startDate)
-        let endDate = calendar.startOfDay(for: event.endDate)
+        let endDate = event.isMultiDay ? calendar.startOfDay(for: event.endDate) : startDate
         
         // Handle multi-day events
         var currentDate = startDate

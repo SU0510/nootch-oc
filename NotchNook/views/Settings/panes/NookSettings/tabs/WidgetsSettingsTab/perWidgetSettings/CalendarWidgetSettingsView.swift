@@ -96,6 +96,15 @@ struct CalendarWidgetSettingsView: View {
                         openCalendarSettingsAccountsTab()
                     }
                 }
+
+                Settings.Section(title: "") {
+                    VStack(spacing: 0) {
+                        Button("Refresh calendar now") {
+                            Task { try? await CalendarManager.shared.fetchEvents() }
+                        }
+                    }
+                    .padding(.top, 8)
+                }
             }
             .padding(0)
         }
@@ -122,4 +131,3 @@ struct CalendarWidgetSettingsView: View {
         updateSelectedCalendars()
     }
 }
-
