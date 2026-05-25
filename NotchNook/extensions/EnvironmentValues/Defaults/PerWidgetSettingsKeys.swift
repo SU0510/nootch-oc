@@ -98,3 +98,16 @@ extension EnvironmentValues {
         set { self[QuickAppsWidgetSettingsKey.self] = newValue }
     }
 }
+
+// MARK: - TimerWidgetSettings
+
+private struct TimerWidgetSettingsKey: EnvironmentKey {
+    static var defaultValue = TimerWidgetSettings()
+}
+
+extension EnvironmentValues {
+    var timerWidgetSettings: TimerWidgetSettings {
+        get { self[TimerWidgetSettingsKey.self] }
+        set { self[TimerWidgetSettingsKey.self] = newValue }
+    }
+}
