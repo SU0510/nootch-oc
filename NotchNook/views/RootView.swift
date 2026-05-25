@@ -59,7 +59,9 @@ struct RootView: View {
         self.notchNook = notchNook
     }
     
-    var sharedModelContainer: ModelContainer = {
+    // Static so every RootView instance (one per screen) shares the same container,
+    // and AppDelegate.applicationWillTerminate can reach it for a final save.
+    static let sharedModelContainer: ModelContainer = {
         NSAttributedStringTransformer.register()
         
         let schema = Schema([
@@ -73,6 +75,8 @@ struct RootView: View {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+
+    var sharedModelContainer: ModelContainer { RootView.sharedModelContainer }
     
     var body: some View {
         NotchView(screen: screen)

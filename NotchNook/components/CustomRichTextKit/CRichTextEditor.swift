@@ -46,14 +46,20 @@ public struct CRichTextEditor: NSViewRepresentable {
         textView.theme = context.environment.richTextEditorStyle
         viewConfiguration(textView)
         scrollView.contentView.postsBoundsChangedNotifications = true
-        NotificationCenter.default.addObserver(
-            context.coordinator,
-            selector: #selector(CRichTextCoordinator.scrollViewDidScroll(_:)),
-            name: NSView.boundsDidChangeNotification,
-            object: scrollView.contentView
-        )
+        let token = NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification,
+            object: scrollView.contentView,
+            queue: .main
+        ) { [weak coordinator = context.coordinator] notification in
+            coordinator?.scrollViewDidScroll(notification)
+        }
+        context.coordinator.scrollObserverToken = token
         
         return scrollView
+    }
+    
+    public static func dismantleNSView(_ scrollView: NSViewType, coordinator: CRichTextCoordinator) {
+        coordinator.removeScrollObserver()
     }
     
     public func updateNSView(_ scrollView: NSViewType, context: Context) {
@@ -77,10 +83,23 @@ public extension CRichTextEditor {
 
 public class CRichTextCoordinator: RichTextCoordinator {
     var onScrollChange: ((Double) -> ())?
+    /// Token returned by the closure-based NotificationCenter observer; held here so it can be removed on teardown.
+    var scrollObserverToken: NSObjectProtocol?
     
     init(text: Binding<NSAttributedString>, textView: RichTextView, richTextContext: RichTextContext, onScrollChange: ((Double) -> ())?) {
         self.onScrollChange = onScrollChange
         super.init(text: text, textView: textView, richTextContext: richTextContext)
+    }
+    
+    deinit {
+        removeScrollObserver()
+    }
+    
+    func removeScrollObserver() {
+        if let token = scrollObserverToken {
+            NotificationCenter.default.removeObserver(token)
+            scrollObserverToken = nil
+        }
     }
     
     @objc func scrollViewDidScroll(_ notification: Notification) {

@@ -157,7 +157,8 @@ struct NoteView: View {
         .onAppear {
             if isSelected {
                 note.updatedAt = Date()
-                try? note.modelContext?.save()
+                do { try note.modelContext?.save() }
+                catch { print("[Notes] onAppear save failed: \(error)") }
             }
             withAnimation(NotesWidgetView.switchAnimation) { downScaled.toggle() }
             withAnimation(.spring.delay(0.3)) { showControls = true }

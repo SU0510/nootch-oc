@@ -47,7 +47,11 @@ struct NoteRichEditor: View {
         .richTextEditorStyle(.init(font: .systemFont(ofSize: 13), fontColor: .nonShockingWhite, backgroundColor: .clear))
         .fadeOnEdges(axis: .vertical, topLeadingFadeLength: 20, bottomTrailingFadeLength: 40, curve: .easeInOut, disable: !prefs.fadeScrollEdges)
         .onReceive(expandedNoteManager.richTextContext.objectWillChange) {
-            note.richText = localRichText
+            // Only assign if content actually changed to avoid triggering Note.willSet
+            // (which stamps updatedAt) and the resulting re-layout cascade on every keystroke.
+            if localRichText != note.richText {
+                note.richText = localRichText
+            }
         }
         .onChange(of: expandedNoteManager.isExpanded) { wasExpanded, willBeExpanded in
             if wasExpanded, !willBeExpanded, let richText = expandedNoteManager.activeNote?.richText {

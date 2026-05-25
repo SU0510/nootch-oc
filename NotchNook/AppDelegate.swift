@@ -63,6 +63,12 @@ import Defaults
     
     func applicationWillTerminate(_ notification: Notification) {
         HUDManager.enableSystemHUD()
+        // Flush any pending SwiftData writes before the process exits.
+        do {
+            try RootView.sharedModelContainer.mainContext.save()
+        } catch {
+            print("[Notes] applicationWillTerminate save failed: \(error)")
+        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

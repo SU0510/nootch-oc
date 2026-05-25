@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 struct NotesWidgetView: View {
     static let spacing: Double = 6
@@ -20,6 +21,9 @@ struct NotesWidgetView: View {
     @State private var selectedNoteId: PersistentIdentifier?
     @Environment(\.modelContext) private var modelContext
     @Namespace private var ns
+    // Periodic autosave every 5 seconds to protect against crash data loss.
+    private let autosaveTimer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    @State private var autosaveCancellable: AnyCancellable?
 
     private var selectedNote: Note? { notes.first(where: { $0.persistentModelID == selectedNoteId }) }
     private var mainNoteWidth: Double {
@@ -74,6 +78,10 @@ struct NotesWidgetView: View {
         }
         .onExitCommand {
             NSApp.keyWindow?.makeFirstResponder(nil)
+        }
+        .onReceive(autosaveTimer) { _ in
+            do { try modelContext.save() }
+            catch { print("[Notes] autosave failed: \(error)") }
         }
     }
 }
