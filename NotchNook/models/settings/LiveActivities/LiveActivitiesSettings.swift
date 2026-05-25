@@ -19,4 +19,7 @@ struct LiveActivitiesSettings: Preferences {
     var disableColorsOnAudioHUDReplacement = false
     var unhideAutomatically = true
     var quickPeekEvent = false
+    /// LAs in this set are hidden when the current screen is in fullscreen.
+    /// Empty by default — all LAs visible in fullscreen until user opts out.
+    var liveActivitiesHiddenInFullscreen: Set<LiveActivity> = []
 }

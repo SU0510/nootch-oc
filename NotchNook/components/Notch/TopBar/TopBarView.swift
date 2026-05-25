@@ -51,7 +51,7 @@ struct TopBarView: View {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     if shouldShowContent {
-                        TopBarContentView(isLeft: true, scaleX: scaleX, scaleY: scaleY)
+                        TopBarContentView(isLeft: true, scaleX: scaleX, scaleY: scaleY, isScreenInFullscreen: isDisabledDueToFullscreen)
                     }
                     
                     if (mode != .closed && !isHidden) || !liveActivities.isEmpty {
@@ -59,7 +59,7 @@ struct TopBarView: View {
                     }
                     
                     if shouldShowContent {
-                        TopBarContentView(isLeft: false, scaleX: scaleX, scaleY: scaleY)
+                        TopBarContentView(isLeft: false, scaleX: scaleX, scaleY: scaleY, isScreenInFullscreen: isDisabledDueToFullscreen)
                     }
                 }
                 .animation(.smooth(extraBounce: 0.25), value: liveActivities)

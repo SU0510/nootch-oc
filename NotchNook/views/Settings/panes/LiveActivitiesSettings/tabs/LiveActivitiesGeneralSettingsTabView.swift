@@ -66,6 +66,29 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .optionDescription(contentMaxWidth)
             }
             
+            // MARK: - section - per-LA fullscreen visibility
+            Settings.Section(title: String(localized: "Show in fullscreen:"), bottomDivider: true) {
+                ForEach(LiveActivity.allCases.filter(\.isImplemented), id: \.id) { la in
+                    let isHidden = liveActivitiesSettings.liveActivitiesHiddenInFullscreen.contains(la)
+                    Toggle(isOn: Binding(
+                        get: { !isHidden },
+                        set: { show in
+                            if show {
+                                liveActivitiesSettings.liveActivitiesHiddenInFullscreen.remove(la)
+                            } else {
+                                liveActivitiesSettings.liveActivitiesHiddenInFullscreen.insert(la)
+                            }
+                        }
+                    )) {
+                        Label(la.name, systemImage: la.icon)
+                    }
+                    .disabled(!liveActivitiesSettings.enabled)
+                }
+
+                Text("Choose which live activities remain visible when another app is in fullscreen mode.")
+                    .optionDescription(contentMaxWidth)
+            }
+            
             // MARK: - section - HUD replacement
             Settings.Section(title: String(localized: "HUD replacement:"), bottomDivider: true) {
                 // MARK: toggle

@@ -12,6 +12,7 @@ struct TopBarContentView: View {
     var isLeft: Bool
     var scaleX: Double
     var scaleY: Double
+    var isScreenInFullscreen: Bool = false
     
     @Environment(\.notchNook) private var notchNook
     @Environment(\.notchSize) private var notchSize
@@ -22,7 +23,9 @@ struct TopBarContentView: View {
     @Environment(\.nookSettings) private var nookSettings
     
     private var liveActivities: Set<LiveActivity> {
-        ActiveLiveActivitiesManager.shared.activeLiveActivities
+        let all = ActiveLiveActivitiesManager.shared.activeLiveActivities
+        guard isScreenInFullscreen else { return all }
+        return all.subtracting(liveActivitiesSettings.liveActivitiesHiddenInFullscreen)
     }
     
     private var collapsed: Bool {

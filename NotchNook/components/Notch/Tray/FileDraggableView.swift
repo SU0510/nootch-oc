@@ -103,12 +103,17 @@ class CustomDraggableView<DragPreviewChild: View>: NSView, NSDraggingSource {
     // MARK: - NSDraggingSource Methods
     
     func draggingSession(_ session: NSDraggingSession, endedAt point: NSPoint, operation: NSDragOperation) {
+        // Only report a move (remove from tray) when Option was held and destination actually moved
         let didMoveFile = operation == .move
         onDropCompleted(didMoveFile)
     }
     
     func draggingSession(_ session: NSDraggingSession, sourceOperationMaskFor context: NSDraggingContext) -> NSDragOperation {
-        [.copy, .move, .link, .generic]
+        // Default: copy (file stays in tray). Hold Option to move (file leaves tray).
+        if NSEvent.modifierFlags.contains(.option) {
+            return .move
+        }
+        return .copy
     }
     
     func draggingSession(_ session: NSDraggingSession, willBeginAt screenPoint: NSPoint) {
