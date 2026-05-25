@@ -39,7 +39,7 @@ struct CalendarEventsView: View {
                                 CalendarEventView(event: item.event, width: geo.size.width, selectedDate: selectedDate, isLastEvent: index == items.count - 1)
                             }
                         }
-                        .padding(EdgeInsets(top: Self.fadeHeight, leading: 8, bottom: Self.fadeHeight + 8, trailing: 8))
+                        .padding(EdgeInsets(top: Self.fadeHeight, leading: 8, bottom: Self.fadeHeight + 4, trailing: 8))
                         .offset(y: -scrollOffset)
                     }
                     .coordinateSpace(name: "ScrollView")
