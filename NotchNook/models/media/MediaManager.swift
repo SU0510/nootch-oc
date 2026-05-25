@@ -9,10 +9,41 @@ import SwiftUI
 import Defaults
 import MediaRemoteAdapter
 
+// MARK: - MediaRemote multi-source typedefs (loaded lazily, macOS 15+)
+private typealias MRGetNowPlayingClientsFunc = @convention(c) (DispatchQueue, @escaping ([AnyObject]?) -> Void) -> Void
+private typealias MRClientGetBundleIDFunc    = @convention(c) (AnyObject?) -> CFString?
+private typealias MRClientGetDisplayNameFunc = @convention(c) (AnyObject?) -> CFString?
+private typealias MRClientGetPIDFunc         = @convention(c) (AnyObject?) -> Int32
+private typealias MRSetElapsedTimeFunc       = @convention(c) (Double) -> Void
+
 @Observable
 class MediaManager {
     static let shared = MediaManager()
-    
+
+    // MARK: - Playback-position state (Feature 2)
+
+    /// Seconds elapsed in the current track as reported by MediaRemote (updated ~4 Hz).
+    var elapsedTime: Double = 0
+    /// Total duration of the current track in seconds. `nil` = unknown (live stream / unsupported).
+    var duration: Double? = nil
+
+    // MARK: - Multi-source state (Feature 1)
+
+    /// All NowPlaying clients currently registered with the system.
+    var nowPlayingSources: [NowPlayingSource] = []
+    /// Bundle ID the user explicitly pinned. When set, MediaManager prefers that source.
+    var userPinnedClientID: String? = nil
+
+    // MARK: - MediaRemote function pointers (loaded once)
+
+    private var mrBundle: CFBundle?
+    private var fnGetClients:    MRGetNowPlayingClientsFunc?
+    private var fnClientBundleID: MRClientGetBundleIDFunc?
+    private var fnClientName:    MRClientGetDisplayNameFunc?
+    private var fnClientPID:     MRClientGetPIDFunc?
+    private var fnSetElapsedTime: MRSetElapsedTimeFunc?
+    private var mrFunctionsAvailable = false
+
     var isPlaying: Bool = false {
         willSet {
             let timerId = "pauseLiveActivityDismiss"
@@ -49,8 +80,39 @@ class MediaManager {
     
     private init() {
         mediaController = MediaController()
+        loadMediaRemoteFunctions()
         setupMediaControllerListeners()
         reconfigureMediaController()
+    }
+
+    // MARK: - MediaRemote private-framework loader
+
+    private func loadMediaRemoteFunctions() {
+        guard let b = CFBundleCreate(kCFAllocatorDefault,
+                NSURL(fileURLWithPath: "/System/Library/PrivateFrameworks/MediaRemote.framework")) else {
+            print("[MediaManager] MediaRemote.framework unavailable — multi-source and seek disabled.")
+            return
+        }
+        mrBundle = b
+
+        func load<T>(_ name: String) -> T? {
+            guard let ptr = CFBundleGetFunctionPointerForName(b, name as CFString) else { return nil }
+            return unsafeBitCast(ptr, to: T.self)
+        }
+
+        fnGetClients     = load("MRMediaRemoteGetNowPlayingClients")
+        fnClientBundleID = load("MRNowPlayingClientGetBundleIdentifier")
+        fnClientName     = load("MRNowPlayingClientGetDisplayName")
+        fnClientPID      = load("MRNowPlayingClientGetProcessIdentifier")
+        fnSetElapsedTime = load("MRMediaRemoteSetElapsedTime")
+
+        mrFunctionsAvailable = fnGetClients != nil
+        if !mrFunctionsAvailable {
+            print("[MediaManager] MRMediaRemoteGetNowPlayingClients not found — multi-source disabled.")
+        }
+        if fnSetElapsedTime == nil {
+            print("[MediaManager] MRMediaRemoteSetElapsedTime not found — seek disabled.")
+        }
     }
     
     deinit {
@@ -70,12 +132,74 @@ class MediaManager {
         mediaController.onTrackInfoReceived = { [weak self] trackInfo in
             self?.lastReceivedTrackInfo = trackInfo
             self?.throttledTrackUpdate?()
+            // Capture duration alongside track updates (no throttle needed — cheap).
+            DispatchQueue.main.async {
+                if let micros = trackInfo.payload.durationMicros, micros > 0 {
+                    self?.duration = micros / 1_000_000
+                } else {
+                    self?.duration = nil
+                }
+            }
+            // Refresh the client list whenever now-playing changes.
+            self?.refreshNowPlayingClients()
+        }
+
+        mediaController.onPlaybackTimeUpdate = { [weak self] seconds in
+            DispatchQueue.main.async {
+                self?.elapsedTime = seconds
+            }
         }
         
         mediaController.onListenerTerminated = { [weak self] in
             self?.resetData()
             self?.stopListeningAndKillProcesses()
         }
+    }
+
+    // MARK: - Multi-source client discovery
+
+    func refreshNowPlayingClients() {
+        guard mrFunctionsAvailable,
+              let getClients   = fnGetClients,
+              let getBundleID  = fnClientBundleID,
+              let getName      = fnClientName,
+              let getPID       = fnClientPID else { return }
+
+        getClients(.main) { [weak self] clientRefs in
+            guard let self = self else { return }
+            guard let refs = clientRefs, !refs.isEmpty else {
+                DispatchQueue.main.async { self.nowPlayingSources = [] }
+                return
+            }
+
+            var sources: [NowPlayingSource] = []
+            for ref in refs {
+                let bundleID = (getBundleID(ref) as String?) ?? ""
+                guard !bundleID.isEmpty else { continue }
+                let displayName = (getName(ref) as String?) ?? bundleID
+                let pid         = getPID(ref)
+                sources.append(NowPlayingSource(bundleIdentifier: bundleID, displayName: displayName, pid: pid))
+            }
+
+            DispatchQueue.main.async {
+                self.nowPlayingSources = sources
+                // If the pinned client is no longer present, unpin.
+                if let pinned = self.userPinnedClientID,
+                   !sources.contains(where: { $0.bundleIdentifier == pinned }) {
+                    self.userPinnedClientID = nil
+                }
+            }
+        }
+    }
+
+    /// Returns the source that should be considered active. Pinned wins; otherwise the
+    /// source matching the current track's bundle ID.
+    var activeSource: NowPlayingSource? {
+        if let pinned = userPinnedClientID {
+            return nowPlayingSources.first(where: { $0.bundleIdentifier == pinned })
+        }
+        return nowPlayingSources.first(where: { $0.bundleIdentifier == track.appBundleId })
+            ?? nowPlayingSources.first
     }
     
     func throttleWithTrailing(interval: TimeInterval, queue: DispatchQueue = .main, action: @escaping () -> Void) -> () -> Void {
@@ -294,6 +418,10 @@ class MediaManager {
         DispatchQueue.main.async {
             self.track = .empty
             self.isPlaying = false
+            self.elapsedTime = 0
+            self.duration = nil
+            self.nowPlayingSources = []
+            self.userPinnedClientID = nil
             ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
             self.mediaController.stopListening()
         }
@@ -332,5 +460,26 @@ class MediaManager {
             return
         }
         SystemAppMeta(bundleId: browserBundleId).openApp()
+    }
+
+    // MARK: - Seek
+
+    /// Seek to `seconds` in the current track. Falls back silently if `setTime` or
+    /// `MRMediaRemoteSetElapsedTime` are not available.
+    func seek(to seconds: Double) {
+        // MediaController.setTime() calls the Perl backend which uses the MR set_time command.
+        mediaController.setTime(seconds: seconds)
+        // Also drive via the direct MR function pointer if available (belt+suspenders).
+        fnSetElapsedTime?(seconds)
+    }
+
+    // MARK: - Source pinning
+
+    func pinSource(_ source: NowPlayingSource) {
+        userPinnedClientID = source.bundleIdentifier
+    }
+
+    func unpinSource() {
+        userPinnedClientID = nil
     }
 }
