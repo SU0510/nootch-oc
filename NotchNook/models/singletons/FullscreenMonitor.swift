@@ -128,5 +128,7 @@ class FullscreenMonitor: NSObject {
     
     deinit {
         workspaceNotificationCenter.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
+        DistributedNotificationCenter.default().removeObserver(self)
     }
 }

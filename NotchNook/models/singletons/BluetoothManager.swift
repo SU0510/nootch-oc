@@ -52,6 +52,7 @@ final class BluetoothManager: NSObject {
     private var centralManager: CBCentralManager?
     private var authorizationStatus: CBManagerAuthorization = .notDetermined
     private(set) var isInitialized = false
+    private var btConnectNotification: IOBluetoothUserNotification?
     
     private let appleDeviceIconMap: [String: String] = Dictionary(
         uniqueKeysWithValues: AppleDeviceType.allCases.map { ($0.rawValue, $0.iconName) }
@@ -78,7 +79,7 @@ final class BluetoothManager: NSObject {
                 await MainActor.run {
                     isInitialized = true
                 }
-                IOBluetoothDevice.register(forConnectNotifications: self, selector: #selector(deviceConnected(_:withDevice:)))
+                btConnectNotification = IOBluetoothDevice.register(forConnectNotifications: self, selector: #selector(deviceConnected(_:withDevice:)))
                 NotificationCenter.default.addObserver(
                     self,
                     selector: #selector(deviceDisconnected(_:)),
@@ -278,6 +279,8 @@ final class BluetoothManager: NSObject {
     }
     
     deinit {
+        btConnectNotification?.unregister()
+        btConnectNotification = nil
         NotificationCenter.default.removeObserver(self)
     }
 }
