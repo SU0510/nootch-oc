@@ -1623,8 +1623,8 @@
 				3A8507702C4B3E2E0092B135 /* Indicator */,
 				3A8AA18C2C311B4F00D727DA /* CustomRichTextKit */,
 				EC47FCA52C0BA33900591811 /* intro */,
-				EC8D600D2BFC127600E67ECC /* buttonStyles */,
-				EC8D5FF32BFAE75400E67ECC /* notch */,
+				EC8D600D2BFC127600E67ECC /* ButtonStyles */,
+				EC8D5FF32BFAE75400E67ECC /* Notch */,
 				BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */,
 				3A5F1E642C4C5B3F007E77ED /* SunShape.swift */,
 				3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */,
@@ -1879,7 +1879,7 @@
 			path = Array;
 			sourceTree = "<group>";
 		};
-		EC8D5FF32BFAE75400E67ECC /* notch */ = {
+		EC8D5FF32BFAE75400E67ECC /* Notch */ = {
 			isa = PBXGroup;
 			children = (
 				EC8D5FF42BFAE78800E67ECC /* TopBar */,
@@ -1893,7 +1893,7 @@
 				EC758F7B2BF2F19B00B873B0 /* NotchShape.swift */,
 				EC758F7C2BF2F19B00B873B0 /* ShadowedNotchShapeView.swift */,
 			);
-			path = notch;
+			path = Notch;
 			sourceTree = "<group>";
 		};
 		EC8D5FF42BFAE78800E67ECC /* TopBar */ = {
@@ -1928,7 +1928,7 @@
 			path = Nook;
 			sourceTree = "<group>";
 		};
-		EC8D600D2BFC127600E67ECC /* buttonStyles */ = {
+		EC8D600D2BFC127600E67ECC /* ButtonStyles */ = {
 			isa = PBXGroup;
 			children = (
 				EC8D600E2BFC128100E67ECC /* ShrinkOnClick.swift */,
@@ -1937,7 +1937,7 @@
 				EC47FCBC2C0BF18E00591811 /* BrightnessDownOnClick.swift */,
 				3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */,
 			);
-			path = buttonStyles;
+			path = ButtonStyles;
 			sourceTree = "<group>";
 		};
 		EC8D60152BFC21CD00E67ECC /* Widgets */ = {
