@@ -150,9 +150,9 @@ class CalendarManager {
                 }
             }
             
-            // Schedule removal for when the event starts
+            // Schedule removal for when the event ends
             let now = Date()
-            let removeIn = event.startDate.timeIntervalSince(now)
+            let removeIn = event.endDate.timeIntervalSince(now)
             
             if removeIn > 0 {
                 let removeTimer = Timer.scheduledTimer(withTimeInterval: removeIn, repeats: false) { _ in
@@ -209,6 +209,18 @@ class CalendarManager {
                 }
                 liveActivitiesTimers.append(timer)
             }
+        }
+        
+        // Schedule a one-shot fetch 1s after each currently-happening event ends,
+        // so the events array is trimmed promptly rather than waiting up to 24h for the daily timer.
+        let now = Date()
+        events.forEach { event in
+            guard !event.isAllDay, event.startDate <= now, event.endDate > now else { return }
+            let fireIn = event.endDate.timeIntervalSince(now) + 1
+            let refreshTimer = Timer.scheduledTimer(withTimeInterval: fireIn, repeats: false) { [weak self] _ in
+                Task { try? await self?.fetchEvents() }
+            }
+            liveActivitiesTimers.append(refreshTimer)
         }
         
         Task { @MainActor in

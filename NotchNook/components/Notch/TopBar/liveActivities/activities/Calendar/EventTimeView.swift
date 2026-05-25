@@ -43,8 +43,8 @@ struct EventTimeView: View {
             let remainingNumber = formatSecs(remainingSeconds)
             let preCallText = remainingNumber
             
-            // In-call vars
-            let inCallText = prefs.showEventTimeLapsed ? formatSecs(now.timeIntervalSince1970 - startDate.timeIntervalSince1970) : nil
+            // In-call vars — show time remaining until event ends
+            let inCallText = prefs.showEventTimeLapsed ? formatSecs(endDate.timeIntervalSince1970 - now.timeIntervalSince1970) : nil
             
             let text = isEventStarted ? inCallText : preCallText
             
@@ -105,6 +105,7 @@ struct EventTimeView: View {
     }
     
     func formatSecs(_ secs: Double) -> String {
+        guard secs > 0 else { return "0s" }
         let hours = Int(secs) / 3600
         let minutes = (Int(secs) % 3600) / 60
         let seconds = Int(secs) % 60
