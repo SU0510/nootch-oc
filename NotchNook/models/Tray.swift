@@ -16,6 +16,7 @@ class Tray {
     private enum KeyCode: UInt16 {
         case a = 0
         case c = 8
+        case v = 9
         case spaceBar = 49
         case returnKey = 36
         case esc = 53
@@ -61,6 +62,7 @@ class Tray {
             } else if files.isEmpty && isMonitoring {
                 stopMonitoringEvents()
             }
+            persist()
         }
     }
     private(set) var selectedFiles = [TrayFile]()
@@ -75,10 +77,67 @@ class Tray {
         NSEvent.modifierFlags.contains(.shift)
     }
     
+    // MARK: - Persistence helpers
+
+    /// URL of the JSON state file that records which files live in the tray dir.
+    private var stateFileURL: URL? {
+        guard let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else { return nil }
+        let bundleID = Bundle.main.bundleIdentifier ?? "NotchNook"
+        return appSupport
+            .appendingPathComponent(bundleID, isDirectory: true)
+            .appendingPathComponent("tray_state.json")
+    }
+
+    /// Codable envelope for one tray file entry in the JSON state.
+    private struct TrayFileRecord: Codable {
+        let url: URL
+        let addedAt: Date
+        let originalName: String
+    }
+
+    /// Persist current file list. Called after every mutation.
+    private func persist() {
+        guard let dest = stateFileURL else { return }
+        let records = files.map { TrayFileRecord(url: $0.url, addedAt: $0.addedAt, originalName: $0.name) }
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            let data = try encoder.encode(records)
+            try data.write(to: dest, options: .atomic)
+        } catch {
+            print("[Tray] Failed to persist tray state: \(error)")
+        }
+    }
+
+    /// Load file list from disk, dropping any entries whose files no longer exist.
+    private func loadPersistedFiles() {
+        guard let src = stateFileURL,
+              FileManager.default.fileExists(atPath: src.path) else { return }
+        do {
+            let data = try Data(contentsOf: src)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let records = try decoder.decode([TrayFileRecord].self, from: data)
+            let fm = FileManager.default
+            let valid = records.filter { record in
+                let exists = fm.fileExists(atPath: record.url.path)
+                if !exists { print("[Tray] Dropping missing file from persisted state: \(record.url.lastPathComponent)") }
+                return exists
+            }
+            // List is typically < 100 files; safe to assign inline on the calling queue (main).
+            self.files = valid.map { TrayFile(url: $0.url) }
+        } catch {
+            print("[Tray] Failed to load tray state: \(error)")
+        }
+    }
+
     // MARK: - Initialization
     
     init(activitiesManager: ActiveLiveActivitiesManager = .shared) {
         self.activitiesManager = activitiesManager
+        // Set up durable dir first so tempDirectory is ready for loadPersistedFiles.
+        setupTempDirectory()
+        loadPersistedFiles()
     }
     
     // MARK: - Setup methods
@@ -93,12 +152,20 @@ class Tray {
     // MARK: - Setup methods
     
     private func setupTempDirectory() {
-        let tempDir = FileManager.default.temporaryDirectory.appendingPathComponent("TrayFiles", isDirectory: true)
+        // Use Application Support so files survive reboots.
+        // ~/Library/Application Support/<bundleID>/TrayFiles/
+        guard let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            print("[Tray] Could not locate Application Support directory")
+            return
+        }
+        let bundleID = Bundle.main.bundleIdentifier ?? "NotchNook"
+        let trayDir = appSupport.appendingPathComponent(bundleID, isDirectory: true)
+                                .appendingPathComponent("TrayFiles", isDirectory: true)
         do {
-            try FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true, attributes: nil)
-            tempDirectory = tempDir
+            try FileManager.default.createDirectory(at: trayDir, withIntermediateDirectories: true, attributes: nil)
+            tempDirectory = trayDir
         } catch {
-            print("Failed to create temp directory")
+            print("[Tray] Failed to create tray directory: \(error)")
         }
     }
     
@@ -198,6 +265,10 @@ class Tray {
                 
             case .c where isCommandPressed:
                 copySelectedFilesToClipboard()
+                return nil
+                
+            case .v where isCommandPressed:
+                pasteFromClipboard()
                 return nil
                 
             case .spaceBar:
@@ -341,7 +412,39 @@ class Tray {
     }
     
     func addFilesFromURLs(_ fileURLs: [URL]) {
-        let newFiles = fileURLs.concurrentMap { TrayFile(url: $0) }
+        // Decision: COPY on drop.
+        // URLs arriving here may point to anywhere on disk (external files, Downloads, etc.)
+        // or to ephemeral NSTemporaryDirectory() paths that disappear on reboot.
+        // We copy every file into our durable TrayFiles dir so persisted URLs always resolve.
+        // The original file is left untouched; we only make a copy.
+        // Security-scoped bookmarks are NOT needed because we own the copied file.
+        let fm = FileManager.default
+        let destDir = tempDirectory  // already set up in setupTempDirectory()
+
+        let resolvedURLs: [URL] = fileURLs.compactMap { sourceURL in
+            guard let destDir = destDir else { return sourceURL }
+            // If the file is already inside our tray dir, use it directly.
+            if sourceURL.path.hasPrefix(destDir.path) { return sourceURL }
+            // Build a unique dest path to avoid collisions.
+            var destURL = destDir.appendingPathComponent(sourceURL.lastPathComponent)
+            var attempt = 0
+            let base = destURL.deletingPathExtension().lastPathComponent
+            let ext = destURL.pathExtension
+            while fm.fileExists(atPath: destURL.path) {
+                attempt += 1
+                let candidate = ext.isEmpty ? "\(base) \(attempt)" : "\(base) \(attempt).\(ext)"
+                destURL = destDir.appendingPathComponent(candidate)
+            }
+            do {
+                try fm.copyItem(at: sourceURL, to: destURL)
+                return destURL
+            } catch {
+                print("[Tray] Failed to copy \(sourceURL.lastPathComponent) into tray dir: \(error). Using original reference.")
+                return sourceURL
+            }
+        }
+
+        let newFiles = resolvedURLs.concurrentMap { TrayFile(url: $0) }
         for file in newFiles { self.addFile(file) }
     }
     
@@ -350,6 +453,65 @@ class Tray {
         pasteboard.clearContents()
         let urls = selectedFiles.map { $0.url }
         pasteboard.writeObjects(urls as [NSPasteboardWriting])
+    }
+    
+    func pasteFromClipboard() {
+        let pasteboard = NSPasteboard.general
+        guard let destDir = tempDirectory else { return }
+        var pastedURLs: [URL] = []
+
+        // 1. File URLs
+        if let fileURLs = pasteboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL], !fileURLs.isEmpty {
+            pastedURLs.append(contentsOf: fileURLs)
+        }
+
+        // 2. Image data (png / tiff / NSImage)
+        if pastedURLs.isEmpty {
+            let imageTypes: [NSPasteboard.PasteboardType] = [.png, .tiff]
+            var imageData: Data? = nil
+            for type in imageTypes {
+                if let data = pasteboard.data(forType: type) { imageData = data; break }
+            }
+            if imageData == nil, let img = NSImage(pasteboard: pasteboard) {
+                imageData = img.tiffRepresentation
+            }
+            if let raw = imageData {
+                let pngData: Data
+                if let bitmap = NSBitmapImageRep(data: raw),
+                   let png = bitmap.representation(using: .png, properties: [:]) {
+                    pngData = png
+                } else {
+                    pngData = raw
+                }
+                let destURL = destDir.appendingPathComponent("\(UUID().uuidString).png")
+                do {
+                    try pngData.write(to: destURL, options: .atomic)
+                    pastedURLs.append(destURL)
+                } catch {
+                    print("[Tray] Failed to write pasted image: \(error)")
+                }
+            }
+        }
+
+        // 3. Plain text
+        if pastedURLs.isEmpty, let text = pasteboard.string(forType: .string), !text.isEmpty {
+            let destURL = destDir.appendingPathComponent("\(UUID().uuidString).txt")
+            do {
+                try text.write(to: destURL, atomically: true, encoding: .utf8)
+                pastedURLs.append(destURL)
+            } catch {
+                print("[Tray] Failed to write pasted text: \(error)")
+            }
+        }
+
+        if pastedURLs.isEmpty {
+            print("[Tray] Paste: pasteboard contained nothing usable.")
+            return
+        }
+
+        // Files written directly to destDir (image/text cases) are already in our tray dir.
+        // External file URLs (case 1) will be copied inside addFilesFromURLs.
+        addFilesFromURLs(pastedURLs)
     }
     
     func airdropSelectedFiles() {
