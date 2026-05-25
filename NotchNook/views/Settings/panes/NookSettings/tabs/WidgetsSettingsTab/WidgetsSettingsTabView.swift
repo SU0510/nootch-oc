@@ -16,6 +16,7 @@ struct WidgetsSettingsTabView: View {
     @Default(.notesWidgetSettings) private var notesWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
+    @Default(.timerWidgetSettings) private var timerWidgetSettings
     @Default(.nookSettings) private var nookSettings
 
     var body: some View {
@@ -34,6 +35,8 @@ struct WidgetsSettingsTabView: View {
                     case .mirror: MirrorWidgetSettingsView()
                     case .calendar: CalendarWidgetSettingsView()
                     case .notes: NotesWidgetSettingsView()
+                    case .todoList: TodoListWidgetSettingsView()
+                    case .timer: TimerWidgetSettingsView()
                     default: BlankView().frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }

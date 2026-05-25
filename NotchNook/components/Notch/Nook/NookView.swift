@@ -28,6 +28,10 @@ struct NookView: View {
                         CalendarWidgetView()
                     case .notes:
                         NotesWidgetView(arrayPosition: arrPos, internalPadding: nookSettings.widgetsPadding)
+                    case .todoList:
+                        TodoWidgetView(arrayPosition: arrPos, internalPadding: nookSettings.widgetsPadding)
+                    case .timer:
+                        TimerWidgetView(arrayPosition: arrPos, internalPadding: nookSettings.widgetsPadding)
                     default: EmptyView()
                     }
                 }

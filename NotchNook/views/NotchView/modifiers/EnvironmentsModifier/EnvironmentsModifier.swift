@@ -19,6 +19,7 @@ extension NotchView {
         @Environment(\.shortcutsWidgetSettings) internal var shortcutsWidgetSettings
         @Environment(\.todoListWidgetSettings) internal var todoListWidgetSettings
         @Environment(\.quickAppsWidgetSettings) internal var quickAppsWidgetSettings
+        @Environment(\.timerWidgetSettings) internal var timerWidgetSettings
         
         @Default(.nookSettings) internal var nookSettings
         @Default(.trialInitialTime) internal var trialInitialTime
@@ -43,6 +44,7 @@ extension NotchView {
                     case .quickApps: quickAppsWidgetSettings.size.width
                     case .shortcuts: shortcutsWidgetSettings.size.width
                     case .todoList: todoListWidgetSettings.size.width
+                    case .timer: timerWidgetSettings.size.width
                 }
                 return $0 + adding
             }

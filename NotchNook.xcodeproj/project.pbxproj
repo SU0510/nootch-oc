@@ -177,6 +177,20 @@
 		3A7C05E32C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */; };
 		3A7C05E72C5AFDDE00435D99 /* ChangelogBubblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */; };
 		3A7C05E92C5B035A00435D99 /* ChangelogBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */; };
+		3A7E0A6E2FC4C6FB0047FC10 /* TimerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A6D2FC4C6FB0047FC10 /* TimerEntry.swift */; };
+		3A7E0A702FC4C6FD0047FC10 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A6F2FC4C6FD0047FC10 /* TodoItem.swift */; };
+		3A7E0A722FC4C7000047FC10 /* TimerWidgetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A712FC4C7000047FC10 /* TimerWidgetSettings.swift */; };
+		3A7E0A752FC4C7160047FC10 /* TodoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A742FC4C7160047FC10 /* TodoRowView.swift */; };
+		3A7E0A772FC4C7180047FC10 /* NookTimersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A762FC4C7180047FC10 /* NookTimersStore.swift */; };
+		3A7E0A7A2FC4C71C0047FC10 /* TodoCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A792FC4C71C0047FC10 /* TodoCreatorView.swift */; };
+		3A7E0A7C2FC4C7290047FC10 /* TodoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A7B2FC4C7290047FC10 /* TodoWidgetView.swift */; };
+		3A7E0A7E2FC4C72A0047FC10 /* TimerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */; };
+		3A7E0A802FC4C7340047FC10 /* TodoListWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A7F2FC4C7340047FC10 /* TodoListWidgetSettingsView.swift */; };
+		3A7E0A822FC4C73F0047FC10 /* TimerCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */; };
+		3A7E0A842FC4C74E0047FC10 /* TimerWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */; };
+		3A7E0A862FC4C7590047FC10 /* TimerWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A852FC4C7590047FC10 /* TimerWidgetSettingsView.swift */; };
+		3A7E0A882FC4C7670047FC10 /* TrayStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A872FC4C7670047FC10 /* TrayStackView.swift */; };
+		3A7E0A8A2FC4C7780047FC10 /* NowPlayingSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A892FC4C7780047FC10 /* NowPlayingSource.swift */; };
 		3A801E012C151EAC0076560D /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E002C151EAC0076560D /* CalendarWidgetView.swift */; };
 		3A801E042C1530490076560D /* SilentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E022C1530490076560D /* SilentState.swift */; };
 		3A801E062C154BF80076560D /* CalendarEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A801E052C154BF80076560D /* CalendarEventsView.swift */; };
@@ -602,6 +616,20 @@
 		3A7C05E22C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableDaysMonthOverlayView.swift; sourceTree = "<group>"; };
 		3A7C05E62C5AFDDE00435D99 /* ChangelogBubblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogBubblesView.swift; sourceTree = "<group>"; };
 		3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogBubbleView.swift; sourceTree = "<group>"; };
+		3A7E0A6D2FC4C6FB0047FC10 /* TimerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEntry.swift; sourceTree = "<group>"; };
+		3A7E0A6F2FC4C6FD0047FC10 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		3A7E0A712FC4C7000047FC10 /* TimerWidgetSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetSettings.swift; sourceTree = "<group>"; };
+		3A7E0A742FC4C7160047FC10 /* TodoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRowView.swift; sourceTree = "<group>"; };
+		3A7E0A762FC4C7180047FC10 /* NookTimersStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NookTimersStore.swift; sourceTree = "<group>"; };
+		3A7E0A792FC4C71C0047FC10 /* TodoCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCreatorView.swift; sourceTree = "<group>"; };
+		3A7E0A7B2FC4C7290047FC10 /* TodoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWidgetView.swift; sourceTree = "<group>"; };
+		3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowView.swift; sourceTree = "<group>"; };
+		3A7E0A7F2FC4C7340047FC10 /* TodoListWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListWidgetSettingsView.swift; sourceTree = "<group>"; };
+		3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCreatorView.swift; sourceTree = "<group>"; };
+		3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetView.swift; sourceTree = "<group>"; };
+		3A7E0A852FC4C7590047FC10 /* TimerWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetSettingsView.swift; sourceTree = "<group>"; };
+		3A7E0A872FC4C7670047FC10 /* TrayStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayStackView.swift; sourceTree = "<group>"; };
+		3A7E0A892FC4C7780047FC10 /* NowPlayingSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingSource.swift; sourceTree = "<group>"; };
 		3A801E002C151EAC0076560D /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
 		3A801E022C1530490076560D /* SilentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentState.swift; sourceTree = "<group>"; };
 		3A801E052C154BF80076560D /* CalendarEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsView.swift; sourceTree = "<group>"; };
@@ -1098,6 +1126,7 @@
 			isa = PBXGroup;
 			children = (
 				3A3ABCEE2C2B9C5500132228 /* Note.swift */,
+				3A7E0A6F2FC4C6FD0047FC10 /* TodoItem.swift */,
 			);
 			path = SwiftData;
 			sourceTree = "<group>";
@@ -1163,6 +1192,26 @@
 				3A7C05E82C5B035A00435D99 /* ChangelogBubbleView.swift */,
 			);
 			path = ChangelogBubbles;
+			sourceTree = "<group>";
+		};
+		3A7E0A732FC4C7160047FC10 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				3A7E0A742FC4C7160047FC10 /* TodoRowView.swift */,
+				3A7E0A792FC4C71C0047FC10 /* TodoCreatorView.swift */,
+				3A7E0A7B2FC4C7290047FC10 /* TodoWidgetView.swift */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		3A7E0A782FC4C71B0047FC10 /* TimerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */,
+				3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */,
+				3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */,
+			);
+			path = TimerWidget;
 			sourceTree = "<group>";
 		};
 		3A801E032C1530490076560D /* decorators */ = {
@@ -1318,6 +1367,8 @@
 				EC81E26A2C06A6D400790517 /* MirrorWidgetSettingsView.swift */,
 				3AD5CAD82C14CE2B0090A9D1 /* CalendarWidgetSettingsView.swift */,
 				3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */,
+				3A7E0A7F2FC4C7340047FC10 /* TodoListWidgetSettingsView.swift */,
+				3A7E0A852FC4C7590047FC10 /* TimerWidgetSettingsView.swift */,
 			);
 			path = perWidgetSettings;
 			sourceTree = "<group>";
@@ -1421,6 +1472,7 @@
 				3A3ABCE72C2B6CED00132228 /* TodoListWidgetSettings.swift */,
 				3A3ABCE92C2B70FD00132228 /* NotesWidgetSettings.swift */,
 				3A3ABCEB2C2B712500132228 /* QuickAppsWidgetSettings.swift */,
+				3A7E0A712FC4C7000047FC10 /* TimerWidgetSettings.swift */,
 			);
 			path = widgets;
 			sourceTree = "<group>";
@@ -1470,6 +1522,7 @@
 				36ACEEFE2E0C4AED003EC274 /* MediaManager.swift */,
 				36C1868A2D973D8B00043F99 /* MediaManagerPerApp.swift */,
 				EC8D60582BFFEEF500E67ECC /* MediaControls.swift */,
+				3A7E0A892FC4C7780047FC10 /* NowPlayingSource.swift */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -1510,6 +1563,7 @@
 				EC7A0FA92C0FE4970063E78E /* CalendarManager.swift */,
 				3A3ABCDB2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift */,
 				3A0C50292C5480700003867F /* TimersManager.swift */,
+				3A7E0A762FC4C7180047FC10 /* NookTimersStore.swift */,
 			);
 			path = singletons;
 			sourceTree = "<group>";
@@ -1782,6 +1836,7 @@
 				3A1691F62C2FBA410014C326 /* InMemoryDefault.swift */,
 				3A1FFE252C35427700BB4A03 /* ExpandedNoteManager.swift */,
 				3623EA532C7532C90055C1BF /* ForceFocusableWindow.swift */,
+				3A7E0A6D2FC4C6FB0047FC10 /* TimerEntry.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1836,6 +1891,7 @@
 				EC758F7E2BF2F19B00B873B0 /* TrayView.swift */,
 				36FBC2652C3F191D004FDE42 /* TrayFileIconView.swift */,
 				EC8D5FC82BFA625700E67ECC /* FileDraggableView.swift */,
+				3A7E0A872FC4C7670047FC10 /* TrayStackView.swift */,
 			);
 			path = Tray;
 			sourceTree = "<group>";
@@ -1948,6 +2004,8 @@
 				3A3F59E42C2A568E00906FFA /* Notes */,
 				EC8D602D2BFD22E200E67ECC /* MirrorWidgetView.swift */,
 				EC8D602F2BFD699700E67ECC /* ShortcutsWidgetView.swift */,
+				3A7E0A732FC4C7160047FC10 /* Todo */,
+				3A7E0A782FC4C71B0047FC10 /* TimerWidget */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -2159,6 +2217,7 @@
 				3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */,
 				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* TrayFileView.swift in Sources */,
+				3A7E0A7A2FC4C71C0047FC10 /* TodoCreatorView.swift in Sources */,
 				EC2DD1E72C02D5A5001FD54E /* NotchGesturer.swift in Sources */,
 				36810C2E2D35B93200E3135B /* RoundedTriangle.swift in Sources */,
 				ECB9D6AB2C0CDA5E009C8CE4 /* validateEmail.swift in Sources */,
@@ -2188,6 +2247,7 @@
 				EC47FCCD2C0C06F200591811 /* PipelinesSettingsTabView.swift in Sources */,
 				3A3ABCDC2C2A81FC00132228 /* ActiveLiveActivitiesManager.swift in Sources */,
 				3A801E162C1579F40076560D /* getMacBookModel.swift in Sources */,
+				3A7E0A802FC4C7340047FC10 /* TodoListWidgetSettingsView.swift in Sources */,
 				365B15B32CB871D100032BD0 /* RichToolbarButtonConfiguration.swift in Sources */,
 				EC81E2612C069B3600790517 /* MultipleSettingsPicker.swift in Sources */,
 				3A801E082C154C0B0076560D /* CalendarEventView.swift in Sources */,
@@ -2215,6 +2275,7 @@
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
+				3A7E0A722FC4C7000047FC10 /* TimerWidgetSettings.swift in Sources */,
 				EC14B5C82C070A22000FC6B6 /* VisualEffectView.swift in Sources */,
 				C196F0EF2C6B5D9E00F6A21B /* PowerInfoStruct.swift in Sources */,
 				C194313F2C728CE10088F905 /* BatteryLiveActivitySettings.swift in Sources */,
@@ -2292,6 +2353,7 @@
 				3A342B092C4D965A003C369C /* UnitCurve.swift in Sources */,
 				EC2DD1F42C03DE9C001FD54E /* URL.swift in Sources */,
 				EC2DD1E02C028690001FD54E /* TopBarSpacerView.swift in Sources */,
+				3A7E0A842FC4C74E0047FC10 /* TimerWidgetView.swift in Sources */,
 				3A5F1E682C4C699F007E77ED /* NotchViewStatic.swift in Sources */,
 				3A3ABCEF2C2B9C5500132228 /* Note.swift in Sources */,
 				3A1FFE2B2C354B6600BB4A03 /* ExpandedNoteView.swift in Sources */,
@@ -2348,6 +2410,7 @@
 				EC8D60182BFC294000E67ECC /* MusicApplication.swift in Sources */,
 				EC8D5FBF2BF9744800E67ECC /* TrayFile.swift in Sources */,
 				3A5104D42C37AD3A0045F7E6 /* NoteExpandedMsgView.swift in Sources */,
+				3A7E0A702FC4C6FD0047FC10 /* TodoItem.swift in Sources */,
 				3AC36D802C251EC10000F995 /* AVLooperPlayer.swift in Sources */,
 				3A105FCC2C1BA57C0015EC66 /* CalendarLiveActivitySettings.swift in Sources */,
 				3A1691CE2C2FB1E90014C326 /* ScreenSizeKey.swift in Sources */,
@@ -2373,6 +2436,7 @@
 				36A356DA2C4968FF001902E4 /* VibratingCircleView.swift in Sources */,
 				EC8D602A2BFCEEF900E67ECC /* AlbumCoverView.swift in Sources */,
 				EC8D60422BFEDAEC00E67ECC /* onChangeDebounced.swift in Sources */,
+				3A7E0A6E2FC4C6FB0047FC10 /* TimerEntry.swift in Sources */,
 				3A0816C72C24DB86008092F0 /* quickPeekScaling.swift in Sources */,
 				EC0E30D42C04172F0060B47E /* GestureControlSettings.swift in Sources */,
 				3A3ABCE42C2A9CFE00132228 /* dropExited.swift in Sources */,
@@ -2384,6 +2448,7 @@
 				3A3F5A002C2A5C4400906FFA /* checkTrialOver.swift in Sources */,
 				3A0D90AF2C27DA24004A41F4 /* getShortVersion.swift in Sources */,
 				EC8D60652C001D2D00E67ECC /* Track.swift in Sources */,
+				3A7E0A772FC4C7180047FC10 /* NookTimersStore.swift in Sources */,
 				3AD5CAD72C13D9F90090A9D1 /* CalendarDayView.swift in Sources */,
 				EC758FA32BF2F1C600B873B0 /* main.swift in Sources */,
 				EC0E30F32C0438660060B47E /* MockTopBar.swift in Sources */,
@@ -2399,6 +2464,7 @@
 				EC8D60592BFFEEF500E67ECC /* MediaControls.swift in Sources */,
 				3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */,
 				3A0C50142C531CA70003867F /* startBriVolKeyListener.swift in Sources */,
+				3A7E0A752FC4C7160047FC10 /* TodoRowView.swift in Sources */,
 				EC47FCBD2C0BF18E00591811 /* BrightnessDownOnClick.swift in Sources */,
 				3A8AA1892C30AA9900D727DA /* onScrollChange.swift in Sources */,
 				3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */,
@@ -2408,9 +2474,11 @@
 				36C1868B2D973D9000043F99 /* MediaManagerPerApp.swift in Sources */,
 				EC0E31092C055A560060B47E /* TraySettings.swift in Sources */,
 				EC2DD1E22C02B3BD001FD54E /* VolumeMonitor.swift in Sources */,
+				3A7E0A7E2FC4C72A0047FC10 /* TimerRowView.swift in Sources */,
 				3623EA542C7532C90055C1BF /* ForceFocusableWindow.swift in Sources */,
 				3A342B172C508903003C369C /* SystemAppMeta.swift in Sources */,
 				ECAC6A6E2C070355000D9D27 /* measure.swift in Sources */,
+				3A7E0A7C2FC4C7290047FC10 /* TodoWidgetView.swift in Sources */,
 				3A7C05DD2C59E2B700435D99 /* NookWidgetsWidthKey.swift in Sources */,
 				EC47FCA92C0BA6BB00591811 /* TutorialView.swift in Sources */,
 				3A3ABCEA2C2B70FD00132228 /* NotesWidgetSettings.swift in Sources */,
@@ -2427,10 +2495,13 @@
 				EC2DD1F02C03DB15001FD54E /* TrayFilesScrollView.swift in Sources */,
 				C16CD3F22C87500600144C90 /* bluetoothConnectDisconnectStruct.swift in Sources */,
 				EC47FCA42C0BA15700591811 /* resetDefaults.swift in Sources */,
+				3A7E0A8A2FC4C7780047FC10 /* NowPlayingSource.swift in Sources */,
 				EC4173D42C02515A002889E7 /* Settings.swift in Sources */,
+				3A7E0A862FC4C7590047FC10 /* TimerWidgetSettingsView.swift in Sources */,
 				36BFB9272C7F61C100241325 /* CameraManagerKey.swift in Sources */,
 				EC8D5FC72BF97AF500E67ECC /* TrayEmptyView.swift in Sources */,
 				EC4173DC2C025AF8002889E7 /* LicenseSettingsView.swift in Sources */,
+				3A7E0A882FC4C7670047FC10 /* TrayStackView.swift in Sources */,
 				36D108242D38660C008A3AD3 /* CameraManager.swift in Sources */,
 				EC81E2672C069F3800790517 /* NoBtnStyle.swift in Sources */,
 				3675C7EB2C6D0176009B105E /* PerlinNoiseGenerator.swift in Sources */,
@@ -2517,6 +2588,7 @@
 				EC758F842BF2F19B00B873B0 /* TrayView.swift in Sources */,
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,
 				3A20F1732C2F8A59006A7E1F /* AnimationsModifier.swift in Sources */,
+				3A7E0A822FC4C73F0047FC10 /* TimerCreatorView.swift in Sources */,
 				EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */,
 				EC47FCBB2C0BDCB500591811 /* getAppVersion.swift in Sources */,
 				EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */,

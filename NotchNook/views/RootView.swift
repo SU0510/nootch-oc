@@ -51,6 +51,7 @@ struct RootView: View {
     @Default(.notesWidgetSettings) private var notesWidgetSettings
     @Default(.todoListWidgetSettings) private var todoListWidgetSettings
     @Default(.quickAppsWidgetSettings) private var quickAppsWidgetSettings
+    @Default(.timerWidgetSettings) private var timerWidgetSettings
     
     mutating func updateForScreen(displayKitId: UUID, screenSize: CGSize, notchSize: CGSize, notchNook: NotchNookState) {
         self.displayKitId = displayKitId
@@ -66,6 +67,7 @@ struct RootView: View {
         
         let schema = Schema([
             Note.self,
+            TodoItem.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
@@ -117,5 +119,6 @@ struct RootView: View {
             .environment(\.notesWidgetSettings, notesWidgetSettings)
             .environment(\.todoListWidgetSettings, todoListWidgetSettings)
             .environment(\.quickAppsWidgetSettings, quickAppsWidgetSettings)
+            .environment(\.timerWidgetSettings, timerWidgetSettings)
     }
 }
