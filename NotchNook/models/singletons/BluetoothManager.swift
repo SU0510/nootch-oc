@@ -46,8 +46,13 @@ final class BluetoothManager: NSObject {
     
     private(set) var currentDeviceIcon: String = ""
     private(set) var currentDeviceBattery: Int?
+    private(set) var currentDeviceName: String = ""
+    /// `true` = just connected, `false` = just disconnected
+    private(set) var currentDeviceIsConnecting: Bool = true
     
     @MainActor private var currentDevice: IOBluetoothDevice?
+    /// Suppresses the Live Activity during the initial connect burst on app launch.
+    private var startupSuppressActive = true
     
     private var centralManager: CBCentralManager?
     private var authorizationStatus: CBManagerAuthorization = .notDetermined
@@ -78,6 +83,12 @@ final class BluetoothManager: NSObject {
                 try await startBluetoothOperations()
                 await MainActor.run {
                     isInitialized = true
+                }
+                // Swallow the initial connect-notification burst that fires for
+                // already-connected devices when we register the listener.
+                Task {
+                    try? await Task.sleep(nanoseconds: 2_000_000_000) // 2 s window
+                    startupSuppressActive = false
                 }
                 btConnectNotification = IOBluetoothDevice.register(forConnectNotifications: self, selector: #selector(deviceConnected(_:withDevice:)))
                 NotificationCenter.default.addObserver(
@@ -171,9 +182,11 @@ final class BluetoothManager: NSObject {
         return device.deviceClassMajor == kBluetoothDeviceClassMajorAudio ? "headphones" : ""
     }
     
-    private func handleDeviceActivity() async {
+    private func handleDeviceActivity(isConnecting: Bool) async {
+        guard !startupSuppressActive else { return }
+        await MainActor.run { currentDeviceIsConnecting = isConnecting }
         ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.bluetoothDevice)
-        try? await Task.sleep(nanoseconds: 3_000_000_000) // 3 seconds
+        try? await Task.sleep(nanoseconds: 4_000_000_000) // 4 seconds auto-dismiss
         ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.bluetoothDevice)
     }
     
@@ -184,7 +197,8 @@ final class BluetoothManager: NSObject {
                 await updateBatteryLevel(for: device)
                 currentDevice = device
                 currentDeviceIcon = getIconForDevice(device)
-                await handleDeviceActivity()
+                currentDeviceName = device.name ?? ""
+                await handleDeviceActivity(isConnecting: true)
             } catch {
                 log("Failed to update devices: \(error)")
             }
@@ -198,8 +212,9 @@ final class BluetoothManager: NSObject {
         }
         
         Task { @MainActor in
+            currentDeviceName = device.name ?? ""
             removeDevice(device)
-            await handleDeviceActivity()
+            await handleDeviceActivity(isConnecting: false)
         }
     }
     

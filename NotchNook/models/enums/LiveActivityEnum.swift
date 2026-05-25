@@ -22,7 +22,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     
     var isImplemented: Bool {
         switch self {
-            case .bluetoothDevice, .batteryVisualizer:
+            case .batteryVisualizer:
                 false
             default:
                 true
