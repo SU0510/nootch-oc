@@ -39,7 +39,8 @@ class MediaControls {
     private let MRMediaRemoteGetNowPlayingApplicationIsPlaying: MRMediaRemoteGetNowPlayingApplicationIsPlayingFunction
     private let MRMediaRemoteGetNowPlayingApplicationPlaybackState: MRMediaRemoteGetNowPlayingApplicationPlaybackStateFunction
     private let MRMediaRemoteGetNowPlayingApplicationPID: MRMediaRemoteGetNowPlayingApplicationPIDFunction
-    
+    private var mediaRemoteObservers: [NSObjectProtocol] = []
+
     private init() {
         guard let bundle = CFBundleCreate(kCFAllocatorDefault, NSURL(fileURLWithPath: "/System/Library/PrivateFrameworks/MediaRemote.framework")) else {
             fatalError("Failed to load MediaRemote.framework")
@@ -77,13 +78,14 @@ class MediaControls {
         ]
         
         notificationNames.forEach { name in
-            NotificationCenter.default.addObserver(
+            let token = NotificationCenter.default.addObserver(
                 forName: NSNotification.Name(rawValue: name),
                 object: nil,
                 queue: .main
             ) { [weak self] _ in
                 self?.updateMediaInfo()
             }
+            mediaRemoteObservers.append(token)
         }
     }
     
@@ -269,6 +271,10 @@ class MediaControls {
         } else {
             ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
         }
+    }
+
+    deinit {
+        mediaRemoteObservers.forEach { NotificationCenter.default.removeObserver($0) }
     }
 }
 

@@ -70,7 +70,10 @@ struct NoMediaAppsView: View {
             "com.tencent.QQMusicMac",
             "com.netease.163music",
             "com.kugou.player",
-            "com.deezer.DeezerDesktop"
+            "com.deezer.DeezerDesktop",
+            "com.apple.iTunes",
+            "org.videolan.vlc",
+            "com.feishin.feishin"
         ]
         
         func isAppInstalled(_ bundleID: String) -> Bool {

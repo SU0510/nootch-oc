@@ -14,6 +14,10 @@ class VolumeMonitor {
     static let shared = VolumeMonitor()
     var volume: CGFloat = 0.0
 
+    private var monitoredDeviceID: AudioObjectID = kAudioObjectUnknown
+    private var volumeListenerBlock: AudioObjectPropertyListenerBlock?
+    private var defaultDeviceListenerBlock: AudioObjectPropertyListenerBlock?
+
     private init() {
         setupVolumeMonitoring()
     }
@@ -23,32 +27,72 @@ class VolumeMonitor {
     }
 
     private func setupVolumeMonitoring() {
-        let defaultOutputDeviceID = getDefaultOutputDeviceID()
-        var volumeProperty = AudioObjectPropertyAddress(
-            mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
-            mScope: kAudioDevicePropertyScopeOutput,
+        // Listen for default output device changes on the system object
+        let deviceSwitchBlock: AudioObjectPropertyListenerBlock = { [weak self] _, _ in
+            self?.rebindVolumeListener()
+        }
+        defaultDeviceListenerBlock = deviceSwitchBlock
+        var defaultDeviceProperty = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwarePropertyDefaultOutputDevice,
+            mScope: kAudioObjectPropertyScopeGlobal,
             mElement: kAudioObjectPropertyElementMaster
         )
+        AudioObjectAddPropertyListenerBlock(AudioObjectID(kAudioObjectSystemObject), &defaultDeviceProperty, nil, deviceSwitchBlock)
 
-        let callback: AudioObjectPropertyListenerBlock = { [weak self] _, _ in
-            self?.updateVolume()
-        }
+        // Bind the volume listener to the current default device
+        bindVolumeListener(to: getDefaultOutputDeviceID())
 
-        AudioObjectAddPropertyListenerBlock(defaultOutputDeviceID, &volumeProperty, nil, callback)
-        
         // Initial volume fetch
         updateVolume()
     }
 
-    private func removeVolumeMonitoring() {
-        let defaultOutputDeviceID = getDefaultOutputDeviceID()
+    private func bindVolumeListener(to deviceID: AudioObjectID) {
+        let block: AudioObjectPropertyListenerBlock = { [weak self] _, _ in
+            self?.updateVolume()
+        }
+        volumeListenerBlock = block
+        monitoredDeviceID = deviceID
         var volumeProperty = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMaster
         )
+        AudioObjectAddPropertyListenerBlock(deviceID, &volumeProperty, nil, block)
+    }
 
-        AudioObjectRemovePropertyListenerBlock(defaultOutputDeviceID, &volumeProperty, nil, { _, _ in })
+    private func unbindVolumeListener() {
+        guard monitoredDeviceID != kAudioObjectUnknown, let block = volumeListenerBlock else { return }
+        var volumeProperty = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
+            mScope: kAudioDevicePropertyScopeOutput,
+            mElement: kAudioObjectPropertyElementMaster
+        )
+        AudioObjectRemovePropertyListenerBlock(monitoredDeviceID, &volumeProperty, nil, block)
+        volumeListenerBlock = nil
+        monitoredDeviceID = kAudioObjectUnknown
+    }
+
+    private func rebindVolumeListener() {
+        unbindVolumeListener()
+        let newDeviceID = getDefaultOutputDeviceID()
+        bindVolumeListener(to: newDeviceID)
+        updateVolume()
+    }
+
+    private func removeVolumeMonitoring() {
+        // Unregister volume listener
+        unbindVolumeListener()
+
+        // Unregister default-device-change listener
+        if let block = defaultDeviceListenerBlock {
+            var defaultDeviceProperty = AudioObjectPropertyAddress(
+                mSelector: kAudioHardwarePropertyDefaultOutputDevice,
+                mScope: kAudioObjectPropertyScopeGlobal,
+                mElement: kAudioObjectPropertyElementMaster
+            )
+            AudioObjectRemovePropertyListenerBlock(AudioObjectID(kAudioObjectSystemObject), &defaultDeviceProperty, nil, block)
+            defaultDeviceListenerBlock = nil
+        }
     }
 
     private func getDefaultOutputDeviceID() -> AudioObjectID {
