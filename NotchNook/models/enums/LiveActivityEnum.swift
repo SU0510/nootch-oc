@@ -21,12 +21,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     var description: String? { nil }
     
     var isImplemented: Bool {
-        switch self {
-            case .batteryVisualizer:
-                false
-            default:
-                true
-        }
+        true
     }
     
     var icon: String {

@@ -8,6 +8,9 @@
 import Foundation
 
 struct BatteryLiveActivitySettings: Preferences {
-    var notifyOnChargePercentage: UInt = 5
-    var notifyTimeLeftOnBattery: UInt = 30
+    var lowBatteryThreshold: Int = 20
+    var showWhenPluggedIn: Bool = true
+    var showWhenUnplugged: Bool = true
+    var showWhenFullyCharged: Bool = true
+    var showLowBatteryWarning: Bool = true
 }

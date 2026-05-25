@@ -10,41 +10,36 @@ import Settings
 import Defaults
 
 struct BatteryLiveActivitySettingsView: View {
-    @Default(.batteryLiveActivitySettings) private var batteryLiveActivitySettings
-    
+    @Default(.batteryLiveActivitySettings) private var settings
+
     var body: some View {
-        let contentMaxW: Double = 400
-        // TODO: arrumar
-        // TODO: essas opções tem que ser habilitáveis
-        Settings.Container(contentWidth: 520.0, minimumLabelWidth: 200) {
-            Settings.Section(title: String(localized: "Notify Charge Increase on:"), bottomDivider: true) {
-                HStack {
-                    Text("\(batteryLiveActivitySettings.notifyOnChargePercentage)%")
-                        .font(.headline)
-                        .frame(maxWidth: contentMaxW * 0.2, alignment: .leading)
-                    
-                    Slider(value: Binding(get: {
-                        Double(batteryLiveActivitySettings.notifyOnChargePercentage)
-                    }, set: { newValue in
-                        batteryLiveActivitySettings.notifyOnChargePercentage = UInt(newValue)
-                    }), in: 1...100, step: 1)
-                    .frame(maxWidth: contentMaxW * 0.8)
-                }
+        Settings.Container(contentWidth: 520.0, minimumLabelWidth: 240) {
+            Settings.Section(title: String(localized: "Show when plugged in"), bottomDivider: true) {
+                Toggle("", isOn: $settings.showWhenPluggedIn)
+                    .labelsHidden()
             }
-            
-            Settings.Section(title: String(localized: "Time Left Notification every:"), bottomDivider: true) {
-                
+            Settings.Section(title: String(localized: "Show when unplugged"), bottomDivider: true) {
+                Toggle("", isOn: $settings.showWhenUnplugged)
+                    .labelsHidden()
+            }
+            Settings.Section(title: String(localized: "Show when fully charged"), bottomDivider: true) {
+                Toggle("", isOn: $settings.showWhenFullyCharged)
+                    .labelsHidden()
+            }
+            Settings.Section(title: String(localized: "Show low battery warning"), bottomDivider: true) {
+                Toggle("", isOn: $settings.showLowBatteryWarning)
+                    .labelsHidden()
+            }
+            Settings.Section(title: String(localized: "Low battery threshold"), bottomDivider: false) {
                 HStack {
-                    Text("\(Int(batteryLiveActivitySettings.notifyTimeLeftOnBattery)) minutes")
-                        .font(.headline)
-                        .frame(maxWidth: contentMaxW * 0.3, alignment: .leading)
-                    
-                    Slider(value: Binding(get: {
-                        Double(batteryLiveActivitySettings.notifyTimeLeftOnBattery)
-                    }, set: { newValue in
-                        batteryLiveActivitySettings.notifyTimeLeftOnBattery = UInt(newValue)
-                    }), in: 0...100, step: 1)
-                    .frame(maxWidth: contentMaxW * 0.7)
+                    Text("\(settings.lowBatteryThreshold)%")
+                        .monospacedDigit()
+                        .frame(width: 40, alignment: .leading)
+                    Slider(value: Binding(
+                        get: { Double(settings.lowBatteryThreshold) },
+                        set: { settings.lowBatteryThreshold = Int($0) }
+                    ), in: 5...50, step: 5)
+                    .frame(maxWidth: 200)
                 }
             }
         }

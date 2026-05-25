@@ -30,7 +30,9 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
                     // TODO: uncomment when layout is sorted out
 //                case .batteryVisualizer:
 //                    BatteryLiveActivitySettingsView()
-                case .bluetoothDevice, .updateAvailable, .batteryVisualizer:
+                case .batteryVisualizer:
+                    BatteryLiveActivitySettingsView()
+                case .bluetoothDevice, .updateAvailable:
                     NoOptionsSettingsView()
             }
         }
