@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct TrayFilesScrollView: View {
     @Environment(\.tray) private var tray: Tray
 
@@ -20,8 +18,13 @@ struct TrayFilesScrollView: View {
         GeometryReader { geo in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 4) {
-                    ForEach(files) { file in
-                        TrayFileView(file: file, isSelected: selectedFiles.contains(file))
+                    ForEach(tray.trayItems, id: \.id) { item in
+                        switch item {
+                        case .single(let file):
+                            TrayFileView(file: file, isSelected: selectedFiles.contains(file))
+                        case .stack(let id, let stackFiles, let name):
+                            TrayStackView(stackID: id, files: stackFiles, name: name)
+                        }
                     }
                 }
                 .padding(.all, 8)

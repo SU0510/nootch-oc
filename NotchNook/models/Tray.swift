@@ -77,6 +77,72 @@ class Tray {
         NSEvent.modifierFlags.contains(.shift)
     }
     
+    // MARK: - Stack helpers
+
+    /// A logical tray item: either a single ungrouped file or a named stack of files.
+    enum TrayItem: Identifiable {
+        case single(TrayFile)
+        case stack(id: UUID, files: [TrayFile], name: String)
+
+        var id: AnyHashable {
+            switch self {
+            case .single(let f): return AnyHashable(f.id)
+            case .stack(let id, _, _): return AnyHashable(id)
+            }
+        }
+    }
+
+    /// Derived list of tray items used by the scroll view. Preserves the insertion order
+    /// of the first file in each group so the visual order is stable.
+    var trayItems: [TrayItem] {
+        var seen = Set<UUID>()
+        var result: [TrayItem] = []
+        // Collect files in their current order, grouping by stackID.
+        var stackBuckets: [UUID: [TrayFile]] = [:]
+        var stackOrder: [UUID] = []
+        for file in files {
+            if let sid = file.stackID {
+                if stackBuckets[sid] == nil {
+                    stackBuckets[sid] = []
+                    stackOrder.append(sid)
+                }
+                stackBuckets[sid]!.append(file)
+            }
+        }
+
+        for file in files {
+            if let sid = file.stackID {
+                guard !seen.contains(sid) else { continue }
+                seen.insert(sid)
+                let members = stackBuckets[sid] ?? []
+                result.append(.stack(id: sid, files: members, name: stackName(for: members)))
+            } else {
+                result.append(.single(file))
+            }
+        }
+        return result
+    }
+
+    /// Auto-generate a human-readable stack title.
+    /// Rules: shared extension → "PDFs · 3"; shared parent dir → "FolderName · 3"; else "3 files".
+    private func stackName(for stackFiles: [TrayFile]) -> String {
+        let count = stackFiles.count
+        guard count > 0 else { return "0 files" }
+
+        let extensions = Set(stackFiles.map { $0.url.pathExtension.lowercased() }.filter { !$0.isEmpty })
+        if extensions.count == 1, let ext = extensions.first {
+            let label = ext.uppercased() + "s"
+            return "\(label) · \(count)"
+        }
+
+        let parents = Set(stackFiles.map { $0.url.deletingLastPathComponent().lastPathComponent })
+        if parents.count == 1, let parent = parents.first, !parent.isEmpty, parent != "/" {
+            return "\(parent) · \(count)"
+        }
+
+        return "\(count) files"
+    }
+
     // MARK: - Persistence helpers
 
     /// URL of the JSON state file that records which files live in the tray dir.
@@ -89,16 +155,21 @@ class Tray {
     }
 
     /// Codable envelope for one tray file entry in the JSON state.
+    /// stackID was added in the Wave 3 multi-drop commit; old records without this key
+    /// decode safely because it is optional (nil by default), so existing tray_state.json
+    /// files continue to load without any migration.
     private struct TrayFileRecord: Codable {
         let url: URL
         let addedAt: Date
         let originalName: String
+        // Optional: absent in records written before stacks were introduced → decodes as nil.
+        var stackID: UUID?
     }
 
     /// Persist current file list. Called after every mutation.
     private func persist() {
         guard let dest = stateFileURL else { return }
-        let records = files.map { TrayFileRecord(url: $0.url, addedAt: $0.addedAt, originalName: $0.name) }
+        let records = files.map { TrayFileRecord(url: $0.url, addedAt: $0.addedAt, originalName: $0.name, stackID: $0.stackID) }
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
@@ -125,7 +196,7 @@ class Tray {
                 return exists
             }
             // List is typically < 100 files; safe to assign inline on the calling queue (main).
-            self.files = valid.map { TrayFile(url: $0.url) }
+            self.files = valid.map { TrayFile(url: $0.url, stackID: $0.stackID) }
         } catch {
             print("[Tray] Failed to load tray state: \(error)")
         }
@@ -444,7 +515,10 @@ class Tray {
             }
         }
 
-        let newFiles = resolvedURLs.concurrentMap { TrayFile(url: $0) }
+        // If 2+ files arrive in a single drop gesture, assign them all the same stackID
+        // so they render as a collapsed stack chip in the tray UI.
+        let dropStackID: UUID? = resolvedURLs.count >= 2 ? UUID() : nil
+        let newFiles = resolvedURLs.concurrentMap { TrayFile(url: $0, stackID: dropStackID) }
         for file in newFiles { self.addFile(file) }
     }
     

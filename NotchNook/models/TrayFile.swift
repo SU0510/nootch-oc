@@ -16,6 +16,15 @@ class TrayFile {
     private(set) var inode: UInt64?
     private(set) var nameTruncated: String
     
+    /// Stable identity used both for SwiftUI ForEach and as the Identifiable.id.
+    let id: UUID
+
+    /// When non-nil, this file was dropped as part of a multi-file gesture and belongs
+    /// to the visual stack identified by this UUID. Files sharing the same stackID are
+    /// rendered as a single collapsed stack chip. Assigned by Tray.addFilesFromURLs
+    /// when >= 2 files arrive in one call.
+    var stackID: UUID?
+
     var name: String {
         didSet {
             guard oldValue != name else { return }
@@ -30,8 +39,10 @@ class TrayFile {
     private var fileSystemSource: DispatchSourceFileSystemObject?
     private var fileDescriptor: Int32 = -1
     
-    init(url: URL) {
+    init(url: URL, stackID: UUID? = nil) {
         self.url = url
+        self.id = UUID()
+        self.stackID = stackID
         image = loadImgFromURL(url) ?? iconForFile(at: url)
         addedAt = Date()
         name = url.lastPathComponent
@@ -121,6 +132,7 @@ extension TrayFile: Hashable {
 }
 
 extension TrayFile: Identifiable {
+    // id is declared on the class itself (UUID).
     static func == (lhs: TrayFile, rhs: TrayFile) -> Bool {
         lhs.inode == rhs.inode
     }
