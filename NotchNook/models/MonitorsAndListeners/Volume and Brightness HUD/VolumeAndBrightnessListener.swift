@@ -105,17 +105,24 @@ class VolumeAndBrightnessListener: NSObject, MediaKeyTapDelegate {
             object: nil,
             queue: .main
         ) { _ in
-            print(Date(), ": System wakes up")
-            HUDManager.disableSystemHUD()
+            print(Date(), ": System wakes up — scheduling OSD suppression in 1s")
+            // Delay by 1s so launchd has time to relaunch OSDUIHelper after wake
+            // before we STOP it. Calling too early means we STOP a stale PID and
+            // the fresh relaunch beats us.
+            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1.0) {
+                HUDManager.disableSystemHUD()
+            }
         }
-        
+
         screenWakeUpMonitor = NSWorkspace.shared.notificationCenter.addObserver(
             forName: NSWorkspace.screensDidWakeNotification,
             object: nil,
             queue: .main
         ) { _ in
-            print(Date(), ": Screen wakes up")
-            HUDManager.disableSystemHUD()
+            print(Date(), ": Screen wakes up — scheduling OSD suppression in 1s")
+            DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1.0) {
+                HUDManager.disableSystemHUD()
+            }
         }
     }
     
