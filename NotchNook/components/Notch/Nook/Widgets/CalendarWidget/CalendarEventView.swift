@@ -78,7 +78,7 @@ struct CalendarEventView: View {
                     +
                     Text(" " + (event.title ?? ""))
                 } else {
-                    Text(event.title)
+                    Text(event.title ?? "")
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
