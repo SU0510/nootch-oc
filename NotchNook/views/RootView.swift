@@ -23,6 +23,7 @@ struct RootView: View {
     var showChangelog: () -> ()
     var notchSize: CGSize
     var notchNook: NotchNookState
+    var makeKeyWindow: () -> ()
     var resignFirstResponder: () -> ()
     var isEditingText: Bool
     var expandedNoteManager: ExpandedNoteManager
@@ -84,6 +85,7 @@ struct RootView: View {
             .environment(\.showChangelog, showChangelog)
             .environment(\.notchSize, notchSize)
             .environment(\.notchNook, notchNook)
+            .environment(\.makeKeyWindow, makeKeyWindow)
             .environment(\.resignFirstResponder, resignFirstResponder)
             .environment(\.isEditingText, isEditingText)
             .environment(\.expandedNoteManager, expandedNoteManager)

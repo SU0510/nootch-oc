@@ -234,6 +234,7 @@
 		3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */; };
 		3AE4054F2C2CF75600E8D927 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE4054E2C2CF75600E8D927 /* RootView.swift */; };
 		3AE405512C2D499300E8D927 /* RichToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE405502C2D499300E8D927 /* RichToolbarView.swift */; };
+		3AF303012FCB0DF10083630C /* MakeKeyWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF303002FCB0DF10083630C /* MakeKeyWindowKey.swift */; };
 		BB2942302C6A602300616445 /* FixedWidthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */; };
 		BB2A5E572C006B9D008F3081 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A5E562C006B9D008F3081 /* Defaults.swift */; };
 		BB3D6BE02C51483700E3B0C5 /* VolumeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */; };
@@ -664,6 +665,7 @@
 		3AE405462C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3AE4054E2C2CF75600E8D927 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3AE405502C2D499300E8D927 /* RichToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichToolbarView.swift; sourceTree = "<group>"; };
+		3AF303002FCB0DF10083630C /* MakeKeyWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeKeyWindowKey.swift; sourceTree = "<group>"; };
 		BB29422F2C6A601F00616445 /* FixedWidthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthTextField.swift; sourceTree = "<group>"; };
 		BB2A5E562C006B9D008F3081 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		BB3D6BDF2C51483300E3B0C5 /* VolumeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeIndicatorView.swift; sourceTree = "<group>"; };
@@ -1033,6 +1035,7 @@
 				3A7C05DC2C59E2B700435D99 /* NookWidgetsWidthKey.swift */,
 				3623EA512C75312C0055C1BF /* ShowIndicatorKey.swift */,
 				36BFB9262C7F61C100241325 /* CameraManagerKey.swift */,
+				3AF303002FCB0DF10083630C /* MakeKeyWindowKey.swift */,
 			);
 			path = EnvironmentValues;
 			sourceTree = "<group>";
@@ -2519,6 +2522,7 @@
 				3A20F1792C2F8B2F006A7E1F /* LockedIndicatorModifier.swift in Sources */,
 				EC8D601A2BFC294400E67ECC /* SpotifyApplication.swift in Sources */,
 				3A1691CA2C2FB1C90014C326 /* OpenSettingsKey.swift in Sources */,
+				3AF303012FCB0DF10083630C /* MakeKeyWindowKey.swift in Sources */,
 				EC14B5D12C07AB2A000FC6B6 /* DropAreaSettingsView.swift in Sources */,
 				3A0C50242C534EBF0003867F /* VolumeIndicatorBarCapsuleView.swift in Sources */,
 				3A8507772C4B5A0C0092B135 /* HorizontalCometShape.swift in Sources */,

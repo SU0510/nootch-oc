@@ -197,6 +197,7 @@ class WindowsManager {
         // Closures capture hostingView — forward-declared here, assigned after creation.
         var enableTextEditing: (_ id: UUID) -> () = { _ in }
         var updateEditingTextState: (_ id: UUID, _ isEditing: Bool) -> () = { _, _ in }
+        var makeKey: () -> () = {}
 
 #if !SETAPP_BUILD
         let hostingView = AcceptingFirstClickHostingView(
@@ -211,6 +212,7 @@ class WindowsManager {
                 showChangelog: showChangelogViewWindow,
                 notchSize: notchSize,
                 notchNook: notchNook,
+                makeKeyWindow: { makeKey() },
                 resignFirstResponder: {},
                 isEditingText: false,
                 expandedNoteManager: expandedNoteManager,
@@ -229,6 +231,7 @@ class WindowsManager {
                 showChangelog: showChangelogViewWindow,
                 notchSize: notchSize,
                 notchNook: notchNook,
+                makeKeyWindow: { makeKey() },
                 resignFirstResponder: {},
                 isEditingText: false,
                 expandedNoteManager: expandedNoteManager,
@@ -274,6 +277,12 @@ class WindowsManager {
         // (I-beam over text inputs) and ensures first-click focus works on RichTextKit's NSTextView.
         newWindow.becomesKeyOnlyIfNeeded = false
         newWindow.worksWhenModal = true
+
+        // Assign makeKey now that newWindow exists; the closure passed to RootView captures
+        // makeKey by reference (via the { makeKey() } wrapper), so this retroactively wires it.
+        makeKey = { [weak newWindow] in
+            newWindow?.makeKey()
+        }
 
         newWindow.titleVisibility = .hidden
         newWindow.titlebarAppearsTransparent = true

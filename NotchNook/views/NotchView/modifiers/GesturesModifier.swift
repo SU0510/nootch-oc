@@ -19,6 +19,7 @@ extension NotchView {
         @Environment(\.notchNook) internal var notchNook
         @Environment(\.isEditingText) internal var isEditingText
         @Environment(\.resignFirstResponder) internal var resignFirstResponder
+        @Environment(\.makeKeyWindow) private var makeKeyWindow
         @Environment(\.openSettings) internal var openSettings
         @Environment(\.openNotch) internal var openNotch
         @Environment(\.closeNotch) internal var closeNotch
@@ -55,6 +56,9 @@ extension NotchView {
             if license == nil || state.trialOver { checkTrialOver() }
             
             if hovering {
+                // Claim key status unconditionally on hover-enter so the panel is already
+                // key by the time a click arrives — prevents first-click being absorbed.
+                makeKeyWindow()
                 if notchNook.mode == .closed {
 #if SETAPP_BUILD
                     SetappManager.shared.reportUsageEvent(.userInteraction)
@@ -67,9 +71,8 @@ extension NotchView {
                             state.hovering = true
                         }
                     }
-                } else {
-                    // NSPanel handles key focus natively on hover; nothing to do here.
                 }
+                // (key claim happens unconditionally on hover-enter above)
             } else {
                 if (generalSettings.preventUnhoverCloseWhenTyping && isEditingText) || notchNook.locked { return }
                 closeNotch(false, true)
