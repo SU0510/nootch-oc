@@ -10,8 +10,6 @@ import SwiftUI
 
 extension NotchView.EnvironmentsModifier {
     func openNotch(in newMode: NotchNookState.NotchMode = .nook) {
-        canBecomeKey.wrappedValue = true
-        makeKeyWindow()
         withAnimation(NotchView.animation) {
             state.hovering = true
             state.cancelPan = true

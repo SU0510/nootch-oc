@@ -14,7 +14,6 @@ struct RootView: View {
     var displayKitId: UUID
     var enableTextEditingForWindowWith: (_ id: UUID) -> ()
     var updateEditingTextStateFor: (_ id: UUID, _ isEditing: Bool) -> ()
-    var canBecomeKey: Binding<Bool>?
     var showSettings: (SettingsLib.PaneIdentifier?) -> ()
     var screenSize: CGSize
     var screen: NSScreen
@@ -24,18 +23,12 @@ struct RootView: View {
     var showChangelog: () -> ()
     var notchSize: CGSize
     var notchNook: NotchNookState
-    var focusFrontmostWindow: () -> ()
-    var makeKeyWindow: (() -> ())?
     var resignFirstResponder: () -> ()
-    var preventNextFocusFrontmostWindow: () -> ()
     var isEditingText: Bool
     var isKeyWindow: Bool
     var expandedNoteManager: ExpandedNoteManager
     var showIndicator: (Indicator?, _ onAllScreens: Bool) -> Void
-        
-    @Environment(\.makeKeyWindow) private var defaultBecomeKeyWindow
-    @Environment(\.canBecomeKey) private var defaultCanBecomeKey
-    
+
     @Default(.generalSettings) private var generalSettings
     @Default(.gestureControlSettings) private var gestureControlSettings
     @Default(.liveActivitiesSettings) private var liveActivitiesSettings
@@ -92,15 +85,11 @@ struct RootView: View {
             .environment(\.showChangelog, showChangelog)
             .environment(\.notchSize, notchSize)
             .environment(\.notchNook, notchNook)
-            .environment(\.focusFrontmostWindow, focusFrontmostWindow)
-            .environment(\.makeKeyWindow, makeKeyWindow ?? defaultBecomeKeyWindow)
             .environment(\.resignFirstResponder, resignFirstResponder)
             .environment(\.isEditingText, isEditingText)
             .environment(\.expandedNoteManager, expandedNoteManager)
             .environment(\.displayKitId, displayKitId)
             .environment(\.isKeyWindow, isKeyWindow)
-            .environment(\.preventNextFocusFrontmostWindow, preventNextFocusFrontmostWindow)
-            .environment(\.canBecomeKey, canBecomeKey ?? defaultCanBecomeKey)
             .modelContainer(sharedModelContainer)
             .environment(\.showIndicator, showIndicator)
         // Defaults

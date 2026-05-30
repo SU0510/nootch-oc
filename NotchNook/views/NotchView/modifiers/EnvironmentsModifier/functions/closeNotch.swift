@@ -16,8 +16,6 @@ extension NotchView.EnvironmentsModifier {
             }
         }
         if state.cancelPan && notchNook.mode == .closed { return }
-        canBecomeKey.wrappedValue = false
-        focusFrontmostWindow()
         if notchNook.mode != .closed {
             state.animatingBack = true
         }

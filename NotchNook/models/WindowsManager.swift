@@ -25,7 +25,6 @@ class WindowsManager {
     private var sparkleManager: SparkleManager
 #endif
     private var changelogViewWindow: SwiftUIWindow<ChangelogView>?
-    private var preventNextFocusFrontmostWindow = false
     private var expandedNoteManager = ExpandedNoteManager()
     private var expandedNoteWindowController: NSWindowController?
     private var updateWindowsWorkItem: DispatchWorkItem?
@@ -122,7 +121,6 @@ class WindowsManager {
         let windowController = NSWindowController(window: newWindow)
         
         expandedNoteWindowController = windowController
-        preventNextFocusFrontmostWindow = true
         NSApp.setActivationPolicy(.regular)
         
         if let windowOrigin = expandedNoteManager.windowOrigin {
@@ -179,12 +177,16 @@ class WindowsManager {
         let notchNook = NotchNookState()
         
         
+        // Closures capture hostingView — forward-declared here, assigned after creation.
+        var enableTextEditing: (_ id: UUID) -> () = { _ in }
+        var updateEditingTextState: (_ id: UUID, _ isEditing: Bool) -> () = { _, _ in }
+
 #if !SETAPP_BUILD
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
-                displayKitId: displayKitId, 
-                enableTextEditingForWindowWith: self.enableTextEditingForWindow,
-                updateEditingTextStateFor: self.updateEditingTextState,
+                displayKitId: displayKitId,
+                enableTextEditingForWindowWith: { id in enableTextEditing(id) },
+                updateEditingTextStateFor: { id, editing in updateEditingTextState(id, editing) },
                 showSettings: showSettings,
                 screenSize: screenFrame.size,
                 screen: screen,
@@ -192,9 +194,7 @@ class WindowsManager {
                 showChangelog: showChangelogViewWindow,
                 notchSize: notchSize,
                 notchNook: notchNook,
-                focusFrontmostWindow: focusFrontmostWindow,
                 resignFirstResponder: {},
-                preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
                 isEditingText: false,
                 isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
@@ -205,17 +205,15 @@ class WindowsManager {
         let hostingView = AcceptingFirstClickHostingView(
             rootView: RootView(
                 displayKitId: displayKitId,
-                enableTextEditingForWindowWith: self.enableTextEditingForWindow,
-                updateEditingTextStateFor: self.updateEditingTextState,
+                enableTextEditingForWindowWith: { id in enableTextEditing(id) },
+                updateEditingTextStateFor: { id, editing in updateEditingTextState(id, editing) },
                 showSettings: showSettings,
                 screenSize: screenFrame.size,
                 screen: screen,
                 showChangelog: showChangelogViewWindow,
                 notchSize: notchSize,
                 notchNook: notchNook,
-                focusFrontmostWindow: focusFrontmostWindow,
                 resignFirstResponder: {},
-                preventNextFocusFrontmostWindow: { self.preventNextFocusFrontmostWindow = true },
                 isEditingText: false,
                 isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
@@ -223,6 +221,15 @@ class WindowsManager {
             )
         )
 #endif
+
+        // Wire up isEditingText tracking now that hostingView exists.
+        // NSPanel handles focus natively; these closures only update the SwiftUI state.
+        enableTextEditing = { [weak hostingView] _ in
+            hostingView?.rootView.isEditingText = true
+        }
+        updateEditingTextState = { [weak hostingView] _, isEditing in
+            hostingView?.rootView.isEditingText = isEditing
+        }
         
         
         let size = hostingView.intrinsicContentSize
@@ -233,43 +240,31 @@ class WindowsManager {
                     y: screenFrame.height - size.height + 1
                 ),
                 size: size),
-            styleMask: [.borderless],
+            styleMask: [.nonactivatingPanel, .borderless],
             backing: .buffered, defer: false,
             screen: screen
         )
-        
-        newWindow.firstResponderCb = { isTheWindow in
-            hostingView.rootView.isEditingText = !isTheWindow
-        }
-        newWindow.becomeKeyCb = {
-            hostingView.rootView.isKeyWindow = true
-        }
-        newWindow.resignedKeyCb = {
-            hostingView.rootView.isKeyWindow = false
-        }
-        newWindow.firstResponderCb = { isTheWindow in
-            hostingView.rootView.isEditingText = !isTheWindow
-        }
-        newWindow.isMovable = false
+        newWindow.level = .statusBar
         newWindow.collectionBehavior = [
             .stationary, .canJoinAllSpaces, .canJoinAllApplications, .fullScreenAuxiliary, .ignoresCycle
         ]
+        newWindow.isOpaque = false
         newWindow.backgroundColor = NSColor.clear
         newWindow.hasShadow = false
+        newWindow.isMovable = false
+        newWindow.isReleasedWhenClosed = false
+        newWindow.hidesOnDeactivate = false
+        // NSPanel: become key only when a field needs it; never steals app focus otherwise.
+        newWindow.becomesKeyOnlyIfNeeded = true
+        newWindow.worksWhenModal = true
+
         newWindow.titleVisibility = .hidden
         newWindow.titlebarAppearsTransparent = true
-        newWindow.level = .statusBar
-        newWindow.isOpaque = false
-        
+
         newWindow.contentView = hostingView
-        
+
         let newWindowController = NSWindowController(window: newWindow)
 
-        hostingView.rootView.makeKeyWindow = {
-            NSApp.activate()
-            newWindow.makeKey()
-        }
-        
         hostingView.rootView.resignFirstResponder = {
             _ = newWindow.makeFirstResponder(nil)
         }
@@ -295,68 +290,6 @@ class WindowsManager {
             guard let mainDisplayKit = displayKits.first(where: { $0.screen == NSScreen.main }) else { return }
             guard let hostingView = mainDisplayKit.windowController.window?.contentView as? AcceptingFirstClickHostingView<RootView> else { return }
             hostingView.rootView.notchNook.indicator = indicator
-        }
-    }
-    
-    func getMostUpfrontWindowID() -> CGWindowID? {
-        guard let info = CGWindowListCopyWindowInfo([.optionOnScreenOnly], kCGNullWindowID) as? [[String: Any]] else {
-            return nil
-        }
-        
-        let windows = info.compactMap { window -> (CGWindowID, pid_t)? in
-            guard let windowLayer = window[kCGWindowLayer as String] as? Int,
-                  windowLayer == 0,
-                  let windowOwnerPID = window[kCGWindowOwnerPID as String] as? pid_t,
-                  let windowNumber = window[kCGWindowNumber as String] as? CGWindowID else { return nil }
-            return (windowNumber, windowOwnerPID)
-        }
-        
-        if let mostUpfrontWindow = windows.first {
-            return mostUpfrontWindow.0
-        }
-        
-        return nil
-    }
-    
-    func focusFrontmostWindow() {
-        if preventNextFocusFrontmostWindow {
-            preventNextFocusFrontmostWindow = false
-            return
-        }
-        // Prevent refocusing of previous app if settings screen is open
-        if settingsWindowController?.window?.isVisible ?? false {
-            return
-        }
-        
-        guard let windowID = getMostUpfrontWindowID() else {
-            return
-        }
-        let options = CGWindowListOption(arrayLiteral: .optionIncludingWindow, .excludeDesktopElements)
-        let windowList = CGWindowListCopyWindowInfo(options, windowID) as? [[String: Any]]
-        guard let windowInfo = windowList?.first,
-              let pid = windowInfo[kCGWindowOwnerPID as String] as? pid_t else {
-            return
-        }
-        
-        let app = NSRunningApplication(processIdentifier: pid)
-        app?.activate(options: [])
-    }
-    
-    func enableTextEditingForWindow(with id: UUID) {
-        if let displayKit = displayKits.first(where: { $0.id == id }),
-           let window = displayKit.windowController.window as? ForceFocusableWindow {
-            window.canThisWindowBecomeKeyWindow = true
-            window.makeKeyAndOrderFront(nil)
-        }
-    }
-    
-    func updateEditingTextState(for displayKitId: UUID, isEditing: Bool) {
-        if let displayKit = displayKits.first(where: { $0.id == displayKitId }),
-           let window = displayKit.windowController.window as? ForceFocusableWindow {
-            window.canThisWindowBecomeKeyWindow = isEditing
-            if let hostingView = window.contentView as? AcceptingFirstClickHostingView<RootView> {
-                hostingView.rootView.isEditingText = isEditing
-            }
         }
     }
     
@@ -421,7 +354,6 @@ class WindowsManager {
                 
                 if let hostingView = window.contentView as? AcceptingFirstClickHostingView<RootView> {
                     hostingView.rootView.resignFirstResponder = {}
-                    hostingView.rootView.makeKeyWindow = {}
                 }
                 window.contentView = nil
             }

@@ -102,9 +102,7 @@
 		3A1691DA2C2FB2110014C326 /* NotchSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691D92C2FB2110014C326 /* NotchSizeKey.swift */; };
 		3A1691DC2C2FB2160014C326 /* TrayKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691DB2C2FB2160014C326 /* TrayKey.swift */; };
 		3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691DD2C2FB21B0014C326 /* NotchNookKey.swift */; };
-		3A1691E02C2FB2220014C326 /* CanBecomeKeyBindingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691DF2C2FB2220014C326 /* CanBecomeKeyBindingKey.swift */; };
 		3A1691E22C2FB2370014C326 /* FocusFrontmostWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E12C2FB2370014C326 /* FocusFrontmostWindowKey.swift */; };
-		3A1691E42C2FB23E0014C326 /* MakeKeyWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E32C2FB23E0014C326 /* MakeKeyWindowKey.swift */; };
 		3A1691E62C2FB2430014C326 /* ResignFirstResponderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E52C2FB2430014C326 /* ResignFirstResponderKey.swift */; };
 		3A1691E82C2FB2490014C326 /* IsEditingTextKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E72C2FB2490014C326 /* IsEditingTextKey.swift */; };
 		3A1691EA2C2FB24F0014C326 /* IsKeyWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E92C2FB24F0014C326 /* IsKeyWindowKey.swift */; };
@@ -543,9 +541,7 @@
 		3A1691D92C2FB2110014C326 /* NotchSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchSizeKey.swift; sourceTree = "<group>"; };
 		3A1691DB2C2FB2160014C326 /* TrayKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayKey.swift; sourceTree = "<group>"; };
 		3A1691DD2C2FB21B0014C326 /* NotchNookKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchNookKey.swift; sourceTree = "<group>"; };
-		3A1691DF2C2FB2220014C326 /* CanBecomeKeyBindingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanBecomeKeyBindingKey.swift; sourceTree = "<group>"; };
 		3A1691E12C2FB2370014C326 /* FocusFrontmostWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusFrontmostWindowKey.swift; sourceTree = "<group>"; };
-		3A1691E32C2FB23E0014C326 /* MakeKeyWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeKeyWindowKey.swift; sourceTree = "<group>"; };
 		3A1691E52C2FB2430014C326 /* ResignFirstResponderKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignFirstResponderKey.swift; sourceTree = "<group>"; };
 		3A1691E72C2FB2490014C326 /* IsEditingTextKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEditingTextKey.swift; sourceTree = "<group>"; };
 		3A1691E92C2FB24F0014C326 /* IsKeyWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsKeyWindowKey.swift; sourceTree = "<group>"; };
@@ -1031,9 +1027,7 @@
 				3A1691D92C2FB2110014C326 /* NotchSizeKey.swift */,
 				3A1691DB2C2FB2160014C326 /* TrayKey.swift */,
 				3A1691DD2C2FB21B0014C326 /* NotchNookKey.swift */,
-				3A1691DF2C2FB2220014C326 /* CanBecomeKeyBindingKey.swift */,
 				3A1691E12C2FB2370014C326 /* FocusFrontmostWindowKey.swift */,
-				3A1691E32C2FB23E0014C326 /* MakeKeyWindowKey.swift */,
 				3A1691E52C2FB2430014C326 /* ResignFirstResponderKey.swift */,
 				3A1691E72C2FB2490014C326 /* IsEditingTextKey.swift */,
 				3A1691E92C2FB24F0014C326 /* IsKeyWindowKey.swift */,
@@ -2235,7 +2229,6 @@
 				EC13C6E02C0918B800B45C6E /* Color.swift in Sources */,
 				3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */,
 				3A9E6C032C3AABAC009948F5 /* GIFImageView.swift in Sources */,
-				3A1691E42C2FB23E0014C326 /* MakeKeyWindowKey.swift in Sources */,
 				3A8AA1872C2FEFE100D727DA /* shareToAppleNotes.swift in Sources */,
 				EC47FCB52C0BB2C000591811 /* StartButton.swift in Sources */,
 				3A20F16E2C2F845F006A7E1F /* optionDescription.swift in Sources */,
@@ -2363,7 +2356,6 @@
 				3A7C05E32C59F2D000435D99 /* ScrollableDaysMonthOverlayView.swift in Sources */,
 				3A0C50262C535FB50003867F /* VolumeIndicatorSpeakerWaveShape.swift in Sources */,
 				3A7A51CC2C364C73009F9B50 /* BetterWindow.swift in Sources */,
-				3A1691E02C2FB2220014C326 /* CanBecomeKeyBindingKey.swift in Sources */,
 				EC47FCC12C0BF3ED00591811 /* AppRecommendation.swift in Sources */,
 				C194313D2C7287910088F905 /* BatteryVisualizerLiveActivitySettingsView.swift in Sources */,
 				EC2DD1EC2C02E8B0001FD54E /* NoMediaAppsView.swift in Sources */,

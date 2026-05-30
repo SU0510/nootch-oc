@@ -21,7 +21,6 @@ extension NotchView {
         @Environment(\.resignFirstResponder) internal var resignFirstResponder
         @Environment(\.openSettings) internal var openSettings
         @Environment(\.openNotch) internal var openNotch
-        @Environment(\.makeKeyWindow) internal var makeKeyWindow
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.tray) internal var tray
         @Environment(\.checkTrialOver) internal var checkTrialOver
@@ -69,7 +68,7 @@ extension NotchView {
                         }
                     }
                 } else {
-                    makeKeyWindow()
+                    // NSPanel handles key focus natively on hover; nothing to do here.
                 }
             } else {
                 if (generalSettings.preventUnhoverCloseWhenTyping && isEditingText) || notchNook.locked { return }

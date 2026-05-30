@@ -35,7 +35,6 @@ struct NoteView: View {
     @Environment(\.enableTextEditingForWindowWith) private var enableTextEditingForWindowWith
     @Environment(\.updateEditingTextStateFor) private var updateEditingTextStateFor
     @Environment(\.displayKitId) private var displayKitId
-    @Environment(\.makeKeyWindow) private var makeKeyWindow
     @Environment(\.notesWidgetSettings) private var settings
     
     init(note: Note, isSelected: Bool, width: Double, widgetArrPosition: ArrayPosition, ns: Namespace.ID) {
@@ -172,6 +171,5 @@ struct NoteView: View {
     
     private func enableTextEditing() {
         enableTextEditingForWindowWith(displayKitId)
-        makeKeyWindow()
     }
 }

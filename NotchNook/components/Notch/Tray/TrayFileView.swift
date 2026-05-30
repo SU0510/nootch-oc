@@ -21,7 +21,6 @@ struct TrayFileView: View {
     @Environment(\.enableTextEditingForWindowWith) private var enableTextEditingForWindowWith
     @Environment(\.updateEditingTextStateFor) private var updateEditingTextStateFor
     @Environment(\.displayKitId) private var displayKitId
-    @Environment(\.makeKeyWindow) private var makeKeyWindow
     
     var selectedFiles: [TrayFile] {
         tray.selectedFiles.isEmpty ? [file] : tray.selectedFiles
@@ -154,7 +153,6 @@ struct TrayFileView: View {
     private func enableTextEditing() {
         doAfter (0.1) {
             enableTextEditingForWindowWith(displayKitId)
-            makeKeyWindow()
             isTextFieldFocused = true
         }
     }
