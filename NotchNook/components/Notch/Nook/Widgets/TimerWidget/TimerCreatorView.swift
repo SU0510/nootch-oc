@@ -39,7 +39,9 @@ struct TimerCreatorView: View {
                     }
                     .buttonStyle(PresetButtonStyle())
                 }
+                Spacer(minLength: 0)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
 
             // Label field
             TextField(prefs.defaultLabel.isEmpty ? "Label (optional)" : prefs.defaultLabel, text: $label)

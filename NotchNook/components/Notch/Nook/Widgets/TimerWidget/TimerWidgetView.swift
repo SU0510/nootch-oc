@@ -94,6 +94,7 @@ struct TimerWidgetView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)
+                .transition(.opacity.combined(with: .scale(scale: 0.96, anchor: .top)))
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 4) {
@@ -106,9 +107,10 @@ struct TimerWidgetView: View {
                         }
                     }
                 }
-                .animation(.spring(duration: 0.3), value: store.timers.map { $0.id })
+                .animation(.spring(response: 0.3, dampingFraction: 0.7), value: store.timers.map { $0.id })
             }
         }
+        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: store.timers.isEmpty)
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
         .frame(prefs.size.screenPtsCGSize, .leading)
     }

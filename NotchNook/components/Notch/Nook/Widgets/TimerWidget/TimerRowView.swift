@@ -37,6 +37,7 @@ struct TimerRowView: View {
 
     var body: some View {
         HStack(spacing: 6) {
+
             // State icon (colorblind-safe: shape + symbol conveys meaning)
             Image(systemName: isExpired ? "timer" : (entry.state == .paused ? "pause.fill" : "timer"))
                 .font(.system(size: 11, weight: .medium))
@@ -96,6 +97,7 @@ struct TimerRowView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, 10)
         .padding(.vertical, 5)
         .background(
