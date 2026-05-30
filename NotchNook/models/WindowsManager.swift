@@ -269,8 +269,10 @@ class WindowsManager {
         newWindow.isMovable = false
         newWindow.isReleasedWhenClosed = false
         newWindow.hidesOnDeactivate = false
-        // NSPanel: become key only when a field needs it; never steals app focus otherwise.
-        newWindow.becomesKeyOnlyIfNeeded = true
+        // NSPanel: .nonactivatingPanel already prevents stealing the owning app's activation,
+        // so we allow the panel to become key on any click. This activates cursor tracking areas
+        // (I-beam over text inputs) and ensures first-click focus works on RichTextKit's NSTextView.
+        newWindow.becomesKeyOnlyIfNeeded = false
         newWindow.worksWhenModal = true
 
         newWindow.titleVisibility = .hidden
