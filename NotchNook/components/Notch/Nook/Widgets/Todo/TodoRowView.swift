@@ -30,7 +30,7 @@ struct TodoRowView: View {
 
             // Title
             Text(item.title)
-                .font(.system(size: 11.5, weight: .regular))
+                .font(.system(size: 13.5, weight: .regular))
                 .foregroundStyle(item.isCompleted ? Color.secondary.opacity(0.55) : Color.primary)
                 .strikethrough(item.isCompleted, color: .secondary.opacity(0.4))
                 .lineLimit(2)
