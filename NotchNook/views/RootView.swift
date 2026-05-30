@@ -25,7 +25,6 @@ struct RootView: View {
     var notchNook: NotchNookState
     var resignFirstResponder: () -> ()
     var isEditingText: Bool
-    var isKeyWindow: Bool
     var expandedNoteManager: ExpandedNoteManager
     var showIndicator: (Indicator?, _ onAllScreens: Bool) -> Void
 
@@ -89,7 +88,6 @@ struct RootView: View {
             .environment(\.isEditingText, isEditingText)
             .environment(\.expandedNoteManager, expandedNoteManager)
             .environment(\.displayKitId, displayKitId)
-            .environment(\.isKeyWindow, isKeyWindow)
             .modelContainer(sharedModelContainer)
             .environment(\.showIndicator, showIndicator)
         // Defaults

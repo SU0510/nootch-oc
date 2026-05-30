@@ -26,7 +26,6 @@ extension NotchView {
         @Environment(\.closeNotch) internal var closeNotch
         @Environment(\.isEditingText) internal var isEditingText
         @Environment(\.checkTrialOver) internal var checkTrialOver
-        @Environment(\.isKeyWindow) internal var isKeyWindow
         @Environment(\.notchSize) internal var notchSize
         
         @State private var isAnimating: Bool = false
@@ -107,11 +106,6 @@ extension NotchView {
                 }
                 .onChangeDebounced(of: viewModel.scaleDown, delay: 0.05) { _ in
                     withAnimation(.smooth) { viewModel.scaleDown = 0 }
-                }
-                .onChange(of: isKeyWindow) { _, newVal in
-                    if !newVal && (!generalSettings.lockNNWhenTyping || !isEditingText) && !notchNook.locked {
-                        closeNotch(false, false)
-                    }
                 }
         }
         

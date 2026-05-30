@@ -21,7 +21,6 @@ struct MiniAlbumCoverView: View, Equatable {
     
     @Environment(\.namespace) private var ns
     @Environment(\.notchNook) private var notchNook
-    @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
     
     @State private var quickPeekTimer: Timer?
     

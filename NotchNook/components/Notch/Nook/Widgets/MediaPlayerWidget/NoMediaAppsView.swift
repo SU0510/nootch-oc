@@ -10,7 +10,6 @@ import SwiftUI
 struct NoMediaAppsView: View {
     @State private var installedApps = [SystemAppMeta]()
     
-    @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
     @Environment(\.openURL) private var openURL
     
     var body: some View {
@@ -25,7 +24,6 @@ struct NoMediaAppsView: View {
                 ForEach(installedApps.sorted().prefix(3)) { mediaAppMeta in
                     Button {
                         MediaManager.shared.forceMediaControllerRestart(appName: mediaAppMeta.name)
-                        preventNextFocusFrontmostWindow()
                         mediaAppMeta.openApp()
                     } label: {
                         Image(nsImage: mediaAppMeta.icon)
@@ -39,7 +37,6 @@ struct NoMediaAppsView: View {
                     MediaManager.shared.reconfigureMediaController()
                     
                     guard let youtubeURL = URL(string: "https://www.youtube.com/") else { return }
-                    preventNextFocusFrontmostWindow()
                     openURL(youtubeURL)
                 } label: {
                     Image(.youtubeLogo)

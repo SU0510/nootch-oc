@@ -102,10 +102,8 @@
 		3A1691DA2C2FB2110014C326 /* NotchSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691D92C2FB2110014C326 /* NotchSizeKey.swift */; };
 		3A1691DC2C2FB2160014C326 /* TrayKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691DB2C2FB2160014C326 /* TrayKey.swift */; };
 		3A1691DE2C2FB21B0014C326 /* NotchNookKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691DD2C2FB21B0014C326 /* NotchNookKey.swift */; };
-		3A1691E22C2FB2370014C326 /* FocusFrontmostWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E12C2FB2370014C326 /* FocusFrontmostWindowKey.swift */; };
 		3A1691E62C2FB2430014C326 /* ResignFirstResponderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E52C2FB2430014C326 /* ResignFirstResponderKey.swift */; };
 		3A1691E82C2FB2490014C326 /* IsEditingTextKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E72C2FB2490014C326 /* IsEditingTextKey.swift */; };
-		3A1691EA2C2FB24F0014C326 /* IsKeyWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691E92C2FB24F0014C326 /* IsKeyWindowKey.swift */; };
 		3A1691ED2C2FB4FB0014C326 /* HideNotchKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691EC2C2FB4FB0014C326 /* HideNotchKey.swift */; };
 		3A1691EF2C2FB5040014C326 /* CloseNotchKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691EE2C2FB5040014C326 /* CloseNotchKey.swift */; };
 		3A1691F12C2FB50B0014C326 /* OpenNotchKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1691F02C2FB50B0014C326 /* OpenNotchKey.swift */; };
@@ -203,7 +201,6 @@
 		3A8507742C4B4E5A0092B135 /* BrightnessIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8507732C4B4E5A0092B135 /* BrightnessIndicatorView.swift */; };
 		3A8507772C4B5A0C0092B135 /* HorizontalCometShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */; };
 		3A8AA17F2C2FD1E400D727DA /* paddingDependingOnArrPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */; };
-		3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */; };
 		3A8AA1872C2FEFE100D727DA /* shareToAppleNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1862C2FEFE100D727DA /* shareToAppleNotes.swift */; };
 		3A8AA1892C30AA9900D727DA /* onScrollChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA1882C30AA9900D727DA /* onScrollChange.swift */; };
 		3A8AA18B2C3116CF00D727DA /* NoteIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */; };
@@ -541,10 +538,8 @@
 		3A1691D92C2FB2110014C326 /* NotchSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchSizeKey.swift; sourceTree = "<group>"; };
 		3A1691DB2C2FB2160014C326 /* TrayKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayKey.swift; sourceTree = "<group>"; };
 		3A1691DD2C2FB21B0014C326 /* NotchNookKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchNookKey.swift; sourceTree = "<group>"; };
-		3A1691E12C2FB2370014C326 /* FocusFrontmostWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusFrontmostWindowKey.swift; sourceTree = "<group>"; };
 		3A1691E52C2FB2430014C326 /* ResignFirstResponderKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignFirstResponderKey.swift; sourceTree = "<group>"; };
 		3A1691E72C2FB2490014C326 /* IsEditingTextKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEditingTextKey.swift; sourceTree = "<group>"; };
-		3A1691E92C2FB24F0014C326 /* IsKeyWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsKeyWindowKey.swift; sourceTree = "<group>"; };
 		3A1691EC2C2FB4FB0014C326 /* HideNotchKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideNotchKey.swift; sourceTree = "<group>"; };
 		3A1691EE2C2FB5040014C326 /* CloseNotchKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseNotchKey.swift; sourceTree = "<group>"; };
 		3A1691F02C2FB50B0014C326 /* OpenNotchKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNotchKey.swift; sourceTree = "<group>"; };
@@ -639,7 +634,6 @@
 		3A8507732C4B4E5A0092B135 /* BrightnessIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessIndicatorView.swift; sourceTree = "<group>"; };
 		3A8507762C4B5A0C0092B135 /* HorizontalCometShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCometShape.swift; sourceTree = "<group>"; };
 		3A8AA17E2C2FD1E400D727DA /* paddingDependingOnArrPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paddingDependingOnArrPos.swift; sourceTree = "<group>"; };
-		3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventNextFocusFrontmostWindowKey.swift; sourceTree = "<group>"; };
 		3A8AA1862C2FEFE100D727DA /* shareToAppleNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shareToAppleNotes.swift; sourceTree = "<group>"; };
 		3A8AA1882C30AA9900D727DA /* onScrollChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onScrollChange.swift; sourceTree = "<group>"; };
 		3A8AA18A2C3116CF00D727DA /* NoteIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteIconView.swift; sourceTree = "<group>"; };
@@ -1027,15 +1021,12 @@
 				3A1691D92C2FB2110014C326 /* NotchSizeKey.swift */,
 				3A1691DB2C2FB2160014C326 /* TrayKey.swift */,
 				3A1691DD2C2FB21B0014C326 /* NotchNookKey.swift */,
-				3A1691E12C2FB2370014C326 /* FocusFrontmostWindowKey.swift */,
 				3A1691E52C2FB2430014C326 /* ResignFirstResponderKey.swift */,
 				3A1691E72C2FB2490014C326 /* IsEditingTextKey.swift */,
-				3A1691E92C2FB24F0014C326 /* IsKeyWindowKey.swift */,
 				3A1691EC2C2FB4FB0014C326 /* HideNotchKey.swift */,
 				3A1691EE2C2FB5040014C326 /* CloseNotchKey.swift */,
 				3A1691F02C2FB50B0014C326 /* OpenNotchKey.swift */,
 				3A1691F22C2FB5180014C326 /* CheckTrialOverKey.swift */,
-				3A8AA1802C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift */,
 				3A1FFE272C3542E600BB4A03 /* ExpandedNoteManagerKey.swift */,
 				3A74049D2C4424B70049081C /* DisplayKitIdKey.swift */,
 				363709552C572508004D20BB /* WindowManagerKey.swift */,
@@ -2207,7 +2198,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A1691E22C2FB2370014C326 /* FocusFrontmostWindowKey.swift in Sources */,
 				3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */,
 				3A801E042C1530490076560D /* SilentState.swift in Sources */,
 				EC8D5FC12BF9767A00E67ECC /* TrayFileView.swift in Sources */,
@@ -2264,7 +2254,6 @@
 				EC758F972BF2F1A400B873B0 /* blurTransitions.swift in Sources */,
 				3A74049C2C440FC10049081C /* syncOriginWithExpandedNoteManger.swift in Sources */,
 				3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */,
-				3A1691EA2C2FB24F0014C326 /* IsKeyWindowKey.swift in Sources */,
 				EC0E311E2C0579B70060B47E /* ActualSizeCurrentWallpaperView.swift in Sources */,
 				EC2DD1F92C03FEB1001FD54E /* InlineIntField.swift in Sources */,
 				EC47FCC32C0BF4B900591811 /* rowlify.swift in Sources */,
@@ -2575,7 +2564,6 @@
 				3A801E0F2C1556E70076560D /* getRangeOfDays.swift in Sources */,
 				EC8D603C2BFE73FC00E67ECC /* consts.swift in Sources */,
 				EC8D60402BFEBA5B00E67ECC /* ScrollWheelViewRepresentable.swift in Sources */,
-				3A8AA1812C2FE2FB00D727DA /* PreventNextFocusFrontmostWindowKey.swift in Sources */,
 				EC47FCA22C0B98E100591811 /* ActionButton.swift in Sources */,
 				EC758F842BF2F19B00B873B0 /* TrayView.swift in Sources */,
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,

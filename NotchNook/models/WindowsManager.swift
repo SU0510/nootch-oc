@@ -196,7 +196,6 @@ class WindowsManager {
                 notchNook: notchNook,
                 resignFirstResponder: {},
                 isEditingText: false,
-                isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
                 showIndicator: { [weak self] indicator, onAllScreens in self?.showIndicator(indicator, onAllScreens) }
             )
@@ -215,7 +214,6 @@ class WindowsManager {
                 notchNook: notchNook,
                 resignFirstResponder: {},
                 isEditingText: false,
-                isKeyWindow: true,
                 expandedNoteManager: expandedNoteManager,
                 showIndicator: { [weak self] indicator, onAllScreens in self?.showIndicator(indicator, onAllScreens) }
             )

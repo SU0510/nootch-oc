@@ -14,7 +14,6 @@ struct MediaPlayerView: View, Equatable {
     
     var track: Track
     @Environment(\.namespace) private var ns
-    @Environment(\.preventNextFocusFrontmostWindow) private var preventNextFocusFrontmostWindow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
