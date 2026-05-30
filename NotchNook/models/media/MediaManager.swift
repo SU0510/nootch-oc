@@ -423,7 +423,13 @@ class MediaManager {
             self.nowPlayingSources = []
             self.userPinnedClientID = nil
             ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
-            self.mediaController.stopListening()
+            // NOTE: do NOT call mediaController.stopListening() here.
+            // resetData() is called at the top of reconfigureMediaController() before a new
+            // controller is created. If we stop the controller here (async), this closure
+            // lands on the main queue AFTER the new controller has already been assigned and
+            // startListening() has been called — killing the freshly started listener.
+            // Stopping the controller is the responsibility of the caller that owns the
+            // reconfiguration flow (reconfigureMediaController / stopListeningAndKillProcesses).
         }
     }
     
