@@ -15,8 +15,11 @@ final class NookTimersStore {
     static let shared = NookTimersStore()
 
     var timers: [TimerEntry] = []
-    /// Label of the most recently expired timer — read by LiveActivityView's timerExpired case.
-    var lastExpiredLabel: String = ""
+    /// FIFO queue of formatted labels for expired timers waiting to be displayed.
+    /// Each entry gets 4 s on screen before being popped; the next entry then takes over.
+    private(set) var expiredLabelQueue: [String] = []
+    /// Current label displayed by LiveActivityView — the front of the queue, or "" when empty.
+    var currentExpiredLabel: String { expiredLabelQueue.first ?? "" }
 
     private var tickTimer: Foundation.Timer?
     private let persistenceKey = "nookTimerEntries"
@@ -110,13 +113,41 @@ final class NookTimersStore {
     // MARK: - Live Activity (timer expiry notification)
 
     private func fireTimerExpiredLA(label: String) {
-        lastExpiredLabel = label.isEmpty ? "" : "\"\(label)\" ended"
-        // Cancel any pending dismiss so it restarts fresh if multiple timers fire quickly
-        TimersManager.shared.removeTimer("TimerExpiredLADismiss")
-        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.timerExpired)
-        TimersManager.shared.addTimer("TimerExpiredLADismiss", delay: 4) { _ in
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.timerExpired)
+        let formatted = label.isEmpty ? "Timer ended" : "\"\(label)\" ended"
+        let wasEmpty = expiredLabelQueue.isEmpty
+        expiredLabelQueue.append(formatted)
+
+        if wasEmpty {
+            // Nothing was showing — insert the LA and kick off the first dismiss cycle.
+            // tick() runs on RunLoop.main so @MainActor methods are safe here.
+            MainActor.assumeIsolated { ActiveLiveActivitiesManager.shared.insertSync(.timerExpired) }
+            scheduleNextDismiss()
         }
+        // If the queue already had entries the current dismiss timer will naturally pop
+        // the front and re-schedule for the newly appended entry — no extra action needed.
+    }
+
+    /// Pop the front of the queue and either show the next label or remove the LA.
+    /// Must always be called from the main thread (dismiss timer fires on RunLoop.main).
+    private func popAndAdvance() {
+        guard !expiredLabelQueue.isEmpty else { return }
+        expiredLabelQueue.removeFirst()
+        if expiredLabelQueue.isEmpty {
+            MainActor.assumeIsolated { ActiveLiveActivitiesManager.shared.removeSync(.timerExpired) }
+        } else {
+            // Another label is waiting — keep the LA up and restart the 4s window.
+            scheduleNextDismiss()
+        }
+    }
+
+    /// Schedule (or replace) the dismiss timer on the main RunLoop with .common mode
+    /// so it fires even while the user interacts with a modal sheet or scroll view.
+    private func scheduleNextDismiss() {
+        let dismissTimer = Timer(timeInterval: 4, repeats: false) { [weak self] _ in
+            self?.popAndAdvance()
+        }
+        RunLoop.main.add(dismissTimer, forMode: .common)
+        TimersManager.shared.replaceMainThreadTimer("TimerExpiredLADismiss", timer: dismissTimer)
     }
 
     // MARK: - Sound

@@ -115,9 +115,9 @@ struct LiveActivityView: View {
                             case .left:
                                 LiveActivityIconView(liveActivity: .timerExpired)
                             case .right:
-                                Text(expiredTimerStore.lastExpiredLabel.isEmpty
+                                Text(expiredTimerStore.currentExpiredLabel.isEmpty
                                      ? "Timer ended"
-                                     : expiredTimerStore.lastExpiredLabel)
+                                     : expiredTimerStore.currentExpiredLabel)
                                     .font(.system(size: 11, weight: .semibold))
                                     .foregroundStyle(.white.opacity(0.85))
                                     .lineLimit(1)
