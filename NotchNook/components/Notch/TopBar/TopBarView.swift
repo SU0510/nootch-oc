@@ -12,6 +12,9 @@ struct TopBarView: View {
     
     static let animation: Animation = .bouncy(extraBounce: 0.075)
     static let maxHeight: CGFloat = 32
+    /// Visual bottom edge of topbar buttons (pill height 26pt, centered in maxHeight).
+    /// Widget content must start at or below this value to avoid overlapping tab buttons and gear.
+    static let buttonsVisualBottom: CGFloat = 29
     static let liveActionWidth: CGFloat = 35
     static let collapsedTopBarHalfWidth: CGFloat = 88
     
