@@ -81,8 +81,11 @@ struct MultipleSettingsPicker<El: MetaInfo, PrefsView: View, Preview: View>: Vie
             // Right side - Preview and Settings
             VStack(spacing: 16) {
                 preview(selectedElement)
-                settings(selectedElement)
-                    .frame(maxHeight: .infinity, alignment: .top)
+                ScrollView(.vertical) {
+                    settings(selectedElement)
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                }
+                .frame(maxHeight: .infinity, alignment: .top)
             }
         }
         .padding()
