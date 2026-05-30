@@ -127,6 +127,7 @@ struct NotchView: View {
                                 }
                             }
                         }
+                        .padding(.top, TopBarView.maxHeight + 4)
                         .transition(NotchView.defaultTransition)
                         .scaleEffect(x: actualScaleX, y: actualScaleY, anchor: .init(x: 0.5, y: -0.25))
                         
