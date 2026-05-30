@@ -15,6 +15,25 @@ struct TimerWidgetView: View {
     @State private var store = NookTimersStore.shared
     @State private var showingCreator: Bool = false
 
+    // Extra inset applied to the header row so its content doesn't visually
+    // sit directly under the topbar buttons.
+    //
+    // RIGHT anchor (.last)  → gear button side  — see TopBarContentView.swift, CircleButton ~27 pt
+    // LEFT  anchor (.first) → Nook/Tray tabs    — see TopBarTabsView.swift (two ~30 pt tab pills)
+    //
+    // We use TopBarView.liveActionWidth (35) for the gear side (slightly generous so
+    // the MiniPlayerView that may also appear doesn't clip) and a custom constant for
+    // the tabs side (~60 pt covers both tab pills + their HStack spacing).
+    private static let gearSideInset:  CGFloat = TopBarView.liveActionWidth   // 35
+    private static let tabsSideInset:  CGFloat = 60
+
+    private var headerLeadingPad: CGFloat {
+        (arrayPosition == .first || arrayPosition == .single) ? Self.tabsSideInset : 4
+    }
+    private var headerTrailingPad: CGFloat {
+        (arrayPosition == .last || arrayPosition == .single) ? Self.gearSideInset : 4
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             // Header row
@@ -37,7 +56,8 @@ struct TimerWidgetView: View {
                 }
                 .buttonStyle(.plain)
             }
-            .padding(.horizontal, 4)
+            .padding(.leading, headerLeadingPad)
+            .padding(.trailing, headerTrailingPad)
 
             // Creator form
             if showingCreator {

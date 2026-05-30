@@ -15,6 +15,8 @@ final class NookTimersStore {
     static let shared = NookTimersStore()
 
     var timers: [TimerEntry] = []
+    /// Label of the most recently expired timer — read by LiveActivityView's timerExpired case.
+    var lastExpiredLabel: String = ""
 
     private var tickTimer: Foundation.Timer?
     private let persistenceKey = "nookTimerEntries"
@@ -102,6 +104,19 @@ final class NookTimersStore {
         entry.state = .expired
         entry.expiresAt = nil
         playSound()
+        fireTimerExpiredLA(label: entry.label)
+    }
+
+    // MARK: - Live Activity (timer expiry notification)
+
+    private func fireTimerExpiredLA(label: String) {
+        lastExpiredLabel = label.isEmpty ? "" : "\"\(label)\" ended"
+        // Cancel any pending dismiss so it restarts fresh if multiple timers fire quickly
+        TimersManager.shared.removeTimer("TimerExpiredLADismiss")
+        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.timerExpired)
+        TimersManager.shared.addTimer("TimerExpiredLADismiss", delay: 4) { _ in
+            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.timerExpired)
+        }
     }
 
     // MARK: - Sound

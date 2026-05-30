@@ -21,6 +21,7 @@ struct LiveActivityView: View {
     @Environment(\.calendarLiveActivitySettings) private var calendarLiveActivitySettings
     
     @State private var batteryStatus: PowerMonitor.BatteryStatus?
+    @State private var expiredTimerStore = NookTimersStore.shared
     
     var activitiesManager = LiveActivitySelectionManager.shared
     
@@ -107,6 +108,20 @@ struct LiveActivityView: View {
                                 BatteryIconView(batteryStatus: batteryStatus)
                             case .right:
                                 TimeLeftView(batteryStatus: batteryStatus)
+                        }
+                        
+                    case .timerExpired:
+                        switch side {
+                            case .left:
+                                LiveActivityIconView(liveActivity: .timerExpired)
+                            case .right:
+                                Text(expiredTimerStore.lastExpiredLabel.isEmpty
+                                     ? "Timer ended"
+                                     : expiredTimerStore.lastExpiredLabel)
+                                    .font(.system(size: 11, weight: .semibold))
+                                    .foregroundStyle(.white.opacity(0.85))
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
                         }
                 }
             }

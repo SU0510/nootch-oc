@@ -15,13 +15,22 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
     case updateAvailable
     case bluetoothDevice
     case batteryVisualizer
+    /// Transient — fired by NookTimersStore.expire(). Always surfaces regardless of enabledLiveActivities.
+    case timerExpired
     
     var id: String { self.rawValue }
     
     var description: String? { nil }
     
+    /// Whether this activity appears in the Live Activities settings list.
+    /// `.timerExpired` is always-on (it's a user-initiated event) and has no settings toggle.
     var isImplemented: Bool {
         true
+    }
+    
+    /// Whether this activity can be toggled by the user in settings.
+    var isUserConfigurable: Bool {
+        self != .timerExpired
     }
     
     var icon: String {
@@ -32,6 +41,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
             case .updateAvailable: "arrow.down.circle"
             case .bluetoothDevice: "airpods"
             case .batteryVisualizer: "bolt.fill"
+            case .timerExpired: "timer"
         }
     }
     
@@ -43,6 +53,7 @@ enum LiveActivity: String, Codable, MetaInfo, CaseIterable {
             case .updateAvailable: String(localized: "New Update")
             case .bluetoothDevice: String(localized: "Bluetooth")
             case .batteryVisualizer: String(localized: "Battery")
+            case .timerExpired: String(localized: "Timer Ended")
         }
     }
 }
