@@ -266,7 +266,16 @@ class WindowsManager {
         hostingView.rootView.resignFirstResponder = {
             _ = newWindow.makeFirstResponder(nil)
         }
-        
+
+        // Restore isEditingText auto-clear: when first responder reverts to the
+        // panel itself (no text field active), clear the editing flag so the kb
+        // icon can dismiss and unhover-close can proceed.
+        newWindow.firstResponderCb = { [weak hostingView] isWindowItself in
+            if isWindowItself {
+                hostingView?.rootView.isEditingText = false
+            }
+        }
+
         newWindow.orderFrontRegardless()
         
         return DisplayKit(
