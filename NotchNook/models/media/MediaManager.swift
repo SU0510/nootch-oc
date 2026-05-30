@@ -130,24 +130,36 @@ class MediaManager {
         }
         
         mediaController.onTrackInfoReceived = { [weak self] trackInfo in
-            self?.lastReceivedTrackInfo = trackInfo
-            self?.throttledTrackUpdate?()
-            // Capture duration alongside track updates (no throttle needed — cheap).
+            guard let self = self else { return }
+            // MediaRemoteAdapter signals "no track" by delivering nil.
+            guard let trackInfo = trackInfo else {
+                self.resetData()
+                return
+            }
+            // Listener is system-wide since the lib dropped per-bundle init. When
+            // the user pinned a specific app via preferredMediaSource, drop events
+            // from other bundles so behavior matches the old per-app listener.
+            if let preferredID = self.preferredMediaSource.bundleIdentifier,
+               let incomingID = trackInfo.payload.bundleIdentifier,
+               incomingID != preferredID {
+                return
+            }
+            self.lastReceivedTrackInfo = trackInfo
+            self.throttledTrackUpdate?()
+            // Duration + elapsed now arrive on the same payload; the dedicated
+            // onPlaybackTimeUpdate callback was removed upstream.
             DispatchQueue.main.async {
                 if let micros = trackInfo.payload.durationMicros, micros > 0 {
-                    self?.duration = micros / 1_000_000
+                    self.duration = micros / 1_000_000
                 } else {
-                    self?.duration = nil
+                    self.duration = nil
+                }
+                if let elapsed = trackInfo.payload.currentElapsedTime {
+                    self.elapsedTime = elapsed
                 }
             }
             // Refresh the client list whenever now-playing changes.
-            self?.refreshNowPlayingClients()
-        }
-
-        mediaController.onPlaybackTimeUpdate = { [weak self] seconds in
-            DispatchQueue.main.async {
-                self?.elapsedTime = seconds
-            }
+            self.refreshNowPlayingClients()
         }
         
         mediaController.onListenerTerminated = { [weak self] in
@@ -362,7 +374,7 @@ class MediaManager {
                         
             // Update status on main thread
             DispatchQueue.main.async {
-                self.mediaController = MediaController(bundleIdentifier: self.preferredMediaSource == .systemWide ? nil : self.preferredMediaSource.bundleIdentifier)
+                self.mediaController = MediaController()
                 self.setupMediaControllerListeners()
                 self.mediaController.startListening()
                 
@@ -389,7 +401,7 @@ class MediaManager {
             let appName = appName != nil ? "\"\(appName!)\"" : preferredMediaSource.name
             runAppleScript(script: "tell application \(appName) to playpause")
             
-            mediaController = MediaController(bundleIdentifier: preferredMediaSource.bundleIdentifier)
+            mediaController = MediaController()
             setupMediaControllerListeners()
             mediaController.startListening()
             
