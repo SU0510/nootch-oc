@@ -14,7 +14,8 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
     
     var body: some View {
         MultipleSettingsPicker(
-            elements: LiveActivity.allCases,
+            // .timerExpired is always-on; exclude it from the user-configurable list
+            elements: LiveActivity.allCases.filter(\.isUserConfigurable),
             activeElements: $liveActivitiesSettings.enabledLiveActivities
         ) { selectedActivity in
             MockLiveAcitivitiesView(activity: selectedActivity)
@@ -32,7 +33,7 @@ struct LiveActivitiesCustomizeSettingsTabView: View {
 //                    BatteryLiveActivitySettingsView()
                 case .batteryVisualizer:
                     BatteryLiveActivitySettingsView()
-                case .bluetoothDevice, .updateAvailable:
+                case .bluetoothDevice, .updateAvailable, .timerExpired:
                     NoOptionsSettingsView()
             }
         }

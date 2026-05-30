@@ -9,6 +9,7 @@ import IOKit
 import IOKit.ps
 import Foundation
 import Defaults
+import SwiftUI
 
 @Observable
 class PowerMonitor {
@@ -64,7 +65,7 @@ class PowerMonitor {
             try? await Task.sleep(nanoseconds: 2_000_000_000)
             startupSuppressActive = false
         }
-        settingsTask = Task {
+        settingsTask = Task { @MainActor in
             for await _ in Defaults.updates(.batteryLiveActivitySettings) {
                 // settings changed — re-evaluate low-battery sticky state
                 if let current = status {
@@ -72,7 +73,7 @@ class PowerMonitor {
                     let bucket = makeBucket(pct: current.percentage, isCharging: current.isCharging, threshold: settings.lowBatteryThreshold)
                     if case .low = bucket {
                         // still low — keep LA active (it may have been dismissed if threshold changed)
-                        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.batteryVisualizer)
+                        ActiveLiveActivitiesManager.shared.insertSync(.batteryVisualizer)
                     }
                 }
             }
@@ -158,37 +159,59 @@ class PowerMonitor {
         guard newBucket != previousBucket else {
             // No bucket change — just update the low-battery sticky if still low
             if case .low = newBucket {
-                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.batteryVisualizer)
+                DispatchQueue.main.async {
+                    ActiveLiveActivitiesManager.shared.insertSync(.batteryVisualizer)
+                }
             }
             return
         }
 
         switch newBucket {
         case .charging where settings.showWhenPluggedIn:
+            // Plugged in (or started charging from onBattery/low)
             fireTransient()
         case .onBattery where settings.showWhenUnplugged:
+            // Unplugged — covers both charging→onBattery and full→onBattery
             fireTransient()
         case .full where settings.showWhenFullyCharged:
             fireTransient()
         case .low where settings.showLowBatteryWarning:
             // Sticky — cancel any pending dismiss and keep inserting
-            TimersManager.shared.removeTimer("BatteryActivityDismiss")
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.batteryVisualizer)
+            DispatchQueue.main.async {
+                TimersManager.shared.removeTimer("BatteryActivityDismiss")
+                ActiveLiveActivitiesManager.shared.insertSync(.batteryVisualizer)
+            }
         default:
-            // Exiting low (battery charged above threshold or plugged in)
+            // Handle full→onBattery unplug when showWhenUnplugged is off,
+            // and exiting low (battery charged above threshold or plugged in).
             if case .low = previousBucket ?? newBucket {
                 // Was low, now not — dismiss sticky
-                ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.batteryVisualizer)
+                DispatchQueue.main.async {
+                    ActiveLiveActivitiesManager.shared.removeSync(.batteryVisualizer)
+                }
             }
         }
     }
 
     private func fireTransient() {
-        // Cancel any existing dismiss timer so it restarts fresh
-        TimersManager.shared.removeTimer("BatteryActivityDismiss")
-        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.batteryVisualizer)
-        TimersManager.shared.addTimer("BatteryActivityDismiss", delay: 4) { _ in
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.batteryVisualizer)
+        // All mutations are funnelled through DispatchQueue.main.async so that:
+        //   1. insertSync/_activeLiveActivities is mutated on @MainActor, meaning
+        //      the view sees the new set in the SAME layout pass that expands the
+        //      notch — no more "notch grows but content is empty" race.
+        //   2. The dismiss timer is scheduled on the main RunLoop (Timer.scheduledTimer
+        //      called from a bare DispatchQueue thread silently drops because that
+        //      thread has no run loop).
+        DispatchQueue.main.async {
+            TimersManager.shared.removeTimer("BatteryActivityDismiss")
+            ActiveLiveActivitiesManager.shared.insertSync(.batteryVisualizer)
+            // Build timer and add to the main RunLoop in .common mode so it fires
+            // even while the user is scrolling / interacting with a modal sheet.
+            // (Timer.scheduledTimer only adds to .default mode of current run loop.)
+            let dismissTimer = Timer(timeInterval: 4, repeats: false) { _ in
+                ActiveLiveActivitiesManager.shared.removeSync(.batteryVisualizer)
+            }
+            RunLoop.main.add(dismissTimer, forMode: .common)
+            TimersManager.shared.replaceMainThreadTimer("BatteryActivityDismiss", timer: dismissTimer)
         }
     }
 }

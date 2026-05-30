@@ -17,9 +17,10 @@ class ActiveLiveActivitiesManager {
         get {
             let isCacheEnabled = liveActivitiesSettingsCache.enabled
             let liveActivitiesFromCache = _activeLiveActivities.filter {
-                liveActivitiesSettingsCache.enabledLiveActivities.contains($0)
+                // .timerExpired is always-on — it surfaces regardless of the user toggle list
+                $0 == .timerExpired || liveActivitiesSettingsCache.enabledLiveActivities.contains($0)
             }
-            return isCacheEnabled ? liveActivitiesFromCache : []
+            return isCacheEnabled ? liveActivitiesFromCache : _activeLiveActivities.filter { $0 == .timerExpired }
         }
         set {
             Task { @MainActor in
@@ -41,5 +42,19 @@ class ActiveLiveActivitiesManager {
     
     deinit {
         task?.cancel()
+    }
+
+    // MARK: - Synchronous main-thread mutations
+    // Use these from @MainActor call sites to avoid the async Task hop in the
+    // computed-property setter — the hop defers the write to the next run-loop
+    // cycle, which means the view reads an empty set during the first layout pass
+    // after insertion (notch grows but content is blank).
+
+    @MainActor func insertSync(_ activity: LiveActivity) {
+        withAnimation(TopBarView.animation) { _activeLiveActivities.insert(activity) }
+    }
+
+    @MainActor func removeSync(_ activity: LiveActivity) {
+        withAnimation(TopBarView.animation) { _activeLiveActivities.remove(activity) }
     }
 }

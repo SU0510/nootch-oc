@@ -29,4 +29,13 @@ class TimersManager {
             timersDict.removeValue(forKey: id)
         }
     }
+
+    /// Store a timer that was already scheduled on the main RunLoop by the caller.
+    /// Must be called from the main thread (after Timer.scheduledTimer / RunLoop.main.add).
+    func replaceMainThreadTimer(_ id: String, timer: Timer) {
+        dispatchQueue.sync {
+            if let foundTimer = timersDict[id] { foundTimer.invalidate() }
+            timersDict[id] = timer
+        }
+    }
 }

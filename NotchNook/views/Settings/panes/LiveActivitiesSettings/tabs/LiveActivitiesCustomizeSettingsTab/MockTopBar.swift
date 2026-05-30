@@ -65,6 +65,8 @@ struct MockTopBar: View {
                         LiveActivityIconView(liveActivity: .batteryVisualizer)
                             .padding(.all, 6)
                             .foregroundStyle(.yellow)
+                    case .timerExpired:
+                        EmptyView()
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
@@ -92,6 +94,8 @@ struct MockTopBar: View {
                             .padding(.top, 6)
                     case .batteryVisualizer:
                         TimeLeftView(batteryStatus: PowerMonitor.shared.status)
+                    case .timerExpired:
+                        EmptyView()
                 }
             }
             .frame(width: TopBarView.liveActionWidth)
