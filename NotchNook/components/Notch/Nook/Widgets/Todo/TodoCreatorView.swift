@@ -119,7 +119,7 @@ struct TodoCreatorView: View {
             StableNSTextField(
                 text: $text,
                 isFocused: $isFocused,
-                placeholder: "New task…",
+                placeholder: NSLocalizedString("New task…", comment: "A placeholder for a new task."),
                 font: .systemFont(ofSize: 11.5, weight: .regular),
                 onSubmit: onSubmit
             )
