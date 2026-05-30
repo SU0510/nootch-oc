@@ -109,7 +109,6 @@ struct CalendarWidgetSettingsView: View {
             .padding(0)
         }
         .padding()
-        .frame(maxHeight: .infinity, alignment: .topLeading)
         .onAppear {
             availableCalendars = CalendarManager.shared.availableCalendars
             selectedCalendars = Set(settings.selectedCalendars ?? [])

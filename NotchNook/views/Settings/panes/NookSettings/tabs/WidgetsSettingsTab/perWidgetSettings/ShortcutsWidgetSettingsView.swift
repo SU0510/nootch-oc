@@ -141,7 +141,6 @@ struct ShortcutsWidgetSettingsView: View {
             .padding(.horizontal, 30)
             
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
     
     func findMultipliers(_ number: Int) -> [Int] {

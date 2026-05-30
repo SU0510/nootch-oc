@@ -138,7 +138,6 @@ struct MediaLiveAcitivitySettingsView: View {
             }
             
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
     
     private func selectGIFFile() {

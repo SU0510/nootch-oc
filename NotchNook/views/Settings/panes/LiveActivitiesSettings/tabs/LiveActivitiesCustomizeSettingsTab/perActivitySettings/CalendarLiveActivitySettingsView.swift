@@ -27,6 +27,5 @@ struct CalendarLiveActivitySettingsView: View {
                 }
             }
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

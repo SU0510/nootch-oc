@@ -43,6 +43,5 @@ struct BatteryLiveActivitySettingsView: View {
                 }
             }
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

@@ -16,6 +16,5 @@ struct TrayLiveActivitySettingsView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

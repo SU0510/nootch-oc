@@ -31,6 +31,5 @@ struct NotesWidgetSettingsView: View {
                     .optionDescription(contentMaxW)
             }
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }

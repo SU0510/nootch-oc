@@ -32,6 +32,5 @@ struct TodoListWidgetSettingsView: View {
                 }
             }
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
     }
 }
