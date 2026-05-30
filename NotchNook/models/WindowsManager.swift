@@ -267,13 +267,15 @@ class WindowsManager {
             _ = newWindow.makeFirstResponder(nil)
         }
 
-        // isEditingText universal tracker: true when ANY non-window responder is active
-        // (a TextField, NSTextView field editor, etc.), false when responder reverts to
-        // the panel itself. Covers Timer/Todo widgets that don't explicitly call
-        // enableTextEditingForWindowWith; explicit setters in NoteView/TrayFileView
-        // still run alongside this as the active path.
-        newWindow.firstResponderCb = { [weak hostingView] isWindowItself in
-            hostingView?.rootView.isEditingText = !isWindowItself
+        // isEditingText universal tracker: true only when a text editor is the active
+        // first responder — the field editor (NSTextView) when an NSTextField/SwiftUI
+        // TextField is focused, or an NSText subclass for TextEditor. AppKit sets the
+        // initial responder to the contentView (NSHostingView) on panel open, so a
+        // "non-self" check would spuriously light up the kb-lock indicator before the
+        // user types anything. Explicit setters in NoteView/TrayFileView still run.
+        newWindow.firstResponderCb = { [weak hostingView] responder in
+            let isTextEditing = (responder is NSText) || (responder is NSTextField)
+            hostingView?.rootView.isEditingText = isTextEditing
         }
 
         newWindow.orderFrontRegardless()

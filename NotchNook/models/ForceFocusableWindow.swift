@@ -18,9 +18,13 @@ import AppKit
 /// previously-frontmost app — typing here never steals focus from Code/Mail/etc.
 class ForceFocusableWindow: NSPanel {
 
-    /// Fired after each successful `makeFirstResponder` change (IME composition excepted).
-    /// `true` when the panel itself (or `nil`) is the responder — no text field is active.
-    var firstResponderCb: ((_ isWindowItself: Bool) -> Void)?
+    /// Fired after each successful `makeFirstResponder` change (IME composition excepted),
+    /// with the new responder. Lets the caller distinguish "a text editor is active"
+    /// (field editor / NSTextView / NSTextField) from "any other responder" (the
+    /// NSHostingView itself, a button, the panel). AppKit installs an initial responder
+    /// on open that is typically the contentView (NSHostingView), not the panel — so a
+    /// `!= self` check is NOT enough to mean "user is typing".
+    var firstResponderCb: ((_ responder: NSResponder?) -> Void)?
 
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { false }
@@ -36,8 +40,7 @@ class ForceFocusableWindow: NSPanel {
         if let textView = responder as? NSTextView, textView.hasMarkedText() {
             return success
         }
-        let isWindowItself = (responder === self) || (responder == nil)
-        firstResponderCb?(isWindowItself)
+        firstResponderCb?(responder)
         return success
     }
 }
