@@ -24,9 +24,11 @@ extension NotchView {
         @Namespace internal var ns
         
         var shouldRender: Bool {
-            let showingLiveActvs = ActiveLiveActivitiesManager.shared.activeLiveActivities.filter {
-                liveActivitiesSettings.enabledLiveActivities.contains($0)
-            }
+            // activeLiveActivities already applies the enabledLiveActivities filter AND
+            // correctly bypasses it for always-on activities like .timerExpired.
+            // Re-filtering here would silently drop .timerExpired and prevent the notch
+            // mask from opening the LA region on timer expiry.
+            let showingLiveActvs = ActiveLiveActivitiesManager.shared.activeLiveActivities
             return (
                 notchNook.indicator != nil ||
                 notchNook.mode != .closed ||
