@@ -192,6 +192,7 @@
       }
     },
     " %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
