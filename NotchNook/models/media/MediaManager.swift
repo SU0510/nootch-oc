@@ -327,6 +327,12 @@ class MediaManager {
         let isRunning = isAppRunning(appName)
         if !isRunning {
             resetData()
+            // The source app is gone; its listener is now a zombie. Stop it here so
+            // no callbacks can race between resetData()'s async main-queue closure and
+            // the caller's stopListeningAndKillProcesses(). Unlike the reconfigureMediaController
+            // path (where stopping here would kill a freshly started controller), this
+            // path never starts a new controller, so it is safe to stop immediately.
+            stopListeningAndKillProcesses()
             return true
         }
         
