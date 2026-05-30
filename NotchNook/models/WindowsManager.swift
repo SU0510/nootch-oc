@@ -322,8 +322,10 @@ class WindowsManager {
         // key when a regular NSWindow opens.  Observe that notification here so we can
         // close the notch without needing a SwiftUI env accessor.
         //
-        // Guard: when typing, only skip if the user actually locked NN — otherwise we
-        // dismiss focus (mimicking NN bg-tap) and close.
+        // Guard precedence (strongest first):
+        //   1. locked — bail immediately regardless of editing state; the user pinned NN open.
+        //   2. editing (keyboard-lock without actual lock) — dismiss input focus, then close.
+        //   3. default — close as a normal outside click would.
         //
         // The block-based addObserver API returns an opaque token that must be stored and
         // passed to removeObserver(_:) explicitly — removeObserver(window) only removes
@@ -334,17 +336,14 @@ class WindowsManager {
             queue: .main
         ) { [weak hostingView, weak newWindow] _ in
             guard let hostingView, let newWindow else { return }
-            let isLocked = hostingView.rootView.notchNook.locked
-            let isEditing = hostingView.rootView.isEditingText
+            // Locked is the strongest gate — NN never closes from outside-click when
+            // the user explicitly locked it, regardless of editing state.
+            if hostingView.rootView.notchNook.locked { return }
 
-            if isEditing {
-                if isLocked {
-                    // Actual lock is sacred — keep NN open, keep input focused.
-                    return
-                }
-                // Keyboard-lock without actual lock: mimic NN bg-tap and dismiss
-                // input focus.  firstResponderCb will flip isEditingText → false,
-                // and we fall through to close as a normal outside click would.
+            if hostingView.rootView.isEditingText {
+                // Keyboard-lock without actual lock: mimic NN bg-tap and dismiss input
+                // focus.  firstResponderCb flips isEditingText → false, then we fall
+                // through to close as a normal outside click would.
                 _ = newWindow.makeFirstResponder(nil)
             }
 
