@@ -170,7 +170,7 @@ struct NotchView: View {
         }
         .animation(.smooth(extraBounce: 0.25), value: nonNotchHeight)
         .task {
-            try? await CalendarManager.shared.fetchEvents()
+            _ = try? await CalendarManager.shared.fetchEvents()
         }
     }
 }

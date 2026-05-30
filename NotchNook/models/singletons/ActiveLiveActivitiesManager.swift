@@ -51,10 +51,10 @@ class ActiveLiveActivitiesManager {
     // after insertion (notch grows but content is blank).
 
     @MainActor func insertSync(_ activity: LiveActivity) {
-        withAnimation(TopBarView.animation) { _activeLiveActivities.insert(activity) }
+        _ = withAnimation(TopBarView.animation) { _activeLiveActivities.insert(activity) }
     }
 
     @MainActor func removeSync(_ activity: LiveActivity) {
-        withAnimation(TopBarView.animation) { _activeLiveActivities.remove(activity) }
+        _ = withAnimation(TopBarView.animation) { _activeLiveActivities.remove(activity) }
     }
 }

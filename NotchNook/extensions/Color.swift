@@ -72,7 +72,7 @@ extension Color {
 
 extension NSColor {
     var alpha: CGFloat {
-        var alpha: CGFloat = 1
+        let alpha: CGFloat = 1
 //        getRed(nil, green: nil, blue: nil, alpha: &alpha)
         return alpha
     }

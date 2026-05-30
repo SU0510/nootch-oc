@@ -20,7 +20,6 @@ struct VolumeIndicatorSpeakerView: View, Equatable {
     
     
     var body: some View {
-        let iconNum = volumeValue > 0.33 ? volumeValue > 0.66 ? 3 : 2 : 1
         HStack(spacing: -1) {
             Image(systemName: volumeValue > 0 ? "speaker.fill" : "speaker.slash.fill")
             if volumeValue > 0 {

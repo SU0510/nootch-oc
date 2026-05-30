@@ -140,6 +140,10 @@ actor SoundCoordinator {
             mScope: kAudioObjectPropertyScopeGlobal,
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMain))
         
+        // FIXME: Passing &deviceName (CFString) as UnsafeMutableRawPointer is technically
+        // incorrect because CFString is a reference type and &CFString is bridged unsafely.
+        // The correct fix would use withUnsafeMutablePointer(to:) with Unmanaged<CFString>,
+        // but that restructuring risks the CF retain/release semantics here. Leaving as-is.
         var deviceName: CFString = "" as CFString
         let deviceNameStatus = AudioObjectGetPropertyData(
             defaultOutputDeviceID,

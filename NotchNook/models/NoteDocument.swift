@@ -8,7 +8,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct NoteDocument: FileDocument {
+struct NoteDocument: FileDocument, @unchecked Sendable {
     var note: Note
     
     static var readableContentTypes: [UTType] { [.plainText] }

@@ -35,7 +35,7 @@ class VolumeMonitor {
         var defaultDeviceProperty = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
         AudioObjectAddPropertyListenerBlock(AudioObjectID(kAudioObjectSystemObject), &defaultDeviceProperty, nil, deviceSwitchBlock)
 
@@ -55,7 +55,7 @@ class VolumeMonitor {
         var volumeProperty = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
         AudioObjectAddPropertyListenerBlock(deviceID, &volumeProperty, nil, block)
     }
@@ -65,7 +65,7 @@ class VolumeMonitor {
         var volumeProperty = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
         AudioObjectRemovePropertyListenerBlock(monitoredDeviceID, &volumeProperty, nil, block)
         volumeListenerBlock = nil
@@ -88,7 +88,7 @@ class VolumeMonitor {
             var defaultDeviceProperty = AudioObjectPropertyAddress(
                 mSelector: kAudioHardwarePropertyDefaultOutputDevice,
                 mScope: kAudioObjectPropertyScopeGlobal,
-                mElement: kAudioObjectPropertyElementMaster
+                mElement: kAudioObjectPropertyElementMain
             )
             AudioObjectRemovePropertyListenerBlock(AudioObjectID(kAudioObjectSystemObject), &defaultDeviceProperty, nil, block)
             defaultDeviceListenerBlock = nil
@@ -100,7 +100,7 @@ class VolumeMonitor {
         var propertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDefaultOutputDevice,
             mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
         var dataSize = UInt32(MemoryLayout<AudioObjectID>.size)
         AudioObjectGetPropertyData(defaultOutputDeviceID, &propertyAddress, 0, nil, &dataSize, &defaultOutputDeviceID)
@@ -112,7 +112,7 @@ class VolumeMonitor {
         var volumeProperty = AudioObjectPropertyAddress(
             mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
             mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMaster
+            mElement: kAudioObjectPropertyElementMain
         )
         var volume: Float32 = 0.0
         var dataSize = UInt32(MemoryLayout<Float32>.size)

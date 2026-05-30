@@ -20,7 +20,7 @@ struct NoteMiniatureView: View {
             if codeMode {
                 CodeEditor(
                     source: .constant(note.codeText),
-                    language: CodeEditor.Language(rawValue: note.codeLanguage) ?? .markdown,
+                    language: CodeEditor.Language(rawValue: note.codeLanguage),
                     theme: .ocean,
                     fontSize: $fontSize,
                     inset: CGSize(width: 4, height: 5),

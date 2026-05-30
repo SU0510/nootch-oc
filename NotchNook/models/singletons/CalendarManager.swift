@@ -12,9 +12,9 @@ import SwiftDate
 import Defaults
 
 @Observable
-class CalendarManager {
+class CalendarManager: @unchecked Sendable {
     
-    typealias RequestAccessCompletion = ((Bool, Error?) -> Void)
+    typealias RequestAccessCompletion = (@Sendable (Bool, Error?) -> Void)
     
     // MARK: - Properties
     
@@ -109,7 +109,7 @@ class CalendarManager {
         Task { @MainActor in
             eventStore.reset()
             loadSelectedCalendars()
-            try? await fetchEvents()
+            _ = try? await fetchEvents()
         }
     }
     

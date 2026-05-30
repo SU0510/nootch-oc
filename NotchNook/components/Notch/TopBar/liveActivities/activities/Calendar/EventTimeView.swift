@@ -57,7 +57,7 @@ struct EventTimeView: View {
                             Text(text)
                                 .fixedSize(horizontal: true, vertical: false)
                                 .contentTransition(.numericText())
-                        } else if let meeting {
+                        } else if meeting != nil {
                             Image(systemName: "phone.fill")
                         } else {
                             Spacer()

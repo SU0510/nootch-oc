@@ -67,8 +67,7 @@ struct SliderPlus: View {
     var safeStep: Double { rangeAmount < step ? rangeAmount : step }
     
     var body: some View {
-        let rangeManual = safeRangeManual ?? safeRange
-        
+        let safeRangeForTextField = safeRangeManual ?? safeRange
         HStack {
             Group {
                 if let useTickMarks {
@@ -110,7 +109,7 @@ struct SliderPlus: View {
             }
             .frame(maxWidth: maxWidth)
             
-            IntegerTextField(value: $value, minVal: rangeManual.lowerBound, maxVal: rangeManual.upperBound)
+            IntegerTextField(value: $value, minVal: safeRangeForTextField.lowerBound, maxVal: safeRangeForTextField.upperBound)
                 .frame(width: 40, height: 0)
         }
     }
@@ -178,8 +177,6 @@ struct SliderPlusNegative: View {
     var safeStep: Double { min(step, rangeAmount) }
     
     var body: some View {
-        let rangeManual = safeRangeManual ?? safeRange
-        
         HStack {
             Group {
                 if let useTickMarks {
@@ -217,9 +214,6 @@ struct SliderPlusNegative: View {
                 }
             }
             .frame(maxWidth: maxWidth)
-            
-//            IntegerTextField(value: $value, minVal: rangeManual.lowerBound, maxVal: rangeManual.upperBound)
-//                .frame(width: 40, height: 0)
         }
     }
 }

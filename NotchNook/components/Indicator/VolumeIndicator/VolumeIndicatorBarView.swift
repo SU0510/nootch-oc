@@ -72,7 +72,7 @@ struct VolumeIndicatorBarView: View, Equatable {
     
     var body: some View {
         HStack(spacing: barsSpacing) {
-            ForEach(0..<barsNumber) { barIndex in
+            ForEach(Array(0..<barsNumber), id: \.self) { barIndex in
                 VolumeIndicatorBarCapsuleView(color: getBarColor(index: barIndex), active: localVolumeLastBar >= barIndex)
                     .transaction { $0.disablesAnimations = true }
                     .frame(width: barsWidth)

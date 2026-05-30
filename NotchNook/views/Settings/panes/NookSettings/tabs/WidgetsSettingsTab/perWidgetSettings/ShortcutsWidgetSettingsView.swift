@@ -21,7 +21,6 @@ struct ShortcutsWidgetSettingsView: View {
     }
     
     var body: some View {
-        let enabled = nookSettings.enabledWidgets.contains(.shortcuts)
         let widgetW = Int(shortcutsWidgetSettings.size.width.double)
         let cols = widgetW / Int(shortcutsWidgetSettings.shortcutButtonWidth.double)
         let contentMaxW: Double = 300

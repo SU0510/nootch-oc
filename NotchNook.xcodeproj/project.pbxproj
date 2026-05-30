@@ -2442,7 +2442,6 @@
 				ECF429272C07B0FB0086B07A /* SliderPlus.swift in Sources */,
 				3A0C50222C534B930003867F /* BrightnessIndicatorBarWrapperView.swift in Sources */,
 				EC8D60592BFFEEF500E67ECC /* MediaControls.swift in Sources */,
-				EC8D60592BFFEEF500E67ECC /* MediaControls.swift in Sources */,
 				3AC36D8E2C264A250000F995 /* openCalendarSettingsAccountsTab.swift in Sources */,
 				3A0C50142C531CA70003867F /* startBriVolKeyListener.swift in Sources */,
 				3A7E0A752FC4C7160047FC10 /* TodoRowView.swift in Sources */,

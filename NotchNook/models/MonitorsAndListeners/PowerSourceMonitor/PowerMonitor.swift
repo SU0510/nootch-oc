@@ -208,7 +208,7 @@ class PowerMonitor {
             // even while the user is scrolling / interacting with a modal sheet.
             // (Timer.scheduledTimer only adds to .default mode of current run loop.)
             let dismissTimer = Timer(timeInterval: 4, repeats: false) { _ in
-                ActiveLiveActivitiesManager.shared.removeSync(.batteryVisualizer)
+                MainActor.assumeIsolated { ActiveLiveActivitiesManager.shared.removeSync(.batteryVisualizer) }
             }
             RunLoop.main.add(dismissTimer, forMode: .common)
             TimersManager.shared.replaceMainThreadTimer("BatteryActivityDismiss", timer: dismissTimer)

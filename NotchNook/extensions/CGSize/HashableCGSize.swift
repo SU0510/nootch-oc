@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension CGSize: Hashable {
+extension CGSize: @retroactive Hashable {
   public func hash(into hasher: inout Hasher) {
     hasher.combine(self.hashValue)
   }

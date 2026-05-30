@@ -29,7 +29,6 @@ struct CalendarEventView: View {
             return Text("All day")
         }
         
-        let calendar = Calendar.current
         let startDate = event.startDate ?? Date()
         let endDate = event.endDate ?? Date()
         
@@ -77,7 +76,7 @@ struct CalendarEventView: View {
                         .font(.system(size: 10))
                         .foregroundStyle(.blue)
                     +
-                    Text(" \(event.title)")
+                    Text(" " + (event.title ?? ""))
                 } else {
                     Text(event.title)
                 }
