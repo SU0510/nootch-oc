@@ -267,13 +267,13 @@ class WindowsManager {
             _ = newWindow.makeFirstResponder(nil)
         }
 
-        // Restore isEditingText auto-clear: when first responder reverts to the
-        // panel itself (no text field active), clear the editing flag so the kb
-        // icon can dismiss and unhover-close can proceed.
+        // isEditingText universal tracker: true when ANY non-window responder is active
+        // (a TextField, NSTextView field editor, etc.), false when responder reverts to
+        // the panel itself. Covers Timer/Todo widgets that don't explicitly call
+        // enableTextEditingForWindowWith; explicit setters in NoteView/TrayFileView
+        // still run alongside this as the active path.
         newWindow.firstResponderCb = { [weak hostingView] isWindowItself in
-            if isWindowItself {
-                hostingView?.rootView.isEditingText = false
-            }
+            hostingView?.rootView.isEditingText = !isWindowItself
         }
 
         newWindow.orderFrontRegardless()
