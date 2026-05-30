@@ -158,10 +158,14 @@ struct NoteView: View {
                 note.updatedAt = Date()
                 do { try note.modelContext?.save() }
                 catch { print("[Notes] onAppear save failed: \(error)") }
+                // Only arm text-editing tracking for the selected note — every other note
+                // miniature also runs onAppear when the widget renders, and arming for all
+                // of them lights up the kb-lock indicator the moment the notch opens with
+                // the Notes widget visible.
+                enableTextEditing()
             }
             withAnimation(NotesWidgetView.switchAnimation) { downScaled.toggle() }
             withAnimation(.spring.delay(0.3)) { showControls = true }
-            enableTextEditing()
         }
         .onDisappear {
             updateEditingTextStateFor(displayKitId, false)
