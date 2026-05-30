@@ -104,8 +104,25 @@ class WindowsManager {
             ExpandedNoteView(note: note, isCodeMode: isCodeMode)
         }
         
-        newWindow.whileClosing = {
-            doAfter { self.expandedNoteManager.closeNote() }
+        // Bug 2: ensure NSApp.setActivationPolicy(.accessory) is always reset when the
+        // expanded-note window is closed, regardless of whether the SwiftUI NoteView
+        // is alive to observe expandedNoteManager.isExpanded flipping.  whileClosing fires
+        // at the START of the close animation (before super.close()); onClose fires after.
+        //
+        // Use a weak capture of `self` (WindowsManager is a singleton but keeping it weak
+        // is correct hygiene), and a weak capture of `newWindow` to avoid a retain cycle
+        // (window → WindowsManager via the closure → window).
+        newWindow.whileClosing = { [weak self] in
+            self?.expandedNoteManager.closeNote()
+            // Clear the controller reference immediately so the window can be released
+            // when the animation completes.
+            self?.expandedNoteWindowController = nil
+        }
+        // Reset activation policy after the close animation finishes and super.close() runs.
+        // This ensures the Dock + Cmd-Tab leak is fixed even when NoteView's SwiftUI
+        // onChange handler never fires (e.g. red-X close while notch is fully closed).
+        newWindow.onClose = {
+            NSApp.setActivationPolicy(.accessory)
         }
         
         let customToolbar = NSToolbar()
@@ -273,9 +290,43 @@ class WindowsManager {
         // initial responder to the contentView (NSHostingView) on panel open, so a
         // "non-self" check would spuriously light up the kb-lock indicator before the
         // user types anything. Explicit setters in NoteView/TrayFileView still run.
-        newWindow.firstResponderCb = { [weak hostingView] responder in
-            let isTextEditing = (responder is NSText) || (responder is NSTextField)
-            hostingView?.rootView.isEditingText = isTextEditing
+        newWindow.firstResponderCb = { [weak hostingView, weak newWindow] responder in
+            if (responder is NSText) || (responder is NSTextField) {
+                // Field editor (NSTextView) or a native NSTextField is active — text is being edited.
+                hostingView?.rootView.isEditingText = true
+            } else if responder == nil || responder === newWindow {
+                // Explicit "no editor" signal: panel lost focus entirely, or AppKit resigned the
+                // panel itself.  Clear the flag so unhover-close can arm again.
+                hostingView?.rootView.isEditingText = false
+            }
+            // All other responder types (NSView, NSHostingView, NSButton, …) are transient
+            // mid-transition intermediates.  Leave the flag alone — the explicit close paths
+            // in NoteView (updateEditingTextStateFor) and the NSText match above handle real
+            // transitions without spuriously disarming the text-lock.
+        }
+
+        // Bug 3: re-arm auto-close when another window (e.g. Settings) steals key status.
+        // The old `onChange(of: isKeyWindow)` approach was removed in a60216d because
+        // .nonactivatingPanel normally never becomes key on its own.  But it *does* resign
+        // key when a regular NSWindow opens.  Observe that notification here so we can
+        // close the notch without needing a SwiftUI env accessor.
+        //
+        // Guard: skip the close when a text field is active — the user is typing in the
+        // notch, and the panel will resign key to the field editor's parent; closing then
+        // would interrupt editing.
+        //
+        // The block-based addObserver API returns an opaque token that must be stored and
+        // passed to removeObserver(_:) explicitly — removeObserver(window) only removes
+        // selector-based registrations, not block-based ones.  Store the token in DisplayKit.
+        let resignKeyObserver = NotificationCenter.default.addObserver(
+            forName: NSWindow.didResignKeyNotification,
+            object: newWindow,
+            queue: .main
+        ) { [weak hostingView] _ in
+            guard hostingView?.rootView.isEditingText == false else { return }
+            withAnimation(.smooth(duration: 0.4)) {
+                hostingView?.rootView.notchNook.mode = .closed
+            }
         }
 
         newWindow.orderFrontRegardless()
@@ -285,7 +336,8 @@ class WindowsManager {
             windowController: newWindowController,
             screen: screen,
             notchSize: notchSize,
-            notchNook: notchNook
+            notchNook: notchNook,
+            resignKeyObserver: resignKeyObserver
         )
     }
     
@@ -356,15 +408,25 @@ class WindowsManager {
         var screen: NSScreen
         var notchSize: CGSize
         var notchNook: NotchNookState
+        /// Token for the block-based didResignKeyNotification observer (Bug 3).
+        /// Must be removed explicitly; removeObserver(window) only handles selector-based
+        /// registrations and will NOT remove block-based observers.
+        var resignKeyObserver: NSObjectProtocol?
         
         func cleanup() {
             if let window = windowController.window {
+                // Remove selector-based observers registered with `object: window` as the sender.
                 NotificationCenter.default.removeObserver(window)
                 
                 if let hostingView = window.contentView as? AcceptingFirstClickHostingView<RootView> {
                     hostingView.rootView.resignFirstResponder = {}
                 }
                 window.contentView = nil
+            }
+            
+            // Remove the block-based resign-key observer stored at construction time.
+            if let resignKeyObserver {
+                NotificationCenter.default.removeObserver(resignKeyObserver)
             }
             
             windowController.close()
