@@ -36,11 +36,22 @@ class ForceFocusableWindow: NSPanel {
 
     override func makeFirstResponder(_ responder: NSResponder?) -> Bool {
         let success = super.makeFirstResponder(responder)
-        guard success else { return false }
+        // IME guard: never interrupt active composition.
         if let textView = responder as? NSTextView, textView.hasMarkedText() {
             return success
         }
-        firstResponderCb?(responder)
+        if success {
+            firstResponderCb?(responder)
+        } else if responder == nil {
+            // An explicit user-driven resign (e.g. clicking the kb-lock icon calls
+            // makeFirstResponder(nil)) was refused by the current first responder —
+            // typically RichTextView / NSTextView, which returns false from
+            // resignFirstResponder() when AppKit believes it should stay focused.
+            // The responder chain didn't actually change, but we still honor the
+            // user's intent: fire the callback with nil so the UI tracker clears
+            // isEditingText and the kb-lock indicator dismisses.
+            firstResponderCb?(nil)
+        }
         return success
     }
 }

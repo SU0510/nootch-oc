@@ -158,11 +158,14 @@ struct NoteView: View {
                 note.updatedAt = Date()
                 do { try note.modelContext?.save() }
                 catch { print("[Notes] onAppear save failed: \(error)") }
-                // Only arm text-editing tracking for the selected note — every other note
-                // miniature also runs onAppear when the widget renders, and arming for all
-                // of them lights up the kb-lock indicator the moment the notch opens with
-                // the Notes widget visible.
-                enableTextEditing()
+                // Do NOT call enableTextEditing() here. A NoteView card appearing on
+                // screen is not the same as the user intending to type — the auto-selected
+                // note fires onAppear every time the notch opens, which was spuriously
+                // lighting up the kb-lock indicator before any keyboard interaction.
+                // The rich-text NSTextView inside NoteRichEditor becomes first responder
+                // on its own when the user clicks into it; firstResponderCb in
+                // ForceFocusableWindow picks that up via the `responder is NSText` check
+                // and sets isEditingText = true at that point.
             }
             withAnimation(NotesWidgetView.switchAnimation) { downScaled.toggle() }
             withAnimation(.spring.delay(0.3)) { showControls = true }
