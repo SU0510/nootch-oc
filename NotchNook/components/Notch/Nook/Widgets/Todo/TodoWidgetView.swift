@@ -56,7 +56,7 @@ struct TodoWidgetView: View {
                 }
             }
         }
-        .padding(internalPadding)
+        .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
         .frame(prefs.size.screenPtsCGSize, .leading)
     }
 
