@@ -16,7 +16,7 @@ class UpdaterDelegate: NSObject, SPUUpdaterDelegate, SPUStandardUserDriverDelega
     }
     
     func standardUserDriverShouldHandleShowingScheduledUpdate(_ update: SUAppcastItem, andInImmediateFocus immediateFocus: Bool) -> Bool {
-        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.updateAvailable)
+        Task { @MainActor in ActiveLiveActivitiesManager.shared.insertSync(.updateAvailable) }
         return false
     }
 }

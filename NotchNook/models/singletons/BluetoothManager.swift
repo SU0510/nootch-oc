@@ -182,12 +182,13 @@ final class BluetoothManager: NSObject {
         return device.deviceClassMajor == kBluetoothDeviceClassMajorAudio ? "headphones" : ""
     }
     
+    @MainActor
     private func handleDeviceActivity(isConnecting: Bool) async {
         guard !startupSuppressActive else { return }
-        await MainActor.run { currentDeviceIsConnecting = isConnecting }
-        ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.bluetoothDevice)
+        currentDeviceIsConnecting = isConnecting
+        ActiveLiveActivitiesManager.shared.insertSync(.bluetoothDevice)
         try? await Task.sleep(nanoseconds: 4_000_000_000) // 4 seconds auto-dismiss
-        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.bluetoothDevice)
+        ActiveLiveActivitiesManager.shared.removeSync(.bluetoothDevice)
     }
     
     @objc private func deviceConnected(_ notification: IOBluetoothUserNotification, withDevice device: IOBluetoothDevice) {

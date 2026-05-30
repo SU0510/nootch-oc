@@ -31,7 +31,7 @@ class MediaManagerPerApp {
                     TimersManager.shared.removeTimer(timerId)
                 } else {
                     TimersManager.shared.addTimer(timerId, delay: Defaults[.liveActivitiesSettings].inactivityTimeoutInSecs) { _ in
-                        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+                        Task { @MainActor in ActiveLiveActivitiesManager.shared.removeSync(.media) }
                     }
                 }
             }
@@ -386,9 +386,9 @@ class MediaManagerPerApp {
     private func updateLiveActivities() {
         if track != .empty {
             if !isPlaying { return }
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.media)
+            MainActor.assumeIsolated { ActiveLiveActivitiesManager.shared.insertSync(.media) }
         } else {
-            ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.media)
+            MainActor.assumeIsolated { ActiveLiveActivitiesManager.shared.removeSync(.media) }
         }
     }
 }

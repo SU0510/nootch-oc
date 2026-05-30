@@ -48,11 +48,11 @@ class Tray {
             let isTrayActive = activitiesManager.activeLiveActivities.contains(.tray)
             if newValue.isEmpty {
                 if isTrayActive {
-                    activitiesManager.activeLiveActivities.remove(.tray)
+                    MainActor.assumeIsolated { activitiesManager.removeSync(.tray) }
                 }
             } else {
                 if !isTrayActive {
-                    activitiesManager.activeLiveActivities.insert(.tray)
+                    MainActor.assumeIsolated { activitiesManager.insertSync(.tray) }
                 }
             }
         }
