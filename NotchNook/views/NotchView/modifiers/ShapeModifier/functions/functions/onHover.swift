@@ -13,6 +13,8 @@ extension NotchView {
         if license == nil || trialOver { checkTrialOver() }
         
         if hovering {
+            // Make panel key on hover to prevent first-click absorption — clicks on a non-key .nonactivatingPanel are consumed by AppKit to activate the panel and never reach SwiftUI gestures.
+            makeKeyWindow()
             if mode == .closed {
                 if !tray.files.isEmpty || generalSettings.alwaysOpenNotchOnHover {
                     openNotch(in: tray.files.isEmpty ? .nook : .tray)
