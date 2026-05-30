@@ -31,8 +31,11 @@ struct ReorderWidgetsView: View {
         VStack {
             ZStack(alignment: .top) {
                 HStack(spacing: spacing) {
-                    let availableWidth = dragSize.width - (CGFloat(widgets.count - 1) * spacing)
-                    let cell = availableWidth / nookSettings.widgetsWidth.double
+                    // dragSize starts at .zero before `.measure` reports; with N>=2
+                    // widgets that subtraction goes negative and poisons every child .frame.
+                    let availableWidth = max(0, dragSize.width - (CGFloat(widgets.count - 1) * spacing))
+                    let divisor = nookSettings.widgetsWidth.double
+                    let cell = divisor > 0 ? availableWidth / divisor : 0
                     
                     ForEach(Array(widgets.enumerated()), id: \.element) { i, widget in
                         let arrPos = ArrayPosition(total: widgets.count, i: i)
