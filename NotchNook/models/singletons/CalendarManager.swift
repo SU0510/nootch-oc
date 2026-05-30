@@ -144,10 +144,8 @@ class CalendarManager: @unchecked Sendable {
             addedLiveActivity = true
             
             // Add live activity
-            Task {
-                await MainActor.run {
-                    ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
-                }
+            Task { @MainActor in
+                ActiveLiveActivitiesManager.shared.insertSync(.calendar)
             }
             
             // Schedule removal for when the event ends
@@ -157,7 +155,7 @@ class CalendarManager: @unchecked Sendable {
             if removeIn > 0 {
                 let removeTimer = Timer.scheduledTimer(withTimeInterval: removeIn, repeats: false) { _ in
                     Task { @MainActor in
-                        ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                        ActiveLiveActivitiesManager.shared.removeSync(.calendar)
                     }
                 }
                 liveActivitiesTimers.append(removeTimer)
@@ -173,11 +171,13 @@ class CalendarManager: @unchecked Sendable {
                     func triggerActivity() {
                         Task { @MainActor in
                             if shouldShowCalendarActivity(event: event, settings: prefs) {
-                                ActiveLiveActivitiesManager.shared.activeLiveActivities.insert(.calendar)
+                                ActiveLiveActivitiesManager.shared.insertSync(.calendar)
                                 
                                 // Synchronous hide after 3 seconds
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                                    ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                                    MainActor.assumeIsolated {
+                                        ActiveLiveActivitiesManager.shared.removeSync(.calendar)
+                                    }
                                 }
                             }
                         }
@@ -225,7 +225,7 @@ class CalendarManager: @unchecked Sendable {
         
         Task { @MainActor in
             if !addedLiveActivity {
-                ActiveLiveActivitiesManager.shared.activeLiveActivities.remove(.calendar)
+                ActiveLiveActivitiesManager.shared.removeSync(.calendar)
             }
         }
     }
@@ -383,17 +383,25 @@ class CalendarManager: @unchecked Sendable {
                 return
             }
             
-            let completion: RequestAccessCompletion = { granted, error in
-                if let error {
-                    print("Error requesting calendar access: \(error)")
-                    continuation.resume(throwing: error)
-                } else {
-                    print("Calendar access granted: \(granted)")
-                    continuation.resume(returning: granted)
+            // EKEventStore must not be shared across threads; hop onto @MainActor
+            // before touching it. Apple's completion handler may arrive on an
+            // arbitrary thread, but we're only resuming the continuation there —
+            // no eventStore access at that point.
+            Task { @MainActor [weak self] in
+                guard let self = self else {
+                    continuation.resume(throwing: CalendarManagerError.unableToAccessCalendar)
+                    return
+                }
+                self.eventStore.requestFullAccessToEvents { granted, error in
+                    if let error {
+                        print("Error requesting calendar access: \(error)")
+                        continuation.resume(throwing: error)
+                    } else {
+                        print("Calendar access granted: \(granted)")
+                        continuation.resume(returning: granted)
+                    }
                 }
             }
-            
-            self.eventStore.requestFullAccessToEvents(completion: completion)
         }
     }
     
