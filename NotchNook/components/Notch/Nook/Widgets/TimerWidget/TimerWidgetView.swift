@@ -56,6 +56,7 @@ struct TimerWidgetView: View {
                 }
                 .buttonStyle(.plain)
             }
+            .frame(maxWidth: .infinity)
             .padding(.leading, headerLeadingPad)
             .padding(.trailing, headerTrailingPad)
 

@@ -17,12 +17,13 @@ struct TodoCreatorView: View {
             Image(systemName: "plus.circle")
                 .font(.system(size: 11, weight: .medium))
                 .foregroundStyle(Color.secondary.opacity(0.5))
-                .frame(width: 16)
+                .frame(width: 16, height: 18)
 
             TextField("New task…", text: $text)
                 .textFieldStyle(.plain)
                 .font(.system(size: 11.5, weight: .regular))
                 .focused($isFocused)
+                .frame(height: 18)
                 .onSubmit {
                     onSubmit()
                 }
