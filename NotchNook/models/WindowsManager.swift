@@ -322,9 +322,8 @@ class WindowsManager {
         // key when a regular NSWindow opens.  Observe that notification here so we can
         // close the notch without needing a SwiftUI env accessor.
         //
-        // Guard: skip the close when a text field is active — the user is typing in the
-        // notch, and the panel will resign key to the field editor's parent; closing then
-        // would interrupt editing.
+        // Guard: when typing, only skip if the user actually locked NN — otherwise we
+        // dismiss focus (mimicking NN bg-tap) and close.
         //
         // The block-based addObserver API returns an opaque token that must be stored and
         // passed to removeObserver(_:) explicitly — removeObserver(window) only removes
@@ -333,10 +332,24 @@ class WindowsManager {
             forName: NSWindow.didResignKeyNotification,
             object: newWindow,
             queue: .main
-        ) { [weak hostingView] _ in
-            guard hostingView?.rootView.isEditingText == false else { return }
+        ) { [weak hostingView, weak newWindow] _ in
+            guard let hostingView, let newWindow else { return }
+            let isLocked = hostingView.rootView.notchNook.locked
+            let isEditing = hostingView.rootView.isEditingText
+
+            if isEditing {
+                if isLocked {
+                    // Actual lock is sacred — keep NN open, keep input focused.
+                    return
+                }
+                // Keyboard-lock without actual lock: mimic NN bg-tap and dismiss
+                // input focus.  firstResponderCb will flip isEditingText → false,
+                // and we fall through to close as a normal outside click would.
+                _ = newWindow.makeFirstResponder(nil)
+            }
+
             withAnimation(.smooth(duration: 0.4)) {
-                hostingView?.rootView.notchNook.mode = .closed
+                hostingView.rootView.notchNook.mode = .closed
             }
         }
 
