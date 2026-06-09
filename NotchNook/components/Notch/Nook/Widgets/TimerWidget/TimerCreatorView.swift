@@ -26,6 +26,7 @@ struct TimerCreatorView: View {
     @State private var hours: Int = 0
     @State private var minutes: Int = 5
     @State private var seconds: Int = 0
+    @State private var hoveredWheelIndex: Int = 0
 
     private let quickPresets: [(label: String, seconds: Int)] = [
         ("1m",   60),
@@ -40,7 +41,7 @@ struct TimerCreatorView: View {
     fileprivate static let rowHeight: CGFloat = 24
     fileprivate static let visibleRows: Int = 3
     fileprivate static var wheelHeight: CGFloat { CGFloat(visibleRows) * rowHeight } // 72
-    fileprivate static let pillHeight: CGFloat = 30
+    fileprivate static let pillHeight: CGFloat = 45
 
     var body: some View {
         VStack(spacing: 0) {
@@ -64,21 +65,39 @@ struct TimerCreatorView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-
+    
     // MARK: - Wheels + glass pill
 
     private var wheelStack: some View {
         ZStack {
-            HStack(spacing: 0) {
-                NumberWheel(value: $hours,   range: 0...23, suffix: "h")
-                separator
-                NumberWheel(value: $minutes, range: 0...59, suffix: "m")
-                separator
-                NumberWheel(value: $seconds, range: 0...59, suffix: "s")
+            if #available(macOS 26.0, *) {
+                GlassEffectContainer {
+                    HStack(spacing: 0) {
+                        NumberWheel(value: $hours,   range: 0...23, suffix: "h")
+                            .onHover { hovering in
+                                
+                            }
+                        separator
+                        NumberWheel(value: $minutes, range: 0...59, suffix: "m")
+                            .onHover { hovering in
+                                
+                            }
+                        separator
+                        NumberWheel(value: $seconds, range: 0...59, suffix: "s")
+                            .onHover { hovering in
+                                
+                            }
+                    }
+                    
+                    glassPill
+                        .allowsHitTesting(false)
+                }
+                .background(.secondary, in: Capsule(style: .continuous))
+                .frame(height: Self.pillHeight)
+                .frame(maxWidth: .infinity)
+            } else {
+                // Fallback on earlier versions
             }
-
-            glassPill
-                .allowsHitTesting(false)
         }
         .frame(height: Self.wheelHeight)
     }
@@ -90,9 +109,7 @@ struct TimerCreatorView: View {
             // `.clear` variant is designed to overlay content while keeping
             // what's underneath readable.
             Color.clear
-                .frame(height: Self.pillHeight)
-                .frame(maxWidth: .infinity)
-                .glassEffect(.clear, in: Capsule(style: .continuous))
+                .glassEffect(.clear.tint(.clear).interactive(true), in: Capsule(style: .continuous))
         } else {
             Capsule(style: .continuous)
                 .fill(.thickMaterial)

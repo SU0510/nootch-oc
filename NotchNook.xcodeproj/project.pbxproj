@@ -153,6 +153,7 @@
 		3A459C202C2E726F0045995D /* BindStatesStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */; };
 		3A459C272C2E955D0045995D /* lock.lottie in Resources */ = {isa = PBXBuildFile; fileRef = 3A459C262C2E955D0045995D /* lock.lottie */; };
 		3A471A412C224C6C00FCD355 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A471A402C224C6C00FCD355 /* FolderMonitor.swift */; };
+		3A482F422FD718A0004F3672 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A482F412FD71898004F3672 /* BubbleView.swift */; };
 		3A5104D42C37AD3A0045F7E6 /* NoteExpandedMsgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */; };
 		3A5104D62C37B4320045F7E6 /* getSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */; };
 		3A5104D82C37B8460045F7E6 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5104D72C37B8430045F7E6 /* Numbers.swift */; };
@@ -589,6 +590,7 @@
 		3A459C1F2C2E726F0045995D /* BindStatesStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindStatesStyle.swift; sourceTree = "<group>"; };
 		3A459C262C2E955D0045995D /* lock.lottie */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.lottie; sourceTree = "<group>"; };
 		3A471A402C224C6C00FCD355 /* FolderMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
+		3A482F412FD71898004F3672 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		3A5104D32C37AD3A0045F7E6 /* NoteExpandedMsgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteExpandedMsgView.swift; sourceTree = "<group>"; };
 		3A5104D52C37B4320045F7E6 /* getSpringAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getSpringAnimation.swift; sourceTree = "<group>"; };
 		3A5104D72C37B8430045F7E6 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
@@ -1195,6 +1197,7 @@
 		3A7E0A782FC4C71B0047FC10 /* TimerWidget */ = {
 			isa = PBXGroup;
 			children = (
+				3A482F412FD71898004F3672 /* BubbleView.swift */,
 				3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */,
 				3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */,
 				3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */,
@@ -2267,6 +2270,7 @@
 				3AE405472C2CA2DB00E8D927 /* NotesWidgetSettingsView.swift in Sources */,
 				EC47FC932C0B810800591811 /* Lottie.swift in Sources */,
 				363709542C56B8C0004D20BB /* NonHyphenatingText.swift in Sources */,
+				3A482F422FD718A0004F3672 /* BubbleView.swift in Sources */,
 				EC8D60442BFEFB6500E67ECC /* ArrowForPanningView.swift in Sources */,
 				36C970232C51D57600956B57 /* Date+Extensions.swift in Sources */,
 				3A1691D02C2FB1EE0014C326 /* TrialOverKey.swift in Sources */,
