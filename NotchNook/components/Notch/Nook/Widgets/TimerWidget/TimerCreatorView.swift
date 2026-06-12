@@ -14,6 +14,7 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct TimerCreatorView: View {
     @Binding var isShowing: Bool
@@ -24,9 +25,12 @@ struct TimerCreatorView: View {
     @Environment(\.timerWidgetSettings) private var prefs
 
     @State private var hours: Int = 0
-    @State private var minutes: Int = 5
+    @State private var minutes: Int = 0
     @State private var seconds: Int = 0
-    @State private var hoveredWheelIndex: Int = 0
+
+    /// Which wheel currently has scroll focus (0=h, 1=m, 2=s). Drives the
+    /// sliding glass indicator, like the selected tab in an iOS nav bar.
+    @State private var focusedWheel: Int = 1
 
     private let quickPresets: [(label: String, seconds: Int)] = [
         ("1m",   60),
@@ -38,10 +42,31 @@ struct TimerCreatorView: View {
 
     private var totalSeconds: Int { hours * 3600 + minutes * 60 + seconds }
 
+    /// The value living on the focused wheel. Rendered as a crisp glyph ON the
+    /// glass (the "front" number) while the scrolling wheel digit sits BEHIND
+    /// the glass and gets refracted — two numbers, one on each side of the pill.
+    private var focusedValue: Int {
+        switch focusedWheel {
+        case 0:  return hours
+        case 2:  return seconds
+        default: return minutes
+        }
+    }
+
     fileprivate static let rowHeight: CGFloat = 24
     fileprivate static let visibleRows: Int = 3
     fileprivate static var wheelHeight: CGFloat { CGFloat(visibleRows) * rowHeight } // 72
-    fileprivate static let pillHeight: CGFloat = 45
+    /// Selection lens wraps ONLY the center row (the value being set).
+    fileprivate static let selectionHeight: CGFloat = rowHeight  // 24
+    /// Focus pill is a touch narrower than its column and a touch taller than
+    /// the dark track, so it reads as a distinct floating element.
+    fileprivate static let indicatorWidthInset: CGFloat = 7
+    fileprivate static let indicatorHeightBump: CGFloat = 8
+    /// Gap between wheels (and between the last wheel and the button column).
+    /// Reduced from 8 → 5 so the digits sit closer together.
+    fileprivate static let wheelGap: CGFloat = 5
+    /// Compact height for the cancel/start buttons (they don't fill the column).
+    fileprivate static let buttonHeight: CGFloat = 26
 
     var body: some View {
         VStack(spacing: 0) {
@@ -51,84 +76,202 @@ struct TimerCreatorView: View {
                 .padding(.horizontal, 10)
                 .padding(.top, 2)
 
-            Spacer(minLength: 2)
+            // Small FIXED gap, then pool all slack at the bottom (Spacer below).
+            // Top-aligning kills the centering that opened a gap under topRow and
+            // read as top padding; the wheels now sit right under the title.
+            Color.clear.frame(height: 4)
 
             wheelStack
-                .padding(.horizontal, 10)
-
-            Spacer(minLength: 2)
-
-            bottomBar
-                .padding(.leading, bottomLeadingSafe)
+                .padding(.leading, 10)
                 .padding(.trailing, bottomTrailingSafe)
-                .padding(.bottom, 10)
+
+            Spacer(minLength: 0)
         }
+        .padding(.bottom, 10)   // keep the block off the widget's bottom edge
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     // MARK: - Wheels + glass pill
 
     private var wheelStack: some View {
-        ZStack {
-            if #available(macOS 26.0, *) {
-                GlassEffectContainer {
-                    HStack(spacing: 0) {
-                        NumberWheel(value: $hours,   range: 0...23, suffix: "h")
-                            .onHover { hovering in
-                                
-                            }
-                        separator
-                        NumberWheel(value: $minutes, range: 0...59, suffix: "m")
-                            .onHover { hovering in
-                                
-                            }
-                        separator
-                        NumberWheel(value: $seconds, range: 0...59, suffix: "s")
-                            .onHover { hovering in
-                                
-                            }
-                    }
-                    
-                    glassPill
-                        .allowsHitTesting(false)
+        // 4 equal columns: 3 wheels + a button column the width of one wheel.
+        // GeometryReader so the button column is EXACTLY one wheel wide and the
+        // wheel group keeps its 3 columns + 2 gaps aligned with the indicator.
+        GeometryReader { geo in
+            let colW = (geo.size.width - 3 * Self.wheelGap) / 4
+            let wheelsW = colW * 3 + Self.wheelGap * 2
+            HStack(spacing: Self.wheelGap) {
+                // Exact iOS 26 nav-bar selector stack, bottom → top:
+                //   dark track → wheel digit (lensed THROUGH the glass) → glass pill.
+                // The CRISP focused digit is NOT a separate overlay — it's the
+                // glass pill's own contentView (embedded in the glass), so the
+                // material never blurs it, exactly like the tab-bar selector's
+                // label. Only the wheel digit behind the glass gets lensed.
+                ZStack {
+                    selectionLens               // dark #19191B track
+                    wheelsRow                   // scrolling digits — lensed BEHIND the glass
+                    focusIndicator(colW: colW)  // glass pill + crisp digit embedded inside it
                 }
-                .background(.secondary, in: Capsule(style: .continuous))
-                .frame(height: Self.pillHeight)
-                .frame(maxWidth: .infinity)
-            } else {
-                // Fallback on earlier versions
+                .frame(width: wheelsW, height: Self.wheelHeight)
+
+                buttonColumn
+                    .frame(width: colW, height: Self.wheelHeight)
             }
+            .frame(width: geo.size.width, height: geo.size.height)
         }
         .frame(height: Self.wheelHeight)
     }
 
+    // MARK: - Button column (cancel on top, start on bottom — one wheel wide)
+
+    private var buttonColumn: some View {
+        // Small fixed-height buttons pinned to the BOTTOM of the column (empty
+        // space above), aligned with the bottom of the wheels.
+        VStack(spacing: Self.wheelGap) {
+            Spacer(minLength: 0)
+
+            // Cancel (top)
+            Button {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.78)) {
+                    isShowing = false
+                }
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(Color.white.opacity(0.8))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: Self.buttonHeight)
+                    .background(
+                        RoundedRectangle(cornerRadius: 9, style: .continuous)
+                            .fill(Color.white.opacity(0.12))
+                    )
+            }
+            .buttonStyle(ShrinkOnPressButtonStyle())
+
+            // Start (bottom)
+            Button {
+                commitIfValid()
+            } label: {
+                Image(systemName: "play.fill")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(Color.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: Self.buttonHeight)
+                    .background(
+                        RoundedRectangle(cornerRadius: 9, style: .continuous)
+                            .fill(Color.accentColor.opacity(totalSeconds > 0 ? 0.9 : 0.22))
+                    )
+            }
+            .buttonStyle(ShrinkOnPressButtonStyle())
+            .disabled(totalSeconds <= 0)
+            .opacity(totalSeconds <= 0 ? 0.55 : 1)
+        }
+    }
+
+    /// Dark #19191B track wrapping the center row across ALL 3 wheels. SOLID,
+    /// not glass: glass cannot sample other glass outside a shared container, so
+    /// the focus pill (the real Liquid Glass) is kept the ONLY glass element —
+    /// it then refracts both the digits and this dark track behind it cleanly.
+    private var selectionLens: some View {
+        Capsule(style: .continuous)
+            .fill(Color.hex("#19191B"))
+            .frame(height: Self.selectionHeight)
+            .frame(maxWidth: .infinity)
+            .allowsHitTesting(false)
+    }
+
+    // The focus pill — ONE persistent Liquid Glass capsule that SLIDES between
+    // wheels by changing its x-offset, exactly like the iOS 26 nav-bar selector.
+    // A single mounted view that just moves re-runs the glass shader every frame,
+    // so the digit behind it visibly bends as it travels (glassEffectID morph
+    // froze the backdrop instead). ONE pill only — "glass cannot sample other
+    // glass", so a second stacked pill would break the material.
+    //
+    // The "expand while moving, settle when stopped" liquid signature is a
+    // keyframe pulse on scale, retriggered on every focus change.
     @ViewBuilder
-    private var glassPill: some View {
-        if #available(macOS 26.0, *) {
-            // Real Liquid Glass — the one true glass element in this view.
-            // `.clear` variant is designed to overlay content while keeping
-            // what's underneath readable.
-            Color.clear
-                .glassEffect(.clear.tint(.clear).interactive(true), in: Capsule(style: .continuous))
-        } else {
-            Capsule(style: .continuous)
-                .fill(.thickMaterial)
-                .frame(height: Self.pillHeight)
-                .frame(maxWidth: .infinity)
-                .overlay(
+    private func focusIndicator(colW: CGFloat) -> some View {
+        // Center x of the focused column, measured from the wheel-group's left
+        // edge. Columns are colW wide, separated by wheelGap.
+        let step = colW + Self.wheelGap
+        let centerX = colW / 2 + CGFloat(focusedWheel) * step
+        let pillW = colW - Self.indicatorWidthInset * 2
+        let pillH = Self.selectionHeight + Self.indicatorHeightBump
+
+        pill(width: pillW, height: pillH)
+            // Position from the leading edge, then nudge by half the group so
+            // offset 0 == group center; centerX is already absolute-from-left.
+            .frame(width: pillW, height: pillH)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .offset(x: centerX - pillW / 2)
+            .animation(.spring(response: 0.42, dampingFraction: 0.7), value: focusedWheel)
+            .allowsHitTesting(false)
+    }
+
+    /// The crisp focused value, built as a plain SwiftUI view. This is handed to
+    /// the glass pill as its `contentView` (embedded INSIDE the glass), so the
+    /// material treats it as foreground content and never blurs it — exactly how
+    /// the tab-bar selector keeps its label sharp. The wheel digit behind the
+    /// glass is the only thing that gets lensed.
+    private var crispDigit: some View {
+        Text(String(format: "%02d", focusedValue))
+            .font(.system(size: 20, weight: .semibold).monospacedDigit())
+            .foregroundStyle(Color.white)
+            .contentTransition(.numericText())
+            .animation(.spring(response: 0.32, dampingFraction: 0.78), value: focusedValue)
+            // Fill + center inside the host so the digit sits in the middle of
+            // the glass instead of pinning to a corner.
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    @ViewBuilder
+    private func pill(width: CGFloat, height: CGFloat) -> some View {
+        // Apple's REAL native Liquid Glass — the AppKit `NSGlassEffectView`, the
+        // exact engine the system uses. `.clear` style + nil tint = the most
+        // transparent, distortion-forward variant. The crisp digit rides INSIDE
+        // the glass as its contentView, so it stays sharp (foreground); only the
+        // wheel digit behind the pill in the window gets lensed. No borders, no
+        // sheen, no tint — pure native glass, just like the tab-bar selector.
+        Group {
+            if #available(macOS 26.0, *) {
+                LiquidGlassPill(cornerRadius: height / 2) {
+                    crispDigit
+                }
+            } else {
+                // Pre-26 fallback: a plain hairline capsule with the digit on top.
+                ZStack {
                     Capsule(style: .continuous)
-                        .stroke(
-                            LinearGradient(
-                                colors: [
-                                    Color.white.opacity(0.45),
-                                    Color.white.opacity(0.06),
-                                    Color.white.opacity(0.18),
-                                ],
-                                startPoint: .top, endPoint: .bottom
-                            ),
-                            lineWidth: 0.7
-                        )
-                )
+                        .strokeBorder(Color.white.opacity(0.25), lineWidth: 1)
+                    crispDigit
+                }
+            }
+        }
+        .keyframeAnimator(initialValue: PillStretch(), trigger: focusedWheel) { view, s in
+            view.scaleEffect(x: s.scaleX, y: s.scaleY, anchor: .center)
+        } keyframes: { _ in
+            KeyframeTrack(\.scaleX) {
+                CubicKeyframe(1.0,  duration: 0.001)
+                CubicKeyframe(1.35, duration: 0.18)   // expand mid-travel
+                SpringKeyframe(1.0, duration: 0.32, spring: .bouncy)  // settle
+            }
+            KeyframeTrack(\.scaleY) {
+                CubicKeyframe(1.0,  duration: 0.001)
+                CubicKeyframe(0.88, duration: 0.18)   // squash while stretched
+                SpringKeyframe(1.0, duration: 0.32, spring: .bouncy)
+            }
+        }
+    }
+
+    private var wheelsRow: some View {
+        HStack(spacing: 0) {
+            NumberWheel(value: $hours,   range: 0...23, suffix: "h",
+                        index: 0, focusedWheel: $focusedWheel)
+            separator
+            NumberWheel(value: $minutes, range: 0...59, suffix: "m",
+                        index: 1, focusedWheel: $focusedWheel)
+            separator
+            NumberWheel(value: $seconds, range: 0...59, suffix: "s",
+                        index: 2, focusedWheel: $focusedWheel)
         }
     }
 
@@ -136,7 +279,7 @@ struct TimerCreatorView: View {
         Text(":")
             .font(.system(size: 18, weight: .semibold).monospacedDigit())
             .foregroundStyle(Color.white.opacity(0.32))
-            .frame(width: 8)
+            .frame(width: Self.wheelGap)
     }
 
     // MARK: - Top row (title + preset chips, plain bounded capsules)
@@ -163,48 +306,6 @@ struct TimerCreatorView: View {
         }
     }
 
-    // MARK: - Bottom bar (close + start, plain bounded capsules)
-
-    private var bottomBar: some View {
-        HStack(spacing: 6) {
-            Button {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.78)) {
-                    isShowing = false
-                }
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.system(size: 11, weight: .bold))
-                    .foregroundStyle(Color.white.opacity(0.8))
-                    .frame(width: 24, height: 24)
-                    .background(Circle().fill(Color.white.opacity(0.12)))
-            }
-            .buttonStyle(ShrinkOnPressButtonStyle())
-
-            Spacer(minLength: 0)
-
-            Button {
-                commitIfValid()
-            } label: {
-                HStack(spacing: 5) {
-                    Image(systemName: "play.fill")
-                        .font(.system(size: 11, weight: .bold))
-                    Text(formatted(totalSeconds))
-                        .font(.system(size: 13, weight: .semibold).monospacedDigit())
-                }
-                .foregroundStyle(Color.white)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 5)
-                .background(
-                    Capsule(style: .continuous)
-                        .fill(Color.accentColor.opacity(totalSeconds > 0 ? 0.9 : 0.22))
-                )
-            }
-            .buttonStyle(ShrinkOnPressButtonStyle())
-            .disabled(totalSeconds <= 0)
-            .opacity(totalSeconds <= 0 ? 0.55 : 1)
-        }
-    }
-
     // MARK: - Actions
 
     private func applyPreset(_ secs: Int) {
@@ -227,14 +328,70 @@ struct TimerCreatorView: View {
         withAnimation(.spring) { isShowing = false }
     }
 
-    private func formatted(_ s: Int) -> String {
-        if s == 0 { return "Start" }
-        let h = s / 3600
-        let m = (s % 3600) / 60
-        let sec = s % 60
-        if h > 0 { return String(format: "%d:%02d:%02d", h, m, sec) }
-        return String(format: "%d:%02d", m, sec)
+}
+
+// MARK: - Real Liquid Glass (AppKit) bridge
+
+/// Apple's native `NSGlassEffectView` (macOS 26) — the genuine Liquid Glass
+/// engine, not SwiftUI's `.glassEffect`. Two things ride on it:
+///   • the digit BEHIND the pill in the window → lensed by the material
+///   • the crisp digit, set as the view's `contentView` → embedded INSIDE the
+///     glass as foreground content, so the material never blurs it. This is the
+///     exact trick the tab-bar selector uses to keep its label sharp.
+/// Public API only: `style = .clear` (most transparent, distortion-forward),
+/// `tintColor = nil` (zero added color). The crisp content is hosted via an
+/// `NSHostingView` and updated each pass so the digit value stays live.
+@available(macOS 26.0, *)
+private struct LiquidGlassPill<Content: View>: NSViewRepresentable {
+    var cornerRadius: CGFloat
+    @ViewBuilder var content: () -> Content
+
+    func makeNSView(context: Context) -> NSGlassEffectView {
+        let v = NSGlassEffectView()
+        v.cornerRadius = cornerRadius
+        v.tintColor = nil               // no added color — pure glass
+        v.style = .clear                // most transparent / most distortion
+
+        // The crisp digit embedded as the glass's own content (foreground —
+        // never blurred). Transparent host so only the text shows on the glass.
+        let host = NSHostingView(rootView: AnyView(content()))
+        host.translatesAutoresizingMaskIntoConstraints = false
+        context.coordinator.host = host
+        v.contentView = host
+        // Pin the host to FILL the glass — otherwise NSGlassEffectView sizes the
+        // glass down to the tiny text and you get a bubble around the digit.
+        NSLayoutConstraint.activate([
+            host.leadingAnchor.constraint(equalTo: v.leadingAnchor),
+            host.trailingAnchor.constraint(equalTo: v.trailingAnchor),
+            host.topAnchor.constraint(equalTo: v.topAnchor),
+            host.bottomAnchor.constraint(equalTo: v.bottomAnchor),
+        ])
+
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
     }
+
+    func updateNSView(_ v: NSGlassEffectView, context: Context) {
+        v.cornerRadius = cornerRadius
+        v.tintColor = nil
+        v.style = .clear
+        // Push the latest digit value into the embedded host.
+        context.coordinator.host?.rootView = AnyView(content())
+    }
+
+    func makeCoordinator() -> Coordinator { Coordinator() }
+
+    final class Coordinator {
+        var host: NSHostingView<AnyView>?
+    }
+}
+
+// MARK: - Pill stretch (keyframe state)
+
+/// Drives the focus pill's stretch/squash pulse as it slides between wheels.
+private struct PillStretch {
+    var scaleX: CGFloat = 1
+    var scaleY: CGFloat = 1
 }
 
 // MARK: - NumberWheel
@@ -243,18 +400,64 @@ private struct NumberWheel: View {
     @Binding var value: Int
     var range: ClosedRange<Int>
     var suffix: String
+    var index: Int
+    @Binding var focusedWheel: Int
 
     private var rowHeight: CGFloat   { TimerCreatorView.rowHeight }
     private var wheelHeight: CGFloat { TimerCreatorView.wheelHeight }
 
     @State private var scrollPosition: Int?
 
+    init(value: Binding<Int>, range: ClosedRange<Int>, suffix: String,
+         index: Int, focusedWheel: Binding<Int>) {
+        self._value = value
+        self.range = range
+        self.suffix = suffix
+        self.index = index
+        self._focusedWheel = focusedWheel
+        // Start already centered on the current value so the bold/selected row
+        // lands on the center line at first render (not pinned at the top when
+        // the value is 0). Setting scrollPosition in onAppear was racing layout.
+        self._scrollPosition = State(initialValue: value.wrappedValue)
+    }
+
+    /// Claim focus for this wheel inside an explicit withAnimation so the
+    /// glassEffectID indicator MORPHS to this column (implicit animation only
+    /// moves frames; the liquid morph needs the explicit transaction).
+    private func focusWheel() {
+        guard focusedWheel != index else { return }
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+            focusedWheel = index
+        }
+    }
+
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: 0) {
+            // Non-lazy VStack: ranges are short (≤60), so materializing every
+            // row up front is cheap and makes the initial scrollPosition land
+            // exactly on `value`. With LazyVStack the target row often wasn't
+            // built yet on first render, so a non-zero default (minutes=5)
+            // mis-settled one row off (→ 4m). Zero defaults hid it (top edge).
+            VStack(spacing: 0) {
                 ForEach(range, id: \.self) { n in
                     rowLabel(n)
                         .frame(height: rowHeight)
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
+                        // Tap any row to select it: the row above the center
+                        // scrolls up, the row below scrolls down. onChange(of:
+                        // value) animates scrollPosition to land it centered.
+                        // simultaneousGesture (not onTapGesture) so the tap runs
+                        // ALONGSIDE the ScrollView's own gesture — a plain
+                        // onTapGesture loses the click to the scroll recognizer.
+                        .simultaneousGesture(
+                            TapGesture().onEnded {
+                                focusWheel()
+                                guard n != value else { return }
+                                value = n
+                                vibrate()
+                            }
+                        )
                         .id(n)
                 }
             }
@@ -277,6 +480,12 @@ private struct NumberWheel: View {
                 startPoint: .top, endPoint: .bottom
             )
         )
+        .contentShape(Rectangle())
+        // Focus follows the mouse, like selecting a tab in an iOS nav bar — the
+        // glass indicator slides to whichever wheel the cursor is over.
+        .onHover { inside in
+            if inside { focusWheel() }
+        }
         .onAppear { scrollPosition = value }
         .onChange(of: scrollPosition) { _, new in
             guard let new else { return }
@@ -284,6 +493,8 @@ private struct NumberWheel: View {
                 value = new
                 vibrate()
             }
+            // Scrolling a wheel also claims focus.
+            focusWheel()
         }
         .onChange(of: value) { _, new in
             if scrollPosition != new {
@@ -303,7 +514,7 @@ private struct NumberWheel: View {
             Text(String(format: "%02d", n))
                 .font(.system(
                     size: 20,
-                    weight: isCenter ? .heavy : .medium
+                    weight: isCenter ? .semibold : .regular
                 ).monospacedDigit())
                 .foregroundStyle(isCenter ? Color.white : Color.white.opacity(0.5))
             Text(suffix)
@@ -321,7 +532,9 @@ private struct NumberWheel: View {
             let dy = abs(scvCenterInMyCoords - myCenter)
             let maxDy = TimerCreatorView.wheelHeight / 2
             let t = min(1, dy / maxDy)
-            return content.scaleEffect(1.0 - t * 0.18)
+            // Deeper curve so the off-center rows read clearly smaller than the
+            // selected one (was 0.18 → too subtle).
+            return content.scaleEffect(1.0 - t * 0.34)
         }
     }
 }

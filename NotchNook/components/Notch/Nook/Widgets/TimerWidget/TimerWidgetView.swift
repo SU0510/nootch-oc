@@ -73,19 +73,6 @@ struct TimerWidgetView: View {
                     ))
             }
 
-            // 3. Floating "+" — only when idle. Inset enough to clear Nook's
-            //    bottom-right rounded corner if this widget sits at that corner.
-            if !showingCreator {
-                VStack {
-                    Spacer(minLength: 0)
-                    HStack {
-                        Spacer(minLength: 0)
-                        floatingAddButton
-                    }
-                }
-                .padding(.trailing, bottomTrailingSafe)
-                .padding(.bottom, Self.bottomSafe)
-            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .animation(.spring(response: 0.3, dampingFraction: 0.7), value: store.timers.isEmpty)
@@ -94,30 +81,39 @@ struct TimerWidgetView: View {
         .frame(prefs.size.screenPtsCGSize, .leading)
     }
 
-    // MARK: - Floating + button (Liquid Glass on macOS 26+, fallback below)
+    // MARK: - Idle subviews
 
-    private var floatingAddButton: some View {
-        // Plain custom button — `.buttonStyle(.glass)` was clipping its halo
-        // against the widget frame, so we keep the visual extent bounded here.
+    /// Pill button shared by the empty state and the top of the timer list.
+    private var addTimerButton: some View {
         Button {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.78)) {
                 showingCreator = true
             }
         } label: {
-            Image(systemName: "plus")
-                .font(.system(size: 12, weight: .bold))
-                .foregroundStyle(Color.white.opacity(0.85))
-                .frame(width: 24, height: 24)
-                .background(Circle().fill(Color.white.opacity(0.12)))
+            HStack(spacing: 5) {
+                Image(systemName: "plus")
+                    .font(.system(size: 11, weight: .bold))
+                Text("Add Timer")
+                    .font(.system(size: 12, weight: .semibold))
+            }
+            .foregroundStyle(Color.white.opacity(0.7))
+            .padding(.horizontal, 14)
+            .padding(.vertical, 5)
+            .background(
+                Capsule(style: .continuous).fill(Color.white.opacity(0.1))
+            )
         }
         .buttonStyle(.plain)
     }
 
-    // MARK: - Idle subviews
-
     private var timersList: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 4) {
+                // Add button sits at the TOP of the list.
+                HStack {
+                    addTimerButton
+                    Spacer(minLength: 0)
+                }
                 ForEach(store.timers) { entry in
                     TimerRowView(entry: entry)
                         .transition(.asymmetric(
@@ -126,8 +122,7 @@ struct TimerWidgetView: View {
                         ))
                 }
             }
-            // Reserve space at the bottom-right so the last row clears the +.
-            .padding(.trailing, max(28, bottomTrailingSafe))
+            .padding(.trailing, max(6, bottomTrailingSafe * 0.4))
         }
         .animation(.spring(response: 0.3, dampingFraction: 0.7),
                    value: store.timers.map { $0.id })
@@ -141,19 +136,7 @@ struct TimerWidgetView: View {
             Text("No timers running")
                 .font(.system(size: 12))
                 .foregroundStyle(Color.white.opacity(0.45))
-            Button("Add Timer") {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.78)) {
-                    showingCreator = true
-                }
-            }
-            .buttonStyle(.plain)
-            .font(.system(size: 12, weight: .semibold))
-            .foregroundStyle(Color.white.opacity(0.7))
-            .padding(.horizontal, 14)
-            .padding(.vertical, 5)
-            .background(
-                Capsule(style: .continuous).fill(Color.white.opacity(0.1))
-            )
+            addTimerButton
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
