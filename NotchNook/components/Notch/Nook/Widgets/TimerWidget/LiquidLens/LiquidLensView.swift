@@ -137,6 +137,14 @@ final class LiquidLensView: MTKView {
         // `setNeedsDisplay`.
         isPaused = false
         enableSetNeedsDisplay = false
+        // Cap the loop at 60fps. Each frame does a synchronous, main-thread
+        // `CALayer.render(in:)` of the whole root layer (see captureBackground).
+        // Left uncapped, a ProMotion panel runs this 120×/sec and starves the
+        // SwiftUI slide-spring + keyframe-stretch that animate on the same main
+        // thread — which is exactly when (and why) the pill stutters as it moves
+        // between columns. 60fps halves that contention; a refraction lens reads
+        // perfectly smooth at 60.
+        preferredFramesPerSecond = 60
         delegate = renderDelegate
     }
 
@@ -201,13 +209,24 @@ final class LiquidLensView: MTKView {
         // presentation layer of self so the capture tracks our animated frame.
         let me = layer?.presentation() ?? layer
         guard let me else { return }
+        // Only the CENTER of the presentation frame is used (so the capture
+        // tracks the slide). The capture SIZE must come from the unscaled
+        // `bounds`, NOT the presentation frame — the keyframe stretch pulse
+        // applies a `scaleEffect` (1.0→1.35) to the presentation layer, so
+        // `frameInRoot` is up to 1.35× larger mid-travel, while the shader and
+        // drawable always use the unscaled bounds. Sampling a 1.35×-wider
+        // backdrop into a 1.0×-wide render zooms/shifts the digit behind the
+        // lens — the residual "the number moves a bit when the bubble moves".
+        // Using the stable bounds size keeps the backdrop 1:1 with the render.
         let frameInRoot = me.convert(me.bounds, to: rootLayer)
+        let captureCenter = CGPoint(x: frameInRoot.midX, y: frameInRoot.midY)
 
-        // Expand the capture area around the lens center (root layer coords).
-        let captureSize = CGSize(width: frameInRoot.width * sizeCoefficient,
-                                 height: frameInRoot.height * sizeCoefficient)
-        let captureRectInRoot = CGRect(x: frameInRoot.midX - captureSize.width / 2,
-                                       y: frameInRoot.midY - captureSize.height / 2,
+        // Expand the capture area around the lens center (root layer coords),
+        // sized from the unscaled bounds so it never tracks the stretch pulse.
+        let captureSize = CGSize(width: bounds.width * sizeCoefficient,
+                                 height: bounds.height * sizeCoefficient)
+        let captureRectInRoot = CGRect(x: captureCenter.x - captureSize.width / 2,
+                                       y: captureCenter.y - captureSize.height / 2,
                                        width: captureSize.width,
                                        height: captureSize.height)
 
