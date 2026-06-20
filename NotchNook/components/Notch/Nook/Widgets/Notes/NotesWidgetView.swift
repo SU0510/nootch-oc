@@ -60,22 +60,10 @@ struct NotesWidgetView: View {
         .onChange(of: notes.count, initial: true) { _, _ in
             selectedNoteId = notes.first?.persistentModelID
         }
-        .onAppear {
-            do {
-                let existingIcons = Set(notes.map { $0.icon })
-                let icons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
-                let neededIcons = icons.filter { !existingIcons.contains($0) }
-                
-                for icon in neededIcons.prefix(4 - notes.count) {
-                    let newNote = Note(icon: icon)
-                    modelContext.insert(newNote)
-                }
-                
-                try modelContext.save()
-            } catch {
-                print("Error creating default notes: \(error)")
-            }
-        }
+        // Default notes are seeded/repaired once at launch in
+        // AppDelegate.seedAndPruneDefaultNotes() — NOT here. Seeding from a
+        // widget .onAppear raced the SwiftData @Query (empty on first read) and
+        // re-seeded on every Nook open, growing the store past 4 and crashing.
         .onExitCommand {
             NSApp.keyWindow?.makeFirstResponder(nil)
         }

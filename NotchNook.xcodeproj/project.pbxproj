@@ -184,6 +184,11 @@
 		3A7E0A7E2FC4C72A0047FC10 /* TimerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */; };
 		3A7E0A802FC4C7340047FC10 /* TodoListWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A7F2FC4C7340047FC10 /* TodoListWidgetSettingsView.swift */; };
 		3A7E0A822FC4C73F0047FC10 /* TimerCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */; };
+		FACE100000000000000000A2 /* LiquidGlassRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE100000000000000000A1 /* LiquidGlassRenderer.swift */; };
+		FACE100000000000000000B2 /* LiquidLensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE100000000000000000B1 /* LiquidLensView.swift */; };
+		FACE100000000000000000C2 /* ZeroCopyBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE100000000000000000C1 /* ZeroCopyBridge.swift */; };
+		FACE100000000000000000D2 /* LiquidGlassVertex.metal in Sources */ = {isa = PBXBuildFile; fileRef = FACE100000000000000000D1 /* LiquidGlassVertex.metal */; };
+		FACE100000000000000000E2 /* LiquidGlassFragment.metal in Sources */ = {isa = PBXBuildFile; fileRef = FACE100000000000000000E1 /* LiquidGlassFragment.metal */; };
 		3A7E0A842FC4C74E0047FC10 /* TimerWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */; };
 		3A7E0A862FC4C7590047FC10 /* TimerWidgetSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A852FC4C7590047FC10 /* TimerWidgetSettingsView.swift */; };
 		3A7E0A882FC4C7670047FC10 /* TrayStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E0A872FC4C7670047FC10 /* TrayStackView.swift */; };
@@ -620,6 +625,11 @@
 		3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRowView.swift; sourceTree = "<group>"; };
 		3A7E0A7F2FC4C7340047FC10 /* TodoListWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCreatorView.swift; sourceTree = "<group>"; };
+		FACE100000000000000000A1 /* LiquidGlassRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidGlassRenderer.swift; sourceTree = "<group>"; };
+		FACE100000000000000000B1 /* LiquidLensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidLensView.swift; sourceTree = "<group>"; };
+		FACE100000000000000000C1 /* ZeroCopyBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroCopyBridge.swift; sourceTree = "<group>"; };
+		FACE100000000000000000D1 /* LiquidGlassVertex.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LiquidGlassVertex.metal; sourceTree = "<group>"; };
+		FACE100000000000000000E1 /* LiquidGlassFragment.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = LiquidGlassFragment.metal; sourceTree = "<group>"; };
 		3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetView.swift; sourceTree = "<group>"; };
 		3A7E0A852FC4C7590047FC10 /* TimerWidgetSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetSettingsView.swift; sourceTree = "<group>"; };
 		3A7E0A872FC4C7670047FC10 /* TrayStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrayStackView.swift; sourceTree = "<group>"; };
@@ -1197,12 +1207,25 @@
 		3A7E0A782FC4C71B0047FC10 /* TimerWidget */ = {
 			isa = PBXGroup;
 			children = (
+				FACE100000000000000000F1 /* LiquidLens */,
 				3A482F412FD71898004F3672 /* BubbleView.swift */,
 				3A7E0A7D2FC4C72A0047FC10 /* TimerRowView.swift */,
 				3A7E0A812FC4C73F0047FC10 /* TimerCreatorView.swift */,
 				3A7E0A832FC4C74E0047FC10 /* TimerWidgetView.swift */,
 			);
 			path = TimerWidget;
+			sourceTree = "<group>";
+		};
+		FACE100000000000000000F1 /* LiquidLens */ = {
+			isa = PBXGroup;
+			children = (
+				FACE100000000000000000A1 /* LiquidGlassRenderer.swift */,
+				FACE100000000000000000B1 /* LiquidLensView.swift */,
+				FACE100000000000000000C1 /* ZeroCopyBridge.swift */,
+				FACE100000000000000000D1 /* LiquidGlassVertex.metal */,
+				FACE100000000000000000E1 /* LiquidGlassFragment.metal */,
+			);
+			path = LiquidLens;
 			sourceTree = "<group>";
 		};
 		3A801E032C1530490076560D /* decorators */ = {
@@ -2576,6 +2599,11 @@
 				EC8D600F2BFC128100E67ECC /* ShrinkOnClick.swift in Sources */,
 				3A20F1732C2F8A59006A7E1F /* AnimationsModifier.swift in Sources */,
 				3A7E0A822FC4C73F0047FC10 /* TimerCreatorView.swift in Sources */,
+				FACE100000000000000000A2 /* LiquidGlassRenderer.swift in Sources */,
+				FACE100000000000000000B2 /* LiquidLensView.swift in Sources */,
+				FACE100000000000000000C2 /* ZeroCopyBridge.swift in Sources */,
+				FACE100000000000000000D2 /* LiquidGlassVertex.metal in Sources */,
+				FACE100000000000000000E2 /* LiquidGlassFragment.metal in Sources */,
 				EC8D603E2BFEB7A600E67ECC /* NSColor.swift in Sources */,
 				EC47FCBB2C0BDCB500591811 /* getAppVersion.swift in Sources */,
 				EC8D5FBB2BF9563400E67ECC /* DropArea.swift in Sources */,

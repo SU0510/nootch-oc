@@ -47,6 +47,14 @@ import Defaults
         _ = BluetoothManager.shared
         _ = FullscreenMonitor.shared
 
+        // Seed/repair the default notes ONCE at launch, before any window (and
+        // thus any NotesWidgetView) is built. This used to live in the widget's
+        // .onAppear, which fires every time the Nook opens AND once per screen —
+        // racing the SwiftData @Query (empty on first read) into re-seeding, so
+        // the store grew past 4 notes. Once notes.count > 4 the widget's
+        // `prefix(4 - notes.count)` went negative and crashed on click.
+        seedAndPruneDefaultNotes()
+
         windowsManager = WindowsManager.shared
 
 //        ValueTransformer.setValueTransformer(NSAttributedStringTransformer(), forName: .nsAttributedString)
@@ -61,6 +69,45 @@ import Defaults
         appInitialized = true
     }
     
+    /// Ensures the Notes store holds exactly the four default-icon notes when
+    /// it's untouched, and repairs any drift (duplicate icons / overflow) left
+    /// behind by the old per-appearance seeding. Runs once, at launch.
+    @MainActor
+    private func seedAndPruneDefaultNotes() {
+        let defaultIcons = ["diamond.fill", "triangle.fill", "circle.fill", "app.fill"]
+        let context = RootView.sharedModelContainer.mainContext
+        do {
+            let notes = try context.fetch(FetchDescriptor<Note>(sortBy: [SortDescriptor(\.createdAt)]))
+
+            // Prune duplicate-icon notes that the old seeding may have inserted.
+            // Keep the oldest note per icon; only drop a duplicate if it's still
+            // empty (never edited) so we never delete real user content.
+            var seenIcons = Set<String>()
+            for note in notes {
+                if seenIcons.contains(note.icon) {
+                    if note.richText.string.isEmpty && note.codeText.isEmpty {
+                        context.delete(note)
+                    }
+                } else {
+                    seenIcons.insert(note.icon)
+                }
+            }
+
+            // Seed only a genuinely-empty store (after pruning). A store that
+            // already has notes is left alone — never force it back to four.
+            let remaining = try context.fetch(FetchDescriptor<Note>())
+            if remaining.isEmpty {
+                for icon in defaultIcons {
+                    context.insert(Note(icon: icon))
+                }
+            }
+
+            if context.hasChanges { try context.save() }
+        } catch {
+            print("[Notes] seedAndPruneDefaultNotes failed: \(error)")
+        }
+    }
+
     func applicationWillTerminate(_ notification: Notification) {
         HUDManager.enableSystemHUD()
         // Flush any pending SwiftData writes before the process exits.

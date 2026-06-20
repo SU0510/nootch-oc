@@ -15,6 +15,7 @@
 
 import SwiftUI
 import AppKit
+import Metal
 
 struct TimerCreatorView: View {
     @Binding var isShowing: Bool
@@ -41,17 +42,6 @@ struct TimerCreatorView: View {
     ]
 
     private var totalSeconds: Int { hours * 3600 + minutes * 60 + seconds }
-
-    /// The value living on the focused wheel. Rendered as a crisp glyph ON the
-    /// glass (the "front" number) while the scrolling wheel digit sits BEHIND
-    /// the glass and gets refracted — two numbers, one on each side of the pill.
-    private var focusedValue: Int {
-        switch focusedWheel {
-        case 0:  return hours
-        case 2:  return seconds
-        default: return minutes
-        }
-    }
 
     fileprivate static let rowHeight: CGFloat = 24
     fileprivate static let visibleRows: Int = 3
@@ -102,16 +92,16 @@ struct TimerCreatorView: View {
             let wheelsW = colW * 3 + Self.wheelGap * 2
             HStack(spacing: Self.wheelGap) {
                 // Exact iOS 26 nav-bar selector stack, bottom → top:
-                //   dark track → wheel digit (lensed THROUGH the glass) → glass pill.
-                // The CRISP focused digit is NOT a separate overlay — it's the
-                // glass pill's own contentView (embedded in the glass), so the
-                // material never blurs it, exactly like the tab-bar selector's
-                // label. Only the wheel digit behind the glass gets lensed.
+                //   dark track → wheel digit → refraction-lens pill.
+                // The lens is a true zero-blur refraction lens (Metal), so the
+                // wheel digit BEHIND it reads perfectly through the clear glass —
+                // exactly like the tab-bar selector gliding over a tab label.
+                // No crisp-digit overlay: a single wheel digit, one lens passing
+                // over it, refracting whatever it covers and carrying nothing.
                 ZStack {
                     selectionLens                    // dark #19191B track
-                    wheelsRow                        // scrolling digits — lensed BEHIND the glass
-                    focusIndicator(colW: colW)       // glass pill (dimmed backing) — moves/stretches alone
-                    crispDigitIndicator(colW: colW)  // crisp focused number — independent layer, no stretch
+                    wheelsRow                        // scrolling digits — refracted BEHIND the lens
+                    focusIndicator(colW: colW)       // lens pill — moves/stretches alone
                 }
                 .frame(width: wheelsW, height: Self.wheelHeight)
 
@@ -218,57 +208,19 @@ struct TimerCreatorView: View {
             .allowsHitTesting(false)
     }
 
-    /// The crisp focused number, drawn in its OWN layer on top of the glass — NOT
-    /// embedded inside the pill. This decouples the digit from the bubble: the
-    /// glass capsule can slide and stretch/squash on its own while the number
-    /// simply glides to the focused column center (a calm spring, no keyframe
-    /// pulse), so the value stays steady and readable as the bubble travels.
-    @ViewBuilder
-    private func crispDigitIndicator(colW: CGFloat) -> some View {
-        let centerX = columnCenterX(colW: colW)
-        let pillW = pillWidth(colW: colW)
-
-        crispDigit
-            .frame(width: pillW, height: pillHeight)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .offset(x: centerX - pillW / 2)
-            .animation(.spring(response: 0.42, dampingFraction: 0.7), value: focusedWheel)
-            .allowsHitTesting(false)
-    }
-
-    /// The crisp focused value. Rides above the glass as foreground content, so
-    /// the material never blurs it — exactly how the tab-bar selector keeps its
-    /// label sharp. The wheel digit behind the glass is the only thing lensed.
-    private var crispDigit: some View {
-        Text(String(format: "%02d", focusedValue))
-            .font(.system(size: 20, weight: .semibold).monospacedDigit())
-            .foregroundStyle(Color.white)
-            .contentTransition(.numericText())
-            .animation(.spring(response: 0.32, dampingFraction: 0.78), value: focusedValue)
-            // Fill + center inside the host so the digit sits in the middle of
-            // the glass instead of pinning to a corner.
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
     @ViewBuilder
     private func pill(width: CGFloat, height: CGFloat) -> some View {
-        // Apple's REAL native Liquid Glass — the AppKit `NSGlassEffectView`, the
-        // exact engine the system uses. `.clear` style + nil tint = the most
-        // transparent, distortion-forward variant. No borders, no sheen, no tint
-        // — pure native glass, just like the tab-bar selector. The crisp digit is
-        // drawn in a SEPARATE layer (crispDigitIndicator), so this bubble owns
-        // only its own motion/stretch. A subtle dark fill sits BEHIND the glass
-        // to dim whatever it travels over, giving the capsule a clearer body.
+        // A TRUE refraction lens (Metal), ported from LiquidGlassKit — the same
+        // technique as iOS 26's private `_UILiquidLensView` tab-bar selector.
+        // Unlike AppKit's `NSGlassEffectView` (frosted: always Gaussian-blurs its
+        // backdrop), this lens has ZERO blur — it only bends light at the edges
+        // and passes the center through crisp. That's why no crisp-digit overlay
+        // is needed: the wheel digit BEHIND the lens reads perfectly through it.
         Group {
-            if #available(macOS 26.0, *) {
-                LiquidGlassPill(cornerRadius: height / 2) {
-                    // Dimming backdrop embedded as the glass's content: darkens
-                    // the digit/track beneath the bubble (≈0.3 black overlay).
-                    Capsule(style: .continuous)
-                        .fill(Color.black.opacity(0.3))
-                }
+            if let _ = MTLCreateSystemDefaultDevice() {
+                LiquidLensPill(cornerRadius: height / 2)
             } else {
-                // Pre-26 fallback: a hairline capsule over a dimming fill.
+                // No-Metal fallback: a hairline capsule over a dimming fill.
                 Capsule(style: .continuous)
                     .fill(Color.black.opacity(0.3))
                     .overlay(
@@ -359,62 +311,6 @@ struct TimerCreatorView: View {
         withAnimation(.spring) { isShowing = false }
     }
 
-}
-
-// MARK: - Real Liquid Glass (AppKit) bridge
-
-/// Apple's native `NSGlassEffectView` (macOS 26) — the genuine Liquid Glass
-/// engine, not SwiftUI's `.glassEffect`. Two things ride on it:
-///   • the digit BEHIND the pill in the window → lensed by the material
-///   • the crisp digit, set as the view's `contentView` → embedded INSIDE the
-///     glass as foreground content, so the material never blurs it. This is the
-///     exact trick the tab-bar selector uses to keep its label sharp.
-/// Public API only: `style = .clear` (most transparent, distortion-forward),
-/// `tintColor = nil` (zero added color). The crisp content is hosted via an
-/// `NSHostingView` and updated each pass so the digit value stays live.
-@available(macOS 26.0, *)
-private struct LiquidGlassPill<Content: View>: NSViewRepresentable {
-    var cornerRadius: CGFloat
-    @ViewBuilder var content: () -> Content
-
-    func makeNSView(context: Context) -> NSGlassEffectView {
-        let v = NSGlassEffectView()
-        v.cornerRadius = cornerRadius
-        v.tintColor = nil               // no added color — pure glass
-        v.style = .clear                // most transparent / most distortion
-
-        // The crisp digit embedded as the glass's own content (foreground —
-        // never blurred). Transparent host so only the text shows on the glass.
-        let host = NSHostingView(rootView: AnyView(content()))
-        host.translatesAutoresizingMaskIntoConstraints = false
-        context.coordinator.host = host
-        v.contentView = host
-        // Pin the host to FILL the glass — otherwise NSGlassEffectView sizes the
-        // glass down to the tiny text and you get a bubble around the digit.
-        NSLayoutConstraint.activate([
-            host.leadingAnchor.constraint(equalTo: v.leadingAnchor),
-            host.trailingAnchor.constraint(equalTo: v.trailingAnchor),
-            host.topAnchor.constraint(equalTo: v.topAnchor),
-            host.bottomAnchor.constraint(equalTo: v.bottomAnchor),
-        ])
-
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
-    }
-
-    func updateNSView(_ v: NSGlassEffectView, context: Context) {
-        v.cornerRadius = cornerRadius
-        v.tintColor = nil
-        v.style = .clear
-        // Push the latest digit value into the embedded host.
-        context.coordinator.host?.rootView = AnyView(content())
-    }
-
-    func makeCoordinator() -> Coordinator { Coordinator() }
-
-    final class Coordinator {
-        var host: NSHostingView<AnyView>?
-    }
 }
 
 // MARK: - Pill stretch (keyframe state)
