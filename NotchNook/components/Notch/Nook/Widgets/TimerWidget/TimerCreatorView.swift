@@ -327,16 +327,14 @@ struct TimerCreatorView: View {
     @ViewBuilder
     private var topProgressiveBlur: some View {
         if ProgressiveBlur.isAvailable {
-            ZStack {
-                // TOP — prominent: full frost at the very top, crisp by ~38% down
-                // (above the center row, which starts at ~33% for a 4-row wheel).
-                ProgressiveBlur(maxRadius: 9, edge: .top, rampLength: 0.42, curveExponent: 1.7)
-                // BOTTOM — subtle counterpart for symmetric recession.
-                ProgressiveBlur(maxRadius: 5, edge: .bottom, rampLength: 0.32, curveExponent: 1.8)
-            }
-            .frame(height: Self.wheelHeight)
-            .frame(maxWidth: .infinity)
-            .allowsHitTesting(false)
+            // TOP only — prominent frost at the very top, ramping to crisp well
+            // above the center row so the focused (accent) digit reading through
+            // the glass pill stays sharp. The bottom edge keeps only the alpha
+            // fade (no blur) per the design intent: emphasis on the top.
+            ProgressiveBlur(maxRadius: 9, edge: .top, rampLength: 0.4, curveExponent: 1.7)
+                .frame(height: Self.wheelHeight)
+                .frame(maxWidth: .infinity)
+                .allowsHitTesting(false)
         }
     }
 

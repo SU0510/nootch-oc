@@ -99,10 +99,12 @@ final class ProgressiveBlurNSView: NSView {
         bd.setValue(true, forKey: "windowServerAware")
         bd.setValue(1, forKey: "scale")
 
-        // gaussianBlur with a normalized, clamped edge mode reads cleanly at the
-        // boundary; the per-pixel intensity comes from `inputMaskImage`.
+        // `variableBlur` (NOT `gaussianBlur`): the gaussian filter ignores
+        // `inputMaskImage` and blurs UNIFORMLY — which frosts the whole region and
+        // erases the digits. Only `variableBlur` reads the per-pixel ramp, so the
+        // blur is strong at the edge and zero (crisp passthrough) past the ramp.
         guard let filter = filterClass
-            .perform(#selector(CAFilter.init(type:)), with: "gaussianBlur")?
+            .perform(#selector(CAFilter.init(type:)), with: "variableBlur")?
             .takeUnretainedValue() as? NSObject else { return }
         filter.setValue(maxRadius, forKey: "inputRadius")
         filter.setValue(true, forKey: "inputNormalizeEdges")
