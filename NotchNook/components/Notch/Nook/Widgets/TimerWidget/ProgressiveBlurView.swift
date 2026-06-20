@@ -82,7 +82,10 @@ final class ProgressiveBlurNSView: NSView {
     /// Fully transparent to hit-testing so scroll/tap reach the wheels beneath.
     override func hitTest(_ point: NSPoint) -> NSView? { nil }
 
-    override var isFlipped: Bool { true }
+    // NOTE: deliberately NOT flipped. `isFlipped = true` flips the backing layer's
+    // contents, which flipped the variable-blur mask image — putting the blurred
+    // band on the BOTTOM instead of the top. Default (non-flipped) keeps the mask's
+    // top row at the view's top edge.
 
     private func buildBackdrop() {
         guard let backdropClass = PrivateBlurClasses.backdrop,
@@ -129,16 +132,21 @@ final class ProgressiveBlurNSView: NSView {
         CATransaction.commit()
     }
 
-    /// Builds the alpha ramp that drives the variable blur: opaque (full blur) at
-    /// the strong edge, easing to clear (no blur) by `rampLength` along the axis.
+    /// Builds the ALPHA ramp that drives the variable blur.
+    ///
+    /// CRITICAL: `variableBlur` reads this mask's **alpha channel** per pixel —
+    /// alpha 1 = full blur (`inputRadius`), alpha 0 = crisp passthrough. It does
+    /// NOT read luminance. A mask with no alpha channel (constant alpha 1) blurs
+    /// EVERYTHING uniformly — which is exactly the "all blurry" failure. So the
+    /// strong edge gets alpha ≈ 1 and the far side alpha 0, in a real RGBA bitmap.
     private func makeRampMaskImage(size: CGSize) -> CGImage? {
         let w = max(1, Int(size.width.rounded()))
         let h = max(1, Int(size.height.rounded()))
         let vertical = (edge == .top || edge == .bottom)
         let count = max(1, vertical ? h : w)
 
-        // 8-bit single-channel alpha ramp; CAFilter reads luminance/alpha.
-        var bytes = [UInt8](repeating: 0, count: count)
+        // Per-line alpha (0…255): 1 at the strong edge, easing to 0 past rampLength.
+        var alpha = [UInt8](repeating: 0, count: count)
         let ramp = max(0.0001, min(1, rampLength))
         for i in 0..<count {
             // Normalized distance from the STRONG edge (0 at edge → 1 far side).
@@ -148,27 +156,30 @@ final class ProgressiveBlurNSView: NSView {
             case .top, .leading:      fromEdge = pos
             case .bottom, .trailing:  fromEdge = 1 - pos
             }
-            // 1 at the edge, ramping to 0 once we pass `rampLength`.
-            let t = max(0, 1 - fromEdge / Double(ramp))
-            let eased = pow(t, Double(curveExponent))
-            bytes[i] = UInt8((eased * 255).rounded())
+            // blurAmount: 1 at the edge, ramping to 0 once we pass `rampLength`.
+            let blurAmount = max(0, 1 - fromEdge / Double(ramp))
+            let eased = pow(blurAmount, Double(curveExponent))
+            alpha[i] = UInt8((eased * 255).rounded())
         }
 
-        // Expand the 1-D ramp to the full 2-D mask.
-        let bytesPerRow = w
-        var pixels = [UInt8](repeating: 0, count: w * h)
+        // Premultiplied RGBA: keep RGB at 0 (black) and vary only A. The filter
+        // samples A; black premultiplied by varying alpha stays valid.
+        let bytesPerRow = w * 4
+        var pixels = [UInt8](repeating: 0, count: bytesPerRow * h)
         for y in 0..<h {
             for x in 0..<w {
-                let v = vertical ? bytes[min(y, count - 1)] : bytes[min(x, count - 1)]
-                pixels[y * bytesPerRow + x] = v
+                let a = vertical ? alpha[min(y, count - 1)] : alpha[min(x, count - 1)]
+                let o = y * bytesPerRow + x * 4
+                // R,G,B = 0; A = ramp. (Premultiplied: RGB already ≤ A.)
+                pixels[o + 3] = a
             }
         }
 
-        let cs = CGColorSpaceCreateDeviceGray()
+        let cs = CGColorSpaceCreateDeviceRGB()
         guard let ctx = CGContext(
             data: &pixels, width: w, height: h, bitsPerComponent: 8,
             bytesPerRow: bytesPerRow, space: cs,
-            bitmapInfo: CGImageAlphaInfo.none.rawValue
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         ) else { return nil }
         return ctx.makeImage()
     }
