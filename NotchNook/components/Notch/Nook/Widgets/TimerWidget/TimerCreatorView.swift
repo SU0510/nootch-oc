@@ -11,6 +11,17 @@
 //     widget layouts like this one).
 //   • Centered digit is rendered bolder/brighter so it reads through the frost.
 //   • All digits same size; per-row scale curve fakes optical lensing.
+//  Reorganized 2026-06-20 (Phase 1 of the new creator layout):
+//   • No header bar. The widget is now TWO columns side by side:
+//       LEFT  — the wheels (selection lens + scrolling digits + glass pill),
+//               filling ALL remaining width and height.
+//       RIGHT — a fixed-width column of perfect CIRCLES: quick-timer presets
+//               stacked above a larger Play circle pinned to the bottom.
+//   • The close (xmark) lives as a subtle top-left overlay on the whole widget,
+//     clear of the notch top-bar chrome (topSafe).
+//   • Nothing clips: the glass pill bleeds shadow/edge-highlight outside its own
+//     rect, so we keep insets/allowances and never put `.clipped()` on an
+//     ancestor. The whole block fills the frame but stays inside its bounds.
 //
 
 import SwiftUI
@@ -52,45 +63,80 @@ struct TimerCreatorView: View {
     /// the dark track, so it reads as a distinct floating element.
     fileprivate static let indicatorWidthInset: CGFloat = -10
     fileprivate static let indicatorHeightBump: CGFloat = 18
-    /// Gap between wheels (and between the last wheel and the button column).
+    /// Gap between the 3 wheels. (Was also the gap to the old button column,
+    /// which is gone — the button column is now a separate sibling, see body.)
     /// Reduced from 8 → 5 so the digits sit closer together.
     fileprivate static let wheelGap: CGFloat = 5
-    /// Compact height for the cancel/start buttons (they don't fill the column).
-    fileprivate static let buttonHeight: CGFloat = 26
+
+    // MARK: Right button column (perfect circles)
+
+    /// Diameter of the primary Play circle.
+    fileprivate static let playDiameter: CGFloat = 38
+    /// Diameter of each quick-preset circle (smaller than Play, same language).
+    fileprivate static let presetDiameter: CGFloat = 26
+    /// Vertical gap between stacked circles in the right column.
+    fileprivate static let circleGap: CGFloat = 6
+    /// Allowance around the button column so the circles' fills/press-scale and
+    /// any soft shadow have room and never get visually clipped by the edge.
+    fileprivate static let columnInset: CGFloat = 6
+    /// Breathing room kept on every side so the glass pill's shadow + edge
+    /// highlight (which bleed OUTSIDE the pill rect) are never clipped.
+    fileprivate static let glassAllowance: CGFloat = 4
 
     var body: some View {
-        VStack(spacing: 0) {
-            Color.clear.frame(height: topSafe)
-
-            topRow
-                .padding(.horizontal, 10)
-                .padding(.top, 2)
-
-            // Small FIXED gap, then pool all slack at the bottom (Spacer below).
-            // Top-aligning kills the centering that opened a gap under topRow and
-            // read as top padding; the wheels now sit right under the title.
-            Color.clear.frame(height: 4)
-
+        // TWO columns: wheels (fill) on the left, a fixed-width circle column on
+        // the right. topSafe clearance keeps everything below the notch chrome.
+        // No `.clipped()` anywhere on the path — the glass pill and the circle
+        // fills cast highlights/shadows that must be free to bleed outside.
+        HStack(alignment: .center, spacing: Self.wheelGap) {
             wheelStack
-                .padding(.leading, 10)
-                .padding(.trailing, bottomTrailingSafe)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            Spacer(minLength: 0)
+            buttonColumn
+                .frame(width: Self.playDiameter + Self.columnInset * 2)
         }
-        .padding(.bottom, 10)   // keep the block off the widget's bottom edge
+        .padding(.top, topSafe)                         // clear notch top-bar buttons
+        .padding(.leading, max(Self.glassAllowance, bottomLeadingSafe * 0.4))
+        .padding(.trailing, max(Self.glassAllowance, bottomTrailingSafe * 0.4))
+        .padding(.bottom, 10)                           // off the widget's bottom edge
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        // Subtle close affordance, top-left, clear of the notch top-bar chrome.
+        .overlay(alignment: .topLeading) { closeButton }
     }
-    
+
+    // MARK: - Close (subtle top-left overlay)
+
+    private var closeButton: some View {
+        Button {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.78)) {
+                isShowing = false
+            }
+        } label: {
+            Image(systemName: "xmark")
+                .font(.system(size: 9, weight: .bold))
+                .foregroundStyle(Color.white.opacity(0.55))
+                .frame(width: 16, height: 16)
+                .background(
+                    Circle().fill(Color.white.opacity(0.10))
+                )
+        }
+        .buttonStyle(ShrinkOnPressButtonStyle())
+        // Sit just inside the top-left corner, below the notch top-bar chrome.
+        .padding(.top, topSafe)
+        .padding(.leading, Self.glassAllowance)
+    }
+
     // MARK: - Wheels + glass pill
 
     private var wheelStack: some View {
-        // 4 equal columns: 3 wheels + a button column the width of one wheel.
-        // GeometryReader so the button column is EXACTLY one wheel wide and the
-        // wheel group keeps its 3 columns + 2 gaps aligned with the indicator.
+        // The wheel group keeps its intrinsic 72pt height (NumberWheel owns that)
+        // but is centered inside the LEFT column, which fills all remaining width
+        // and height. colW is now derived from the 3-wheel width ONLY (the button
+        // column is a separate sibling, no longer one of four equal columns), so
+        // the sliding glass pill stays aligned with its wheel.
         GeometryReader { geo in
-            let colW = (geo.size.width - 3 * Self.wheelGap) / 4
-            let wheelsW = colW * 3 + Self.wheelGap * 2
-            HStack(spacing: Self.wheelGap) {
+            let colW = (geo.size.width - 2 * Self.wheelGap) / 3
+            ZStack {
                 // Exact iOS 26 nav-bar selector stack, bottom → top:
                 //   dark track → wheel digit → refraction-lens pill.
                 // The lens is a true zero-blur refraction lens (Metal), so the
@@ -98,65 +144,74 @@ struct TimerCreatorView: View {
                 // exactly like the tab-bar selector gliding over a tab label.
                 // No crisp-digit overlay: a single wheel digit, one lens passing
                 // over it, refracting whatever it covers and carrying nothing.
-                ZStack {
-                    selectionLens                    // dark #19191B track
-                    wheelsRow                        // scrolling digits — refracted BEHIND the lens
-                    focusIndicator(colW: colW)       // lens pill — moves/stretches alone
-                }
-                .frame(width: wheelsW, height: Self.wheelHeight)
-
-                buttonColumn
-                    .frame(width: colW, height: Self.wheelHeight)
+                selectionLens                    // dark #19191B track
+                wheelsRow                        // scrolling digits — refracted BEHIND the lens
+                focusIndicator(colW: colW)       // lens pill — moves/stretches alone
             }
-            .frame(width: geo.size.width, height: geo.size.height)
+            // Fixed-height wheel group (NumberWheel's 72pt), then centered in the
+            // full left column so it fills the available width/height visually.
+            .frame(width: geo.size.width, height: Self.wheelHeight)
+            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
         }
-        .frame(height: Self.wheelHeight)
     }
 
-    // MARK: - Button column (cancel on top, start on bottom — one wheel wide)
+    // MARK: - Right button column (presets stacked above Play — perfect circles)
 
     private var buttonColumn: some View {
-        // Small fixed-height buttons pinned to the BOTTOM of the column (empty
-        // space above), aligned with the bottom of the wheels.
-        VStack(spacing: Self.wheelGap) {
-            Spacer(minLength: 0)
+        // Play is pinned to the BOTTOM (aligned with the wheels' baseline feel);
+        // as many quick-preset circles as physically FIT stack above it, top-down.
+        // GeometryReader so the preset count adapts to the widget's real height.
+        GeometryReader { geo in
+            // Height left for presets once Play + its gap are reserved.
+            let presetsArea = geo.size.height - Self.playDiameter - Self.circleGap
+            let step = Self.presetDiameter + Self.circleGap
+            // Fit as many presets as the column allows, in order (never more than
+            // we have). max(0,…) guards a column too short for any preset.
+            let maxFit = step > 0 ? max(0, Int((presetsArea + Self.circleGap) / step)) : 0
+            let shown = quickPresets.prefix(min(maxFit, quickPresets.count))
 
-            // Cancel (top)
-            Button {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.78)) {
-                    isShowing = false
+            VStack(spacing: Self.circleGap) {
+                ForEach(Array(shown), id: \.seconds) { preset in
+                    presetCircle(preset)
                 }
-            } label: {
-                Image(systemName: "xmark")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(Color.white.opacity(0.8))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: Self.buttonHeight)
-                    .background(
-                        RoundedRectangle(cornerRadius: 9, style: .continuous)
-                            .fill(Color.white.opacity(0.12))
-                    )
+                Spacer(minLength: 0)
+                playCircle
             }
-            .buttonStyle(ShrinkOnPressButtonStyle())
-
-            // Start (bottom)
-            Button {
-                commitIfValid()
-            } label: {
-                Image(systemName: "play.fill")
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(Color.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: Self.buttonHeight)
-                    .background(
-                        RoundedRectangle(cornerRadius: 9, style: .continuous)
-                            .fill(Color.accentColor.opacity(totalSeconds > 0 ? 0.9 : 0.22))
-                    )
-            }
-            .buttonStyle(ShrinkOnPressButtonStyle())
-            .disabled(totalSeconds <= 0)
-            .opacity(totalSeconds <= 0 ? 0.55 : 1)
+            .frame(width: geo.size.width, height: geo.size.height, alignment: .bottom)
         }
+    }
+
+    /// A quick-timer preset rendered as a small circle (same language as Play).
+    private func presetCircle(_ preset: (label: String, seconds: Int)) -> some View {
+        Button {
+            applyPreset(preset.seconds)
+        } label: {
+            Text(preset.label)
+                .font(.system(size: 9, weight: .semibold).monospacedDigit())
+                .foregroundStyle(Color.white.opacity(0.85))
+                .frame(width: Self.presetDiameter, height: Self.presetDiameter)
+                .background(Circle().fill(Color.white.opacity(0.12)))
+        }
+        .buttonStyle(ShrinkOnPressButtonStyle())
+    }
+
+    /// The primary Play action — a perfect accent-tinted circle, dimmed while the
+    /// duration is still zero (keeps the original disabled/commit behavior).
+    private var playCircle: some View {
+        Button {
+            commitIfValid()
+        } label: {
+            Image(systemName: "play.fill")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(Color.white)
+                .frame(width: Self.playDiameter, height: Self.playDiameter)
+                .background(
+                    Circle().fill(Color.accentColor.opacity(totalSeconds > 0 ? 0.9 : 0.22))
+                )
+        }
+        .buttonStyle(ShrinkOnPressButtonStyle())
+        .disabled(totalSeconds <= 0)
+        .opacity(totalSeconds <= 0 ? 0.55 : 1)
     }
 
     /// Dark #19191B track wrapping the center row across ALL 3 wheels. SOLID,
@@ -273,30 +328,6 @@ struct TimerCreatorView: View {
             .font(.system(size: 18, weight: .semibold).monospacedDigit())
             .foregroundStyle(Color.white.opacity(0.32))
             .frame(width: Self.wheelGap)
-    }
-
-    // MARK: - Top row (title + preset chips, plain bounded capsules)
-
-    private var topRow: some View {
-        HStack(spacing: 6) {
-            HStack(spacing: 4) {
-                Image(systemName: "timer")
-                    .font(.system(size: 11, weight: .semibold))
-                    .foregroundStyle(Color.white.opacity(0.75))
-                Text("Timer")
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(Color.white.opacity(0.9))
-            }
-
-            Spacer(minLength: 4)
-
-            HStack(spacing: 3) {
-                ForEach(quickPresets, id: \.seconds) { preset in
-                    Button(preset.label) { applyPreset(preset.seconds) }
-                        .buttonStyle(ChipButtonStyle())
-                }
-            }
-        }
     }
 
     // MARK: - Actions
@@ -476,23 +507,7 @@ private struct NumberWheel: View {
     }
 }
 
-// MARK: - Custom button styles (bounded extent — no glass halo)
-
-private struct ChipButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(.system(size: 11, weight: .semibold).monospacedDigit())
-            .foregroundStyle(Color.white.opacity(configuration.isPressed ? 1 : 0.85))
-            .padding(.horizontal, 7)
-            .padding(.vertical, 2)
-            .background(
-                Capsule(style: .continuous)
-                    .fill(Color.white.opacity(configuration.isPressed ? 0.25 : 0.12))
-            )
-            .scaleEffect(configuration.isPressed ? 0.94 : 1)
-            .animation(.spring(duration: 0.15), value: configuration.isPressed)
-    }
-}
+// MARK: - Custom button style (bounded extent — no glass halo)
 
 private struct ShrinkOnPressButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
