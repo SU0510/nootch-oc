@@ -22,7 +22,7 @@ struct TimerWidgetView: View {
     @State private var store = NookTimersStore.shared
     @State private var showingCreator: Bool = false
 
-    private static let topbarSafe: CGFloat = TopBarView.buttonsVisualBottom + 3   // 32
+    private static let topbarSafe: CGFloat = TopBarView.buttonsVisualBottom   // 32
 
     /// How far an element must inset from the leading edge of the widget to
     /// fully clear the Nook's bottom-left rounded corner.

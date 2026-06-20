@@ -88,6 +88,14 @@ final class LiquidLensView: MTKView {
 
     var frames: [CGRect] = []
 
+    /// The lens's current rect within the world-anchored capture region, in uv
+    /// (0..1, top-left origin). Computed in `captureBackground()` from the SAME
+    /// layer snapshot used to render the texture, then fed to the shader by
+    /// `updateUniforms()`. Defaults map the lens to the whole texture (identity)
+    /// until the first capture runs.
+    private var lensOriginInCapture: SIMD2<Float> = .zero
+    private var lensSizeInCapture: SIMD2<Float> = .init(1, 1)
+
     /// Optional multiply-blend shadow overlay subview.
     private weak var shadowView: LiquidLensShadowView?
 
@@ -137,14 +145,12 @@ final class LiquidLensView: MTKView {
         // `setNeedsDisplay`.
         isPaused = false
         enableSetNeedsDisplay = false
-        // Cap the loop at 60fps. Each frame does a synchronous, main-thread
-        // `CALayer.render(in:)` of the whole root layer (see captureBackground).
-        // Left uncapped, a ProMotion panel runs this 120×/sec and starves the
-        // SwiftUI slide-spring + keyframe-stretch that animate on the same main
-        // thread — which is exactly when (and why) the pill stutters as it moves
-        // between columns. 60fps halves that contention; a refraction lens reads
-        // perfectly smooth at 60.
-        preferredFramesPerSecond = 60
+        // Run at the display's native max refresh (120 on ProMotion, 60 on a
+        // standard panel) rather than a hard 60 cap. The MTKView drawable is
+        // vsync'd, so this tracks the monitor instead of truly free-running.
+        // Refreshed in `relayout()` once the window/screen is known and whenever
+        // the view moves to a display with a different refresh rate.
+        preferredFramesPerSecond = maxRefreshRate
         delegate = renderDelegate
     }
 
@@ -159,6 +165,15 @@ final class LiquidLensView: MTKView {
         window?.backingScaleFactor ?? layer?.contentsScale ?? 2
     }
 
+    /// The active display's maximum refresh rate (e.g. 120 on ProMotion, 60 on a
+    /// standard panel). Used to drive the render loop at the monitor's native
+    /// cadence instead of a hard 60 cap. Falls back to 60 before the view is
+    /// attached to a screen.
+    private var maxRefreshRate: Int {
+        let rate = (window?.screen ?? NSScreen.main)?.maximumFramesPerSecond ?? 60
+        return max(rate, 60)
+    }
+
     override func layout() {
         super.layout()
         relayout()
@@ -169,16 +184,59 @@ final class LiquidLensView: MTKView {
     private func relayout() {
         updateUniforms()
 
-        let scale = scaleFactor
-            * CGFloat(liquidGlass.backgroundTextureSizeCoefficient)
-            * CGFloat(liquidGlass.backgroundTextureScaleCoefficient)
-        let width = Int(bounds.width * scale)
-        let height = Int(bounds.height * scale)
+        // Track the current display's native refresh (the view may now be
+        // attached to a window/screen that wasn't known at init, or have moved
+        // to a panel with a different rate).
+        let rate = maxRefreshRate
+        if preferredFramesPerSecond != rate {
+            preferredFramesPerSecond = rate
+        }
+
+        // Buffer is sized to the WORLD-ANCHORED capture region (the stationary
+        // container the pill slides within), not the pill — see `captureRegion`.
+        // The region is stable during a slide (only the pill offsets within it),
+        // so `setupBuffer`'s size-guard still holds and no per-frame realloc fires.
+        let region = captureRegionSize
+        let scale = scaleFactor * CGFloat(liquidGlass.backgroundTextureScaleCoefficient)
+        let width = Int(region.width * scale)
+        let height = Int(region.height * scale)
         if width > 0, height > 0 {
             zeroCopyBridge.setupBuffer(width: width, height: height)
         }
 
         shadowView?.frame = bounds
+    }
+
+    /// The world-anchored capture region: the nearest STATIONARY ancestor that
+    /// is wider than the pill — i.e. the wheel-group container the pill slides
+    /// within. SwiftUI's `.offset` repositions the pill *inside* this container,
+    /// so the container itself does NOT move during a slide → the captured
+    /// texture stays valid frame-to-frame and the pill is just indexed into it by
+    /// uv.
+    ///
+    /// Crucially this is SMALL (3 columns, one row) — capturing it is cheap.
+    /// Capturing the whole root instead (an earlier mistake) rasterized the
+    /// full-width notch every frame via `CALayer.render(in:)`, which is ~100×
+    /// the pixels and tanked the frame rate. Cost scales with region pixel area,
+    /// so the region must hug the pill's travel, not the screen.
+    ///
+    /// Falls back to the root only if no wider ancestor exists yet.
+    private func captureHostView() -> NSView? {
+        let minWidth = bounds.width * 1.5
+        var current = superview
+        while let v = current {
+            if v.bounds.width >= minWidth, v.bounds.height > 0 { return v }
+            current = v.superview
+        }
+        return findRootView()
+    }
+
+    /// Size (in points) of the world-anchored capture region. Pill-based fallback
+    /// (legacy pill-centered behavior) before the view is attached.
+    private var captureRegionSize: CGSize {
+        captureHostView()?.bounds.size
+            ?? CGSize(width: bounds.width * CGFloat(liquidGlass.backgroundTextureSizeCoefficient),
+                      height: bounds.height * CGFloat(liquidGlass.backgroundTextureSizeCoefficient))
     }
 
     // MARK: - Background Capture
@@ -191,12 +249,15 @@ final class LiquidLensView: MTKView {
     /// `CABackdropLayer` APIs, so we always render the root content view's
     /// `CALayer` directly via `CALayer.render(in:)`.
     ///
-    /// The presentation layer is used wherever possible so the captured backdrop
-    /// tracks the pill (and the content behind it) as it animates.
+    /// World-anchored capture: the texture covers a FIXED region (the whole
+    /// stationary root) — it does NOT track the pill. The pill's current rect
+    /// within that region is computed as uv and handed to the shader, which
+    /// indexes the backdrop by world position. Through-glass content is therefore
+    /// world-fixed by construction, with no opposing-motion cancellation that
+    /// could leak as lateral drift.
     func captureBackground() {
         guard let rootView = findRootView() else { return }
 
-        let sizeCoefficient = CGFloat(liquidGlass.backgroundTextureSizeCoefficient)
         let scaleCoefficient = scaleFactor * CGFloat(liquidGlass.backgroundTextureScaleCoefficient)
 
         // Root layer to render. Prefer the presentation layer so in-flight
@@ -205,33 +266,47 @@ final class LiquidLensView: MTKView {
         guard let rootLayer else { return }
         let srcLayer = rootLayer.presentation() ?? rootLayer
 
-        // Our on-screen rect in the root layer's coordinate space, using the
-        // presentation layer of self so the capture tracks our animated frame.
-        let me = layer?.presentation() ?? layer
-        guard let me else { return }
-        // Only the CENTER of the presentation frame is used (so the capture
-        // tracks the slide). The capture SIZE must come from the unscaled
-        // `bounds`, NOT the presentation frame — the keyframe stretch pulse
-        // applies a `scaleEffect` (1.0→1.35) to the presentation layer, so
-        // `frameInRoot` is up to 1.35× larger mid-travel, while the shader and
-        // drawable always use the unscaled bounds. Sampling a 1.35×-wider
-        // backdrop into a 1.0×-wide render zooms/shifts the digit behind the
-        // lens — the residual "the number moves a bit when the bubble moves".
-        // Using the stable bounds size keeps the backdrop 1:1 with the render.
-        let frameInRoot = me.convert(me.bounds, to: rootLayer)
-        let captureCenter = CGPoint(x: frameInRoot.midX, y: frameInRoot.midY)
+        // Presentation layer of the pill — computed in the SAME (presentation)
+        // layer tree as `srcLayer` so positions are mutually consistent while
+        // ancestors animate (model ≠ presentation mid-animation; mixing them was
+        // the old drift).
+        guard let me = layer?.presentation() ?? layer else { return }
 
-        // Expand the capture area around the lens center (root layer coords),
-        // sized from the unscaled bounds so it never tracks the stretch pulse.
-        let captureSize = CGSize(width: bounds.width * sizeCoefficient,
-                                 height: bounds.height * sizeCoefficient)
-        let captureRectInRoot = CGRect(x: captureCenter.x - captureSize.width / 2,
-                                       y: captureCenter.y - captureSize.height / 2,
-                                       width: captureSize.width,
-                                       height: captureSize.height)
+        // The WORLD-ANCHORED capture region = the stationary host (wheel-group
+        // container) in root coords. We still render the full root layer into the
+        // context (so content is complete), but offset so the host's rect maps to
+        // the texture origin. The host doesn't move during a slide, so this origin
+        // is stable frame-to-frame and the pill is just indexed into it by uv.
+        let hostView = captureHostView()
+        let hostLayer = hostView?.layer.flatMap { $0.presentation() ?? $0 }
+        let regionOrigin = hostLayer.map { $0.convert(CGPoint.zero, to: srcLayer) } ?? .zero
+        let regionSize = captureRegionSize
+
+        // The pill's rect within that region. CENTER comes from the pill's
+        // presentation layer (tracks the in-flight slide); SIZE comes from the
+        // unscaled `bounds`, NOT the presentation frame — the keyframe stretch
+        // pulse applies a `scaleEffect` (1.0→1.35) to the presentation layer, so
+        // using the presentation size would zoom the backdrop mid-travel. Stable
+        // bounds size keeps the backdrop 1:1 with the render.
+        let lensFrameInRoot = me.convert(me.bounds, to: srcLayer)
+        let lensCenter = CGPoint(x: lensFrameInRoot.midX, y: lensFrameInRoot.midY)
+        let lensSize = bounds.size
+        let lensOrigin = CGPoint(x: lensCenter.x - lensSize.width / 2,
+                                 y: lensCenter.y - lensSize.height / 2)
+
+        // Lens rect → uv within the capture region (top-left origin). The shader
+        // maps each fragment's pill-local uv (0..1) through this to the texture.
+        lensOriginInCapture = SIMD2<Float>(
+            Float((lensOrigin.x - regionOrigin.x) / regionSize.width),
+            Float((lensOrigin.y - regionOrigin.y) / regionSize.height)
+        )
+        lensSizeInCapture = SIMD2<Float>(
+            Float(lensSize.width / regionSize.width),
+            Float(lensSize.height / regionSize.height)
+        )
 
         // The texture dimensions (matching the buffer set up in `relayout()`).
-        let textureHeight = CGFloat(bounds.height) * scaleCoefficient * sizeCoefficient
+        let textureHeight = regionSize.height * scaleCoefficient
 
         backgroundTexture = zeroCopyBridge.render { context in
             // Hide self during capture so the lens doesn't sample itself.
@@ -257,11 +332,11 @@ final class LiquidLensView: MTKView {
             context.translateBy(x: 0, y: textureHeight)
             context.scaleBy(x: 1, y: -1)
 
-            // Render the portion of the root layer under our capture rect:
-            // scale to the texture's pixel density, then translate so the
-            // capture-rect origin maps to the texture origin.
+            // Render the portion of the root layer under our (world-anchored)
+            // capture region: scale to the texture's pixel density, then translate
+            // so the region's origin maps to the texture origin.
             context.scaleBy(x: scaleCoefficient, y: scaleCoefficient)
-            context.translateBy(x: -captureRectInRoot.origin.x, y: -captureRectInRoot.origin.y)
+            context.translateBy(x: -regionOrigin.x, y: -regionOrigin.y)
 
             srcLayer.render(in: context)
         }
@@ -302,6 +377,14 @@ final class LiquidLensView: MTKView {
         uniforms.contentsScale = Float(scaleFactor)
 
         uniforms.shapeMergeSmoothness = 0.2
+
+        // World-anchored capture mapping. Computed in `captureBackground()` from
+        // the same presentation-layer snapshot used to render the texture, so the
+        // lens's uv rect within the fixed capture region is consistent with the
+        // rendered pixels (no drift). `render()` calls captureBackground() before
+        // updateUniforms() each frame, so these are fresh.
+        uniforms.lensOriginInCapture = lensOriginInCapture
+        uniforms.lensSizeInCapture = lensSizeInCapture
 
         // Assign rectangles from `frames`, or fall back to the view bounds.
         let effectiveFrames = frames.isEmpty ? [bounds] : frames

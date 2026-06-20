@@ -13,6 +13,11 @@ class ZeroCopyBridge {
     var pixelBuffer: CVPixelBuffer?
     var cvTexture: CVMetalTexture?
 
+    /// Dimensions of the currently-allocated buffer, so we can skip a redundant
+    /// reallocation when the size is unchanged (see `setupBuffer`).
+    private var bufferWidth: Int = 0
+    private var bufferHeight: Int = 0
+
     init(device: MTLDevice) {
         self.device = device
         let status = CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache)
@@ -22,6 +27,19 @@ class ZeroCopyBridge {
     }
 
     func setupBuffer(width: Int, height: Int) {
+        // Skip reallocation when the dimensions haven't changed. The lens only
+        // MOVES during a slide (a SwiftUI `.offset` + a layer-transform
+        // `scaleEffect` pulse) — its pixel SIZE is stable — yet AppKit `layout()`
+        // fires every frame and re-invokes this. Allocating a fresh CVPixelBuffer
+        // + CVMetalTexture each frame is the movement-only FPS cost; reusing the
+        // existing (identical) buffer is byte-for-byte the same render.
+        if width == bufferWidth, height == bufferHeight,
+           pixelBuffer != nil, cvTexture != nil {
+            return
+        }
+        bufferWidth = width
+        bufferHeight = height
+
         let attrs = [
             kCVPixelBufferMetalCompatibilityKey: true,
             kCVPixelBufferCGImageCompatibilityKey: true,

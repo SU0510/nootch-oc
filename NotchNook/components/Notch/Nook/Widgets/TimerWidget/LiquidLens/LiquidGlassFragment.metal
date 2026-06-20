@@ -48,6 +48,8 @@ struct ShaderUniforms {
     float glareDirectionOffset;      // Angular offset for glare direction
     int rectangleCount;              // Number of active rectangles
     float4 rectangles[maxRectangles]; // Array of rectangles (x, y, width, height) in points, upper-left origin
+    float2 lensOriginInCapture;      // uv of the lens's top-left within the world-anchored capture texture
+    float2 lensSizeInCapture;        // uv-space size of the lens within the world-anchored capture texture
 };
 
 // Constant linear sampler for texture lookups (bilinear filtering, no wrap)
@@ -442,6 +444,17 @@ fragment half4 liquidGlassEffect(VertexOutput input [[stage_in]],
     // Fragment coordinate in pixels (from UV, upper-left origin)
     float2 fragmentPixelCoord = float2(input.uv) * uniforms.resolution;
 
+    // World-anchored background sampling. The capture texture covers a FIXED,
+    // stationary region (the whole root), so a fragment's backdrop is indexed by
+    // its WORLD position, not by re-centering a pill-tracking window. The lens's
+    // current rect within that region arrives as `lensOriginInCapture` /
+    // `lensSizeInCapture` (uv space): map this fragment's pill-local uv (0..1
+    // across the lens) into the capture's uv. Through-glass content is then
+    // world-fixed by construction — no opposing-motion cancellation to get wrong,
+    // so no lateral drift. The SDF/silhouette path still uses raw `input.uv`
+    // (1.0x pill shape space); only the texture reads use `backgroundUv`.
+    float2 backgroundUv = uniforms.lensOriginInCapture + float2(input.uv) * uniforms.lensSizeInCapture;
+
     // Primary merged SDF distance (normalized to resolution.y)
     float shapeDistance = primaryShapeSDF(fragmentPixelCoord, uniforms);
 
@@ -464,16 +477,20 @@ fragment half4 liquidGlassEffect(VertexOutput input [[stage_in]],
         }
 
         if (edgeShiftFactor <= 0.0f) {
-            outputColor = background.sample(textureSampler, float2(input.uv));
+            outputColor = background.sample(textureSampler, backgroundUv);
             outputColor = mix(outputColor, half4(half3(uniforms.materialTint.rgb), 1.0h), half(uniforms.materialTint.a * 0.8f));
         } else {
             float2 surfaceNormal = computeSurfaceNormal(fragmentPixelCoord, uniforms);
-            // Dispersion-sampled refraction (scale/aspect corrected)
+            // Dispersion-sampled refraction (scale/aspect corrected). The offset
+            // is computed in PILL-relative uv (uv 0..1 == the pill), then scaled
+            // by `lensSizeInCapture` to convert into the world-anchored capture's
+            // uv space (where the pill occupies only that fraction), so the
+            // physical edge-bend magnitude is unchanged by the larger texture.
             half2 offsetUv = half2(-surfaceNormal * edgeShiftFactor * 0.05f * uniforms.contentsScale * float2(
                 uniforms.resolution.y / (logicalResolution.x * uniforms.contentsScale),
                 1.0f
-            ));
-            half4 refractedWithDispersion = sampleWithDispersion(background, float2(input.uv), float2(offsetUv), uniforms.dispersionStrength);
+            ) * uniforms.lensSizeInCapture);
+            half4 refractedWithDispersion = sampleWithDispersion(background, backgroundUv, float2(offsetUv), uniforms.dispersionStrength);
 
             // Base material tint
             outputColor = mix(refractedWithDispersion, half4(half3(uniforms.materialTint.rgb), 1.0h), half(uniforms.materialTint.a * 0.8f));

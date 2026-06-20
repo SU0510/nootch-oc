@@ -43,15 +43,15 @@ struct TimerCreatorView: View {
 
     private var totalSeconds: Int { hours * 3600 + minutes * 60 + seconds }
 
-    fileprivate static let rowHeight: CGFloat = 24
-    fileprivate static let visibleRows: Int = 3
+    fileprivate static let rowHeight: CGFloat = 30
+    fileprivate static let visibleRows: CGFloat = 4
     fileprivate static var wheelHeight: CGFloat { CGFloat(visibleRows) * rowHeight } // 72
     /// Selection lens wraps ONLY the center row (the value being set).
     fileprivate static let selectionHeight: CGFloat = rowHeight  // 24
     /// Focus pill is a touch narrower than its column and a touch taller than
     /// the dark track, so it reads as a distinct floating element.
-    fileprivate static let indicatorWidthInset: CGFloat = 7
-    fileprivate static let indicatorHeightBump: CGFloat = 8
+    fileprivate static let indicatorWidthInset: CGFloat = -10
+    fileprivate static let indicatorHeightBump: CGFloat = 18
     /// Gap between wheels (and between the last wheel and the button column).
     /// Reduced from 8 → 5 so the digits sit closer together.
     fileprivate static let wheelGap: CGFloat = 5
@@ -217,7 +217,17 @@ struct TimerCreatorView: View {
         // and passes the center through crisp. That's why no crisp-digit overlay
         // is needed: the wheel digit BEHIND the lens reads perfectly through it.
         Group {
-            if let _ = MTLCreateSystemDefaultDevice() {
+            if #available(macOS 26, *), NativeGlassPill.isAvailable {
+                // macOS 26+: the REAL private Liquid Glass stack (CABackdropLayer +
+                // glassBackground), the same one SwiftUI's `.glassEffect()` uses.
+                // Runs in the WindowServer (GPU, off the main thread) and samples
+                // the composited backdrop at the pill's true screen position — so
+                // it's both far cheaper than the Metal lens AND world-anchored (no
+                // background drift). See NativeGlassPill.swift.
+                NativeGlassPill(cornerRadius: height / 2)
+            } else if MTLCreateSystemDefaultDevice() != nil {
+                // macOS < 26 (or private classes unavailable): the Metal refraction
+                // lens fallback (per-frame capture; world-anchored this session).
                 LiquidLensPill(cornerRadius: height / 2)
             } else {
                 // No-Metal fallback: a hairline capsule over a dimming fill.

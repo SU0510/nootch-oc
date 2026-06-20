@@ -49,6 +49,16 @@ struct LiquidGlass {
             SIMD4<Float>, SIMD4<Float>, SIMD4<Float>, SIMD4<Float>
         ) = (.zero, .zero, .zero, .zero, .zero, .zero, .zero, .zero,
              .zero, .zero, .zero, .zero, .zero, .zero, .zero, .zero)
+        // World-anchored capture mapping. The background texture covers a FIXED,
+        // stationary region (the whole root layer), so through-glass content is
+        // indexed by world position rather than by re-centering a pill-tracking
+        // window — eliminating the opposing-motion cancellation that leaked as
+        // lateral drift. `lensOriginInCapture` is the uv (top-left origin) of the
+        // lens's current rect within that region; `lensSizeInCapture` is its
+        // uv-space size. Appended at the END so existing field offsets (Swift↔Metal
+        // struct-layout parity) are unchanged.
+        var lensOriginInCapture: SIMD2<Float> = .zero
+        var lensSizeInCapture: SIMD2<Float> = .init(1, 1)
     }
 
     let shaderUniforms: ShaderUniforms
