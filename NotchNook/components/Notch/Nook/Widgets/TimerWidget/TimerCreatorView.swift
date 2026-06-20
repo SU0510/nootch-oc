@@ -108,9 +108,10 @@ struct TimerCreatorView: View {
                 // material never blurs it, exactly like the tab-bar selector's
                 // label. Only the wheel digit behind the glass gets lensed.
                 ZStack {
-                    selectionLens               // dark #19191B track
-                    wheelsRow                   // scrolling digits — lensed BEHIND the glass
-                    focusIndicator(colW: colW)  // glass pill + crisp digit embedded inside it
+                    selectionLens                    // dark #19191B track
+                    wheelsRow                        // scrolling digits — lensed BEHIND the glass
+                    focusIndicator(colW: colW)       // glass pill (dimmed backing) — moves/stretches alone
+                    crispDigitIndicator(colW: colW)  // crisp focused number — independent layer, no stretch
                 }
                 .frame(width: wheelsW, height: Self.wheelHeight)
 
@@ -180,6 +181,16 @@ struct TimerCreatorView: View {
             .allowsHitTesting(false)
     }
 
+    /// Center x of the focused column, measured from the wheel-group's left
+    /// edge. Columns are colW wide, separated by wheelGap.
+    private func columnCenterX(colW: CGFloat) -> CGFloat {
+        let step = colW + Self.wheelGap
+        return colW / 2 + CGFloat(focusedWheel) * step
+    }
+
+    private func pillWidth(colW: CGFloat) -> CGFloat { colW - Self.indicatorWidthInset * 2 }
+    private var pillHeight: CGFloat { Self.selectionHeight + Self.indicatorHeightBump }
+
     // The focus pill — ONE persistent Liquid Glass capsule that SLIDES between
     // wheels by changing its x-offset, exactly like the iOS 26 nav-bar selector.
     // A single mounted view that just moves re-runs the glass shader every frame,
@@ -188,15 +199,14 @@ struct TimerCreatorView: View {
     // glass", so a second stacked pill would break the material.
     //
     // The "expand while moving, settle when stopped" liquid signature is a
-    // keyframe pulse on scale, retriggered on every focus change.
+    // keyframe pulse on scale, retriggered on every focus change. The crisp
+    // number is NOT embedded here — it rides in its own layer (crispDigitIndicator)
+    // so the bubble can move and stretch on its own without dragging the digit.
     @ViewBuilder
     private func focusIndicator(colW: CGFloat) -> some View {
-        // Center x of the focused column, measured from the wheel-group's left
-        // edge. Columns are colW wide, separated by wheelGap.
-        let step = colW + Self.wheelGap
-        let centerX = colW / 2 + CGFloat(focusedWheel) * step
-        let pillW = colW - Self.indicatorWidthInset * 2
-        let pillH = Self.selectionHeight + Self.indicatorHeightBump
+        let centerX = columnCenterX(colW: colW)
+        let pillW = pillWidth(colW: colW)
+        let pillH = pillHeight
 
         pill(width: pillW, height: pillH)
             // Position from the leading edge, then nudge by half the group so
@@ -208,11 +218,27 @@ struct TimerCreatorView: View {
             .allowsHitTesting(false)
     }
 
-    /// The crisp focused value, built as a plain SwiftUI view. This is handed to
-    /// the glass pill as its `contentView` (embedded INSIDE the glass), so the
-    /// material treats it as foreground content and never blurs it — exactly how
-    /// the tab-bar selector keeps its label sharp. The wheel digit behind the
-    /// glass is the only thing that gets lensed.
+    /// The crisp focused number, drawn in its OWN layer on top of the glass — NOT
+    /// embedded inside the pill. This decouples the digit from the bubble: the
+    /// glass capsule can slide and stretch/squash on its own while the number
+    /// simply glides to the focused column center (a calm spring, no keyframe
+    /// pulse), so the value stays steady and readable as the bubble travels.
+    @ViewBuilder
+    private func crispDigitIndicator(colW: CGFloat) -> some View {
+        let centerX = columnCenterX(colW: colW)
+        let pillW = pillWidth(colW: colW)
+
+        crispDigit
+            .frame(width: pillW, height: pillHeight)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .offset(x: centerX - pillW / 2)
+            .animation(.spring(response: 0.42, dampingFraction: 0.7), value: focusedWheel)
+            .allowsHitTesting(false)
+    }
+
+    /// The crisp focused value. Rides above the glass as foreground content, so
+    /// the material never blurs it — exactly how the tab-bar selector keeps its
+    /// label sharp. The wheel digit behind the glass is the only thing lensed.
     private var crispDigit: some View {
         Text(String(format: "%02d", focusedValue))
             .font(.system(size: 20, weight: .semibold).monospacedDigit())
@@ -228,22 +254,27 @@ struct TimerCreatorView: View {
     private func pill(width: CGFloat, height: CGFloat) -> some View {
         // Apple's REAL native Liquid Glass — the AppKit `NSGlassEffectView`, the
         // exact engine the system uses. `.clear` style + nil tint = the most
-        // transparent, distortion-forward variant. The crisp digit rides INSIDE
-        // the glass as its contentView, so it stays sharp (foreground); only the
-        // wheel digit behind the pill in the window gets lensed. No borders, no
-        // sheen, no tint — pure native glass, just like the tab-bar selector.
+        // transparent, distortion-forward variant. No borders, no sheen, no tint
+        // — pure native glass, just like the tab-bar selector. The crisp digit is
+        // drawn in a SEPARATE layer (crispDigitIndicator), so this bubble owns
+        // only its own motion/stretch. A subtle dark fill sits BEHIND the glass
+        // to dim whatever it travels over, giving the capsule a clearer body.
         Group {
             if #available(macOS 26.0, *) {
                 LiquidGlassPill(cornerRadius: height / 2) {
-                    crispDigit
+                    // Dimming backdrop embedded as the glass's content: darkens
+                    // the digit/track beneath the bubble (≈0.3 black overlay).
+                    Capsule(style: .continuous)
+                        .fill(Color.black.opacity(0.3))
                 }
             } else {
-                // Pre-26 fallback: a plain hairline capsule with the digit on top.
-                ZStack {
-                    Capsule(style: .continuous)
-                        .strokeBorder(Color.white.opacity(0.25), lineWidth: 1)
-                    crispDigit
-                }
+                // Pre-26 fallback: a hairline capsule over a dimming fill.
+                Capsule(style: .continuous)
+                    .fill(Color.black.opacity(0.3))
+                    .overlay(
+                        Capsule(style: .continuous)
+                            .strokeBorder(Color.white.opacity(0.25), lineWidth: 1)
+                    )
             }
         }
         .keyframeAnimator(initialValue: PillStretch(), trigger: focusedWheel) { view, s in
