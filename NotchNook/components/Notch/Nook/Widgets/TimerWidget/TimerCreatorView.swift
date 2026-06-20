@@ -195,6 +195,7 @@ struct TimerCreatorView: View {
                 // over it, refracting whatever it covers and carrying nothing.
                 selectionLens                    // dark #19191B track
                 wheelsRow                        // scrolling digits — refracted BEHIND the lens
+                topProgressiveBlur               // frosts the UPCOMING (top) digits
                 focusIndicator(colW: colW)       // lens pill — moves/stretches alone
             }
             // Fixed-height wheel group (NumberWheel's 72pt), then centered in the
@@ -307,6 +308,36 @@ struct TimerCreatorView: View {
             .frame(height: Self.selectionHeight)
             .frame(maxWidth: .infinity)
             .allowsHitTesting(false)
+    }
+
+    /// Prominent PROGRESSIVE blur over the TOP of the wheel group: the off-center
+    /// upcoming digits dissolve into frost the closer they get to the top edge,
+    /// then read crisp again well before the center row — so the focused (accent)
+    /// digit that reads through the glass pill stays sharp. A lighter bottom ramp
+    /// is added for symmetry so the wheel feels recessed top AND bottom (depth),
+    /// with the emphasis on the top per the design intent.
+    ///
+    /// This is GPU/WindowServer work (a single `CABackdropLayer` + `gaussianBlur`
+    /// CAFilter — no per-frame CPU rasterization), sampling the digit pixels drawn
+    /// beneath it. It COMPOSES with, rather than replaces, each wheel's existing
+    /// alpha LinearGradient fade: the fade makes the upcoming digits translucent,
+    /// the blur frosts them — together they read as true iOS-picker depth. When the
+    /// private backdrop primitive is unavailable we render nothing and the alpha
+    /// fade alone remains (graceful fallback).
+    @ViewBuilder
+    private var topProgressiveBlur: some View {
+        if ProgressiveBlur.isAvailable {
+            ZStack {
+                // TOP — prominent: full frost at the very top, crisp by ~38% down
+                // (above the center row, which starts at ~33% for a 4-row wheel).
+                ProgressiveBlur(maxRadius: 9, edge: .top, rampLength: 0.42, curveExponent: 1.7)
+                // BOTTOM — subtle counterpart for symmetric recession.
+                ProgressiveBlur(maxRadius: 5, edge: .bottom, rampLength: 0.32, curveExponent: 1.8)
+            }
+            .frame(height: Self.wheelHeight)
+            .frame(maxWidth: .infinity)
+            .allowsHitTesting(false)
+        }
     }
 
     /// Center x of the focused column, measured from the wheel-group's left
@@ -747,10 +778,10 @@ private struct NumberWheel: View {
                     size: 20,
                     weight: isCenter ? .semibold : .regular
                 ).monospacedDigit())
-                .foregroundStyle(isCenter ? Color.white : Color.white.opacity(0.5))
+                .foregroundStyle(isCenter ? Color.accentColor : Color.white.opacity(0.5))
             Text(suffix)
                 .font(.system(size: 11, weight: isCenter ? .semibold : .medium))
-                .foregroundStyle(isCenter ? Color.white.opacity(0.8) : Color.white.opacity(0.28))
+                .foregroundStyle(isCenter ? Color.accentColor.opacity(0.72) : Color.white.opacity(0.28))
                 .offset(y: 3)
         }
         .animation(.easeOut(duration: 0.18), value: isCenter)
