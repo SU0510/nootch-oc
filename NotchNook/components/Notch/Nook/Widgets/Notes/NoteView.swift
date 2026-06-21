@@ -80,7 +80,14 @@ struct NoteView: View {
         .allowsHitTesting(isSelected)
         .foregroundStyle(.nonShockingWhite)
         .matchedGeometryEffect(id: "\(note.id)-note", in: ns)
-        .frame(maxWidth: isSelected ? .infinity : Self.smallSize, maxHeight: isSelected ? .infinity : Self.smallSize, alignment: .topLeading)
+        // Width: selected fills, thumbnails cap at smallSize (mask clips the
+        // scaled preview that overflows). Height: both fill the band — `minHeight: 0`
+        // is load-bearing. The inner preview is a rigid `height: 100` +
+        // `.fixedSize(vertical:)` block; without minHeight:0 that 100pt floor
+        // propagates up (N thumbnails × 100 ≈ 400pt) and inflates the whole Nook
+        // band. Pinning min to 0 lets the VStack divide the fixed band into equal
+        // tall rectangles and the mask clips the preview overflow.
+        .frame(maxWidth: isSelected ? .infinity : Self.smallSize, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .modifier(
             ShapeModifier(
                 noteId: "\(note.id)",
