@@ -10,7 +10,11 @@ import Defaults
 
 struct NookView: View {
     @Environment(\.nookSettings) private var nookSettings
-    
+
+    /// Extra height added on top of the integer grid height (N × 50pt). Bumps the
+    /// default 2-row Nook from 100pt to 125pt.
+    static let extraHeight: CGFloat = 25
+
     var body: some View {
         let widgets = nookSettings.enabledWidgets
         HStack(alignment: .center, spacing: 0) {
@@ -39,7 +43,10 @@ struct NookView: View {
             }
         }
         .animation(.smooth, value: nookSettings.enabledWidgets)
-        .frame(height: nookSettings.size.height.screenPoints)
+        // Grid height (N × 50pt) plus a fixed extra band, so the default 2-row
+        // Nook renders 125pt tall instead of 100. The grid is integer-only, so the
+        // 25pt isn't grid-expressible — it's added here as a constant on top.
+        .frame(height: nookSettings.size.height.screenPoints + NookView.extraHeight)
         .fixedSize()
 //        .subToAllWidgetsSettingsChanges()
     }

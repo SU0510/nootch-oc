@@ -13,6 +13,37 @@
 
 import SwiftUI
 
+/// Interior content insets for the timer widget, derived entirely from shared
+/// Nook values so the widget honours the SAME bounds/padding contract as every
+/// other widget — no bespoke magic numbers:
+///   • `top`       — the notch top-bar chrome (`TopBarView.buttonsVisualBottom`),
+///                   the line below which content must start to clear the gear/tabs.
+///   • `bottom`    — the user's inter-widget padding (`widgetsPadding`).
+///   • `leading` / `trailing` — a small interior gutter (half the widget padding),
+///                   widened on a position's OUTER edge to clear the Nook's rounded
+///                   bottom corner. That corner radius is the exact value
+///                   `NoteShapeModifier` rounds to (`maxNotchRadius - contentPadding`),
+///                   so the timer insets track the same geometry the notes cards do.
+struct TimerInsets {
+    let top: CGFloat
+    let bottom: CGFloat
+    let leading: CGFloat
+    let trailing: CGFloat
+
+    init(arrayPosition: ArrayPosition, contentPadding: Double, widgetPadding: Double) {
+        // Interior gutter every edge gets, before corner clearance.
+        let gutter = CGFloat(widgetPadding) * 0.5
+        // The Nook's rounded outer bottom corner (same as the notes cards). An
+        // element on that side must inset to its centre to stay clear of the arc.
+        let cornerSafe = max(gutter, CGFloat(NotchShape.maxNotchRadius - contentPadding) * 0.5)
+
+        self.top = TopBarView.buttonsVisualBottom
+        self.bottom = CGFloat(widgetPadding)
+        self.leading  = (arrayPosition == .first || arrayPosition == .single) ? cornerSafe : gutter
+        self.trailing = (arrayPosition == .last  || arrayPosition == .single) ? cornerSafe : gutter
+    }
+}
+
 struct TimerWidgetView: View {
     var arrayPosition: ArrayPosition
     var internalPadding: Double
@@ -22,22 +53,14 @@ struct TimerWidgetView: View {
     @State private var store = NookTimersStore.shared
     @State private var showingCreator: Bool = false
 
-    private static let topbarSafe: CGFloat = TopBarView.buttonsVisualBottom   // 32
-
-    /// How far an element must inset from the leading edge of the widget to
-    /// fully clear the Nook's bottom-left rounded corner.
-    private var bottomLeadingSafe: CGFloat {
-        guard arrayPosition == .first || arrayPosition == .single else { return 6 }
-        return NotchShape.maxNotchRadius - generalSettings.contentPadding * 0.5  // ≈ 34
+    /// All interior content insets, derived from the SAME values the rest of the
+    /// Nook uses (the top-bar chrome constant, the user's widget padding, and the
+    /// real notch corner radius) instead of bespoke literals. See `TimerInsets`.
+    private var insets: TimerInsets {
+        TimerInsets(arrayPosition: arrayPosition,
+                    contentPadding: generalSettings.contentPadding,
+                    widgetPadding: internalPadding)
     }
-
-    /// Same for the trailing edge (bottom-right rounded corner).
-    private var bottomTrailingSafe: CGFloat {
-        guard arrayPosition == .last || arrayPosition == .single else { return 6 }
-        return NotchShape.maxNotchRadius - generalSettings.contentPadding * 0.5
-    }
-
-    private static let bottomSafe: CGFloat = 10
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -51,10 +74,10 @@ struct TimerWidgetView: View {
                         timersList
                     }
                 }
-                .padding(.top, Self.topbarSafe)
-                .padding(.bottom, Self.bottomSafe)
-                .padding(.leading, max(6, bottomLeadingSafe * 0.4))
-                .padding(.trailing, max(6, bottomTrailingSafe * 0.4))
+                .padding(.top, insets.top)
+                .padding(.bottom, insets.bottom)
+                .padding(.leading, insets.leading)
+                .padding(.trailing, insets.trailing)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .transition(.opacity)
             }
@@ -63,9 +86,7 @@ struct TimerWidgetView: View {
             if showingCreator {
                 TimerCreatorView(
                     isShowing: $showingCreator,
-                    topSafe: Self.topbarSafe,
-                    bottomLeadingSafe: bottomLeadingSafe,
-                    bottomTrailingSafe: bottomTrailingSafe
+                    insets: insets
                 )
                     .transition(.asymmetric(
                         insertion: .scale(scale: 0.96, anchor: .top).combined(with: .opacity),
@@ -78,7 +99,15 @@ struct TimerWidgetView: View {
         .animation(.spring(response: 0.3, dampingFraction: 0.7), value: store.timers.isEmpty)
         .animation(.spring(response: 0.32, dampingFraction: 0.78), value: showingCreator)
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
-        .frame(prefs.size.screenPtsCGSize, .leading)
+        // Width comes from the grid (keeps column/divider math identical to the
+        // other widgets), but the HEIGHT fills whatever band the Nook gives us
+        // rather than forcing our own grid height. NookView clips the widget row
+        // to `nookSettings.size.height` and centres it; pinning our own (taller)
+        // grid height there made bottom-anchored content — the Play button — spill
+        // past the Nook's visible bottom edge. Filling the available height keeps
+        // every edge inside the Nook regardless of the grid-height mismatch.
+        .frame(width: prefs.size.width.screenPoints, alignment: .leading)
+        .frame(maxHeight: .infinity)
     }
 
     // MARK: - Idle subviews
@@ -122,7 +151,7 @@ struct TimerWidgetView: View {
                         ))
                 }
             }
-            .padding(.trailing, max(6, bottomTrailingSafe * 0.4))
+            .padding(.trailing, insets.trailing)
         }
         .animation(.spring(response: 0.3, dampingFraction: 0.7),
                    value: store.timers.map { $0.id })

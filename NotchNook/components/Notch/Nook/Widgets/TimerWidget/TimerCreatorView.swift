@@ -30,9 +30,8 @@ import Metal
 
 struct TimerCreatorView: View {
     @Binding var isShowing: Bool
-    var topSafe: CGFloat
-    var bottomLeadingSafe: CGFloat
-    var bottomTrailingSafe: CGFloat
+    /// Shared interior insets (same contract as the idle widget). See `TimerInsets`.
+    var insets: TimerInsets
 
     @Environment(\.timerWidgetSettings) private var prefs
 
@@ -90,7 +89,7 @@ struct TimerCreatorView: View {
     private var totalSeconds: Int { hours * 3600 + minutes * 60 + seconds }
 
     fileprivate static let rowHeight: CGFloat = 30
-    fileprivate static let visibleRows: CGFloat = 4
+    fileprivate static let visibleRows: CGFloat = 5
     fileprivate static var wheelHeight: CGFloat { CGFloat(visibleRows) * rowHeight } // 72
     /// Selection lens wraps ONLY the center row (the value being set).
     fileprivate static let selectionHeight: CGFloat = rowHeight  // 24
@@ -144,10 +143,13 @@ struct TimerCreatorView: View {
             buttonColumn
                 .frame(width: Self.playDiameter + Self.columnInset * 2)
         }
-        .padding(.top, topSafe)                         // clear notch top-bar buttons
-        .padding(.leading, max(Self.glassAllowance, bottomLeadingSafe * 0.4))
-        .padding(.trailing, max(Self.glassAllowance, bottomTrailingSafe * 0.4))
-        .padding(.bottom, 10)                           // off the widget's bottom edge
+        // Same interior insets as the idle widget, but every edge keeps at least
+        // `glassAllowance` so the glass pill's shadow/edge-highlight (which bleed
+        // OUTSIDE the pill rect) are never clipped by the widget bounds.
+        .padding(.top, insets.top)                                       // clear notch top-bar buttons
+        .padding(.leading, max(Self.glassAllowance, insets.leading))
+        .padding(.trailing, max(Self.glassAllowance, insets.trailing))
+        .padding(.bottom, insets.bottom)                                 // off the widget's bottom edge
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         // Subtle close affordance, top-left, clear of the notch top-bar chrome.
         .overlay(alignment: .topLeading) { closeButton }
@@ -171,7 +173,7 @@ struct TimerCreatorView: View {
         }
         .buttonStyle(ShrinkOnPressButtonStyle())
         // Sit just inside the top-left corner, below the notch top-bar chrome.
-        .padding(.top, topSafe)
+        .padding(.top, insets.top)
         .padding(.leading, Self.glassAllowance)
     }
 
@@ -195,7 +197,7 @@ struct TimerCreatorView: View {
                 // over it, refracting whatever it covers and carrying nothing.
                 selectionLens                    // dark #19191B track
                 wheelsRow                        // scrolling digits — refracted BEHIND the lens
-                topProgressiveBlur               // frosts the UPCOMING (top) digits
+                edgeProgressiveBlur              // frosts the upcoming digits at top & bottom
                 focusIndicator(colW: colW)       // lens pill — moves/stretches alone
             }
             // Fixed-height wheel group (NumberWheel's 72pt), then centered in the
@@ -310,31 +312,42 @@ struct TimerCreatorView: View {
             .allowsHitTesting(false)
     }
 
-    /// Prominent PROGRESSIVE blur over the TOP of the wheel group: the off-center
-    /// upcoming digits dissolve into frost the closer they get to the top edge,
-    /// then read crisp again well before the center row — so the focused (accent)
-    /// digit that reads through the glass pill stays sharp. A lighter bottom ramp
-    /// is added for symmetry so the wheel feels recessed top AND bottom (depth),
-    /// with the emphasis on the top per the design intent.
+    /// Height (per edge) of the progressive frost band. Each band is its OWN
+    /// bounded strip pinned to its edge, so the blur lives entirely inside this
+    /// many points and can never bleed toward the center row / focused digit.
+    fileprivate static let blurBandHeight: CGFloat = 25
+
+    /// Prominent PROGRESSIVE blur at the TOP and BOTTOM of the wheel group: the
+    /// off-center upcoming digits dissolve into frost as they approach each edge,
+    /// reading crisp again before the center row — so the focused (accent) digit
+    /// behind the glass pill stays sharp. The wheel feels recessed top AND bottom.
     ///
-    /// This is GPU/WindowServer work (a single `CABackdropLayer` + `gaussianBlur`
+    /// Each edge is a self-contained 25pt strip (`blurBandHeight`) pinned to that
+    /// edge with a FULL ramp (full blur at the outer edge → crisp at the inner
+    /// edge of the strip). Bounding the strip to 25pt — rather than ramping a
+    /// fraction of the full 72pt wheel — is what makes the frost obey the boundary
+    /// exactly and stay off the center row.
+    ///
+    /// This is GPU/WindowServer work (a single `CABackdropLayer` + `variableBlur`
     /// CAFilter — no per-frame CPU rasterization), sampling the digit pixels drawn
     /// beneath it. It COMPOSES with, rather than replaces, each wheel's existing
-    /// alpha LinearGradient fade: the fade makes the upcoming digits translucent,
-    /// the blur frosts them — together they read as true iOS-picker depth. When the
-    /// private backdrop primitive is unavailable we render nothing and the alpha
-    /// fade alone remains (graceful fallback).
+    /// alpha LinearGradient fade. When the private backdrop primitive is
+    /// unavailable we render nothing and the alpha fade alone remains.
     @ViewBuilder
-    private var topProgressiveBlur: some View {
+    private var edgeProgressiveBlur: some View {
         if ProgressiveBlur.isAvailable {
-            // TOP only — prominent frost at the very top, ramping to crisp well
-            // above the center row so the focused (accent) digit reading through
-            // the glass pill stays sharp. The bottom edge keeps only the alpha
-            // fade (no blur) per the design intent: emphasis on the top.
-            ProgressiveBlur(maxRadius: 9, edge: .top, rampLength: 0.4, curveExponent: 1.7)
-                .frame(height: Self.wheelHeight)
-                .frame(maxWidth: .infinity)
-                .allowsHitTesting(false)
+            VStack(spacing: 0) {
+                // Top band: strongest at the very top, crisp by 25pt down.
+                ProgressiveBlur(maxRadius: 9, edge: .top, rampLength: 1, curveExponent: 1.7)
+                    .frame(height: Self.blurBandHeight)
+                Spacer(minLength: 0)
+                // Bottom band: strongest at the very bottom, crisp by 25pt up.
+                ProgressiveBlur(maxRadius: 9, edge: .bottom, rampLength: 1, curveExponent: 1.7)
+                    .frame(height: Self.blurBandHeight)
+            }
+            .frame(height: Self.wheelHeight)
+            .frame(maxWidth: .infinity)
+            .allowsHitTesting(false)
         }
     }
 
