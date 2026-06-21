@@ -67,7 +67,9 @@ struct CalendarWidgetView: View {
                     .id(selectedDate)
             }
         }
-        .frame(settings.size.screenPtsCGSize, .leading)
+        // Width from the grid; height fills the Nook band (grid-height + 25pt).
+        .frame(width: settings.size.width.screenPoints, alignment: .leading)
+        .frame(maxHeight: .infinity)
         .onAppear {
             displayedDates = getRangeOfDays(beforeCount: daysBehindCount, afterCount: settings.numberOfDaysAheadToDisplay)
             selectedDateIndex = daysBehindCount

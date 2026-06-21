@@ -56,7 +56,11 @@ struct NotesWidgetView: View {
         }
         .animation(.spring, value: otherNotesIds)
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
-        .frame(prefs.size.screenPtsCGSize, .leading)
+        // Width from the grid; height fills the Nook band. NookView gives the
+        // widget row grid-height + 25pt, so pinning our own grid height here
+        // left the bottom 25pt empty. Fill it instead. (Same pattern as Timer.)
+        .frame(width: prefs.size.width.screenPoints, alignment: .leading)
+        .frame(maxHeight: .infinity)
         .onChange(of: notes.count, initial: true) { _, _ in
             selectedNoteId = notes.first?.persistentModelID
         }

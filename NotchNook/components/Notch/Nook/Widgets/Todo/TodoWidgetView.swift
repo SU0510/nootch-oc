@@ -57,7 +57,9 @@ struct TodoWidgetView: View {
             }
         }
         .paddingDependingOnArrPos(arrayPosition: arrayPosition, padding: internalPadding)
-        .frame(prefs.size.screenPtsCGSize, .leading)
+        // Width from the grid; height fills the Nook band (grid-height + 25pt).
+        .frame(width: prefs.size.width.screenPoints, alignment: .leading)
+        .frame(maxHeight: .infinity)
     }
 
     private func addItem() {
