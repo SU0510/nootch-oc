@@ -156,8 +156,11 @@ fileprivate struct MediaScrubberView: View {
     /// Local position used during drag — nil when not dragging.
     @State private var dragPosition: Double? = nil
 
-    private var displayPosition: Double {
-        dragPosition ?? max(0, manager.elapsedTime)
+    /// Position to render: the drag value while scrubbing, otherwise the manager's
+    /// extrapolated position (`currentElapsedTime` advances while playing even
+    /// though MediaRemote no longer pushes periodic ticks).
+    private func displayPosition() -> Double {
+        dragPosition ?? max(0, manager.currentElapsedTime)
     }
 
     private func formatTime(_ secs: Double) -> String {
@@ -167,35 +170,41 @@ fileprivate struct MediaScrubberView: View {
 
     var body: some View {
         if let dur = manager.duration, dur > 0 {
-            VStack(spacing: 2) {
-                Slider(
-                    value: Binding(
-                        get: { displayPosition },
-                        set: { dragPosition = $0 }
-                    ),
-                    in: 0...dur,
-                    onEditingChanged: { editing in
-                        if !editing, let pos = dragPosition {
-                            manager.seek(to: pos)
-                            // Keep dragPosition alive briefly so the UI doesn't jump
-                            // back before MediaRemote confirms the seek.
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                dragPosition = nil
+            // Drive a 1 Hz refresh so the scrubber advances live while the Nook is
+            // open. TimelineView only ticks while this view is on-screen, so there's
+            // no cost when the widget isn't visible.
+            TimelineView(.periodic(from: .now, by: 1)) { _ in
+                let pos = displayPosition()
+                VStack(spacing: 2) {
+                    Slider(
+                        value: Binding(
+                            get: { pos },
+                            set: { dragPosition = $0 }
+                        ),
+                        in: 0...dur,
+                        onEditingChanged: { editing in
+                            if !editing, let pos = dragPosition {
+                                manager.seek(to: pos)
+                                // Keep dragPosition alive briefly so the UI doesn't jump
+                                // back before MediaRemote confirms the seek.
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                    dragPosition = nil
+                                }
                             }
                         }
-                    }
-                )
-                .tint(Color.nonShockingWhite.opacity(0.8))
-                .frame(maxWidth: .infinity)
+                    )
+                    .tint(Color.nonShockingWhite.opacity(0.8))
+                    .frame(maxWidth: .infinity)
 
-                HStack {
-                    Text(formatTime(displayPosition))
-                        .font(.system(size: 9, weight: .medium).monospacedDigit())
-                        .opacity(0.5)
-                    Spacer()
-                    Text(formatTime(dur))
-                        .font(.system(size: 9, weight: .medium).monospacedDigit())
-                        .opacity(0.5)
+                    HStack {
+                        Text(formatTime(pos))
+                            .font(.system(size: 9, weight: .medium).monospacedDigit())
+                            .opacity(0.5)
+                        Spacer()
+                        Text(formatTime(dur))
+                            .font(.system(size: 9, weight: .medium).monospacedDigit())
+                            .opacity(0.5)
+                    }
                 }
             }
             .transition(.scaleAndBlur)

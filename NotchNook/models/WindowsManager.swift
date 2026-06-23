@@ -29,6 +29,11 @@ class WindowsManager {
     private var expandedNoteWindowController: NSWindowController?
     private var updateWindowsWorkItem: DispatchWorkItem?
     private var lastKnownScreenConfigurations: [String: NSScreen.Configuration] = [:]
+    /// True while any NSMenu (e.g. a widget's `.contextMenu`) is being tracked.
+    /// Opening a context menu makes the notch window resign key, which would
+    /// otherwise trip the `didResignKeyNotification` auto-close below and dismiss
+    /// the Nook mid-interaction (e.g. right-click → Delete on a todo row).
+    private var isTrackingContextMenu = false
     
     private init() {
 #if !SETAPP_BUILD
@@ -57,8 +62,50 @@ class WindowsManager {
             panes: self.settingsPanes,
             animated: true
         )
-        
+        // The `Settings` package creates its window as [.titled, .closable] only, so it
+        // can't be resized and each pane is locked to whatever fixed height it declares.
+        // Allow resizing and set a sane floor so overly-tall panes can be shrunk.
+        if let settingsWindow = settingsWindowController?.window {
+            settingsWindow.styleMask.insert(.resizable)
+            settingsWindow.contentMinSize = NSSize(width: 480, height: 200)
+
+            // Self-heal a degenerate saved frame. The package autosaves the window
+            // frame under `.settings`; if a build ever shrank it to ~0 (e.g. a bad
+            // sizingOptions value), that zero-size frame would be restored on every
+            // launch and the window would be invisible. Drop the autosave entry when
+            // the stored size is below our minimum so it falls back to fitting size.
+            let autosaveDefaultsKey = "NSWindow Frame com.sindresorhus.Settings.FrameAutosaveName"
+            if let stored = UserDefaults.standard.string(forKey: autosaveDefaultsKey) {
+                let parts = stored.split(separator: " ").compactMap { Double($0) }
+                // Format: "x y w h ..."; guard against a too-small width/height.
+                if parts.count >= 4, parts[2] < 200 || parts[3] < 120 {
+                    UserDefaults.standard.removeObject(forKey: autosaveDefaultsKey)
+                }
+            }
+        }
+        // styleMask alone isn't enough: each pane is an NSHostingController whose
+        // `sizingOptions` defaults to `.standardBounds` on macOS 13+, pinning the
+        // window to the SwiftUI content's intrinsic size (min == max) so it can't be
+        // dragged to resize. Clearing it lets the resizable styleMask take effect.
+        for pane in self.settingsPanes {
+            relaxPaneSizing(pane)
+        }
+
         NotificationCenter.default.addObserver(self, selector: #selector(screenDidChange), name: NSApplication.didChangeScreenParametersNotification, object: nil)
+
+        // Track context-menu open/close globally so the resign-key auto-close can
+        // tell "user opened a right-click menu inside the Nook" (keep it open)
+        // apart from "user clicked away / another window stole key" (close it).
+        NotificationCenter.default.addObserver(forName: NSMenu.didBeginTrackingNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.isTrackingContextMenu = true
+        }
+        NotificationCenter.default.addObserver(forName: NSMenu.didEndTrackingNotification, object: nil, queue: .main) { [weak self] _ in
+            // Defer the reset one runloop hop: the window regains key status AFTER
+            // the menu finishes tracking, and an outside-click that dismissed the
+            // menu must not race the flag back to false before this hop.
+            DispatchQueue.main.async { self?.isTrackingContextMenu = false }
+        }
+
         updateLastKnownScreenConfigurations()
         updateWindows()
         
@@ -334,8 +381,11 @@ class WindowsManager {
             forName: NSWindow.didResignKeyNotification,
             object: newWindow,
             queue: .main
-        ) { [weak hostingView, weak newWindow] _ in
+        ) { [weak self, weak hostingView, weak newWindow] _ in
             guard let hostingView, let newWindow else { return }
+            // A context menu (e.g. right-clicking a todo row to delete it) makes the
+            // panel resign key. That's not an outside-click — keep the Nook open.
+            if self?.isTrackingContextMenu == true { return }
             // Locked is the strongest gate — NN never closes from outside-click when
             // the user explicitly locked it, regardless of editing state.
             if hostingView.rootView.notchNook.locked { return }

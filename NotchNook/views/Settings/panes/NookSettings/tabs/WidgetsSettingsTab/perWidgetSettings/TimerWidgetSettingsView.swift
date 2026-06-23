@@ -24,16 +24,9 @@ struct TimerWidgetSettingsView: View {
                     .padding(.vertical, 4)
             }
 
-            Settings.Section(title: "", bottomDivider: true) {
+            Settings.Section(title: "") {
                 Toggle(String(localized: "Play sound on expiry"), isOn: $settings.playSound)
                     .padding(.vertical, 4)
-            }
-
-            Settings.Section(title: "") {
-                Text("Default label:")
-                TextField("e.g. Tea, Focus…", text: $settings.defaultLabel)
-                    .textFieldStyle(.roundedBorder)
-                    .frame(maxWidth: 200)
             }
         }
         .padding(0)

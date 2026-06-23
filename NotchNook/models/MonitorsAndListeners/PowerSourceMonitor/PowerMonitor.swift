@@ -34,12 +34,17 @@ class PowerMonitor {
 
     // MARK: - Transition bucket (drives LA event detection)
 
+    // NOTE: buckets must NOT carry the exact percentage. They drive transient-LA
+    // *transition* detection (`newBucket != previousBucket`), so any per-percent
+    // payload would make every 1 % change look like a new bucket and re-fire the
+    // quick peek on each tick while charging/draining. The percentage is read
+    // straight from `status` by the views — it never needs to live here.
     private enum Bucket: Equatable {
         case noHardware
-        case charging(pct: Int)
-        case onBattery(pct: Int)
+        case charging      // plugged in, below 100 %
+        case onBattery     // unplugged, at/above threshold
         case full          // 100 % and plugged
-        case low(pct: Int) // below threshold and unplugged
+        case low           // below threshold and unplugged
     }
 
     // MARK: - State
@@ -145,9 +150,9 @@ class PowerMonitor {
 
     private func makeBucket(pct: Int, isCharging: Bool, threshold: Int) -> Bucket {
         if pct >= 100 && isCharging { return .full }
-        if isCharging               { return .charging(pct: pct) }
-        if pct < threshold          { return .low(pct: pct) }
-        return .onBattery(pct: pct)
+        if isCharging               { return .charging }
+        if pct < threshold          { return .low }
+        return .onBattery
     }
 
     private func evaluateTransition(pct: Int, isCharging: Bool) {

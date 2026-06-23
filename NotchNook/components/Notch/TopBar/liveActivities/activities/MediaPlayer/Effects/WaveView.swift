@@ -116,7 +116,7 @@ class WaveNSView: NSView {
     func startRandomMovement() {
         guard isPlaying else { return }
         stopRandomMovement()
-        movementTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { [weak self] _ in
+        movementTimer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true) { [weak self] _ in
             self?.randomizeMovement()
         }
     }
@@ -169,7 +169,7 @@ class WaveNSView: NSView {
             let (newDirectionPoint1, newDirectionPoint2) = generateDirectionPoints(randomX: randomX, randomY: randomY)
             let newBaseY = generateBaseY()
             
-            moveControlPoint(to: CGPoint(x: randomX, y: randomY), direction1: newDirectionPoint1, direction2: newDirectionPoint2, baseY: newBaseY, withAnimationDuration: 2, index: i)
+            moveControlPoint(to: CGPoint(x: randomX, y: randomY), direction1: newDirectionPoint1, direction2: newDirectionPoint2, baseY: newBaseY, withAnimationDuration: 0.9, index: i)
         }
     }
     

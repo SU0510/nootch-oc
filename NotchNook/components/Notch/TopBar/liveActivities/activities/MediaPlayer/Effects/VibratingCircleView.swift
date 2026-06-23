@@ -46,12 +46,12 @@ class VibratingCircleNSView: NSView {
     private var displayLinkHandler: DisplayLinkHandler?
 
     private var startTime: TimeInterval = 0
-    private let updateInterval: TimeInterval = 1.0 / 10.0 // 10 FPS is enough for this effect
+    private let updateInterval: TimeInterval = 1.0 / 30.0 // 30 FPS for a smooth, lively wobble
     private var lastUpdateTime: TimeInterval = 0
-    private let amplitude: CGFloat = 3.0
+    private let amplitude: CGFloat = 4.0
     private let frequency: CGFloat = 2.0
     private let blur: CGFloat = 0.15
-    private let velocity: CGFloat = 0.7
+    private let velocity: CGFloat = 1.3
     private let lineWidth: CGFloat = 0.8
     private let noiseGenerator = PerlinNoiseGenerator()
     private let layerCount = 4
@@ -95,7 +95,7 @@ class VibratingCircleNSView: NSView {
     }
     
     private func setupDisplayLink() {
-        displayLinkHandler = DisplayLinkHandler(target: self, fps: 10) { [weak self] in
+        displayLinkHandler = DisplayLinkHandler(target: self, fps: 30) { [weak self] in
             self?.updateLayers()
         }
     }

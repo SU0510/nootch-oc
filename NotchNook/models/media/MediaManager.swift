@@ -22,10 +22,28 @@ class MediaManager {
 
     // MARK: - Playback-position state (Feature 2)
 
-    /// Seconds elapsed in the current track as reported by MediaRemote (updated ~4 Hz).
-    var elapsedTime: Double = 0
+    /// Seconds elapsed in the current track as last reported by MediaRemote.
+    /// MediaRemoteAdapter only delivers this on track/playback-state change (no
+    /// periodic tick anymore), so consumers that want a live-advancing position
+    /// while playing must extrapolate via `currentElapsedTime` below.
+    var elapsedTime: Double = 0 {
+        didSet { elapsedTimeAnchor = Date() }
+    }
+    /// Wall-clock instant `elapsedTime` was last written, used to extrapolate.
+    private var elapsedTimeAnchor = Date()
     /// Total duration of the current track in seconds. `nil` = unknown (live stream / unsupported).
     var duration: Double? = nil
+
+    /// Best-estimate current playback position: the last reported `elapsedTime`
+    /// plus the wall-clock time since it was reported (only while actually
+    /// playing). Clamped to `duration` when known. This lets the scrubber advance
+    /// smoothly even though MediaRemote no longer pushes a periodic position tick.
+    var currentElapsedTime: Double {
+        guard isPlaying else { return elapsedTime }
+        let projected = elapsedTime + Date().timeIntervalSince(elapsedTimeAnchor)
+        if let duration { return min(projected, duration) }
+        return projected
+    }
 
     // MARK: - Multi-source state (Feature 1)
 

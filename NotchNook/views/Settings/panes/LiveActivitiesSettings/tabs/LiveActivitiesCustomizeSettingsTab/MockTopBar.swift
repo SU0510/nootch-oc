@@ -84,7 +84,9 @@ struct MockTopBar: View {
                         )
                         .environment(\.getNow, staticNow)
                     case .media:
-                        AudioAnimationView()
+                        // Force the effect to animate in the settings preview even when
+                        // nothing is actually playing (otherwise it sits frozen).
+                        AudioAnimationView(altIsPlaying: true)
                     case .tray:
                         TrayFilesCountView()
                     case .updateAvailable:

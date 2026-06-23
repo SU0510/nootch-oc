@@ -18,7 +18,9 @@ struct DropAreaSettingsView: View {
                 .tabItem { Text("Customize pipelines") }
         }
         .padding(12)
-        .frame(height: 625, alignment: .topLeading)
+        // Don't lock to the tallest tab's height — the General tab is a single slider.
+        // Float to fit content, but stay resizable up to the pipelines tab's needs.
+        .frame(minHeight: 160, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 
