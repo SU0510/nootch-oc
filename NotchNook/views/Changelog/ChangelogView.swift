@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct ChangelogView: View {
-    
-    @State private var airdropPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "airdrop", withExtension: "mp4")!)
-    @State private var mediaPlayer = AVLooperPlayer(url: Bundle.main.url(forResource: "media", withExtension: "mp4")!)
 
     @Environment(\.closeWindow) private var closeWindow
-    
+
     var body: some View {
         VStack(spacing: 32) {
-            
+
             // Top Header
             VStack(spacing: 0) {
                 Image(.internalAppIcon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 128, height: 128)
-                
+
                 VStack(spacing: 8) {
                     if let shortVersion = getShortVersion() {
                         (
@@ -42,42 +39,41 @@ struct ChangelogView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                     }
-                    
-                    Text("A bunch of improvements and fixes!")
+
+                    Text("Timers, todos, and a lot more.")
                         .font(.system(size: 16))
                         .fontWeight(.regular)
                 }
             }
-            
-            VStack(spacing: 25) {
-                VideoFeatureView(
-                    player: mediaPlayer,
-                    title: String(localized: "Universal media is back!"),
-                    description: String(localized: "You can now see and control media from any app again. But now you can choose to show/control media from just Music or Spotify if you prefer."),
-                    videoHeight: 90
-                )
-                
-                VideoFeatureView(
-                    player: airdropPlayer,
-                    title: "Airdrop text and URL’s",
-                    description: "",
-                    videoHeight: 90
-                )
-                
+
+            VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("Other stuff:")
+                    Text("New:")
                         .font(.headline)
-                    
+
                     VStack(alignment: .leading, spacing: 12) {
-                        ChangelogItem(icon: "✨", text: "Airdrop text and URL’s")
-                        ChangelogItem(icon: "✨", text: "A lot of improvements for the calendar widget, including option to exclude all-day and multi-day events, open event/calendar on click, scroll behavior, and more.")
-                        
-                        ChangelogItem(icon: "🛠️", text: "Fix fullscreen behavior for non-notched screens and potentital issues with notes")
+                        ChangelogItem(icon: "⏱️", text: String(localized: "New Timer widget — scrollable wheels with a Liquid Glass focus pill and haptics."))
+                        ChangelogItem(icon: "✅", text: String(localized: "New Todo list widget — quick tasks with priority, completion, and auto-archiving."))
+                        ChangelogItem(icon: "🎵", text: String(localized: "Media: pick which app to show/control, plus a draggable progress bar."))
+                        ChangelogItem(icon: "🔋", text: String(localized: "New Battery and Bluetooth live activities."))
+                        ChangelogItem(icon: "🗂️", text: String(localized: "Smarter Tray: multi-file stacking, persistence across restarts, paste from clipboard, and Option-drag to move."))
                     }
                 }
-                .frame(width: 600, alignment: .leading)
+
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Fixes & improvements:")
+                        .font(.headline)
+
+                    VStack(alignment: .leading, spacing: 12) {
+                        ChangelogItem(icon: "🛠️", text: String(localized: "The Settings window is now resizable."))
+                        ChangelogItem(icon: "🛠️", text: String(localized: "Notch typing and focus overhaul — no more swallowed first click."))
+                        ChangelogItem(icon: "🛠️", text: String(localized: "Media progress now advances live, with livelier effects and universal media restored."))
+                        ChangelogItem(icon: "🛠️", text: String(localized: "Calendar and notes reliability fixes."))
+                    }
+                }
             }
-            
+            .frame(width: 600, alignment: .leading)
+
             // Close Button
             Button {
                 closeWindow()
