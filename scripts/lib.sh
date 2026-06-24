@@ -71,6 +71,15 @@ load_env() {
     source "$env_file"
     set +a
     ok ".env carregado de $env_file"
+
+    # Derive repo paths from the script's own location so the scripts work on any
+    # machine without hardcoding paths (this Mac uses ~/Projects, Igor's uses
+    # ~/Desktop/projects). The .env may still override these explicitly.
+    : "${NOTCHNOOK_REPO:=$(cd "$SCRIPT_DIR/.." && pwd)}"
+    : "${LOCAFE_REPO:=$(cd "$NOTCHNOOK_REPO/.." && pwd)/lo-cafe}"
+    export NOTCHNOOK_REPO LOCAFE_REPO
+    ok "NOTCHNOOK_REPO=$NOTCHNOOK_REPO"
+    ok "LOCAFE_REPO=$LOCAFE_REPO"
 }
 
 require_var() {
