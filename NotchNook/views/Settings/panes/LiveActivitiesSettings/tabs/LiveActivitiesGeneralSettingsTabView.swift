@@ -16,8 +16,9 @@ struct LiveActivitiesGeneralSettingsTabView: View {
     
     var body: some View {
         let contentMaxWidth: Double = 340
-        
-        Settings.Container(contentWidth: 520.0) {
+
+        ScrollView {
+            Settings.Container(contentWidth: 520.0) {
             Settings.Section(title: "", bottomDivider: true) {
                 Toggle("Enable live activities", isOn: $liveActivitiesSettings.enabled)
                     .padding(.bottom, 10)
@@ -130,6 +131,7 @@ struct LiveActivitiesGeneralSettingsTabView: View {
                     .frame(width: contentMaxWidth, alignment: .leading)
                     .disabled(!liveActivitiesSettings.enableHUDReplacement)
                     .disabled(!liveActivitiesSettings.enabled)
+            }
             }
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
