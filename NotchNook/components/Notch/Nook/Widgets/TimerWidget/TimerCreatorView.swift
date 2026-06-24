@@ -586,8 +586,7 @@ struct TimerCreatorView: View {
 
     private func commitIfValid() {
         guard totalSeconds > 0 else { return }
-        let effectiveLabel = prefs.defaultLabel
-        NookTimersStore.shared.add(label: effectiveLabel, totalSeconds: totalSeconds)
+        NookTimersStore.shared.add(label: "", totalSeconds: totalSeconds)
         vibrate()
         withAnimation(.spring) { isShowing = false }
     }
