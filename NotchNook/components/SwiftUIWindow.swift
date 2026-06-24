@@ -27,7 +27,7 @@ class SwiftUIWindow<Content>: NSWindow, NSWindowDelegate where Content: View {
         self.contentView = view
         let intrinsicSize = view.intrinsicContentSize
         let screenF = self.screen?.frame.size ?? .zero
-        
+
         var finalSize = intrinsicSize
         if self.toolbar != nil {
             finalSize.height += 51  // Add toolbar height if present
@@ -37,8 +37,8 @@ class SwiftUIWindow<Content>: NSWindow, NSWindowDelegate where Content: View {
             x: (screenF.width - finalSize.width) / 2,
             y: (screenF.height - finalSize.height) / 2
         ))
-        
-        
+
+
         self.makeKeyAndOrderFront(nil)
     }
     
