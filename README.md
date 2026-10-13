@@ -124,7 +124,8 @@ NotchNook is released under the **[NotchNook License](LICENSE.md)**: the PolyFor
 You **can** read, fork, modify, learn from, and share the **source code** for any noncommercial purpose.
 You **can** build it for your own use on your own Macs.
 You **can't** sell it or use it commercially in any way.
-You **can't** distribute compiled builds (`.app`, `.dmg`, `.zip`, Homebrew casks, release assets, anything), free or paid. Only [lo.cafe](https://lo.cafe) ships official builds.
+You **can't** distribute compiled builds (`.app`, `.dmg`, `.zip`, release assets, mirrors, anything), free or paid. Only [lo.cafe](https://lo.cafe) ships official builds.
+Linking to official builds is fine. That includes package managers like Homebrew, as long as they download the official release.
 
 Want a ready-to-run app instead? Get **[Nootch](https://lo.fi/nootch)**.
 

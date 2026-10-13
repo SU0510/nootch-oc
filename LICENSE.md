@@ -10,7 +10,7 @@ NotchNook is licensed under the PolyForm Noncommercial License 1.0.0 (reproduced
 
 ### 1. Source-Only Distribution
 
-The [Distribution License](#distribution-license) covers distributing the software, and changes and new works based on it, **in Source Form only**. You may not distribute the software, or any changes or new works based on it, in Compiled Form, whether free of charge or not, and by any means. This includes, but is not limited to: direct downloads, release assets, package managers (such as Homebrew casks), app stores, continuous-integration artifacts, file-sharing services, mirrors, and software preinstalled on or bundled with devices or other software.
+The [Distribution License](#distribution-license) covers distributing the software, and changes and new works based on it, **in Source Form only**. You may not distribute the software, or any changes or new works based on it, in Compiled Form, whether free of charge or not, and by any means. This includes, but is not limited to: direct downloads, release assets, package-manager packages that contain or host a build, app stores, continuous-integration artifacts, file-sharing services, mirrors, and software preinstalled on or bundled with devices or other software.
 
 ### 2. Building for Your Own Use
 
@@ -19,6 +19,8 @@ You may compile the software, with or without changes, for your own use on devic
 ### 3. Official Builds
 
 Only the licensor may distribute the software in Compiled Form. Official builds are published by lo.cafe (https://lo.cafe) and its authorized distribution partners.
+
+Linking to official builds, or installing them through a tool that downloads them directly from a source the licensor publishes, is not distribution in Compiled Form by you. Package-manager entries that only point to official builds, such as a Homebrew cask that downloads the official release, are expressly permitted.
 
 ### 4. Definitions
 
