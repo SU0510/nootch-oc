@@ -98,10 +98,14 @@
     <text x="450" y="78" font-size="20" font-weight="700" letter-spacing="6" fill="#ffffff" opacity="0.85">⚠ ATTENTION, KIND HUMAN ⚠</text>
 
     <g filter="url(#glow)">
-      <text x="450" y="148" font-size="62" font-weight="900" letter-spacing="2" fill="url(#rainbow)">
-        PATRON ME
-        <animateTransform attributeName="transform" type="scale" values="1;1.035;1" dur="1.2s" additive="sum" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
-      </text>
+      <g transform="translate(450 126)">
+        <g>
+          <animateTransform attributeName="transform" type="scale" values="1;1.035;1" dur="1.2s" additive="sum" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+          <g transform="translate(-450 -126)">
+            <text x="450" y="148" font-size="62" font-weight="900" letter-spacing="2" fill="url(#rainbow)">PATRON ME</text>
+          </g>
+        </g>
+      </g>
     </g>
     <text x="450" y="196" font-size="34" font-weight="900" fill="url(#rainbow)" filter="url(#glow)">FOR GOD'S SAKE 🙏</text>
 
