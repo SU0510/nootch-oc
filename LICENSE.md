@@ -1,6 +1,38 @@
-# PolyForm Noncommercial License 1.0.0
+# NotchNook License
 
 Required Notice: Copyright (c) 2024-2026 lo.cafe (Igor Marcossi) — https://github.com/lo-cafe/nootch-oc
+
+Required Notice: This software may only be distributed in Source Form. Distribution in Compiled Form by anyone other than the licensor is prohibited. See "Additional Terms" in this file.
+
+NotchNook is licensed under the PolyForm Noncommercial License 1.0.0 (reproduced in full below), modified by the Additional Terms in this section. Where the Additional Terms conflict with the PolyForm Noncommercial License 1.0.0, the Additional Terms control. These Additional Terms only narrow the rights granted; they never expand them.
+
+## Additional Terms
+
+### 1. Source-Only Distribution
+
+The [Distribution License](#distribution-license) covers distributing the software, and changes and new works based on it, **in Source Form only**. You may not distribute the software, or any changes or new works based on it, in Compiled Form, whether free of charge or not, and by any means. This includes, but is not limited to: direct downloads, release assets, package managers (such as Homebrew casks), app stores, continuous-integration artifacts, file-sharing services, mirrors, and software preinstalled on or bundled with devices or other software.
+
+### 2. Building for Your Own Use
+
+You may compile the software, with or without changes, for your own use on devices you own or control. You may not give, lend, sell, or otherwise make that compiled build available to anyone else.
+
+### 3. Official Builds
+
+Only the licensor may distribute the software in Compiled Form. Official builds are published by lo.cafe (https://lo.cafe) and its authorized distribution partners.
+
+### 4. Definitions
+
+**Source Form** means the human-readable source code of the software, together with the assets, resources, and project files needed to build it, and without any prebuilt executable of the software.
+
+**Compiled Form** means any output of building, compiling, or packaging the software that a machine can run or install, including application bundles (`.app`), disk images (`.dmg`), installer packages (`.pkg`), archives containing any of these, executables, libraries, and object code.
+
+### 5. Violations
+
+Distributing the software in Compiled Form in breach of these Additional Terms is a violation of this license, and the [Violations](#violations) section applies.
+
+---
+
+# PolyForm Noncommercial License 1.0.0
 
 <https://polyformproject.org/licenses/noncommercial/1.0.0>
 

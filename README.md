@@ -34,12 +34,17 @@
 
 **Your MacBook notch is a black rectangle doing nothing. NotchNook gives it a job.**
 
-[![License: PolyForm Noncommercial](https://img.shields.io/badge/license-PolyForm%20Noncommercial-a64dff?style=flat-square)](LICENSE.md)
+[![License: Noncommercial, source-only](https://img.shields.io/badge/license-noncommercial%20%C2%B7%20source--only-a64dff?style=flat-square)](LICENSE.md)
 ![macOS](https://img.shields.io/badge/macOS-14.4%2B-000000?style=flat-square&logo=apple&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-SwiftUI%20%2B%20AppKit-F05138?style=flat-square&logo=swift&logoColor=white)
 [![Patreon](https://img.shields.io/badge/Patreon-loficafe-ff424d?style=flat-square&logo=patreon&logoColor=white)](https://www.patreon.com/loficafe)
 
 </div>
+
+> [!TIP]
+> ### 🚀 Meet [Nootch](https://lo.fi/nootch), the successor
+> **[Nootch](https://lo.fi/nootch)** is NotchNook's commercial and spiritual successor. If you just want a polished notch app that keeps getting updates, get it at **[lo.fi/nootch](https://lo.fi/nootch)**.
+> This repo stays here as the open-source original, for tinkering, learning, and building for yourself.
 
 ---
 
@@ -114,10 +119,14 @@ Translations go through Crowdin, not PRs to `Localizable.xcstrings`.
 
 ## 📜 License
 
-NotchNook is released under the **[PolyForm Noncommercial License 1.0.0](LICENSE.md)**.
+NotchNook is released under the **[NotchNook License](LICENSE.md)**: the PolyForm Noncommercial License 1.0.0 plus a source-only distribution clause.
 
-You **can** read, fork, modify, learn from, and share it for any noncommercial purpose.
-You **can't** sell it, sell builds of it, or use it commercially in any way.
+You **can** read, fork, modify, learn from, and share the **source code** for any noncommercial purpose.
+You **can** build it for your own use on your own Macs.
+You **can't** sell it or use it commercially in any way.
+You **can't** distribute compiled builds (`.app`, `.dmg`, `.zip`, Homebrew casks, release assets, anything), free or paid. Only [lo.cafe](https://lo.cafe) ships official builds.
+
+Want a ready-to-run app instead? Get **[Nootch](https://lo.fi/nootch)**.
 
 Commercial licensing: contact [lo.cafe](https://lo.cafe).
 
