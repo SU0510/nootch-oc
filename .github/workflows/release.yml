@@ -1,0 +1,174 @@
+name: Release (macOS arm64)
+
+# Builds NotchNook.app for Apple Silicon entirely on GitHub-hosted runners and
+# publishes it as a GitHub Release. Triggered by pushing a v* tag, or manually.
+#
+# Signing: the repo currently holds no Developer ID / notarization secrets, so
+# the app is ad-hoc signed after the build. That is enough to launch on Apple
+# Silicon (which requires *a* signature) once the quarantine flag is cleared —
+# see the install note in the release body. If signing secrets are added later
+# (see the "Signed + notarized" section at the bottom), this workflow can be
+# extended to produce a Gatekeeper-clean build.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to build and attach the release to (e.g. v1.6.2)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-macos-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build arm64 release
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      PROJECT: NotchNook.xcodeproj
+      SCHEME: NotchNook
+      CONFIGURATION: Release
+      # Tag pushed, or the manually supplied one.
+      TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ARCHIVE: ${{ runner.temp }}/NotchNook.xcarchive
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Toolchain
+        run: |
+          sw_vers
+          echo "runner arch: $(uname -m)"
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Cache SwiftPM sources
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/Developer/Xcode/DerivedData/**/SourcePackages
+          key: spm-${{ runner.os }}-${{ hashFiles('NotchNook.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: spm-${{ runner.os }}-
+
+      - name: Archive (arm64, unsigned)
+        run: |
+          set -o pipefail
+          xcodebuild archive \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -configuration "$CONFIGURATION" \
+            -destination 'generic/platform=macOS' \
+            -archivePath "$ARCHIVE" \
+            ARCHS=arm64 ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM="" \
+            -resultBundlePath "${{ runner.temp }}/NotchNook.xcresult"
+
+      - name: Ad-hoc sign the app
+        run: |
+          APP="$ARCHIVE/Products/Applications/NotchNook.app"
+          test -d "$APP" || { echo "::error::Archive produced no NotchNook.app"; find "$ARCHIVE" -maxdepth 3; exit 1; }
+          # Sign nested code first, then the bundle. Ad-hoc, no hardened-runtime
+          # flag, so no library-validation headaches for Sparkle's XPC helpers.
+          codesign --force --deep --sign - "$APP"
+          echo "--- signature ---"
+          codesign -dv --verbose=4 "$APP" 2>&1 || true
+          echo "--- architectures ---"
+          lipo -archs "$APP/Contents/MacOS/NotchNook" || true
+
+      - name: Package
+        id: package
+        run: |
+          APP="$ARCHIVE/Products/Applications/NotchNook.app"
+          VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Contents/Info.plist")
+          BUILD=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$APP/Contents/Info.plist")
+          ZIP_NAME="NotchNook-${VERSION}-arm64.zip"
+          /usr/bin/ditto -c -k --keepParent "$APP" "${{ runner.temp }}/$ZIP_NAME"
+          shasum -a 256 "${{ runner.temp }}/$ZIP_NAME" > "${{ runner.temp }}/$ZIP_NAME.sha256"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "zip=$ZIP_NAME" >> "$GITHUB_OUTPUT"
+          cat "${{ runner.temp }}/$ZIP_NAME.sha256"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NotchNook-${{ steps.package.outputs.version }}-arm64
+          path: |
+            ${{ runner.temp }}/NotchNook-*-arm64.zip
+            ${{ runner.temp }}/NotchNook-*-arm64.zip.sha256
+          if-no-files-found: error
+
+      - name: Upload xcresult on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult
+          path: ${{ runner.temp }}/NotchNook.xcresult
+          if-no-files-found: ignore
+
+      - name: Write release notes
+        env:
+          VERSION: ${{ steps.package.outputs.version }}
+          BUILD: ${{ steps.package.outputs.build }}
+        run: |
+          cat > "${{ runner.temp }}/notes.md" <<EOF
+          Unofficial **Apple Silicon (arm64)** build of NotchNook \`$VERSION\` (build \`$BUILD\`),
+          compiled from \`${{ github.sha }}\` on GitHub's macOS runners.
+
+          > **This is an ad-hoc signed build.** It is not signed with a Developer ID
+          > certificate and not notarized by Apple, so Gatekeeper will block the first
+          > launch. To run it, move \`NotchNook.app\` to \`/Applications\` and clear the
+          > quarantine flag:
+
+          \`\`\`sh
+          xattr -dr com.apple.quarantine /Applications/NotchNook.app
+          \`\`\`
+
+          Then open it. Requires macOS 14.6 or later on Apple Silicon.
+
+          Sparkle auto-update is **not** wired to this build — it points at the upstream
+          lo-cafe appcast, not this release. Download newer builds from this repo's
+          Releases page.
+
+          ### Checksums
+          \`\`\`
+          $(cat "${{ runner.temp }}/NotchNook-$VERSION-arm64.zip.sha256")
+          \`\`\`
+          EOF
+
+      - name: Publish release
+        env:
+          VERSION: ${{ steps.package.outputs.version }}
+        run: |
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG exists — uploading/overwriting assets."
+            gh release upload "$TAG" \
+              "${{ runner.temp }}/NotchNook-$VERSION-arm64.zip" \
+              "${{ runner.temp }}/NotchNook-$VERSION-arm64.zip.sha256" \
+              --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" \
+              "${{ runner.temp }}/NotchNook-$VERSION-arm64.zip" \
+              "${{ runner.temp }}/NotchNook-$VERSION-arm64.zip.sha256" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "NotchNook $VERSION (arm64)" \
+              --notes-file "${{ runner.temp }}/notes.md"
+          fi
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY"
