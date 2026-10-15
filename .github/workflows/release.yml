@@ -1,7 +1,12 @@
 name: Release (macOS arm64)
 
-# Builds NotchNook.app for Apple Silicon entirely on GitHub-hosted runners and
-# publishes it as a GitHub Release. Triggered by pushing a v* tag, or manually.
+# Builds NotchNook.app for Apple Silicon entirely on GitHub-hosted runners.
+# Triggered by pushing a v* tag, or manually.
+#
+# The result is published as a DRAFT GitHub Release: LICENSE.md forbids
+# distributing the software in Compiled Form, so the build stays visible only to
+# the repo owner. Letting anyone download it would require the licensor's
+# permission. Do not publish the draft or switch it to a normal release.
 #
 # Signing: the repo currently holds no Developer ID / notarization secrets, so
 # the app is ad-hoc signed after the build. That is enough to launch on Apple
@@ -169,6 +174,8 @@ jobs:
         env:
           VERSION: ${{ steps.package.outputs.version }}
         run: |
+          # --draft is deliberate: LICENSE.md forbids distributing the software in
+          # compiled form, so the build must stay visible only to the repo owner.
           if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             echo "Release $TAG exists — uploading/overwriting assets."
             gh release upload "$TAG" \
@@ -180,6 +187,7 @@ jobs:
               "$RUNNER_TEMP/NotchNook-$VERSION-arm64.zip" \
               "$RUNNER_TEMP/NotchNook-$VERSION-arm64.zip.sha256" \
               --repo "$GITHUB_REPOSITORY" \
+              --draft \
               --title "NotchNook $VERSION (arm64)" \
               --notes-file "$RUNNER_TEMP/notes.md"
           fi
