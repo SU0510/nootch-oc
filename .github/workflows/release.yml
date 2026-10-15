@@ -161,7 +161,7 @@ jobs:
 
           ### Checksums
           \`\`\`
-          $(cat "$RUNNER_TEMP/NotchNook-$VERSION-arm64.zip.sha256")
+          $(cd "$RUNNER_TEMP" && shasum -a 256 "NotchNook-$VERSION-arm64.zip")
           \`\`\`
           EOF
 
