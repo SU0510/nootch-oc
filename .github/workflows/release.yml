@@ -45,11 +45,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Select Xcode 26
+        run: |
+          set -euo pipefail
+          # The pinned `Defaults` dependency declares Swift tools version 6.2.0, so
+          # the image default (Xcode 16.4 / Swift 6.1) cannot resolve packages.
+          XCODE_DIR="$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+          echo "Selecting $XCODE_DIR"
+          sudo xcode-select -s "$XCODE_DIR/Contents/Developer"
+          xcodebuild -version
+          swift --version
+
       - name: Toolchain
         run: |
           sw_vers
           echo "runner arch: $(uname -m)"
           xcodebuild -version
+          swift --version
           xcode-select -p
 
       - name: Cache SwiftPM sources
